@@ -22,8 +22,8 @@ và xuất `schemas/selected_testplan.json` sau khi người dùng ký Gate 4.
 Đọc theo thứ tự:
 1. `schemas/final_config.json` → lấy parameter values (PR_M_EXT_EN, PR_CSR_EN, PR_IRQ_EN, v.v.)
 2. `schemas/structured_spec.json` → lấy danh sách REQ-IDs
-3. `src/rtl/filelist.f` → xác nhận RTL đã sinh (nếu thiếu → dừng: "Chạy /rtl_generator trước")
-4. `schemas/rtm.json` → lấy danh sách SVA đã confirmed (nếu có, từ Phase 3)
+3. `src/rtl/filelist.f` → kiểm tra RTL đã sinh chưa (nếu thiếu → **cảnh báo** nhưng không dừng; TB vẫn generate được, compile check sẽ fail sau)
+4. `schemas/rtm.json` → lấy danh sách SVA đã confirmed (nếu thiếu → bỏ qua, dùng REQ-IDs từ structured_spec.json thay thế)
 
 Tạo thư mục `src/tb/` và `src/tb/tests/` nếu chưa có.
 
@@ -262,7 +262,7 @@ Cấu trúc:
 
 | Tình huống | Hành động |
 |---|---|
-| `src/rtl/filelist.f` không tồn tại | Dừng, yêu cầu chạy `/rtl_generator` trước |
+| `src/rtl/filelist.f` không tồn tại | Cảnh báo, tiếp tục generate TB; compile check (Gate 4) sẽ fail cho đến khi RTL sinh xong |
 | Parameter tắt mà user chọn TC conditional | Từ chối TC đó, giải thích, đề xuất TC thay thế |
 | VCS compile fail sau nhiều lần fix | Hiển thị lỗi đầy đủ, hỏi user có muốn skip TC đó không |
 | `schemas/selected_testplan.json` đã tồn tại | Cảnh báo "Ghi đè test plan cũ?" trước khi overwrite |
