@@ -1,18 +1,10 @@
-# ── VCS compile cache (root only) ──────────────────────────────────────────
-/csrc/
-*.daidir/
-ucli.key
-*.key
+# The content below for example with gitignore file, based on your EDA tool, you can adjust the content below accordingly.
+#------------------------------------------------------------------------------------------------------------------------
 
 # ── Working directories (root only) ─────────────────────────────────────────
-# Result/*/ sim/ và work/ KHÔNG bị ignore nhờ có dấu /
+# Result/*/ sim/ and work/
 /sim/
 /work/
-
-# ── Simulation waveforms (nặng, không cần lưu) ──────────────────────────────
-*.vcd
-*.vpd
-*.fsdb
 
 # ── Yosys intermediate ───────────────────────────────────────────────────────
 # CHỈ *.blif — KHÔNG ignore *.json vì schemas/*.json là gate artifact
