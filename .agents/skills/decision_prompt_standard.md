@@ -74,5 +74,5 @@ For a simple approval, compress the structure but still state what is being appr
 
 ## Language and judgment
 
-Use the user's language for the question. Preserve standard technical terms where translation could obscure meaning, and define them on first use. Separate facts from assumptions. Do not overstate a recommendation: make clear when it depends on a design goal such as lower area, higher throughput, or compatibility.
+Write skill questions, option labels, examples, and generated workflow output in standard technical English. Only documentation and README files may be bilingual in English and Vietnamese. Define unfamiliar technical terms on first use. Separate facts from assumptions. Do not overstate a recommendation: make clear when it depends on a design goal such as lower area, higher throughput, or compatibility.
 

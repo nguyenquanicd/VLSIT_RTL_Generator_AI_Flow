@@ -1,99 +1,179 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "StructuredSpec",
-  "description": "Output của Phase 1 (spec_parser). Input cho Phase 2 (config_ui).",
+  "description": "Phase 1 output from spec_parser; input to Phase 2 config_ui.",
   "type": "object",
-  "required": ["metadata", "requirements", "parameters"],
+  "required": [
+    "metadata",
+    "requirements",
+    "parameters"
+  ],
   "properties": {
     "metadata": {
       "type": "object",
-      "required": ["ip_name", "spec_revision", "phase", "gate_status"],
+      "required": [
+        "ip_name",
+        "spec_revision",
+        "phase",
+        "gate_status"
+      ],
       "properties": {
-        "ip_name":        { "type": "string", "example": "rv32im_core" },
-        "spec_revision":  { "type": "string", "example": "0.2" },
-        "phase":          { "type": "integer", "const": 1 },
-        "gate_status":    { "type": "string", "enum": ["pending", "approved"] },
-        "approved_at":    { "type": ["string", "null"] }
+        "ip_name": {
+          "type": "string",
+          "example": "rv32im_core"
+        },
+        "spec_revision": {
+          "type": "string",
+          "example": "0.2"
+        },
+        "phase": {
+          "type": "integer",
+          "const": 1
+        },
+        "gate_status": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "approved"
+          ]
+        },
+        "approved_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
       }
     },
-
     "requirements": {
       "type": "array",
-      "description": "Danh sách requirement tách ra từ spec, mỗi cái có REQ-ID duy nhất.",
+      "description": "Requirements extracted from the specification, each with a unique REQ-ID.",
       "items": {
         "type": "object",
-        "required": ["req_id", "text", "category", "ambiguity_score"],
+        "required": [
+          "req_id",
+          "text",
+          "category",
+          "ambiguity_score"
+        ],
         "properties": {
           "req_id": {
             "type": "string",
             "pattern": "^REQ-[0-9]{3,}$",
-            "description": "Mã định danh, dạng REQ-001"
+            "description": "Unique identifier such as REQ-001."
           },
           "text": {
             "type": "string",
-            "description": "Nội dung requirement nguyên văn"
+            "description": "Normative requirement text."
           },
           "category": {
             "type": "string",
-            "enum": ["functional", "timing", "interface", "constraint"],
-            "description": "Phân loại requirement"
+            "enum": [
+              "functional",
+              "timing",
+              "interface",
+              "constraint"
+            ],
+            "description": "Requirement category."
           },
           "ambiguity_score": {
             "type": "number",
-            "minimum": 0.0,
-            "maximum": 1.0,
-            "description": "Điểm mơ hồ 0.0–1.0. Vượt 0.3 thì đánh dấu cần xem lại."
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Ambiguity score from 0.0 to 1.0; scores above 0.3 require review."
           },
           "needs_review": {
             "type": "boolean",
-            "description": "true nếu ambiguity_score > 0.3"
+            "description": "True when ambiguity_score exceeds 0.3."
           },
           "source_section": {
             "type": "string",
-            "description": "Mục trong spec gốc, ví dụ '§1.1 F02'"
+            "description": "Source section in the original specification, for example '§1.1 F02'."
           },
           "parameters_affected": {
             "type": "array",
-            "items": { "type": "string" },
-            "description": "Tên các parameter điều khiển requirement này, ví dụ ['PR_M_EXT_EN']"
+            "items": {
+              "type": "string"
+            },
+            "description": "Parameters that affect this requirement, for example ['PR_M_EXT_EN']."
           },
           "feature_id": {
             "type": "string",
-            "description": "Feature ID tương ứng, ví dụ 'F02'"
+            "description": "Related feature ID, for example F02."
           }
         }
       }
     },
-
     "parameters": {
       "type": "array",
-      "description": "Tham số TOP của IP, trích từ §2.2",
+      "description": "Top-level IP parameters from the approved specification.",
       "items": {
         "type": "object",
-        "required": ["name", "type", "default", "valid_range", "description"],
+        "required": [
+          "name",
+          "type",
+          "default",
+          "valid_range",
+          "description"
+        ],
         "properties": {
-          "name":          { "type": "string", "description": "Tên parameter, dạng PR_*" },
-          "type":          { "type": "string", "description": "Kiểu SV, ví dụ 'bit', 'int unsigned', 'logic [31:0]'" },
-          "default":       { "type": "string", "description": "Giá trị default dạng string" },
-          "valid_range":   { "type": "string", "description": "Mô tả range hợp lệ" },
-          "description":   { "type": "string" },
-          "locked":        { "type": "boolean", "description": "true nếu không thể thay đổi trong Phase 1" },
-          "req_ids":       { "type": "array", "items": { "type": "string" }, "description": "REQ-IDs bị ảnh hưởng" },
-          "feature_ids":   { "type": "array", "items": { "type": "string" }, "description": "Feature IDs bị ảnh hưởng" },
-          "constraints":   { "type": "array", "items": { "type": "string" }, "description": "Mã constraint liên quan, ví dụ ['C3']" }
+          "name": {
+            "type": "string",
+            "description": "Parameter name using the applicable RTL naming rule."
+          },
+          "type": {
+            "type": "string",
+            "description": "SystemVerilog data type, for example 'logic [31:0]'."
+          },
+          "default": {
+            "type": "string",
+            "description": "Default value represented as a string."
+          },
+          "valid_range": {
+            "type": "string",
+            "description": "Description of legal values or range."
+          },
+          "description": {
+            "type": "string"
+          },
+          "locked": {
+            "type": "boolean",
+            "description": "True when the parameter cannot be changed in this phase."
+          },
+          "req_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Requirement IDs affected by this parameter."
+          },
+          "feature_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Feature IDs affected by this parameter."
+          },
+          "constraints": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Related constraint IDs, for example ['C3']."
+          }
         }
       }
     },
-
     "style_constraints_source": {
       "type": "string",
-      "description": "Đường dẫn file quy tắc RTL, thường là 'rtl_rule.md'"
+      "description": "Path to the selected RTL design rule file."
     },
-
     "ambiguity_flags": {
       "type": "array",
-      "description": "Danh sách REQ-ID cần xem lại (ambiguity_score > 0.3)",
-      "items": { "type": "string" }
+      "description": "REQ-IDs requiring review because ambiguity_score exceeds 0.3.",
+      "items": {
+        "type": "string"
+      }
     }
   }
 }

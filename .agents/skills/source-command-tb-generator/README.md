@@ -1,5 +1,5 @@
 # Testbench generator skill
 
-**VI:** Tạo testbench SystemVerilog thuần và test plan cho RV32IM, rồi compile trước Gate 4. Xem SKILL.md để biết phạm vi kiểm tra.
+**VI:** Tạo testbench và testcase đã lưu từ verification contract, không cần RTL để chọn top/interface hoặc expected behavior. Compile Gate 4 với interface shell.
 
-**EN:** Builds a plain SystemVerilog testbench and test plan for RV32IM, then compiles before Gate 4. See SKILL.md for verification scope.
+**EN:** Builds a plain SystemVerilog testbench and saved tests from the verification contract. Gate 4 compiles against a contract interface shell without requiring RTL.

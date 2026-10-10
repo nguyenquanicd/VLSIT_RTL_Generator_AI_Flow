@@ -11,15 +11,19 @@ from pathlib import Path
 
 PHASES = {
     "rtl-hierarchy-diagram": {"rtl", "build"},
-    "source-command-autoflow": {"spec", "config", "rtl", "sva", "tb", "trace", "build", "docs"},
+    "source-command-autoflow": {"spec", "config", "rtl", "rtl_rules", "contract", "sva", "tb", "trace", "build", "coverage", "docs"},
     "source-command-spec-writer": {"spec"},
     "source-command-spec-parser": {"spec", "config"},
     "source-command-config-ui": {"spec", "config"},
-    "source-command-rtl-generator": {"spec", "config", "rtl", "build"},
-    "source-command-sva-generator": {"spec", "config", "rtl", "sva", "trace", "build"},
-    "source-command-tb-generator": {"config", "rtl", "tb", "trace", "build"},
-    "source-command-verification": {"config", "rtl", "sva", "tb", "trace", "build"},
-    "source-command-spec-pdf-generator": {"spec", "config", "sva", "tb", "trace", "build", "docs"},
+    "source-command-rtl-generator": {"spec", "config", "rtl", "rtl_rules", "build"},
+    "source-command-verification-contract": {"spec", "config", "contract", "makefile"},
+    # Verification-source generation is contract-based and must not index generated RTL.
+    "source-command-sva-generator": {"spec", "config", "contract", "sva", "trace", "makefile"},
+    "source-command-tb-generator": {"spec", "config", "contract", "tb", "trace", "makefile"},
+    # RTL is included only when it is the DUT or a structural coverage diagnostic.
+    "source-command-verification": {"spec", "config", "contract", "rtl", "sva", "tb", "trace", "build", "coverage"},
+    "source-command-code-coverage": {"config", "contract", "rtl", "tb", "trace", "build", "coverage"},
+    "source-command-spec-pdf-generator": {"spec", "config", "contract", "sva", "tb", "trace", "build", "coverage", "docs"},
 }
 SKIP_DIRS = {".git", ".agents", ".claude", ".venv", "venv", "node_modules", "build", "dist", "__pycache__"}
 RTL_EXTENSIONS = {".v", ".vh", ".sv", ".svh", ".vhd", ".vhdl"}
@@ -36,18 +40,23 @@ def categories(path: Path) -> set[str]:
         result.add("config")
     if "rtm" in name or "verification_report" in name:
         result.add("trace")
-    if (
-        path.suffix.lower() in RTL_EXTENSIONS
-        or "rtl" in parts
-        or "rtl_rule" in name
-        or "coding_rule" in name
-        or ("rtl" in name and "rule" in name)
-    ):
+    verification_source = bool(parts & {"tb", "testbench", "sva", "verification"})
+    is_rtl_rule = "rtl_rule" in name or "coding_rule" in name or ("rtl" in name and "rule" in name)
+    is_design_rtl = not is_rtl_rule and (
+        "rtl" in parts or (path.suffix.lower() in RTL_EXTENSIONS and not verification_source)
+    )
+    if is_rtl_rule:
+        result.add("rtl_rules")
+    if is_design_rtl:
         result.add("rtl")
+    if "contract" in parts or "verification_contract" in name or "contract_if" in name:
+        result.add("contract")
     if "sva" in parts or "assert" in name:
         result.add("sva")
     if "tb" in parts or "testbench" in parts or "testplan" in name or "tests" in parts:
         result.add("tb")
+    if "coverage" in name or "coverage" in parts:
+        result.add("coverage")
     if (
         path.suffix.lower() in LOG_EXTENSIONS
         or path.suffix.lower() in {".ys", ".tcl", ".f", ".flist"}
@@ -56,6 +65,8 @@ def categories(path: Path) -> set[str]:
         or "compile" in name
     ):
         result.add("build")
+    if name == "makefile":
+        result.add("makefile")
     if "docs" in parts or "specification.pdf" in name:
         result.add("docs")
     return result

@@ -1,5 +1,5 @@
 # Autoflow skill
 
-**VI:** Điều phối các phase của RTL flow theo thứ tự và các gate review. Quy trình, đầu vào và giới hạn được ghi trong SKILL.md.
+**VI:** Điều phối hai nhánh độc lập từ baseline spec/config đã duyệt: RTL generator và verification contract/testbench. Chạy tích hợp DUT sau khi cả hai nhánh sẵn sàng; dùng một Makefile và review các gate.
 
-**EN:** Orchestrates RTL workflow phases in sequence with review gates. SKILL.md defines the procedure, inputs, and limits.
+**EN:** Orchestrates independent RTL and verification branches from the approved spec/config baseline. It integrates the DUT after both branches are ready, uses one Makefile, and manages review gates.

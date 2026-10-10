@@ -114,7 +114,7 @@
 <body>
 
 <h1>AUTOFLOW — Agent Flow Structure</h1>
-<p class="subtitle">8 Skills · runs <strong style="color:#f87171">sequentially</strong> · up to <strong style="color:#d8b4fe">2 agents simultaneously</strong> (Phase 3a+4 only) · 3 human-review gates · 2 auto-sign gates</p>
+<p class="subtitle">Specification-based verification contract first · independent RTL and verification branches · 4 human-review gates · 2 conditional auto-sign gates</p>
 
 <div class="flow">
 
@@ -133,7 +133,7 @@
   <div class="card c-opt" style="border-style:dashed">
     <div class="card-icon">✏️</div>
     <div class="card-body">
-      <div class="card-title">Skill 1 — <strong>spec_writer</strong> <span style="color:#64748b;font-weight:400">(Mode B only)</span></div>
+      <div class="card-title"><strong>spec_writer</strong> <span style="color:#64748b;font-weight:400">(Mode B only)</span></div>
       <div class="card-desc">Interviews user about the design, generates the spec file used as input to Phase 1</div>
       <div class="output-row"><span class="out-tag">spec/&lt;name&gt;.md</span></div>
     </div>
@@ -146,7 +146,7 @@
   <div class="card c-skill">
     <div class="card-icon">📄</div>
     <div class="card-body">
-      <div class="card-title">Skill 2 — <strong>spec_parser</strong> &nbsp;·&nbsp; Phase 1</div>
+      <div class="card-title"><strong>spec_parser</strong> &nbsp;·&nbsp; Phase 1</div>
       <div class="card-desc">Parse spec · Extract REQ-IDs · Map modules · Detect ambiguity</div>
       <div class="output-row">
         <span class="out-tag">structured_spec.json</span>
@@ -170,7 +170,7 @@
   <div class="card c-skill">
     <div class="card-icon">⚙️</div>
     <div class="card-body">
-      <div class="card-title">Skill 3 — <strong>config_ui</strong> &nbsp;·&nbsp; Phase 2</div>
+      <div class="card-title"><strong>config_ui</strong> &nbsp;·&nbsp; Phase 2</div>
       <div class="card-desc">Lock design parameters · Use defaults unless overrides are provided</div>
       <div class="output-row"><span class="out-tag">final_config.json</span></div>
     </div>
@@ -187,16 +187,36 @@
 
   <div class="conn"></div>
 
+  <!-- Gate 3a: verification contract -->
+  <div class="card c-skill">
+    <div class="card-icon">📜</div>
+    <div class="card-body">
+      <div class="card-title"><strong>verification_contract</strong> &nbsp;·&nbsp; Gate 3a</div>
+      <div class="card-desc">Define interface and golden oracle from spec/config/standards · no RTL input</div>
+      <div class="output-row"><span class="out-tag">verification_contract.json</span><span class="out-tag">contract_if.sv</span></div>
+    </div>
+    <span class="badge badge-skill">SKILL</span>
+  </div>
+
+  <div class="conn"></div>
+
+  <div class="gate-wrap">
+    <div class="gate-diamond gate-human">GATE 3a<br>Human Review</div>
+    <div class="gate-label">Approve oracle and interface before either branch proceeds</div>
+  </div>
+
+  <div class="conn"></div>
+
   <!-- PARALLEL BLOCK -->
   <div class="parallel-block">
-    <div class="parallel-label">PARALLEL — can invoke 2 agents simultaneously</div>
+    <div class="parallel-label">INDEPENDENT BRANCHES — neither reads the other branch's artifacts</div>
 
     <div class="parallel-col">
       <div class="card-sm c-parallel" style="border-color:#7c3aed">
         <div class="card-icon" style="font-size:1rem">🔧</div>
         <div class="card-body">
-          <div class="card-title">Skill 4 — <strong>rtl_generator</strong></div>
-          <div class="card-desc">Generate RTL SV · Lint 0 warnings · Synthesis (if tool available)</div>
+          <div class="card-title"><strong>rtl_generator</strong> · Phase 3R</div>
+          <div class="card-desc">Generate RTL from spec/config/rules · lint and synthesis checkpoint</div>
           <div class="output-row">
             <span class="out-tag">src/rtl/*.sv</span>
             <span class="out-tag">lint OK</span>
@@ -209,11 +229,13 @@
       <div class="card-sm c-parallel" style="border-color:#7c3aed">
         <div class="card-icon" style="font-size:1rem">🧪</div>
         <div class="card-body">
-          <div class="card-title">Skill 5 — <strong>tb_generator</strong></div>
-          <div class="card-desc">Generate TB SV · BFM tasks · 12 TC tasks · Testplan</div>
+          <div class="card-title">Verification branch — <strong>tb_generator + sva_generator</strong></div>
+          <div class="card-desc">Generate tests and properties from approved contract · compile against interface shell · no RTL input</div>
           <div class="output-row">
             <span class="out-tag">src/tb/*.sv</span>
             <span class="out-tag">testplan.md</span>
+            <span class="out-tag">src/sva/*.sv</span>
+            <span class="out-tag">GATE3_REVIEW.md</span>
           </div>
         </div>
       </div>
@@ -225,23 +247,7 @@
   <!-- GATE 4 AUTO -->
   <div class="gate-wrap">
     <div class="gate-diamond gate-auto">GATE 4<br>Auto-sign ✓</div>
-    <div class="gate-label">Self-signs if TB compiles · No user prompt</div>
-  </div>
-
-  <div class="conn"></div>
-
-  <!-- Phase 3b: sva_generator -->
-  <div class="card c-skill">
-    <div class="card-icon">🔍</div>
-    <div class="card-body">
-      <div class="card-title">Skill 6 — <strong>sva_generator</strong> &nbsp;·&nbsp; Phase 3b</div>
-      <div class="card-desc">Generate SVA properties · Smoke-check vacuous · Compile check · Create GATE3_REVIEW.md</div>
-      <div class="output-row">
-        <span class="out-tag">src/sva/*.sv</span>
-        <span class="out-tag">GATE3_REVIEW.md</span>
-      </div>
-    </div>
-    <span class="badge badge-skill">SKILL</span>
+    <div class="gate-label">Test-plan and interface-shell checks pass · not a DUT pass</div>
   </div>
 
   <div class="conn"></div>
@@ -249,7 +255,7 @@
   <!-- GATE 3b HUMAN -->
   <div class="gate-wrap">
     <div class="gate-diamond gate-human">GATE 3b<br>Human Review</div>
-    <div class="gate-label">Pause · User reads GATE3_REVIEW.md · Wait for "yes"</div>
+    <div class="gate-label">Review assertion intent and vacuity before DUT integration</div>
   </div>
 
   <div class="conn"></div>
@@ -258,8 +264,8 @@
   <div class="card c-skill">
     <div class="card-icon">✅</div>
     <div class="card-body">
-      <div class="card-title">Skill 7 — <strong>verification</strong> &nbsp;·&nbsp; Phase 5</div>
-      <div class="card-desc">Compile + Run sim · Icarus / VCS · Mutation testing (Yosys) · REQ-ID sign-off</div>
+      <div class="card-title"><strong>verification</strong> &nbsp;·&nbsp; Phase 5</div>
+      <div class="card-desc">Integrate RTL as DUT through adapter · check compatibility · run tests against the fixed golden oracle</div>
       <div class="output-row">
         <span class="out-tag">N/N PASS</span>
         <span class="out-tag">verification_report.json</span>
@@ -283,7 +289,7 @@
   <div class="card c-skill">
     <div class="card-icon">📋</div>
     <div class="card-body">
-      <div class="card-title">Skill 8 — <strong>spec_pdf_generator</strong> &nbsp;·&nbsp; Phase 6</div>
+      <div class="card-title"><strong>spec_pdf_generator</strong> &nbsp;·&nbsp; Phase 6</div>
       <div class="card-desc">Consolidate all outputs · Render PDF specification · Flow complete</div>
       <div class="output-row"><span class="out-tag">docs/specification.pdf</span></div>
     </div>
@@ -321,24 +327,28 @@
     </div>
     <div style="display:flex;gap:6px;align-items:center;">
       <div style="font-size:0.62rem;color:#475569;width:28px;text-align:right;flex-shrink:0">T4</div>
-      <div class="agent-chip" style="background:#1a1040;border-color:#7c3aed;color:#d8b4fe;font-size:0.7rem">🔧 rtl_generator</div>
-      <div class="agent-chip" style="background:#1a1040;border-color:#7c3aed;color:#d8b4fe;font-size:0.7rem">🧪 tb_generator</div>
-      <div style="font-size:0.65rem;color:#7c3aed;margin-left:4px">← can run simultaneously</div>
+      <div class="agent-chip" style="background:#0f2537;border-color:#1e4d6b;color:#7dd3fc;font-size:0.7rem">📜 verification_contract · Gate 3a</div>
     </div>
     <div style="display:flex;gap:6px;align-items:center;">
       <div style="font-size:0.62rem;color:#475569;width:28px;text-align:right;flex-shrink:0">T5</div>
-      <div class="agent-chip" style="background:#0f2537;border-color:#1e4d6b;color:#7dd3fc;font-size:0.7rem">🔍 sva_generator</div>
+      <div class="agent-chip" style="background:#1a1040;border-color:#7c3aed;color:#d8b4fe;font-size:0.7rem">🔧 rtl_generator</div>
+      <div class="agent-chip" style="background:#1a1040;border-color:#7c3aed;color:#d8b4fe;font-size:0.7rem">🧪 tb_generator + 🔍 sva_generator</div>
+      <div style="font-size:0.65rem;color:#7c3aed;margin-left:4px">← independent inputs; currently run sequentially</div>
     </div>
     <div style="display:flex;gap:6px;align-items:center;">
       <div style="font-size:0.62rem;color:#475569;width:28px;text-align:right;flex-shrink:0">T6</div>
-      <div class="agent-chip" style="background:#0f2537;border-color:#1e4d6b;color:#7dd3fc;font-size:0.7rem">✅ verification</div>
+      <div class="agent-chip" style="background:#0f2537;border-color:#1e4d6b;color:#7dd3fc;font-size:0.7rem">Gate 4 test-plan/shell checks → Gate 3b property review</div>
     </div>
     <div style="display:flex;gap:6px;align-items:center;">
       <div style="font-size:0.62rem;color:#475569;width:28px;text-align:right;flex-shrink:0">T7</div>
+      <div class="agent-chip" style="background:#0f2537;border-color:#1e4d6b;color:#7dd3fc;font-size:0.7rem">✅ verification: DUT adapter + simulation</div>
+    </div>
+    <div style="display:flex;gap:6px;align-items:center;">
+      <div style="font-size:0.62rem;color:#475569;width:28px;text-align:right;flex-shrink:0">T8</div>
       <div class="agent-chip" style="background:#0f2537;border-color:#1e4d6b;color:#7dd3fc;font-size:0.7rem">📋 spec_pdf_generator</div>
     </div>
   </div>
-  <div style="margin-top:10px;font-size:0.68rem;color:#475569;text-align:center;">Human-review gates (⏸) occur between T2→T3, T5→T6, T6→T7 — flow halts completely at each gate</div>
+  <div style="margin-top:10px;font-size:0.68rem;color:#475569;text-align:center;">Branches do not read each other's artifacts; only DUT integration reads RTL for compatibility. Human-review gates stop the flow until approved.</div>
 </div>
 
 <!-- Legend -->
@@ -346,7 +356,7 @@
   <div class="leg-item"><div class="leg-dot" style="background:#92400e"></div>Gate — Human review (pause)</div>
   <div class="leg-item"><div class="leg-dot" style="background:#065f46"></div>Gate — Auto-sign (no prompt)</div>
   <div class="leg-item"><div class="leg-dot" style="background:#1e4d6b"></div>Skill</div>
-  <div class="leg-item"><div class="leg-dot" style="background:#4c1d95"></div>Parallel (can run as 2 agents)</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#4c1d95"></div>Independent branches (currently execute sequentially)</div>
   <div class="leg-item"><div class="leg-dot" style="background:#3b4f7a;border:1px dashed #6b82ba"></div>Optional</div>
 </div>
 

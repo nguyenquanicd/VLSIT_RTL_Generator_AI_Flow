@@ -31,7 +31,7 @@ Tên module và đường dẫn `/tools/PDK` cần điều chỉnh theo máy th�
 ### Đặc tả và prompt
 
 1. Đặt đặc tả tại `spec/<ip_name>_spec.md`, mô tả rõ chức năng, interface, parameter, clock/reset, timing và error behavior.
-2. Kiểm tra đủ **9 command** trong `.claude/commands/` và quy tắc coding trong `rtl_rule.md`.
+2. Kiểm tra đủ **11 command** trong `.claude/commands/` và quy tắc coding trong `rtl_rule.md`.
 3. Khi đổi IP, cập nhật parser mapping **và các prompt liên quan**: configuration, danh sách module, SVA, test plan và tài liệu. Một số template có thể gắn với cấu trúc thiết kế tham khảo; cần cập nhật đồng bộ thay vì chỉ sửa parser.
 4. Chuẩn bị schema tại đường dẫn các prompt yêu cầu; bản mẫu nằm trong `claude_template/schemas/`.
 
@@ -53,7 +53,7 @@ $source-command-autoflow
 Dùng spec/<ip_name>_spec.md
 ```
 
-Để chạy riêng một phase, gọi skill tương ứng, ví dụ `$source-command-spec-parser`. README có bảng ánh xạ đầy đủ giữa 9 skill và command.
+Để chạy riêng một phase, gọi skill tương ứng, ví dụ `$source-command-spec-parser`. README có bảng ánh xạ đầy đủ giữa 11 phase skills và command.
 
 ## 3. Chạy tự động
 
@@ -73,14 +73,16 @@ Luồng thực hiện:
 
 ```text
 Spec → Parse → [Gate 1: review] → Config
-     → RTL + lint/synthesis và Testbench
-     → SVA → [Gate 3b: review]
-     → Verification → [Gate 5: review] → Markdown/PDF
+     → Verification contract từ spec/config/standard → [Gate 3a: review]
+     → ┌ RTL generation + lint/synthesis (nhánh RTL)
+       └ SVA + Testbench từ contract (nhánh verification) → [Gate 3b / Gate 4]
+     → DUT integration → Verification baseline → Code coverage (target tùy chọn)
+     → [Gate 5: review] → Markdown/PDF
 ```
 
 Theo `/autoflow`, Gate 2 dùng giá trị mặc định hoặc override đã được cung cấp; Gate 2 và Gate 4 được tự xác nhận khi đạt điều kiện. Các command chạy riêng có thể yêu cầu xác nhận bổ sung — cần làm rõ chế độ với agent trước khi bắt đầu.
 
-RTL và TB có thể được chuẩn bị độc lập sau Gate 2; trong một session, orchestrator cho phép chạy tuần tự. **Compile testbench vẫn cần RTL**, nên không thể chốt compile pass chỉ bằng việc sinh xong TB.
+Gate 3a duyệt verification contract trước khi sinh RTL. RTL Generator chỉ đọc specification, final config và RTL design rule; không đọc contract, SVA, testbench, test plan hay RTM. Nhánh verification chỉ đọc approved contract và golden sources (spec, config, exact protocol-standard revisions); không đọc RTL để lấy top/ports, internal states, enum encodings, expected behavior, assertion intent hoặc coverage goals. SVA/testbench compile ban đầu với contract interface shell. Sau khi hai nhánh hoàn tất, verification tích hợp DUT qua adapter và kiểm tra interface compatibility. Mismatch là lỗi integration; không sửa contract/oracle để khớp RTL. `/autoflow` chạy tuần tự trong một session, nhưng các nhánh không phụ thuộc artifact sinh ra của nhau.
 
 ## 4. Chạy từng bước
 
@@ -90,10 +92,12 @@ Thực hiện theo thứ tự dưới đây; Phase 4 được đặt trước Ph
 |---|---|---|---|
 | 1 — Parse spec | `/spec_parser spec/<ip_name>_spec.md` | `$source-command-spec-parser` | `structured_spec.json`: REQ-ID, ambiguity, mapping requirement → parameter/module. |
 | 2 — Config | `/config_ui` | `$source-command-config-ui` | `final_config.json`: giá trị parameter và các constraint đã được xác nhận. |
-| 3a — RTL | `/rtl_generator` | `$source-command-rtl-generator` | `src/rtl/`, file list; kết quả lint và synthesis thực tế. |
-| 4 — Testbench | `/tb_generator` | `$source-command-tb-generator` | `src/tb/`, `selected_testplan.json`; TC coverage và compile check. |
-| 3b — Assertions | `/sva_generator` | `$source-command-sva-generator` | `src/sva/`, bind, `rtm.json`; property đúng ý nghĩa và compile hợp lệ. |
-| 5 — Verification | `/verification` | `$source-command-verification` | Simulation, mutation, verification gaps và `verification_report.json`. |
+| 3a — Contract | `/verification_contract` | `$source-command-verification-contract` | `verification_contract.json`: interface/oracle từ spec/config/standards; Gate 3a duyệt trước RTL. |
+| 3R — RTL branch | `/rtl_generator` | `$source-command-rtl-generator` | `src/rtl/`, file list; lint và synthesis. Không dùng verification artifacts làm đầu vào. |
+| 4 — Testbench | `/tb_generator` | `$source-command-tb-generator` | `src/tb/`, `selected_testplan.json`; tests và shell compile, không cần RTL. |
+| 3V — SVA branch | `/sva_generator` | `$source-command-sva-generator` | `src/sva/`; assertion checker từ contract, compile với interface shell, Gate 3b. |
+| 5 — Integration/verification | `/verification` | `$source-command-verification` | Adapter, interface conformance, DUT simulation, mutation and coverage results in `verification_report.json`. |
+| 5b — Code coverage | `/code_coverage` | `$source-command-code-coverage` | Đo baseline; target tùy chọn; testcase coverage bổ sung được lưu và chạy lại qua Makefile. |
 | 6 — Documentation | `/spec_pdf_generator` | `$source-command-spec-pdf-generator` | `docs/specification.md` và PDF khi có công cụ; theo flow chuẩn cần Gate 5 đã ký. |
 
 Các JSON artifact trong bảng được lưu ở `schemas/`. Nếu chưa có simulator hoặc synthesis tool cần thiết, phải ghi rõ bước chưa chạy; không xem artifact đã sinh là bằng chứng kiểm chứng đạt.
@@ -103,10 +107,12 @@ Các JSON artifact trong bảng được lưu ở `schemas/`. Nếu chưa có si
 | Gate | Kỹ sư cần kiểm tra | Điều kiện để tiếp tục |
 |---|---|---|
 | **Gate 1 — Spec** | Yêu cầu đầy đủ, không còn quyết định mơ hồ chưa xử lý; mapping đúng. | Xác nhận spec làm baseline cho các bước sau. |
-| **Gate 3b — SVA** | Property diễn đạt đúng intent; bind đúng tín hiệu; phân biệt assert/cover và nhận diện vacuity. Đọc `GATE3_REVIEW.md` nếu được tạo. | Xác nhận ý nghĩa property; ghi rõ property chưa được kích hoạt bởi stimulus. |
-| **Gate 5 — Verification** | Kết quả từng TC, SVA thực sự đã chạy hay chưa, mutation score và requirement còn thiếu bằng chứng. | Review dựa trên log thực thi và ký các requirement đủ điều kiện. |
+| **Gate 3a — Verification contract** | Golden-source revisions/clauses, interface, expected behavior, assumptions và khoảng trống. | Duyệt oracle/interface trước khi RTL được sinh. |
+| **Gate 3b — SVA** | Assertion intent, traceability tới contract/clauses, property activation/vacuity. | Duyệt ý nghĩa property; không cần RTL bind. |
+| **Gate 4 — Test plan** | Test scenarios, expected checks, REQ-ID/clauses covered và shell compile. | Duyệt plan; shell compile không phải DUT pass. |
+| **Gate 5 — DUT verification** | DUT interface conformance, kết quả từng TC/SVA, mutation, coverage và gaps. | Review dựa trên log tool và ký các requirement đủ điều kiện. |
 
-RTM (*Requirement Traceability Matrix*) nối **REQ-ID → RTL → SVA → TC → kết quả → sign-off**.
+RTM (*Requirement Traceability Matrix*) nối **REQ-ID → specification/standard clause → oracle/SVA/TC → DUT result → sign-off**. RTL mapping được lưu riêng để audit implementation, không làm golden-source evidence.
 
 - Theo prompt hiện tại, mutation score **< 85%** khóa sign-off của requirement tương ứng. `N/A` có thể được cho phép theo chính sách của flow, nhưng không phải kết quả mutation pass.
 - Gate 5 đã ký **không đồng nghĩa tất cả requirements đã sign-off**; vẫn có thể còn mục locked/pending.
@@ -128,8 +134,10 @@ Agent đọc artifact trong `schemas/` để tiếp tục. Trước khi resume, 
 
 ```text
 <project>/
+├── Makefile                         # EDA commands và test targets có mô tả
 ├── schemas/
 │   ├── structured_spec.json       # Requirements đã phân tích
+│   ├── verification_contract.json # Interface/oracle từ spec/config/standards đã duyệt
 │   ├── final_config.json          # Cấu hình đã chốt
 │   ├── synth_report.json          # Kết quả synthesis nếu đã chạy
 │   ├── rtm.json                   # Traceability và trạng thái sign-off
@@ -138,31 +146,28 @@ Agent đọc artifact trong `schemas/` để tiếp tục. Trước khi resume, 
 ├── src/
 │   ├── rtl/                      # RTL + compile file list
 │   ├── sva/                      # Assertions + bind + file list
-│   └── tb/                       # Testbench, models/BFM và tests/
-├── sim/ hoặc work/               # Đầu ra thực thi, tùy script
+│   └── tb/                       # Testbench, models/BFM và tests/ đã lưu
+├── work/                          # Log, coverage database/report và regression results
 └── docs/
     ├── specification.md
     └── specification.pdf         # Nếu đã chuyển PDF thành công
 ```
 
+Mọi testcase phải là file có thể kiểm tra trong `src/tb/tests/`, được liệt kê trong test plan và file list. Mọi lệnh compile, chạy testcase, regression, mutation và coverage phải là recipe trong một Makefile duy nhất tại root của design. User có thể dùng `make help` để đọc mô tả và `make -n <target>` để xem lệnh thực thi trước khi chạy. Không chạy lệnh simulator rời hoặc dùng test tạm trong bộ nhớ.
+
+Code-coverage baseline được đo sau verification baseline. Flow hiển thị metric, mẫu số, tool/version và phần chưa cover trước khi hỏi user có đặt ngưỡng hay không. Nếu đặt ngưỡng, chỉ thêm testcase dựa trên specification/standard đã duyệt; không dùng RTL làm oracle. Ngưỡng chưa đạt được ghi rõ và không được báo pass.
+
 Số module, test và artifact cụ thể phụ thuộc IP cũng như cấu hình. Ví dụ snapshot và cách đọc giới hạn của chúng được trình bày ở mục **Ví dụ thiết kế tham khảo** cuối README.
 
 ## 8. Chạy công cụ và xử lý lỗi
 
-Các lệnh sau nhập trong **terminal Bash**, tại root của project thiết kế tương ứng.
-
-**Lint toàn thiết kế** — thay `<top_module>` bằng tên top thực tế:
-
-```bash
-verilator --lint-only --sv --Wall -f src/rtl/filelist.f --top-module <top_module>
-```
-
-**Synthesis** — khi project đã có script `.ys` phù hợp:
-
-```bash
-yosys -l src/rtl/synth_tt.log src/rtl/synth_gf180_tt.ys
-yosys -l src/rtl/synth_ss.log src/rtl/synth_gf180_ss.ys
-```
+Tại root của design, dùng `make help` để xem các target và biến được project khai báo.
+Một Makefile duy nhất chứa mọi lệnh EDA và verification, gồm lint, synthesis, compile SVA/TB,
+chạy testcase/regression, mutation và code coverage. Ví dụ target có thể là `make lint`,
+`make synth`, `make sva-compile`, `make tb-compile`, `make test TC=TC-001`, `make regression`,
+`make mutation`, `make coverage-baseline` và `make coverage-report`; dùng đúng tên/biến trong
+Makefile của design hiện tại. Trước khi chạy, `make -n <target>` hiển thị các lệnh recipe.
+Không chạy command tool rời hoặc tạo runner script khác cho cùng flow.
 
 | Vấn đề | Cách xử lý |
 |---|---|

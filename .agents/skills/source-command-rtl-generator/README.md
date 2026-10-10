@@ -1,5 +1,5 @@
 # RTL generator skill
 
-**VI:** Sinh RTL RV32IM từ spec và cấu hình đã duyệt, rồi báo cáo kết quả lint và synthesis thực tế. Chi tiết nằm trong SKILL.md.
+**VI:** Sinh RTL RV32IM từ specification đã duyệt, tạo Makefile dùng chung và chạy lint/synthesis qua Make target.
 
-**EN:** Generates RV32IM RTL from an approved specification and configuration, then reports actual lint and synthesis results. See SKILL.md for details.
+**EN:** Generates RV32IM RTL from an approved specification, creates the shared Makefile, and runs lint/synthesis through Make targets.

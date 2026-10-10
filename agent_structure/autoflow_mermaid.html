@@ -48,8 +48,7 @@
 
 <h1>AUTOFLOW — Mermaid Flow</h1>
 <p class="subtitle">
-  8 Skills &nbsp;·&nbsp; chạy <strong style="color:#f87171">tuần tự</strong> &nbsp;·&nbsp;
-  tối đa <strong style="color:#d8b4fe">2 agents đồng thời</strong> chỉ tại Phase 3a + 4
+  Verification contract từ spec trước &nbsp;·&nbsp; RTL và verification là hai nhánh độc lập
 </p>
 
 <div class="mermaid">
@@ -70,27 +69,33 @@ flowchart TD
 
     A3["Skill 3 · config_ui\nPhase 2\n─────────────────\nLock parameters\nfinal_config.json"] --> G2
 
-    G2(["✓ GATE 2\nAuto-sign"]) --> FORK[ ]
+    G2(["✓ GATE 2\nAuto-sign"]) --> A9
 
-    subgraph PAR["🔀  Có thể gọi 2 agents đồng thời  "]
+    A9["verification_contract\nSpec + config + standards\nNo RTL input"] --> G3a
+    G3a{"⏸ GATE 3a\nContract Review"}
+    G3a -->|"yes"| FORK[ ]
+    G3a -->|"no"| STOP3a(["Stop\nclarify golden sources"])
+
+    subgraph PAR["🔀  Independent RTL and verification branches  "]
         direction LR
-        A4["Skill 4 · rtl_generator\nPhase 3a\n──────────────────\nSinh RTL · Lint 0 warn\nSynthesis nếu có tool"]
-        A5["Skill 5 · tb_generator\nPhase 4\n──────────────────\nSinh TB · BFM tasks\n12 TC tasks · testplan"]
+        A4["rtl_generator\nPhase 3R\n──────────────────\nRTL · lint · synthesis\nSpec/config/RTL rules"]
+        A5["tb_generator\nPhase 4\n──────────────────\nTests from contract\nInterface-shell compile"]
+        A6["sva_generator\nPhase 3V\n──────────────────\nSVA from contract\nInterface-shell compile"]
     end
 
     FORK --> PAR
     PAR --> JOIN[ ]
+    A4 --> JOIN
+    A5 --> G4
+    A6 --> G3b
 
-    JOIN --> G4
-    G4(["✓ GATE 4\nAuto-sign"]) --> A6
-
-    A6["Skill 6 · sva_generator\nPhase 3b\n─────────────────\nSVA properties\nGATE3_REVIEW.md"] --> G3b
-
-    G3b{"⏸ GATE 3b\nHuman Review"}
-    G3b -->|"yes"| A7
+    G3b{"⏸ GATE 3b\nProperty Review"}
+    G3b -->|"yes"| JOIN
     G3b -->|"no"| STOP3(["Stop"])
+    G4(["✓ GATE 4\nPlan review/approval"]) --> JOIN
 
-    A7["Skill 7 · verification\nPhase 5\n─────────────────\nCompile + Sim\nMutation · REQ sign-off"] --> G5
+    JOIN --> A7
+    A7["verification\nDUT integration + simulation\nAdapter checks compatibility\nGolden oracle remains fixed"] --> G5
 
     G5{"⏸ GATE 5\nHuman Review"}
     G5 -->|"yes\n0 TC FAIL"| A8
@@ -115,9 +120,9 @@ flowchart TD
     classDef neutral  fill:#1e293b,stroke:#334155,color:#cbd5e1
 
     class A1 opt
-    class A2,A3,A6,A7,A8 skill
+    class A2,A3,A6,A7,A8,A9 skill
     class A4,A5 par
-    class G1,G3b,G5 gateH
+    class G1,G3a,G3b,G5 gateH
     class G2,G4 gateA
     class STOP1,STOP3,STOP5 stop
     class DONE done
@@ -126,9 +131,9 @@ flowchart TD
 
 <div class="note">
   <strong>Ghi chú:</strong><br>
-  Tại mọi thời điểm khác ngoài Phase 3a+4, chỉ có đúng <strong>1 agent hoạt động</strong>.<br>
+  Hai nhánh độc lập về dữ liệu; autoflow hiện thực thi tuần tự trong một session, không có parallel scheduler.<br>
   Gates ⏸ là điểm dừng hoàn toàn — flow không tiếp tục cho đến khi user gõ <code>yes</code>.<br>
-  Nếu autoflow dùng <code>Agent(fork)</code> cho 3a+4 thì 2 agents chạy thật sự song song; hiện tại implementation chạy tuần tự (3a → 4).
+  Verification contract, testbench và SVA lấy oracle từ spec/config/standards; chỉ bước DUT integration mới đọc RTL để kiểm tra tương thích.
 </div>
 
 <script>

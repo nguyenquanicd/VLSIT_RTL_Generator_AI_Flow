@@ -1,119 +1,475 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "VerificationReport",
-  "description": "Output tổng hợp của Phase 5 (verification). Ghi lại kết quả sim, mutation, và trạng thái Gate 5.",
+  "description": "Consolidated Phase 5 verification output with simulation, mutation, and Gate 5 status.",
   "type": "object",
-  "required": ["metadata", "sim_summary", "mutation_summary", "rtm_summary"],
+  "required": [
+    "metadata",
+    "sim_summary",
+    "mutation_summary",
+    "rtm_summary"
+  ],
   "properties": {
-
     "metadata": {
       "type": "object",
-      "required": ["ip_name", "phase", "gate_5_approved"],
+      "required": [
+        "ip_name",
+        "phase",
+        "gate_5_approved"
+      ],
       "properties": {
-        "ip_name":         { "type": "string" },
-        "spec_revision":   { "type": "string" },
-        "phase":           { "type": "integer", "const": 5 },
-        "gate_5_approved": { "type": "boolean" },
-        "approved_at":     { "type": ["string", "null"] }
+        "ip_name": {
+          "type": "string"
+        },
+        "spec_revision": {
+          "type": "string"
+        },
+        "verification_contract_revision": {
+          "type": "string"
+        },
+        "golden_baseline_hashes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "dut_sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Hash of the RTL DUT used in this run; implementation identity, not golden behavior."
+        },
+        "phase": {
+          "type": "integer",
+          "const": 5
+        },
+        "gate_5_approved": {
+          "type": "boolean"
+        },
+        "approved_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
       }
     },
-
     "tool_versions": {
       "type": "object",
       "properties": {
-        "vcs":     { "type": "string", "description": "VCS version, ví dụ '${VCS_VERSION}'" },
-        "yosys":   { "type": "string", "description": "Yosys version" },
-        "pdk":     { "type": "string", "description": "PDK đã dùng, ví dụ 'GF180MCU TT 25C 1.8V'" },
-        "riscv_gcc": { "type": "string", "description": "RISC-V GCC version dùng compile test firmware" }
+        "vcs": {
+          "type": "string",
+          "description": "VCS version, for example '${VCS_VERSION}'."
+        },
+        "yosys": {
+          "type": "string",
+          "description": "Yosys version"
+        },
+        "pdk": {
+          "type": "string",
+          "description": "PDK used, for example 'GF180MCU TT 25C 1.8V'."
+        },
+        "riscv_gcc": {
+          "type": "string",
+          "description": "RISC-V GCC version used to compile test firmware."
+        }
       }
     },
-
     "sim_summary": {
       "type": "object",
-      "required": ["total_tc", "pass", "fail", "timeout", "sva_violations"],
+      "required": [
+        "total_tc",
+        "pass",
+        "fail",
+        "timeout",
+        "sva_violations"
+      ],
       "properties": {
-        "total_tc":       { "type": "integer" },
-        "pass":           { "type": "integer" },
-        "fail":           { "type": "integer" },
-        "timeout":        { "type": "integer" },
-        "sva_violations": { "type": "integer", "description": "Tổng SVA violation trong tất cả TC" },
+        "total_tc": {
+          "type": "integer"
+        },
+        "pass": {
+          "type": "integer"
+        },
+        "fail": {
+          "type": "integer"
+        },
+        "timeout": {
+          "type": "integer"
+        },
+        "sva_violations": {
+          "type": "integer",
+          "description": "Total SVA violations across all test cases."
+        },
         "tc_results": {
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
-              "tc_id":     { "type": "string" },
-              "name":      { "type": "string" },
-              "status":    { "type": "string", "enum": ["pass", "fail", "timeout", "skipped"] },
-              "cycles":    { "type": ["integer", "null"], "description": "Số clock cycle chạy" },
-              "sva_violations": { "type": "integer" },
-              "log_file":  { "type": "string" }
+              "tc_id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "fail",
+                  "timeout",
+                  "skipped"
+                ]
+              },
+              "cycles": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "description": "Number of clock cycles executed."
+              },
+              "sva_violations": {
+                "type": "integer"
+              },
+              "log_file": {
+                "type": "string"
+              }
             }
           }
         }
       }
     },
-
+    "code_coverage": {
+      "type": "object",
+      "description": "RTL code coverage is separate from requirement coverage, functional coverage, and mutation score. Percentages apply only to the named metric and stated scope.",
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "not_requested",
+            "not_supported",
+            "baseline_only",
+            "target_met",
+            "target_unmet"
+          ]
+        },
+        "metric": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "line",
+            "statement",
+            "branch",
+            "condition",
+            "expression",
+            "toggle",
+            "fsm",
+            "other",
+            null
+          ]
+        },
+        "baseline_pct": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 100
+        },
+        "final_pct": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 100
+        },
+        "target_pct": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 100
+        },
+        "covered_points": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "coverable_points": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "scope": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Elaborated DUT hierarchy and per-instance or merged aggregation policy"
+        },
+        "exclusions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "simulator": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "simulator_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "iterations": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "added_test_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "added_test_files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "make_targets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "raw_database": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "report_file": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "log_files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
     "mutation_summary": {
       "type": "object",
-      "required": ["total_req_ids", "above_threshold", "below_threshold", "na"],
+      "required": [
+        "total_req_ids",
+        "above_threshold",
+        "below_threshold",
+        "na"
+      ],
       "properties": {
-        "threshold":        { "type": "number", "const": 0.85 },
-        "total_req_ids":    { "type": "integer" },
-        "above_threshold":  { "type": "integer", "description": "REQ-IDs có mutation_score ≥ 0.85" },
-        "below_threshold":  { "type": "integer", "description": "REQ-IDs có mutation_score < 0.85" },
-        "na":               { "type": "integer", "description": "REQ-IDs không generate được mutation" },
-        "total_mutations":  { "type": "integer" },
-        "total_killed":     { "type": "integer" },
-        "global_score":     { "type": "number", "description": "Overall kill rate (informational)" },
+        "threshold": {
+          "type": "number",
+          "const": 0.85
+        },
+        "total_req_ids": {
+          "type": "integer"
+        },
+        "above_threshold": {
+          "type": "integer",
+          "description": "REQ-IDs with mutation_score at least 0.85."
+        },
+        "below_threshold": {
+          "type": "integer",
+          "description": "REQ-IDs with mutation_score below 0.85."
+        },
+        "na": {
+          "type": "integer",
+          "description": "REQ-IDs for which no valid mutation could be generated."
+        },
+        "total_mutations": {
+          "type": "integer"
+        },
+        "total_killed": {
+          "type": "integer"
+        },
+        "global_score": {
+          "type": "number",
+          "description": "Overall kill rate (informational)"
+        },
         "per_req_id": {
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
-              "req_id":  { "type": "string" },
-              "total":   { "type": "integer" },
-              "killed":  { "type": "integer" },
-              "score":   { "oneOf": [{ "type": "number" }, { "type": "string", "enum": ["N/A"] }] },
-              "pass":    { "type": "boolean" }
+              "req_id": {
+                "type": "string"
+              },
+              "total": {
+                "type": "integer"
+              },
+              "killed": {
+                "type": "integer"
+              },
+              "score": {
+                "oneOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "string",
+                    "enum": [
+                      "N/A"
+                    ]
+                  }
+                ]
+              },
+              "pass": {
+                "type": "boolean"
+              }
             }
           }
         }
       }
     },
-
     "rtm_summary": {
       "type": "object",
-      "required": ["total_req_ids", "signed_off", "pending", "locked"],
+      "required": [
+        "total_req_ids",
+        "signed_off",
+        "pending",
+        "locked"
+      ],
       "properties": {
-        "total_req_ids": { "type": "integer" },
-        "signed_off":    { "type": "integer", "description": "REQ-IDs đã ký đủ 6 điều kiện" },
-        "pending":       { "type": "integer", "description": "Đủ điều kiện nhưng chưa ký" },
-        "locked":        { "type": "integer", "description": "Chưa đủ điều kiện — không thể ký" },
-        "sign_off_pct":  { "type": "number", "description": "signed_off / total * 100" },
+        "total_req_ids": {
+          "type": "integer"
+        },
+        "signed_off": {
+          "type": "integer",
+          "description": "Requirements meeting the active evidence criteria and signed by the user."
+        },
+        "pending": {
+          "type": "integer",
+          "description": "Requirements eligible for sign-off but not yet signed."
+        },
+        "locked": {
+          "type": "integer",
+          "description": "Requirements not yet eligible for sign-off."
+        },
+        "sign_off_pct": {
+          "type": "number",
+          "description": "signed_off / total * 100"
+        },
         "gap_report": {
           "type": "object",
-          "description": "Tóm tắt gap cần bổ sung để đạt full sign-off",
+          "description": "Summary of work needed for full sign-off.",
           "properties": {
-            "no_rtl":  { "type": "array", "items": { "type": "string" } },
-            "no_sva":  { "type": "array", "items": { "type": "string" } },
-            "no_tc":   { "type": "array", "items": { "type": "string" } },
-            "sim_fail":{ "type": "array", "items": { "type": "string" } },
-            "low_mut": { "type": "array", "items": { "type": "string" } }
+            "no_spec": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "no_standard": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "no_oracle": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "no_sva": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "no_tc": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "sim_fail": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "low_mut": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
           }
         }
       }
     },
-
     "synth_sign_off": {
       "type": "object",
-      "description": "Kết quả synthesis từ Phase 3 (Yosys + GF180MCU) — copy vào đây để có đủ trong 1 report",
+      "description": "Phase 3 synthesis results copied here to consolidate the report.",
       "properties": {
-        "status":      { "type": "string", "enum": ["pass", "fail", "not_run"] },
-        "cell_count":  { "type": ["integer", "null"] },
-        "area_um2":    { "type": ["number", "null"] },
-        "pdk":         { "type": "string" },
-        "corner":      { "type": "string", "description": "Liberty corner đã dùng, ví dụ 'tt_025C_1v80'" }
+        "status": {
+          "type": "string",
+          "enum": [
+            "pass",
+            "fail",
+            "not_run"
+          ]
+        },
+        "cell_count": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "area_um2": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "pdk": {
+          "type": "string"
+        },
+        "corner": {
+          "type": "string",
+          "description": "Liberty corner used, for example 'tt_025C_1v80'."
+        }
       }
     }
   }

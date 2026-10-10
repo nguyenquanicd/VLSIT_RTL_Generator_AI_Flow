@@ -1,190 +1,22 @@
 ---
 name: source-command-spec-writer
-description: "Draft a hardware RTL specification from a user-provided design description."
+description: "Draft a reviewable hardware IP specification from the user's design description."
 ---
 
 # source-command-spec-writer
 
-## User decision prompts
+Use this skill when the user requests this phase of the repository's hardware RTL flow. Read .claude/commands/spec_writer.md and follow its English procedure. That command is the detailed workflow source for both Codex and Claude.
 
-Follow `.agents/skills/decision_prompt_standard.md` for every user-facing question, option selection, review, approval, or overwrite decision. Before asking, review the current evidence; explain why the decision is needed; define unfamiliar terms; list valid options, their effects and trade-offs; give a concrete example; mark the best-supported option and explain why; and specify exactly how the user should answer. If the evidence does not support a safe recommendation, say what is missing instead of inventing a default. Never use a bare yes/no or A/B prompt.
+## Execution rules
 
-Use this skill when the user asks for this phase of the repository's RTL design and verification workflow.
-
-## Codex CLI execution notes
-
-- Run this workflow in Codex; `/phase_name` denotes a source Claude command. Read a peer phase skill only when this workflow requires it.
-- Preserve all gates. Only full autoflow may auto-approve Gate 2 and Gate 4 where the procedure permits; other approvals remain explicit.
-- Adapt RV32IM and Linux/Bash assumptions to the requested IP and environment. Treat `Result/` as historical snapshots, not the active baseline.
-- Report EDA results only after running the tool and inspecting its output. `sourceme.sh` is Linux/Bash-dependent; do not run it in PowerShell, and mark unavailable checks as not run.
-
-## Token-efficient artifact reads
-
-For existing inputs, run `python scripts/prepare_skill_context.py --phase source-command-spec-writer --root <design-root> --include <input-file>` before targeted reads. Summarize large logs with `python scripts/summarize_eda_log.py <log-path>` and inspect cited lines in the original. These are navigation aids, not verification evidence; avoid dumping full trees or logs.
-
-## RTL rule source
-
-For any phase work that generates or modifies synthesizable design RTL, use `style_constraints.source_file/source_kind` from approved config. If a legacy config lacks `source_kind`, treat its old path as unsupplied: use a rule file explicitly provided for this design, or repository default `spec_template/VLSIT_RTL_Design_Rule.md`. Never substitute a historical `Result/*/rtl_rule.md`. These rules apply to design RTL; SVA and testbench follow their own procedures.
+- Inspect the current specification, approvals, configuration, and artifacts before acting. Read other phase skills only when this phase requires them.
+- For an existing design, use scripts/prepare_skill_context.py with --phase source-command-spec-writer and --root <design-root> as a navigation aid. Inspect original evidence before reporting results. Use scripts/summarize_eda_log.py for large logs when useful; summaries are not verification evidence.
+- Follow .agents/skills/decision_prompt_standard.md for every user choice or gate review. Explain terms, supported options, effects, a concrete example, and a reasoned recommendation. Do not repeat a decision already supplied.
+- Preserve the command's gate requirements. Only full autoflow may auto-approve Gate 2 and Gate 4 under its stated conditions. Report tool checks as passed only after running them and inspecting logs; otherwise state failed, unavailable, or not run.
+- Treat the approved specification and exact applicable protocol-standard revisions as golden sources. Verification intent, tests, assertions, and expected results must be independent of generated RTL.
+- For synthesizable RTL, use the approved configuration's explicit rule source. If none is supplied, use spec_template/VLSIT_RTL_Design_Rule.md. Do not apply design RTL rules to SVA or testbench code.
+- Adapt historical RV32IM and Linux/Bash examples to the requested IP and available environment.
 
 ## Reusable skill improvement
 
-At completion, assess whether observed issues justify a high-impact improvement across designs. Follow `.agents/skill_maintenance.md` and `scripts/propose_skill_update.py`; present a qualifying proposal and ask approval for the exact change. Never edit this skill or its support files without explicit user confirmation. If none qualifies, say so briefly.
-
-## Workflow source
-# Phase 0 · Spec Writer — /spec_writer
-
-**Mục tiêu:** Tự động tạo file spec Markdown từ mô tả design của user, sẵn sàng để đưa vào `/spec_parser`.
-
-**Usage:**
-```
-/spec_writer
-```
-Agent sẽ hỏi tuần tự, không hỏi tất cả cùng lúc.
-
----
-
-## Nguyên tắc bắt buộc
-
-1. **Hỏi tối đa 3 vòng** — không hỏi vòng vô tận, thiếu thông tin thì ghi `TBD` và note lại.
-2. **Không tự suy diễn spec kỹ thuật** — nếu không chắc thì hỏi, không bịa số liệu.
-3. **Output phải đủ để spec_parser chạy được** — ít nhất: tên IP, chức năng chính, interface, tham số chính.
-4. **Lưu vào `spec/` folder** — tạo folder nếu chưa có.
-5. **Format nhất quán** — dùng Markdown heading, bảng, bullet list để spec_parser dễ parse.
-
----
-
-## Bước 1 — Hỏi thông tin cơ bản
-
-Hỏi user (có thể hỏi tất cả trong 1 message):
-
-Trước mỗi câu, nói ngắn gọn vì sao thông tin đó cần cho spec. Định nghĩa acronym/term,
-đưa ví dụ answer format và gợi ý lựa chọn khi spec hoặc ngữ cảnh ủng hộ. Không tự đề xuất
-giá trị kỹ thuật cụ thể nếu chưa có căn cứ. Nếu ASIC đã được xác nhận trong yêu cầu, ghi
-đó là context thay vì hỏi lại ASIC hay FPGA.
-
-```
-Để tạo spec, mình cần biết:
-
-1. Tên IP/module và tên gọi dự kiến là gì? Ví dụ: axi_stream_downscaler. Tên này dùng cho spec/module mapping.
-2. IP giải quyết vấn đề gì? Ví dụ: nhận stream 64-bit và phát stream 32-bit theo thứ tự được spec định nghĩa.
-3. Interface nào được yêu cầu? Nêu protocol, input/output, widths, clock/reset. Ví dụ: AXI4-Stream, TDATA width 64 in / 32 out; chỉ dùng nếu đúng design của bạn.
-4. Có configurable feature/parameter nào không? Nêu mục tiêu hoặc legal values nếu biết. Ví dụ: output width 32 hoặc 64 nếu spec cho phép.
-5. Target technology/process hoặc flow constraint nào đã được chọn? Đây là thông tin ảnh hưởng synthesis/PPA; nếu chưa chọn, trả lời TBD thay vì đoán.
-
-Khuyến nghị: cung cấp giá trị đã có trong requirement/design brief; để TBD những lựa chọn chưa được chốt. Gõ theo số câu hoặc viết câu trả lời tự do.
-```
-
-Nếu user cung cấp đủ → sang Bước 2.  
-Nếu user mô tả ngắn gọn (ví dụ: "downscaler 4K về 1080p") → agent tự suy luận phần còn lại dựa trên domain knowledge, ghi rõ những phần đã tự điền.
-
----
-
-## Bước 2 — Hỏi thêm chi tiết kỹ thuật (nếu cần)
-
-Chỉ hỏi những gì còn thiếu sau Bước 1:
-
-Với mỗi câu hỏi kỹ thuật, nêu ngắn gọn tác động, định nghĩa các option và ví dụ. Chỉ
-khuyến nghị một option khi có căn cứ từ brief hoặc standard; nếu không, nêu rõ chưa có safe default.
-
-```
-Thêm một vài câu hỏi kỹ thuật:
-
-6. Datapath cần combinational hay pipeline? Pipeline thêm register/stage để cải thiện timing/throughput nhưng có thể tăng latency/area. Ví dụ: 2 pipeline stages nếu target timing yêu cầu; không tự mặc định.
-7. Reset có không, đồng bộ hay bất đồng bộ, active-high hay active-low? Ví dụ answer: active-low asynchronous. Chọn theo system integration requirement.
-8. Có bao nhiêu clock domain? Nhiều domain cần CDC design/verification. Ví dụ: một clock domain 100 MHz nếu đó là system clock đã được chốt.
-9. Có interrupt hoặc status output/register không? Nêu event, polarity và clear behavior nếu có.
-10. Có CSR/register map không? Nếu có, cung cấp address, access type, reset value và side effects; ví dụ một bảng register map hiện hành.
-```
-
-Nếu user không biết → dùng default hợp lý cho domain, ghi chú rõ.
-
----
-
-## Bước 3 — Sinh spec.md
-
-Dựa trên thông tin thu thập, sinh file `spec/<ip_name>_spec.md` với cấu trúc:
-
-```markdown
-# <IP_NAME> — Hardware IP Specification
-
-## 1. Overview
-<Mô tả chức năng chính, use case, target application>
-
-## 2. Key Features
-- Feature 1: ...
-- Feature 2: ...
-
-## 3. Parameters
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| PR_...    | bit  | 1       | ...         |
-
-## 4. Interface
-### 4.1 Clock & Reset
-| Signal | Direction | Description |
-|--------|-----------|-------------|
-
-### 4.2 Input Ports
-| Signal | Direction | Width | Description |
-|--------|-----------|-------|-------------|
-
-### 4.3 Output Ports
-| Signal | Direction | Width | Description |
-|--------|-----------|-------|-------------|
-
-## 5. Functional Description
-### 5.1 <Subsystem 1>
-<Mô tả chi tiết>
-
-### 5.2 <Subsystem 2>
-<Mô tả chi tiết>
-
-## 6. Microarchitecture
-<Pipeline diagram, state machine, datapath nếu có>
-
-## 7. Timing & Constraints
-<Clock frequency, latency, throughput>
-
-## 8. Register Map (nếu có)
-| Address | Name | Access | Reset | Description |
-|---------|------|--------|-------|-------------|
-
-## 9. Error Handling
-<Exception, invalid input behavior>
-
-## 10. Notes / TBD
-<Những gì còn chưa rõ, cần confirm thêm>
-```
-
----
-
-## Bước 4 — Review và confirm
-
-In ra preview 20 dòng đầu của spec, sau đó hỏi:
-
-Trước lựa chọn, nêu các TBD/assumption và hậu quả nếu tiếp tục khi chúng chưa được xác nhận.
-Định nghĩa từng option, đưa ví dụ, và khuyến nghị `[1]` chỉ khi nội dung đã đủ để
-parser xử lý mà không giữ lại assumption ảnh hưởng behavior.
-
-```
-Spec đã được tạo tại: spec/<ip_name>_spec.md
-
-Bạn muốn:
-  [1] Tiếp tục → dùng file hiện tại cho /autoflow; chọn khi requirements, interface và TBD đã review.
-  [2] Chỉnh sửa → cập nhật file trước khi chạy flow; chọn khi có nội dung chưa chính xác.
-  [3] Hỏi thêm → bổ sung field còn thiếu; chọn khi TBD ảnh hưởng behavior/interface.
-
-Khuyến nghị: [3] nếu còn TBD ảnh hưởng behavior, [2] nếu tìm thấy lỗi cụ thể, [1] chỉ khi
-spec đã đủ rõ. Ví dụ: thiếu reset polarity thì chọn [3], không tự mặc định.
-```
-
----
-
-## Xử lý lỗi
-
-| Tình huống | Hành động |
-|------------|-----------|
-| User mô tả quá ngắn (< 10 từ) | Hỏi lại: "Bạn có thể mô tả thêm về input/output không?" |
-| Domain không quen (RF, analog, etc.) | Ghi rõ "TBD — cần domain expert confirm" ở section đó |
-| Mâu thuẫn thông tin | Hỏi lại ngay, không tự chọn |
-| User cung cấp file PDF/docx | Đọc file, extract thông tin rồi tiếp tục flow |
+At completion, assess whether evidence supports a high-impact improvement across typical designs. Follow .agents/skill_maintenance.md and scripts/propose_skill_update.py. Present an exact qualifying proposal and obtain the user's confirmation before editing skill instructions or support files. If none qualifies, say so briefly.

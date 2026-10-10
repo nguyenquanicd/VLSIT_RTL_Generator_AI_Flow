@@ -48,8 +48,7 @@
 
 <h1>AUTOFLOW — Mermaid Flow</h1>
 <p class="subtitle">
-  8 Skills &nbsp;·&nbsp; runs <strong style="color:#f87171">sequentially</strong> &nbsp;·&nbsp;
-  up to <strong style="color:#d8b4fe">2 agents simultaneously</strong> at Phase 3a + 4 only
+  Specification-based verification contract first &nbsp;·&nbsp; RTL and verification are independent branches
 </p>
 
 <div class="mermaid">
@@ -70,27 +69,33 @@ flowchart TD
 
     A3["Skill 3 · config_ui\nPhase 2\n─────────────────\nLock parameters\nfinal_config.json"] --> G2
 
-    G2(["✓ GATE 2\nAuto-sign"]) --> FORK[ ]
+    G2(["✓ GATE 2\nAuto-sign"]) --> A9
 
-    subgraph PAR["🔀  Can invoke 2 agents simultaneously  "]
+    A9["verification_contract\nSpec + config + standards\nNo RTL input"] --> G3a
+    G3a{"⏸ GATE 3a\nContract Review"}
+    G3a -->|"yes"| FORK[ ]
+    G3a -->|"no"| STOP3a(["Stop\nclarify golden sources"])
+
+    subgraph PAR["🔀  Independent RTL and verification branches  "]
         direction LR
-        A4["Skill 4 · rtl_generator\nPhase 3a\n──────────────────\nGenerate RTL · Lint 0 warn\nSynthesis if tool available"]
-        A5["Skill 5 · tb_generator\nPhase 4\n──────────────────\nGenerate TB · BFM tasks\n12 TC tasks · testplan"]
+        A4["rtl_generator\nPhase 3R\n──────────────────\nRTL · lint · synthesis\nSpec/config/RTL rules"]
+        A5["tb_generator\nPhase 4\n──────────────────\nTests from contract\nInterface-shell compile"]
+        A6["sva_generator\nPhase 3V\n──────────────────\nSVA from contract\nInterface-shell compile"]
     end
 
     FORK --> PAR
     PAR --> JOIN[ ]
+    A4 --> JOIN
+    A5 --> G4
+    A6 --> G3b
 
-    JOIN --> G4
-    G4(["✓ GATE 4\nAuto-sign"]) --> A6
-
-    A6["Skill 6 · sva_generator\nPhase 3b\n─────────────────\nSVA properties\nGATE3_REVIEW.md"] --> G3b
-
-    G3b{"⏸ GATE 3b\nHuman Review"}
-    G3b -->|"yes"| A7
+    G3b{"⏸ GATE 3b\nProperty Review"}
+    G3b -->|"yes"| JOIN
     G3b -->|"no"| STOP3(["Stop"])
+    G4(["✓ GATE 4\nPlan review/approval"]) --> JOIN
 
-    A7["Skill 7 · verification\nPhase 5\n─────────────────\nCompile + Sim\nMutation · REQ sign-off"] --> G5
+    JOIN --> A7
+    A7["verification\nDUT integration + simulation\nAdapter checks compatibility\nGolden oracle remains fixed"] --> G5
 
     G5{"⏸ GATE 5\nHuman Review"}
     G5 -->|"yes\n0 TC FAIL"| A8
@@ -115,9 +120,9 @@ flowchart TD
     classDef neutral  fill:#1e293b,stroke:#334155,color:#cbd5e1
 
     class A1 opt
-    class A2,A3,A6,A7,A8 skill
+    class A2,A3,A6,A7,A8,A9 skill
     class A4,A5 par
-    class G1,G3b,G5 gateH
+    class G1,G3a,G3b,G5 gateH
     class G2,G4 gateA
     class STOP1,STOP3,STOP5 stop
     class DONE done
@@ -126,10 +131,9 @@ flowchart TD
 
 <div class="note">
   <strong>Notes:</strong><br>
-  At every point other than Phase 3a+4, exactly <strong>1 skill is active</strong>.<br>
+  The branches are independent in their inputs; autoflow currently executes sequentially in one session without a parallel scheduler.<br>
   Gates ⏸ are hard stops — the flow does not continue until the user types <code>yes</code>.<br>
-  If autoflow uses <code>Agent(fork)</code> for 3a+4, both skills run truly in parallel;
-  the current implementation runs them sequentially (3a → 4).
+  The verification contract, testbench, and SVA use the spec/config/standards oracle; only DUT integration reads RTL to check interface compatibility.
 </div>
 
 <script>
