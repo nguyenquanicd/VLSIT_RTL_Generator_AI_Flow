@@ -1,5 +1,9 @@
 # Phase 1 · Spec Ingestion — /spec_parser
 
+## User decision prompts
+
+Follow `.agents/skills/decision_prompt_standard.md` for every user-facing question, option selection, review, approval, or overwrite decision. Before asking, review the current evidence; explain why the decision is needed; define unfamiliar terms; list valid options, their effects and trade-offs; give a concrete example; mark the best-supported option and explain why; and specify exactly how the user should answer. If the evidence does not support a safe recommendation, say what is missing instead of inventing a default. Never use a bare yes/no or A/B prompt.
+
 **Mục tiêu:** Đọc spec RTL dạng Markdown, tách requirement, gán REQ-ID, phân loại,
 chấm ambiguity score, review mơ hồ với người dùng, và xuất `schemas/structured_spec.json`.
 
@@ -36,7 +40,12 @@ Kiểm tra theo thứ tự:
 2. Nếu không: tìm `.md` file chứa từ khoá `spec`, `rtl_spec` trong tên.
 3. Vẫn không thấy: hỏi người dùng đường dẫn.
 
-Đọc file toàn bộ. Validate sơ bộ: phải có ít nhất một trong các dấu hiệu sau: bảng parameter, danh sách module, port list, hoặc mô tả pipeline. Nếu không có → cảnh báo "Đây có vẻ không phải RTL spec. Tiếp tục? (yes/no)".
+Đọc file toàn bộ. Validate sơ bộ: phải có ít nhất một trong các dấu hiệu sau: bảng parameter,
+danh sách module, port list, hoặc mô tả pipeline. Nếu không có, nêu dấu hiệu đã tìm và vì sao
+không chắc file này là RTL spec. Giải thích continue sẽ cố parse và có thể tạo requirement sai;
+stop giữ nguyên file để user cung cấp spec đúng. Đưa ví dụ đầu vào mong đợi (port/parameter/
+behavior description). Khuyến nghị stop khi file không có nội dung RTL/IP; hỏi yes để continue
+chỉ khi user xác nhận đây là nguồn spec, hoặc no để dừng.
 
 Thông báo: _"Đã đọc `<file>`, `<N>` dòng — bắt đầu phân tích..."_
 
@@ -89,11 +98,20 @@ Thực hiện **trước** khi hỏi người dùng chỉnh sửa tùy chọn.
 
 Với từng REQ-ID có `needs_review: true`:
 
+Trước câu hỏi, giải thích phần behavior chưa xác định và ảnh hưởng của từng cách hiểu.
+Liệt kê các cách hiểu hợp lệ, hệ quả, và ví dụ. Khuyến nghị cách ít giả định nhất theo spec;
+nếu không có lựa chọn an toàn, nêu rõ vì sao cần user quyết định.
+
 ```
 ⚠ REQ-XXX [ambiguity: 0.45] — Lần hỏi 1/3
 Text hiện tại: "..."
 Vấn đề: <giải thích cụ thể tại sao mơ hồ>
-Câu hỏi: <câu hỏi yes/no hoặc multiple-choice, không hỏi open-ended>
+Phân tích: <hệ quả của các cách hiểu khác nhau>
+Lựa chọn:
+  A. <cách hiểu 1> — <hệ quả>, ví dụ <concrete example>
+  B. <cách hiểu 2> — <hệ quả>, ví dụ <concrete example>
+Khuyến nghị: <A/B hoặc chưa có lựa chọn an toàn> — <lý do và trade-off>
+Câu hỏi: Chọn A/B hoặc mô tả behavior đúng theo spec.
 →
 ```
 
@@ -110,7 +128,12 @@ Review mơ hồ hoàn tất: X resolved, Y cần quyết định của người 
 ```
 
 Với mỗi REQ còn `needs_human_decision: true`, hỏi:
-> **"REQ-XXX: Giữ nguyên với rủi ro hallucination, xoá, hay tách nhỏ hơn? (keep/delete/split)"**
+
+Giải thích các lựa chọn: keep giữ requirement nhưng không xác minh phần còn mơ hồ; delete
+bỏ khỏi scope chỉ sau khi user xác nhận không áp dụng/lỗi thời; split tách nhiều behavior
+thành requirement riêng. Đưa ví dụ dựa trên REQ hiện tại và khuyến nghị phù hợp. Ví dụ:
+handshake và latency trong cùng một requirement thường nên split.
+> **"REQ-XXX: Sau phân tích trên, chọn keep, delete, hay split? <nêu option khuyến nghị và lý do>."**
 
 ---
 
@@ -136,7 +159,10 @@ Hiển thị danh sách đầy đủ theo nhóm category (sau khi đã review m�
 ╚═══════════════════════════════════════════════════════════════════════╝
 ```
 
-Hỏi: **"Bạn muốn chỉnh sửa, thêm, hoặc xoá requirement nào? (REQ-ID hoặc 'none')"**
+Trước khi hỏi, nhắc lại các REQ-ID cần quyết định và tác động đến coverage/mapping. Định
+nghĩa edit/split/merge/delete/add/none, nêu ví dụ như edit REQ-003, và khuyến nghị thao
+tác khi evidence chỉ rõ requirement chưa chính xác.
+Hỏi: **"Nhập action + REQ-ID, ví dụ edit REQ-003, hoặc none để giữ nguyên."**
 
 Cho phép: chỉnh text, tách, merge, xoá, thêm mới.
 Sau mỗi thao tác: chấm lại ambiguity, cập nhật sva_hint nếu cần.
@@ -186,7 +212,10 @@ Ghi vào trường `rtl_modules` của mỗi requirement. Phase 3 dùng trườn
 
 Nếu `needs_human_decision > 0` → **Không mở Gate 1**. Yêu cầu giải quyết hết.
 
-Hỏi: **"Xác nhận spec đủ rõ và mở Gate 1? (yes/no)"**
+Trước khi hỏi, tóm tắt số requirement resolved, ambiguity còn mở, mapping chính, và ý nghĩa
+của Gate 1. yes chấp nhận structured spec làm baseline; no giữ gate đóng để sửa. Khuyến nghị
+yes chỉ khi không còn ambiguity/TBD ảnh hưởng behavior. Nêu ví dụ phần cần sửa nếu chọn no.
+Hỏi: **"Ký Gate 1 cho structured spec đã tóm tắt? Trả lời yes để chấp nhận baseline hoặc no để giữ gate đóng và sửa."**
 - `no` → quay Bước 5
 - `yes` → ghi `schemas/structured_spec.json` (conform `schemas/structured_spec_schema.json`), set `gate_1_approved: true`
 
@@ -203,5 +232,5 @@ Thông báo: **"✓ Gate 1 đã ký. `schemas/structured_spec.json` ghi xong. Ti
 | REQ trùng lặp (cùng behavior) | Đề xuất merge, chờ người dùng xác nhận |
 | Spec < 10 requirements | Cảnh báo "Spec có vẻ thiếu" |
 | Ambiguity > 0.3, người dùng muốn bỏ qua | Từ chối — giải thích: đây là nguyên nhân chính gây hallucination RTL |
-| `structured_spec.json` đã tồn tại | Hỏi "Ghi đè? Lịch sử REQ-ID cũ sẽ mất." |
+| `structured_spec.json` đã tồn tại | Tóm tắt khác biệt và REQ-ID có nguy cơ đổi/mất; giải thích review/replace/keep, đưa ví dụ và khuyến nghị review trước khi replace nếu spec revision thay đổi. |
 | Spec có section "out of scope" | Đọc để biết nhưng **không** tạo REQ-ID cho những hạng mục đó |

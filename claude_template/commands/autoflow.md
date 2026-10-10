@@ -1,5 +1,9 @@
 # Master Orchestrator — /autoflow
 
+## User decision prompts
+
+Follow `.agents/skills/decision_prompt_standard.md` for every user-facing question, option selection, review, approval, or overwrite decision. Before asking, review the current evidence; explain why the decision is needed; define unfamiliar terms; list valid options, their effects and trade-offs; give a concrete example; mark the best-supported option and explain why; and specify exactly how the user should answer. If the evidence does not support a safe recommendation, say what is missing instead of inventing a default. Never use a bare yes/no or A/B prompt.
+
 **Mục tiêu:** Chạy toàn bộ RTL generation flow từ spec đến specification PDF, tự động qua các phase, dừng tại 3 gate quan trọng để human review.
 
 **Usage:**
@@ -16,13 +20,19 @@
 
 Nếu user gọi `/autoflow` không có argument, hỏi:
 
+Trước khi hỏi, kiểm tra xem user đã cung cấp spec trong hội thoại hoặc thư mục dự án chưa.
+Tóm tắt kết quả tìm thấy và giải thích lựa chọn mode sẽ quyết định nguồn đầu vào của flow.
+
 ```
 Bạn muốn bắt đầu theo cách nào?
 
-  [A] Tôi đã có file spec  →  cung cấp đường dẫn file
-  [B] Tôi muốn mô tả design  →  agent sẽ tạo spec tự động
+  [A] Dùng spec có sẵn — chọn khi spec đã có requirements, interface và behavior đủ rõ.
+      Ví dụ: spec/axi_stream_downscaler_spec.md
+  [B] Tạo spec từ mô tả — chọn khi mới có ý tưởng hoặc mô tả ngắn; assumptions sẽ được
+      đánh dấu và cần review trước khi Gate 1 được ký.
 
-Gõ A hoặc B:
+Khuyến nghị: [A] nếu đã có spec phù hợp vì giảm assumptions; [B] nếu chưa có spec.
+Gõ A hoặc B; với A, kèm đường dẫn file nếu chưa được cung cấp:
 ```
 
 - Nếu **A** → hỏi path file, tiếp tục Phase 1
@@ -79,7 +89,13 @@ Sau khi xong, in summary:
 
   structured_spec.json → schemas/
 ────────────────────────────────────────────────
-Approve Gate 1? (yes / no — 'no' để sửa spec rồi chạy lại)
+Explain that Gate 1 approves this structured specification as the baseline for later phases.
+Summarize unresolved ambiguity and its impact. Recommend approval only if requirements that
+affect behavior are resolved; otherwise recommend no and identify an example item to revise.
+Giải thích Gate 1 duyệt structured spec làm baseline. Tóm tắt TBD, ambiguity và mapping
+chính; yes chấp nhận baseline, no giữ gate đóng để sửa. Khuyến nghị yes chỉ khi không còn
+ambiguity ảnh hưởng behavior.
+Approve Gate 1? (yes / no — nêu rõ thay đổi nếu chọn no)
 ```
 
 **Dừng — chờ user gõ "yes".**
@@ -144,7 +160,10 @@ Sau khi xong, in summary và **dừng**:
 
   ⚠ Hãy đọc GATE3_REVIEW.md trước khi approve.
 ────────────────────────────────────────────────
-Approve Gate 3b? (yes / no)
+Gate 3b approves the reviewed SVA set and unlocks verification. Summarize compile status,
+vacuity concerns, uncovered requirements and unresolved properties. Recommend yes only when
+properties match the approved requirements and checks pass; otherwise recommend no with edits.
+Approve Gate 3b? (yes to accept this property set / no to keep the gate open)
 ```
 
 **Dừng — chờ user gõ "yes".**
@@ -171,7 +190,10 @@ Sau khi xong, in summary và **dừng**:
 
   verification_report.json → schemas/
 ────────────────────────────────────────────────
-Sign off Gate 5? (yes / no)
+Gate 5 records the verification outcome; it does not convert failed or locked items into passes.
+Summarize failures, timeouts, locked requirements and report revision. Recommend yes only when
+mandatory checks pass; otherwise recommend no and explain the blocker.
+Sign off Gate 5? (yes to record the result / no to leave the gate open)
 ```
 
 **Dừng — chờ user gõ "yes".**

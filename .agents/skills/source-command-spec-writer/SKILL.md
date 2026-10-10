@@ -5,6 +5,10 @@ description: "Draft a hardware RTL specification from a user-provided design des
 
 # source-command-spec-writer
 
+## User decision prompts
+
+Follow `.agents/skills/decision_prompt_standard.md` for every user-facing question, option selection, review, approval, or overwrite decision. Before asking, review the current evidence; explain why the decision is needed; define unfamiliar terms; list valid options, their effects and trade-offs; give a concrete example; mark the best-supported option and explain why; and specify exactly how the user should answer. If the evidence does not support a safe recommendation, say what is missing instead of inventing a default. Never use a bare yes/no or A/B prompt.
+
 Use this skill when the user asks for this phase of the repository's RTL design and verification workflow.
 
 ## Codex CLI execution notes
@@ -53,14 +57,21 @@ Agent sẽ hỏi tuần tự, không hỏi tất cả cùng lúc.
 
 Hỏi user (có thể hỏi tất cả trong 1 message):
 
+Trước mỗi câu, nói ngắn gọn vì sao thông tin đó cần cho spec. Định nghĩa acronym/term,
+đưa ví dụ answer format và gợi ý lựa chọn khi spec hoặc ngữ cảnh ủng hộ. Không tự đề xuất
+giá trị kỹ thuật cụ thể nếu chưa có căn cứ. Nếu ASIC đã được xác nhận trong yêu cầu, ghi
+đó là context thay vì hỏi lại ASIC hay FPGA.
+
 ```
 Để tạo spec, mình cần biết:
 
-1. Tên IP / module là gì? (ví dụ: downscaler, axi_bridge, uart_ctrl)
-2. Chức năng chính là gì? (1-3 câu mô tả)
-3. Interface: input/output chính là gì? (data width, bus type, clock?)
-4. Có parameter nào cần configure không? (enable/disable feature, width, depth...)
-5. Target: ASIC hay FPGA?
+1. Tên IP/module và tên gọi dự kiến là gì? Ví dụ: axi_stream_downscaler. Tên này dùng cho spec/module mapping.
+2. IP giải quyết vấn đề gì? Ví dụ: nhận stream 64-bit và phát stream 32-bit theo thứ tự được spec định nghĩa.
+3. Interface nào được yêu cầu? Nêu protocol, input/output, widths, clock/reset. Ví dụ: AXI4-Stream, TDATA width 64 in / 32 out; chỉ dùng nếu đúng design của bạn.
+4. Có configurable feature/parameter nào không? Nêu mục tiêu hoặc legal values nếu biết. Ví dụ: output width 32 hoặc 64 nếu spec cho phép.
+5. Target technology/process hoặc flow constraint nào đã được chọn? Đây là thông tin ảnh hưởng synthesis/PPA; nếu chưa chọn, trả lời TBD thay vì đoán.
+
+Khuyến nghị: cung cấp giá trị đã có trong requirement/design brief; để TBD những lựa chọn chưa được chốt. Gõ theo số câu hoặc viết câu trả lời tự do.
 ```
 
 Nếu user cung cấp đủ → sang Bước 2.  
@@ -72,14 +83,17 @@ Nếu user mô tả ngắn gọn (ví dụ: "downscaler 4K về 1080p") → agen
 
 Chỉ hỏi những gì còn thiếu sau Bước 1:
 
+Với mỗi câu hỏi kỹ thuật, nêu ngắn gọn tác động, định nghĩa các option và ví dụ. Chỉ
+khuyến nghị một option khi có căn cứ từ brief hoặc standard; nếu không, nêu rõ chưa có safe default.
+
 ```
 Thêm một vài câu hỏi kỹ thuật:
 
-6. Pipeline hay combinational? Bao nhiêu stage?
-7. Có reset không? Active-high hay active-low?
-8. Clock domain: 1 hay nhiều?
-9. Có interrupt / status register không?
-10. Có CSR / register map không?
+6. Datapath cần combinational hay pipeline? Pipeline thêm register/stage để cải thiện timing/throughput nhưng có thể tăng latency/area. Ví dụ: 2 pipeline stages nếu target timing yêu cầu; không tự mặc định.
+7. Reset có không, đồng bộ hay bất đồng bộ, active-high hay active-low? Ví dụ answer: active-low asynchronous. Chọn theo system integration requirement.
+8. Có bao nhiêu clock domain? Nhiều domain cần CDC design/verification. Ví dụ: một clock domain 100 MHz nếu đó là system clock đã được chốt.
+9. Có interrupt hoặc status output/register không? Nêu event, polarity và clear behavior nếu có.
+10. Có CSR/register map không? Nếu có, cung cấp address, access type, reset value và side effects; ví dụ một bảng register map hiện hành.
 ```
 
 Nếu user không biết → dùng default hợp lý cho domain, ghi chú rõ.
@@ -148,13 +162,20 @@ Dựa trên thông tin thu thập, sinh file `spec/<ip_name>_spec.md` với cấ
 
 In ra preview 20 dòng đầu của spec, sau đó hỏi:
 
+Trước lựa chọn, nêu các TBD/assumption và hậu quả nếu tiếp tục khi chúng chưa được xác nhận.
+Định nghĩa từng option, đưa ví dụ, và khuyến nghị `[1]` chỉ khi nội dung đã đủ để
+parser xử lý mà không giữ lại assumption ảnh hưởng behavior.
+
 ```
 Spec đã được tạo tại: spec/<ip_name>_spec.md
 
 Bạn muốn:
-  [1] Tiếp tục → chạy /autoflow với spec này
-  [2] Chỉnh sửa thêm → mở file và sửa tay, xong gõ /autoflow spec/<ip_name>_spec.md
-  [3] Hỏi thêm → agent tiếp tục hỏi để bổ sung
+  [1] Tiếp tục → dùng file hiện tại cho /autoflow; chọn khi requirements, interface và TBD đã review.
+  [2] Chỉnh sửa → cập nhật file trước khi chạy flow; chọn khi có nội dung chưa chính xác.
+  [3] Hỏi thêm → bổ sung field còn thiếu; chọn khi TBD ảnh hưởng behavior/interface.
+
+Khuyến nghị: [3] nếu còn TBD ảnh hưởng behavior, [2] nếu tìm thấy lỗi cụ thể, [1] chỉ khi
+spec đã đủ rõ. Ví dụ: thiếu reset polarity thì chọn [3], không tự mặc định.
 ```
 
 ---

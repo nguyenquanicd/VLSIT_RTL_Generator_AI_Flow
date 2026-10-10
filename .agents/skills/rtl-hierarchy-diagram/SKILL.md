@@ -5,6 +5,10 @@ description: Analyze Verilog, SystemVerilog, or VHDL RTL from a user-supplied so
 
 # RTL Hierarchy Diagram and Analysis
 
+## User decision prompts
+
+Follow `.agents/skills/decision_prompt_standard.md` for every user-facing question, option selection, review, approval, or overwrite decision. Before asking, review the current evidence; explain why the decision is needed; define unfamiliar terms; list valid options, their effects and trade-offs; give a concrete example; mark the best-supported option and explain why; and specify exactly how the user should answer. If the evidence does not support a safe recommendation, say what is missing instead of inventing a default. Never use a bare yes/no or A/B prompt.
+
 Analyze an existing RTL design and create exactly two deliverables: one editable diagrams.net file and one Markdown analysis report. Do not modify RTL source files.
 
 ## Token-efficient artifact reads
@@ -13,7 +17,7 @@ Run `python scripts/prepare_skill_context.py --phase rtl-hierarchy-diagram --roo
 
 ## Required input: RTL source directory
 
-- Require an explicit path to the RTL source directory for each analysis request. If omitted, ask: “Please provide the path to the RTL directory you want analyzed.” Wait for the answer before locating or reading RTL.
+- Require an explicit path to the RTL source directory for each analysis request. If omitted, explain that the path identifies the source tree for hierarchy/interface analysis, give an example such as rtl/ or C:/work/ip/src/rtl/, and ask for the path. Do not search other directories or guess. Wait for the answer before locating or reading RTL.
 - Do not infer the RTL directory from the working directory, repository root, skill directory, output path, or an unrelated earlier request. If a path is invalid or ambiguous, clarify it before inspecting RTL.
 - Treat the supplied directory as the RTL source root. Respect user-provided output paths and filenames.
 

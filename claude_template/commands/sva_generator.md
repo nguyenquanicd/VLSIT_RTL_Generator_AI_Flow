@@ -1,5 +1,9 @@
 # Phase 3b · SVA Generator — /sva_generator
 
+## User decision prompts
+
+Follow `.agents/skills/decision_prompt_standard.md` for every user-facing question, option selection, review, approval, or overwrite decision. Before asking, review the current evidence; explain why the decision is needed; define unfamiliar terms; list valid options, their effects and trade-offs; give a concrete example; mark the best-supported option and explain why; and specify exactly how the user should answer. If the evidence does not support a safe recommendation, say what is missing instead of inventing a default. Never use a bare yes/no or A/B prompt.
+
 **Mục tiêu:** Sinh SystemVerilog Assertion cho mỗi REQ-ID, tổ chức theo file per-module,
 chạy VCS compile check, sau đó thực hiện Gate 3 (Property Review) với người dùng.
 
@@ -425,6 +429,12 @@ Xác nhận? [yes / no / edit]:
 ════════════════════════════════════════════════════════
 ```
 
+Trước câu hỏi review, giải thích REQ/source clause, temporal intent (điều kiện trigger và
+thời điểm expected behavior), vacuity status nếu có, và failure nào property phát hiện.
+Định nghĩa lựa chọn: yes chấp nhận property; no loại khỏi sign-off; edit yêu cầu sửa NL hoặc
+assertion. Đưa một ví dụ câu trả lời. Khuyến nghị yes chỉ khi property bám spec, compile pass,
+và không dựa trên nội bộ RTL ngoài contract; nếu sai thì khuyến nghị edit.
+
 **Xử lý response:**
 - `yes` → ghi vào RTM: `{req_id, assertion_label, confirmed: true, nl_description: "..."}`
 - `no` → ghi vào RTM: `{req_id, assertion_label, confirmed: false, status: "skipped"}`. Comment out assertion trong file SVA (dùng `/* */`).
@@ -443,11 +453,18 @@ Sau khi review hết tất cả, hiển thị summary:
 ╚══════════════════════════════════════════════════════╝
 ```
 
-Nếu có REQ-IDs không có assertion → hỏi: _"Có muốn sinh thêm assertion cho các REQ-IDs còn thiếu không? (yes/no)"_
+Nếu có REQ-IDs không có assertion, nêu requirement, lý do chưa có property và tác động đến
+coverage/sign-off. Định nghĩa yes (thử tạo property từ requirement) và no (ghi gap; không
+đánh dấu requirement đã verify). Khuyến nghị yes nếu spec xác định observable behavior; nếu
+không, no kèm lý do và câu hỏi cần resolve.
+Hỏi: **"REQ-ID <id> chưa có assertion. yes để thử tạo property từ behavior đã nêu; no để ghi gap và không sign-off REQ-ID này. Khuyến nghị yes nếu spec có observable behavior rõ. Bạn chọn yes/no?"**
 - `yes` → quay lại Bước 4.9, sinh assertion cho các REQ-IDs thiếu, compile lại, review lại.
 - `no` → ghi nhận vào RTM là `no_assertion`.
 
-Hỏi: **"Ký Gate 3? (yes/no)"**
+Trước Gate 3, tóm tắt property confirmed/skipped, compile result, REQ-ID coverage và gap.
+yes chấp nhận baseline assertions hiện tại; no giữ gate mở để sửa. Khuyến nghị yes chỉ khi
+mọi property được review và gap được chấp nhận rõ ràng; ví dụ property sai spec cần edit.
+Hỏi: **"Ký Gate 3 cho property set đã tóm tắt? Trả lời yes để chấp nhận hoặc no để giữ gate mở."**
 
 - `no` → Cho phép tiếp tục chỉnh sửa (quay bất kỳ bước nào).
 - `yes` → Ghi `schemas/rtm.json`, đánh dấu `gate_3_approved: true`.

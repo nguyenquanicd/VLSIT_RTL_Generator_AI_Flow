@@ -5,6 +5,10 @@ description: "Build the final Markdown and PDF specification from approved desig
 
 # source-command-spec-pdf-generator
 
+## User decision prompts
+
+Follow `.agents/skills/decision_prompt_standard.md` for every user-facing question, option selection, review, approval, or overwrite decision. Before asking, review the current evidence; explain why the decision is needed; define unfamiliar terms; list valid options, their effects and trade-offs; give a concrete example; mark the best-supported option and explain why; and specify exactly how the user should answer. If the evidence does not support a safe recommendation, say what is missing instead of inventing a default. Never use a bare yes/no or A/B prompt.
+
 Use this skill when the user asks for this phase of the repository's RTL design and verification workflow.
 
 ## Codex CLI execution notes
@@ -433,4 +437,4 @@ Cấu trúc:
 | `structured_spec.json` thiếu | Dùng REQ-IDs từ `rtm.json` thay thế |
 | Port list không đọc được từ RTL | Ghi `TBD — lấy từ src/rtl/<top>.sv` |
 | Cả pandoc lẫn weasyprint đều thiếu | Chỉ output Markdown, hướng dẫn cách convert |
-| `docs/specification.md` đã tồn tại | Hỏi "Ghi đè? (yes/no)" trước khi overwrite |
+| `docs/specification.md` đã tồn tại | So sánh source revision và generated file, nêu khác biệt/nội dung thủ công có thể mất; đưa compare/regenerate/keep với ví dụ; khuyến nghị compare nếu chưa biết file có chỉnh sửa thủ công. |
