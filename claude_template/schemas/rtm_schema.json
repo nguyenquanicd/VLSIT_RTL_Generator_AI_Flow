@@ -1,145 +1,292 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "RTM",
-  "description": "Requirement Traceability Matrix — tài liệu sống cập nhật qua Phase 3/4/5. Mỗi REQ-ID phải đủ 6 điều kiện trước khi signed_off=true.",
+  "description": "Requirement Traceability Matrix — links requirements to golden-source clauses, reviewed verification, DUT results, and human sign-off.",
   "type": "object",
-  "required": ["metadata", "requirements"],
+  "required": [
+    "metadata",
+    "requirements"
+  ],
   "properties": {
-
     "metadata": {
       "type": "object",
-      "required": ["ip_name", "spec_revision", "gate_3_approved", "gate_5_approved"],
+      "required": [
+        "ip_name",
+        "spec_revision",
+        "gate_3a_approved",
+        "gate_3b_approved",
+        "gate_5_approved"
+      ],
       "properties": {
-        "ip_name":          { "type": "string" },
-        "spec_revision":    { "type": "string" },
-        "gate_3_approved":  { "type": "boolean", "description": "Gate 3: Property Review ký bởi người dùng" },
-        "gate_3_at":        { "type": ["string", "null"] },
-        "gate_5_approved":  { "type": "boolean", "description": "Gate 5: RTM Dashboard ký bởi người dùng" },
-        "gate_5_at":        { "type": ["string", "null"] },
-        "last_updated":     { "type": ["string", "null"] }
+        "ip_name": {
+          "type": "string"
+        },
+        "spec_revision": {
+          "type": "string"
+        },
+        "gate_3a_approved": {
+          "type": "boolean",
+          "description": "Gate 3a: Verification contract approved by the user"
+        },
+        "gate_3a_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "gate_3b_approved": {
+          "type": "boolean",
+          "description": "Gate 3b: Property review approved by the user"
+        },
+        "gate_3b_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "gate_5_approved": {
+          "type": "boolean",
+          "description": "Gate 5 approval signed by the user in the RTM dashboard."
+        },
+        "gate_5_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "last_updated": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
       }
     },
-
     "requirements": {
       "type": "array",
-      "description": "Danh sách requirement, mỗi item là một REQ-ID với 6 trường sign-off.",
+      "description": "Requirements, each identified by a REQ-ID and tracked through six sign-off conditions.",
       "items": {
         "type": "object",
-        "required": ["req_id", "text", "category",
-                     "rtl_traced", "sva_traced", "tc_traced",
-                     "sim_pass", "mutation_score", "signed_off"],
+        "required": [
+          "req_id",
+          "text",
+          "category",
+          "spec_traced",
+          "standard_traced",
+          "oracle_reviewed",
+          "sva_traced",
+          "tc_traced",
+          "sim_pass",
+          "mutation_score",
+          "signed_off"
+        ],
         "properties": {
-
-          "req_id":   { "type": "string", "pattern": "^REQ-[0-9]{3,}$" },
-          "text":     { "type": "string", "description": "Nội dung requirement" },
-          "category": { "type": "string", "enum": ["functional", "timing", "interface", "constraint"] },
-          "feature_id": { "type": "string", "description": "Feature ID nguồn gốc, ví dụ F02" },
-
-          "rtl_traced": {
+          "req_id": {
+            "type": "string",
+            "pattern": "^REQ-[0-9]{3,}$"
+          },
+          "text": {
+            "type": "string",
+            "description": "Normative requirement text."
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "functional",
+              "timing",
+              "interface",
+              "constraint"
+            ]
+          },
+          "feature_id": {
+            "type": "string",
+            "description": "Source feature ID, for example F02."
+          },
+          "spec_traced": {
             "type": "boolean",
-            "description": "Điều kiện 1: Có ít nhất 1 block RTL tag REQ-ID này"
+            "description": "Requirement maps to an approved specification section."
           },
-          "rtl_files": {
+          "standard_traced": {
+            "type": "boolean",
+            "description": "Applicable exact standard clause/revision is recorded, or marked not applicable with evidence."
+          },
+          "oracle_reviewed": {
+            "type": "boolean",
+            "description": "Expected behavior was reviewed against the approved verification contract."
+          },
+          "source_refs": {
             "type": "array",
-            "items": { "type": "string" },
-            "description": "Đường dẫn file RTL chứa tag // REQ-ID này"
+            "items": {
+              "type": "string"
+            },
+            "description": "Golden-source references: specification sections and standard clauses/revisions."
           },
-          "rtl_lines": {
-            "type": "array",
-            "items": { "type": "integer" },
-            "description": "Số dòng trong file RTL có tag"
+          "implementation_audit": {
+            "type": "object",
+            "description": "Optional RTL mapping for implementation audit only; never golden-source evidence or a sign-off prerequisite."
           },
-
           "sva_traced": {
             "type": "boolean",
-            "description": "Điều kiện 2: Có ít nhất 1 assertion người dùng đã xác nhận ở Gate 3"
+            "description": "Reviewed assertion mapped to this requirement at Gate 3b."
           },
           "sva_assertions": {
             "type": "array",
-            "items": { "type": "string" },
-            "description": "Label của các assertion đã confirmed, ví dụ ['a_pc_aligned']"
+            "items": {
+              "type": "string"
+            },
+            "description": "Labels of approved assertions, for example ['a_pc_aligned']."
           },
           "sva_files": {
             "type": "array",
-            "items": { "type": "string" },
-            "description": "File SVA chứa assertion"
+            "items": {
+              "type": "string"
+            },
+            "description": "SVA files containing the assertions."
           },
-
           "tc_traced": {
             "type": "boolean",
-            "description": "Điều kiện 3: Có ít nhất 1 TC người dùng đã chọn ở Gate 4"
+            "description": "At least one test case selected at Gate 4."
           },
           "tc_ids": {
             "type": "array",
-            "items": { "type": "string" },
-            "description": "Danh sách TC-ID cover REQ-ID này"
+            "items": {
+              "type": "string"
+            },
+            "description": "TC-IDs that cover this REQ-ID."
           },
-
           "sim_pass": {
             "type": "boolean",
-            "description": "Điều kiện 4: Tất cả TC cover REQ-ID này đều pass, không SVA violation"
+            "description": "Condition 4: all covering test cases pass with no SVA violations."
           },
           "sim_tc_results": {
             "type": "object",
             "description": "Map TC-ID → 'pass'|'fail'|'timeout'",
             "additionalProperties": {
               "type": "string",
-              "enum": ["pass", "fail", "timeout", "skipped"]
+              "enum": [
+                "pass",
+                "fail",
+                "timeout",
+                "skipped"
+              ]
             }
           },
           "sva_violation_count": {
             "type": "integer",
-            "description": "Số SVA violation phát sinh trong sim cho REQ-ID này"
+            "description": "Number of SVA violations for this REQ-ID during simulation."
           },
-
           "mutation_score": {
-            "description": "Điều kiện 5: ≥ 0.85 hoặc 'N/A' nếu không có mutation nào generate được",
+            "description": "Condition 5: at least 0.85, or N/A when no valid mutant could be generated.",
             "oneOf": [
-              { "type": "number", "minimum": 0.0, "maximum": 1.0 },
-              { "type": "string", "enum": ["N/A", "pending"] }
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "N/A",
+                  "pending"
+                ]
+              }
             ]
           },
           "mutation_detail": {
             "type": "object",
             "properties": {
-              "total":    { "type": "integer" },
-              "killed":   { "type": "integer" },
-              "survived": { "type": "integer" },
-              "compile_error": { "type": "integer", "description": "Mutants bị bỏ qua vì compile fail" }
+              "total": {
+                "type": "integer"
+              },
+              "killed": {
+                "type": "integer"
+              },
+              "survived": {
+                "type": "integer"
+              },
+              "compile_error": {
+                "type": "integer",
+                "description": "Mutants excluded because compilation failed."
+              }
             }
           },
-
           "signed_off": {
             "type": "boolean",
-            "description": "Điều kiện 6: Người dùng ký tay trong RTM Dashboard (Gate 5). LLM không được set trường này."
+            "description": "Condition 6: user sign-off in the Gate 5 RTM dashboard; an LLM must not set this field."
           },
           "sign_off_note": {
-            "type": ["string", "null"],
-            "description": "Ghi chú của người dùng khi ký hoặc từ chối"
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "User's note when approving or rejecting sign-off."
           },
           "sign_off_at": {
-            "type": ["string", "null"],
-            "description": "Timestamp ISO 8601 khi người dùng ký"
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "ISO 8601 timestamp of the user's sign-off."
           },
-
           "eligible_for_signoff": {
             "type": "boolean",
-            "description": "Computed field: true nếu cả 5 điều kiện đầu đều pass. Không phải do user set."
+            "description": "Computed field: true only when the first five conditions pass; the user does not set it."
           }
         }
       }
     },
-
     "gap_report": {
       "type": "object",
-      "description": "Tóm tắt các lỗ hổng cần bổ sung",
+      "description": "Summary of gaps that still require work.",
       "properties": {
-        "req_ids_no_rtl":  { "type": "array", "items": { "type": "string" } },
-        "req_ids_no_sva":  { "type": "array", "items": { "type": "string" } },
-        "req_ids_no_tc":   { "type": "array", "items": { "type": "string" } },
-        "req_ids_sim_fail":{ "type": "array", "items": { "type": "string" } },
-        "req_ids_low_mut": { "type": "array", "items": { "type": "string" } },
-        "req_ids_unsigned":{ "type": "array", "items": { "type": "string" } }
+        "req_ids_no_spec": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "req_ids_no_standard": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "req_ids_no_oracle": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "req_ids_no_sva": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "req_ids_no_tc": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "req_ids_sim_fail": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "req_ids_low_mut": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "req_ids_unsigned": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     }
   }

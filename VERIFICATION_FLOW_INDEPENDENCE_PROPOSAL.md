@@ -1,12 +1,18 @@
-# Specification-Driven Verification Flow Proposal
+# Specification-Driven Verification Flow Design and Status
 
 ## 1. Purpose
 
-This proposal describes how to make the verification flow independent of generated RTL when defining expected behavior.
+This document defines the specification-driven verification architecture and records its repository implementation status. Functional verification remains spec-driven; optional structural code coverage measures the implementation as a separate diagnostic.
 
-The specification and the selected protocol-standard revisions are the verification golden sources. Generated RTL is the design under test (DUT); it is compiled and simulated, but it must not be used to infer expected results, test scenarios, assertion intent, protocol behavior, or coverage targets.
+The specification and the selected protocol-standard revisions are the verification golden sources. Generated RTL is the design under test (DUT); it is compiled and simulated, but it must not be used to infer expected results, test scenarios, assertion intent, protocol behavior, or functional-coverage targets. For optional code coverage only, the RTL may be instrumented and inspected to locate unexecuted implementation points; the percentage target is selected by the user, and expected behavior for any added test still comes from the approved specification and standards.
 
 This distinction matters: a flow that never compiles or simulates the DUT cannot verify its implementation. Independence means that the verification oracle is established without consulting the implementation and remains unchanged when the implementation changes, unless the approved specification changes.
+
+## Implementation status
+
+The repository instructions now define an independent verification-contract stage before RTL generation, a contract-derived interface shell for pre-DUT compile checks, RTL and verification branches with separate inputs, DUT integration through an adapter, and RTM sign-off based on golden-source traceability rather than RTL tags. Codex skills, Claude commands/templates, README/guideline, and JSON schemas are being kept aligned with this architecture.
+
+This is workflow guidance enforced by the agent prompts; the repository does not have a single executable orchestrator that enforces the boundary. A representative design run is still needed to confirm simulator-specific shell compilation and adapter integration.
 
 ## 2. Current Flow Dependencies to Remove
 
@@ -155,17 +161,22 @@ The shell must never return passing functional results. Label its use and logs a
 
 Measure requirement coverage, protocol-clause coverage, scenario coverage, and assertion activation. Treat code coverage as diagnostic only: it can identify unexercised implementation regions, but it cannot establish that the specification is correct or complete.
 
+An optional code-coverage closure step may report a user-selected structural target (for example, a named line/statement metric) after baseline verification. Show the measured baseline, denominator, scope, exclusions, tool/version, and uncovered points before asking the user to choose a threshold. Do not infer the threshold from RTL. For closure, inspect RTL only to locate structural points; map each proposed test to an approved requirement or standard clause and derive stimulus/checks from that source. If no spec-backed legal behavior can exercise a point, report it as unresolved or propose an evidence-backed exclusion for user review. Never modify expected results, weaken checks, or change RTL solely to raise the score.
+
+Save each coverage-generated testcase as a source file, add it to the test plan and file list, and retain its logs and merged coverage report. Keep one documented design-root Makefile as the execution interface for lint, synthesis, compile, simulation, mutation, coverage collection/merge, and reporting. A user-selected coverage threshold may be an additional closure criterion for that run, but it does not replace spec/standard traceability, functional pass results, or mutation evidence.
+
 ## 7. Gate and Phase Proposal
 
-Preserve the existing gate names initially, but make each gate consume specification-derived artifacts:
+Use the repository gate numbering with the contract approved before RTL generation:
 
-1. **Golden baseline approval:** approve the design-specification revision, standards and revisions, errata, configuration, and ambiguity list.
-2. **Verification-contract review:** approve the interface contract, expected behavior, requirement-to-clause mapping, reference-model plan, tests, assertions, and coverage plan. This review must not require generated RTL.
-3. **Verification-source review:** review the independent model, vectors, assertions, and testbench. Compile these sources against the interface shell for syntax/elaboration only.
-4. **DUT integration:** connect the generated RTL as the DUT through the adapter. Check interface compatibility. A mismatch is a failure to integrate, not a reason to revise expected behavior.
-5. **Execution and sign-off:** run simulation/formal checks, record tool outputs, and sign off against requirements and standard clauses using the locked golden baseline.
+1. **Gate 1 — Specification:** approve requirements and resolve behavior-changing ambiguities.
+2. **Gate 2 — Configuration:** approve the legal parameter profile.
+3. **Gate 3a — Verification contract:** approve interface, oracle, requirement-to-clause mapping, reference-model plan, tests, assertions, and spec-derived functional coverage. This review precedes RTL generation.
+4. **Phase 3R — RTL branch:** generate, lint, and synthesize using spec/config/RTL rules only. Synthesis is an implementation checkpoint, not a verification gate.
+5. **Gate 3b / Gate 4 — Verification sources:** review SVA and test plan from the approved contract. Compile with the interface shell for syntax/elaboration only.
+6. **Gate 5 — DUT integration and sign-off:** connect RTL through the adapter, check interface compatibility, run DUT simulation and supplemental analysis, then review results against golden sources. Mismatch is an integration failure, not a reason to revise expected behavior.
 
-The test plan and oracle should be ready before the DUT exists. Actual DUT simulation necessarily waits until the implementation is available.
+The base test plan and oracle should be ready before the DUT exists. Actual DUT simulation and optional RTL code-coverage closure necessarily wait until the implementation is available.
 
 ## 8. RTM and Report Changes
 
@@ -198,23 +209,23 @@ If only the DUT changes, the golden contract and expected results remain fixed. 
 
 ## 10. Implementation Roadmap
 
-### Priority 1 — Stop deriving behavior from RTL
+### Priority 1 — Stop deriving behavior from RTL (prompt updates in place)
 
 Update both the Codex skills and Claude commands for SVA generation, testbench generation, and verification. State explicitly that RTL may be used only as the DUT for compile, interface-conformance, simulation, and supplemental mutation analysis. Remove instructions to read RTL for expected behavior, ports, states, and enum encodings.
 
-### Priority 2 — Add golden-source metadata and contract
+### Priority 2 — Add golden-source metadata and contract (contract skill/schema added)
 
-Extend the structured-spec and report schemas, or add versioned schemas for the golden manifest and verification contract. Require exact standard revisions and clause references for protocol-specific requirements.
+The repository now has a versioned verification-contract schema and RTM/report golden-source fields. Exact standard revision/clauses are required by the contract workflow.
 
-### Priority 3 — Decouple verification planning from DUT generation
+### Priority 3 — Decouple verification planning from DUT generation (workflow guidance updated)
 
-Generate and review the interface contract, reference-model plan, tests, assertions, and coverage before RTL generation. Add an adapter based on the approved interface contract.
+Generate and review the interface contract, reference-model plan, tests, assertions, and spec-derived functional coverage before RTL generation. An optional code-coverage target is chosen only after a measured RTL baseline. Add an adapter based on the approved interface contract.
 
-### Priority 4 — Migrate RTM sign-off
+### Priority 4 — Migrate RTM sign-off (schema and prompt updates in place)
 
 Remove RTL-tag presence from verification eligibility. Make requirement/spec/standard traceability and actual DUT results the sign-off evidence. Preserve RTL mapping separately for implementation audit.
 
-### Priority 5 — Validate the revised flow
+### Priority 5 — Validate the revised flow (pending representative design run)
 
 Run a representative design through the revised gates. Confirm that:
 
@@ -229,7 +240,7 @@ Run a representative design through the revised gates. Confirm that:
 The flow meets the independence goal when:
 
 1. Expected outputs and protocol checks can be reviewed and frozen before RTL generation.
-2. No verification generator reads generated RTL to create expected behavior, vectors, coverage, or assertion intent.
+2. No verification generator reads generated RTL to create expected behavior, vectors, functional-coverage targets, or assertion intent. An optional code-coverage tool may instrument RTL to measure structural execution; any added closure testcase must still trace to approved specification/standard behavior.
 3. The testbench uses a specification-defined interface contract and adapter.
 4. RTL changes alone do not alter the golden manifest, contract, reference model, or expected results.
 5. Every sign-off result traces to an approved specification requirement or exact standard clause.

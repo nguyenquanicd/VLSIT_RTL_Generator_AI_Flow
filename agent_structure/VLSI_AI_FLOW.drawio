@@ -4,8 +4,11 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="VJQLGWmGsdWpBeKaFA09-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=3;verticalAlign=top;fontSize=18;dashed=1;strokeWidth=2;" value="Parallel phases&lt;div&gt;2 Agents can be called to work&lt;/div&gt;" vertex="1">
-          <mxGeometry height="634" width="480" x="973" y="142" as="geometry" />
+        <mxCell id="codex-flow-independence-note" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=15;" value="Gate 3a approves verification_contract.json from specification, configuration, and exact standards before either branch proceeds.&lt;div&gt;RTL uses spec/config/RTL rules. TB and SVA use the approved contract and interface shell; they do not read generated RTL.&lt;/div&gt;&lt;div&gt;DUT integration later uses RTL only to check interface compatibility and run the fixed golden oracle.&lt;/div&gt;" vertex="1">
+          <mxGeometry height="82" width="1060" x="983" y="148" as="geometry" />
+        </mxCell>
+        <mxCell id="VJQLGWmGsdWpBeKaFA09-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=3;verticalAlign=top;fontSize=18;dashed=1;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="704" width="1100" x="973" y="142" as="geometry" />
         </mxCell>
         <mxCell id="VJQLGWmGsdWpBeKaFA09-3" edge="1" parent="1" source="VJQLGWmGsdWpBeKaFA09-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=18;endArrow=block;endFill=1;strokeWidth=2;" target="VJQLGWmGsdWpBeKaFA09-7">
           <mxGeometry relative="1" as="geometry" />
@@ -96,7 +99,7 @@
         <mxCell id="VJQLGWmGsdWpBeKaFA09-31" edge="1" parent="1" source="VJQLGWmGsdWpBeKaFA09-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=18;strokeWidth=2;endArrow=block;endFill=1;" target="VJQLGWmGsdWpBeKaFA09-34">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="VJQLGWmGsdWpBeKaFA09-32" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=18;strokeWidth=2;" value="SKILL 3A: RTL Generation" vertex="1">
+        <mxCell id="VJQLGWmGsdWpBeKaFA09-32" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=18;strokeWidth=2;" value="SKILL 3R: RTL Generation&lt;div&gt;Spec + config + RTL rules only&lt;/div&gt;" vertex="1">
           <mxGeometry height="60" width="200" x="983" y="311" as="geometry" />
         </mxCell>
         <mxCell id="VJQLGWmGsdWpBeKaFA09-33" edge="1" parent="1" source="VJQLGWmGsdWpBeKaFA09-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontSize=18;strokeWidth=2;endArrow=block;endFill=1;" target="VJQLGWmGsdWpBeKaFA09-36">
@@ -120,7 +123,7 @@
         <mxCell id="VJQLGWmGsdWpBeKaFA09-39" edge="1" parent="1" source="VJQLGWmGsdWpBeKaFA09-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontSize=18;strokeWidth=2;endArrow=block;endFill=1;" target="VJQLGWmGsdWpBeKaFA09-42">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="VJQLGWmGsdWpBeKaFA09-40" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=18;strokeWidth=2;" value="SKILL 4: TB Generation" vertex="1">
+        <mxCell id="VJQLGWmGsdWpBeKaFA09-40" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=18;strokeWidth=2;" value="SKILL 4: TB Generation&lt;div&gt;Approved contract; no RTL input&lt;/div&gt;" vertex="1">
           <mxGeometry height="60" width="200" x="1243" y="231" as="geometry" />
         </mxCell>
         <mxCell id="VJQLGWmGsdWpBeKaFA09-41" edge="1" parent="1" source="VJQLGWmGsdWpBeKaFA09-42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontSize=18;strokeWidth=2;endArrow=block;endFill=1;" target="VJQLGWmGsdWpBeKaFA09-44">
@@ -155,7 +158,7 @@
         <mxCell id="VJQLGWmGsdWpBeKaFA09-49" edge="1" parent="1" source="VJQLGWmGsdWpBeKaFA09-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=18;strokeWidth=2;endArrow=block;endFill=1;" target="VJQLGWmGsdWpBeKaFA09-52">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="VJQLGWmGsdWpBeKaFA09-50" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=18;strokeWidth=2;" value="SKILL 5: SVA Generation" vertex="1">
+        <mxCell id="VJQLGWmGsdWpBeKaFA09-50" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=18;strokeWidth=2;" value="SKILL 5: SVA Generation&lt;div&gt;Contract-based; no RTL bind/read&lt;/div&gt;" vertex="1">
           <mxGeometry height="60" width="200" x="1513" y="311" as="geometry" />
         </mxCell>
         <mxCell id="VJQLGWmGsdWpBeKaFA09-51" edge="1" parent="1" source="VJQLGWmGsdWpBeKaFA09-52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontSize=18;strokeWidth=2;endArrow=block;endFill=1;" target="VJQLGWmGsdWpBeKaFA09-54">
@@ -179,7 +182,7 @@
         <mxCell id="VJQLGWmGsdWpBeKaFA09-57" edge="1" parent="1" source="VJQLGWmGsdWpBeKaFA09-58" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=18;strokeWidth=2;endArrow=block;endFill=1;" target="VJQLGWmGsdWpBeKaFA09-60">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="VJQLGWmGsdWpBeKaFA09-58" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=18;strokeWidth=2;" value="SKILL 6: Verification" vertex="1">
+        <mxCell id="VJQLGWmGsdWpBeKaFA09-58" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=18;strokeWidth=2;" value="SKILL 6: DUT Integration and Verification&lt;div&gt;RTL is the DUT; golden oracle stays fixed&lt;/div&gt;" vertex="1">
           <mxGeometry height="60" width="200" x="1793" y="311" as="geometry" />
         </mxCell>
         <mxCell id="VJQLGWmGsdWpBeKaFA09-59" edge="1" parent="1" source="VJQLGWmGsdWpBeKaFA09-60" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontSize=18;strokeWidth=2;endArrow=block;endFill=1;" target="VJQLGWmGsdWpBeKaFA09-62">
@@ -233,7 +236,7 @@
         <mxCell id="VJQLGWmGsdWpBeKaFA09-75" parent="1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=3;fontSize=18;strokeWidth=2;" value="NOTE" vertex="1">
           <mxGeometry height="30" width="60" x="183" y="916" as="geometry" />
         </mxCell>
-        <mxCell id="VJQLGWmGsdWpBeKaFA09-76" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=18;dashed=1;strokeWidth=2;" value="PARALLEL PHASE" vertex="1">
+        <mxCell id="VJQLGWmGsdWpBeKaFA09-76" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;fontSize=18;dashed=1;strokeWidth=2;" value="INDEPENDENT INPUTS; SEQUENTIAL EXECUTION" vertex="1">
           <mxGeometry height="60" width="200" x="855" y="954" as="geometry" />
         </mxCell>
         <mxCell id="oFEzI5zosI9Xh9D1weoM-1" edge="1" parent="1" source="VJQLGWmGsdWpBeKaFA09-30" style="edgeStyle=elbowEdgeStyle;elbow=horizontal;endArrow=block;html=1;curved=0;rounded=0;endSize=8;startSize=8;endFill=1;strokeWidth=2;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=18;" target="VJQLGWmGsdWpBeKaFA09-40" value="">

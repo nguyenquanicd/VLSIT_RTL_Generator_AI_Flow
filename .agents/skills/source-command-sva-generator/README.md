@@ -1,5 +1,5 @@
 # SVA generator skill
 
-**VI:** Tạo assertion theo module, bind với RTL và cập nhật RTM; compile khi có simulator hỗ trợ SVA. Quy trình review Gate 3 nằm trong SKILL.md.
+**VI:** Tạo SVA từ verification contract đã duyệt, chỉ kiểm tra interface contract; compile với interface shell trước khi tích hợp DUT.
 
-**EN:** Creates per-module assertions, binds them to RTL, and updates the RTM; compiles when an SVA-capable simulator is available. SKILL.md defines Gate 3 review.
+**EN:** Generates SVA from the approved verification contract and checks the contract interface. Compile against an interface shell before DUT integration.

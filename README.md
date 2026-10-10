@@ -16,13 +16,17 @@
 
 **VI:** VLSIT tổ chức quy trình từ đặc tả phần cứng, requirement, cấu hình, RTL, assertion và testbench, verification đến tài liệu. Slash command của Claude Code và skill của Codex CLI hướng dẫn agent thực hiện các phase tương ứng.
 
-**EN:** The flow tracks requirements through RTL, SystemVerilog Assertions (SVA), test cases, and verification results using a Requirement Traceability Matrix (RTM).
+**EN:** The flow tracks requirements to specification/standard clauses, reviewed SVA, test cases, DUT results, and human sign-off using a Requirement Traceability Matrix (RTM). RTL generation and verification generation are separate branches that share an approved baseline.
 
-**VI:** Flow truy vết requirement đến RTL, SystemVerilog Assertion (SVA), test case và kết quả verification bằng Requirement Traceability Matrix (RTM).
+**VI:** Flow truy vết requirement đến điều khoản specification/standard, SVA đã review, testcase, kết quả DUT và sign-off của kỹ sư bằng Requirement Traceability Matrix (RTM). RTL generator và verification generator là hai nhánh riêng dùng chung baseline đã duyệt.
 
 **EN:** The repository contains agent prompts, RTL rules, JSON Schemas, helper scripts, templates, diagrams, and saved design snapshots. The main sections describe the common flow; the design snapshots appear at the end.
 
 **VI:** Repository chứa prompt cho agent, quy tắc RTL, JSON Schema, script hỗ trợ, template, sơ đồ và snapshot thiết kế. Các mục chính mô tả flow dùng chung; snapshot thiết kế được giới thiệu ở cuối README.
+
+**EN — Language policy:** Codex skills, Claude commands, agent guidance, and schema descriptions use technical English. Documents and README files may present both English and Vietnamese.
+
+**VI — Quy định ngôn ngữ:** Skill Codex, command Claude, hướng dẫn cho agent và mô tả schema dùng tiếng Anh kỹ thuật. Tài liệu và README có thể trình bày song ngữ Anh–Việt.
 
 **EN — AI scope:** The project uses an LLM through Claude Code or Codex CLI. It does not contain model weights, a training or fine-tuning pipeline, a RAG system, or a standalone LLM API application. Model access and authentication are managed by the host environment.
 
@@ -53,13 +57,17 @@ flowchart TD
     R --> G1{"Gate 1: Spec review<br/>Review đặc tả"}
     G1 --> C[config_ui]
     C --> F["final_config.json / Gate 2"]
-    F --> RTL["rtl_generator: RTL + lint + synthesis"]
-    F --> TB["tb_generator: testbench + test plan / Gate 4"]
-    RTL --> A["sva_generator: assertions + bind + RTM"]
-    A --> G3{"Gate 3b: Property review<br/>Review property"}
-    G3 --> V["verification: compile + simulation + mutation"]
-    TB --> V
-    V --> G5{"Gate 5: Verification review<br/>Review verification"}
+    F --> VC["verification_contract: spec/config/standards"]
+    VC --> G3A{"Gate 3a: contract review<br/>Review verification baseline"}
+    G3A --> RTL["RTL branch: RTL + lint + synthesis"]
+    G3A --> A["Verification branch: SVA + testbench + test plan"]
+    A --> G3B{"Gate 3b: Property review<br/>Review SVA"}
+    A --> G4{"Gate 4: Test-plan review<br/>Review tests"}
+    RTL --> V["DUT integration + verification run"]
+    G3B --> V
+    G4 --> V
+    V --> CC["code_coverage: measured baseline + optional target closure"]
+    CC --> G5{"Gate 5: Verification review<br/>Review verification"}
     G5 --> D["spec_pdf_generator: Markdown + PDF"]
 ~~~
 
@@ -75,9 +83,9 @@ flowchart TD
 
 **VI:** Slash command và Codex skill là hướng dẫn cho agent, không phải chương trình shell hay workflow engine độc lập. Việc thực thi gate và cập nhật artifact phụ thuộc vào agent làm đúng hướng dẫn; repository chưa có orchestrator hoặc validator thống nhất để cưỡng chế toàn bộ flow. Tham chiếu phase như /phase_name trong Codex skill là tên command Claude nguồn; Codex đọc và thực hiện skill tương ứng trực tiếp.
 
-**EN:** RTL and testbench generation can proceed independently after configuration approval. In one session, /autoflow runs phases sequentially; the repository has no parallel scheduler.
+**EN:** Gate 3a approves a spec/config/standard-based verification contract before RTL generation. Then RTL generation consumes only the specification, configuration, and RTL rules; the verification branch consumes the approved contract and golden sources, not generated RTL. A contract interface shell supports syntax/elaboration checks. Final verification integrates RTL as the DUT through an adapter. Interface mismatches are failures and do not change expected behavior. /autoflow runs phases sequentially in one session; the repository has no parallel scheduler.
 
-**VI:** Có thể sinh RTL và testbench độc lập sau khi duyệt cấu hình. Trong một session, /autoflow chạy tuần tự; repository không có scheduler chạy song song.
+**VI:** Gate 3a duyệt verification contract dựa trên spec/config/standard trước khi sinh RTL. Sau đó RTL Generator chỉ dùng specification, cấu hình và RTL rule; nhánh verification dùng contract cùng golden sources, không đọc RTL đã sinh. Interface shell của contract hỗ trợ kiểm tra syntax/elaboration. Verification cuối tích hợp RTL làm DUT qua adapter; mismatch interface là lỗi, không làm đổi expected behavior. /autoflow chạy tuần tự trong một session; repository không có scheduler chạy song song.
 
 ## Repository structure | Cấu trúc repository
 
@@ -108,10 +116,12 @@ VLSIT_RTL_Generator_AI_Model/
 | /spec_writer | Drafts an input specification from a design description. | Soạn đặc tả đầu vào từ mô tả thiết kế. |
 | /spec_parser | Extracts requirements, IDs, ambiguity, and mappings. | Trích requirement, ID, ambiguity và mapping. |
 | /config_ui | Selects parameters and checks configuration constraints. | Chọn parameter và kiểm tra ràng buộc cấu hình. |
+| /verification_contract | Builds and reviews an RTL-independent interface and behavioral oracle from the specification, configuration, and exact standards. | Tạo và review interface cùng oracle độc lập RTL từ specification, cấu hình và chuẩn có revision cụ thể. |
 | /rtl_generator | Generates RTL and runs lint and synthesis steps. | Sinh RTL và chạy lint, synthesis. |
-| /sva_generator | Generates properties and bindings, and updates traceability. | Sinh property, bind và cập nhật traceability. |
-| /tb_generator | Builds a SystemVerilog testbench and test plan. | Tạo testbench SystemVerilog và test plan. |
-| /verification | Runs available verification and updates the reports. | Chạy verification khi có công cụ và cập nhật report. |
+| /sva_generator | Generates interface-level assertions from the approved contract and compiles against its shell. | Sinh assertion tại interface từ contract đã duyệt và compile với shell. |
+| /tb_generator | Builds saved tests and a plan from the contract without reading RTL. | Tạo testcase đã lưu và test plan từ contract, không đọc RTL. |
+| /verification | Runs simulation and mutation checks, then measures RTL code coverage before Gate 5. | Chạy simulation, mutation, sau đó đo code coverage RTL trước Gate 5. |
+| /code_coverage | Shows measured baseline before an optional target; adds saved tests for reachable specification-based gaps. | Hiển thị baseline đã đo trước khi chọn ngưỡng tùy chọn; thêm testcase đã lưu cho gap có thể cover theo specification. |
 | /spec_pdf_generator | Builds specification documentation from design artifacts. | Tạo tài liệu đặc tả từ artifact thiết kế. |
 
 **EN:** config_ui is an interactive command, not a separate GUI application. The testbench flow uses plain SystemVerilog, not UVM.
@@ -130,31 +140,37 @@ VLSIT_RTL_Generator_AI_Model/
 | $source-command-spec-writer | /spec_writer |
 | $source-command-spec-parser | /spec_parser |
 | $source-command-config-ui | /config_ui |
+| $source-command-verification-contract | /verification_contract |
 | $source-command-rtl-generator | /rtl_generator |
 | $source-command-sva-generator | /sva_generator |
 | $source-command-tb-generator | /tb_generator |
 | $source-command-verification | /verification |
+| $source-command-code-coverage | /code_coverage |
 | $source-command-spec-pdf-generator | /spec_pdf_generator |
 
 **EN:** Skills preserve the source prompt's procedure and gates, and explain how to handle references to other phases. Some prompts and scripts assume a specific IP hierarchy or EDA setup; update module mappings, constraints, and tool paths before using them for another design.
 
 **VI:** Skill giữ lại quy trình và gate từ prompt nguồn, đồng thời hướng dẫn xử lý tham chiếu đến phase khác. Một số prompt và script giả định hierarchy IP hoặc môi trường EDA cụ thể; cần cập nhật module mapping, constraint và đường dẫn công cụ trước khi dùng cho thiết kế khác.
 
+**EN:** RTL lint/synthesis and all SVA/testbench compile, regression, mutation, and code-coverage runs use one documented Makefile at the design root. Every testcase is saved under `src/tb/tests/`, included in the selected test plan and file list, and runnable through a Make target. The coverage target is optional: the flow shows a measured baseline before asking for a threshold. RTL is the coverage target, while expected behavior still comes from the approved specification and protocol standard.
+
+**VI:** Lint/synthesis RTL và mọi lệnh compile SVA/testbench, regression, mutation, code coverage dùng một Makefile có mô tả tại root của design. Mỗi testcase được lưu trong `src/tb/tests/`, thêm vào test plan và file list, rồi chạy lại qua Make target. Ngưỡng coverage là tùy chọn; flow phải hiển thị baseline đã đo trước khi hỏi ngưỡng. RTL là đối tượng đo coverage, còn expected behavior vẫn lấy từ specification và protocol standard đã duyệt.
+
 ### Gates & traceability | Gate và truy vết
 
 The RTM links / RTM liên kết:
 
 ~~~text
-REQ-ID → RTL block/file → Reviewed SVA → Selected TC → Execution result → Human sign-off
+REQ-ID → Specification/standard clause → Reviewed oracle/SVA/TC → DUT execution → Human sign-off
 ~~~
 
-**EN:** In autoflow, the prompts require review at Gate 1 (specification), Gate 3b (properties), and Gate 5 (verification). Gate 2 and Gate 4 may be auto-approved when the orchestrator's stated conditions pass. Standalone commands can have different confirmation rules; establish the run mode before starting.
+**EN:** Autoflow requires review at Gate 1 (specification), Gate 3a (verification contract), Gate 3b (properties), and Gate 5 (DUT verification). Gate 2 and Gate 4 may be auto-approved when their conditions pass. Gate 4 compiles against a contract shell, not RTL.
 
-**VI:** Trong autoflow, prompt yêu cầu review tại Gate 1 (specification), Gate 3b (property) và Gate 5 (verification). Gate 2 và Gate 4 có thể được tự xác nhận nếu đạt điều kiện của orchestrator. Command chạy riêng có thể có quy tắc xác nhận khác; cần thống nhất chế độ trước khi chạy.
+**VI:** Autoflow yêu cầu review tại Gate 1 (specification), Gate 3a (verification contract), Gate 3b (property) và Gate 5 (DUT verification). Gate 2 và Gate 4 có thể tự xác nhận khi đạt điều kiện. Gate 4 compile với contract shell, không cần RTL.
 
-**EN:** The verification prompt calculates eligibility from RTL/SVA/TC traceability, simulation, and a mutation score of at least 85%, or N/A under the current policy. N/A is not evidence that mutation requirements passed. Gate 5 approval can still leave requirements blocked or unsigned.
+**EN:** Verification eligibility uses specification/standard traceability, reviewed oracle/SVA/TC evidence, DUT simulation, and mutation evidence under the current policy. RTL tag presence is not a sign-off condition. N/A is not evidence that mutation requirements passed.
 
-**VI:** Prompt verification tính eligibility từ traceability RTL/SVA/TC, simulation và mutation score tối thiểu 85%, hoặc N/A theo chính sách hiện tại. N/A không chứng minh mutation đã đạt. Dù Gate 5 được duyệt, vẫn có thể còn requirement bị khóa hoặc chưa sign-off.
+**VI:** Điều kiện sign-off verification dùng truy vết specification/standard, oracle/SVA/TC đã review, DUT simulation và mutation evidence theo chính sách hiện tại. Tag RTL không phải điều kiện sign-off. N/A không chứng minh mutation đã đạt.
 
 ## Requirements | Môi trường cần có
 
@@ -241,9 +257,9 @@ source sourceme.sh
 /spec_pdf_generator
 ~~~
 
-**EN:** Review requirements before Gate 1, property meaning and vacuity before Gate 3b, and execution logs and verification gaps before Gate 5. Generation commands may create or update files in the working project.
+**EN:** Review requirements before Gate 1, the verification contract before Gate 3a, property meaning/vacuity before Gate 3b, the test plan before Gate 4, and execution logs/gaps before Gate 5. Generation commands may create or update files in the working project.
 
-**VI:** Review requirement trước Gate 1, ý nghĩa/vacuity của property trước Gate 3b, và log thực thi cùng verification gap trước Gate 5. Lệnh generation có thể tạo hoặc cập nhật file trong project làm việc.
+**VI:** Review requirement trước Gate 1, verification contract trước Gate 3a, ý nghĩa/vacuity của property trước Gate 3b, test plan trước Gate 4, và log thực thi/gap trước Gate 5. Lệnh generation có thể tạo hoặc cập nhật file trong project làm việc.
 
 ### 4. Run in Codex CLI | Chạy trong Codex CLI
 
