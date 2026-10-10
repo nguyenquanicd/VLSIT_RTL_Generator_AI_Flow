@@ -5,6 +5,10 @@ description: "Run simulation and mutation checks when available, update the RTM 
 
 # source-command-verification
 
+## User decision prompts
+
+Follow `.agents/skills/decision_prompt_standard.md` for every user-facing question, option selection, review, approval, or overwrite decision. Before asking, review the current evidence; explain why the decision is needed; define unfamiliar terms; list valid options, their effects and trade-offs; give a concrete example; mark the best-supported option and explain why; and specify exactly how the user should answer. If the evidence does not support a safe recommendation, say what is missing instead of inventing a default. Never use a bare yes/no or A/B prompt.
+
 Use this skill when the user asks for this phase of the repository's RTL design and verification workflow.
 
 ## Codex CLI execution notes
@@ -197,10 +201,13 @@ TC-003 rv32i_lui_auipc    : FAIL  ← dừng hỏi
 ```
 
 Nếu TC **fail hoặc timeout**:
-> **"TC-xxx `<name>` FAIL. Xem `work/sim_<tc_id>.log`. Chọn: (s)kip và tiếp tục / (f)ix và retry / (a)bort?"**
-- `skip` → ghi `status: fail`, tiếp tục TC tiếp theo
-- `fix` → người dùng fix file tương ứng, chạy lại TC này
-- `abort` → dừng hoàn toàn
+
+Hiển thị log/evidence liên quan và định nghĩa lựa chọn:
+- `fix`: khắc phục nguyên nhân rồi chạy lại TC; giữ trạng thái chưa sign-off đến khi pass.
+- `skip`: tiếp tục các TC khác nhưng giữ TC này là fail/timeout và requirement liên quan bị lock.
+- `abort`: dừng run hiện tại để điều tra.
+Khuyến nghị `fix` khi đã xác định nguyên nhân; nếu chưa rõ hoặc cần bảo toàn kết quả, khuyến nghị `abort`. `skip` chỉ để thu thập thêm kết quả và không được coi là pass.
+Đưa ví dụ từ TC/log đang lỗi, rồi hỏi user chọn.
 
 **Tổng kết simulation:**
 ```
@@ -315,9 +322,15 @@ REQ-002: 42/50 killed (84%) ⚠ below 85%
 `mutation_score[REQ-ID] = killed / (total - compile_fail)`
 
 Nếu score < 0.85:
-> **"REQ-xxx mutation score < 85%. Gợi ý: thêm assertion hoặc TC để kill các mutation trên. Tiếp tục vào dashboard với score hiện tại (sign-off sẽ bị LOCK), hay dừng để bổ sung? (continue/stop)"**
-- `stop` → dừng, người dùng fix, chạy lại `/verification`
-- `continue` → ghi score hiện tại, sang Bước 5
+
+Giải thích mutation score là metric phụ đo tỷ lệ fault nhân tạo bị test/assertion phát hiện;
+nó không phải expected behavior hay tiêu chuẩn thay thế requirement coverage. Nêu killed/survived
+count, ví dụ một mutation còn sống, và tác động: `stop` dừng để bổ sung kiểm tra;
+`continue` sang dashboard nhưng requirement bị lock theo policy. Khuyến nghị `stop`
+nếu mục tiêu là sign-off và còn mutant phù hợp requirement chưa bị phát hiện; khuyến nghị
+continue chỉ để review các kết quả khác khi chấp nhận lock đó.
+
+Hỏi: **"Với REQ-xxx, chọn stop để bổ sung test/assertion (khuyến nghị cho sign-off), hoặc continue để xem dashboard với requirement bị lock? Ví dụ mutant M còn sống ở nhánh lỗi REQ-xxx."**
 
 **Update `rtm.json`** với `mutation_score` và `mutation_detail` cho mỗi REQ-ID.
 
@@ -355,6 +368,11 @@ REQ-ID eligible để sign-off khi tất cả 5 điều kiện đều đúng:
 **5.3 Sign-off loop — chỉ cho REQ-ID eligible:**
 
 Với mỗi REQ-ID eligible (chưa signed-off):
+
+Trước câu hỏi, giải thích REQ-ID này eligible dựa trên evidence nào và sign-off có nghĩa gì.
+Định nghĩa yes (ghi nhận sign-off), no (để pending và ghi lý do), và skip-all-remaining
+(không hỏi các REQ-ID còn lại). Nêu ví dụ; khuyến nghị yes chỉ khi evidence khớp approved
+spec và report, nếu không thì no hoặc skip.
 ```
 ─────────────────────────────────────────────────
 REQ-001 | "RV32I base integer instruction set"
@@ -383,7 +401,12 @@ Ký sign-off REQ-001? (yes / no / skip-all-remaining):
 
 Nếu có REQ-ID LOCKED hoặc pending, liệt kê và giải thích lý do cụ thể.
 
-Hỏi: **"Ký Gate 5 (đóng phase Verification)? Các REQ-ID pending/locked vẫn có thể sign-off sau. (yes/no)"**
+Trước khi hỏi, giải thích Gate 5 đóng phase verification và không tự biến REQ-ID pending/locked
+thành pass. Tóm tắt số pass/fail/timeout, sign-off eligible, locked/pending, và baseline đã chạy.
+Khuyến nghị ký chỉ khi mọi điều kiện bắt buộc của flow đạt; nếu còn TC fail, unresolved source
+hoặc mismatch, khuyến nghị không ký và nêu lý do. Giải thích yes/no bằng hành động cụ thể.
+
+Hỏi: **"Ký Gate 5 cho các kết quả đã tóm tắt? Trả lời yes để chốt trạng thái hiện tại, hoặc no để giữ gate đóng."**
 
 - `no` → dừng, không ghi gate_5_approved
 - `yes` → sang Bước 6
@@ -494,5 +517,5 @@ REQ-IDs pending/locked có thể ký bổ sung bằng cách chạy lại /verifi
 | Yosys mutant compile fail | Skip mutation đó, không tính vào total (chỉ ghi log warning) |
 | Yosys generate 0 mutations | Mark REQ-ID `mutation_score: "N/A"`, không block sign-off |
 | REQ-ID không có RTL tag | `rtl_traced: false`, ô sign-off bị LOCK, highlight trong dashboard |
-| `schemas/rtm.json` đã có gate_5_approved | Cảnh báo "Chạy lại sẽ ghi đè kết quả cũ", hỏi xác nhận |
+| `schemas/rtm.json` đã có gate_5_approved | So sánh baseline/result hiện tại với run mới, nêu trường/REQ-ID có thể đổi; đưa preserve/export, replace, cancel với ví dụ; khuyến nghị preserve kết quả cũ khi baseline khác hoặc chưa đối chiếu xong. |
 | Người dùng abort giữa chừng | Ghi trạng thái hiện tại vào rtm.json (partial), để chạy lại tiếp tục được |

@@ -5,6 +5,10 @@ description: "Build a plain SystemVerilog testbench and selected test plan for R
 
 # source-command-tb-generator
 
+## User decision prompts
+
+Follow `.agents/skills/decision_prompt_standard.md` for every user-facing question, option selection, review, approval, or overwrite decision. Before asking, review the current evidence; explain why the decision is needed; define unfamiliar terms; list valid options, their effects and trade-offs; give a concrete example; mark the best-supported option and explain why; and specify exactly how the user should answer. If the evidence does not support a safe recommendation, say what is missing instead of inventing a default. Never use a bare yes/no or A/B prompt.
+
 Use this skill when the user asks for this phase of the repository's RTL design and verification workflow.
 
 ## Codex CLI execution notes
@@ -62,6 +66,10 @@ Tạo thư mục `src/tb/` và `src/tb/tests/` nếu chưa có.
 
 Hiển thị bảng 25 TC đề xuất. TC có dấu `[COND]` chỉ generate khi parameter tương ứng bật.
 
+Mỗi TC phải có mô tả scenario, expected check, REQ-ID, điều kiện parameter và giá trị
+coverage dự kiến. Định nghĩa TC-ID và `[COND]`; ví dụ `[COND:M]` nghĩa là
+test chỉ áp dụng khi M extension được bật. Đánh dấu nhóm test khuyến nghị và lý do.
+
 ```
 ╔══ PHASE 4 · TEST PLAN UI ════════════════════════════════════════════════╗
 ║  Chọn TC nào đưa vào testbench. Gõ ID cách nhau dấu phẩy, hoặc 'all'. ║
@@ -102,7 +110,12 @@ Hiển thị bảng 25 TC đề xuất. TC có dấu `[COND]` chỉ generate khi
 ```
 
 Sau khi hiển thị, hỏi:
-> **"Bạn muốn chọn TC nào? Gõ ID (ví dụ: TC-001,TC-002,TC-010) hoặc 'all' để chọn tất cả hợp lệ."**
+
+Trước lựa chọn, giải thích `all` gồm các test hợp lệ theo config hiện tại; chọn ID
+thủ công có thể để REQ-ID chưa cover. Khuyến nghị `all` cho sign-off đầy đủ vì tối
+đa hóa coverage testplan; chọn subset khi có giới hạn runtime, rồi nêu REQ-ID bị bỏ.
+
+> **"Chọn tất cả test hợp lệ bằng all, hoặc liệt kê ID. Ví dụ: TC-001,TC-002 chọn reset và ALU. TC có [COND] chỉ chạy khi feature tương ứng bật. Khuyến nghị: all cho sign-off; danh sách subset sẽ hiển thị REQ-ID còn thiếu. Bạn chọn thế nào?"**
 
 TC `[COND:X]` mà parameter tương ứng đang tắt → tự động loại ra và thông báo.
 
@@ -121,9 +134,12 @@ Sau khi người dùng chọn xong:
 Coverage: XX / YY REQ-IDs (ZZ%)
 ```
 
-4. Hỏi: **"Tiếp tục với coverage hiện tại, hay muốn thêm TC? (continue / add)"**
-   - `add` → quay lại Bước 2, cho phép chọn thêm
-   - `continue` → sang Bước 4
+4. Giải thích các REQ-ID được cover/chưa cover và ảnh hưởng tới sign-off. `add` quay
+   lại chọn thêm TC; `continue` giữ testplan hiện tại nhưng không xóa gap coverage.
+   Khuyến nghị `add` nếu user muốn sign-off tất cả requirement; `continue` chỉ
+   phù hợp khi chấp nhận các gap được ghi rõ. Đưa ví dụ TC có thể cover mỗi gap.
+
+   Hỏi: **"Bạn muốn add TC để giảm các gap đang liệt kê, hay continue với gap được ghi nhận?"**
 
 ---
 
@@ -230,6 +246,10 @@ Nếu compile fail → phân tích lỗi, fix file tương ứng, compile lại.
 
 ## Bước 6 — Gate 4: Test Plan Review và xác nhận
 
+Khi trình bày Gate 4, giải thích đây là phê duyệt danh sách test và coverage dự kiến, không
+phải kết quả pass của DUT. Nêu số REQ-ID chưa cover, test conditional bị bỏ qua và tác động.
+Khuyến nghị ký chỉ khi plan đúng scope; nếu chọn sửa, nói rõ TC/REQ-ID cần đổi.
+
 Hiển thị tổng kết:
 
 ```
@@ -241,7 +261,10 @@ Hiển thị tổng kết:
 ╚═════════════════════════════════════════════════════════════╝
 ```
 
-Hỏi: **"Ký Gate 4 và chốt Test Plan? (yes/no)"**
+Giải thích Gate 4 ký danh sách test và coverage dự kiến, không phải simulation pass của DUT.
+Tóm tắt REQ-ID covered/uncovered và test conditional bị loại. Khuyến nghị yes nếu testplan
+đúng scope; nếu chưa, no để quay lại chọn. Đưa ví dụ TC cần thêm để cover gap quan trọng.
+Hỏi: **"Ký Gate 4 cho Test Plan đã tóm tắt? yes chấp nhận danh sách; no giữ gate đóng để sửa."**
 - `no` → quay về Bước 2
 - `yes` → ghi `schemas/selected_testplan.json`, đánh dấu `gate_4_approved: true`
 
@@ -293,6 +316,6 @@ Cấu trúc:
 |---|---|
 | `src/rtl/filelist.f` không tồn tại | Cảnh báo, tiếp tục generate TB; compile check (Gate 4) sẽ fail cho đến khi RTL sinh xong |
 | Parameter tắt mà user chọn TC conditional | Từ chối TC đó, giải thích, đề xuất TC thay thế |
-| VCS compile fail sau nhiều lần fix | Hiển thị lỗi đầy đủ, hỏi user có muốn skip TC đó không |
-| `schemas/selected_testplan.json` đã tồn tại | Cảnh báo "Ghi đè test plan cũ?" trước khi overwrite |
+| VCS compile fail sau nhiều lần fix | Tóm tắt lỗi và các lần thử; giải thích retry/skip/abort, nêu rằng skip giữ compile status là fail và không mở Gate 4; khuyến nghị fix hoặc abort, không skip để ký. |
+| `schemas/selected_testplan.json` đã tồn tại | So sánh plan hiện tại và plan mới, nêu TC/REQ-ID bị thay đổi; đưa review/overwrite/keep với ví dụ; khuyến nghị review nếu có chỉnh sửa thủ công. |
 | REQ-ID trong TC không tồn tại trong structured_spec.json | Cảnh báo mismatch, ghi nhận nhưng vẫn tiếp tục |

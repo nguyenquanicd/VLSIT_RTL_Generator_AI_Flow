@@ -1,5 +1,9 @@
 # Phase 5 · Verification — /verification
 
+## User decision prompts
+
+Follow `.agents/skills/decision_prompt_standard.md` for every user-facing question, option selection, review, approval, or overwrite decision. Before asking, review the current evidence; explain why the decision is needed; define unfamiliar terms; list valid options, their effects and trade-offs; give a concrete example; mark the best-supported option and explain why; and specify exactly how the user should answer. If the evidence does not support a safe recommendation, say what is missing instead of inventing a default. Never use a bare yes/no or A/B prompt.
+
 **Mục tiêu:** Chạy simulation VCS, mutation testing Yosys, cập nhật RTM với 6 điều kiện
 sign-off per REQ-ID, và trình bày RTM Dashboard để người dùng ký Gate 5.
 
@@ -125,10 +129,13 @@ TC-003 rv32i_lui_auipc    : FAIL  ← dừng hỏi
 ```
 
 Nếu TC **fail hoặc timeout**:
-> **"TC-xxx `<name>` FAIL. Xem `work/sim_<tc_id>.log`. Chọn: (s)kip và tiếp tục / (f)ix và retry / (a)bort?"**
-- `skip` → ghi `status: fail`, tiếp tục TC tiếp theo
-- `fix` → người dùng fix file tương ứng, chạy lại TC này
-- `abort` → dừng hoàn toàn
+
+Hiển thị log/evidence liên quan và định nghĩa lựa chọn:
+- fix: khắc phục nguyên nhân rồi chạy lại TC; chưa sign-off đến khi pass.
+- skip: tiếp tục TC khác nhưng giữ TC này là fail/timeout và requirement liên quan bị lock.
+- abort: dừng run để điều tra.
+Khuyến nghị fix khi đã rõ nguyên nhân; nếu chưa rõ hoặc cần bảo toàn kết quả, khuyến nghị
+abort. Skip chỉ để thu thập thêm kết quả và không được coi là pass. Nêu ví dụ từ TC/log lỗi rồi hỏi.
 
 **Tổng kết simulation:**
 ```
@@ -243,9 +250,13 @@ REQ-002: 42/50 killed (84%) ⚠ below 85%
 `mutation_score[REQ-ID] = killed / (total - compile_fail)`
 
 Nếu score < 0.85:
-> **"REQ-xxx mutation score < 85%. Gợi ý: thêm assertion hoặc TC để kill các mutation trên. Tiếp tục vào dashboard với score hiện tại (sign-off sẽ bị LOCK), hay dừng để bổ sung? (continue/stop)"**
-- `stop` → dừng, người dùng fix, chạy lại `/verification`
-- `continue` → ghi score hiện tại, sang Bước 5
+
+Giải thích mutation score là metric phụ đo tỷ lệ fault nhân tạo bị test/assertion phát hiện;
+nó không phải expected behavior hay thay thế requirement coverage. Nêu killed/survived count,
+ví dụ mutant còn sống, và tác động: stop dừng để bổ sung kiểm tra; continue sang dashboard nhưng
+requirement vẫn bị lock theo policy. Khuyến nghị stop nếu mục tiêu là sign-off và mutant phù hợp
+requirement chưa bị phát hiện; continue chỉ để review kết quả khác khi chấp nhận lock đó.
+Hỏi: **"REQ-xxx có mutant phù hợp requirement còn sống. Chọn stop để bổ sung assertion/test (khuyến nghị cho sign-off), hoặc continue để xem dashboard trong khi requirement vẫn bị lock. Ví dụ mutant M đổi response ở condition Y."**
 
 **Update `rtm.json`** với `mutation_score` và `mutation_detail` cho mỗi REQ-ID.
 
@@ -283,6 +294,10 @@ REQ-ID eligible để sign-off khi tất cả 5 điều kiện đều đúng:
 **5.3 Sign-off loop — chỉ cho REQ-ID eligible:**
 
 Với mỗi REQ-ID eligible (chưa signed-off):
+
+Trước câu hỏi, giải thích evidence khiến REQ-ID eligible và ý nghĩa của sign-off. Định nghĩa
+yes (ghi nhận sign-off), no (để pending và ghi lý do), skip-all-remaining (không hỏi các
+REQ-ID sau). Nêu ví dụ và khuyến nghị yes chỉ khi evidence khớp approved spec/report.
 ```
 ─────────────────────────────────────────────────
 REQ-001 | "RV32I base integer instruction set"
@@ -292,7 +307,7 @@ REQ-001 | "RV32I base integer instruction set"
   sim_pass:   ✓
   mut_score:  92% (46/50 killed)
 ─────────────────────────────────────────────────
-Ký sign-off REQ-001? (yes / no / skip-all-remaining):
+Ký sign-off REQ-001? (yes ghi nhận / no để pending / skip-all-remaining bỏ qua các REQ sau)
 ```
 
 - `yes` → `signed_off: true`, `sign_off_note: ""`
@@ -311,7 +326,11 @@ Ký sign-off REQ-001? (yes / no / skip-all-remaining):
 
 Nếu có REQ-ID LOCKED hoặc pending, liệt kê và giải thích lý do cụ thể.
 
-Hỏi: **"Ký Gate 5 (đóng phase Verification)? Các REQ-ID pending/locked vẫn có thể sign-off sau. (yes/no)"**
+Trước khi hỏi, giải thích Gate 5 đóng phase verification và không biến REQ-ID pending/locked
+thành pass. Tóm tắt pass/fail/timeout, eligible, locked/pending và baseline đã chạy. Khuyến
+nghị ký chỉ khi mọi điều kiện bắt buộc đạt; nếu còn fail, unresolved source hoặc mismatch,
+khuyến nghị không ký. Nêu hành động cụ thể của yes/no.
+Hỏi: **"Ký Gate 5 cho các kết quả đã tóm tắt? yes chốt trạng thái hiện tại; no giữ gate đóng."**
 
 - `no` → dừng, không ghi gate_5_approved
 - `yes` → sang Bước 6

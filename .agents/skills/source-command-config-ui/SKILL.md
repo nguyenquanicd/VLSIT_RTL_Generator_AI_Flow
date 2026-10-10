@@ -5,6 +5,10 @@ description: "Choose and validate RV32IM configuration parameters and write fina
 
 # source-command-config-ui
 
+## User decision prompts
+
+Follow `.agents/skills/decision_prompt_standard.md` for every user-facing question, option selection, review, approval, or overwrite decision. Before asking, review the current evidence; explain why the decision is needed; define unfamiliar terms; list valid options, their effects and trade-offs; give a concrete example; mark the best-supported option and explain why; and specify exactly how the user should answer. If the evidence does not support a safe recommendation, say what is missing instead of inventing a default. Never use a bare yes/no or A/B prompt.
+
 Use this skill when the user asks for this phase of the repository's RTL design and verification workflow.
 
 ## Codex CLI execution notes
@@ -81,10 +85,14 @@ Hiển thị bảng tất cả 15 parameter với giá trị hiện tại (ban �
 - `[KHOÁ]` cho P06 (`PR_DIV_IMPL`) và P15 (`PR_BUS_OUTSTANDING`) — không thể thay đổi Phase 1
 - Ghi chú dependency: C3 (P08→P07), C4 (P10→P07), C5 (P09→P07)
 
+Với mỗi parameter có thể chọn, hiển thị ý nghĩa, giá trị hiện tại/default, các giá trị hợp lệ,
+feature/REQ-ID bị ảnh hưởng, dependency và tác động đã được xác định đến area, timing,
+throughput hoặc compatibility. Nếu spec không đủ dữ liệu để suy ra tác động, ghi rõ TBD.
+Khuyến nghị giữ default khi spec không yêu cầu thay đổi; nêu lý do và trade-off cụ thể.
+
 Sau khi hiển thị, hỏi người dùng:
 
-> **"Bạn muốn thay đổi parameter nào so với default? Nhập ID (ví dụ: P05, P13) cách nhau bằng dấu phẩy,
-> hoặc gõ `none` để giữ tất cả mặc định."**
+> **"Bạn có thể giữ cấu hình mặc định hoặc chọn parameter cần đổi. Ví dụ: P05, P13 chọn hai parameter; none giữ nguyên tất cả. P05 điều khiển <ý nghĩa lấy từ spec>, còn P13 điều khiển <ý nghĩa lấy từ spec>. Khuyến nghị: none nếu spec không yêu cầu khác vì <lý do từ dependency/constraints>. Bạn muốn chọn ID nào?"**
 
 ---
 
@@ -99,6 +107,10 @@ Xử lý tuần tự từng parameter người dùng muốn thay đổi:
 - Constraints liên quan (nếu có)
 
 **3.2 Hỏi giá trị mới.**
+
+Trước khi hỏi giá trị, định nghĩa parameter và từng option/value theo spec, nêu range,
+default, ví dụ hợp lệ và tác động/dependency. Đánh dấu giá trị khuyến nghị cùng lý do;
+không tự chọn giá trị phụ thuộc mục tiêu sản phẩm nếu spec chưa quy định.
 
 **3.3 Validate ngay lập tức:**
 
@@ -115,7 +127,9 @@ Xử lý tuần tự từng parameter người dùng muốn thay đổi:
 - Vi phạm → Từ chối, giải thích, đề xuất cách sửa, hỏi lại.
 - Hợp lệ → Cập nhật bảng, chuyển parameter tiếp theo.
 
-**3.5 Sau khi xử lý hết danh sách**, hỏi: _"Bạn còn muốn thay đổi parameter nào nữa không?"_
+**3.5 Sau khi xử lý hết danh sách**, tóm tắt giá trị đã đổi và tác động, rồi hỏi lựa chọn:
+`done` để chốt các giá trị đang hiển thị, hoặc nhập thêm parameter ID. Nêu rõ `done`
+không đồng nghĩa với ký Gate 2; khuyến nghị `done` khi không còn yêu cầu cấu hình chưa xử lý.
 
 ---
 
@@ -138,7 +152,9 @@ Hỏi người dùng:
 Nếu người dùng cung cấp constraints:
 1. Phân tích ý định của từng constraint.
 2. Chuyển đổi sang dạng lint rule ngắn gọn (text, không phải code).
-3. Hiển thị bản diễn giải, hỏi: _"Lint rule trên có đúng ý bạn không?"_
+3. Hiển thị constraint gốc, bản diễn giải lint, file/rule hiện hành có liên quan, ví dụ RTL
+   được phép/bị cấm và ảnh hưởng đến synthesis. Đề xuất `yes` nếu diễn giải giữ đúng ý và
+   không mâu thuẫn; giải thích lý do. Hỏi `yes` để chấp nhận hoặc `edit` để sửa.
 4. Nếu đúng → ghi vào danh sách. Nếu không → hỏi lại.
 5. Nếu constraint bổ sung mâu thuẫn với file rule được chọn → nêu rõ mâu thuẫn và hỏi người dùng cách xử lý; không âm thầm bỏ rule bắt buộc.
 
@@ -170,9 +186,11 @@ Hiển thị bảng tổng kết theo format sau:
 
 Nếu có bất kỳ constraint nào FAIL → **Không mở Gate 2**. Thông báo lỗi và quay về Bước 3.
 
-Nếu tất cả pass, hỏi:
+Nếu tất cả pass, tóm tắt default/changed values, feature impact và constraint results. Giải
+thích yes ký cấu hình và mở Gate 2; no giữ gate đóng để chỉnh. Khuyến nghị yes chỉ khi mọi
+giá trị phù hợp spec và constraints pass. Sau đó hỏi:
 
-> **"Bạn xác nhận cấu hình trên và mở Gate 2? Gõ `yes` để ký, hoặc `no` để chỉnh sửa."**
+> **"Gate 2 chốt cấu hình đã tóm tắt và cho phép bắt đầu sinh RTL. Khuyến nghị yes vì tất cả constraints pass và values khớp spec. yes lưu cấu hình hiện tại; no giữ gate đóng để chỉnh. Ví dụ: nếu còn parameter sai range, chọn no. Bạn chọn yes/no?"**
 
 - `no` → Quay về Bước 3, cho phép chỉnh sửa.
 - `yes` → Tiếp tục Bước 6.
@@ -203,4 +221,4 @@ Nếu tất cả pass, hỏi:
 | User rule file không tồn tại/đọc được | Dừng Gate 2, yêu cầu người dùng cung cấp lại file; không tự thay bằng default |
 | Người dùng nhập value ngoài range | Từ chối, giải thích range hợp lệ, hỏi lại |
 | Constraint vi phạm sau thay đổi hàng loạt | Liệt kê tất cả vi phạm cùng lúc trước khi yêu cầu sửa |
-| `schemas/final_config.json` đã tồn tại | Cảnh báo "File đã tồn tại — ghi đè?" trước khi overwrite |
+| `schemas/final_config.json` đã tồn tại | So sánh file hiện tại với config mới, nêu giá trị bị thay đổi và hậu quả overwrite; đưa lựa chọn review/overwrite/keep, ví dụ cho biết P05 đổi từ giá trị nào sang giá trị nào; khuyến nghị review nếu file có chỉnh sửa thủ công. |

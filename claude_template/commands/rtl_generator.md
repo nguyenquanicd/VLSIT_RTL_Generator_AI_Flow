@@ -1,5 +1,9 @@
 # Phase 3a · RTL Generator — /rtl_generator
 
+## User decision prompts
+
+Follow `.agents/skills/decision_prompt_standard.md` for every user-facing question, option selection, review, approval, or overwrite decision. Before asking, review the current evidence; explain why the decision is needed; define unfamiliar terms; list valid options, their effects and trade-offs; give a concrete example; mark the best-supported option and explain why; and specify exactly how the user should answer. If the evidence does not support a safe recommendation, say what is missing instead of inventing a default. Never use a bare yes/no or A/B prompt.
+
 **Mục tiêu:** Sinh 18 module SystemVerilog-2012 cho `rv32im_core`, tag REQ-ID vào từng block,
 lint từng module ngay sau khi sinh, rồi chạy synthesis gate với GF180MCU.
 
@@ -321,4 +325,4 @@ Sau khi cả hai corner pass, trích số liệu từ log và ghi `schemas/synth
 | Spec section không rõ ràng | Dừng, hỏi người dùng — không tự đoán |
 | Lint warning `UNUSED` | Xem lại spec, nếu signal thực sự không dùng thì xoá, không dùng `-Wno-UNUSED` |
 | Synth: missing cell từ GF180 | Kiểm tra construct có synthesizable không (`initial`, `$`-tasks, v.v.) |
-| `src/rtl/<module>.sv` đã tồn tại | Hỏi "Ghi đè?" trước khi overwrite |
+| `src/rtl/<module>.sv` đã tồn tại | So sánh RTL hiện tại với bản đề xuất, nêu module/behavior sẽ bị thay thế; đưa review/overwrite/keep với ví dụ; khuyến nghị review diff trước khi overwrite. |
