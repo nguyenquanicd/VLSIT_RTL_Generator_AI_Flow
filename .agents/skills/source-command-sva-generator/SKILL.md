@@ -9,11 +9,22 @@ Use this skill when the user asks for this phase of the repository's RTL design 
 
 ## Codex CLI execution notes
 
-- Perform the workflow below directly in Codex. Any `/phase_name` text in the source procedure is a Claude Code command label, not a Codex command or shell command. For a needed peer phase, read `.agents/skills/source-command-phase-name/SKILL.md` (replace underscores in the phase name with hyphens) and follow it directly.
-- Preserve the review gates stated in the procedure. In the full `/autoflow` workflow only, Gate 2 and Gate 4 may be auto-approved when their stated checks pass; Gate 1, Gate 3b, and Gate 5 still require explicit user approval. A standalone phase must follow its own confirmation steps.
-- These procedures assume a Linux/Bash EDA environment and many are hardcoded for `rv32im_core`. Check the requested IP, current project artifacts, and actual tool availability first. Do not reuse the RV32IM module map for the AXI downscaler or another IP without adapting it, and do not report a lint, compile, simulation, or synthesis pass unless it was actually run and its result was inspected.
-- `sourceme.sh` is a Bash setup script with external tool, module, and PDK assumptions; do not run it in PowerShell. If a required tool or license is unavailable, state that phase as not run and continue only where the procedure permits.
-- Treat `Result/` as saved snapshots, not as the active baseline for a new design. Use the current specification and artifacts selected for this task.
+- Run this workflow in Codex; `/phase_name` denotes a source Claude command. Read a peer phase skill only when this workflow requires it.
+- Preserve all gates. Only full autoflow may auto-approve Gate 2 and Gate 4 where the procedure permits; other approvals remain explicit.
+- Adapt RV32IM and Linux/Bash assumptions to the requested IP and environment. Treat `Result/` as historical snapshots, not the active baseline.
+- Report EDA results only after running the tool and inspecting its output. `sourceme.sh` is Linux/Bash-dependent; do not run it in PowerShell, and mark unavailable checks as not run.
+
+## Token-efficient artifact reads
+
+For an existing design, run `python scripts/prepare_skill_context.py --phase source-command-sva-generator --root <design-root>` before selecting artifacts. Summarize large logs with `python scripts/summarize_eda_log.py <log-path>` and inspect cited lines in the original. These are navigation aids, not verification evidence; avoid dumping full trees or logs.
+
+## RTL rule source
+
+If this flow must generate or modify synthesizable design RTL, use `style_constraints.source_file/source_kind` from approved config. When a legacy config lacks `source_kind`, use a rule file explicitly supplied for this design or the repository default `spec_template/VLSIT_RTL_Design_Rule.md`; do not use historical `Result/*/rtl_rule.md`. The selected RTL rule governs design RTL only; follow this skill's separate SVA requirements for verification sources.
+
+## Reusable skill improvement
+
+At completion, assess whether observed issues justify a high-impact improvement across designs. Follow `.agents/skill_maintenance.md` and `scripts/propose_skill_update.py`; present a qualifying proposal and ask approval for the exact change. Never edit this skill or its support files without explicit user confirmation. If none qualifies, say so briefly.
 
 ## Workflow source
 # Phase 3b · SVA Generator — /sva_generator
@@ -44,13 +55,14 @@ chạy VCS compile check, sau đó thực hiện Gate 3 (Property Review) với 
 3. Đọc `schemas/structured_spec.json` → lấy danh sách `requirements` (REQ-IDs và text).
    - Nếu không tồn tại → dùng feature IDs (F01–F19) làm placeholder.
 4. Đọc `spec_parser.md` — cần cho tất cả signal names và behavior spec.
-5. Đọc `src/rtl/rv32im_pkg.sv` — cần enum types cho assertion.
+5. Đọc các module RTL liên quan để lấy tên port, state, enum và kiểu thực tế. Với default RTL rule, type khai báo nằm trong từng module; không giả định có `rv32im_pkg` hoặc import package từ design RTL. Nếu assertion cần enum encoding, lấy encoding từ module RTL/spec và khai báo alias verification-local khi cần.
 6. Tạo `src/sva/` nếu chưa tồn tại.
 7. Kiểm tra VCS:
    ```bash
    module load synopsys/vcs/${VCS_VERSION} && vcs -ID 2>&1 | head -2
    ```
    Nếu fail → cảnh báo: _"VCS không khả dụng — sẽ bỏ qua VCS compile check."_
+8. Bind SVA vào đúng tên module trong RTL đã sinh; cập nhật mọi bind theo rule file được chọn (mặc định module design có prefix `m_`).
 
 ---
 
@@ -91,7 +103,6 @@ Sinh assertion file cho từng stage/module. Mỗi file có cấu trúc:
 // REQ-IDs     : REQ-xxx, REQ-yyy
 //==============================================================================
 module rv32im_<stage>_sva
-  import rv32im_pkg::*;
 (
   input logic i_clk_core,
   input logic i_resetn_core,
@@ -336,7 +347,7 @@ Tạo `src/sva/rv32im_top_bind.sv`:
 // Bind SVA modules vào DUT — chỉ active khi `ifndef SYNTHESIS
 `ifndef SYNTHESIS
 
-bind rv32im_if_stage rv32im_if_sva #(
+bind m_rv32im_if_stage rv32im_if_sva #(
   .PR_BOOT_ADDR (PR_BOOT_ADDR),
   .PR_XLEN      (32)
 ) u_if_sva (
@@ -350,10 +361,10 @@ bind rv32im_if_stage rv32im_if_sva #(
 );
 
 // Thêm bind cho các stage khác tương tự...
-// rv32im_id_stage, rv32im_ex_stage, rv32im_mem_stage,
-// rv32im_csr_file, rv32im_trap_ctrl, rv32im_hazard_ctrl
+// m_rv32im_id_stage, m_rv32im_ex_stage, m_rv32im_mem_stage,
+// m_rv32im_csr_file, m_rv32im_trap_ctrl, m_rv32im_hazard_ctrl
 
-bind rv32im_core rv32im_top_sva #(
+bind m_rv32im_core rv32im_top_sva #(
   .PR_BOOT_ADDR     (PR_BOOT_ADDR),
   .PR_IRQ_EN        (PR_IRQ_EN),
   .PR_CSR_EN        (PR_CSR_EN),
