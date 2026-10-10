@@ -8,7 +8,7 @@
 
 ## Reference | Tài liệu tham khảo
 
-[User guide / Hướng dẫn sử dụng — automatic and step-by-step / tự động và từng bước](GUIDELINE.md)
+[User guide / Hướng dẫn sử dụng — automatic and step-by-step / tự động và từng bước](guideline.md)
 
 ## Overview | Tổng quan
 
@@ -98,7 +98,7 @@ VLSIT_RTL_Generator_AI_Model/
 ├── Result/                   # Saved design snapshots / Snapshot thiết kế
 ├── scripts/                  # Helper scripts / Script hỗ trợ
 ├── spec_template/            # IP, CSR, and RTL-rule templates / Mẫu spec IP, CSR và rule RTL
-├── GUIDELINE.md              # Step-by-step user guide / Hướng dẫn từng bước
+├── guideline.md              # Step-by-step user guide / Hướng dẫn từng bước
 ├── rtl_rule.md               # Project RTL rules / Rule RTL của project
 ├── vlsit_rtl_rule_default.md # Default ASIC RTL rules / Rule RTL ASIC mặc định
 └── sourceme.sh               # Linux EDA environment setup / Thiết lập môi trường EDA Linux
@@ -305,7 +305,7 @@ Use spec/<ip_name>_spec.md
 
 ## Further reading | Đọc thêm
 
-- [Manual workflow / Flow từng bước](GUIDELINE.md)
+- [Manual workflow / Flow từng bước](guideline.md)
 - [Automatic workflow prompt / Prompt autoflow](.claude/commands/autoflow.md)
 - [RTL coding rules / Quy tắc RTL](rtl_rule.md)
 - [Spec parser authoring rules / Quy tắc biên soạn spec parser](claude_template/spec_parser_authoring_rules.md)
