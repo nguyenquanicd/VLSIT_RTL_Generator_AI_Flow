@@ -9,16 +9,27 @@ Use this skill when the user asks for this phase of the repository's RTL design 
 
 ## Codex CLI execution notes
 
-- Perform the workflow below directly in Codex. Any `/phase_name` text in the source procedure is a Claude Code command label, not a Codex command or shell command. For a needed peer phase, read `.agents/skills/source-command-phase-name/SKILL.md` (replace underscores in the phase name with hyphens) and follow it directly.
-- Preserve the review gates stated in the procedure. In the full `/autoflow` workflow only, Gate 2 and Gate 4 may be auto-approved when their stated checks pass; Gate 1, Gate 3b, and Gate 5 still require explicit user approval. A standalone phase must follow its own confirmation steps.
-- These procedures assume a Linux/Bash EDA environment and many are hardcoded for `rv32im_core`. Check the requested IP, current project artifacts, and actual tool availability first. Do not reuse the RV32IM module map for the AXI downscaler or another IP without adapting it, and do not report a lint, compile, simulation, or synthesis pass unless it was actually run and its result was inspected.
-- `sourceme.sh` is a Bash setup script with external tool, module, and PDK assumptions; do not run it in PowerShell. If a required tool or license is unavailable, state that phase as not run and continue only where the procedure permits.
-- Treat `Result/` as saved snapshots, not as the active baseline for a new design. Use the current specification and artifacts selected for this task.
+- Run this workflow in Codex; `/phase_name` denotes a source Claude command. Read a peer phase skill only when this workflow requires it.
+- Preserve all gates. Only full autoflow may auto-approve Gate 2 and Gate 4 where the procedure permits; other approvals remain explicit.
+- Adapt RV32IM and Linux/Bash assumptions to the requested IP and environment. Treat `Result/` as historical snapshots, not the active baseline.
+- Report EDA results only after running the tool and inspecting its output. `sourceme.sh` is Linux/Bash-dependent; do not run it in PowerShell, and mark unavailable checks as not run.
+
+## Token-efficient artifact reads
+
+For an existing design, run `python scripts/prepare_skill_context.py --phase source-command-tb-generator --root <design-root>` before selecting artifacts. Summarize large logs with `python scripts/summarize_eda_log.py <log-path>` and inspect cited lines in the original. These are navigation aids, not verification evidence; avoid dumping full trees or logs.
+
+## RTL rule source
+
+If this flow must generate or modify synthesizable design RTL, use `style_constraints.source_file/source_kind` from approved config. When a legacy config lacks `source_kind`, use a rule file explicitly supplied for this design or the repository default `spec_template/VLSIT_RTL_Design_Rule.md`; do not use historical `Result/*/rtl_rule.md`. The selected RTL rule governs design RTL only; follow this skill's separate testbench requirements for verification sources.
+
+## Reusable skill improvement
+
+At completion, assess whether observed issues justify a high-impact improvement across designs. Follow `.agents/skill_maintenance.md` and `scripts/propose_skill_update.py`; present a qualifying proposal and ask approval for the exact change. Never edit this skill or its support files without explicit user confirmation. If none qualifies, say so briefly.
 
 ## Workflow source
 # Phase 4 · Testbench — /tb_generator
 
-**Mục tiêu:** Sinh testbench plain SystemVerilog cho `rv32im_core`, lấy TC-ID ánh xạ sang
+**Mục tiêu:** Sinh testbench plain SystemVerilog cho top module được xác định trong RTL/config (mặc định của ví dụ này là `m_rv32im_core`), lấy TC-ID ánh xạ sang
 REQ-ID, cho người dùng chọn TC nào đưa vào, cảnh báo REQ-ID thiếu coverage,
 và xuất `schemas/selected_testplan.json` sau khi người dùng ký Gate 4.
 
@@ -134,7 +145,7 @@ Sinh theo thứ tự sau. Sau mỗi file: chạy VCS compile check ngay.
 - Tag: `// TC-020 | REQ-014`
 
 **4.3 Testbench top** `src/tb/rv32im_tb_top.sv`
-- Instantiate `rv32im_core` với tất cả parameter từ `schemas/final_config.json`
+- Instantiate top module đúng theo RTL và `schemas/final_config.json` (ví dụ mặc định: `m_rv32im_core`) với các parameter đã mapping từ config
 - Instantiate `rv32im_mem_model` (connect I-bus + D-bus)
 - Instantiate `rv32im_clint_model` (nếu `PR_IRQ_EN=1`)
 - Clock: `localparam LP_CLK_PERIOD = 10; always #(LP_CLK_PERIOD/2) i_clk_core = ~i_clk_core;`

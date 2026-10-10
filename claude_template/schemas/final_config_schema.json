@@ -107,7 +107,12 @@
       "properties": {
         "source_file": {
           "type": ["string", "null"],
-          "description": "Đường dẫn file quy tắc RTL gốc, thường 'rtl_rule.md'"
+          "description": "Đường dẫn rule file đang chọn. Output mới phải có đường dẫn; null chỉ được giữ để đọc config cũ trước khi migration sang default rule"
+        },
+        "source_kind": {
+          "type": "string",
+          "enum": ["repository_default", "user_supplied"],
+          "description": "Nguồn của RTL rule file đang áp dụng"
         },
         "natural_language_additions": {
           "type": "array",
@@ -122,7 +127,7 @@
             "required": ["id", "source", "rule"],
             "properties": {
               "id":     { "type": "string", "description": "Mã rule, ví dụ 'STYLE-001'" },
-              "source": { "type": "string", "enum": ["rtl_rule.md", "user_addition"] },
+              "source": { "type": "string", "enum": ["default_rule_file", "user_rule_file", "rtl_rule.md", "user_addition"] },
               "rule":   { "type": "string", "description": "Mô tả rule ngắn gọn" },
               "original_nl": { "type": ["string", "null"], "description": "Câu ngôn ngữ tự nhiên gốc nếu là user_addition" }
             }

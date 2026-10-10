@@ -1,0 +1,42 @@
+<mxfile host="app.diagrams.net" type="device" pages="2">
+  <diagram id="rtl-level-00-top" name="00_TOP">
+    <mxGraphModel dx="1200" dy="700" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="700" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="top-root" value="TOP : axi_downscaler_top" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=18;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;strokeWidth=2;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="360" y="280" width="480" height="120" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="rtl-level-01" name="01_LEVEL_1">
+    <mxGraphModel dx="1800" dy="800" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="800" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="top-context" value="TOP : axi_downscaler_top" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=18;fontFamily=Arial;align=center;verticalAlign=middle;spacing=10;strokeWidth=2;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="660" y="130" width="480" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="u-width-split" value="u_width_split : axi_downscaler_width_split" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=18;fontFamily=Arial;align=center;verticalAlign=middle;spacing=12;strokeWidth=2;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="80" y="490" width="500" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="u-fifo" value="u_fifo : axi_downscaler_fifo" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=18;fontFamily=Arial;align=center;verticalAlign=middle;spacing=12;strokeWidth=2;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="650" y="490" width="500" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="u-m-axis-if" value="u_m_axis_if : axi_downscaler_m_axis_if" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=18;fontFamily=Arial;align=center;verticalAlign=middle;spacing=12;strokeWidth=2;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="1220" y="490" width="500" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-width-split" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;endArrow=block;endFill=1;exitX=0.2;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="top-context" target="u-width-split">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-fifo" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="top-context" target="u-fifo">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-m-axis-if" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;endArrow=block;endFill=1;exitX=0.8;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="top-context" target="u-m-axis-if">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

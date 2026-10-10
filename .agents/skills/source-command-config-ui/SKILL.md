@@ -9,11 +9,18 @@ Use this skill when the user asks for this phase of the repository's RTL design 
 
 ## Codex CLI execution notes
 
-- Perform the workflow below directly in Codex. Any `/phase_name` text in the source procedure is a Claude Code command label, not a Codex command or shell command. For a needed peer phase, read `.agents/skills/source-command-phase-name/SKILL.md` (replace underscores in the phase name with hyphens) and follow it directly.
-- Preserve the review gates stated in the procedure. In the full `/autoflow` workflow only, Gate 2 and Gate 4 may be auto-approved when their stated checks pass; Gate 1, Gate 3b, and Gate 5 still require explicit user approval. A standalone phase must follow its own confirmation steps.
-- These procedures assume a Linux/Bash EDA environment and many are hardcoded for `rv32im_core`. Check the requested IP, current project artifacts, and actual tool availability first. Do not reuse the RV32IM module map for the AXI downscaler or another IP without adapting it, and do not report a lint, compile, simulation, or synthesis pass unless it was actually run and its result was inspected.
-- `sourceme.sh` is a Bash setup script with external tool, module, and PDK assumptions; do not run it in PowerShell. If a required tool or license is unavailable, state that phase as not run and continue only where the procedure permits.
-- Treat `Result/` as saved snapshots, not as the active baseline for a new design. Use the current specification and artifacts selected for this task.
+- Run this workflow in Codex; `/phase_name` denotes a source Claude command. Read a peer phase skill only when this workflow requires it.
+- Preserve all gates. Only full autoflow may auto-approve Gate 2 and Gate 4 where the procedure permits; other approvals remain explicit.
+- Adapt RV32IM and Linux/Bash assumptions to the requested IP and environment. Treat `Result/` as historical snapshots, not the active baseline.
+- Report EDA results only after running the tool and inspecting its output. `sourceme.sh` is Linux/Bash-dependent; do not run it in PowerShell, and mark unavailable checks as not run.
+
+## Token-efficient artifact reads
+
+For an existing design, run `python scripts/prepare_skill_context.py --phase source-command-config-ui --root <design-root>` before selecting artifacts. Summarize large logs with `python scripts/summarize_eda_log.py <log-path>` and inspect cited lines in the original. These are navigation aids, not verification evidence; avoid dumping full trees or logs.
+
+## Reusable skill improvement
+
+At completion, assess whether observed issues justify a high-impact improvement across designs. Follow `.agents/skill_maintenance.md` and `scripts/propose_skill_update.py`; present a qualifying proposal and ask approval for the exact change. Never edit this skill or its support files without explicit user confirmation. If none qualifies, say so briefly.
 
 ## Workflow source
 # Phase 2 · Configuration — /config_ui
@@ -114,11 +121,17 @@ Xử lý tuần tự từng parameter người dùng muốn thay đổi:
 
 ## Bước 4 — Style constraints
 
-Thông báo: _"Đọc `rtl_rule.md`..."_ và đọc file đó để liệt kê các rule đã có.
+Chọn file RTL design rule theo thứ tự:
+
+1. Nếu người dùng đã cung cấp đường dẫn rule file cho design này, dùng file đó.
+2. Nếu chưa có file do người dùng cung cấp, dùng rule mặc định trong repository: `spec_template/VLSIT_RTL_Design_Rule.md` (đường dẫn hiện tại: `C:\HQuan\102_MyGithub\VLSIT_RTL_Generator_AI_Model\spec_template\VLSIT_RTL_Design_Rule.md`). Không lấy rule từ snapshot cũ trong `Result/`.
+3. Đọc file được chọn. Nếu file mặc định không tồn tại hoặc không đọc được, dừng Gate 2 và yêu cầu người dùng cung cấp rule file; không tiếp tục với bộ rule rỗng.
+
+Ghi đường dẫn file được chọn vào `style_constraints.source_file` và ghi `source_kind` là `user_supplied` hoặc `repository_default`. Không chép toàn bộ nội dung rule vào config; `lint_rules` chỉ chứa các constraint bổ sung do người dùng xác nhận. Tóm tắt ngắn gọn nhóm rule để người dùng biết file nào sẽ chi phối RTL.
 
 Hỏi người dùng:
 
-> **"Bạn có muốn thêm style constraint nào ngoài `rtl_rule.md` không?
+> **"Bạn có muốn thêm style constraint nào ngoài file RTL rule đã chọn không?
 > Gõ bằng ngôn ngữ tự nhiên (ví dụ: 'không dùng for loop trong pipeline stage',
 > 'mỗi module tối đa 200 dòng') hoặc gõ `none`."**
 
@@ -127,6 +140,7 @@ Nếu người dùng cung cấp constraints:
 2. Chuyển đổi sang dạng lint rule ngắn gọn (text, không phải code).
 3. Hiển thị bản diễn giải, hỏi: _"Lint rule trên có đúng ý bạn không?"_
 4. Nếu đúng → ghi vào danh sách. Nếu không → hỏi lại.
+5. Nếu constraint bổ sung mâu thuẫn với file rule được chọn → nêu rõ mâu thuẫn và hỏi người dùng cách xử lý; không âm thầm bỏ rule bắt buộc.
 
 ---
 
@@ -149,7 +163,8 @@ Hiển thị bảng tổng kết theo format sau:
 ║  ✓ Optional:  (liệt kê các F đang bật)              ║
 ║  ✗ Disabled:  (liệt kê các F đang tắt)              ║
 ╠══ Style constraints ══════════════════════════════════╣
-║  Nguồn gốc: rtl_rule.md + [N rule bổ sung]          ║
+║  RTL rule: <selected file> [<source_kind>]           ║
+║  Rule bổ sung đã xác nhận: [N]                      ║
 ╚══════════════════════════════════════════════════════╝
 ```
 
@@ -170,6 +185,7 @@ Nếu tất cả pass, hỏi:
 2. Ghi `schemas/final_config.json` với cấu trúc theo `schemas/final_config_schema.json`.
    - `gate_2_approved: true`
    - `approved_at`: timestamp hiện tại (dùng lệnh `date -Iseconds` nếu cần)
+   - `style_constraints.source_file` và `style_constraints.source_kind` phải chứa rule file đã chọn; `lint_rules` là danh sách rule bổ sung đã xác nhận (có thể rỗng).
 3. Thông báo:
 
 > **"✓ Gate 2 đã ký. `schemas/final_config.json` đã được ghi.
@@ -182,7 +198,9 @@ Nếu tất cả pass, hỏi:
 | Tình huống | Hành động |
 |---|---|
 | `spec_parser.md` và `structured_spec.json` đều không có | Dừng, yêu cầu file spec |
-| `rtl_rule.md` không tồn tại | Tiếp tục bình thường, ghi nhận "không có rtl_rule.md" vào config |
+| Không có user rule file | Dùng `spec_template/VLSIT_RTL_Design_Rule.md` trong repository |
+| Rule mặc định không tồn tại/đọc được | Dừng Gate 2, yêu cầu user cung cấp rule file; không ghi config thiếu rule |
+| User rule file không tồn tại/đọc được | Dừng Gate 2, yêu cầu người dùng cung cấp lại file; không tự thay bằng default |
 | Người dùng nhập value ngoài range | Từ chối, giải thích range hợp lệ, hỏi lại |
 | Constraint vi phạm sau thay đổi hàng loạt | Liệt kê tất cả vi phạm cùng lúc trước khi yêu cầu sửa |
 | `schemas/final_config.json` đã tồn tại | Cảnh báo "File đã tồn tại — ghi đè?" trước khi overwrite |

@@ -9,11 +9,22 @@ Use this skill when the user asks for this phase of the repository's RTL design 
 
 ## Codex CLI execution notes
 
-- Perform the workflow below directly in Codex. Any `/phase_name` text in the source procedure is a Claude Code command label, not a Codex command or shell command. For a needed peer phase, read `.agents/skills/source-command-phase-name/SKILL.md` (replace underscores in the phase name with hyphens) and follow it directly.
-- Preserve the review gates stated in the procedure. In the full `/autoflow` workflow only, Gate 2 and Gate 4 may be auto-approved when their stated checks pass; Gate 1, Gate 3b, and Gate 5 still require explicit user approval. A standalone phase must follow its own confirmation steps.
-- These procedures assume a Linux/Bash EDA environment and many are hardcoded for `rv32im_core`. Check the requested IP, current project artifacts, and actual tool availability first. Do not reuse the RV32IM module map for the AXI downscaler or another IP without adapting it, and do not report a lint, compile, simulation, or synthesis pass unless it was actually run and its result was inspected.
-- `sourceme.sh` is a Bash setup script with external tool, module, and PDK assumptions; do not run it in PowerShell. If a required tool or license is unavailable, state that phase as not run and continue only where the procedure permits.
-- Treat `Result/` as saved snapshots, not as the active baseline for a new design. Use the current specification and artifacts selected for this task.
+- Run this workflow in Codex; `/phase_name` denotes a source Claude command. Read a peer phase skill only when this workflow requires it.
+- Preserve all gates. Only full autoflow may auto-approve Gate 2 and Gate 4 where the procedure permits; other approvals remain explicit.
+- Adapt RV32IM and Linux/Bash assumptions to the requested IP and environment. Treat `Result/` as historical snapshots, not the active baseline.
+- Report EDA results only after running the tool and inspecting its output. `sourceme.sh` is Linux/Bash-dependent; do not run it in PowerShell, and mark unavailable checks as not run.
+
+## Token-efficient artifact reads
+
+For an existing design, run `python scripts/prepare_skill_context.py --phase source-command-verification --root <design-root>` before selecting artifacts. Summarize large logs with `python scripts/summarize_eda_log.py <log-path>` and inspect cited lines in the original. These are navigation aids, not verification evidence; avoid dumping full trees or logs.
+
+## RTL rule source
+
+If verification requires a synthesizable RTL fix, use `style_constraints.source_file/source_kind` from approved config. When a legacy config lacks `source_kind`, use a rule file explicitly supplied for this design or the repository default `spec_template/VLSIT_RTL_Design_Rule.md`; do not use historical `Result/*/rtl_rule.md`. Keep fixes within the spec and selected RTL rules; verification-only sources follow their own procedure.
+
+## Reusable skill improvement
+
+At completion, assess whether observed issues justify a high-impact improvement across designs. Follow `.agents/skill_maintenance.md` and `scripts/propose_skill_update.py`; present a qualifying proposal and ask approval for the exact change. Never edit this skill or its support files without explicit user confirmation. If none qualifies, say so briefly.
 
 ## Workflow source
 # Phase 5 · Verification — /verification
@@ -234,7 +245,7 @@ Với mỗi REQ-ID:
 module load oss-cad-suite
 cat > work/mut_scripts/gen_<req_id>.ys << 'YOSYS_EOF'
 read_verilog -sv -f src/rtl/filelist.f
-hierarchy -check -top rv32im_core
+hierarchy -check -top m_rv32im_core
 proc; opt
 select -module <module_name>
 mutate -list 50 -o work/mutations_<req_id>.txt
@@ -254,7 +265,7 @@ Với mỗi mutation M (mỗi dòng trong `mutations_<req_id>.txt`):
 # Bước A: Apply mutation
 cat > work/mut_scripts/apply_${M_ID}.ys << YOSYS_EOF
 read_verilog -sv -f src/rtl/filelist.f
-hierarchy -check -top rv32im_core
+hierarchy -check -top m_rv32im_core
 proc; opt
 mutate ${M_ARGS}
 write_verilog -sv work/mutant/rv32im_mutant_${M_ID}.sv
