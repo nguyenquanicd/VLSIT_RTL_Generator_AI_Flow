@@ -1,63 +1,83 @@
-# User Guide | Hướng dẫn sử dụng
+# Step-by-step User Guide | Hướng dẫn từng bước
 
-**EN:** This guide covers the specification-driven RTL and independent verification flow. Claude Code commands and Codex CLI skills are agent instructions entered in their chats, not shell commands.
+**EN:** Claude Code commands and Codex CLI skills are prompts entered in their chats, not terminal commands. Work in this repository or a copy/branch of it. The agent creates design outputs in the working design root; the saved `example/` folders are historical references.
 
-**VI:** Hướng dẫn này mô tả flow tạo RTL từ đặc tả và kiểm chứng độc lập. Command của Claude Code và skill của Codex CLI được nhập trong hội thoại, không phải lệnh terminal.
+**VI:** Command Claude Code và skill Codex CLI là prompt nhập trong hội thoại, không phải lệnh terminal. Làm việc trong repository này hoặc bản sao/branch của nó. Agent tạo output tại root của thiết kế đang làm; thư mục `example/` chỉ là ví dụ lịch sử.
 
-## 1. Prepare | Chuẩn bị
+## 0. Prepare the specification | Chuẩn bị đặc tả
 
-- **EN:** Write a hardware specification with ports, parameters, clock/reset, behavior, timing, error handling, and exact protocol-standard revision when applicable. Start from [the IP specification template](spec_template/VLSIT_ASIC_IP_Design_Specification_Template.md) if useful.
-- **VI:** Viết đặc tả phần cứng gồm port, parameter, clock/reset, chức năng, timing, xử lý lỗi và phiên bản chuẩn giao thức khi áp dụng. Có thể bắt đầu từ [mẫu đặc tả IP](spec_template/VLSIT_ASIC_IP_Design_Specification_Template.md).
-- **EN:** On a Linux EDA host, review tool and PDK paths in `sourceme.sh` before running `source sourceme.sh`. On Windows, use WSL or an EDA host; this Bash script does not run directly in PowerShell.
-- **VI:** Trên máy EDA Linux, kiểm tra đường dẫn công cụ và PDK trong `sourceme.sh` trước khi chạy `source sourceme.sh`. Trên Windows, dùng WSL hoặc máy chủ EDA; script Bash này không chạy trực tiếp trong PowerShell.
+**EN:** Create `spec/<ip_name>_spec.md` with ports, parameters, clock/reset, observable behavior, timing, error handling, and exact protocol-standard revision when applicable. You may start from [the IP template](spec_template/VLSIT_ASIC_IP_Design_Specification_Template.md). If you only have a description, use `/spec_writer` or `/autoflow --describe`, then review the draft before parsing.
 
-## 2. Example | Ví dụ
+**VI:** Tạo `spec/<ip_name>_spec.md` với port, parameter, clock/reset, hành vi quan sát được, timing, xử lý lỗi và phiên bản chuẩn giao thức khi áp dụng. Có thể bắt đầu từ [mẫu IP](spec_template/VLSIT_ASIC_IP_Design_Specification_Template.md). Nếu mới có mô tả, dùng `/spec_writer` hoặc `/autoflow --describe`, rồi review bản nháp trước khi parse.
 
-**EN:** Suppose the design is an 8-bit, 16-entry synchronous FIFO. Save its specification as `spec/fifo_spec.md`. State reset polarity, ready/valid handshake, full and empty behavior, and cycle timing explicitly. The path and values below are illustrative; replace them with the approved design specification.
+**Example / Ví dụ:** For an 8-bit, 16-entry FIFO, create `spec/fifo_spec.md` and specify reset polarity, ready/valid behavior, full/empty handling, and cycle timing. This file is an example path; it is not included in the repository. / Với FIFO rộng 8 bit, sâu 16 phần tử, tạo `spec/fifo_spec.md` và nêu rõ cực tính reset, ready/valid, full/empty và timing theo chu kỳ. File này chỉ là ví dụ, không có sẵn trong repository.
 
-**VI:** Giả sử thiết kế là FIFO đồng bộ rộng 8 bit, sâu 16 phần tử. Lưu đặc tả tại `spec/fifo_spec.md`. Ghi rõ cực tính reset, giao tiếp ready/valid, xử lý full/empty và timing theo chu kỳ. Đường dẫn và giá trị này chỉ là ví dụ; dùng đặc tả đã duyệt của thiết kế thực tế.
+## 1. Choose automatic or manual execution | Chọn chạy tự động hoặc từng bước
 
-In **Claude Code**, enter:
+**EN:** For the full flow, enter `/autoflow spec/fifo_spec.md` in Claude Code. In Codex CLI, invoke `$source-command-autoflow` and provide the same path. To run one phase at a time, follow Steps 2–10 below. The [README](README.md) maps each Claude command to its Codex skill.
 
-```text
-/autoflow spec/fifo_spec.md
-```
+**VI:** Để chạy toàn flow, nhập `/autoflow spec/fifo_spec.md` trong Claude Code. Trong Codex CLI, gọi `$source-command-autoflow` và cung cấp cùng đường dẫn. Để chạy từng phase, theo Bước 2–10 dưới đây. [README](README.md) ánh xạ command Claude với skill Codex.
 
-In **Codex CLI**, enter:
+## 2. Parse requirements — Gate 1 | Parse yêu cầu — Gate 1
 
-```text
-$source-command-autoflow
-Use spec/fifo_spec.md.
-```
+**EN:** Run `/spec_parser spec/fifo_spec.md`. Review REQ-IDs, source clauses, ambiguity, and parameter/module mappings. Approve Gate 1 only after unresolved behavior is settled. Output: `schemas/structured_spec.json`.
 
-**EN:** If no specification exists, use `/autoflow --describe` in Claude Code or ask the Codex autoflow skill to draft one from your description. Review the draft before parsing. For individual phases, use the [command and skill mapping](README.md).
+**VI:** Chạy `/spec_parser spec/fifo_spec.md`. Review REQ-ID, nguồn yêu cầu, điểm mơ hồ và mapping parameter/module. Chỉ duyệt Gate 1 khi hành vi chưa rõ đã được giải quyết. Output: `schemas/structured_spec.json`.
 
-**VI:** Nếu chưa có đặc tả, dùng `/autoflow --describe` trong Claude Code hoặc yêu cầu skill autoflow của Codex soạn từ mô tả. Review bản nháp trước khi phân tích yêu cầu. Để chạy từng bước, xem [bảng command và skill](README.md).
+## 3. Set configuration — Gate 2 | Chốt cấu hình — Gate 2
 
-## 3. Flow and approvals | Flow và các bước duyệt
+**EN:** Run `/config_ui`. Check legal parameter values and constraints. Supply an RTL rule file if needed; otherwise the default is `spec_template/VLSIT_RTL_Design_Rule.md`. Output: `schemas/final_config.json`. A standalone run needs your approval; full autoflow may approve unchanged defaults when every constraint passes.
 
-```text
-Specification → requirements (Gate 1) → configuration (Gate 2)
-→ verification contract (Gate 3a)
-→ RTL branch + verification branch (SVA Gate 3b; test plan Gate 4)
-→ DUT integration and verification → optional code-coverage target
-→ user sign-off (Gate 5) → final documentation
-```
+**VI:** Chạy `/config_ui`. Kiểm tra giá trị parameter và constraint hợp lệ. Có thể cung cấp RTL rule riêng; nếu không, dùng `spec_template/VLSIT_RTL_Design_Rule.md`. Output: `schemas/final_config.json`. Chạy riêng cần bạn duyệt; autoflow có thể tự duyệt giá trị mặc định khi mọi constraint đạt.
 
-**EN:** Gate 1, 3a, 3b, and 5 require user review. Full autoflow may approve Gate 2 and Gate 4 when their checks pass. The verification contract, assertions, tests, and expected outcomes come from the approved specification and applicable standards, not generated RTL. Before DUT integration, SVA and testbench compile against a contract-derived interface shell; that compile is not a DUT pass.
+## 4. Approve the verification contract — Gate 3a | Duyệt verification contract — Gate 3a
 
-**VI:** Gate 1, 3a, 3b và 5 cần người dùng duyệt. Autoflow có thể tự duyệt Gate 2 và Gate 4 khi các điều kiện đạt. Verification contract, assertion, testcase và expected result lấy từ đặc tả và chuẩn đã duyệt, không lấy từ RTL được sinh. Trước khi tích hợp DUT, SVA và testbench compile với interface shell tạo từ contract; kết quả đó không chứng minh DUT pass.
+**EN:** Run `/verification_contract`. Review the contract-level interface, expected behavior, exact standard revisions/clauses, and open questions. This phase reads the approved specification and configuration, not generated RTL. Outputs: `schemas/verification_contract.json` and `src/verification/contract_if.sv`. Approve Gate 3a before generating verification artifacts.
 
-**EN:** After baseline simulation, the coverage step shows the measured metric and percentage before asking for a target. For example, if line coverage is 48%, you may choose 60%; the flow saves added specification-based tests and reruns them. A target is optional, and an unmet target is reported as unmet.
+**VI:** Chạy `/verification_contract`. Review interface, expected behavior, phiên bản/điều khoản chuẩn và vấn đề còn mở. Phase này đọc đặc tả và cấu hình đã duyệt, không đọc RTL được sinh. Output: `schemas/verification_contract.json` và `src/verification/contract_if.sv`. Duyệt Gate 3a trước khi sinh artifact verification.
 
-**VI:** Sau baseline simulation, bước coverage hiển thị loại metric và tỷ lệ đã đo trước khi hỏi ngưỡng. Ví dụ, nếu line coverage là 48%, bạn có thể chọn 60%; flow lưu testcase bổ sung theo đặc tả rồi chạy lại. Ngưỡng là tùy chọn; nếu chưa đạt, báo đúng trạng thái chưa đạt.
+## 5. Generate RTL | Sinh RTL
 
-## 4. Inspect and resume | Kiểm tra và tiếp tục
+**EN:** Run `/rtl_generator`. It uses the approved specification, configuration, and RTL rule file. Inspect `src/rtl/`, `src/rtl/filelist.f`, lint logs, and `schemas/synth_report.json` when synthesis runs. Unavailable checks must be reported as not run.
 
-**EN:** The design root contains one documented `Makefile` for lint, synthesis, compilation, tests, regression, mutation, and coverage. All test files remain in `src/tb/tests/`; approval and result records are in `schemas/`; logs are in `work/`. Use `make help` to list targets and `make -n <target>` to inspect commands. A missing tool or unrun check is not a pass.
+**VI:** Chạy `/rtl_generator`. Phase này dùng đặc tả, cấu hình và RTL rule đã duyệt. Kiểm tra `src/rtl/`, `src/rtl/filelist.f`, log lint và `schemas/synth_report.json` nếu synthesis đã chạy. Công cụ không khả dụng phải được báo là chưa chạy.
 
-**VI:** Root của thiết kế có một `Makefile` mô tả lint, synthesis, compile, testcase, regression, mutation và coverage. Testcase được lưu trong `src/tb/tests/`; approval và kết quả nằm trong `schemas/`; log nằm trong `work/`. Dùng `make help` để xem target và `make -n <target>` để xem lệnh. Thiếu công cụ hoặc chưa chạy kiểm tra không được tính là pass.
+## 6. Generate SVA — Gate 3b | Sinh SVA — Gate 3b
 
-**EN:** To resume in Claude Code, for example, use `/autoflow spec/fifo_spec.md --from phase5`. In Codex CLI, ask the autoflow skill to resume from phase 5. The agent must check that saved artifacts match the current specification and configuration before reusing approvals or results.
+**EN:** Run `/sva_generator`. Review the meaning and REQ-ID trace of interface-level properties, then approve Gate 3b. SVA is compiled against the contract interface shell; this checks syntax/elaboration, not DUT behavior. Output: `src/sva/` and approval records in `schemas/rtm.json`.
 
-**VI:** Ví dụ tiếp tục trong Claude Code: `/autoflow spec/fifo_spec.md --from phase5`. Trong Codex CLI, yêu cầu skill autoflow tiếp tục từ phase 5. Agent phải kiểm tra artifact đã lưu khớp đặc tả và cấu hình hiện tại trước khi dùng lại approval hoặc kết quả.
+**VI:** Chạy `/sva_generator`. Review ý nghĩa property ở interface và trace tới REQ-ID, rồi duyệt Gate 3b. SVA được compile với interface shell của contract; bước này kiểm tra syntax/elaboration, không chứng minh DUT pass. Output: `src/sva/` và approval trong `schemas/rtm.json`.
+
+## 7. Generate tests — Gate 4 | Sinh testcase — Gate 4
+
+**EN:** Run `/tb_generator`. Review the test plan and uncovered REQ-IDs. Tests come from the approved contract and golden sources, not RTL. Check saved files in `src/tb/tests/` and `schemas/selected_testplan.json`. Shell compilation precedes Gate 4; a standalone run needs your approval, while full autoflow may approve a complete, clean plan.
+
+**VI:** Chạy `/tb_generator`. Review test plan và REQ-ID chưa được cover. Test lấy từ contract và golden sources đã duyệt, không lấy từ RTL. Kiểm tra file trong `src/tb/tests/` và `schemas/selected_testplan.json`. Shell compile diễn ra trước Gate 4; chạy riêng cần bạn duyệt, còn autoflow có thể tự duyệt plan đầy đủ và không lỗi.
+
+**EN:** The steps above follow `/autoflow`. In a manual run, Step 5 may start as soon as Gate 2 is approved; Steps 6–7 require Gate 3a. RTL and verification generation stay independent until DUT integration.
+
+**VI:** Thứ tự trên theo `/autoflow`. Khi chạy từng phase, Bước 5 có thể bắt đầu ngay sau Gate 2; Bước 6–7 cần Gate 3a. Việc sinh RTL và verification độc lập đến khi tích hợp DUT.
+
+## 8. Integrate and verify | Tích hợp và kiểm chứng
+
+**EN:** Run `/verification`. The adapter connects contract signals to the DUT; mismatched ports or behavior are failures, not reasons to change the oracle. Review actual compile, testcase, SVA, mutation, and baseline coverage evidence in `schemas/rtm.json`, `schemas/verification_report.json`, and `work/`.
+
+**VI:** Chạy `/verification`. Adapter nối tín hiệu contract với DUT; port hoặc hành vi không khớp là lỗi, không phải lý do sửa oracle. Review bằng chứng compile, testcase, SVA, mutation và baseline coverage trong `schemas/rtm.json`, `schemas/verification_report.json` và `work/`.
+
+## 9. Optional coverage target, then Gate 5 | Ngưỡng coverage tùy chọn, rồi Gate 5
+
+**EN:** Before Gate 5 sign-off, use `/code_coverage` if you want a target. The agent must show a measured metric and baseline first. Example: if line coverage is 48%, you may select 60%; added tests are saved and rerun through the Makefile. A target is optional. Return to `/verification` for the Gate 5 dashboard and approve only evidence-backed results.
+
+**VI:** Trước khi ký Gate 5, dùng `/code_coverage` nếu muốn đặt ngưỡng. Agent phải hiển thị metric và baseline đã đo trước. Ví dụ: line coverage 48%, bạn có thể chọn 60%; testcase bổ sung được lưu và chạy lại qua Makefile. Ngưỡng là tùy chọn. Quay lại `/verification` để xem dashboard Gate 5 và chỉ duyệt kết quả có bằng chứng.
+
+## 10. Produce documentation | Tạo tài liệu
+
+**EN:** After Gate 5 approval, run `/spec_pdf_generator`. Inspect `docs/specification.md`; `docs/specification.pdf` is created only when a PDF converter is available. Missing evidence must be marked TBD or N/A, never pass.
+
+**VI:** Sau khi duyệt Gate 5, chạy `/spec_pdf_generator`. Kiểm tra `docs/specification.md`; chỉ tạo `docs/specification.pdf` khi có công cụ chuyển đổi. Bằng chứng thiếu phải ghi TBD hoặc N/A, không được ghi pass.
+
+## Reproduce or resume | Chạy lại hoặc tiếp tục
+
+**EN:** The agent creates or extends one design-root `Makefile` for lint, synthesis, compilation, tests, regression, mutation, and coverage. Use `make help` to list targets and `make -n <target>` to inspect the actual commands. Tools and PDK paths in `sourceme.sh` must be adapted to the Linux EDA host; do not run this Bash script in PowerShell. To resume, for example, enter `/autoflow spec/fifo_spec.md --from phase5`; the agent must validate saved approvals and revisions first.
+
+**VI:** Agent tạo hoặc mở rộng một `Makefile` tại root thiết kế cho lint, synthesis, compile, testcase, regression, mutation và coverage. Dùng `make help` xem target và `make -n <target>` xem lệnh thực tế. Cần điều chỉnh đường dẫn tool/PDK trong `sourceme.sh` cho máy EDA Linux; không chạy script Bash này trong PowerShell. Ví dụ tiếp tục: `/autoflow spec/fifo_spec.md --from phase5`; agent phải kiểm tra approval và revision đã lưu trước.

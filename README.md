@@ -20,9 +20,9 @@
 
 **VI:** Flow truy vết requirement đến điều khoản specification/standard, SVA đã review, testcase, kết quả DUT và sign-off của kỹ sư bằng Requirement Traceability Matrix (RTM). RTL generator và verification generator là hai nhánh riêng dùng chung baseline đã duyệt.
 
-**EN:** The repository contains agent prompts, RTL rules, JSON Schemas, helper scripts, templates, diagrams, and saved design snapshots. The main sections describe the common flow; the design snapshots appear at the end.
+**EN:** The repository contains agent prompts, an RTL rule template, JSON Schemas, helper scripts, diagrams, and saved examples. The common flow is described first; design examples appear at the end.
 
-**VI:** Repository chứa prompt cho agent, quy tắc RTL, JSON Schema, script hỗ trợ, template, sơ đồ và snapshot thiết kế. Các mục chính mô tả flow dùng chung; snapshot thiết kế được giới thiệu ở cuối README.
+**VI:** Repository chứa prompt cho agent, mẫu quy tắc RTL, JSON Schema, script hỗ trợ, sơ đồ và ví dụ đã lưu. Flow dùng chung được mô tả trước; ví dụ thiết kế nằm ở cuối README.
 
 **EN — Language policy:** Codex skills, Claude commands, agent guidance, and schema descriptions use technical English. Documents and README files may present both English and Vietnamese.
 
@@ -37,7 +37,7 @@
 | EN | VI |
 |---|---|
 | Convert a hardware specification into identified requirements, a configuration, and an RTL design. | Chuyển đặc tả phần cứng thành requirement có định danh, cấu hình và thiết kế RTL. |
-| Generate RTL, SVA, and testbench artifacts from a shared technical baseline. | Tạo artifact RTL, SVA và testbench theo cùng baseline kỹ thuật. |
+| Generate RTL from the approved specification and configuration; generate SVA and tests independently from the approved verification contract. | Sinh RTL từ đặc tả và cấu hình đã duyệt; sinh SVA và testcase độc lập từ verification contract đã duyệt. |
 | Compare AI-generated artifacts with lint, synthesis, and simulation results. | Đối chiếu artifact do AI tạo với kết quả lint, synthesis và simulation. |
 | Track missing evidence, verification gaps, and review status. | Theo dõi bằng chứng còn thiếu, verification gap và trạng thái review. |
 | Preserve design runs for inspection and comparison. | Lưu các lần chạy thiết kế để kiểm tra và so sánh. |
@@ -48,10 +48,15 @@
 
 ## Architecture & Flow | Kiến trúc và flow
 
+**EN:** The diagram shows the `/autoflow` sequence. In a manual run, RTL generation may start after Gate 2 because it does not consume the verification contract.
+
+**VI:** Sơ đồ thể hiện thứ tự của `/autoflow`. Khi chạy từng phase, có thể bắt đầu sinh RTL sau Gate 2 vì nhánh này không dùng verification contract.
+
 ~~~mermaid
 flowchart TD
-    U["Design description<br/>Mô tả thiết kế"] --> W[spec_writer]
-    W --> S["Hardware specification<br/>Đặc tả phần cứng"]
+    U["Existing specification or design description<br/>Đặc tả có sẵn hoặc mô tả thiết kế"] --> S["Reviewed hardware specification<br/>Đặc tả phần cứng đã review"]
+    U --> W["spec_writer, if needed"]
+    W --> S
     S --> P[spec_parser]
     P --> R[structured_spec.json]
     R --> G1{"Gate 1: Spec review<br/>Review đặc tả"}
@@ -75,7 +80,8 @@ flowchart TD
 
 | Layer / Lớp | Components / Thành phần | EN role | Vai trò |
 |---|---|---|---|
-| AI orchestration / Điều phối AI | .claude/commands/*.md, .agents/skills/*/SKILL.md | Guides Claude Code and Codex through phases, input checks, and review reports. | Hướng dẫn Claude Code và Codex qua các phase, kiểm tra đầu vào và báo cáo review. |
+| AI phase instructions / Hướng dẫn phase | .claude/commands/*.md, .agents/skills/*/SKILL.md | Guides Claude Code and Codex through phases, input checks, and review reports. | Hướng dẫn Claude Code và Codex qua các phase, kiểm tra đầu vào và báo cáo review. |
+| Flow maintenance / Bảo trì flow | .claude/skills/rtl-flow-maintainer/, shared JSON Schemas | Maintains command authoring rules and artifact formats; it does not execute a design phase. | Bảo trì quy tắc biên soạn command và định dạng artifact; không chạy phase thiết kế. |
 | Data and traceability / Dữ liệu và truy vết | JSON artifacts, JSON Schema, RTM | Stores requirements, configuration, mappings, and gate status. | Lưu requirement, cấu hình, mapping và trạng thái gate. |
 | Design and execution / Thiết kế và thực thi | SystemVerilog, shell/Yosys scripts, EDA tools | Implements hardware and produces tool evidence. | Hiện thực phần cứng và tạo bằng chứng từ công cụ. |
 
@@ -83,30 +89,28 @@ flowchart TD
 
 **VI:** Slash command và Codex skill là hướng dẫn cho agent, không phải chương trình shell hay workflow engine độc lập. Việc thực thi gate và cập nhật artifact phụ thuộc vào agent làm đúng hướng dẫn; repository chưa có orchestrator hoặc validator thống nhất để cưỡng chế toàn bộ flow. Tham chiếu phase như /phase_name trong Codex skill là tên command Claude nguồn; Codex đọc và thực hiện skill tương ứng trực tiếp.
 
-**EN:** Gate 3a approves a spec/config/standard-based verification contract before RTL generation. Then RTL generation consumes only the specification, configuration, and RTL rules; the verification branch consumes the approved contract and golden sources, not generated RTL. A contract interface shell supports syntax/elaboration checks. Final verification integrates RTL as the DUT through an adapter. Interface mismatches are failures and do not change expected behavior. /autoflow runs phases sequentially in one session; the repository has no parallel scheduler.
+**EN:** In `/autoflow`, Gate 3a approves the spec/config/standard-based verification contract before the two generation branches. RTL generation consumes the specification, configuration, and RTL rules; the verification branch consumes the approved contract and golden sources, not generated RTL. A contract interface shell supports syntax/elaboration checks. Final verification integrates RTL as the DUT through an adapter. Interface mismatches are failures and do not change expected behavior. `/autoflow` runs phases sequentially in one session; the repository has no parallel scheduler.
 
-**VI:** Gate 3a duyệt verification contract dựa trên spec/config/standard trước khi sinh RTL. Sau đó RTL Generator chỉ dùng specification, cấu hình và RTL rule; nhánh verification dùng contract cùng golden sources, không đọc RTL đã sinh. Interface shell của contract hỗ trợ kiểm tra syntax/elaboration. Verification cuối tích hợp RTL làm DUT qua adapter; mismatch interface là lỗi, không làm đổi expected behavior. /autoflow chạy tuần tự trong một session; repository không có scheduler chạy song song.
+**VI:** Trong `/autoflow`, Gate 3a duyệt verification contract dựa trên spec/config/standard trước khi sinh hai nhánh. RTL Generator dùng specification, cấu hình và RTL rule; nhánh verification dùng contract cùng golden sources, không đọc RTL đã sinh. Interface shell của contract hỗ trợ kiểm tra syntax/elaboration. Verification cuối tích hợp RTL làm DUT qua adapter; mismatch interface là lỗi, không làm đổi expected behavior. `/autoflow` chạy tuần tự trong một session; repository không có scheduler chạy song song.
 
 ## Repository structure | Cấu trúc repository
 
 ~~~text
 VLSIT_RTL_Generator_AI_Model/
 ├── .claude/commands/         # Claude Code prompts / Prompt cho Claude Code
+├── .claude/skills/           # Claude Code maintenance skill and schemas / Skill bảo trì và schema
 ├── .agents/skills/           # Codex CLI skills / Skill cho Codex CLI
-├── claude_template/          # Command templates and JSON Schemas / Mẫu command và JSON Schema
 ├── agent_structure/          # Flow diagrams / Sơ đồ flow
-├── Result/                   # Saved design snapshots / Snapshot thiết kế
+├── example/                  # Saved design examples / Ví dụ thiết kế đã lưu
 ├── scripts/                  # Helper scripts / Script hỗ trợ
 ├── spec_template/            # IP, CSR, and RTL-rule templates / Mẫu spec IP, CSR và rule RTL
 ├── guideline.md              # Step-by-step user guide / Hướng dẫn từng bước
-├── rtl_rule.md               # Project RTL rules / Rule RTL của project
-├── vlsit_rtl_rule_default.md # Default ASIC RTL rules / Rule RTL ASIC mặc định
 └── sourceme.sh               # Linux EDA environment setup / Thiết lập môi trường EDA Linux
 ~~~
 
-**EN:** Each project subfolder has a short bilingual README describing its contents. Result folders hold only the artifacts present for that saved run. They are not a complete default output tree for a new design.
+**EN:** Project folders include short bilingual READMEs. The `example/` folders contain historical artifacts, not the required output tree or evidence for a new run. The default RTL rule is `spec_template/VLSIT_RTL_Design_Rule.md` when the user supplies none.
 
-**VI:** Mỗi thư mục con của project có README song ngữ ngắn mô tả nội dung. Các thư mục trong Result chỉ chứa artifact đã lưu cho lần chạy đó; chúng không phải cây output mặc định đầy đủ cho thiết kế mới.
+**VI:** Các thư mục project có README song ngữ ngắn. Thư mục `example/` chứa artifact lịch sử, không phải cây output bắt buộc hay bằng chứng cho lần chạy mới. RTL rule mặc định là `spec_template/VLSIT_RTL_Design_Rule.md` khi người dùng không cung cấp file khác.
 
 ### Claude Code commands | Command Claude Code
 
@@ -120,7 +124,7 @@ VLSIT_RTL_Generator_AI_Model/
 | /rtl_generator | Generates RTL and runs lint and synthesis steps. | Sinh RTL và chạy lint, synthesis. |
 | /sva_generator | Generates interface-level assertions from the approved contract and compiles against its shell. | Sinh assertion tại interface từ contract đã duyệt và compile với shell. |
 | /tb_generator | Builds saved tests and a plan from the contract without reading RTL. | Tạo testcase đã lưu và test plan từ contract, không đọc RTL. |
-| /verification | Runs simulation and mutation checks, then measures RTL code coverage before Gate 5. | Chạy simulation, mutation, sau đó đo code coverage RTL trước Gate 5. |
+| /verification | Integrates the DUT, runs simulation and mutation checks, and records baseline coverage when supported. | Tích hợp DUT, chạy simulation và mutation, ghi baseline coverage khi công cụ hỗ trợ. |
 | /code_coverage | Shows measured baseline before an optional target; adds saved tests for reachable specification-based gaps. | Hiển thị baseline đã đo trước khi chọn ngưỡng tùy chọn; thêm testcase đã lưu cho gap có thể cover theo specification. |
 | /spec_pdf_generator | Builds specification documentation from design artifacts. | Tạo tài liệu đặc tả từ artifact thiết kế. |
 
@@ -148,9 +152,9 @@ VLSIT_RTL_Generator_AI_Model/
 | $source-command-code-coverage | /code_coverage |
 | $source-command-spec-pdf-generator | /spec_pdf_generator |
 
-**EN:** Skills preserve the source prompt's procedure and gates, and explain how to handle references to other phases. Some prompts and scripts assume a specific IP hierarchy or EDA setup; update module mappings, constraints, and tool paths before using them for another design.
+**EN:** The Codex phase skills read the matching Claude commands and preserve their gates. The Claude `rtl-flow-maintainer` skill maintains command and schema references; it does not run a design phase. Adapt IP mappings, constraints, and tool paths for each design.
 
-**VI:** Skill giữ lại quy trình và gate từ prompt nguồn, đồng thời hướng dẫn xử lý tham chiếu đến phase khác. Một số prompt và script giả định hierarchy IP hoặc môi trường EDA cụ thể; cần cập nhật module mapping, constraint và đường dẫn công cụ trước khi dùng cho thiết kế khác.
+**VI:** Skill Codex đọc command Claude tương ứng và giữ các gate. Skill Claude `rtl-flow-maintainer` dùng để bảo trì command và schema, không chạy phase thiết kế. Điều chỉnh mapping IP, constraint và đường dẫn công cụ cho từng thiết kế.
 
 **EN:** RTL lint/synthesis and all SVA/testbench compile, regression, mutation, and code-coverage runs use one documented Makefile at the design root. Every testcase is saved under `src/tb/tests/`, included in the selected test plan and file list, and runnable through a Make target. The coverage target is optional: the flow shows a measured baseline before asking for a threshold. RTL is the coverage target, while expected behavior still comes from the approved specification and protocol standard.
 
@@ -164,15 +168,19 @@ The RTM links / RTM liên kết:
 REQ-ID → Specification/standard clause → Reviewed oracle/SVA/TC → DUT execution → Human sign-off
 ~~~
 
-**EN:** Autoflow requires review at Gate 1 (specification), Gate 3a (verification contract), Gate 3b (properties), and Gate 5 (DUT verification). Gate 2 and Gate 4 may be auto-approved when their conditions pass. Gate 4 compiles against a contract shell, not RTL.
+**EN:** Autoflow requires user review at Gate 1 (requirements), Gate 3a (verification contract), Gate 3b (properties), and Gate 5 (DUT verification). Gate 2 may be auto-approved only for unchanged specification defaults with all constraints passing. Gate 4 may be auto-approved only for a complete plan without unresolved issues after contract-shell compilation. Shell compilation is not a DUT pass.
 
-**VI:** Autoflow yêu cầu review tại Gate 1 (specification), Gate 3a (verification contract), Gate 3b (property) và Gate 5 (DUT verification). Gate 2 và Gate 4 có thể tự xác nhận khi đạt điều kiện. Gate 4 compile với contract shell, không cần RTL.
+**VI:** Autoflow cần người dùng review tại Gate 1 (requirement), Gate 3a (verification contract), Gate 3b (property) và Gate 5 (DUT verification). Gate 2 chỉ có thể tự duyệt khi giữ nguyên giá trị mặc định trong spec và mọi constraint đạt. Gate 4 chỉ có thể tự duyệt khi plan đầy đủ, không còn vấn đề mở và đã compile với contract shell. Shell compile không chứng minh DUT pass.
 
 **EN:** Verification eligibility uses specification/standard traceability, reviewed oracle/SVA/TC evidence, DUT simulation, and mutation evidence under the current policy. RTL tag presence is not a sign-off condition. N/A is not evidence that mutation requirements passed.
 
 **VI:** Điều kiện sign-off verification dùng truy vết specification/standard, oracle/SVA/TC đã review, DUT simulation và mutation evidence theo chính sách hiện tại. Tag RTL không phải điều kiện sign-off. N/A không chứng minh mutation đã đạt.
 
-## Requirements | Môi trường cần có
+## Tools and environment | Công cụ và môi trường
+
+**EN:** Use the tools required by the selected phase and available on the EDA host. A missing tool means that check was not run; generated files alone are not verification evidence.
+
+**VI:** Dùng công cụ cần cho phase đã chọn và có trên máy EDA. Thiếu công cụ nghĩa là kiểm tra tương ứng chưa chạy; file được sinh không tự chứng minh verification pass.
 
 | Tool/environment / Công cụ/môi trường | EN purpose | Mục đích |
 |---|---|---|
@@ -180,10 +188,9 @@ REQ-ID → Specification/standard clause → Reviewed oracle/SVA/TC → DUT exec
 | Linux, Bash, Environment Modules | Runtime assumed by the current scripts. | Môi trường mà các script hiện tại giả định. |
 | Verilator | RTL lint. | Lint RTL. |
 | Yosys; slang plugin when required by the SystemVerilog frontend | Synthesis and support for mutation workflow. | Synthesis và hỗ trợ mutation workflow. |
-| GF180MCU Liberty libraries | Technology mapping at TT/SS corners. | Technology mapping tại các corner TT/SS. |
-| Synopsys VCS or another available simulator | Compile and simulation with SVA in the original flow; separate installation and license required. | Compile và simulation có SVA trong flow gốc; cần cài đặt và license riêng. |
-| Icarus Verilog | Alternative simulation in some runs; the current Icarus path skips SVA. | Simulation thay thế ở một số flow; đường chạy Icarus hiện bỏ qua SVA. |
-| Python 3 and Matplotlib | Runs the included PDF conversion script. | Chạy script chuyển PDF đi kèm. |
+| Technology Liberty libraries, if mapped synthesis is requested | Provide cells and corners for the selected technology; GF180MCU is an example. | Cung cấp cell và corner cho công nghệ được chọn; GF180MCU là ví dụ. |
+| Simulator with required SystemVerilog/SVA support | Compile and run the selected DUT tests and assertions; available features depend on the installed tool. | Compile và chạy testcase cùng assertion đã chọn; tính năng phụ thuộc công cụ được cài. |
+| PDF converter, if PDF output is requested | Produces the optional PDF; Markdown remains available without it. | Tạo PDF tùy chọn; Markdown vẫn có khi thiếu công cụ chuyển đổi. |
 
 **EN:** Artifacts record Verilator 5.041, Yosys 0.58/0.58+35, VCS, and Icarus 13.0. These are observed environment versions, not a tested compatibility matrix. sourceme.sh also loads a toolchain and lists tools from OSS CAD Suite; adapt it for the target IP. SymbiYosys or cocotb in the setup does not mean the repository contains a complete formal or cocotb flow.
 
@@ -194,7 +201,7 @@ REQ-ID → Specification/standard clause → Reviewed oracle/SVA/TC → DUT exec
 ### 1. Prepare the environment | Chuẩn bị môi trường
 
 ~~~bash
-git clone https://github.com/nguyenquanicd/VLSIT_RTL_Generator_AI_Model.git
+git clone https://github.com/nguyenquanicd/VLSIT_RTL_Generator_AI_Flow.git VLSIT_RTL_Generator_AI_Model
 cd VLSIT_RTL_Generator_AI_Model
 ~~~
 
@@ -216,10 +223,10 @@ source sourceme.sh
    **VI:** Làm việc trên branch hoặc bản sao riêng để giữ nguyên snapshot tham khảo.
 2. **EN:** Put the design specification at spec/<ip_name>_spec.md. Define interfaces, parameters, reset, functionality, timing, and error behavior.  
    **VI:** Đặt đặc tả tại spec/<ip_name>_spec.md. Mô tả interface, parameter, reset, chức năng, timing và error behavior.
-3. **EN:** Adapt prompts for the target IP, including parser mappings, configuration constraints, module hierarchy, SVA, test plan, and document structure. Update related templates together.  
-   **VI:** Điều chỉnh prompt theo IP đích, gồm parser mapping, ràng buộc cấu hình, hierarchy module, SVA, test plan và bố cục tài liệu. Cập nhật đồng bộ các template liên quan.
-4. **EN:** Place JSON Schemas where the prompts expect them; source templates are in claude_template/schemas/.  
-   **VI:** Đặt JSON Schema tại đường dẫn mà prompt yêu cầu; schema mẫu nằm trong claude_template/schemas/.
+3. **EN:** Provide IP-specific mappings, constraints, module hierarchy, and protocol-standard revisions in the specification and phase inputs. If the reusable command or schema itself needs maintenance, use the Claude `rtl-flow-maintainer` skill.<br>
+   **VI:** Cung cấp mapping, constraint, hierarchy module và phiên bản chuẩn giao thức của IP trong đặc tả và input của từng phase. Nếu cần bảo trì command hoặc schema dùng chung, dùng skill Claude `rtl-flow-maintainer`.
+4. **EN:** Shared JSON Schemas are in `.claude/skills/rtl-flow-maintainer/schemas/`. Design-run outputs remain in the design's own `schemas/` directory.<br>
+   **VI:** JSON Schema dùng chung nằm trong `.claude/skills/rtl-flow-maintainer/schemas/`. Output của mỗi lần chạy vẫn nằm trong thư mục `schemas/` của thiết kế.
 
 **EN:** Some snapshots contain input artifacts with names that overlap Claude command prompts. Check each file's role and source before using it as a baseline.
 
@@ -250,12 +257,18 @@ source sourceme.sh
 ~~~text
 /spec_parser spec/<ip_name>_spec.md
 /config_ui
+/verification_contract
 /rtl_generator
-/tb_generator
 /sva_generator
+/tb_generator
 /verification
+/code_coverage
 /spec_pdf_generator
 ~~~
+
+**EN:** Run one command at a time and satisfy its gate before the next dependent phase. After Gate 3a, RTL and verification artifact generation are independent; the listed order is for readability. `/code_coverage` is optional after baseline simulation and before Gate 5; return to `/verification` to complete Gate 5 when running it separately. See the [step-by-step guide](guideline.md) for inputs and outputs.
+
+**VI:** Chạy từng command và hoàn thành gate trước phase phụ thuộc. Sau Gate 3a, việc sinh RTL và artifact verification độc lập; thứ tự liệt kê chỉ để dễ đọc. `/code_coverage` là tùy chọn sau baseline simulation và trước Gate 5; quay lại `/verification` để hoàn thành Gate 5 nếu chạy coverage riêng. Xem [hướng dẫn từng bước](guideline.md) về input và output.
 
 **EN:** Review requirements before Gate 1, the verification contract before Gate 3a, property meaning/vacuity before Gate 3b, the test plan before Gate 4, and execution logs/gaps before Gate 5. Generation commands may create or update files in the working project.
 
@@ -290,8 +303,8 @@ Use spec/<ip_name>_spec.md
 
 ## Current limitations | Hạn chế hiện tại
 
-- **Template drift — EN:** Active commands and templates are not fully aligned; the verification versions differ. Some older synthesis examples do not reflect fixes in later snapshots.  
-  **VI:** Command đang dùng và template chưa hoàn toàn đồng nhất; bản verification có khác biệt. Một số ví dụ synthesis cũ chưa phản ánh các sửa lỗi trong snapshot mới hơn.
+- **Historical examples — EN:** Saved design runs may use older commands or synthesis settings; inspect their source and logs before reuse.<br>
+  **VI:** Snapshot thiết kế có thể dùng command hoặc cấu hình synthesis cũ; kiểm tra source và log trước khi tái sử dụng.
 - **Schema drift — EN:** Some JSON artifacts omit fields or use formats that differ from the sample schemas; there is no unified automated validation.  
   **VI:** Một số JSON artifact thiếu trường hoặc khác định dạng schema mẫu; chưa có validation tự động thống nhất.
 - **Evidence completeness — EN:** Some final logs, mutation wrappers, and working artifacts are not packaged, so snapshots alone may not reproduce every result.  
@@ -307,12 +320,13 @@ Use spec/<ip_name>_spec.md
 
 - [Manual workflow / Flow từng bước](guideline.md)
 - [Automatic workflow prompt / Prompt autoflow](.claude/commands/autoflow.md)
-- [RTL coding rules / Quy tắc RTL](rtl_rule.md)
-- [Spec parser authoring rules / Quy tắc biên soạn spec parser](claude_template/spec_parser_authoring_rules.md)
+- [Default RTL coding rules / Quy tắc RTL mặc định](spec_template/VLSIT_RTL_Design_Rule.md)
+- [Spec parser authoring rules / Quy tắc biên soạn spec parser](.claude/skills/rtl-flow-maintainer/references/spec-parser-authoring-rules.md)
 - [Active Claude Code commands / Claude Code command đang dùng](.claude/commands/)
+- [Claude Code maintenance skill / Skill bảo trì Claude Code](.claude/skills/rtl-flow-maintainer/SKILL.md)
 - [Codex CLI project skills / Skill Codex CLI](.agents/skills/)
-- [JSON Schema templates / JSON Schema mẫu](claude_template/schemas/)
-- [Saved design runs / Snapshot thiết kế](Result/)
+- [JSON Schemas / JSON Schema](.claude/skills/rtl-flow-maintainer/schemas/)
+- [Saved design examples / Ví dụ thiết kế](example/)
 - [Architecture diagrams / Sơ đồ kiến trúc](agent_structure/)
 
 ## License | Giấy phép
@@ -354,7 +368,7 @@ Use spec/<ip_name>_spec.md
 **VI:** Để chạy cấu hình mặc định bằng Icarus từ repository root:
 
 ~~~bash
-cd Result/DOWNSCALER_03_09_2026
+cd example/DOWNSCALER_03_09_2026
 bash src/tb/run_icarus_sim.sh
 ~~~
 

@@ -17,4 +17,4 @@ Use the supplied specification path. Otherwise identify a likely specification f
 
 ## Output and gate
 
-Validate against claude_template/schemas/structured_spec_schema.json. Write schemas/structured_spec.json only with the reviewed content. Set gate_1_approved=true only after explicit approval; otherwise keep it false and report blockers. Do not generate RTL, SVA, or tests.
+Validate against `.claude/skills/rtl-flow-maintainer/schemas/structured_spec_schema.json`. Write `schemas/structured_spec.json` only with the reviewed content. Set `gate_1_approved=true` only after explicit approval; otherwise keep it false and report blockers. Do not generate RTL, SVA, or tests.

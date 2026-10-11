@@ -11,7 +11,7 @@ Create the reviewed verification baseline after Gate 2 and before `/rtl_generato
 
 ## Output
 
-Create `schemas/verification_contract.json` using `claude_template/schemas/verification_contract_schema.json`. Include:
+Create `schemas/verification_contract.json` using `.claude/skills/rtl-flow-maintainer/schemas/verification_contract_schema.json`. Include:
 
 - Specification, configuration, standards, clauses, revisions, hashes where available, and user decisions.
 - Contract-level logical interface: signal names, direction, width, clock/reset role, and approved parameter profile. Do not include RTL module names, internal states, enum encodings, or implementation hierarchy.

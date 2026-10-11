@@ -30,7 +30,7 @@ Chỉnh `spec_parser.md` (hoặc `.claude/commands/spec_parser.md`) cho design m
 2. **Bước 6.1** — Tên parameter của design mới
 3. **Bước 6.2** — Tên module RTL của design mới
 
-Chi tiết xem `claude_template/spec_parser_authoring_rules.md`.
+Chi tiết xem `.claude/skills/rtl-flow-maintainer/references/spec-parser-authoring-rules.md`.
 
 ---
 
@@ -162,11 +162,12 @@ VLSIT_RTL_Generator_AI_Model/   ← git root
 │   ├── specification.md        ← Markdown source
 │   └── specification.pdf       ← PDF (nếu pandoc/weasyprint có sẵn)
 ├── .claude/
-│   └── commands/               ← 7 slash commands (spec_parser ... spec_pdf_generator)
-├── claude_template/
-│   ├── commands/               ← bản gốc của slash commands (backup)
-│   ├── schemas/                ← JSON schema validate từng gate
-│   └── spec_parser_authoring_rules.md
+│   ├── commands/               ← 11 slash commands đang dùng
+│   └── skills/
+│       └── rtl-flow-maintainer/
+│           ├── SKILL.md
+│           ├── schemas/        ← JSON Schema cho các artifact
+│           └── references/spec-parser-authoring-rules.md
 ├── Result/                     ← lưu trữ kết quả các lần gen
 │   ├── RISCV_24_08_2026/       ← spec v0.2 | 24/24 PASS | Gate 1–5 hoàn tất
 │   │   ├── src/rtl/            ← 18 modules

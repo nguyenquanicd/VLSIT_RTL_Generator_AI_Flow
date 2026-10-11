@@ -23,7 +23,7 @@ Chỉnh `.claude/commands/spec_parser.md` tại 3 chỗ:
 2. **Bước 6.1** — Tên parameter của design mới  
 3. **Bước 6.2** — Tên module RTL của design mới
 
-Xem chi tiết: `claude_template/spec_parser_authoring_rules.md`
+Xem chi tiết: `.claude/skills/rtl-flow-maintainer/references/spec-parser-authoring-rules.md`
 
 ### 3. Chuẩn bị file spec
 
