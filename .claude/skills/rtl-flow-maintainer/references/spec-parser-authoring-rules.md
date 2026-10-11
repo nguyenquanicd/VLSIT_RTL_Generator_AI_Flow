@@ -34,4 +34,4 @@ Require no pending human decisions, a module mapping for each applicable require
 
 Replace specification section names, parameter names, planned module names, and input-validation cues with those of the new IP. Keep the seven-step sequence, ambiguity threshold, gate conditions, and schema path. Remove stale project-specific identifiers such as rv32im_ or PR_M_EXT_EN when they do not apply.
 
-Before use, check all seven steps, source references, actual parameter/module mappings, ambiguity decisions, and conformance to claude_template/schemas/structured_spec_schema.json.
+Before use, check all seven steps, source references, actual parameter/module mappings, ambiguity decisions, and conformance to `.claude/skills/rtl-flow-maintainer/schemas/structured_spec_schema.json`.

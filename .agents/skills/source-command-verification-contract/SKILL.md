@@ -18,7 +18,7 @@ For an existing design root, run `python scripts/prepare_skill_context.py --phas
 
 ## Outputs
 
-Create `schemas/verification_contract.json` conforming to `claude_template/schemas/verification_contract_schema.json`. It must define:
+Create `schemas/verification_contract.json` conforming to `.claude/skills/rtl-flow-maintainer/schemas/verification_contract_schema.json`. It must define:
 
 - Golden-source identities and revisions, including spec and protocol-standard clauses.
 - The contract-level interface: logical signal name, direction, width expression/value, clock/reset role, and applicable configuration. These are specification-facing names, not names copied from RTL.
