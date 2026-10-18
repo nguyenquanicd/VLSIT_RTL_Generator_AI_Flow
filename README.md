@@ -48,9 +48,9 @@
 
 ## Architecture & Flow | Kiến trúc và flow
 
-**EN:** The diagram shows the `/autoflow` sequence. In a manual run, RTL generation may start after Gate 2 because it does not consume the verification contract.
+**EN:** The diagram shows the `/autoflow` sequence. Existing RTL may use the optional style converter in place of RTL generation. In a manual run, either RTL path may start after Gate 2 because neither consumes the verification contract.
 
-**VI:** Sơ đồ thể hiện thứ tự của `/autoflow`. Khi chạy từng phase, có thể bắt đầu sinh RTL sau Gate 2 vì nhánh này không dùng verification contract.
+**VI:** Sơ đồ thể hiện thứ tự của `/autoflow`. Với RTL có sẵn, có thể dùng bộ chuyển style thay cho bước sinh RTL. Khi chạy từng phase, cả hai nhánh RTL đều có thể bắt đầu sau Gate 2 vì không dùng verification contract.
 
 ~~~mermaid
 flowchart TD
@@ -64,11 +64,14 @@ flowchart TD
     C --> F["final_config.json / Gate 2"]
     F --> VC["verification_contract: spec/config/standards"]
     VC --> G3A{"Gate 3a: contract review<br/>Review verification baseline"}
-    G3A --> RTL["RTL branch: RTL + lint + synthesis"]
+    G3A --> R{"New or existing RTL?<br/>Sinh mới hay RTL có sẵn?"}
+    R --> RTL["rtl_generator: new RTL"]
+    R --> SC["rtl_style_converter: existing RTL"]
     G3A --> A["Verification branch: SVA + testbench + test plan"]
     A --> G3B{"Gate 3b: Property review<br/>Review SVA"}
     A --> G4{"Gate 4: Test-plan review<br/>Review tests"}
     RTL --> V["DUT integration + verification run"]
+    SC --> V
     G3B --> V
     G4 --> V
     V --> CC["code_coverage: measured baseline + optional target closure"]
@@ -89,9 +92,9 @@ flowchart TD
 
 **VI:** Slash command và Codex skill là hướng dẫn cho agent, không phải chương trình shell hay workflow engine độc lập. Việc thực thi gate và cập nhật artifact phụ thuộc vào agent làm đúng hướng dẫn; repository chưa có orchestrator hoặc validator thống nhất để cưỡng chế toàn bộ flow. Tham chiếu phase như /phase_name trong Codex skill là tên command Claude nguồn; Codex đọc và thực hiện skill tương ứng trực tiếp.
 
-**EN:** In `/autoflow`, Gate 3a approves the spec/config/standard-based verification contract before the two generation branches. RTL generation consumes the specification, configuration, and RTL rules; the verification branch consumes the approved contract and golden sources, not generated RTL. A contract interface shell supports syntax/elaboration checks. Final verification integrates RTL as the DUT through an adapter. Interface mismatches are failures and do not change expected behavior. `/autoflow` runs phases sequentially in one session; the repository has no parallel scheduler.
+**EN:** In `/autoflow`, Gate 3a approves the spec/config/standard-based verification contract before the RTL and verification branches. `/rtl_generator` creates new RTL from the specification and configuration. `/rtl_style_converter` instead converts user-supplied RTL without changing its module topology or behavior and reports suspected original bugs separately. The verification branch consumes the approved contract and golden sources, not either RTL version. Final verification integrates the selected RTL as the DUT. `/autoflow` runs phases sequentially in one session; the repository has no parallel scheduler.
 
-**VI:** Trong `/autoflow`, Gate 3a duyệt verification contract dựa trên spec/config/standard trước khi sinh hai nhánh. RTL Generator dùng specification, cấu hình và RTL rule; nhánh verification dùng contract cùng golden sources, không đọc RTL đã sinh. Interface shell của contract hỗ trợ kiểm tra syntax/elaboration. Verification cuối tích hợp RTL làm DUT qua adapter; mismatch interface là lỗi, không làm đổi expected behavior. `/autoflow` chạy tuần tự trong một session; repository không có scheduler chạy song song.
+**VI:** Trong `/autoflow`, Gate 3a duyệt verification contract dựa trên spec/config/standard trước nhánh RTL và verification. `/rtl_generator` sinh RTL mới từ đặc tả và cấu hình. `/rtl_style_converter` chuyển RTL do user cung cấp, giữ cấu trúc module và hành vi, đồng thời báo bug gốc nghi vấn riêng. Nhánh verification dùng contract và nguồn chuẩn đã duyệt, không dùng phiên bản RTL nào để tạo expected behavior. Verification cuối tích hợp RTL được chọn làm DUT. `/autoflow` chạy tuần tự trong một session; repository không có scheduler chạy song song.
 
 ## Repository structure | Cấu trúc repository
 
@@ -122,6 +125,7 @@ VLSIT_RTL_Generator_AI_Model/
 | /config_ui | Selects parameters and checks configuration constraints. | Chọn parameter và kiểm tra ràng buộc cấu hình. |
 | /verification_contract | Builds and reviews an RTL-independent interface and behavioral oracle from the specification, configuration, and exact standards. | Tạo và review interface cùng oracle độc lập RTL từ specification, cấu hình và chuẩn có revision cụ thể. |
 | /rtl_generator | Generates RTL and runs lint and synthesis steps. | Sinh RTL và chạy lint, synthesis. |
+| /rtl_style_converter | Converts existing RTL while preserving topology and behavior; reports incompatible rules and suspected bugs bilingually. | Chuyển RTL có sẵn, giữ cấu trúc và hành vi; báo rule xung đột và bug nghi vấn bằng hai ngôn ngữ. |
 | /sva_generator | Generates interface-level assertions from the approved contract and compiles against its shell. | Sinh assertion tại interface từ contract đã duyệt và compile với shell. |
 | /tb_generator | Builds saved tests and a plan from the contract without reading RTL. | Tạo testcase đã lưu và test plan từ contract, không đọc RTL. |
 | /verification | Integrates the DUT, runs simulation and mutation checks, and records baseline coverage when supported. | Tích hợp DUT, chạy simulation và mutation, ghi baseline coverage khi công cụ hỗ trợ. |
@@ -146,6 +150,7 @@ VLSIT_RTL_Generator_AI_Model/
 | $source-command-config-ui | /config_ui |
 | $source-command-verification-contract | /verification_contract |
 | $source-command-rtl-generator | /rtl_generator |
+| $source-command-rtl-style-converter | /rtl_style_converter |
 | $source-command-sva-generator | /sva_generator |
 | $source-command-tb-generator | /tb_generator |
 | $source-command-verification | /verification |
@@ -266,9 +271,9 @@ source sourceme.sh
 /spec_pdf_generator
 ~~~
 
-**EN:** Run one command at a time and satisfy its gate before the next dependent phase. After Gate 3a, RTL and verification artifact generation are independent; the listed order is for readability. `/code_coverage` is optional after baseline simulation and before Gate 5; return to `/verification` to complete Gate 5 when running it separately. See the [step-by-step guide](guideline.md) for inputs and outputs.
+**EN:** For existing RTL, replace `/rtl_generator` in that sequence with `/rtl_style_converter <source-rtl-directory>` and provide the top and a separate output directory. To use full autoflow with existing RTL, enter `/autoflow spec/<ip_name>_spec.md --rtl-source <source-rtl-directory>`. The converter can also run alone without a specification. Run one command at a time and satisfy its gate before the next dependent phase. The verification branch remains independent of RTL until DUT integration. `/code_coverage` is optional after baseline simulation and before Gate 5; return to `/verification` to complete Gate 5 when running it separately. See the [step-by-step guide](guideline.md) for inputs and outputs.
 
-**VI:** Chạy từng command và hoàn thành gate trước phase phụ thuộc. Sau Gate 3a, việc sinh RTL và artifact verification độc lập; thứ tự liệt kê chỉ để dễ đọc. `/code_coverage` là tùy chọn sau baseline simulation và trước Gate 5; quay lại `/verification` để hoàn thành Gate 5 nếu chạy coverage riêng. Xem [hướng dẫn từng bước](guideline.md) về input và output.
+**VI:** Với RTL có sẵn, thay `/rtl_generator` trong thứ tự trên bằng `/rtl_style_converter <source-rtl-directory>` và cung cấp top cùng thư mục output riêng. Để dùng toàn flow với RTL có sẵn, nhập `/autoflow spec/<ip_name>_spec.md --rtl-source <source-rtl-directory>`. Bộ chuyển style cũng có thể chạy độc lập, không cần đặc tả. Chạy từng command và hoàn thành gate trước phase phụ thuộc. Nhánh verification vẫn độc lập với RTL đến khi tích hợp DUT. `/code_coverage` là tùy chọn sau baseline simulation và trước Gate 5; quay lại `/verification` để hoàn thành Gate 5 nếu chạy coverage riêng. Xem [hướng dẫn từng bước](guideline.md) về input và output.
 
 **EN:** Review requirements before Gate 1, the verification contract before Gate 3a, property meaning/vacuity before Gate 3b, the test plan before Gate 4, and execution logs/gaps before Gate 5. Generation commands may create or update files in the working project.
 

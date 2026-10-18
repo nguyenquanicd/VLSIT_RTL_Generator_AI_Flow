@@ -1,6 +1,6 @@
 # Phase 5: Verification — /verification
 
-Integrate the generated DUT with the independently prepared verification branch, run the saved tests, and present evidence for Gate 5. Only the user can sign off.
+Integrate the generated DUT, or the style-converted existing DUT selected by `/autoflow`, with the independently prepared verification branch. Run the saved tests and present evidence for Gate 5. Only the user can sign off. A style-conversion report does not establish functional correctness.
 
 ## Sources and preflight
 
