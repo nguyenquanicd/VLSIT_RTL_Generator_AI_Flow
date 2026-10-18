@@ -170,6 +170,7 @@ end
 - **COM-05** `[NEW]` Combinational loops are not allowed. Feedback passes through a register.
 - **COM-06** `[NEW]` Functions used in RTL are `automatic`, deterministic, and side-effect free (see P9).
 - **COM-07** `[NEW]` An inferred latch is not allowed. Every signal that a combinational process drives MUST be assigned on every path: assign its default at the top of the process (COM-02) so that no `if` or `case` branch leaves it unassigned, and give every `case` a `default` (COM-03). A latch reported by lint (for example verilator `LATCH` or slang `inferred-latch`) is an error and MUST NOT be waived. Intentional storage uses a flip-flop (SEQ-01).
+- **COM-08** `[NEW]` A selection with three or more conditional branches (an `if` followed by two or more `else if`) MUST be written as a `case` or `casez` statement, chosen under COM-03 and COM-04, not as an `if` / `else if` chain. A selection on the value of one signal is a plain `case`. A priority selection among independent conditions is a `casez` on the concatenated condition bits with `?` for the bits of lower priority; it keeps the original priority, and its `default` assigns a defined value unless COM-04 allows `'x`. A chain of one or two conditions (with or without a final `else`), the reset test that opens a sequential process, and an elaboration-time `if` in a generate block are not counted.
 
 ## 5. Arithmetic and widths
 
