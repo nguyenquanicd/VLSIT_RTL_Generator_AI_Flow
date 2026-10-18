@@ -101,7 +101,6 @@ Keep in full, never abbreviate: `data`, `valid`, `ready`, `mode`, `depth`, `done
   - `// Parameter values: ...` legal values or inclusive range, and the default value.
   - `// Parameter unit: ...` unit of the value (for example `bit`, `byte`, `us`). This line is required. A parameter without a physical unit uses `count` for a quantity or `none` for a mode or flag code.
 - **PAR-03** Derive dependent widths (address, counter, field positions) from parameters or localparams; do not repeat literals. Design-specific constants are named parameters, localparams, or enum members.
-- **PAR-04** `[NEW]` Illegal parameter values MUST be rejected at elaboration in a generate-time check that uses an elaboration system task (for example `$error`) in a generate `if`. Such checks are the only allowed system tasks in RTL and MUST be supported by the frontend (see P14).
 
 ```systemverilog
 // Parameter Description: datapath width of the operands and the result.
@@ -170,6 +169,7 @@ end
 
 - **COM-05** `[NEW]` Combinational loops are not allowed. Feedback passes through a register.
 - **COM-06** `[NEW]` Functions used in RTL are `automatic`, deterministic, and side-effect free (see P9).
+- **COM-07** `[NEW]` An inferred latch is not allowed. Every signal that a combinational process drives MUST be assigned on every path: assign its default at the top of the process (COM-02) so that no `if` or `case` branch leaves it unassigned, and give every `case` a `default` (COM-03). A latch reported by lint (for example verilator `LATCH` or slang `inferred-latch`) is an error and MUST NOT be waived. Intentional storage uses a flip-flop (SEQ-01).
 
 ## 5. Arithmetic and widths
 
@@ -368,14 +368,14 @@ endmodule
 | P4 | `defparam` | Named parameter override at the instance |
 | P5 | Implicit nets from undeclared identifiers | Declare all signals; enforce `default_nettype none` (TYP-03) |
 | P6 | Plain `always` (any event-control or wildcard form) | `always_comb`, `always_ff` |
-| P7 | `always_latch` and inferred or intentional latches | Complete assignments (COM-02) or edge-triggered state |
+| P7 | `always_latch` and inferred or intentional latches (COM-07) | Default assignments (COM-02, COM-07) or edge-triggered state |
 | P8 | Multiple drivers on one signal | One assignment source |
 | P9 | Functions with side effects or static state | Deterministic `automatic` functions (COM-06) |
 | P10 | Unexplained magic numbers | Named parameter, localparam, or enum member |
 | P11 | `package` declarations and imports; SV `interface`/`modport` in design RTL. Allowed in simulation-only verification sources | Module-local types; packed-vector ports |
 | P12 | `` `define `` and `` `undef `` in RTL. Macros defined by the flow may be referenced | Parameters and localparams |
 | P13 | Positional instance connections and `.*` | Named connections (HIE-03) |
-| P14 | Testbench-only system tasks and random stimulus. Elaboration tasks per PAR-04 are the exception | Put them in verification sources |
+| P14 | Testbench-only system tasks and random stimulus | Put them in verification sources |
 | P15 | Combinational logic that gates or derives a functional clock; a clock used as ordinary data | Clock enable, or approved ICG (CLK-03) |
 | P16 | State on both edges, or on an edge different from the domain convention, without architectural approval | Document edge relationship and constraints when unavoidable |
 | P17 | `inout` in functional logic | Pad or IO wrapper only |
@@ -397,7 +397,7 @@ endmodule
 Confirm before accepting an RTL handoff:
 
 - **Reproducibility:** synthesis top, parameter values, filelist, frontend version, options, constraints, and target libraries are recorded; the final report preserves the exact tool configuration and logs.
-- **Elaboration and lint:** the intended configuration elaborates with the expected hierarchy. Lint findings for width, unsigned sizing, inferred storage/latches, multiple drivers, undriven and unused signals, and unsupported constructs are resolved or waived. `[NEW]` Waivers carry a rationale and reviewer.
+- **Elaboration and lint:** the intended configuration elaborates with the expected hierarchy. Lint findings for width, unsigned sizing, inferred storage, multiple drivers, undriven and unused signals, and unsupported constructs are resolved or waived. `[NEW]` Waivers carry a rationale and reviewer. `[NEW]` An inferred latch is never waived; it is fixed (COM-07).
 - **CDC/RDC `[NEW]`:** CDC and reset-domain-crossing analysis is clean or waived; every crossing uses an approved structure (CLK-01, RST-02).
 - **Synthesis QoR:** register, memory, and logic inference matches the architecture; unresolved cells are explained; reset maps to library cells (RST-03).
 - **Equivalence `[NEW]`:** RTL-to-netlist formal equivalence is planned for the flow; don't-care use (COM-04) is reviewed because it can produce RTL-versus-netlist mismatch.

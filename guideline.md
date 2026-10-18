@@ -38,9 +38,9 @@
 
 ## 5. Generate RTL | Sinh RTL
 
-**EN:** Run `/rtl_generator`. It uses the approved specification, configuration, and RTL rule file. Inspect `src/rtl/`, `src/rtl/filelist.f`, lint logs, and `schemas/synth_report.json` when synthesis runs. Unavailable checks must be reported as not run.
+**EN:** For new RTL, run `/rtl_generator` with the approved specification, configuration, and rule file. For existing RTL, use `/rtl_style_converter <source-rtl-directory>` in Claude Code or `$source-command-rtl-style-converter` in Codex CLI; provide the source path, top, and a separate output directory. Inspect `docs/rtl_style_conversion_report.md`. The converter preserves module topology, declarations, and behavior; suspected original bugs are reported, not fixed. The default rule is `spec_template/VLSIT_RTL_Design_Rule.md` unless you provide another. Check `src/rtl/filelist.f`, lint logs, and `schemas/synth_report.json` only when those outputs or checks actually run.
 
-**VI:** Chạy `/rtl_generator`. Phase này dùng đặc tả, cấu hình và RTL rule đã duyệt. Kiểm tra `src/rtl/`, `src/rtl/filelist.f`, log lint và `schemas/synth_report.json` nếu synthesis đã chạy. Công cụ không khả dụng phải được báo là chưa chạy.
+**VI:** Với RTL mới, chạy `/rtl_generator` theo đặc tả, cấu hình và rule đã duyệt. Với RTL có sẵn, dùng `/rtl_style_converter <source-rtl-directory>` trong Claude Code hoặc `$source-command-rtl-style-converter` trong Codex CLI; cung cấp đường dẫn RTL gốc, top và thư mục output riêng. Kiểm tra `docs/rtl_style_conversion_report.md`. Bộ chuyển giữ cấu trúc module, khai báo và hành vi; bug gốc nghi vấn chỉ được báo cáo, không sửa. Rule mặc định là `spec_template/VLSIT_RTL_Design_Rule.md` nếu bạn không cung cấp file khác. Chỉ kiểm tra `src/rtl/filelist.f`, log lint và `schemas/synth_report.json` khi output hoặc phép kiểm tra tương ứng thực sự đã chạy.
 
 ## 6. Generate SVA — Gate 3b | Sinh SVA — Gate 3b
 
@@ -54,9 +54,9 @@
 
 **VI:** Chạy `/tb_generator`. Review test plan và REQ-ID chưa được cover. Test lấy từ contract và golden sources đã duyệt, không lấy từ RTL. Kiểm tra file trong `src/tb/tests/` và `schemas/selected_testplan.json`. Shell compile diễn ra trước Gate 4; chạy riêng cần bạn duyệt, còn autoflow có thể tự duyệt plan đầy đủ và không lỗi.
 
-**EN:** The steps above follow `/autoflow`. In a manual run, Step 5 may start as soon as Gate 2 is approved; Steps 6–7 require Gate 3a. RTL and verification generation stay independent until DUT integration.
+**EN:** The steps above follow `/autoflow`. For an existing RTL design, use `/autoflow spec/fifo_spec.md --rtl-source <source-rtl-directory>` with a matching independently approved specification. A standalone style conversion needs no specification or gate; further lint, synthesis, equivalence, or verification checks can be requested separately. In a manual full-flow run, Step 5 may start after Gate 2; Steps 6–7 require Gate 3a. The two branches stay independent until DUT integration.
 
-**VI:** Thứ tự trên theo `/autoflow`. Khi chạy từng phase, Bước 5 có thể bắt đầu ngay sau Gate 2; Bước 6–7 cần Gate 3a. Việc sinh RTL và verification độc lập đến khi tích hợp DUT.
+**VI:** Thứ tự trên theo `/autoflow`. Với RTL có sẵn, dùng `/autoflow spec/fifo_spec.md --rtl-source <source-rtl-directory>` cùng đặc tả tương ứng đã duyệt độc lập. Chuyển style riêng không cần đặc tả hay gate; có thể yêu cầu thêm lint, synthesis, equivalence hoặc verification ở bước khác. Khi chạy toàn flow từng phase, Bước 5 có thể bắt đầu sau Gate 2; Bước 6–7 cần Gate 3a. Hai nhánh độc lập đến khi tích hợp DUT.
 
 ## 8. Integrate and verify | Tích hợp và kiểm chứng
 

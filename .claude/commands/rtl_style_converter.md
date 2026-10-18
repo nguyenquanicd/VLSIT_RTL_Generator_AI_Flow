@@ -1,0 +1,32 @@
+# Existing RTL style conversion — /rtl_style_converter
+
+Convert a user-supplied Verilog or SystemVerilog RTL source tree to the selected VLSIT coding style. This is an optional existing-RTL implementation path, not RTL generation from a specification and not a verification oracle. It can run by itself or replace `/rtl_generator` in `/autoflow` when the user supplies existing RTL.
+
+## Inputs and output
+
+- Require the source RTL directory (or an explicit file list), intended top module, and output directory. If omitted, ask for the missing path/top rather than selecting a design snapshot. Preserve the source files; never edit them in place. For a standalone run, use a separate output directory chosen with the user. In the full flow, use `src/rtl/` as the converted output only when it is separate from the source and does not overwrite existing files.
+- Use the user's RTL coding rule file when supplied. Otherwise read `spec_template/VLSIT_RTL_Design_Rule.md` from this repository. Record its exact path and revision or hash in the report. Apply only rules compatible with the preservation contract below; record each incompatible rule and reason.
+- Include only synthesizable design RTL. Do not rewrite testbenches, SVA, libraries, generated tool files, or external IP source unless the user explicitly includes them in the selected source set.
+
+## Preservation contract
+
+1. Preserve the module count and parent-child instantiation topology, including generate conditions and instance multiplicity. Do not split, merge, add, or remove modules; do not insert wrappers. Module and instance identifiers may be renamed, but record a complete old-to-new mapping and update all references within the selected source set. External module references remain external.
+2. Do not add or remove ports, internal signals, state elements, parameters, localparams, macros/defines, enum members, or instances. Preserve directions, widths, parameter defaults/overrides, reset and clock behavior, and all externally observable behavior. Rename existing declarations and references consistently; do not create aliases to hide an incomplete rename. One-module-per-file organization is allowed because it changes files, not modules. A Verilog input may be emitted as SystemVerilog `.sv` only when its behavior remains equivalent.
+3. Change only names, comments, formatting, file organization, and language constructs with the same four-state behavior and synthesis meaning. Do not repair a suspected functional bug as part of style conversion. Do not convert signed logic to unsigned, a latch to a flop, a functional top to a new structural hierarchy, or a `case` default to `'x` unless the original behavior is provably preserved. Report the conflicting rule instead.
+4. If a safe equivalent rewrite cannot be established, leave that construct unchanged in the converted copy, mark the rule as unmet, and explain the tradeoff. If the overall behavior or topology cannot be preserved, stop the conversion and report the blocker; never claim full rule compliance.
+
+## Procedure
+
+1. Inventory source files, modules, ports, signals, parameters/localparams, defines, instances, generate structures, and the top. Record pre-conversion counts and an old-to-new name map. Identify unresolved modules, conditional compilation, black boxes, and external bindings before editing.
+2. Review the selected rule file against the preservation contract. Plan only compatible edits. Warn when a public port or module rename requires changes by external integrators; do not silently edit external projects.
+3. Convert into the separate output tree. Apply each rename consistently across declarations, named port and parameter connections, expressions, file lists, and references. Keep each module's logic and configuration behavior. Preserve a compile-order file list when the source has one; in the full flow, provide `src/rtl/filelist.f` for the converted RTL.
+4. Compare the before/after inventories: equal module and declaration counts, equal instance edges and generate conditions, matching port directions and widths after identifier renaming, unchanged parameter values, and no added signals/parameters/defines. Review the diff for behavioral edits. If requested and tools are available, run lint/elaboration, synthesis, simulation, or formal equivalence on both versions with the same top, parameters, defines, and constraints. Record exact commands, logs, versions, and outcomes; distinguish unrun from passed. Static comparison alone is not formal equivalence.
+5. Review the original RTL for potential bugs separately from style findings. Inspect reset behavior, incomplete assignments/latches, width and signedness, multiple drivers, out-of-range accesses, CDC/RDC, protocol handshakes, and parameter edge cases as applicable. Cite source file and line, a concrete failure scenario, impact, confidence, and a suggested fix. Keep all bug fixes out of the converted RTL unless the user starts a separate functional-change task.
+
+## Required report
+
+Write `docs/rtl_style_conversion_report.md` in English and Vietnamese. Include source/output paths; rule source and revision; top and configurations examined; before/after module, signal, parameter, define, and instance counts; hierarchy and rename mappings; converted files; rules applied, unmet, and blocked; check commands/results or `not run`; and any remaining integration risk. For every potential bug, provide both English and Vietnamese explanations, evidence location, trigger, expected versus observed or inferred behavior, severity/confidence, and suggested fix. Distinguish confirmed bugs from suspected bugs and style violations. If no bug is found, state the review scope and that absence of findings is not proof of correctness. Report the converted RTL as style-converted, partially converted, or blocked; never label it verified without actual verification evidence.
+
+## Flow handoff
+
+When used inside `/autoflow`, require the same approved Gate 1 and Gate 2 baseline as `/rtl_generator`; `/verification_contract` still derives from the approved specification, configuration, and applicable standards, never from either RTL tree. Once Gate 3a, Gate 3b, and Gate 4 requirements are met, `/verification` may use the converted RTL as the DUT. The user may request lint, synthesis, simulation, mutation, code coverage, or formal equivalence in their respective steps. These checks are optional for a standalone style conversion and are not implied by its report.
