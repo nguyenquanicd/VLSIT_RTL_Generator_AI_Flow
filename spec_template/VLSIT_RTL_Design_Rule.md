@@ -13,6 +13,7 @@
 
 - **SCP-01** Covers synthesizable design RTL only. Testbenches, verification-only SVA, and models belong to separate verification source sets.
 - **SCP-02** The synthesis environment (top, filelist, parameter overrides, tool and version, options, constraints, libraries) MUST be recorded with every synthesis result. A construct is accepted only when the selected frontend elaborates and synthesizes it as intended.
+- **SCP-03** `[NEW]` The only simulation code allowed inside a design file is the simulation branch selected by the flow macro `VLSIT_SYNTHESIS`: the body of `` `ifndef VLSIT_SYNTHESIS `` (up to its `` `else `` or `` `endif ``) or the `` `else `` body of `` `ifdef VLSIT_SYNTHESIS ``, with at most one `` `else `` and no `` `elsif ``. The synthesis, lint, CDC, formal, and equivalence flows define the macro, so this branch is never compiled for them. The synthesizable branch and all other lines follow every rule; the simulation branch is excluded from the rules of this document (it may use P1, P2, P6, P14, P20, P27 constructs) and the checker reports each such branch as a warning with this reason. No other macro gets this exception. It extends SCP-01 and P12 and does not change them.
 
 ## 2. Naming (single source)
 
@@ -40,10 +41,12 @@ Use lowercase snake_case for name portions unless the table says uppercase.
 | FSM state enum member | `ENUM_ST_<FUNCTION>` uppercase | `ENUM_ST_IDLE` |
 | Instance, single | `u_<function>` (module name without `m_`) | `m_decode` → `u_decode` |
 | Instance, repeated in one parent | `u_<function>_<index>` | `u_lane_0`, `u_lane_1` |
+| Instance of a library cell or macro | `u_dont_touch_<function>` | `u_dont_touch_sync_ff`, `u_dont_touch_sram` |
 | Generate block | `gen_<function>` | `gen_lane` |
 | Combinational process label | `p_com_<function>` | `p_com_control` |
 | Sequential process label | `p_ff_<function>` | `p_ff_control` |
 
+- **NAM-09** `[NEW]` The instance name of every technology library cell or memory macro (an instance of a module that is not a design module `m_<function>`) is `u_dont_touch_<function>`, lowercase, with `<function>` naming what the cell does and the whole name within NAM-07. The prefix lets the implementation flow apply `dont_touch` by name pattern. Such cells are instantiated only in the dedicated wrapper modules (CLK-02, HIE-07). It specializes the instance row of the table and does not change `u_<function>` for design modules.
 - **NAM-01** Every replicated name, signal, array, instance, or generated structure uses a zero-based index (`_0`, `_1`, …), local to the parent module and object group. Packed ranges include bit 0 (`[PARA_DATA_W-1:0]`).
 - **NAM-02** Values and identifiers fixed by an external protocol or the spec keep their external form.
 - **NAM-03** `reg_` means sequential state, not the Verilog `reg` type. Declare such signals as `logic` (or a logic-based enum).
@@ -223,7 +226,7 @@ end
 
 - **HIE-01** One synthesizable module per `.sv` file; the file name equals the module name.
 - **HIE-02** The design top is a structural wrapper: interface, parameters, interconnect declarations, and submodule instances only. Any logic goes in a named child module.
-- **HIE-03** Connect all ports and parameter overrides by name. Keep bus and its valid/ready/sideband order stable. Group ports by role: clock and reset, control in, data in, control out, data out.
+- **HIE-03** Connect all ports and parameter overrides by name. Keep bus and its valid/ready/sideband order stable. The grouping and the layout of the module ports follow FIL-06 and FIL-05.
 - **HIE-04** Repeated explicit instances of one module get zero-based suffixes. Generate replication starts at index 0 with a descriptive block name; the elaborated hierarchy carries the index (`gen_lane[0].u_lane`).
 - **HIE-05** Use compile-time parameters and statically bounded generate loops for structural variation. The `genvar` is declared in the generate-`for` header (`for (genvar gen_idx = 0; ...)`), never separately outside it. Keep elaboration choices separate from run-time behavior.
 - **HIE-06** Describe arrays and memories in the pattern the frontend and memory flow support. Confirm inference (depth, width, ports) in synthesis reports. A memory macro sits behind a wrapper that follows the project integration rules. `[NEW]` The wrapper provides the DFT/BIST hooks and bypass required by the methodology.
@@ -253,6 +256,34 @@ end
 - **FIL-01** Header fields: Project, Author (`<USER_NAME> (user)`), AI Flow, AI Flow Page, Date, Description. The human user is the author; the AI flow is recorded separately.
 - **FIL-02** Use ANSI-style declaration.
 - **FIL-03** `[NEW]` Indent and align with space characters only. The examples in this document use 2 spaces per indent level.
+- **FIL-04** `[NEW]` Branch layout: in an `if`, `else if`, or `else` without `begin`, the statement of the branch is on its own line, indented two spaces more than the `if` or `else`; it never follows the condition or `else` on the same line, and statements of different branches are not aligned to a common column. With `begin`, the `begin` stays at the end of the `if` or `else` line and the statements are indented two spaces more. Example:
+
+```systemverilog
+always_ff @(posedge i_clk_core, negedge i_rst_n_core) begin : p_ff_control
+  if (!i_rst_n_core)
+    reg_valid <= 1'b0;
+  else
+    reg_valid <= w_valid_nxt;
+end
+```
+
+- **FIL-05** `[NEW]` Port list alignment: the ports of a module are written one per line in four columns, direction keyword, type, width, and name, and each column starts at the same position for every port of the module. Each column is as narrow as its longest entry plus one space: the direction column is as wide as the longest keyword used, the type column as wide as the longest type, the width column as wide as the longest width. A port without a width leaves the width column blank, so that the names stay aligned. The comma follows the name. Example:
+
+```systemverilog
+module m_example (
+  // Clock and reset
+  input  wire                          i_clk_core,
+  input  wire                          i_rst_n_core,
+
+  // Data interface
+  input  wire                          i_valid,
+  input  wire  [PARA_DATA_W-1:0]       i_data,
+  output logic                         o_ready,
+  output logic [PARA_DATA_W-1:0]       o_result
+);
+```
+
+- **FIL-06** `[NEW]` Port groups: the ports are declared in groups of one function, not all inputs and then all outputs. A function is a clock and reset pair, a protocol or interface (for example APB, a write interface, a memory port), a control or status set, or a data path; the inputs and the outputs of the same function are in the same group. Each group starts with a comment line that names it, and one blank line separates the groups. The clock and reset group is first. This replaces the grouping by direction.
 
 ### 8.2 Template
 
