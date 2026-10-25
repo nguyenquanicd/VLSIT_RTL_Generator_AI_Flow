@@ -130,7 +130,7 @@ Describe the main blocks, data/control path, fixed architectural trade-offs, and
 
 ### 5.2 Block diagram
 
-Show blocks, interfaces, memories/macros, clock/reset domains, and CDC paths.
+Show blocks, interfaces, memories/macros, clock/reset domains, and CDC paths. Insert the draw.io diagram made by the specification skill (image plus its `.drawio` source) instead of the sketch below.
 
 ~~~mermaid
 flowchart LR
