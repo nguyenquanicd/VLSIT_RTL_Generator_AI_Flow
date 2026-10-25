@@ -95,6 +95,7 @@ Keep in full, never abbreviate: `data`, `valid`, `ready`, `mode`, `depth`, `done
 - **TYP-03** Because every port has an explicit type, `default_nettype none` is compatible and SHOULD be enforced by lint and elaboration checks against undeclared identifiers (see P5).
 - **TYP-04** Internal signals and state use `logic`. Enum-typed signals are allowed only with a logic-based enum.
 - **TYP-05** Port interfaces are packed vectors. Types are module-local. SV `interface` and `package` are used only in simulation (verification source set), never in design RTL (see P11).
+- **TYP-06** `[NEW]` No redundant declarations. A one-bit port, internal signal, or enum base type is declared without a range (`logic w_x`, `input wire i_x`, `typedef enum logic {...}`), never with a one-bit range such as `[0:0]`; one bit of a vector is selected with `[i]`, never `[i:i]`. An internal signal, localparam, or type that nothing in the module uses is not declared. Ports and parameters belong to the interface and are exempt. A one-bit signal may connect to a vector port of width 1. The "explicit dimensions" of TYP-01 apply to vectors of two or more bits.
 
 ### 3.2 Parameters and constants
 
@@ -146,6 +147,8 @@ typedef enum logic [1:0] {
 ctrl_state_type_def reg_fsm_ctrl_current_state;
 ctrl_state_type_def w_fsm_ctrl_nxt_state;
 ```
+
+- **ENM-06** `[NEW]` The current-state register of an FSM (`reg_fsm_<function>_current_state`) is assigned in an `always_ff` of its own that holds that register only: its reset value and its update from the next state. Every other flip-flop of the module (output registers, counters, flags, handshake bits) is in another `always_ff`. Each FSM has its own current-state block. This is part 1 of the three-process FSM structure (SEQ-02) made explicit, and it keeps the state update visible to the FSM extraction of the synthesis frontend.
 
 ## 4. Combinational logic
 
@@ -423,6 +426,7 @@ endmodule
 | P27 | `[NEW]` Non-synthesizable data types and constructs: `real`, `string`, `event`, classes, dynamic or associative arrays, queues | Static packed/unpacked `logic` arrays |
 | P28 | `[NEW]` Unregistered logic between a clock-domain crossing launch flop and its synchronizer; logic between synchronizer stages | CLK-01 |
 | P29 | `[NEW]` Tab characters (`\t`) in RTL source files | Space characters only (FIL-03) |
+| P30 | `[NEW]` One-bit ranges (`[0:0]`, `[i:i]`) and internal signals, localparams, or types that nothing uses | Range-free one-bit declarations; remove the unused declaration (TYP-06) |
 
 ## 11. Tapeout readiness checklist
 

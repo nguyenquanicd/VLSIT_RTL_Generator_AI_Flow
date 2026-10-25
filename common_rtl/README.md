@@ -11,7 +11,11 @@ This directory contains reusable ASIC RTL blocks, example cell models, and desig
 | [`000_Common`](000_Common/README.md) | Shared wrappers for reset synchronization, tie-offs, and FIFO memory macros; 52 general example cells plus 8 synchronizer-cell models and 1 SRAM model in `rtl_cells`. |
 | [`001_AsyncGrayFIFO`](001_AsyncGrayFIFO/AsyncGrayFIFO_Design_Specification.md) | Asynchronous FIFO for unrelated write and read clocks; Gray-pointer CDC, software-reset handshake, thresholds, and optional SRAM macro. |
 | [`002_SyncFIFO`](002_SyncFIFO/SyncFIFO_Design_Specification.md) | FIFO for related synchronous clocks; optional pointer retiming and SRAM macro; supports non-power-of-two depths. |
+| [`003_AsyncAXI4Bridge`](003_AsyncAXI4Bridge/AsyncAXI4Bridge_Design_Specification.md) | Asynchronous AXI4 bridge specification and integration collateral. |
 | [`003_CRC`](003_CRC/rtl/filelist.f) | Five independent CRC implementations with different data rates, latency, and feature sets. See the comparison below. |
+| [`004_AsyncAPBBridge`](004_AsyncAPBBridge/AsyncAPBBridge_Design_Specification.md) | Asynchronous APB bridge specification and integration collateral. |
+| [`005_AHB2AXI_Bridge`](005_AHB2AXI_Bridge/README.md) | AHB-to-AXI bridge specification, protocol references, and design collateral. |
+| [`006_AXI2APB_Bridge`](006_AXI2APB_Bridge/README.md) | AXI4 Subordinate to APB4 Manager bridge specification and synthesizable RTL. |
 
 `rtl/filelist.f` in each design folder is the source list for that design. The CRC modules are alternatives: select the required CRC module as the elaboration top. FIFO filelists also depend on the shared wrappers and cell models noted in their filelist comments.
 
@@ -73,7 +77,11 @@ Thư mục này chứa các khối RTL ASIC dùng chung, mô hình cell ví dụ
 | [`000_Common`](000_Common/README.md) | Wrapper dùng chung cho reset synchronizer, tie-off và FIFO memory macro; `rtl_cells` có 52 cell logic/sequential/clock/tie, 8 mô hình synchronizer và 1 mô hình SRAM. |
 | [`001_AsyncGrayFIFO`](001_AsyncGrayFIFO/AsyncGrayFIFO_Design_Specification.md) | FIFO bất đồng bộ cho write/read clock độc lập; CDC bằng Gray pointer, software-reset handshake, threshold và tùy chọn SRAM macro. |
 | [`002_SyncFIFO`](002_SyncFIFO/SyncFIFO_Design_Specification.md) | FIFO cho các clock đồng bộ có quan hệ thời gian; tùy chọn retime pointer và SRAM macro; hỗ trợ depth không phải lũy thừa của 2. |
+| [`003_AsyncAXI4Bridge`](003_AsyncAXI4Bridge/AsyncAXI4Bridge_Design_Specification.md) | Đặc tả và tài liệu tích hợp bridge AXI4 bất đồng bộ. |
 | [`003_CRC`](003_CRC/rtl/filelist.f) | Năm cách hiện thực CRC độc lập, khác nhau về tốc độ xử lý dữ liệu, latency và tính năng. Xem bảng so sánh bên dưới. |
+| [`004_AsyncAPBBridge`](004_AsyncAPBBridge/AsyncAPBBridge_Design_Specification.md) | Đặc tả và tài liệu tích hợp bridge APB bất đồng bộ. |
+| [`005_AHB2AXI_Bridge`](005_AHB2AXI_Bridge/README.md) | Đặc tả, tài liệu chuẩn giao thức và tài liệu thiết kế bridge AHB sang AXI. |
+| [`006_AXI2APB_Bridge`](006_AXI2APB_Bridge/README.md) | Đặc tả và RTL tổng hợp được cho bridge AXI4 Subordinate sang APB4 Manager. |
 
 `rtl/filelist.f` trong mỗi thư mục thiết kế là danh sách source của thiết kế đó. Các module CRC là phương án thay thế nhau: chọn module CRC cần dùng làm top khi elaborate. Filelist FIFO cũng cần các wrapper và cell model dùng chung được nêu trong comment của filelist.
 
