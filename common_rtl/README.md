@@ -49,7 +49,7 @@ The 256-bit figure is the payload capacity, not total area. With the default RTL
 All five modules implement an MSB-first CRC recurrence, but their interfaces and CRC profiles differ. A CRC standard match also depends on polynomial, initial value, bit order/reflection, final XOR, and exact message bits; module selection alone does not establish standard conformance. The relative area classes below compare the listed defaults only; they combine declared state and recurrence logic and are not library-mapped area.
 
 | Module | Default configuration | Behavior and latency from accepted request | Declared state bits* | Rough area class* | Logic-size proxy | Advantages / trade-offs |
-|---|---|---|---:|---|---|
+|---|---|---|---:|---|---|---|
 | `m_crc_serial` | Fixed CRC width 4 | Consumes 1 input bit per enabled clock. Disabling `i_ctrl_en` clears the CRC state at the next edge; optional residue check samples an idle edge. | 5 | Extra small | One 4-bit serial recurrence per cycle; smallest CRC datapath. | Lowest logic footprint and continuous bit streaming; fixed width, one bit/cycle, synchronous active-low reset. |
 | `m_crc_initial_value` | CRC 8, data 16 | Loads the upper 8 bits as initial CRC, then processes payload plus appended zeros serially. Result after **16 processing clocks**. | 29 | Small | One 8-bit recurrence per cycle plus counter/control. | Supports input-provided initial state with a small recurrence datapath; highest latency among the transaction variants. |
 | `m_crc_parallel` | CRC 8, data 16 | Processes the full word combinationally and registers the result **1 clock after acceptance**. No reflection or init/final XOR options. | 33 | Medium | `DATA_W × CRC_W` = **128** unrolled recurrence bit-steps per result. | Short latency; larger combinational path than the serial/chunked variants. |
@@ -115,7 +115,7 @@ Con số 256 bit là dung lượng payload, không phải tổng diện tích. �
 Cả năm module dùng recurrence CRC MSB-first, nhưng interface và profile CRC khác nhau. Muốn khớp một chuẩn CRC còn cần polynomial, initial value, bit order/reflection, final XOR và chính xác các bit message; chỉ chọn module không chứng minh tương thích chuẩn.
 
 | Module | Cấu hình mặc định | Chức năng và latency từ lúc nhận request | Số bit state khai báo* | Ước lượng diện tích tương đối* | Proxy độ lớn logic | Ưu điểm / đánh đổi |
-|---|---|---|---:|---|---|
+|---|---|---|---:|---|---|---|
 | `m_crc_serial` | CRC width cố định 4 | Nhận 1 bit mỗi clock được enable. Khi tắt `i_ctrl_en`, CRC state bị xóa ở cạnh kế tiếp; residue checker tùy chọn lấy mẫu ở cạnh idle. | 5 | Rất nhỏ | Một recurrence serial 4 bit mỗi chu kỳ; datapath CRC nhỏ nhất. | Logic ít nhất, nhận luồng bit liên tục; width cố định, 1 bit/chu kỳ, reset active-low đồng bộ. |
 | `m_crc_initial_value` | CRC 8, data 16 | Nạp 8 bit trên làm initial CRC, sau đó xử lý tuần tự payload và bit 0 nối thêm. Kết quả sau **16 processing clock**. | 29 | Nhỏ | Một recurrence 8 bit mỗi chu kỳ, thêm counter/control. | Nhận initial state từ input với datapath nhỏ; latency lớn nhất trong nhóm transaction. |
 | `m_crc_parallel` | CRC 8, data 16 | Xử lý toàn bộ word bằng logic tổ hợp và đăng ký kết quả **1 clock sau khi nhận**. Không có tùy chọn reflection hoặc init/final XOR. | 33 | Trung bình | `DATA_W × CRC_W` = **128** bước recurrence bit được unroll cho một kết quả. | Latency thấp; đường tổ hợp lớn hơn phương án serial/chunked. |
