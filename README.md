@@ -104,6 +104,7 @@ VLSIT_RTL_Generator_AI_Model/
 ├── .claude/skills/           # Claude Code maintenance skill and schemas / Skill bảo trì và schema
 ├── .agents/skills/           # Codex CLI skills / Skill cho Codex CLI
 ├── agent_structure/          # Flow diagrams / Sơ đồ flow
+├── common_rtl/               # Reusable RTL IP library / Thư viện RTL IP dùng lại
 ├── example/                  # Saved design examples / Ví dụ thiết kế đã lưu
 ├── scripts/                  # Helper scripts / Script hỗ trợ
 ├── spec_template/            # IP, CSR, and RTL-rule templates / Mẫu spec IP, CSR và rule RTL
@@ -180,6 +181,33 @@ REQ-ID → Specification/standard clause → Reviewed oracle/SVA/TC → DUT exec
 **EN:** Verification eligibility uses specification/standard traceability, reviewed oracle/SVA/TC evidence, DUT simulation, and mutation evidence under the current policy. RTL tag presence is not a sign-off condition. N/A is not evidence that mutation requirements passed.
 
 **VI:** Điều kiện sign-off verification dùng truy vết specification/standard, oracle/SVA/TC đã review, DUT simulation và mutation evidence theo chính sách hiện tại. Tag RTL không phải điều kiện sign-off. N/A không chứng minh mutation đã đạt.
+
+## Reusable RTL library and default rules | Thư viện RTL dùng lại và rule mặc định
+
+**EN:** `common_rtl/` holds reusable ASIC RTL blocks together with their specifications (22-section VLSIT template), figures, waveforms, constraints and, where noted in each folder, testbenches and logs. It is separate from the autoflow output trees. Each design folder has its own `rtl/filelist.f`; shared wrappers and cell models are in `common_rtl/000_Common`. See [common_rtl/README.md](common_rtl/README.md) for the directory map, the FIFO and CRC comparisons, and the limits of the area estimates.
+
+**VI:** `common_rtl/` chứa các khối RTL ASIC dùng lại cùng specification (mẫu 22 mục của VLSIT), hình vẽ, waveform, constraint và, nơi thư mục ghi rõ, testbench và log. Thư mục này tách khỏi cây output của autoflow. Mỗi thư mục thiết kế có `rtl/filelist.f` riêng; wrapper và mô hình cell dùng chung nằm ở `common_rtl/000_Common`. Xem [common_rtl/README.md](common_rtl/README.md) để biết bản đồ thư mục, so sánh FIFO và CRC, và giới hạn của các ước lượng diện tích.
+
+| Folder / Thư mục | EN content | Nội dung |
+|---|---|---|
+| `000_Common` | Shared wrappers (reset synchronizer, tie-off, FIFO SRAM macros, synchronizer cells with a metastability model) and stand-in cell models | Wrapper dùng chung (reset synchronizer, tie-off, SRAM macro cho FIFO, synchronizer cell có mô hình metastability) và mô hình cell stand-in |
+| `001_AsyncGrayFIFO` | FIFO for unrelated write/read clocks (Gray pointers, software reset, thresholds) | FIFO cho write/read clock độc lập (Gray pointer, software reset, threshold) |
+| `002_SyncFIFO` | FIFO for related synchronous clocks, any depth, optional pointer retiming | FIFO cho clock đồng bộ có quan hệ, depth bất kỳ, tùy chọn retime pointer |
+| `003_AsyncAXI4Bridge`, `004_AsyncAPBBridge` | Asynchronous AXI4 and APB (APB4/APB5) bridges across unrelated clocks | Bridge AXI4 và APB (APB4/APB5) bất đồng bộ giữa các clock độc lập |
+| `003_CRC` | Five alternative CRC implementations | Năm phương án CRC thay thế nhau |
+| `005_AHB2AXI_Bridge`, `006_AXI2APB_Bridge` | AHB-to-AXI and AXI4-to-APB4 bridges | Bridge AHB sang AXI và AXI4 sang APB4 |
+
+**EN:** The status of each design differs (specification only, RTL with lint, RTL with simulation evidence); read the folder README or the specification section on open items before reuse. None of them includes timing closure, place-and-route or sign-off.
+
+**VI:** Trạng thái từng thiết kế khác nhau (chỉ có specification, RTL kèm lint, RTL kèm bằng chứng mô phỏng); đọc README của thư mục hoặc mục open item trong specification trước khi tái sử dụng. Không thiết kế nào có timing closure, place-and-route hay sign-off.
+
+**EN:** The default coding rules ([spec_template/VLSIT_RTL_Design_Rule.md](spec_template/VLSIT_RTL_Design_Rule.md)) define naming, file structure, and a prohibited-constructs list P1 to P30. Recent additions: NAM-09 (library cells and macros are instantiated only in wrappers and named `u_dont_touch_<function>`), SCP-03 (the only simulation code in a design file is the branch selected by the macro `VLSIT_SYNTHESIS`), FIL-04 to FIL-06 (branch layout, aligned port lists, ports grouped by function), TYP-06 (no redundant declarations such as one-bit ranges `[0:0]` or unused internal signals) and ENM-06 (the current-state register of an FSM is assigned in an `always_ff` of its own).
+
+**VI:** Rule coding mặc định ([spec_template/VLSIT_RTL_Design_Rule.md](spec_template/VLSIT_RTL_Design_Rule.md)) quy định đặt tên, cấu trúc file và danh sách cấm P1 đến P30. Bổ sung gần đây: NAM-09 (cell thư viện và macro chỉ được instantiate trong wrapper và đặt tên `u_dont_touch_<function>`), SCP-03 (mã mô phỏng duy nhất được phép trong file thiết kế là nhánh chọn bởi macro `VLSIT_SYNTHESIS`), FIL-04 đến FIL-06 (bố cục nhánh, danh sách port căn cột, port nhóm theo chức năng), TYP-06 (không khai báo dư như range một bit `[0:0]` hay signal nội bộ không dùng) và ENM-06 (thanh ghi current state của FSM gán trong một `always_ff` riêng).
+
+**EN:** The skills `vlsit-asic-ip-microspec` (specification, waveforms) and `vlsit-rtl-generator` (RTL under this rule file, rule checker, lint, optional testbench) of the companion repository `VLSIT_CODEX_CLAUDE_SKILLS` were used for several designs of `common_rtl`. For a testbench the generator skill requires protocol assertions, saved simulated waveforms next to the specified ones, and, for a clock-domain crossing, runs in both the `VLSIT_SYNTHESIS` branch and the metastability-model branch.
+
+**VI:** Skill `vlsit-asic-ip-microspec` (specification, waveform) và `vlsit-rtl-generator` (RTL theo file rule này, kiểm rule, lint, testbench tùy chọn) của repository đi kèm `VLSIT_CODEX_CLAUDE_SKILLS` đã được dùng cho nhiều thiết kế trong `common_rtl`. Với testbench, skill sinh RTL yêu cầu assertion cho giao thức, lưu waveform mô phỏng cạnh waveform trong specification và, với crossing giữa các miền clock, chạy cả nhánh `VLSIT_SYNTHESIS` lẫn nhánh có mô hình metastability.
 
 ## Tools and environment | Công cụ và môi trường
 
@@ -326,6 +354,7 @@ Use spec/<ip_name>_spec.md
 - [Manual workflow / Flow từng bước](guideline.md)
 - [Automatic workflow prompt / Prompt autoflow](.claude/commands/autoflow.md)
 - [Default RTL coding rules / Quy tắc RTL mặc định](spec_template/VLSIT_RTL_Design_Rule.md)
+- [Reusable RTL library / Thư viện RTL dùng lại](common_rtl/README.md)
 - [Spec parser authoring rules / Quy tắc biên soạn spec parser](.claude/skills/rtl-flow-maintainer/references/spec-parser-authoring-rules.md)
 - [Active Claude Code commands / Claude Code command đang dùng](.claude/commands/)
 - [Claude Code maintenance skill / Skill bảo trì Claude Code](.claude/skills/rtl-flow-maintainer/SKILL.md)

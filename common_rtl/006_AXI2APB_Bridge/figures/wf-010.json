@@ -1,0 +1,84 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_axi",
+      "wave": "p..........."
+    },
+    [
+      "AXI write data",
+      {
+        "name": "i_axi_wvalid",
+        "wave": "010010010000"
+      },
+      {
+        "name": "o_axi_wready",
+        "wave": "010010010000"
+      },
+      {
+        "name": "i_axi_wlast",
+        "wave": "000000010000"
+      },
+      {
+        "name": "i_axi_wdata",
+        "wave": "x=..=..=....",
+        "data": [
+          "D0",
+          "D1",
+          "D2"
+        ]
+      }
+    ],
+    [
+      "APB write beats",
+      {
+        "name": "o_apb_psel",
+        "wave": "001001001000"
+      },
+      {
+        "name": "o_apb_penable",
+        "wave": "000100100100"
+      },
+      {
+        "name": "i_apb_pready",
+        "wave": "000100100100"
+      },
+      {
+        "name": "i_apb_pslverr",
+        "wave": "000000100000"
+      },
+      {
+        "name": "o_apb_paddr",
+        "wave": "xx=..=..=...",
+        "data": [
+          "A0",
+          "A4",
+          "A8"
+        ]
+      }
+    ],
+    [
+      "AXI B response",
+      {
+        "name": "o_axi_bvalid",
+        "wave": "000000000110"
+      },
+      {
+        "name": "i_axi_bready",
+        "wave": "000000000010"
+      },
+      {
+        "name": "o_axi_bresp",
+        "wave": "xxxxxxxxxx=.",
+        "data": [
+          "SLVERR"
+        ]
+      }
+    ]
+  ],
+  "head": {
+    "text": "Write error aggregation"
+  },
+  "foot": {
+    "text": "A middle-beat APB error does not stop later writes; final BRESP is SLVERR."
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_axi",
+      "wave": "p..........."
+    },
+    [
+      "APB read burst",
+      {
+        "name": "o_apb_psel",
+        "wave": "010101000000"
+      },
+      {
+        "name": "o_apb_penable",
+        "wave": "001010100000"
+      },
+      {
+        "name": "i_apb_pready",
+        "wave": "001010100000"
+      },
+      {
+        "name": "i_apb_pslverr",
+        "wave": "000010000000"
+      },
+      {
+        "name": "o_apb_paddr",
+        "wave": "x=.=.=......",
+        "data": [
+          "A0",
+          "A4",
+          "A8"
+        ]
+      }
+    ],
+    [
+      "AXI R responses",
+      {
+        "name": "o_axi_rvalid",
+        "wave": "000101010000"
+      },
+      {
+        "name": "i_axi_rready",
+        "wave": "000101010000"
+      },
+      {
+        "name": "o_axi_rresp",
+        "wave": "xxx=.=.=....",
+        "data": [
+          "OKAY",
+          "SLVERR",
+          "OKAY"
+        ]
+      },
+      {
+        "name": "o_axi_rlast",
+        "wave": "000000010000"
+      },
+      {
+        "name": "o_axi_rdata",
+        "wave": "xxx=.=.=....",
+        "data": [
+          "D0",
+          "0",
+          "D2"
+        ]
+      }
+    ]
+  ],
+  "head": {
+    "text": "Read error on one APB beat"
+  },
+  "foot": {
+    "text": "PSLVERR affects that R beat; the read burst continues to its final beat."
+  }
+}

@@ -1,0 +1,93 @@
+$ C:\Tools\oss-cad-suite\bin\verilator_bin.exe --lint-only -Wall --top-module m_ahb2axi_top m_ahb2axi_ahb_if.sv m_ahb2axi_axi_if.sv ../../002_SyncFIFO/rtl/m_vlsit_sfifo_mem.sv ../../002_SyncFIFO/rtl/m_vlsit_sfifo_rd.sv ../../002_SyncFIFO/rtl/m_vlsit_sfifo_wr.sv ../../002_SyncFIFO/rtl/m_vlsit_sfifo_top.sv m_ahb2axi_ctrl.sv m_ahb2axi_top.sv
+(cwd C:\HQuan\102_MyGithub\VLSIT_RTL_Generator_AI_Model\common_rtl\005_AHB2AXI_Bridge\rtl)
+
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1073:6: Instance pin connected by name with empty reference: 'o_full_thr'
+ 1073 |     .o_full_thr     (),
+      |      ^~~~~~~~~~
+                          ... For warning description see https://verilator.org/warn/PINCONNECTEMPTY?v=5.053
+                          ... Use "/* verilator lint_off PINCONNECTEMPTY */" and lint_on around source to disable this message.
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1074:6: Instance pin connected by name with empty reference: 'o_overflow'
+ 1074 |     .o_overflow     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1076:6: Instance pin connected by name with empty reference: 'o_sw_rst_busy'
+ 1076 |     .o_sw_rst_busy  (),
+      |      ^~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1083:6: Instance pin connected by name with empty reference: 'o_empty_thr'
+ 1083 |     .o_empty_thr    (),
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1084:6: Instance pin connected by name with empty reference: 'o_underflow'
+ 1084 |     .o_underflow    ()
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1097:6: Instance pin connected by name with empty reference: 'o_full_thr'
+ 1097 |     .o_full_thr     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1098:6: Instance pin connected by name with empty reference: 'o_overflow'
+ 1098 |     .o_overflow     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1100:6: Instance pin connected by name with empty reference: 'o_sw_rst_busy'
+ 1100 |     .o_sw_rst_busy  (),
+      |      ^~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1107:6: Instance pin connected by name with empty reference: 'o_empty_thr'
+ 1107 |     .o_empty_thr    (),
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1108:6: Instance pin connected by name with empty reference: 'o_underflow'
+ 1108 |     .o_underflow    ()
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1121:6: Instance pin connected by name with empty reference: 'o_full_thr'
+ 1121 |     .o_full_thr     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1122:6: Instance pin connected by name with empty reference: 'o_overflow'
+ 1122 |     .o_overflow     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1124:6: Instance pin connected by name with empty reference: 'o_sw_rst_busy'
+ 1124 |     .o_sw_rst_busy  (),
+      |      ^~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1131:6: Instance pin connected by name with empty reference: 'o_empty_thr'
+ 1131 |     .o_empty_thr    (),
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1132:6: Instance pin connected by name with empty reference: 'o_underflow'
+ 1132 |     .o_underflow    ()
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1145:6: Instance pin connected by name with empty reference: 'o_full_thr'
+ 1145 |     .o_full_thr     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1146:6: Instance pin connected by name with empty reference: 'o_overflow'
+ 1146 |     .o_overflow     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1148:6: Instance pin connected by name with empty reference: 'o_sw_rst_busy'
+ 1148 |     .o_sw_rst_busy  (),
+      |      ^~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1155:6: Instance pin connected by name with empty reference: 'o_empty_thr'
+ 1155 |     .o_empty_thr    (),
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1156:6: Instance pin connected by name with empty reference: 'o_underflow'
+ 1156 |     .o_underflow    ()
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1169:6: Instance pin connected by name with empty reference: 'o_full_thr'
+ 1169 |     .o_full_thr     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1170:6: Instance pin connected by name with empty reference: 'o_overflow'
+ 1170 |     .o_overflow     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1172:6: Instance pin connected by name with empty reference: 'o_sw_rst_busy'
+ 1172 |     .o_sw_rst_busy  (),
+      |      ^~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1179:6: Instance pin connected by name with empty reference: 'o_empty_thr'
+ 1179 |     .o_empty_thr    (),
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1180:6: Instance pin connected by name with empty reference: 'o_underflow'
+ 1180 |     .o_underflow    ()
+      |      ^~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: ../../002_SyncFIFO/rtl\m_vlsit_sfifo_wr.sv:101:29: Bits of signal are not used: 'w_addr_ext'[31:1]
+                                                                        : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl.u_vlsit_sfifo_top_2.u_vlsit_sfifo_wr'
+  101 |   logic [LPARA_ARITH_W-1:0] w_addr_ext;
+      |                             ^~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/UNUSEDSIGNAL?v=5.053
+                       ... Use "/* verilator lint_off UNUSEDSIGNAL */" and lint_on around source to disable this message.
+%Warning-UNUSEDSIGNAL: ../../002_SyncFIFO/rtl\m_vlsit_sfifo_rd.sv:96:29: Bits of signal are not used: 'w_addr_ext'[31:1]
+                                                                       : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl.u_vlsit_sfifo_top_2.u_vlsit_sfifo_rd'
+   96 |   logic [LPARA_ARITH_W-1:0] w_addr_ext;
+      |                             ^~~~~~~~~~
+%Error: Exiting due to 27 warning(s)
+
+exit code 1

@@ -1,0 +1,89 @@
+FIFO_rtl_array
+| No. | Time (ns) | Event |
+|---:|---:|---|
+| 1 | 105.0 | Write of 0x11 accepted at write edge 105 (`i_wr_en` = 1 since edge 95, `o_full` = 0). The storage is written and the write Gray pointer register changes 000 -> 001 at the same edge. |
+| 2 | 119.0 | `o_rd_data` shows 0x11 (show-ahead). The storage is read in every read cycle with the address of the next read pointer (0), so it already holds the new word before the empty flag falls. |
+| 3 | 133.0 | The write Gray pointer has crossed the 2-stage synchronizer (S = 2 read edges after the first capturing edge) and `o_empty` falls (combinational from the synchronized pointer). The data was already on `o_rd_data`. |
+| 4 | 135.0 | The 4th word (0x44) is accepted at write edge 135 and fills the FIFO: `o_full` rises. |
+| 5 | 145.0 | A 5th write (0x55) is sampled at write edge 145 while `o_full` = 1: it is dropped (pointer and storage unchanged) and `o_overflow` pulses for one write cycle, then `i_wr_en` falls at the same edge. |
+| 6 | 175.0 | First read accepted at read edge 175 (`i_rd_en` = 1 since edge 161, `o_empty` = 0). `o_rd_data` moves to the next word 0x22 right after this edge, because the read module gave the address of the next read pointer. |
+| 7 | 195.0 | The read Gray pointer has crossed to the write domain (2 write edges) and `o_full` falls. |
+| 8 | 217.0 | The 4th read (edge 217) takes the last word: `o_empty` rises. |
+| 9 | 231.0 | A 5th read is sampled at read edge 231 while `o_empty` = 1: the read pointer is unchanged and `o_underflow` pulses for one read cycle. `i_rd_en` falls at the same edge. |
+| 10 | 255.0 | Write to an empty FIFO: a new word (0x66) is written to address 0 at write edge 255. The read pointer addresses the same entry and the storage is read at every read edge, but no read edge happened since the write, so `o_rd_data` still shows the old word 0x11. |
+| 11 | 259.0 | The next read edge (259) captures the new word: `o_rd_data` = 0x66. `o_empty` is still 1. |
+| 12 | 273.0 | The new write pointer has crossed to the read domain: `o_empty` falls. |
+| 13 | 301.0 | The word 0x66 is read at read edge 301 and `o_empty` rises again. |
+
+Check of the write interface inputs: 0 change(s) of i_wr_en, i_wr_data outside a rising edge of the clock
+Check of the read interface inputs: 0 change(s) of i_rd_en outside a rising edge of the clock
+
+FIFO_sram_macro
+| No. | Time (ns) | Event |
+|---:|---:|---|
+| 1 | 105.0 | Write of 0x11 accepted at write edge 105 (`i_wr_en` = 1 since edge 95, `o_full` = 0). The storage is written and the write Gray pointer register changes 000 -> 001 at the same edge. |
+| 2 | 119.0 | `o_rd_data` shows 0x11 (show-ahead). The storage is read in every read cycle with the address of the next read pointer (0), so it already holds the new word before the empty flag falls. |
+| 3 | 133.0 | The write Gray pointer has crossed the 2-stage synchronizer (S = 2 read edges after the first capturing edge) and `o_empty` falls (combinational from the synchronized pointer). The data was already on `o_rd_data`. |
+| 4 | 135.0 | The 4th word (0x44) is accepted at write edge 135 and fills the FIFO: `o_full` rises. |
+| 5 | 145.0 | A 5th write (0x55) is sampled at write edge 145 while `o_full` = 1: it is dropped (pointer and storage unchanged) and `o_overflow` pulses for one write cycle, then `i_wr_en` falls at the same edge. |
+| 6 | 175.0 | First read accepted at read edge 175 (`i_rd_en` = 1 since edge 161, `o_empty` = 0). `o_rd_data` moves to the next word 0x22 right after this edge, because the read module gave the address of the next read pointer. |
+| 7 | 195.0 | The read Gray pointer has crossed to the write domain (2 write edges) and `o_full` falls. |
+| 8 | 217.0 | The 4th read (edge 217) takes the last word: `o_empty` rises. |
+| 9 | 231.0 | A 5th read is sampled at read edge 231 while `o_empty` = 1: the read pointer is unchanged and `o_underflow` pulses for one read cycle. `i_rd_en` falls at the same edge. |
+| 10 | 255.0 | Write to an empty FIFO: a new word (0x66) is written to address 0 at write edge 255. The read pointer addresses the same entry and the storage is read at every read edge, but no read edge happened since the write, so `o_rd_data` still shows the old word 0x11. |
+| 11 | 259.0 | The next read edge (259) captures the new word: `o_rd_data` = 0x66. `o_empty` is still 1. |
+| 12 | 273.0 | The new write pointer has crossed to the read domain: `o_empty` falls. |
+| 13 | 301.0 | The word 0x66 is read at read edge 301 and `o_empty` rises again. |
+
+Check of the write interface inputs: 0 change(s) of i_wr_en, i_wr_data outside a rising edge of the clock
+Check of the read interface inputs: 0 change(s) of i_rd_en outside a rising edge of the clock
+
+B2B_rtl_array
+| No. | Time (ns) | Event |
+|---:|---:|---|
+| 1 | 55.0 | First write accepted (`i_wr_en` was driven at the previous edge). |
+| 2 | 68.0 | `o_empty` falls: the first word has crossed the synchronizer (S = 2 read edges). |
+| 3 | 88.0 | First read accepted. The consumer saw `o_empty` = 0, set `i_rd_en` = 1 at the next read edge, and keeps it: from here every read edge accepts one word. |
+| 4 | 208.0 | Steady state, middle of the burst: one word is written and one word is read in every clock cycle, and `o_rd_data` steps through consecutive words. |
+| 5 | 285.0 | Last write of the burst accepted (word 24). `i_wr_en` falls at this edge. |
+| 6 | 318.0 | Last read accepted (word 24). `i_rd_en` falls at this edge. |
+| 7 | 318.0 | `o_empty` rises: the burst is fully read. |
+
+Check of the run: 24 write edges accepted, gaps between them: 0; 24 read edges accepted, gaps between them: 0; `o_empty` = 1 between the first and the last accepted read: no; `o_full` = 1 at any time: no; overflow pulses: 0; underflow pulses: 0.
+Check of the write interface inputs: 0 change(s) of i_wr_en, i_wr_data outside a rising edge of the clock
+Check of the read interface inputs: 0 change(s) of i_rd_en outside a rising edge of the clock
+
+B2B_sram_macro
+| No. | Time (ns) | Event |
+|---:|---:|---|
+| 1 | 55.0 | First write accepted (`i_wr_en` was driven at the previous edge). |
+| 2 | 68.0 | `o_empty` falls: the first word has crossed the synchronizer (S = 2 read edges). |
+| 3 | 88.0 | First read accepted. The consumer saw `o_empty` = 0, set `i_rd_en` = 1 at the next read edge, and keeps it: from here every read edge accepts one word. |
+| 4 | 208.0 | Steady state, middle of the burst: one word is written and one word is read in every clock cycle, and `o_rd_data` steps through consecutive words. |
+| 5 | 285.0 | Last write of the burst accepted (word 24). `i_wr_en` falls at this edge. |
+| 6 | 318.0 | Last read accepted (word 24). `i_rd_en` falls at this edge. |
+| 7 | 318.0 | `o_empty` rises: the burst is fully read. |
+
+Check of the run: 24 write edges accepted, gaps between them: 0; 24 read edges accepted, gaps between them: 0; `o_empty` = 1 between the first and the last accepted read: no; `o_full` = 1 at any time: no; overflow pulses: 0; underflow pulses: 0.
+Check of the write interface inputs: 0 change(s) of i_wr_en, i_wr_data outside a rising edge of the clock
+Check of the read interface inputs: 0 change(s) of i_rd_en outside a rising edge of the clock
+
+META_S2
+| No. | Time (ns) | What happens |
+|---:|---:|---|
+| 1 | 119.0 | Bit 0 changes to 1 at the last synchronizer stage. The model chose 1 extra cycle(s): latency 2 cycles after the first capturing edge, so the model output changes 14 ns after the plain chain output. |
+| 2 | 231.0 | Bit 0 changes to 0 at the last synchronizer stage. The model chose 2 extra cycle(s): latency 3 cycles after the first capturing edge, so the model output changes 28 ns after the plain chain output. |
+| 3 | 301.0 | Bit 2 changes to 1 at the last synchronizer stage. The model chose 0 extra cycle(s): latency 1 cycles after the first capturing edge, so the model output changes 0 ns after the plain chain output. |
+| 4 | 441.0 | Bit 3: the pending change to 1 is replaced by the new input value 0; the delay restarts. |
+
+All latency choices of the run with S = 2: t=119.0 ns bit 0 extra 1 (latency 2); t=175.0 ns bit 1 extra 1 (latency 2); t=231.0 ns bit 0 extra 2 (latency 3); t=301.0 ns bit 2 extra 0 (latency 1); t=357.0 ns bit 0 extra 1 (latency 2); t=427.0 ns bit 3 extra 2 (latency 3); t=441.0 ns bit 3 extra 0 (latency 1); t=525.0 ns bit 3 extra 1 (latency 2)
+
+META_S3
+| No. | Time (ns) | What happens |
+|---:|---:|---|
+| 1 | 133.0 | Bit 0 changes to 1 at the last synchronizer stage. The model chose 2 extra cycle(s): latency 4 cycles after the first capturing edge, so the model output changes 28 ns after the plain chain output. |
+| 2 | 189.0 | Bit 1 changes to 1 at the last synchronizer stage. The model chose 1 extra cycle(s): latency 3 cycles after the first capturing edge, so the model output changes 14 ns after the plain chain output. |
+| 3 | 245.0 | Bit 0 changes to 0 at the last synchronizer stage. The model chose 0 extra cycle(s): latency 2 cycles after the first capturing edge, so the model output changes 0 ns after the plain chain output. |
+| 4 | 455.0 | Bit 3: the pending change to 1 is replaced by the new input value 0; the delay restarts. |
+
+All latency choices of the run with S = 3: t=133.0 ns bit 0 extra 2 (latency 4); t=189.0 ns bit 1 extra 1 (latency 3); t=245.0 ns bit 0 extra 0 (latency 2); t=315.0 ns bit 2 extra 1 (latency 3); t=371.0 ns bit 0 extra 0 (latency 2); t=441.0 ns bit 3 extra 2 (latency 4); t=455.0 ns bit 3 extra 1 (latency 3); t=539.0 ns bit 3 extra 1 (latency 3)

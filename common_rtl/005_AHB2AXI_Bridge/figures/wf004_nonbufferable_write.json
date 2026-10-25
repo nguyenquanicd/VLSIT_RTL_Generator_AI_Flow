@@ -1,0 +1,10 @@
+{
+  "signal": [
+    {"name": "i_clk_core", "wave": "p........"},
+    ["AHB5", {"name": "i_ahb_htrans", "wave": "x=.......", "data": ["NONSEQ"]}, {"name": "i_ahb_hprot", "wave": "x=.......", "data": ["non-bufferable"]}, {"name": "o_ahb_hreadyout", "wave": "110000001"}, {"name": "o_ahb_hresp", "wave": "0........"}],
+    ["AXI4 write", {"name": "o_axi_awvalid", "wave": "0.110...."}, {"name": "i_axi_awready", "wave": "0...1...."}, {"name": "o_axi_wvalid", "wave": "0..110..."}, {"name": "i_axi_wready", "wave": "0....1..."}, {"name": "o_axi_wlast", "wave": "0...1...."}],
+    ["AXI4 B", {"name": "i_axi_bvalid", "wave": "0......11"}, {"name": "o_axi_bready", "wave": "0.......1"}, {"name": "i_axi_bresp", "wave": "x.......=", "data": ["OKAY"]}]
+  ],
+  "head": {"text": "WF-004 — Non-bufferable write waits for BRESP"},
+  "foot": {"text": "AHB completion remains pending until BVALID and BREADY handshake. / AHB chỉ hoàn tất sau khi BVALID và BREADY bắt tay."}
+}

@@ -1,0 +1,251 @@
+{
+  "title": "AHB5 to AXI4 Bridge — RTL Module Architecture",
+  "subtitle": "One top: m_ahb2axi_top  |  One shared clock: i_clk_core  |  One reset: i_rst_n_core",
+  "blocks": [
+    {
+      "id": "top",
+      "label": "m_ahb2axi_top\nNEW RTL\nu_ahb2axi_ctrl",
+      "x": 20.0,
+      "y": -3.0,
+      "kind": "block",
+      "status": "new"
+    },
+    {
+      "id": "ahb_bus",
+      "label": "AHB5 bus\nAHB Manager",
+      "x": -5.0,
+      "y": -11.0,
+      "kind": "io"
+    },
+    {
+      "id": "ahb_if",
+      "label": "m_ahb2axi_ahb_if\nu_ahb2axi_ahb_if\nNEW RTL\nAHB phases and responses",
+      "x": 7.0,
+      "y": -11.0,
+      "kind": "block",
+      "status": "new"
+    },
+    {
+      "id": "ctrl",
+      "label": "m_ahb2axi_ctrl\nu_ahb2axi_ctrl\nNEW RTL\nCentral bridge control\nvalidation, burst, mapping, IDs",
+      "x": 20.0,
+      "y": -11.0,
+      "kind": "block",
+      "status": "new"
+    },
+    {
+      "id": "axi_if",
+      "label": "m_ahb2axi_axi_if\nu_ahb2axi_axi_if\nNEW RTL\nAXI channels and responses",
+      "x": 33.0,
+      "y": -11.0,
+      "kind": "block",
+      "status": "new"
+    },
+    {
+      "id": "axi_bus",
+      "label": "AXI4 bus\nAXI Subordinate",
+      "x": 45.0,
+      "y": -11.0,
+      "kind": "io"
+    },
+    {
+      "id": "fifo_wr_cmd",
+      "label": "m_vlsit_sfifo_top\nu_vlsit_sfifo_top_0\nWrite command | depth 2\nREUSED RTL",
+      "x": 4.0,
+      "y": -20.0,
+      "kind": "block",
+      "status": "reused"
+    },
+    {
+      "id": "fifo_wr_data",
+      "label": "m_vlsit_sfifo_top\nu_vlsit_sfifo_top_1\nWrite data | depth 16\nREUSED RTL",
+      "x": 12.0,
+      "y": -20.0,
+      "kind": "block",
+      "status": "reused"
+    },
+    {
+      "id": "fifo_rd_cmd",
+      "label": "m_vlsit_sfifo_top\nu_vlsit_sfifo_top_2\nRead command | depth 2\nREUSED RTL",
+      "x": 20.0,
+      "y": -20.0,
+      "kind": "block",
+      "status": "reused"
+    },
+    {
+      "id": "fifo_rd_rsp",
+      "label": "m_vlsit_sfifo_top\nu_vlsit_sfifo_top_3\nRead response | depth 2\nREUSED RTL",
+      "x": 28.0,
+      "y": -20.0,
+      "kind": "block",
+      "status": "reused"
+    },
+    {
+      "id": "fifo_wr_rsp",
+      "label": "m_vlsit_sfifo_top\nu_vlsit_sfifo_top_4\nWrite response | depth 2\nREUSED RTL",
+      "x": 36.0,
+      "y": -20.0,
+      "kind": "block",
+      "status": "reused"
+    }
+  ],
+  "groups": [],
+  "links": [
+    {
+      "from": "top",
+      "to": "ctrl",
+      "from_side": "south",
+      "to_side": "north",
+      "to_offset": 0.0
+    },
+    {
+      "from": "ahb_bus",
+      "to": "ahb_if",
+      "from_side": "east",
+      "to_side": "west",
+      "dir": "bidir",
+      "label": "AHB5 signals",
+      "label_at": [
+        1.0,
+        -10.0
+      ]
+    },
+    {
+      "from": "ctrl",
+      "to": "ahb_if",
+      "from_side": "west",
+      "to_side": "east",
+      "dir": "bidir",
+      "label": "request / status",
+      "label_at": [
+        13.3,
+        -10.0
+      ]
+    },
+    {
+      "from": "ctrl",
+      "to": "axi_if",
+      "from_side": "east",
+      "to_side": "west",
+      "dir": "bidir",
+      "label": "command / status",
+      "label_at": [
+        26.7,
+        -10.0
+      ]
+    },
+    {
+      "from": "axi_if",
+      "to": "axi_bus",
+      "from_side": "east",
+      "to_side": "west",
+      "dir": "bidir",
+      "label": "AXI4 channels",
+      "label_at": [
+        39.0,
+        -10.0
+      ]
+    },
+    {
+      "from": "ctrl",
+      "to": "fifo_wr_cmd",
+      "from_side": "south",
+      "from_offset": -0.4,
+      "to_side": "north",
+      "waypoints": [
+        [
+          16.5,
+          -14.0
+        ],
+        [
+          4.0,
+          -14.0
+        ],
+        [
+          4.0,
+          -18.2
+        ]
+      ]
+    },
+    {
+      "from": "ctrl",
+      "to": "fifo_wr_data",
+      "from_side": "south",
+      "from_offset": -0.2,
+      "to_side": "north",
+      "waypoints": [
+        [
+          18.25,
+          -15.0
+        ],
+        [
+          12.0,
+          -15.0
+        ],
+        [
+          12.0,
+          -18.2
+        ]
+      ]
+    },
+    {
+      "from": "ctrl",
+      "to": "fifo_rd_cmd",
+      "from_side": "south",
+      "from_offset": 0.0,
+      "to_side": "north",
+      "waypoints": [
+        [
+          20.0,
+          -15.5
+        ],
+        [
+          20.0,
+          -18.2
+        ]
+      ]
+    },
+    {
+      "from": "ctrl",
+      "to": "fifo_rd_rsp",
+      "from_side": "south",
+      "from_offset": 0.2,
+      "to_side": "north",
+      "waypoints": [
+        [
+          21.75,
+          -16.0
+        ],
+        [
+          28.0,
+          -16.0
+        ],
+        [
+          28.0,
+          -18.2
+        ]
+      ]
+    },
+    {
+      "from": "ctrl",
+      "to": "fifo_wr_rsp",
+      "from_side": "south",
+      "from_offset": 0.4,
+      "to_side": "north",
+      "waypoints": [
+        [
+          23.5,
+          -15.5
+        ],
+        [
+          36.0,
+          -15.5
+        ],
+        [
+          36.0,
+          -18.2
+        ]
+      ]
+    }
+  ]
+}

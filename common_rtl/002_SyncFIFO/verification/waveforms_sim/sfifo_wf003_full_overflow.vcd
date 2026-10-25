@@ -1,0 +1,1299 @@
+$date
+	Sun Oct 25 20:34:38 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module tb_wave $end
+$var wire 1 ! underflow $end
+$var wire 8 " rd_data [7:0] $end
+$var wire 1 # overflow $end
+$var wire 1 $ full_thr_o $end
+$var wire 1 % full $end
+$var wire 1 & empty_thr_o $end
+$var wire 1 ' empty $end
+$var wire 1 ( busy $end
+$var parameter 32 ) DEPTH $end
+$var parameter 32 * DT $end
+$var parameter 32 + EMPTYTHR $end
+$var parameter 32 , FULLTHR $end
+$var parameter 32 - HR $end
+$var parameter 32 . HRST_AT $end
+$var parameter 32 / HRST_CYC $end
+$var parameter 32 0 HW $end
+$var parameter 32 1 NSLOT $end
+$var parameter 32 2 OCCW $end
+$var parameter 32 3 PTRW $end
+$var parameter 32 4 RETIME $end
+$var parameter 32 5 W $end
+$var reg 1 6 clk_rd $end
+$var reg 1 7 clk_wr $end
+$var reg 3 8 empty_thr [2:0] $end
+$var reg 1760 9 fname [1759:0] $end
+$var reg 3 : full_thr [2:0] $end
+$var reg 1 ; rd_en $end
+$var reg 1 < rst_n_rd $end
+$var reg 1 = rst_n_sw $end
+$var reg 1 > rst_n_wr $end
+$var reg 1 ? started $end
+$var reg 1600 @ stim [1599:0] $end
+$var reg 1760 A vcdname [1759:0] $end
+$var reg 8 B wr_data [7:0] $end
+$var reg 1 C wr_en $end
+$var integer 32 D fr [31:0] $end
+$var integer 32 E fw [31:0] $end
+$var integer 32 F hrst_done [31:0] $end
+$var integer 32 G k [31:0] $end
+$var integer 32 H rc [31:0] $end
+$var integer 32 I ren [31:0] $end
+$var integer 32 J wd [31:0] $end
+$var integer 32 K wen [31:0] $end
+$var integer 32 L wsw [31:0] $end
+$scope module dut $end
+$var wire 1 6 i_clk_rd $end
+$var wire 1 7 i_clk_wr $end
+$var wire 3 M i_empty_thr [2:0] $end
+$var wire 3 N i_full_thr [2:0] $end
+$var wire 1 ; i_rd_en $end
+$var wire 1 < i_rst_n_rd $end
+$var wire 1 = i_rst_n_sw $end
+$var wire 1 > i_rst_n_wr $end
+$var wire 8 O i_wr_data [7:0] $end
+$var wire 1 C i_wr_en $end
+$var wire 3 P w_wr_ptr [2:0] $end
+$var wire 1 Q w_req_wr $end
+$var wire 3 R w_rd_ptr [2:0] $end
+$var wire 1 S w_mem_wr_en $end
+$var wire 8 T w_mem_wr_data [7:0] $end
+$var wire 2 U w_mem_wr_addr [1:0] $end
+$var wire 8 V w_mem_rd_data [7:0] $end
+$var wire 2 W w_mem_rd_addr [1:0] $end
+$var wire 1 X w_ack_rd $end
+$var wire 1 ! o_underflow $end
+$var wire 1 ( o_sw_rst_busy $end
+$var wire 8 Y o_rd_data [7:0] $end
+$var wire 1 # o_overflow $end
+$var wire 1 $ o_full_thr $end
+$var wire 1 % o_full $end
+$var wire 1 & o_empty_thr $end
+$var wire 1 ' o_empty $end
+$var parameter 32 Z LPARA_ADDR_W $end
+$var parameter 32 [ LPARA_OCC_W $end
+$var parameter 32 \ LPARA_PTR_W $end
+$var parameter 32 ] PARA_SFIFO_DATA_W $end
+$var parameter 32 ^ PARA_SFIFO_DEPTH $end
+$var parameter 32 _ PARA_SFIFO_MEM_USE_MACRO $end
+$var parameter 32 ` PARA_SFIFO_PTR_RETIME $end
+$scope module u_vlsit_sfifo_mem $end
+$var wire 1 6 i_clk_rd $end
+$var wire 1 7 i_clk_wr $end
+$var wire 8 a o_rd_data [7:0] $end
+$var wire 1 S i_wr_en $end
+$var wire 8 b i_wr_data [7:0] $end
+$var wire 2 c i_wr_addr [1:0] $end
+$var wire 2 d i_rd_addr [1:0] $end
+$var parameter 32 e LPARA_ADDR_W $end
+$var parameter 32 f PARA_SFIFO_DATA_W $end
+$var parameter 32 g PARA_SFIFO_DEPTH $end
+$var parameter 32 h PARA_SFIFO_MEM_USE_MACRO $end
+$scope begin gen_array $end
+$var reg 8 i reg_rd_data [7:0] $end
+$scope begin p_ff_rd_port $end
+$upscope $end
+$scope begin p_ff_wr_port $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module u_vlsit_sfifo_rd $end
+$var wire 1 6 i_clk_rd $end
+$var wire 3 j i_empty_thr [2:0] $end
+$var wire 8 k i_mem_rd_data [7:0] $end
+$var wire 1 ; i_rd_en $end
+$var wire 1 < i_rst_n_rd $end
+$var wire 1 ' o_empty $end
+$var wire 1 & o_empty_thr $end
+$var wire 8 l o_rd_data [7:0] $end
+$var wire 3 m o_rd_ptr [2:0] $end
+$var wire 1 ! o_underflow $end
+$var wire 1 n w_rd_acc $end
+$var wire 1 o w_rd_blk $end
+$var wire 1 p w_req_v $end
+$var wire 3 q w_wptr_v [2:0] $end
+$var wire 32 r w_wptr_ext [31:0] $end
+$var wire 32 s w_rptr_nxt_ext [31:0] $end
+$var wire 32 t w_rptr_ext [31:0] $end
+$var wire 32 u w_empty_thr_ext [31:0] $end
+$var wire 2 v o_mem_rd_addr [1:0] $end
+$var wire 1 X o_ack_rd $end
+$var wire 3 w i_wr_ptr [2:0] $end
+$var wire 1 Q i_req_wr $end
+$var parameter 32 x LPARA_ADDR_W $end
+$var parameter 32 y LPARA_ARITH_W $end
+$var parameter 32 z LPARA_OCC_W $end
+$var parameter 32 { LPARA_PTR_MOD $end
+$var parameter 32 | LPARA_PTR_W $end
+$var parameter 32 } PARA_SFIFO_DATA_W $end
+$var parameter 32 ~ PARA_SFIFO_DEPTH $end
+$var parameter 32 !" PARA_SFIFO_PTR_RETIME $end
+$var reg 1 X reg_ack_rd $end
+$var reg 1 "" reg_empty $end
+$var reg 1 #" reg_empty_thr $end
+$var reg 2 $" reg_fsm_srst_current_state [1:0] $end
+$var reg 1 %" reg_req_s $end
+$var reg 3 &" reg_rptr [2:0] $end
+$var reg 1 '" reg_underflow $end
+$var reg 3 (" reg_wptr_s [2:0] $end
+$var reg 32 )" w_addr_ext [31:0] $end
+$var reg 2 *" w_fsm_srst_nxt_state [1:0] $end
+$var reg 32 +" w_occ_nxt [31:0] $end
+$var reg 3 ," w_rptr_nxt [2:0] $end
+$scope begin p_com_fsm_srst_nxt $end
+$upscope $end
+$scope begin p_com_occ_nxt $end
+$upscope $end
+$scope begin p_com_rd_addr $end
+$upscope $end
+$scope begin p_com_rptr_nxt $end
+$upscope $end
+$scope begin p_ff_ack_rd $end
+$upscope $end
+$scope begin p_ff_flags $end
+$upscope $end
+$scope begin p_ff_fsm_srst $end
+$upscope $end
+$scope begin p_ff_rptr $end
+$upscope $end
+$upscope $end
+$scope module u_vlsit_sfifo_wr $end
+$var wire 1 X i_ack_rd $end
+$var wire 1 7 i_clk_wr $end
+$var wire 3 -" i_full_thr [2:0] $end
+$var wire 3 ." i_rd_ptr [2:0] $end
+$var wire 1 = i_rst_n_sw $end
+$var wire 1 > i_rst_n_wr $end
+$var wire 8 /" i_wr_data [7:0] $end
+$var wire 1 C i_wr_en $end
+$var wire 1 % o_full $end
+$var wire 8 0" o_mem_wr_data [7:0] $end
+$var wire 1 S o_mem_wr_en $end
+$var wire 1 # o_overflow $end
+$var wire 1 ( o_sw_rst_busy $end
+$var wire 3 1" o_wr_ptr [2:0] $end
+$var wire 1 2" w_ack_v $end
+$var wire 3 3" w_rptr_v [2:0] $end
+$var wire 1 4" w_wr_acc $end
+$var wire 1 5" w_wr_blk $end
+$var wire 32 6" w_wptr_nxt_ext [31:0] $end
+$var wire 32 7" w_wptr_ext [31:0] $end
+$var wire 32 8" w_rptr_ext [31:0] $end
+$var wire 32 9" w_full_thr_ext [31:0] $end
+$var wire 1 Q o_req_wr $end
+$var wire 2 :" o_mem_wr_addr [1:0] $end
+$var wire 1 $ o_full_thr $end
+$var parameter 32 ;" LPARA_ADDR_W $end
+$var parameter 32 <" LPARA_ARITH_W $end
+$var parameter 32 =" LPARA_OCC_W $end
+$var parameter 32 >" LPARA_PTR_MOD $end
+$var parameter 32 ?" LPARA_PTR_W $end
+$var parameter 32 @" PARA_SFIFO_DATA_W $end
+$var parameter 32 A" PARA_SFIFO_DEPTH $end
+$var parameter 32 B" PARA_SFIFO_PTR_RETIME $end
+$var reg 1 C" reg_ack_s $end
+$var reg 3 D" reg_fsm_srst_current_state [2:0] $end
+$var reg 1 E" reg_full $end
+$var reg 1 F" reg_full_thr $end
+$var reg 1 G" reg_overflow $end
+$var reg 1 Q reg_req_wr $end
+$var reg 3 H" reg_rptr_s [2:0] $end
+$var reg 1 I" reg_sw_rst_busy $end
+$var reg 3 J" reg_wptr [2:0] $end
+$var reg 32 K" w_addr_ext [31:0] $end
+$var reg 3 L" w_fsm_srst_nxt_state [2:0] $end
+$var reg 32 M" w_occ_nxt [31:0] $end
+$var reg 3 N" w_wptr_nxt [2:0] $end
+$scope begin p_com_fsm_srst_nxt $end
+$upscope $end
+$scope begin p_com_occ_nxt $end
+$upscope $end
+$scope begin p_com_wptr_nxt $end
+$upscope $end
+$scope begin p_com_wr_addr $end
+$upscope $end
+$scope begin p_ff_flags $end
+$upscope $end
+$scope begin p_ff_fsm_srst $end
+$upscope $end
+$scope begin p_ff_hs_ctrl $end
+$upscope $end
+$scope begin p_ff_wptr $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b0 B"
+b100 A"
+b1000 @"
+b11 ?"
+b1000 >"
+b11 ="
+b100000 <"
+b10 ;"
+b0 !"
+b100 ~
+b1000 }
+b11 |
+b1000 {
+b11 z
+b100000 y
+b10 x
+b0 h
+b100 g
+b1000 f
+b10 e
+b0 `
+b0 _
+b100 ^
+b1000 ]
+b11 \
+b11 [
+b10 Z
+b1000 5
+b0 4
+b11 3
+b11 2
+b1101110 1
+b101 0
+b10 /
+b0 .
+b101 -
+b11 ,
+b10 +
+b101 *
+b100 )
+$end
+#0
+$dumpvars
+bx N"
+bx M"
+b0 L"
+b0xxx K"
+bx J"
+xI"
+bx H"
+xG"
+xF"
+xE"
+bx D"
+xC"
+bx :"
+b11 9"
+b0xxx 8"
+b0xxx 7"
+b0xxx 6"
+x5"
+04"
+bx 3"
+x2"
+bx 1"
+b0 0"
+b0 /"
+bx ."
+b11 -"
+bx ,"
+bx +"
+b0 *"
+b0xxx )"
+bx ("
+x'"
+bx &"
+x%"
+bx $"
+x#"
+x""
+bx w
+bx v
+b10 u
+b0xxx t
+b0xxx s
+b0xxx r
+bx q
+xp
+xo
+0n
+bx m
+bx l
+bx k
+b10 j
+bx i
+bx d
+bx c
+b0 b
+bx a
+bx Y
+xX
+bx W
+bx V
+bx U
+b0 T
+0S
+bx R
+xQ
+bx P
+b0 O
+b11 N
+b10 M
+bx L
+bx K
+bx J
+bx I
+bx H
+b0 G
+b0 F
+b10000000000000000000000000000011 E
+b10000000000000000000000000000100 D
+0C
+b0 B
+b100001100111010001011110100100001010001011101010110000101101110001011110011000100110000001100100101111101001101011110010100011101101001011101000110100001110101011000100010111101010110010011000101001101001001010101000101111101010010010101000100110001011111010001110110010101101110011001010111001001100001011101000110111101110010010111110100000101001001010111110100110101101111011001000110010101101100001011110110001101101111011011010110110101101111011011100101111101110010011101000110110000101111001100000011000000110010010111110101001101111001011011100110001101000110010010010100011001001111001011110111011001100101011100100110100101100110011010010110001101100001011101000110100101101111011011100010111101110111011000010111011001100101011001100110111101110010011011010111001101011111011100110110100101101101001011110111001101100110011010010110011001101111010111110111011101100110001100000011000000110011010111110110011001110101011011000110110001011111011011110111011001100101011100100110011001101100011011110111011100101110011101100110001101100100 A
+b100001100111010001011110100100001010001011101010110000101101110001011110011000100110000001100100101111101001101011110010100011101101001011101000110100001110101011000100010111101010110010011000101001101001001010101000101111101010010010101000100110001011111010001110110010101101110011001010111001001100001011101000110111101110010010111110100000101001001010111110100110101101111011001000110010101101100001011110110001101101111011011010110110101101111011011100101111101110010011101000110110000101111001100000011000000110010010111110101001101111001011011100110001101000110010010010100011001001111001011110111011001100101011100100110100101100110011010010110001101100001011101000110100101101111011011100010111101100010011101010110100101101100011001000101111101110111011000010111011001100101011100110010111101110011011001100110100101100110011011110101111101110111011001100011000000110000001100110101111101100110011101010110110001101100010111110110111101110110011001010111001001100110011011000110111101110111 @
+0?
+0>
+1=
+0<
+0;
+b11 :
+b10000110011101000101111010010000101000101110101011000010110111000101111001100010011000000110010010111110100110101111001010001110110100101110100011010000111010101100010001011110101011001001100010100110100100101010100010111110101001001010100010011000101111101000111011001010110111001100101011100100110000101110100011011110111001001011111010000010100100101011111010011010110111101100100011001010110110000101111011000110110111101101101011011010110111101101110010111110111001001110100011011000010111100110000001100000011001001011111010100110111100101101110011000110100011001001001010001100100111100101111011101100110010101110010011010010110011001101001011000110110000101110100011010010110111101101110001011110110001001110101011010010110110001100100010111110111011101100001011101100110010101110011001011110111001101100110011010010110011001101111010111110111011101100110001100000011000000110011010111110110011001110101011011000110110001011111011011110111011001100101011100100110011001101100011011110111011101011111011100100110010000101110011101000111100001110100 9
+b10 8
+07
+06
+x(
+x'
+x&
+x%
+x$
+x#
+bx "
+x!
+$end
+#2500
+b1 G
+#5000
+b0 W
+b0 d
+b0 v
+b0 )"
+b0 +"
+b0 U
+b0 c
+b0 :"
+b0 s
+b0 M"
+0%
+b0 6"
+b0 K"
+b0 ,"
+b0 t
+b0 8"
+1&
+1'
+0o
+05"
+b0 N"
+b0 7"
+b0 r
+0$
+02"
+0X
+b0 $"
+b0 3"
+b0 R
+b0 m
+b0 ."
+b0 &"
+0%"
+b0 ("
+0!
+0'"
+1#"
+1""
+0p
+0Q
+0(
+0I"
+b0 D"
+b0 q
+b0 P
+b0 w
+b0 1"
+b0 J"
+0C"
+b0 H"
+0#
+0G"
+0F"
+0E"
+16
+17
+#7500
+b10 G
+#10000
+06
+07
+#12500
+b11 G
+#15000
+16
+17
+#17500
+b100 G
+#20000
+06
+07
+#22500
+b101 G
+#25000
+16
+17
+#27500
+b110 G
+#30000
+06
+07
+#32500
+b111 G
+#35000
+16
+17
+#36000
+1>
+#37500
+b1000 G
+#40000
+06
+07
+#42500
+b1001 G
+#45000
+16
+17
+#46000
+1<
+#47500
+b1010 G
+#50000
+06
+07
+#52500
+b1011 G
+#55000
+16
+17
+#57500
+b1100 G
+#60000
+06
+07
+#62500
+b1101 G
+#65000
+1?
+16
+17
+#66000
+b0 I
+b1 H
+b1 L
+b0 J
+b0 K
+#67500
+b1110 G
+#70000
+06
+07
+#72500
+b1111 G
+#75000
+16
+17
+#76000
+b1 M"
+b1 6"
+b1 N"
+1S
+14"
+b11000001 T
+b11000001 b
+b11000001 0"
+b11000001 B
+b11000001 O
+b11000001 /"
+1C
+b1 H
+b11000001 J
+b1 K
+#77500
+b10000 G
+#80000
+06
+07
+#82500
+b10001 G
+#85000
+b10 M"
+b1 U
+b1 c
+b1 :"
+b10 6"
+b1 K"
+b1 +"
+b10 N"
+b1 7"
+b1 r
+b1 q
+b1 P
+b1 w
+b1 1"
+b1 J"
+16
+17
+#86000
+b11000010 T
+b11000010 b
+b11000010 0"
+b11000010 B
+b11000010 O
+b11000010 /"
+b1 H
+b11000010 J
+#87500
+b10010 G
+#90000
+06
+07
+#92500
+b10011 G
+#95000
+b11 M"
+b10 U
+b10 c
+b10 :"
+b11 6"
+b10 K"
+b10 +"
+0'
+b11 N"
+b10 7"
+b10 r
+b11000001 "
+b11000001 Y
+b11000001 l
+b11000001 V
+b11000001 a
+b11000001 i
+b11000001 k
+b1 ("
+0""
+b10 q
+b10 P
+b10 w
+b10 1"
+b10 J"
+16
+17
+#96000
+b11000011 T
+b11000011 b
+b11000011 0"
+b11000011 B
+b11000011 O
+b11000011 /"
+b1 H
+b11000011 J
+#97500
+b10100 G
+#100000
+06
+07
+#102500
+b10101 G
+#105000
+b100 M"
+b11 U
+b11 c
+b11 :"
+b100 6"
+b11 K"
+b11 +"
+b100 N"
+b11 7"
+b11 r
+1$
+b10 ("
+b11 q
+b11 P
+b11 w
+b11 1"
+b11 J"
+1F"
+16
+17
+#106000
+b11000100 T
+b11000100 b
+b11000100 0"
+b11000100 B
+b11000100 O
+b11000100 /"
+b1 H
+b11000100 J
+#107500
+b10110 G
+#110000
+06
+07
+#112500
+b10111 G
+#115000
+b100 M"
+b0 U
+b0 c
+b0 :"
+b100 6"
+b0 K"
+b100 +"
+0S
+04"
+0&
+b100 N"
+b100 7"
+b100 r
+1%
+b11 ("
+0#"
+b100 q
+b100 P
+b100 w
+b100 1"
+b100 J"
+1E"
+16
+17
+#116000
+b11000101 T
+b11000101 b
+b11000101 0"
+b11000101 B
+b11000101 O
+b11000101 /"
+b1 H
+b11000101 J
+#117500
+b11000 G
+#120000
+06
+07
+#122500
+b11001 G
+#125000
+b100 ("
+1#
+1G"
+16
+17
+#126000
+b11000110 T
+b11000110 b
+b11000110 0"
+b11000110 B
+b11000110 O
+b11000110 /"
+b1 H
+b11000110 J
+#127500
+b11010 G
+#130000
+06
+07
+#132500
+b11011 G
+#135000
+16
+17
+#136000
+b11000111 T
+b11000111 b
+b11000111 0"
+b11000111 B
+b11000111 O
+b11000111 /"
+b1 H
+b11000111 J
+#137500
+b11100 G
+#140000
+06
+07
+#142500
+b11101 G
+#145000
+16
+17
+#146000
+b11001000 T
+b11001000 b
+b11001000 0"
+b11001000 B
+b11001000 O
+b11001000 /"
+b1 H
+b11001000 J
+#147500
+b11110 G
+#150000
+06
+07
+#152500
+b11111 G
+#155000
+16
+17
+#156000
+b0 T
+b0 b
+b0 0"
+b0 B
+b0 O
+b0 /"
+0C
+b1 H
+b0 J
+b0 K
+#157500
+b100000 G
+#160000
+06
+07
+#162500
+b100001 G
+#165000
+0#
+0G"
+16
+17
+#166000
+b1 H
+#167500
+b100010 G
+#170000
+06
+07
+#172500
+b100011 G
+#175000
+16
+17
+#176000
+b1 H
+#177500
+b100100 G
+#180000
+06
+07
+#182500
+b100101 G
+#185000
+16
+17
+#186000
+b1 W
+b1 d
+b1 v
+b1 )"
+b11 +"
+b1 s
+b1 ,"
+1n
+1;
+b1 I
+b1 H
+#187500
+b100110 G
+#190000
+06
+07
+#192500
+b100111 G
+#195000
+b10 W
+b10 d
+b10 v
+b10 )"
+b10 +"
+b10 s
+b11 M"
+b10 ,"
+b1 t
+b1 8"
+b11000010 "
+b11000010 Y
+b11000010 l
+b11000010 V
+b11000010 a
+b11000010 i
+b11000010 k
+b1 3"
+b1 R
+b1 m
+b1 ."
+b1 &"
+16
+17
+#196000
+b1 W
+b1 d
+b1 v
+b1 )"
+b11 +"
+b1 s
+b1 ,"
+0n
+0;
+b0 I
+b1 H
+#197500
+b101000 G
+#200000
+06
+07
+#202500
+b101001 G
+#205000
+0%
+b1 H"
+0E"
+16
+17
+#206000
+b1 H
+#207500
+b101010 G
+#210000
+06
+07
+#212500
+b101011 G
+#215000
+16
+17
+#216000
+b100 M"
+b101 6"
+b101 N"
+1S
+14"
+b11010001 T
+b11010001 b
+b11010001 0"
+b11010001 B
+b11010001 O
+b11010001 /"
+1C
+b1 H
+b11010001 J
+b1 K
+#217500
+b101100 G
+#220000
+06
+07
+#222500
+b101101 G
+#225000
+b100 M"
+b1 U
+b1 c
+b1 :"
+b101 6"
+b1 K"
+b100 +"
+0S
+04"
+b101 N"
+b101 7"
+b101 r
+1%
+b101 q
+b101 P
+b101 w
+b101 1"
+b101 J"
+1E"
+16
+17
+#226000
+b11010010 T
+b11010010 b
+b11010010 0"
+b11010010 B
+b11010010 O
+b11010010 /"
+b1 H
+b11010010 J
+#227500
+b101110 G
+#230000
+06
+07
+#232500
+b101111 G
+#235000
+b101 ("
+1#
+1G"
+16
+17
+#236000
+b11010011 T
+b11010011 b
+b11010011 0"
+b11010011 B
+b11010011 O
+b11010011 /"
+b1 H
+b11010011 J
+#237500
+b110000 G
+#240000
+06
+07
+#242500
+b110001 G
+#245000
+16
+17
+#246000
+b0 T
+b0 b
+b0 0"
+b0 B
+b0 O
+b0 /"
+0C
+b1 H
+b0 J
+b0 K
+#247500
+b110010 G
+#250000
+06
+07
+#252500
+b110011 G
+#255000
+0#
+0G"
+16
+17
+#256000
+b1 H
+#257500
+b110100 G
+#260000
+06
+07
+#262500
+b110101 G
+#265000
+16
+17
+#266000
+b1 H
+#267500
+b110110 G
+#270000
+06
+07
+#272500
+b110111 G
+#275000
+16
+17
+#276000
+b1 H
+#277500
+b111000 G
+#280000
+06
+07
+#282500
+b111001 G
+#285000
+16
+17
+#287500
+b111010 G
+#290000
+06
+07
+#292500
+b111011 G
+#295000
+16
+17
+#297500
+b111100 G
+#300000
+06
+07
+#302500
+b111101 G
+#305000
+16
+17
+#307500
+b111110 G
+#310000
+06
+07
+#312500
+b111111 G
+#315000
+16
+17
+#317500
+b1000000 G
+#320000
+06
+07
+#322500
+b1000001 G
+#325000
+16
+17
+#327500
+b1000010 G
+#330000
+06
+07
+#332500
+b1000011 G
+#335000
+16
+17
+#337500
+b1000100 G
+#340000
+06
+07
+#342500
+b1000101 G
+#345000
+16
+17
+#347500
+b1000110 G
+#350000
+06
+07
+#352500
+b1000111 G
+#355000
+16
+17
+#357500
+b1001000 G
+#360000
+06
+07
+#362500
+b1001001 G
+#365000
+16
+17
+#367500
+b1001010 G
+#370000
+06
+07
+#372500
+b1001011 G
+#375000
+16
+17
+#377500
+b1001100 G
+#380000
+06
+07
+#382500
+b1001101 G
+#385000
+16
+17
+#387500
+b1001110 G
+#390000
+06
+07
+#392500
+b1001111 G
+#395000
+16
+17
+#397500
+b1010000 G
+#400000
+06
+07
+#402500
+b1010001 G
+#405000
+16
+17
+#407500
+b1010010 G
+#410000
+06
+07
+#412500
+b1010011 G
+#415000
+16
+17
+#417500
+b1010100 G
+#420000
+06
+07
+#422500
+b1010101 G
+#425000
+16
+17
+#427500
+b1010110 G
+#430000
+06
+07
+#432500
+b1010111 G
+#435000
+16
+17
+#437500
+b1011000 G
+#440000
+06
+07
+#442500
+b1011001 G
+#445000
+16
+17
+#447500
+b1011010 G
+#450000
+06
+07
+#452500
+b1011011 G
+#455000
+16
+17
+#457500
+b1011100 G
+#460000
+06
+07
+#462500
+b1011101 G
+#465000
+16
+17
+#467500
+b1011110 G
+#470000
+06
+07
+#472500
+b1011111 G
+#475000
+16
+17
+#477500
+b1100000 G
+#480000
+06
+07
+#482500
+b1100001 G
+#485000
+16
+17
+#487500
+b1100010 G
+#490000
+06
+07
+#492500
+b1100011 G
+#495000
+16
+17
+#497500
+b1100100 G
+#500000
+06
+07
+#502500
+b1100101 G
+#505000
+16
+17
+#507500
+b1100110 G
+#510000
+06
+07
+#512500
+b1100111 G
+#515000
+16
+17
+#517500
+b1101000 G
+#520000
+06
+07
+#522500
+b1101001 G
+#525000
+16
+17
+#527500
+b1101010 G
+#530000
+06
+07
+#532500
+b1101011 G
+#535000
+16
+17
+#537500
+b1101100 G
+#540000
+06
+07
+#542500
+b1101101 G
+#545000
+16
+17
+#547500
+b1101110 G

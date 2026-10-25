@@ -1,0 +1,242 @@
+{
+ "page_name": "BLOCK_DIAGRAM",
+ "out_name": "sfifo_block_diagram.drawio",
+ "table_suffix": "",
+ "layout": {
+  "gap_h": 100,
+  "gap_v": 90,
+  "margin": 40,
+  "block_h": 60
+ },
+ "top": {
+  "frame_label": [
+   "TOP",
+   "(m_vlsit_sfifo_top)"
+  ],
+  "block_label": [
+   "TOP",
+   "(m_vlsit_sfifo_top)"
+  ],
+  "block_row": [
+   "TOP (m_vlsit_sfifo_top)",
+   "Synchronous-clock FIFO.",
+   "Section 14.2"
+  ]
+ },
+ "frame_row": [
+  "TOP (m_vlsit_sfifo_top) frame",
+  "Structural top of the FIFO that moves words between two synchronous clocks of different frequency. It joins the write side, the read side and the storage and holds no logic of its own. The two pointers cross between the sides as timed paths with no synchronizer.",
+  "Section 14.2"
+ ],
+ "frame_interfaces": [
+  "WRI",
+  "RDI",
+  "SRST",
+  "CRWR",
+  "CRRD"
+ ],
+ "blocks": [
+  {
+   "key": "W",
+   "label": [
+    "u_wr",
+    "(m_vlsit_sfifo_wr)"
+   ],
+   "width": 240,
+   "row": 0,
+   "col": 0,
+   "row_name": "u_wr (m_vlsit_sfifo_wr)",
+   "function": "Write side in the write clock domain. It owns the write pointer, accepts a write when the FIFO is not full and no software reset blocks it, and keeps the full and full-threshold flags exact by computing them from the next pointers. It raises a one-cycle overflow pulse for a rejected write, drives the memory write port, and runs the write half of the four-phase software reset sequence.",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "R",
+   "label": [
+    "u_rd",
+    "(m_vlsit_sfifo_rd)"
+   ],
+   "width": 240,
+   "row": 0,
+   "col": 2,
+   "row_name": "u_rd (m_vlsit_sfifo_rd)",
+   "function": "Read side in the read clock domain. It owns the read pointer, accepts a read when the FIFO is not empty and no software reset blocks it, and keeps the empty and empty-threshold flags exact by computing them from the next pointers. It addresses the storage with the next read pointer so that the output already shows the following word (show-ahead), raises a one-cycle underflow pulse for a rejected read, and runs the read half of the software reset sequence.",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "M",
+   "label": [
+    "u_mem",
+    "(m_vlsit_sfifo_mem)"
+   ],
+   "width": 240,
+   "row": 1,
+   "col": 1,
+   "row_name": "u_mem (m_vlsit_sfifo_mem)",
+   "function": "Storage of the FIFO: one write port in the write clock domain and one read port in the read clock domain with a registered output. It is a flop array by default or a library SRAM behind a wrapper. The content is not reset; it is consumed only after the write pointer proved that the entry was written.",
+   "source": "Section 14.2"
+  }
+ ],
+ "connectors": [
+  {
+   "id": "PTR",
+   "src": "W",
+   "src_side": "R",
+   "dst": "R",
+   "dst_side": "L"
+  },
+  {
+   "id": "MWP",
+   "src": "W",
+   "src_side": "B",
+   "dst": "M",
+   "dst_side": "L"
+  },
+  {
+   "id": "MRP",
+   "src": "R",
+   "src_side": "B",
+   "dst": "M",
+   "dst_side": "R"
+  }
+ ],
+ "externals": [
+  {
+   "id": "WRI",
+   "block": "W",
+   "side": "L",
+   "dir": "in",
+   "pos": -20,
+   "text": [
+    "WRI",
+    "write interface"
+   ]
+  },
+  {
+   "id": "SRST",
+   "block": "W",
+   "side": "T",
+   "dir": "in",
+   "pos": 0,
+   "text": [
+    "SRST",
+    "i_rst_n_sw, o_sw_rst_busy"
+   ]
+  },
+  {
+   "id": "RDI",
+   "block": "R",
+   "side": "R",
+   "dir": "out",
+   "pos": 0,
+   "text": [
+    "RDI",
+    "read interface"
+   ]
+  },
+  {
+   "id": "CRWR",
+   "block": "W",
+   "side": "L",
+   "dir": "in",
+   "pos": 20,
+   "text": [
+    "CRWR",
+    "i_clk_wr, i_rst_n_wr"
+   ]
+  },
+  {
+   "id": "CRRD",
+   "block": "R",
+   "side": "R",
+   "dir": "in",
+   "pos": 60,
+   "text": [
+    "CRRD",
+    "i_clk_rd, i_rst_n_rd"
+   ]
+  }
+ ],
+ "nets": [
+  {
+   "entry": "CRWR",
+   "sinks": [
+    {
+     "id": "CW1",
+     "block": "M",
+     "side": "L",
+     "pos": 30
+    }
+   ]
+  },
+  {
+   "entry": "CRRD",
+   "sinks": [
+    {
+     "id": "CR1",
+     "block": "M",
+     "side": "R",
+     "pos": 30
+    }
+   ]
+  }
+ ],
+ "interfaces": [
+  {
+   "id": "WRI",
+   "name": "Write interface (CLK-WR)",
+   "category": "handshake (request, flags)",
+   "active": "external writer -> TOP",
+   "signals": "external -> TOP: i_wr_en [level], i_wr_data, i_full_thr [static]; TOP -> external: o_full [level], o_full_thr [level], o_overflow [pulse]"
+  },
+  {
+   "id": "RDI",
+   "name": "Read interface (CLK-RD)",
+   "category": "handshake (request, flags, show-ahead data)",
+   "active": "external reader -> TOP",
+   "signals": "external -> TOP: i_rd_en [level], i_empty_thr [static]; TOP -> external: o_rd_data, o_empty [level], o_empty_thr [level], o_underflow [pulse]"
+  },
+  {
+   "id": "SRST",
+   "name": "Software reset (CLK-WR)",
+   "category": "handshake (level request, busy)",
+   "active": "external controller -> TOP",
+   "signals": "external -> TOP: i_rst_n_sw [level, active-low]; TOP -> external: o_sw_rst_busy [level]"
+  },
+  {
+   "id": "PTR",
+   "name": "Pointer exchange and software reset handshake",
+   "category": "custom (timed paths, no synchronizer)",
+   "active": "u_wr -> u_rd (the read side answers with its pointer and acknowledge)",
+   "signals": "u_wr -> u_rd: o_wr_ptr, o_req_wr; u_rd -> u_wr: o_rd_ptr, o_ack_rd"
+  },
+  {
+   "id": "MWP",
+   "name": "Memory write port",
+   "category": "custom (memory port)",
+   "active": "u_wr -> u_mem",
+   "signals": "u_wr -> u_mem: o_mem_wr_en, o_mem_wr_addr, o_mem_wr_data"
+  },
+  {
+   "id": "MRP",
+   "name": "Memory read port",
+   "category": "custom (memory port)",
+   "active": "u_rd -> u_mem",
+   "signals": "u_rd -> u_mem: o_mem_rd_addr; u_mem -> u_rd: i_mem_rd_data"
+  },
+  {
+   "id": "CRWR",
+   "name": "Clock and reset of the write side",
+   "category": "custom",
+   "active": "SoC -> TOP",
+   "signals": "i_clk_wr, i_rst_n_wr (reset: level, active-low)"
+  },
+  {
+   "id": "CRRD",
+   "name": "Clock and reset of the read side",
+   "category": "custom",
+   "active": "SoC -> TOP",
+   "signals": "i_clk_rd, i_rst_n_rd (reset: level, active-low)"
+  }
+ ],
+ "legend_note": "The enclosing frame is the top module; blocks inside are its instances. The two clocks are synchronous to each other, so the pointers cross between the sides as timed paths."
+}

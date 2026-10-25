@@ -1,0 +1,13 @@
+{
+  "signal": [
+    {"name": "i_clk_core", "wave": "p..........."},
+    {"name": "i_ahb_hsel", "wave": "01....1....."},
+    {"name": "i_ahb_hprot", "wave": "x=..........", "data": ["HPROT[6]=1"]},
+    {"name": "i_ahb_hmastlock", "wave": "0.....1....."},
+    {"name": "o_ahb_hreadyout", "wave": "110111101111"},
+    {"name": "o_ahb_hresp", "wave": "0.11...11..."},
+    ["AXI issue", {"name": "o_axi_arvalid", "wave": "0..........."}, {"name": "o_axi_awvalid", "wave": "0..........."}]
+  ],
+  "head": {"text": "WF-005 — HPROT shareable and HMASTLOCK are rejected"},
+  "foot": {"text": "Both invalid transfers return two-cycle AHB ERROR and produce no AXI request. / Cả hai transfer bị từ chối trả AHB ERROR hai chu kỳ, không phát AXI."}
+}

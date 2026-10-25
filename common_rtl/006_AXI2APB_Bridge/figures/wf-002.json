@@ -1,0 +1,94 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_axi",
+      "wave": "p......."
+    },
+    [
+      "AXI read address",
+      {
+        "name": "i_axi_arvalid",
+        "wave": "01000000"
+      },
+      {
+        "name": "o_axi_arready",
+        "wave": "01000000"
+      },
+      {
+        "name": "i_axi_araddr",
+        "wave": "x=......",
+        "data": [
+          "0x1000"
+        ]
+      },
+      {
+        "name": "i_axi_arlen",
+        "wave": "x=......",
+        "data": [
+          "0"
+        ]
+      }
+    ],
+    [
+      "APB read",
+      {
+        "name": "o_apb_psel",
+        "wave": "00010000"
+      },
+      {
+        "name": "o_apb_penable",
+        "wave": "00001000"
+      },
+      {
+        "name": "i_apb_pready",
+        "wave": "00001000"
+      },
+      {
+        "name": "o_apb_paddr",
+        "wave": "xxx=.xxx",
+        "data": [
+          "0x1000"
+        ]
+      },
+      {
+        "name": "o_apb_pstrb",
+        "wave": "00000000"
+      }
+    ],
+    [
+      "AXI read response",
+      {
+        "name": "o_axi_rvalid",
+        "wave": "00000100"
+      },
+      {
+        "name": "i_axi_rready",
+        "wave": "00000100"
+      },
+      {
+        "name": "o_axi_rdata",
+        "wave": "xxxxx=xx",
+        "data": [
+          "0xDEADBEEF"
+        ]
+      },
+      {
+        "name": "o_axi_rresp",
+        "wave": "xxxxx=..",
+        "data": [
+          "OKAY"
+        ]
+      },
+      {
+        "name": "o_axi_rlast",
+        "wave": "00000100"
+      }
+    ]
+  ],
+  "head": {
+    "text": "Single-beat AXI read"
+  },
+  "foot": {
+    "text": "AR acceptance precedes one APB read; R response follows APB completion."
+  }
+}

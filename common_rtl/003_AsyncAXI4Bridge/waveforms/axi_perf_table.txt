@@ -1,0 +1,18 @@
+AW latency (subordinate-side handshake edge to the first manager-side AWVALID), CELL_TYPE = 2, AW_DEPTH = 4
+ratio (HS/HM half periods ns)  latency ns  latency in manager cycles
+5/5  20.0  2.00
+4/6  14.0  1.17
+6/4  14.0  1.75
+3/7  26.0  1.86
+7/3  8.0  1.33
+2/9  25.0  1.39
+9/2  5.0  1.25
+
+W streaming of a 64-beat burst, manager side always ready: manager-side clock cycles of the slower clock per beat
+(1.00 = one beat per cycle of the slower of the two clocks, the best a single stream can do)
+ratio  depth: cycles per beat
+5/5  2:2.97  4:1.48  8:1.00  16:1.00  32:1.00
+4/6  2:1.98  4:1.00  8:1.00  16:1.00  32:1.00
+6/4  2:1.98  4:0.99  8:0.99  16:0.99  32:0.99
+3/7  2:1.98  4:1.00  8:1.00  16:1.00  32:1.00
+7/3  2:1.99  4:1.00  8:1.00  16:1.00  32:1.00

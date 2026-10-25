@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1310" height="726" font-family="Segoe UI, Arial, sans-serif" font-size="11">
+<rect width="1310" height="726" fill="#ffffff"/>
+<text x="8" y="16" font-size="14" font-weight="bold" fill="#222">SRAM macro (CFG-MACRO) - first write, pointer crossing and the empty flag (zoom)</text>
+<line x1="190.0" y1="48" x2="190.0" y2="696" stroke="#ececec"/>
+<text x="190.0" y="44" text-anchor="middle" fill="#888">100</text>
+<line x1="410.0" y1="48" x2="410.0" y2="696" stroke="#ececec"/>
+<text x="410.0" y="44" text-anchor="middle" fill="#888">120</text>
+<line x1="630.0" y1="48" x2="630.0" y2="696" stroke="#ececec"/>
+<text x="630.0" y="44" text-anchor="middle" fill="#888">140</text>
+<line x1="850.0" y1="48" x2="850.0" y2="696" stroke="#ececec"/>
+<text x="850.0" y="44" text-anchor="middle" fill="#888">160</text>
+<line x1="1070.0" y1="48" x2="1070.0" y2="696" stroke="#ececec"/>
+<text x="1070.0" y="44" text-anchor="middle" fill="#888">180</text>
+<line x1="1290.0" y1="48" x2="1290.0" y2="696" stroke="#ececec"/>
+<text x="1290.0" y="44" text-anchor="middle" fill="#888">200</text>
+<text x="1304" y="16" text-anchor="end" fill="#888">time in ns</text>
+<rect x="0" y="54" width="1310" height="22" fill="#f1f1f1"/><text x="8" y="69" font-weight="bold" fill="#444">WRITE DOMAIN (i_clk_wr, period 10 ns)</text>
+<text x="8" y="91" fill="#222">i_clk_wr</text>
+<path d="M168.0,80 L190.0,80 L190.0,80 L190.0,94 L245.0,94 L245.0,94 L245.0,80 L300.0,80 L300.0,80 L300.0,94 L355.0,94 L355.0,94 L355.0,80 L410.0,80 L410.0,80 L410.0,94 L465.0,94 L465.0,94 L465.0,80 L520.0,80 L520.0,80 L520.0,94 L575.0,94 L575.0,94 L575.0,80 L630.0,80 L630.0,80 L630.0,94 L685.0,94 L685.0,94 L685.0,80 L740.0,80 L740.0,80 L740.0,94 L795.0,94 L795.0,94 L795.0,80 L850.0,80 L850.0,80 L850.0,94 L905.0,94 L905.0,94 L905.0,80 L960.0,80 L960.0,80 L960.0,94 L1015.0,94 L1015.0,94 L1015.0,80 L1070.0,80 L1070.0,80 L1070.0,94 L1125.0,94 L1125.0,94 L1125.0,80 L1180.0,80 L1180.0,80 L1180.0,94 L1235.0,94 L1235.0,94 L1235.0,80 L1290.0,80 L1290.0,80 L1290.0,94 L1290.0,94" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="113" fill="#222">i_wr_en</text>
+<path d="M168.0,102 L685.0,102 L685.0,102 L685.0,116 L1290.0,116" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="135" fill="#222">i_wr_data</text>
+<path d="M171.0,124 L242.0,124 L245.0,131.0 L242.0,138 L171.0,138 L168.0,131.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="206.5" y="135" text-anchor="middle" fill="#111">11</text>
+<path d="M248.0,124 L352.0,124 L355.0,131.0 L352.0,138 L248.0,138 L245.0,131.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="300.0" y="135" text-anchor="middle" fill="#111">22</text>
+<path d="M358.0,124 L462.0,124 L465.0,131.0 L462.0,138 L358.0,138 L355.0,131.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="410.0" y="135" text-anchor="middle" fill="#111">33</text>
+<path d="M468.0,124 L572.0,124 L575.0,131.0 L572.0,138 L468.0,138 L465.0,131.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="520.0" y="135" text-anchor="middle" fill="#111">44</text>
+<path d="M578.0,124 L1287.0,124 L1290.0,131.0 L1287.0,138 L578.0,138 L575.0,131.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="932.5" y="135" text-anchor="middle" fill="#111">55</text>
+<text x="8" y="157" fill="#222">write accept (sampled at the edge)</text>
+<path d="M168.0,146 L575.0,146 L575.0,146 L575.0,160 L1290.0,160" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="179" fill="#222">o_full</text>
+<path d="M168.0,182 L575.0,182 L575.0,182 L575.0,168 L1235.0,168 L1235.0,168 L1235.0,182 L1290.0,182" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="201" fill="#222">o_full_thr</text>
+<path d="M168.0,204 L465.0,204 L465.0,204 L465.0,190 L1290.0,190" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="223" fill="#222">o_overflow</text>
+<path d="M168.0,226 L685.0,226 L685.0,226 L685.0,212 L795.0,212 L795.0,212 L795.0,226 L1290.0,226" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="245" fill="#222">write pointer (bin)</text>
+<path d="M171.0,234 L242.0,234 L245.0,241.0 L242.0,248 L171.0,248 L168.0,241.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="206.5" y="245" text-anchor="middle" fill="#111">0</text>
+<path d="M248.0,234 L352.0,234 L355.0,241.0 L352.0,248 L248.0,248 L245.0,241.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="300.0" y="245" text-anchor="middle" fill="#111">1</text>
+<path d="M358.0,234 L462.0,234 L465.0,241.0 L462.0,248 L358.0,248 L355.0,241.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="410.0" y="245" text-anchor="middle" fill="#111">2</text>
+<path d="M468.0,234 L572.0,234 L575.0,241.0 L572.0,248 L468.0,248 L465.0,241.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="520.0" y="245" text-anchor="middle" fill="#111">3</text>
+<path d="M578.0,234 L1287.0,234 L1290.0,241.0 L1287.0,248 L578.0,248 L575.0,241.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="932.5" y="245" text-anchor="middle" fill="#111">4</text>
+<text x="8" y="267" fill="#222">write pointer (gray)</text>
+<path d="M171.0,256 L242.0,256 L245.0,263.0 L242.0,270 L171.0,270 L168.0,263.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="206.5" y="267" text-anchor="middle" fill="#111">000</text>
+<path d="M248.0,256 L352.0,256 L355.0,263.0 L352.0,270 L248.0,270 L245.0,263.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="300.0" y="267" text-anchor="middle" fill="#111">001</text>
+<path d="M358.0,256 L462.0,256 L465.0,263.0 L462.0,270 L358.0,270 L355.0,263.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="410.0" y="267" text-anchor="middle" fill="#111">011</text>
+<path d="M468.0,256 L572.0,256 L575.0,263.0 L572.0,270 L468.0,270 L465.0,263.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="520.0" y="267" text-anchor="middle" fill="#111">010</text>
+<path d="M578.0,256 L1287.0,256 L1290.0,263.0 L1287.0,270 L578.0,270 L575.0,263.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="932.5" y="267" text-anchor="middle" fill="#111">110</text>
+<text x="8" y="289" fill="#222">rd gray, synchronized</text>
+<path d="M171.0,278 L1232.0,278 L1235.0,285.0 L1232.0,292 L171.0,292 L168.0,285.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="701.5" y="289" text-anchor="middle" fill="#111">000</text>
+<path d="M1238.0,278 L1287.0,278 L1290.0,285.0 L1287.0,292 L1238.0,292 L1235.0,285.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="1262.5" y="289" text-anchor="middle" fill="#111">001</text>
+<rect x="0" y="296" width="1310" height="22" fill="#f1f1f1"/><text x="8" y="311" font-weight="bold" fill="#444">SRAM MACRO (VLSIT_CELL_SRAM_1W1R)</text>
+<text x="8" y="333" fill="#222">WEB (active low)</text>
+<path d="M168.0,336 L575.0,336 L575.0,336 L575.0,322 L1290.0,322" fill="none" stroke="#2b8a3e" stroke-width="1.5"/>
+<text x="8" y="355" fill="#222">AW</text>
+<path d="M171.0,344 L242.0,344 L245.0,351.0 L242.0,358 L171.0,358 L168.0,351.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="206.5" y="355" text-anchor="middle" fill="#111">0</text>
+<path d="M248.0,344 L352.0,344 L355.0,351.0 L352.0,358 L248.0,358 L245.0,351.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="300.0" y="355" text-anchor="middle" fill="#111">1</text>
+<path d="M358.0,344 L462.0,344 L465.0,351.0 L462.0,358 L358.0,358 L355.0,351.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="410.0" y="355" text-anchor="middle" fill="#111">2</text>
+<path d="M468.0,344 L572.0,344 L575.0,351.0 L572.0,358 L468.0,358 L465.0,351.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="520.0" y="355" text-anchor="middle" fill="#111">3</text>
+<path d="M578.0,344 L1287.0,344 L1290.0,351.0 L1287.0,358 L578.0,358 L575.0,351.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="932.5" y="355" text-anchor="middle" fill="#111">0</text>
+<text x="8" y="377" fill="#222">DW</text>
+<path d="M171.0,366 L242.0,366 L245.0,373.0 L242.0,380 L171.0,380 L168.0,373.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="206.5" y="377" text-anchor="middle" fill="#111">11</text>
+<path d="M248.0,366 L352.0,366 L355.0,373.0 L352.0,380 L248.0,380 L245.0,373.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="300.0" y="377" text-anchor="middle" fill="#111">22</text>
+<path d="M358.0,366 L462.0,366 L465.0,373.0 L462.0,380 L358.0,380 L355.0,373.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="410.0" y="377" text-anchor="middle" fill="#111">33</text>
+<path d="M468.0,366 L572.0,366 L575.0,373.0 L572.0,380 L468.0,380 L465.0,373.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="520.0" y="377" text-anchor="middle" fill="#111">44</text>
+<path d="M578.0,366 L1287.0,366 L1290.0,373.0 L1287.0,380 L578.0,380 L575.0,373.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="932.5" y="377" text-anchor="middle" fill="#111">55</text>
+<text x="8" y="399" fill="#222">REB (tied low)</text>
+<path d="M168.0,402 L1290.0,402" fill="none" stroke="#2b8a3e" stroke-width="1.5"/>
+<text x="8" y="421" fill="#222">AR (next rd pointer)</text>
+<path d="M171.0,410 L858.0,410 L861.0,417.0 L858.0,424 L171.0,424 L168.0,417.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="514.5" y="421" text-anchor="middle" fill="#111">0</text>
+<path d="M864.0,410 L1012.0,410 L1015.0,417.0 L1012.0,424 L864.0,424 L861.0,417.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="938.0" y="421" text-anchor="middle" fill="#111">1</text>
+<path d="M1018.0,410 L1166.0,410 L1169.0,417.0 L1166.0,424 L1018.0,424 L1015.0,417.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="1092.0" y="421" text-anchor="middle" fill="#111">2</text>
+<path d="M1172.0,410 L1287.0,410 L1290.0,417.0 L1287.0,424 L1172.0,424 L1169.0,417.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="1229.5" y="421" text-anchor="middle" fill="#111">3</text>
+<text x="8" y="443" fill="#222">QR</text>
+<path d="M171.0,432 L396.0,432 L399.0,439.0 L396.0,446 L171.0,446 L168.0,439.0 Z" fill="#ffc9c9" stroke="#e03131"/>
+<text x="283.5" y="443" text-anchor="middle" fill="#111">x</text>
+<path d="M402.0,432 L1012.0,432 L1015.0,439.0 L1012.0,446 L402.0,446 L399.0,439.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="707.0" y="443" text-anchor="middle" fill="#111">11</text>
+<path d="M1018.0,432 L1166.0,432 L1169.0,439.0 L1166.0,446 L1018.0,446 L1015.0,439.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="1092.0" y="443" text-anchor="middle" fill="#111">22</text>
+<path d="M1172.0,432 L1287.0,432 L1290.0,439.0 L1287.0,446 L1172.0,446 L1169.0,439.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="1229.5" y="443" text-anchor="middle" fill="#111">33</text>
+<rect x="0" y="450" width="1310" height="22" fill="#f1f1f1"/><text x="8" y="465" font-weight="bold" fill="#444">READ DOMAIN (i_clk_rd, period 14 ns)</text>
+<text x="8" y="487" fill="#222">i_clk_rd</text>
+<path d="M168.0,490 L245.0,490 L245.0,490 L245.0,476 L322.0,476 L322.0,476 L322.0,490 L399.0,490 L399.0,490 L399.0,476 L476.0,476 L476.0,476 L476.0,490 L553.0,490 L553.0,490 L553.0,476 L630.0,476 L630.0,476 L630.0,490 L707.0,490 L707.0,490 L707.0,476 L784.0,476 L784.0,476 L784.0,490 L861.0,490 L861.0,490 L861.0,476 L938.0,476 L938.0,476 L938.0,490 L1015.0,490 L1015.0,490 L1015.0,476 L1092.0,476 L1092.0,476 L1092.0,490 L1169.0,490 L1169.0,490 L1169.0,476 L1246.0,476 L1246.0,476 L1246.0,490 L1290.0,490" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="509" fill="#222">i_rd_en</text>
+<path d="M168.0,512 L861.0,512 L861.0,512 L861.0,498 L1290.0,498" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="531" fill="#222">read accept (sampled at the edge)</text>
+<path d="M168.0,534 L861.0,534 L861.0,534 L861.0,520 L1290.0,520" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="553" fill="#222">o_rd_data</text>
+<path d="M171.0,542 L396.0,542 L399.0,549.0 L396.0,556 L171.0,556 L168.0,549.0 Z" fill="#ffc9c9" stroke="#e03131"/>
+<text x="283.5" y="553" text-anchor="middle" fill="#111">x</text>
+<path d="M402.0,542 L1012.0,542 L1015.0,549.0 L1012.0,556 L402.0,556 L399.0,549.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="707.0" y="553" text-anchor="middle" fill="#111">11</text>
+<path d="M1018.0,542 L1166.0,542 L1169.0,549.0 L1166.0,556 L1018.0,556 L1015.0,549.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="1092.0" y="553" text-anchor="middle" fill="#111">22</text>
+<path d="M1172.0,542 L1287.0,542 L1290.0,549.0 L1287.0,556 L1172.0,556 L1169.0,549.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="1229.5" y="553" text-anchor="middle" fill="#111">33</text>
+<text x="8" y="575" fill="#222">o_empty</text>
+<path d="M168.0,564 L553.0,564 L553.0,564 L553.0,578 L1290.0,578" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="597" fill="#222">o_empty_thr</text>
+<path d="M168.0,586 L553.0,586 L553.0,586 L553.0,600 L1290.0,600" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="619" fill="#222">o_underflow</text>
+<path d="M168.0,622 L1290.0,622" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="641" fill="#222">read pointer (bin)</text>
+<path d="M171.0,630 L1012.0,630 L1015.0,637.0 L1012.0,644 L171.0,644 L168.0,637.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="591.5" y="641" text-anchor="middle" fill="#111">0</text>
+<path d="M1018.0,630 L1166.0,630 L1169.0,637.0 L1166.0,644 L1018.0,644 L1015.0,637.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="1092.0" y="641" text-anchor="middle" fill="#111">1</text>
+<path d="M1172.0,630 L1287.0,630 L1290.0,637.0 L1287.0,644 L1172.0,644 L1169.0,637.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="1229.5" y="641" text-anchor="middle" fill="#111">2</text>
+<text x="8" y="663" fill="#222">read pointer (gray)</text>
+<path d="M171.0,652 L1012.0,652 L1015.0,659.0 L1012.0,666 L171.0,666 L168.0,659.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="591.5" y="663" text-anchor="middle" fill="#111">000</text>
+<path d="M1018.0,652 L1166.0,652 L1169.0,659.0 L1166.0,666 L1018.0,666 L1015.0,659.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="1092.0" y="663" text-anchor="middle" fill="#111">001</text>
+<path d="M1172.0,652 L1287.0,652 L1290.0,659.0 L1287.0,666 L1172.0,666 L1169.0,659.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="1229.5" y="663" text-anchor="middle" fill="#111">011</text>
+<text x="8" y="685" fill="#222">wr gray, synchronized</text>
+<path d="M171.0,674 L550.0,674 L553.0,681.0 L550.0,688 L171.0,688 L168.0,681.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="360.5" y="685" text-anchor="middle" fill="#111">000</text>
+<path d="M556.0,674 L704.0,674 L707.0,681.0 L704.0,688 L556.0,688 L553.0,681.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="630.0" y="685" text-anchor="middle" fill="#111">011</text>
+<path d="M710.0,674 L858.0,674 L861.0,681.0 L858.0,688 L710.0,688 L707.0,681.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="784.0" y="685" text-anchor="middle" fill="#111">010</text>
+<path d="M864.0,674 L1287.0,674 L1290.0,681.0 L1287.0,688 L864.0,688 L861.0,681.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="1075.5" y="685" text-anchor="middle" fill="#111">110</text>
+<line x1="245.0" y1="50" x2="245.0" y2="696" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="245.0" cy="30" r="9" fill="#d6336c"/><text x="245.0" y="34" text-anchor="middle" fill="#fff" font-weight="bold">1</text>
+<line x1="399.0" y1="50" x2="399.0" y2="696" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="399.0" cy="30" r="9" fill="#d6336c"/><text x="399.0" y="34" text-anchor="middle" fill="#fff" font-weight="bold">2</text>
+<line x1="553.0" y1="50" x2="553.0" y2="696" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="553.0" cy="30" r="9" fill="#d6336c"/><text x="553.0" y="34" text-anchor="middle" fill="#fff" font-weight="bold">3</text>
+<line x1="575.0" y1="50" x2="575.0" y2="696" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="575.0" cy="30" r="9" fill="#d6336c"/><text x="575.0" y="34" text-anchor="middle" fill="#fff" font-weight="bold">4</text>
+<line x1="685.0" y1="50" x2="685.0" y2="696" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="685.0" cy="30" r="9" fill="#d6336c"/><text x="685.0" y="34" text-anchor="middle" fill="#fff" font-weight="bold">5</text>
+<line x1="1015.0" y1="50" x2="1015.0" y2="696" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="1015.0" cy="30" r="9" fill="#d6336c"/><text x="1015.0" y="34" text-anchor="middle" fill="#fff" font-weight="bold">6</text>
+<text x="168" y="716" fill="#555">numbers = events of the table next to the figure; red bus = unknown (X)</text>
+</svg>

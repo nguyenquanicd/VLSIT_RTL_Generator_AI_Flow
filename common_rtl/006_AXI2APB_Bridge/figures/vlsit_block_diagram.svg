@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="1150" viewBox="0 0 2000 1150" role="img" aria-labelledby="title desc">
+  <title id="title">AXI2APB Bridge RTL module hierarchy</title>
+  <desc id="desc">The structural top instantiates three RTL modules: read sequencer, write sequencer, and a controller that combines AR/AW arbitration with APB transfer control. Dashed panels show external AXI4 and APB4 port bundles.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,5 L0,10 z" fill="#475569"/></marker>
+    <marker id="arrow-start" markerWidth="10" markerHeight="10" refX="2" refY="5" orient="auto" markerUnits="strokeWidth"><path d="M10,0 L0,5 L10,10 z" fill="#475569"/></marker>
+    <style>
+      text { font-family: Arial, Helvetica, sans-serif; fill: #111827; }
+      .title { font-size: 34px; font-weight: 700; }
+      .subtitle { font-size: 18px; fill: #475569; }
+      .frame { fill: #FFFFFF; stroke: #111827; stroke-width: 4; }
+      .frame-title { font-size: 25px; font-weight: 700; }
+      .frame-note { font-size: 16px; fill: #475569; }
+      .module { fill: #EFF6FF; stroke: #1D4ED8; stroke-width: 3; rx: 14; }
+      .module-head { fill: #DBEAFE; stroke: none; }
+      .module-name { font-family: Consolas, "Courier New", monospace; font-size: 21px; font-weight: 700; }
+      .badge { fill: #1D4ED8; }
+      .badge-text { font-size: 12px; font-weight: 700; fill: #FFFFFF; letter-spacing: .6px; }
+      .body { font-size: 15px; }
+      .small { font-size: 13px; fill: #475569; }
+      .port-card { fill: #F8FAFC; stroke: #64748B; stroke-width: 2.5; stroke-dasharray: 9 7; rx: 12; }
+      .port-title { font-size: 20px; font-weight: 700; }
+      .port-section { font-size: 14px; font-weight: 700; fill: #334155; }
+      .port-body { font-size: 14px; }
+      .bus { fill: none; stroke: #64748B; stroke-width: 2.5; stroke-dasharray: 7 6; }
+      .link { fill: none; stroke: #475569; stroke-width: 3; }
+      .link-label { font-size: 13px; font-weight: 700; fill: #334155; }
+      .legend { font-size: 14px; fill: #334155; }
+      .note { font-size: 15px; font-weight: 600; fill: #334155; }
+    </style>
+  </defs>
+
+  <rect width="2000" height="1150" fill="#FFFFFF"/>
+  <text x="1000" y="48" text-anchor="middle" class="title">AXI2APB Bridge — RTL Module Hierarchy</text>
+  <text x="1000" y="80" text-anchor="middle" class="subtitle">Three child RTL modules; each solid blue box is one module. Dashed panels show external interfaces.</text>
+  <rect x="40" y="103" width="28" height="20" rx="4" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="2"/>
+  <text x="78" y="119" class="legend">RTL module</text>
+  <rect x="210" y="103" width="28" height="20" rx="4" fill="#F8FAFC" stroke="#64748B" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="248" y="119" class="legend">External port bundle (not a module)</text>
+  <line x1="525" y1="113" x2="575" y2="113" class="link" marker-start="url(#arrow-start)" marker-end="url(#arrow)"/>
+  <text x="590" y="119" class="legend">Interface / request and response signals</text>
+
+  <!-- Structural top boundary -->
+  <rect x="315" y="150" width="1370" height="890" rx="16" class="frame"/>
+  <text x="350" y="192" class="frame-title">TOP MODULE  m_axi2apb_bridge</text>
+  <text x="350" y="220" class="frame-note">Structural top: three child instances and port wiring only; one shared synchronous clock and reset.</text>
+  <text x="1000" y="256" text-anchor="middle" class="body" font-weight="700">Top inputs: i_clk_axi, i_rst_n_axi  |  all child modules use CLK-AXI / RST-AXI</text>
+  <path d="M1000 267 V285 H600 M1000 285 H1335" class="bus"/>
+  <path d="M600 285 V330" class="bus" marker-end="url(#arrow)"/>
+  <path d="M600 285 V650" class="bus" marker-end="url(#arrow)"/>
+  <path d="M1335 285 V390" class="bus" marker-end="url(#arrow)"/>
+
+  <!-- Read sequencer -->
+  <g id="m_axi2apb_rd_seq">
+    <rect x="370" y="330" width="460" height="250" class="module"/>
+    <path d="M384 330 H816 Q830 330 830 344 V378 H370 V344 Q370 330 384 330 Z" class="module-head"/>
+    <text x="392" y="361" class="module-name">m_axi2apb_rd_seq</text>
+    <rect x="708" y="388" width="100" height="23" rx="11" class="badge"/>
+    <text x="758" y="404" text-anchor="middle" class="badge-text">RTL MODULE</text>
+    <text x="392" y="436" class="body">AXI AR inputs and R response outputs</text>
+    <text x="392" y="466" class="body">Validates burst, size, cache and 4-KiB range</text>
+    <text x="392" y="496" class="body">Generates FIXED, INCR and WRAP addresses</text>
+    <text x="392" y="526" class="body">Issues one APB read per beat; holds R to handshake</text>
+    <text x="392" y="556" class="small">Internal: grant, ready/done, rd_req / rd_rsp</text>
+  </g>
+
+  <!-- Write sequencer -->
+  <g id="m_axi2apb_wr_seq">
+    <rect x="370" y="650" width="460" height="285" class="module"/>
+    <path d="M384 650 H816 Q830 650 830 664 V698 H370 V664 Q370 650 384 650 Z" class="module-head"/>
+    <text x="392" y="681" class="module-name">m_axi2apb_wr_seq</text>
+    <rect x="708" y="708" width="100" height="23" rx="11" class="badge"/>
+    <text x="758" y="724" text-anchor="middle" class="badge-text">RTL MODULE</text>
+    <text x="392" y="756" class="body">AXI AW/W inputs and B response output</text>
+    <text x="392" y="786" class="body">WVALID may precede AW; WREADY waits for AW grant</text>
+    <text x="392" y="816" class="body">Issues one APB write per declared W beat</text>
+    <text x="392" y="846" class="body">Aggregates PSLVERR into the final BRESP</text>
+    <text x="392" y="876" class="small">Internal: grant, ready/done, wr_req / wr_rsp</text>
+  </g>
+
+  <!-- Combined arbiter and APB controller -->
+  <g id="m_axi2apb_apb_ctrl">
+    <rect x="1050" y="390" width="570" height="430" class="module"/>
+    <path d="M1064 390 H1606 Q1620 390 1620 404 V438 H1050 V404 Q1050 390 1064 390 Z" class="module-head"/>
+    <text x="1072" y="421" class="module-name">m_axi2apb_apb_ctrl</text>
+    <rect x="1490" y="448" width="100" height="23" rx="11" class="badge"/>
+    <text x="1540" y="464" text-anchor="middle" class="badge-text">RTL MODULE</text>
+    <text x="1072" y="493" class="body">Round-robin AR/AW arbitration; read wins initial tie</text>
+    <text x="1072" y="523" class="body">Registered owner held through final R or B handshake</text>
+    <text x="1072" y="553" class="body">Selects one granted sequencer APB request</text>
+    <text x="1072" y="583" class="body">APB Setup/Access FSM; controls stable through wait</text>
+    <text x="1072" y="613" class="body">Drives PADDR, PWRITE, PWDATA, PSTRB and PPROT</text>
+    <text x="1072" y="643" class="body">Samples PREADY, PRDATA and PSLVERR</text>
+    <text x="1072" y="683" class="small">Arbitration ports: ARVALID/AWVALID, ready/done, grants</text>
+    <text x="1072" y="713" class="small">Read ports: rd_req / rd_rsp</text>
+    <text x="1072" y="743" class="small">Write ports: wr_req / wr_rsp; APB4 pins</text>
+    <text x="1072" y="783" class="small">One owner at a time; no AXI/APB transaction interleaving</text>
+  </g>
+
+  <!-- AXI sequencer bundles -->
+  <path d="M285 455 H325 V455 H370" class="link" marker-start="url(#arrow-start)" marker-end="url(#arrow)"/>
+  <rect x="293" y="426" width="70" height="20" fill="#FFFFFF"/>
+  <text x="328" y="441" text-anchor="middle" class="link-label">AR / R</text>
+  <path d="M285 800 H325 V800 H370" class="link" marker-start="url(#arrow-start)" marker-end="url(#arrow)"/>
+  <rect x="286" y="771" width="85" height="20" fill="#FFFFFF"/>
+  <text x="328" y="786" text-anchor="middle" class="link-label">AW / W / B</text>
+
+  <!-- Sequencer control and request/response bundles -->
+  <path d="M830 475 H1050" class="link" marker-start="url(#arrow-start)" marker-end="url(#arrow)"/>
+  <rect x="838" y="444" width="204" height="22" fill="#FFFFFF"/>
+  <text x="940" y="460" text-anchor="middle" class="link-label">grant / done + rd_req / rd_rsp</text>
+  <path d="M830 800 H1050" class="link" marker-start="url(#arrow-start)" marker-end="url(#arrow)"/>
+  <rect x="838" y="769" width="204" height="22" fill="#FFFFFF"/>
+  <text x="940" y="785" text-anchor="middle" class="link-label">grant / done + wr_req / wr_rsp</text>
+
+  <!-- APB interface bundle -->
+  <path d="M1620 610 H1730" class="link" marker-start="url(#arrow-start)" marker-end="url(#arrow)"/>
+  <rect x="1626" y="581" width="98" height="22" fill="#FFFFFF"/>
+  <text x="1675" y="597" text-anchor="middle" class="link-label">APB4 signals</text>
+
+  <text x="350" y="1000" class="note">One active AXI transaction; one APB transfer engine; ACLK = PCLK.</text>
+
+  <!-- External AXI4 interface panel -->
+  <rect x="20" y="375" width="265" height="510" class="port-card"/>
+  <text x="40" y="411" class="port-title">IF-001  AXI4</text>
+  <text x="40" y="437" class="small">Subordinate port bundle</text>
+  <text x="40" y="478" class="port-section">Inputs to RTL</text>
+  <text x="40" y="507" class="port-body">AR*: ID, ADDR, LEN, SIZE,</text>
+  <text x="40" y="529" class="port-body">BURST, CACHE, PROT, VALID;</text>
+  <text x="40" y="551" class="port-body">RREADY</text>
+  <text x="40" y="581" class="port-body">AW*: ID, ADDR, LEN, SIZE,</text>
+  <text x="40" y="603" class="port-body">BURST, CACHE, PROT, VALID;</text>
+  <text x="40" y="625" class="port-body">W*: DATA, STRB, LAST, VALID;</text>
+  <text x="40" y="647" class="port-body">BREADY</text>
+  <text x="40" y="687" class="port-section">Outputs from RTL</text>
+  <text x="40" y="716" class="port-body">ARREADY, AWREADY, WREADY</text>
+  <text x="40" y="746" class="port-body">R*: ID, DATA, RESP, LAST, VALID</text>
+  <text x="40" y="776" class="port-body">B*: ID, RESP, VALID</text>
+  <text x="40" y="827" class="small">Exact names and widths are in</text>
+  <text x="40" y="849" class="small">the specification, Section 6.2.</text>
+
+  <!-- External APB4 interface panel -->
+  <rect x="1730" y="420" width="250" height="400" class="port-card"/>
+  <text x="1750" y="456" class="port-title">IF-002  APB4</text>
+  <text x="1750" y="482" class="small">Manager port bundle</text>
+  <text x="1750" y="523" class="port-section">Outputs from RTL</text>
+  <text x="1750" y="552" class="port-body">PADDR, PSEL, PENABLE, PWRITE</text>
+  <text x="1750" y="574" class="port-body">PWDATA, PSTRB, PPROT</text>
+  <text x="1750" y="614" class="port-section">Inputs to RTL</text>
+  <text x="1750" y="643" class="port-body">PREADY, PRDATA, PSLVERR</text>
+  <text x="1750" y="693" class="small">Address decoder and peripheral</text>
+  <text x="1750" y="715" class="small">Completers are in the SoC fabric.</text>
+  <text x="1750" y="755" class="small">PCLK = i_clk_axi.</text>
+</svg>

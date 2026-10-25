@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="388" viewBox="0 0 480 388" font-family="Helvetica,Arial,sans-serif">
+<rect width="100%" height="100%" fill="#fff"/>
+<text x="12" y="20" font-size="14" font-weight="bold">AXI response backpressure</text>
+<line x1="162" y1="30" x2="162" y2="360" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="196" y1="30" x2="196" y2="360" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="230" y1="30" x2="230" y2="360" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="264" y1="30" x2="264" y2="360" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="298" y1="30" x2="298" y2="360" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="332" y1="30" x2="332" y2="360" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="366" y1="30" x2="366" y2="360" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="400" y1="30" x2="400" y2="360" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="434" y1="30" x2="434" y2="360" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="468" y1="30" x2="468" y2="360" stroke="#ccc" stroke-dasharray="2,3"/>
+<text x="154" y="49" font-size="12" text-anchor="end">i_clk_axi</text>
+<polyline points="162.0,51.0 162.0,33.0 179.0,33.0 179.0,51.0 196.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="196.0,51.0 196.0,33.0 213.0,33.0 213.0,51.0 230.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="230.0,51.0 230.0,33.0 247.0,33.0 247.0,51.0 264.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="264.0,51.0 264.0,33.0 281.0,33.0 281.0,51.0 298.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="298.0,51.0 298.0,33.0 315.0,33.0 315.0,51.0 332.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="332.0,51.0 332.0,33.0 349.0,33.0 349.0,51.0 366.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="366.0,51.0 366.0,33.0 383.0,33.0 383.0,51.0 400.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="400.0,51.0 400.0,33.0 417.0,33.0 417.0,51.0 434.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="434.0,51.0 434.0,33.0 451.0,33.0 451.0,51.0 468.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="12" y="79" font-size="12" font-weight="bold" fill="#225">AXI R response</text>
+<text x="154" y="109" font-size="12" text-anchor="end">o_axi_rvalid</text>
+<polyline points="162.0,111.0 196.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="196.0,111.0 230.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="230.0,111.0 230.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="230.0,93.0 264.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="264.0,93.0 298.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="298.0,93.0 332.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="332.0,93.0 332.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="332.0,111.0 366.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="366.0,111.0 400.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="400.0,111.0 434.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="434.0,111.0 468.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="139" font-size="12" text-anchor="end">i_axi_rready</text>
+<polyline points="162.0,141.0 196.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="196.0,141.0 230.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="230.0,141.0 264.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="264.0,141.0 298.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="298.0,141.0 298.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="298.0,123.0 332.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="332.0,123.0 332.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="332.0,141.0 366.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="366.0,141.0 400.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="400.0,141.0 434.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="434.0,141.0 468.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="169" font-size="12" text-anchor="end">o_axi_rdata</text>
+<rect x="162.0" y="153.0" width="34.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="196.0" y="153.0" width="34.0" height="18.0" fill="#ddd" stroke="#000"/>
+<polygon points="234.0,153.0 328.0,153.0 332.0,162.0 328.0,171.0 234.0,171.0 230.0,162.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="281.0" y="166.0" text-anchor="middle" font-size="11">R0</text>
+<rect x="332.0" y="153.0" width="34.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="366.0" y="153.0" width="34.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="400.0" y="153.0" width="34.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="434.0" y="153.0" width="34.0" height="18.0" fill="#ddd" stroke="#000"/>
+<text x="154" y="199" font-size="12" text-anchor="end">o_axi_rresp</text>
+<rect x="162.0" y="183.0" width="34.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="196.0" y="183.0" width="34.0" height="18.0" fill="#ddd" stroke="#000"/>
+<polyline points="230.0,192.0 230.0,201.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="230.0,201.0 264.0,201.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="264.0,201.0 298.0,201.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="298.0,201.0 332.0,201.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<rect x="332.0" y="183.0" width="34.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="366.0" y="183.0" width="34.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="400.0" y="183.0" width="34.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="434.0" y="183.0" width="34.0" height="18.0" fill="#ddd" stroke="#000"/>
+<text x="12" y="229" font-size="12" font-weight="bold" fill="#225">AXI B response</text>
+<text x="154" y="259" font-size="12" text-anchor="end">o_axi_bvalid</text>
+<polyline points="162.0,261.0 196.0,261.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="196.0,261.0 230.0,261.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="230.0,261.0 264.0,261.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="264.0,261.0 298.0,261.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="298.0,261.0 332.0,261.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="332.0,261.0 332.0,243.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="332.0,243.0 366.0,243.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="366.0,243.0 400.0,243.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="400.0,243.0 434.0,243.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="434.0,243.0 468.0,243.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="289" font-size="12" text-anchor="end">i_axi_bready</text>
+<polyline points="162.0,291.0 196.0,291.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="196.0,291.0 230.0,291.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="230.0,291.0 264.0,291.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="264.0,291.0 298.0,291.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="298.0,291.0 332.0,291.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="332.0,291.0 366.0,291.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="366.0,291.0 400.0,291.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="400.0,291.0 434.0,291.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="434.0,291.0 434.0,273.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="434.0,273.0 468.0,273.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="319" font-size="12" text-anchor="end">o_axi_bid</text>
+<rect x="162.0" y="303.0" width="34.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="196.0" y="303.0" width="34.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="230.0" y="303.0" width="34.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="264.0" y="303.0" width="34.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="298.0" y="303.0" width="34.0" height="18.0" fill="#ddd" stroke="#000"/>
+<polygon points="336.0,303.0 430.0,303.0 434.0,312.0 430.0,321.0 336.0,321.0 332.0,312.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="383.0" y="316.0" text-anchor="middle" font-size="11">ID3</text>
+<rect x="434.0" y="303.0" width="34.0" height="18.0" fill="#ddd" stroke="#000"/>
+<text x="154" y="349" font-size="12" text-anchor="end">o_axi_bresp</text>
+<rect x="162.0" y="333.0" width="34.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="196.0" y="333.0" width="34.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="230.0" y="333.0" width="34.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="264.0" y="333.0" width="34.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="298.0" y="333.0" width="34.0" height="18.0" fill="#ddd" stroke="#000"/>
+<polyline points="332.0,342.0 332.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="332.0,351.0 366.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="366.0,351.0 400.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="400.0,351.0 434.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="434.0,351.0 468.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="12" y="380" font-size="11" fill="#444">R and B payloads stay valid and stable until their READY handshakes.</text>
+</svg>

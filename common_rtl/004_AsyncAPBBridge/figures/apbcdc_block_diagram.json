@@ -1,0 +1,22 @@
+{
+  "title": "Asynchronous APB bridge block diagram (handshake with bundled data)",
+  "blocks": [
+    {"id": "io_up", "label": "APB\nrequester", "x": 0.0, "y": 0.0, "kind": "io"},
+    {"id": "mst", "label": "m_vlsit_apbcdc_mst\ncapture, request,\nresponse output", "x": 6.5, "y": 0.0},
+    {"id": "slv", "label": "m_vlsit_apbcdc_slv\nAPB requester FSM,\nresponse capture", "x": 19.0, "y": 0.0},
+    {"id": "io_dn", "label": "APB\ncompleter", "x": 25.5, "y": 0.0, "kind": "io"},
+    {"id": "sync_a", "label": "m_vlsit_apbcdc_sync\nacknowledge", "x": 6.5, "y": -5.0},
+    {"id": "sync_r", "label": "m_vlsit_apbcdc_sync\nrequest, wakeup", "x": 19.0, "y": -5.0}
+  ],
+  "groups": [
+    {"label": "CLK-MST (i_clk_mst)", "blocks": ["mst", "sync_a"]},
+    {"label": "CLK-SLV (i_clk_slv)", "blocks": ["slv", "sync_r"]}
+  ],
+  "links": [
+    {"from": "io_up", "to": "mst", "from_side": "east", "to_side": "west", "label": "APB4 / APB5", "dir": "bidir"},
+    {"from": "mst", "to": "slv", "from_side": "east", "to_side": "west", "label": "request, bundle, ack, response (timed)", "dir": "bidir", "style": "ctrl"},
+    {"from": "slv", "to": "io_dn", "from_side": "east", "to_side": "west", "label": "APB4 / APB5", "dir": "bidir"},
+    {"from": "sync_a", "to": "mst", "from_side": "north", "to_side": "south", "label": "ack"},
+    {"from": "sync_r", "to": "slv", "from_side": "north", "to_side": "south", "label": "req"}
+  ]
+}

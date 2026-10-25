@@ -1,0 +1,111 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_axi",
+      "wave": "p..........."
+    },
+    [
+      "Unsupported read",
+      {
+        "name": "i_axi_arvalid",
+        "wave": "010000000000"
+      },
+      {
+        "name": "o_axi_arready",
+        "wave": "010000000000"
+      },
+      {
+        "name": "i_axi_arsize",
+        "wave": "x=..........",
+        "data": [
+          "3"
+        ]
+      },
+      {
+        "name": "i_axi_arlen",
+        "wave": "x=..........",
+        "data": [
+          "1"
+        ]
+      },
+      {
+        "name": "o_axi_rvalid",
+        "wave": "001100000000"
+      },
+      {
+        "name": "i_axi_rready",
+        "wave": "001100000000"
+      },
+      {
+        "name": "o_axi_rlast",
+        "wave": "000100000000"
+      },
+      {
+        "name": "o_axi_rresp",
+        "wave": "xx==........",
+        "data": [
+          "SLVERR",
+          "SLVERR"
+        ]
+      }
+    ],
+    [
+      "Unsupported write",
+      {
+        "name": "i_axi_awvalid",
+        "wave": "000001000000"
+      },
+      {
+        "name": "o_axi_awready",
+        "wave": "000001000000"
+      },
+      {
+        "name": "i_axi_awcache",
+        "wave": "xxxxx=......",
+        "data": [
+          "0010"
+        ]
+      },
+      {
+        "name": "i_axi_wvalid",
+        "wave": "000000110000"
+      },
+      {
+        "name": "o_axi_wready",
+        "wave": "000000110000"
+      },
+      {
+        "name": "i_axi_wlast",
+        "wave": "000000010000"
+      },
+      {
+        "name": "o_axi_bvalid",
+        "wave": "000000001100"
+      },
+      {
+        "name": "i_axi_bready",
+        "wave": "000000000100"
+      },
+      {
+        "name": "o_axi_bresp",
+        "wave": "xxxxxxxx=...",
+        "data": [
+          "SLVERR"
+        ]
+      }
+    ],
+    [
+      "APB",
+      {
+        "name": "o_apb_psel",
+        "wave": "000000000000"
+      }
+    ]
+  ],
+  "head": {
+    "text": "Unsupported request completion"
+  },
+  "foot": {
+    "text": "Unsupported ARSIZE and AxCACHE cause SLVERR with no APB; write data is drained."
+  }
+}

@@ -1,0 +1,16 @@
+$ C:\Tools\oss-cad-suite\bin\verilator_bin.exe --lint-only -Wall --top-module m_vlsit_sfifo_top +define+VLSIT_SYNTHESIS ../../000_Common/rtl_cells/VLSIT_CELL_SRAM_1W1R.sv ../../000_Common/rtl_lib/m_vlsit_sfifo_ram_macro.sv ../rtl/m_vlsit_sfifo_mem.sv ../rtl/m_vlsit_sfifo_rd.sv ../rtl/m_vlsit_sfifo_wr.sv ../rtl/m_vlsit_sfifo_top.sv
+(cwd C:\HQuan\102_MyGithub\VLSIT_RTL_Generator_AI_Model\common_rtl\002_SyncFIFO\lint)
+
+%Warning-UNUSEDSIGNAL: ../rtl\m_vlsit_sfifo_rd.sv:96:29: Bits of signal are not used: 'w_addr_ext'[31:3]
+                                                       : ... note: In instance 'm_vlsit_sfifo_top.u_vlsit_sfifo_rd'
+   96 |   logic [LPARA_ARITH_W-1:0] w_addr_ext;
+      |                             ^~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/UNUSEDSIGNAL?v=5.053
+                       ... Use "/* verilator lint_off UNUSEDSIGNAL */" and lint_on around source to disable this message.
+%Warning-UNUSEDSIGNAL: ../rtl\m_vlsit_sfifo_wr.sv:101:29: Bits of signal are not used: 'w_addr_ext'[31:3]
+                                                        : ... note: In instance 'm_vlsit_sfifo_top.u_vlsit_sfifo_wr'
+  101 |   logic [LPARA_ARITH_W-1:0] w_addr_ext;
+      |                             ^~~~~~~~~~
+%Error: Exiting due to 2 warning(s)
+
+exit code 1

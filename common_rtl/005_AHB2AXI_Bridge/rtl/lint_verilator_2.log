@@ -1,0 +1,229 @@
+$ C:\Tools\oss-cad-suite\bin\verilator_bin.exe --lint-only -Wall --top-module m_ahb2axi_top m_ahb2axi_ahb_if.sv m_ahb2axi_axi_if.sv ../../002_SyncFIFO/rtl/m_vlsit_sfifo_mem.sv ../../002_SyncFIFO/rtl/m_vlsit_sfifo_rd.sv ../../002_SyncFIFO/rtl/m_vlsit_sfifo_wr.sv ../../002_SyncFIFO/rtl/m_vlsit_sfifo_top.sv m_ahb2axi_ctrl.sv m_ahb2axi_top.sv
+(cwd C:\HQuan\102_MyGithub\VLSIT_RTL_Generator_AI_Model\common_rtl\005_AHB2AXI_Bridge\rtl)
+
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1046:6: Instance pin connected by name with empty reference: 'o_full_thr'
+ 1046 |     .o_full_thr     (),
+      |      ^~~~~~~~~~
+                          ... For warning description see https://verilator.org/warn/PINCONNECTEMPTY?v=5.053
+                          ... Use "/* verilator lint_off PINCONNECTEMPTY */" and lint_on around source to disable this message.
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1047:6: Instance pin connected by name with empty reference: 'o_overflow'
+ 1047 |     .o_overflow     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1049:6: Instance pin connected by name with empty reference: 'o_sw_rst_busy'
+ 1049 |     .o_sw_rst_busy  (),
+      |      ^~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1056:6: Instance pin connected by name with empty reference: 'o_empty_thr'
+ 1056 |     .o_empty_thr    (),
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1057:6: Instance pin connected by name with empty reference: 'o_underflow'
+ 1057 |     .o_underflow    ()
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1070:6: Instance pin connected by name with empty reference: 'o_full_thr'
+ 1070 |     .o_full_thr     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1071:6: Instance pin connected by name with empty reference: 'o_overflow'
+ 1071 |     .o_overflow     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1073:6: Instance pin connected by name with empty reference: 'o_sw_rst_busy'
+ 1073 |     .o_sw_rst_busy  (),
+      |      ^~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1080:6: Instance pin connected by name with empty reference: 'o_empty_thr'
+ 1080 |     .o_empty_thr    (),
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1081:6: Instance pin connected by name with empty reference: 'o_underflow'
+ 1081 |     .o_underflow    ()
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1094:6: Instance pin connected by name with empty reference: 'o_full_thr'
+ 1094 |     .o_full_thr     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1095:6: Instance pin connected by name with empty reference: 'o_overflow'
+ 1095 |     .o_overflow     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1097:6: Instance pin connected by name with empty reference: 'o_sw_rst_busy'
+ 1097 |     .o_sw_rst_busy  (),
+      |      ^~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1104:6: Instance pin connected by name with empty reference: 'o_empty_thr'
+ 1104 |     .o_empty_thr    (),
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1105:6: Instance pin connected by name with empty reference: 'o_underflow'
+ 1105 |     .o_underflow    ()
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1118:6: Instance pin connected by name with empty reference: 'o_full_thr'
+ 1118 |     .o_full_thr     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1119:6: Instance pin connected by name with empty reference: 'o_overflow'
+ 1119 |     .o_overflow     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1121:6: Instance pin connected by name with empty reference: 'o_sw_rst_busy'
+ 1121 |     .o_sw_rst_busy  (),
+      |      ^~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1128:6: Instance pin connected by name with empty reference: 'o_empty_thr'
+ 1128 |     .o_empty_thr    (),
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1129:6: Instance pin connected by name with empty reference: 'o_underflow'
+ 1129 |     .o_underflow    ()
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1142:6: Instance pin connected by name with empty reference: 'o_full_thr'
+ 1142 |     .o_full_thr     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1143:6: Instance pin connected by name with empty reference: 'o_overflow'
+ 1143 |     .o_overflow     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1145:6: Instance pin connected by name with empty reference: 'o_sw_rst_busy'
+ 1145 |     .o_sw_rst_busy  (),
+      |      ^~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1152:6: Instance pin connected by name with empty reference: 'o_empty_thr'
+ 1152 |     .o_empty_thr    (),
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1153:6: Instance pin connected by name with empty reference: 'o_underflow'
+ 1153 |     .o_underflow    ()
+      |      ^~~~~~~~~~~
+%Warning-WIDTHEXPAND: m_ahb2axi_ctrl.sv:509:57: Operator SUB expects 32 bits on the RHS, but RHS's VARREF 'reg_burst_start' generates 5 bits.
+                                              : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  509 |           w_burst_sub_len = $bits(w_burst_sub_len)'(idx - reg_burst_start + 1);
+      |                                                         ^
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.053
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: m_ahb2axi_ctrl.sv:506:38: Operator ADD expects 32 bits on the LHS, but LHS's VARREF 'reg_burst_start' generates 5 bits.
+                                              : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  506 |             (idx == (reg_burst_start + w_burst_sub_len)) &
+      |                                      ^
+%Warning-WIDTHEXPAND: m_ahb2axi_ctrl.sv:506:38: Operator ADD expects 32 bits on the RHS, but RHS's VARREF 'w_burst_sub_len' generates 5 bits.
+                                              : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  506 |             (idx == (reg_burst_start + w_burst_sub_len)) &
+      |                                      ^
+%Warning-WIDTHTRUNC: m_ahb2axi_ctrl.sv:508:28: Bit extraction of array[15:0] requires 4 bit index, not 5 bits.
+                                             : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  508 |              reg_burst_addr[reg_burst_start][31:12]))
+      |                            ^
+                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=5.053
+                     ... Use "/* verilator lint_off WIDTHTRUNC */" and lint_on around source to disable this message.
+%Warning-WIDTHTRUNC: m_ahb2axi_ctrl.sv:660:40: Bit extraction of array[15:0] requires 4 bit index, not 5 bits.
+                                             : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  660 |         w_axi_aw_addr  = reg_burst_addr[reg_burst_widx];
+      |                                        ^
+%Warning-WIDTHTRUNC: m_ahb2axi_ctrl.sv:661:40: Bit extraction of array[15:0] requires 4 bit index, not 5 bits.
+                                             : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  661 |         w_axi_aw_size  = reg_burst_size[reg_burst_widx];
+      |                                        ^
+%Warning-WIDTHTRUNC: m_ahb2axi_ctrl.sv:662:52: Bit extraction of array[15:0] requires 4 bit index, not 5 bits.
+                                             : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  662 |         w_axi_aw_cache = f_axi_cache(reg_burst_prot[reg_burst_widx], 1'b1);
+      |                                                    ^
+%Warning-WIDTHTRUNC: m_ahb2axi_ctrl.sv:663:51: Bit extraction of array[15:0] requires 4 bit index, not 5 bits.
+                                             : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  663 |         w_axi_aw_prot  = f_axi_prot(reg_burst_prot[reg_burst_widx],
+      |                                                   ^
+%Warning-WIDTHTRUNC: m_ahb2axi_ctrl.sv:664:53: Bit extraction of array[15:0] requires 4 bit index, not 5 bits.
+                                             : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  664 |                                     reg_burst_nonsec[reg_burst_widx]);
+      |                                                     ^
+%Warning-WIDTHTRUNC: m_ahb2axi_ctrl.sv:676:38: Bit extraction of array[15:0] requires 4 bit index, not 5 bits.
+                                             : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  676 |       w_axi_aw_addr  = reg_burst_addr[reg_burst_start];
+      |                                      ^
+%Warning-WIDTHTRUNC: m_ahb2axi_ctrl.sv:678:38: Bit extraction of array[15:0] requires 4 bit index, not 5 bits.
+                                             : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  678 |       w_axi_aw_size  = reg_burst_size[reg_burst_start];
+      |                                      ^
+%Warning-WIDTHTRUNC: m_ahb2axi_ctrl.sv:680:50: Bit extraction of array[15:0] requires 4 bit index, not 5 bits.
+                                             : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  680 |       w_axi_aw_cache = f_axi_cache(reg_burst_prot[reg_burst_start], 1'b1);
+      |                                                  ^
+%Warning-WIDTHTRUNC: m_ahb2axi_ctrl.sv:681:49: Bit extraction of array[15:0] requires 4 bit index, not 5 bits.
+                                             : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  681 |       w_axi_aw_prot  = f_axi_prot(reg_burst_prot[reg_burst_start],
+      |                                                 ^
+%Warning-WIDTHTRUNC: m_ahb2axi_ctrl.sv:682:51: Bit extraction of array[15:0] requires 4 bit index, not 5 bits.
+                                             : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  682 |                                   reg_burst_nonsec[reg_burst_start]);
+      |                                                   ^
+%Warning-WIDTHTRUNC: m_ahb2axi_ctrl.sv:816:23: Bit extraction of array[15:0] requires 4 bit index, not 5 bits.
+                                             : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  816 |         reg_burst_addr[reg_burst_count]   <= w_cap_cmd_addr;
+      |                       ^
+%Warning-WIDTHTRUNC: m_ahb2axi_ctrl.sv:817:23: Bit extraction of array[15:0] requires 4 bit index, not 5 bits.
+                                             : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  817 |         reg_burst_size[reg_burst_count]   <= w_cap_cmd_size;
+      |                       ^
+%Warning-WIDTHTRUNC: m_ahb2axi_ctrl.sv:818:23: Bit extraction of array[15:0] requires 4 bit index, not 5 bits.
+                                             : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  818 |         reg_burst_type[reg_burst_count]   <= w_cap_cmd_burst;
+      |                       ^
+%Warning-WIDTHTRUNC: m_ahb2axi_ctrl.sv:819:23: Bit extraction of array[15:0] requires 4 bit index, not 5 bits.
+                                             : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  819 |         reg_burst_prot[reg_burst_count]   <= w_cap_cmd_prot;
+      |                       ^
+%Warning-WIDTHTRUNC: m_ahb2axi_ctrl.sv:820:25: Bit extraction of array[15:0] requires 4 bit index, not 5 bits.
+                                             : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  820 |         reg_burst_nonsec[reg_burst_count] <= w_cap_cmd_nonsec;
+      |                         ^
+%Warning-UNUSEDSIGNAL: m_ahb2axi_ctrl.sv:119:16: Signal is not used: 'reg_cmd_trans'
+                                               : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  119 |   logic [1:0]  reg_cmd_trans;
+      |                ^~~~~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/UNUSEDSIGNAL?v=5.053
+                       ... Use "/* verilator lint_off UNUSEDSIGNAL */" and lint_on around source to disable this message.
+%Warning-UNUSEDSIGNAL: m_ahb2axi_ctrl.sv:120:16: Signal is not used: 'reg_cmd_wr'
+                                               : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  120 |   logic        reg_cmd_wr;
+      |                ^~~~~~~~~~
+%Warning-UNUSEDSIGNAL: m_ahb2axi_ctrl.sv:122:16: Signal is not used: 'reg_cmd_burst'
+                                               : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  122 |   logic [2:0]  reg_cmd_burst;
+      |                ^~~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: m_ahb2axi_ctrl.sv:125:16: Signal is not used: 'reg_cmd_lock'
+                                               : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  125 |   logic        reg_cmd_lock;
+      |                ^~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: m_ahb2axi_ctrl.sv:205:16: Bits of signal are not used: 'w_rd_rsp_rd_data'[37:35,0]
+                                               : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  205 |   logic [37:0] w_rd_rsp_rd_data;
+      |                ^~~~~~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: m_ahb2axi_ctrl.sv:212:16: Bits of signal are not used: 'w_wr_rsp_rd_data'[4:2]
+                                               : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  212 |   logic [4:0]  w_wr_rsp_rd_data;
+      |                ^~~~~~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: m_ahb2axi_ctrl.sv:288:16: Bits of signal are not used: 'w_burst_axi_burst'[2]
+                                               : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  288 |   logic [2:0]  w_burst_axi_burst;
+      |                ^~~~~~~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: m_ahb2axi_ctrl.sv:301:24: Bits of function variable are not used: 'addr'[31:2]
+                                               : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  301 |     input logic [31:0] addr,
+      |                        ^~~~
+%Warning-UNUSEDSIGNAL: m_ahb2axi_ctrl.sv:314:60: Bits of function variable are not used: 'hprot'[1:0]
+                                               : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  314 |   function automatic logic f_hprot_valid(input logic [6:0] hprot);
+      |                                                            ^~~~~
+%Warning-UNUSEDSIGNAL: m_ahb2axi_ctrl.sv:362:23: Bits of function variable are not used: 'prot'[5,1:0]
+                                               : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  362 |     input logic [6:0] prot,
+      |                       ^~~~
+%Warning-UNUSEDSIGNAL: m_ahb2axi_ctrl.sv:375:23: Bits of function variable are not used: 'hprot'[6:2]
+                                               : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  375 |     input logic [6:0] hprot,
+      |                       ^~~~~
+%Warning-UNUSEDSIGNAL: m_ahb2axi_ctrl.sv:384:23: Bits of function variable are not used: 'hprot'[6,1:0]
+                                               : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  384 |     input logic [6:0] hprot,
+      |                       ^~~~~
+%Warning-UNUSEDSIGNAL: m_ahb2axi_axi_if.sv:14:23: Signal is not used: 'i_clk_core'
+                                                : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl.u_ahb2axi_axi_if'
+   14 |   input  wire         i_clk_core,
+      |                       ^~~~~~~~~~
+%Warning-UNUSEDSIGNAL: m_ahb2axi_axi_if.sv:15:23: Signal is not used: 'i_rst_n_core'
+                                                : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl.u_ahb2axi_axi_if'
+   15 |   input  wire         i_rst_n_core,
+      |                       ^~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: ../../002_SyncFIFO/rtl\m_vlsit_sfifo_wr.sv:101:29: Bits of signal are not used: 'w_addr_ext'[31:1]
+                                                                        : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl.u_vlsit_sfifo_top_2.u_vlsit_sfifo_wr'
+  101 |   logic [LPARA_ARITH_W-1:0] w_addr_ext;
+      |                             ^~~~~~~~~~
+%Warning-UNUSEDSIGNAL: ../../002_SyncFIFO/rtl\m_vlsit_sfifo_rd.sv:96:29: Bits of signal are not used: 'w_addr_ext'[31:1]
+                                                                       : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl.u_vlsit_sfifo_top_2.u_vlsit_sfifo_rd'
+   96 |   logic [LPARA_ARITH_W-1:0] w_addr_ext;
+      |                             ^~~~~~~~~~
+%Error: Exiting due to 60 warning(s)
+
+exit code 1

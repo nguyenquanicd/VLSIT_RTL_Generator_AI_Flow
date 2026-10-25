@@ -1,0 +1,5 @@
+random regression done, failures: 0
+
+real	0m28.059s
+user	0m0.015s
+sys	0m0.045s

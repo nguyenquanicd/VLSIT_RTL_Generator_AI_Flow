@@ -1,0 +1,58 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_axi",
+      "wave": "p........"
+    },
+    [
+      "AXI R response",
+      {
+        "name": "o_axi_rvalid",
+        "wave": "001110000"
+      },
+      {
+        "name": "i_axi_rready",
+        "wave": "000010000"
+      },
+      {
+        "name": "o_axi_rdata",
+        "wave": "xx=..xxxx",
+        "data": [
+          "R0"
+        ]
+      },
+      {
+        "name": "o_axi_rresp",
+        "wave": "xx000xxxx"
+      }
+    ],
+    [
+      "AXI B response",
+      {
+        "name": "o_axi_bvalid",
+        "wave": "000001111"
+      },
+      {
+        "name": "i_axi_bready",
+        "wave": "000000001"
+      },
+      {
+        "name": "o_axi_bid",
+        "wave": "xxxxx=..x",
+        "data": [
+          "ID3"
+        ]
+      },
+      {
+        "name": "o_axi_bresp",
+        "wave": "xxxxx0000"
+      }
+    ]
+  ],
+  "head": {
+    "text": "AXI response backpressure"
+  },
+  "foot": {
+    "text": "R and B payloads stay valid and stable until their READY handshakes."
+  }
+}

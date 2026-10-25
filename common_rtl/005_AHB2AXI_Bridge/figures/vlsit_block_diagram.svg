@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2256" height="906" viewBox="0 0 2256 906">
+<defs><marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L10,4 L0,8 z" fill="#20252b"/></marker></defs>
+<rect width="100%%" height="100%%" fill="#ffffff"/>
+<text x="1128" y="34" text-anchor="middle" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#17202a">AHB5 to AXI4 Bridge — RTL Module Architecture</text>
+<text x="1128" y="60" text-anchor="middle" font-family="Arial,sans-serif" font-size="15" fill="#45515e">One top: m_ahb2axi_top  |  One shared clock: i_clk_core  |  One reset: i_rst_n_core</text>
+<polyline points="1118,168 1118,258 1118,348" fill="none" stroke="#20252b" stroke-width="2" stroke-linejoin="round" stroke-linecap="square" marker-end="url(#arrow)"/>
+<polyline points="188,428 318,428 458,428" fill="none" stroke="#20252b" stroke-width="2" stroke-linejoin="round" stroke-linecap="square" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+<polyline points="943,428 838,428 738,428" fill="none" stroke="#20252b" stroke-width="2" stroke-linejoin="round" stroke-linecap="square" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+<polyline points="1293,428 1388,428 1488,428" fill="none" stroke="#20252b" stroke-width="2" stroke-linejoin="round" stroke-linecap="square" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+<polyline points="1788,428 1908,428 2028,428" fill="none" stroke="#20252b" stroke-width="2" stroke-linejoin="round" stroke-linecap="square" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+<polyline points="978,508 978,548 478,548 478,716 478,718" fill="none" stroke="#20252b" stroke-width="2" stroke-linejoin="round" stroke-linecap="square" marker-end="url(#arrow)"/>
+<polyline points="1048,508 1048,588 798,588 798,716 798,718" fill="none" stroke="#20252b" stroke-width="2" stroke-linejoin="round" stroke-linecap="square" marker-end="url(#arrow)"/>
+<polyline points="1118,508 1118,608 1118,716 1118,718" fill="none" stroke="#20252b" stroke-width="2" stroke-linejoin="round" stroke-linecap="square" marker-end="url(#arrow)"/>
+<polyline points="1188,508 1188,628 1438,628 1438,716 1438,718" fill="none" stroke="#20252b" stroke-width="2" stroke-linejoin="round" stroke-linecap="square" marker-end="url(#arrow)"/>
+<polyline points="1258,508 1258,608 1758,608 1758,716 1758,718" fill="none" stroke="#20252b" stroke-width="2" stroke-linejoin="round" stroke-linecap="square" marker-end="url(#arrow)"/>
+<rect x="1028" y="48" width="180" height="120" rx="2" fill="#e9f2fb" stroke="#24527a" stroke-width="2"/>
+<text x="1118" y="93" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#17202a">m_ahb2axi_top</text>
+<text x="1118" y="114" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">NEW RTL</text>
+<text x="1118" y="135" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">u_ahb2axi_ctrl</text>
+<text x="118" y="423.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#17202a">AHB5 bus</text>
+<text x="118" y="444.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">AHB Manager</text>
+<rect x="458" y="358" width="280" height="140" rx="2" fill="#e9f2fb" stroke="#24527a" stroke-width="2"/>
+<text x="598" y="402.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#17202a">m_ahb2axi_ahb_if</text>
+<text x="598" y="423.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">u_ahb2axi_ahb_if</text>
+<text x="598" y="444.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">NEW RTL</text>
+<text x="598" y="465.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">AHB phases and responses</text>
+<rect x="943" y="348" width="350" height="160" rx="2" fill="#e9f2fb" stroke="#24527a" stroke-width="2"/>
+<text x="1118" y="392" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#17202a">m_ahb2axi_ctrl</text>
+<text x="1118" y="413" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">u_ahb2axi_ctrl</text>
+<text x="1118" y="434" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">NEW RTL</text>
+<text x="1118" y="455" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">Central bridge control</text>
+<text x="1118" y="476" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">validation, burst, mapping, IDs</text>
+<rect x="1488" y="358" width="300" height="140" rx="2" fill="#e9f2fb" stroke="#24527a" stroke-width="2"/>
+<text x="1638" y="402.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#17202a">m_ahb2axi_axi_if</text>
+<text x="1638" y="423.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">u_ahb2axi_axi_if</text>
+<text x="1638" y="444.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">NEW RTL</text>
+<text x="1638" y="465.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">AXI channels and responses</text>
+<text x="2118" y="423.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#17202a">AXI4 bus</text>
+<text x="2118" y="444.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">AXI Subordinate</text>
+<rect x="343" y="718" width="270" height="140" rx="2" fill="#f0f2f4" stroke="#68737d" stroke-width="2"/>
+<text x="478" y="762.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#17202a">m_vlsit_sfifo_top</text>
+<text x="478" y="783.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">u_vlsit_sfifo_top_0</text>
+<text x="478" y="804.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">Write command | depth 2</text>
+<text x="478" y="825.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">REUSED RTL</text>
+<rect x="673" y="718" width="250" height="140" rx="2" fill="#f0f2f4" stroke="#68737d" stroke-width="2"/>
+<text x="798" y="762.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#17202a">m_vlsit_sfifo_top</text>
+<text x="798" y="783.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">u_vlsit_sfifo_top_1</text>
+<text x="798" y="804.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">Write data | depth 16</text>
+<text x="798" y="825.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">REUSED RTL</text>
+<rect x="988" y="718" width="260" height="140" rx="2" fill="#f0f2f4" stroke="#68737d" stroke-width="2"/>
+<text x="1118" y="762.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#17202a">m_vlsit_sfifo_top</text>
+<text x="1118" y="783.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">u_vlsit_sfifo_top_2</text>
+<text x="1118" y="804.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">Read command | depth 2</text>
+<text x="1118" y="825.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">REUSED RTL</text>
+<rect x="1303" y="718" width="270" height="140" rx="2" fill="#f0f2f4" stroke="#68737d" stroke-width="2"/>
+<text x="1438" y="762.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#17202a">m_vlsit_sfifo_top</text>
+<text x="1438" y="783.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">u_vlsit_sfifo_top_3</text>
+<text x="1438" y="804.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">Read response | depth 2</text>
+<text x="1438" y="825.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">REUSED RTL</text>
+<rect x="1618" y="718" width="280" height="140" rx="2" fill="#f0f2f4" stroke="#68737d" stroke-width="2"/>
+<text x="1758" y="762.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#17202a">m_vlsit_sfifo_top</text>
+<text x="1758" y="783.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">u_vlsit_sfifo_top_4</text>
+<text x="1758" y="804.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">Write response | depth 2</text>
+<text x="1758" y="825.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="400" fill="#17202a">REUSED RTL</text>
+<rect x="302" y="375" width="112" height="24" rx="3" fill="#ffffff" opacity="0.96"/>
+<text x="358" y="392" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#20252b">AHB5 signals</text>
+<rect x="778" y="375" width="144" height="24" rx="3" fill="#ffffff" opacity="0.96"/>
+<text x="850" y="392" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#20252b">request / status</text>
+<rect x="1314" y="375" width="144" height="24" rx="3" fill="#ffffff" opacity="0.96"/>
+<text x="1386" y="392" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#20252b">command / status</text>
+<rect x="1818" y="375" width="120" height="24" rx="3" fill="#ffffff" opacity="0.96"/>
+<text x="1878" y="392" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#20252b">AXI4 channels</text>
+</svg>

@@ -1,0 +1,24 @@
+$ C:\Tools\oss-cad-suite\bin\verilator_bin.exe --lint-only -Wall --top-module m_vlsit_apbcdc_top +define+VLSIT_SYNTHESIS ../../000_Common/rtl_cells/VLSIT_CELL_SYNC_DFF_RN.sv ../../000_Common/rtl_cells/VLSIT_CELL_SYNC_DFF_SN.sv ../../000_Common/rtl_cells/VLSIT_CELL_SYNC_2FF_RN.sv ../../000_Common/rtl_cells/VLSIT_CELL_SYNC_2FF_SN.sv ../../000_Common/rtl_cells/VLSIT_CELL_SYNC_3FF_RN.sv ../../000_Common/rtl_cells/VLSIT_CELL_SYNC_3FF_SN.sv ../../000_Common/rtl_cells/VLSIT_CELL_SYNC_4FF_RN.sv ../../000_Common/rtl_cells/VLSIT_CELL_SYNC_4FF_SN.sv ../../000_Common/rtl_lib/m_vlsit_apbcdc_cell_sync.sv ../rtl/m_vlsit_apbcdc_sync.sv ../rtl/m_vlsit_apbcdc_mst.sv ../rtl/m_vlsit_apbcdc_slv.sv ../rtl/m_vlsit_apbcdc_top.sv
+(cwd C:\HQuan\102_MyGithub\VLSIT_RTL_Generator_AI_Model\common_rtl\004_AsyncAPBBridge\lint)
+
+%Warning-UNUSEDSIGNAL: ../rtl\m_vlsit_apbcdc_mst.sv:85:41: Signal is not used: 'i_apb_pauser'
+                                                         : ... note: In instance 'm_vlsit_apbcdc_top.u_vlsit_apbcdc_mst'
+   85 |   input  wire  [LPARA_PUREQ_W-1:0]      i_apb_pauser,
+      |                                         ^~~~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/UNUSEDSIGNAL?v=5.053
+                       ... Use "/* verilator lint_off UNUSEDSIGNAL */" and lint_on around source to disable this message.
+%Warning-UNUSEDSIGNAL: ../rtl\m_vlsit_apbcdc_mst.sv:86:41: Signal is not used: 'i_apb_pwuser'
+                                                         : ... note: In instance 'm_vlsit_apbcdc_top.u_vlsit_apbcdc_mst'
+   86 |   input  wire  [LPARA_PUDAT_W-1:0]      i_apb_pwuser,
+      |                                         ^~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: ../rtl\m_vlsit_apbcdc_slv.sv:92:41: Signal is not used: 'i_apb_pruser'
+                                                         : ... note: In instance 'm_vlsit_apbcdc_top.u_vlsit_apbcdc_slv'
+   92 |   input  wire  [LPARA_PUDAT_W-1:0]      i_apb_pruser,
+      |                                         ^~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: ../rtl\m_vlsit_apbcdc_slv.sv:93:41: Signal is not used: 'i_apb_pbuser'
+                                                         : ... note: In instance 'm_vlsit_apbcdc_top.u_vlsit_apbcdc_slv'
+   93 |   input  wire  [LPARA_PURSP_W-1:0]      i_apb_pbuser,
+      |                                         ^~~~~~~~~~~~
+%Error: Exiting due to 4 warning(s)
+
+exit code 1

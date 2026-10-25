@@ -1,0 +1,55 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_axi",
+      "wave": "p........"
+    },
+    [
+      "APB transfer",
+      {
+        "name": "o_apb_psel",
+        "wave": "011111000"
+      },
+      {
+        "name": "o_apb_penable",
+        "wave": "001111000"
+      },
+      {
+        "name": "o_apb_pwrite",
+        "wave": "001111000"
+      },
+      {
+        "name": "o_apb_paddr",
+        "wave": "x=....xxx",
+        "data": [
+          "0x3000"
+        ]
+      },
+      {
+        "name": "o_apb_pwdata",
+        "wave": "x=....xxx",
+        "data": [
+          "D0"
+        ]
+      },
+      {
+        "name": "o_apb_pstrb",
+        "wave": "x=.....xx"
+      },
+      {
+        "name": "i_apb_pready",
+        "wave": "000001000"
+      },
+      {
+        "name": "i_apb_pslverr",
+        "wave": "000000000"
+      }
+    ]
+  ],
+  "head": {
+    "text": "APB wait states"
+  },
+  "foot": {
+    "text": "PSEL, PENABLE and payload remain stable while PREADY is low."
+  }
+}

@@ -1,0 +1,406 @@
+{
+ "page_name": "BLOCK_DIAGRAM",
+ "out_name": "axi_bridge_block_diagram.drawio",
+ "table_suffix": "",
+ "layout": {
+  "gap_h": 100,
+  "gap_v": 90,
+  "margin": 40,
+  "block_h": 60
+ },
+ "top": {
+  "frame_label": [
+   "TOP",
+   "(m_vlsit_axi_async_top)"
+  ],
+  "block_label": [
+   "TOP",
+   "(m_vlsit_axi_async_top)"
+  ],
+  "block_row": [
+   "TOP (m_vlsit_axi_async_top)",
+   "Asynchronous AXI bridge.",
+   "Section 14.2"
+  ]
+ },
+ "frame_row": [
+  "TOP (m_vlsit_axi_async_top) frame",
+  "Structural top of the asynchronous AXI bridge. It instantiates one module per AXI channel and holds no logic of its own. The subordinate-side interface is on the left and the manager-side interface is on the right.",
+  "Section 14.2"
+ ],
+ "frame_interfaces": [
+  "SAW",
+  "SW",
+  "SB",
+  "SAR",
+  "SR",
+  "MAW",
+  "MW",
+  "MB",
+  "MAR",
+  "MR",
+  "CRSUB",
+  "CRMGR"
+ ],
+ "blocks": [
+  {
+   "key": "aw",
+   "label": [
+    "u_aw",
+    "(m_vlsit_axi_async_aw)"
+   ],
+   "width": 300,
+   "row": 0,
+   "col": 0,
+   "row_name": "u_aw (m_vlsit_axi_async_aw)",
+   "function": "AW channel. It packs every field of the AXI write address channel into one word, writes it into an asynchronous Gray-code FIFO in the clock domain of the source side, and unpacks the word on the other side of the clock boundary. The handshake maps directly: the source ready is the inverse of the FIFO full flag and the destination valid is the inverse of the FIFO empty flag. The order of the words is kept and no field is changed or checked. Optional fields that are not present are not stored.",
+   "source": "Section 14.2, 10.6"
+  },
+  {
+   "key": "w",
+   "label": [
+    "u_w",
+    "(m_vlsit_axi_async_w)"
+   ],
+   "width": 300,
+   "row": 1,
+   "col": 0,
+   "row_name": "u_w (m_vlsit_axi_async_w)",
+   "function": "W channel. It packs every field of the AXI write data channel into one word, writes it into an asynchronous Gray-code FIFO in the clock domain of the source side, and unpacks the word on the other side of the clock boundary. The handshake maps directly: the source ready is the inverse of the FIFO full flag and the destination valid is the inverse of the FIFO empty flag. The order of the words is kept and no field is changed or checked. Optional fields that are not present are not stored.",
+   "source": "Section 14.2, 10.6"
+  },
+  {
+   "key": "b",
+   "label": [
+    "u_b",
+    "(m_vlsit_axi_async_b)"
+   ],
+   "width": 300,
+   "row": 2,
+   "col": 0,
+   "row_name": "u_b (m_vlsit_axi_async_b)",
+   "function": "B channel. It packs every field of the AXI write response channel into one word, writes it into an asynchronous Gray-code FIFO in the clock domain of the source side, and unpacks the word on the other side of the clock boundary. The handshake maps directly: the source ready is the inverse of the FIFO full flag and the destination valid is the inverse of the FIFO empty flag. The order of the words is kept and no field is changed or checked. Optional fields that are not present are not stored.",
+   "source": "Section 14.2, 10.6"
+  },
+  {
+   "key": "ar",
+   "label": [
+    "u_ar",
+    "(m_vlsit_axi_async_ar)"
+   ],
+   "width": 300,
+   "row": 3,
+   "col": 0,
+   "row_name": "u_ar (m_vlsit_axi_async_ar)",
+   "function": "AR channel. It packs every field of the AXI read address channel into one word, writes it into an asynchronous Gray-code FIFO in the clock domain of the source side, and unpacks the word on the other side of the clock boundary. The handshake maps directly: the source ready is the inverse of the FIFO full flag and the destination valid is the inverse of the FIFO empty flag. The order of the words is kept and no field is changed or checked. Optional fields that are not present are not stored.",
+   "source": "Section 14.2, 10.6"
+  },
+  {
+   "key": "r",
+   "label": [
+    "u_r",
+    "(m_vlsit_axi_async_r)"
+   ],
+   "width": 300,
+   "row": 4,
+   "col": 0,
+   "row_name": "u_r (m_vlsit_axi_async_r)",
+   "function": "R channel. It packs every field of the AXI read data channel into one word, writes it into an asynchronous Gray-code FIFO in the clock domain of the source side, and unpacks the word on the other side of the clock boundary. The handshake maps directly: the source ready is the inverse of the FIFO full flag and the destination valid is the inverse of the FIFO empty flag. The order of the words is kept and no field is changed or checked. Optional fields that are not present are not stored.",
+   "source": "Section 14.2, 10.6"
+  }
+ ],
+ "connectors": [],
+ "externals": [
+  {
+   "id": "SAW",
+   "block": "aw",
+   "side": "L",
+   "dir": "in",
+   "pos": -10,
+   "text": [
+    "SAW",
+    "AW (sub)"
+   ]
+  },
+  {
+   "id": "MAW",
+   "block": "aw",
+   "side": "R",
+   "dir": "out",
+   "pos": -10,
+   "text": [
+    "MAW",
+    "AW (mgr)"
+   ]
+  },
+  {
+   "id": "SW",
+   "block": "w",
+   "side": "L",
+   "dir": "in",
+   "pos": -10,
+   "text": [
+    "SW",
+    "W (sub)"
+   ]
+  },
+  {
+   "id": "MW",
+   "block": "w",
+   "side": "R",
+   "dir": "out",
+   "pos": -10,
+   "text": [
+    "MW",
+    "W (mgr)"
+   ]
+  },
+  {
+   "id": "SB",
+   "block": "b",
+   "side": "L",
+   "dir": "out",
+   "pos": -10,
+   "text": [
+    "SB",
+    "B (sub)"
+   ]
+  },
+  {
+   "id": "MB",
+   "block": "b",
+   "side": "R",
+   "dir": "in",
+   "pos": -10,
+   "text": [
+    "MB",
+    "B (mgr)"
+   ]
+  },
+  {
+   "id": "SAR",
+   "block": "ar",
+   "side": "L",
+   "dir": "in",
+   "pos": -10,
+   "text": [
+    "SAR",
+    "AR (sub)"
+   ]
+  },
+  {
+   "id": "MAR",
+   "block": "ar",
+   "side": "R",
+   "dir": "out",
+   "pos": -10,
+   "text": [
+    "MAR",
+    "AR (mgr)"
+   ]
+  },
+  {
+   "id": "SR",
+   "block": "r",
+   "side": "L",
+   "dir": "out",
+   "pos": -10,
+   "text": [
+    "SR",
+    "R (sub)"
+   ]
+  },
+  {
+   "id": "MR",
+   "block": "r",
+   "side": "R",
+   "dir": "in",
+   "pos": -10,
+   "text": [
+    "MR",
+    "R (mgr)"
+   ]
+  },
+  {
+   "id": "CRSUB",
+   "block": "r",
+   "side": "B",
+   "dir": "in",
+   "pos": -50,
+   "text": [
+    "CRSUB",
+    "i_clk_sub, i_rst_n_sub"
+   ]
+  },
+  {
+   "id": "CRMGR",
+   "block": "r",
+   "side": "B",
+   "dir": "in",
+   "pos": 50,
+   "text": [
+    "CRMGR",
+    "i_clk_mgr, i_rst_n_mgr"
+   ]
+  }
+ ],
+ "nets": [
+  {
+   "entry": "CRSUB",
+   "sinks": [
+    {
+     "id": "CS0",
+     "block": "aw",
+     "side": "L",
+     "pos": 10
+    },
+    {
+     "id": "CS1",
+     "block": "w",
+     "side": "L",
+     "pos": 10
+    },
+    {
+     "id": "CS2",
+     "block": "b",
+     "side": "L",
+     "pos": 10
+    },
+    {
+     "id": "CS3",
+     "block": "ar",
+     "side": "L",
+     "pos": 10
+    },
+    {
+     "id": "CS4",
+     "block": "r",
+     "side": "L",
+     "pos": 10
+    }
+   ]
+  },
+  {
+   "entry": "CRMGR",
+   "sinks": [
+    {
+     "id": "CM0",
+     "block": "aw",
+     "side": "R",
+     "pos": 10
+    },
+    {
+     "id": "CM1",
+     "block": "w",
+     "side": "R",
+     "pos": 10
+    },
+    {
+     "id": "CM2",
+     "block": "b",
+     "side": "R",
+     "pos": 10
+    },
+    {
+     "id": "CM3",
+     "block": "ar",
+     "side": "R",
+     "pos": 10
+    },
+    {
+     "id": "CM4",
+     "block": "r",
+     "side": "R",
+     "pos": 10
+    }
+   ]
+  }
+ ],
+ "interfaces": [
+  {
+   "id": "SAW",
+   "name": "AXI write address channel, subordinate side (CLK-SUB)",
+   "category": "standard protocol (AXI3 or AXI4)",
+   "active": "external manager -> bridge",
+   "signals": "external manager -> bridge: i_axi_awvalid, i_axi_awid, i_axi_awaddr, i_axi_awlen, i_axi_awsize, i_axi_awburst, i_axi_awlock, i_axi_awcache, i_axi_awprot, i_axi_awqos, i_axi_awregion, i_axi_awuser; bridge -> external manager: o_axi_awready"
+  },
+  {
+   "id": "MAW",
+   "name": "AXI write address channel, manager side (CLK-MGR)",
+   "category": "standard protocol (AXI3 or AXI4)",
+   "active": "bridge -> external subordinate",
+   "signals": "bridge -> external subordinate: o_axi_awvalid, o_axi_awid, o_axi_awaddr, o_axi_awlen, o_axi_awsize, o_axi_awburst, o_axi_awlock, o_axi_awcache, o_axi_awprot, o_axi_awqos, o_axi_awregion, o_axi_awuser; external subordinate -> bridge: i_axi_awready"
+  },
+  {
+   "id": "SW",
+   "name": "AXI write data channel, subordinate side (CLK-SUB)",
+   "category": "standard protocol (AXI3 or AXI4)",
+   "active": "external manager -> bridge",
+   "signals": "external manager -> bridge: i_axi_wvalid, i_axi_wid, i_axi_wdata, i_axi_wstrb, i_axi_wlast, i_axi_wuser; bridge -> external manager: o_axi_wready"
+  },
+  {
+   "id": "MW",
+   "name": "AXI write data channel, manager side (CLK-MGR)",
+   "category": "standard protocol (AXI3 or AXI4)",
+   "active": "bridge -> external subordinate",
+   "signals": "bridge -> external subordinate: o_axi_wvalid, o_axi_wid, o_axi_wdata, o_axi_wstrb, o_axi_wlast, o_axi_wuser; external subordinate -> bridge: i_axi_wready"
+  },
+  {
+   "id": "SB",
+   "name": "AXI write response channel, subordinate side (CLK-SUB)",
+   "category": "standard protocol (AXI3 or AXI4)",
+   "active": "bridge -> external manager",
+   "signals": "bridge -> external manager: o_axi_bvalid, o_axi_bid, o_axi_bresp, o_axi_buser; external manager -> bridge: i_axi_bready"
+  },
+  {
+   "id": "MB",
+   "name": "AXI write response channel, manager side (CLK-MGR)",
+   "category": "standard protocol (AXI3 or AXI4)",
+   "active": "external subordinate -> bridge",
+   "signals": "external subordinate -> bridge: i_axi_bvalid, i_axi_bid, i_axi_bresp, i_axi_buser; bridge -> external subordinate: o_axi_bready"
+  },
+  {
+   "id": "SAR",
+   "name": "AXI read address channel, subordinate side (CLK-SUB)",
+   "category": "standard protocol (AXI3 or AXI4)",
+   "active": "external manager -> bridge",
+   "signals": "external manager -> bridge: i_axi_arvalid, i_axi_arid, i_axi_araddr, i_axi_arlen, i_axi_arsize, i_axi_arburst, i_axi_arlock, i_axi_arcache, i_axi_arprot, i_axi_arqos, i_axi_arregion, i_axi_aruser; bridge -> external manager: o_axi_arready"
+  },
+  {
+   "id": "MAR",
+   "name": "AXI read address channel, manager side (CLK-MGR)",
+   "category": "standard protocol (AXI3 or AXI4)",
+   "active": "bridge -> external subordinate",
+   "signals": "bridge -> external subordinate: o_axi_arvalid, o_axi_arid, o_axi_araddr, o_axi_arlen, o_axi_arsize, o_axi_arburst, o_axi_arlock, o_axi_arcache, o_axi_arprot, o_axi_arqos, o_axi_arregion, o_axi_aruser; external subordinate -> bridge: i_axi_arready"
+  },
+  {
+   "id": "SR",
+   "name": "AXI read data channel, subordinate side (CLK-SUB)",
+   "category": "standard protocol (AXI3 or AXI4)",
+   "active": "bridge -> external manager",
+   "signals": "bridge -> external manager: o_axi_rvalid, o_axi_rid, o_axi_rdata, o_axi_rresp, o_axi_rlast, o_axi_ruser; external manager -> bridge: i_axi_rready"
+  },
+  {
+   "id": "MR",
+   "name": "AXI read data channel, manager side (CLK-MGR)",
+   "category": "standard protocol (AXI3 or AXI4)",
+   "active": "external subordinate -> bridge",
+   "signals": "external subordinate -> bridge: i_axi_rvalid, i_axi_rid, i_axi_rdata, i_axi_rresp, i_axi_rlast, i_axi_ruser; bridge -> external subordinate: o_axi_rready"
+  },
+  {
+   "id": "CRSUB",
+   "name": "Clock and reset of the subordinate side",
+   "category": "custom",
+   "active": "SoC clock and reset controller -> bridge",
+   "signals": "i_clk_sub, i_rst_n_sub (reset: level, active-low)"
+  },
+  {
+   "id": "CRMGR",
+   "name": "Clock and reset of the manager side",
+   "category": "custom",
+   "active": "SoC clock and reset controller -> bridge",
+   "signals": "i_clk_mgr, i_rst_n_mgr (reset: level, active-low)"
+  }
+ ],
+ "legend_note": "The enclosing frame is the top module; blocks inside are its instances. S = subordinate side, M = manager side of the bridge. Interface labels outside the frame mark connections to the outside."
+}
