@@ -33,6 +33,13 @@ module tb_axi_bridge;
   localparam integer B_COUNT = 6;
   localparam integer R_COUNT = 24;
   localparam integer ASSERT_COUNT = 36;
+`ifdef TB_SMALL_DEPTH
+  localparam integer EARLY_B_COUNT = 2;
+  localparam integer EARLY_R_COUNT = 2;
+`else
+  localparam integer EARLY_B_COUNT = 3;
+  localparam integer EARLY_R_COUNT = 4;
+`endif
 
   logic i_clk_sub = 1'b0;
   logic i_clk_mgr = 1'b0;
@@ -179,12 +186,12 @@ module tb_axi_bridge;
   `define PACK_AW_DST {o_axi_awid, o_axi_awaddr, o_axi_awlen, o_axi_awsize, o_axi_awburst, o_axi_awlock, o_axi_awcache, o_axi_awprot, o_axi_awqos, o_axi_awregion, o_axi_awuser}
   `define PACK_AR_SRC {i_axi_arid, i_axi_araddr, i_axi_arlen, i_axi_arsize, i_axi_arburst, i_axi_arlock, i_axi_arcache, i_axi_arprot, i_axi_arqos, i_axi_arregion, i_axi_aruser}
   `define PACK_AR_DST {o_axi_arid, o_axi_araddr, o_axi_arlen, o_axi_arsize, o_axi_arburst, o_axi_arlock, o_axi_arcache, o_axi_arprot, o_axi_arqos, o_axi_arregion, o_axi_aruser}
-  `define PACK_W_SRC {i_axi_wdata, i_axi_wstrb, i_axi_wlast, i_axi_wuser[0]}
-  `define PACK_W_DST {o_axi_wdata, o_axi_wstrb, o_axi_wlast, o_axi_wuser[0]}
-  `define PACK_B_SRC {i_axi_bid, i_axi_bresp, i_axi_buser[0]}
-  `define PACK_B_DST {o_axi_bid, o_axi_bresp, o_axi_buser[0]}
-  `define PACK_R_SRC {i_axi_rid, i_axi_rdata, i_axi_rresp, i_axi_rlast, i_axi_ruser[0]}
-  `define PACK_R_DST {o_axi_rid, o_axi_rdata, o_axi_rresp, o_axi_rlast, o_axi_ruser[0]}
+  `define PACK_W_SRC {i_axi_wdata, i_axi_wstrb, i_axi_wlast, i_axi_wuser}
+  `define PACK_W_DST {o_axi_wdata, o_axi_wstrb, o_axi_wlast, o_axi_wuser}
+  `define PACK_B_SRC {i_axi_bid, i_axi_bresp, i_axi_buser}
+  `define PACK_B_DST {o_axi_bid, o_axi_bresp, o_axi_buser}
+  `define PACK_R_SRC {i_axi_rid, i_axi_rdata, i_axi_rresp, i_axi_rlast, i_axi_ruser}
+  `define PACK_R_DST {o_axi_rid, o_axi_rdata, o_axi_rresp, o_axi_rlast, o_axi_ruser}
 `else
   `define PACK_AW_SRC {i_axi_awid, i_axi_awaddr, i_axi_awlen, i_axi_awsize, i_axi_awburst, i_axi_awlock, i_axi_awcache, i_axi_awprot, i_axi_awqos, i_axi_awregion}
   `define PACK_AW_DST {o_axi_awid, o_axi_awaddr, o_axi_awlen, o_axi_awsize, o_axi_awburst, o_axi_awlock, o_axi_awcache, o_axi_awprot, o_axi_awqos, o_axi_awregion}
@@ -422,6 +429,51 @@ module tb_axi_bridge;
   always #5 i_clk_sub = ~i_clk_sub;
   initial begin #1; forever #7 i_clk_mgr = ~i_clk_mgr; end
 
+  // Keep each protocol waveform inside a reviewable window. These markers are
+  // tied to handshakes and observed back-pressure instead of fixed time guesses.
+  initial begin
+    wait (src_aw_stall === 1'b1);
+    $display("WF-MARK WF-003 START_NS=%0.3f", $realtime);
+    wait (o_axi_awready === 1'b1);
+    $display("WF-MARK WF-003 END_NS=%0.3f", $realtime);
+  end
+
+  initial begin
+    wait ((out_aw >= 1) && (out_w >= 4));
+    $display("WF-MARK WF-001 END_NS=%0.3f", $realtime);
+    $display("WF-MARK WF-008 END_NS=%0.3f", $realtime);
+    $display("WF-MARK WF-010 END_NS=%0.3f", $realtime);
+  end
+
+  initial begin
+    wait ((out_aw >= 1) && (out_w >= 4) && (out_ar >= 1) &&
+          (o_axi_bvalid === 1'b1) && (o_axi_rvalid === 1'b1));
+    $display("WF-MARK WF-007 END_NS=%0.3f", $realtime);
+  end
+
+  initial begin
+    wait ((o_axi_bvalid === 1'b1) && (o_axi_bresp == 2'b10));
+    $display("WF-MARK WF-006 START_NS=%0.3f", $realtime);
+    repeat (4) @(posedge i_clk_sub);
+    $display("WF-MARK WF-006 END_NS=%0.3f", $realtime);
+  end
+
+  initial begin
+    wait (src_r_stall === 1'b1);
+    $display("WF-MARK WF-005 START_NS=%0.3f", $realtime);
+    wait (i_axi_rready === 1'b1);
+    $display("WF-MARK WF-005 END_NS=%0.3f", $realtime);
+  end
+
+`ifdef TB_SMALL_DEPTH
+  initial begin
+    wait (src_w_stall === 1'b1);
+    $display("WF-MARK WF-011 START_NS=%0.3f", $realtime);
+    wait (o_axi_wready === 1'b1);
+    $display("WF-MARK WF-011 END_NS=%0.3f", $realtime);
+  end
+`endif
+
   initial begin
     i_rst_n_sub = 1'b0; i_rst_n_mgr = 1'b0;
     i_axi_awvalid = 0; i_axi_awid = 0; i_axi_awaddr = 0; i_axi_awlen = 0; i_axi_awsize = 0;
@@ -470,16 +522,14 @@ module tb_axi_bridge;
     repeat (2) @(negedge i_clk_mgr);
     i_rst_n_mgr = 1'b1;
     repeat (4) @(posedge i_clk_sub);
+    $display("WF-MARK WF-009 END_NS=%0.3f", $realtime);
 
     // Hold all destinations to force FIFO-full back-pressure in every channel.
     // Send one W beat before AW to exercise independent channel timing (WF-004).
     $display("WF-MARK WF-001 START_NS=%0.3f", $realtime);
-    $display("WF-MARK WF-002 START_NS=%0.3f", $realtime);
-    $display("WF-MARK WF-003 START_NS=%0.3f", $realtime);
     $display("WF-MARK WF-004 START_NS=%0.3f", $realtime);
     $display("WF-MARK WF-007 START_NS=%0.3f", $realtime);
     $display("WF-MARK WF-008 START_NS=%0.3f", $realtime);
-    $display("WF-MARK WF-011 START_NS=%0.3f", $realtime);
     i_axi_awready = 0; i_axi_wready = 0; i_axi_arready = 0; i_axi_bready = 0; i_axi_rready = 0;
     fork
       send_w(0, 1);
@@ -489,37 +539,38 @@ module tb_axi_bridge;
       send_w(1, W_COUNT-1);
       send_ar(0, AR_COUNT);
       begin
-        #500;
+        wait (out_ar >= 1);
+        $display("WF-MARK WF-002 START_NS=%0.3f", $realtime);
+        send_r(0, EARLY_R_COUNT);
+        wait (o_axi_rvalid === 1'b1);
+        repeat (2) @(posedge i_clk_sub);
+        $display("WF-MARK WF-002 END_NS=%0.3f", $realtime);
+      end
+      begin
+        wait ((out_aw >= 1) && (out_w >= 4));
+        send_b(0, EARLY_B_COUNT);
+      end
+      begin
+        #300;
         i_axi_awready = 1; i_axi_wready = 1; i_axi_arready = 1;
       end
     join
     wait ((out_aw == AW_COUNT) && (out_w == W_COUNT) && (out_ar == AR_COUNT));
-    $display("WF-MARK WF-001 END_NS=%0.3f", $realtime);
-    $display("WF-MARK WF-002 END_NS=%0.3f", $realtime);
-    $display("WF-MARK WF-003 END_NS=%0.3f", $realtime);
-    $display("WF-MARK WF-010 END_NS=%0.3f", $realtime);
-    $display("WF-MARK WF-011 END_NS=%0.3f", $realtime);
     repeat (8) @(posedge i_clk_mgr);
 
     // Return responses only after their associated address/data requests reached
     // the manager model. Back-pressure the subordinate-side response channels.
-    $display("WF-MARK WF-005 START_NS=%0.3f", $realtime);
-    $display("WF-MARK WF-006 START_NS=%0.3f", $realtime);
     fork
-      send_b(0, B_COUNT);
-      send_r(0, R_COUNT);
+      send_b(EARLY_B_COUNT, B_COUNT-EARLY_B_COUNT);
+      send_r(EARLY_R_COUNT, R_COUNT-EARLY_R_COUNT);
       begin
-        #500;
+        #300;
         i_axi_bready = 1; i_axi_rready = 1;
       end
     join
     wait ((out_b == B_COUNT) && (out_r == R_COUNT));
-    $display("WF-MARK WF-005 END_NS=%0.3f", $realtime);
-    $display("WF-MARK WF-006 END_NS=%0.3f", $realtime);
-    $display("WF-MARK WF-007 END_NS=%0.3f", $realtime);
-    $display("WF-MARK WF-008 END_NS=%0.3f", $realtime);
-    $display("WF-MARK WF-009 END_NS=%0.3f", $realtime);
     repeat (10) @(posedge i_clk_sub);
+    #1; // Sample counters away from all five clocked monitors.
 
     assertion_fail_total = 0;
     assertion_never_total = 0;

@@ -16,6 +16,9 @@ PROFILES = {
 
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
+    (VERIFICATION / "logs").mkdir(parents=True, exist_ok=True)
+    (VERIFICATION / "waveforms_sim").mkdir(parents=True, exist_ok=True)
+    (VERIFICATION / "build").mkdir(parents=True, exist_ok=True)
     for profile, top in PROFILES.items():
         source_list = RTL / profile / "filelist.f"
         if not source_list.is_file():
