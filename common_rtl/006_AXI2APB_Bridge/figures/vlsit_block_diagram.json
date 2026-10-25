@@ -1,0 +1,21 @@
+{
+  "title": "AXI2APB Bridge",
+  "blocks": [
+    {"id": "axi_mgr", "label": "AXI4 Manager", "col": 0, "row": 1, "kind": "io"},
+    {"id": "bridge", "label": "m_axi2apb_bridge\nSingle clock\n32-bit data", "col": 1, "row": 1, "kind": "block"},
+    {"id": "decoder", "label": "External APB4\nDecoder", "col": 2, "row": 1, "kind": "block"},
+    {"id": "apb", "label": "APB4\nCompleters", "col": 3, "row": 0, "kind": "io"},
+    {"id": "default", "label": "Default error\nCompleter\nPREADY=1\nPSLVERR=1", "col": 3, "row": 2, "kind": "block"},
+    {"id": "clk", "label": "Shared ACLK=PCLK\nAsync assert / sync release", "col": 1, "row": 0, "kind": "block"}
+  ],
+  "groups": [
+    {"label": "AXI2APB Bridge", "blocks": ["axi_mgr", "bridge", "decoder", "apb", "default", "clk"]}
+  ],
+  "links": [
+    {"from": "axi_mgr", "to": "bridge", "label": "AXI4 requests / responses", "style": "data", "dir": "fwd", "from_side": "east", "to_side": "west"},
+    {"from": "bridge", "to": "decoder", "label": "APB4 requests / responses", "style": "data", "dir": "fwd", "from_side": "east", "to_side": "west"},
+    {"from": "decoder", "to": "apb", "label": "decoded PSEL", "style": "ctrl", "dir": "fwd", "from_side": "north", "to_side": "west"},
+    {"from": "decoder", "to": "default", "label": "no address match", "style": "ctrl", "dir": "fwd", "from_side": "south", "to_side": "west"},
+    {"from": "clk", "to": "bridge", "label": "clock/reset", "style": "clock", "dir": "fwd", "from_side": "south", "to_side": "north"}
+  ]
+}

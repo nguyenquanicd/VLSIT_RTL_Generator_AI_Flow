@@ -1,0 +1,352 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2460" height="3321" viewBox="70 380 2460 3321" font-family="Arial, Helvetica, sans-serif" font-size="18">
+<rect x="70" y="380" width="2460" height="3321" fill="#FFFFFF"/>
+<rect x="510" y="410" width="380" height="800" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<rect x="550" y="510" width="300" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="700" y="536" text-anchor="middle">u_aw</text>
+<text x="700" y="558" text-anchor="middle">(m_vlsit_axi_async_aw)</text>
+<rect x="550" y="660" width="300" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="700" y="686" text-anchor="middle">u_w</text>
+<text x="700" y="708" text-anchor="middle">(m_vlsit_axi_async_w)</text>
+<rect x="550" y="810" width="300" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="700" y="836" text-anchor="middle">u_b</text>
+<text x="700" y="858" text-anchor="middle">(m_vlsit_axi_async_b)</text>
+<rect x="550" y="960" width="300" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="700" y="986" text-anchor="middle">u_ar</text>
+<text x="700" y="1008" text-anchor="middle">(m_vlsit_axi_async_ar)</text>
+<rect x="550" y="1110" width="300" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="700" y="1136" text-anchor="middle">u_r</text>
+<text x="700" y="1158" text-anchor="middle">(m_vlsit_axi_async_r)</text>
+<text x="410" y="526" text-anchor="middle">SAW</text>
+<text x="410" y="548" text-anchor="middle">AW (sub)</text>
+<text x="990" y="526" text-anchor="middle">MAW</text>
+<text x="990" y="548" text-anchor="middle">AW (mgr)</text>
+<text x="415" y="826" text-anchor="middle">SB</text>
+<text x="415" y="848" text-anchor="middle">B (sub)</text>
+<text x="985" y="826" text-anchor="middle">MB</text>
+<text x="985" y="848" text-anchor="middle">B (mgr)</text>
+<text x="530" y="1256" text-anchor="middle">CRSUB</text>
+<text x="530" y="1278" text-anchor="middle">i_clk_sub, i_rst_n_sub</text>
+<text x="880" y="1256" text-anchor="middle">CRMGR</text>
+<text x="880" y="1278" text-anchor="middle">i_clk_mgr, i_rst_n_mgr</text>
+<text x="415" y="1126" text-anchor="middle">SR</text>
+<text x="415" y="1148" text-anchor="middle">R (sub)</text>
+<text x="985" y="1126" text-anchor="middle">MR</text>
+<text x="985" y="1148" text-anchor="middle">R (mgr)</text>
+<text x="415" y="676" text-anchor="middle">SW</text>
+<text x="415" y="698" text-anchor="middle">W (sub)</text>
+<text x="985" y="676" text-anchor="middle">MW</text>
+<text x="985" y="698" text-anchor="middle">W (mgr)</text>
+<text x="868" y="451" text-anchor="end">TOP</text>
+<text x="868" y="473" text-anchor="end">(m_vlsit_axi_async_top)</text>
+<text x="104" y="3517" text-anchor="start" font-weight="bold">Legend</text>
+<text x="284" y="3558" text-anchor="start">Interface connector (one per signal group; arrow = active to passive)</text>
+<text x="104" y="3633" text-anchor="start">The enclosing frame is the top module; blocks inside are its instances. S = subordinate side, M = manager side of the bridge. Interface labels outside the frame mark connections to the outside.</text>
+<text x="410" y="976" text-anchor="middle">SAR</text>
+<text x="410" y="998" text-anchor="middle">AR (sub)</text>
+<text x="990" y="976" text-anchor="middle">MAR</text>
+<text x="990" y="998" text-anchor="middle">AR (mgr)</text>
+<rect x="100" y="1540" width="2400" height="644" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1300" y="1567" text-anchor="middle" font-weight="bold">Block Functions &amp; Interfaces</text>
+<rect x="100" y="1580" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1605" text-anchor="start" font-weight="bold">Block</text>
+<rect x="430" y="1580" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1605" text-anchor="start" font-weight="bold">Function</text>
+<rect x="1910" y="1580" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1605" text-anchor="start" font-weight="bold">Source</text>
+<rect x="2140" y="1580" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1605" text-anchor="start" font-weight="bold">Interfaces (mnemonics)</text>
+<rect x="100" y="1616" width="330" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1641" text-anchor="start">TOP (m_vlsit_axi_async_top)</text>
+<text x="104" y="1663" text-anchor="start">frame</text>
+<rect x="430" y="1616" width="1480" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1641" text-anchor="start">Structural top of the asynchronous AXI bridge. It instantiates one module per AXI channel and holds no logic of its own. The subordinate-side</text>
+<text x="434" y="1663" text-anchor="start">interface is on the left and the manager-side interface is on the right.</text>
+<rect x="1910" y="1616" width="230" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1652" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1616" width="360" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1641" text-anchor="start">SAW, SW, SB, SAR, SR, MAW, MW, MB,</text>
+<text x="2144" y="1663" text-anchor="start">MAR, MR, CRSUB, CRMGR</text>
+<rect x="100" y="1674" width="330" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1732" text-anchor="start">u_aw (m_vlsit_axi_async_aw)</text>
+<rect x="430" y="1674" width="1480" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1699" text-anchor="start">AW channel. It packs every field of the AXI write address channel into one word, writes it into an asynchronous Gray-code FIFO in the clock domain</text>
+<text x="434" y="1721" text-anchor="start">of the source side, and unpacks the word on the other side of the clock boundary. The handshake maps directly: the source ready is the inverse of</text>
+<text x="434" y="1743" text-anchor="start">the FIFO full flag and the destination valid is the inverse of the FIFO empty flag. The order of the words is kept and no field is changed or</text>
+<text x="434" y="1765" text-anchor="start">checked. Optional fields that are not present are not stored.</text>
+<rect x="1910" y="1674" width="230" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1732" text-anchor="start">Section 14.2, 10.6</text>
+<rect x="2140" y="1674" width="360" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1732" text-anchor="start">SAW, MAW, CRSUB, CRMGR</text>
+<rect x="100" y="1776" width="330" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1834" text-anchor="start">u_w (m_vlsit_axi_async_w)</text>
+<rect x="430" y="1776" width="1480" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1801" text-anchor="start">W channel. It packs every field of the AXI write data channel into one word, writes it into an asynchronous Gray-code FIFO in the clock domain of</text>
+<text x="434" y="1823" text-anchor="start">the source side, and unpacks the word on the other side of the clock boundary. The handshake maps directly: the source ready is the inverse of the</text>
+<text x="434" y="1845" text-anchor="start">FIFO full flag and the destination valid is the inverse of the FIFO empty flag. The order of the words is kept and no field is changed or checked.</text>
+<text x="434" y="1867" text-anchor="start">Optional fields that are not present are not stored.</text>
+<rect x="1910" y="1776" width="230" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1834" text-anchor="start">Section 14.2, 10.6</text>
+<rect x="2140" y="1776" width="360" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1834" text-anchor="start">SW, MW, CRSUB, CRMGR</text>
+<rect x="100" y="1878" width="330" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1936" text-anchor="start">u_b (m_vlsit_axi_async_b)</text>
+<rect x="430" y="1878" width="1480" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1903" text-anchor="start">B channel. It packs every field of the AXI write response channel into one word, writes it into an asynchronous Gray-code FIFO in the clock domain</text>
+<text x="434" y="1925" text-anchor="start">of the source side, and unpacks the word on the other side of the clock boundary. The handshake maps directly: the source ready is the inverse of</text>
+<text x="434" y="1947" text-anchor="start">the FIFO full flag and the destination valid is the inverse of the FIFO empty flag. The order of the words is kept and no field is changed or</text>
+<text x="434" y="1969" text-anchor="start">checked. Optional fields that are not present are not stored.</text>
+<rect x="1910" y="1878" width="230" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1936" text-anchor="start">Section 14.2, 10.6</text>
+<rect x="2140" y="1878" width="360" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1936" text-anchor="start">SB, MB, CRSUB, CRMGR</text>
+<rect x="100" y="1980" width="330" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2038" text-anchor="start">u_ar (m_vlsit_axi_async_ar)</text>
+<rect x="430" y="1980" width="1480" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="2005" text-anchor="start">AR channel. It packs every field of the AXI read address channel into one word, writes it into an asynchronous Gray-code FIFO in the clock domain</text>
+<text x="434" y="2027" text-anchor="start">of the source side, and unpacks the word on the other side of the clock boundary. The handshake maps directly: the source ready is the inverse of</text>
+<text x="434" y="2049" text-anchor="start">the FIFO full flag and the destination valid is the inverse of the FIFO empty flag. The order of the words is kept and no field is changed or</text>
+<text x="434" y="2071" text-anchor="start">checked. Optional fields that are not present are not stored.</text>
+<rect x="1910" y="1980" width="230" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="2038" text-anchor="start">Section 14.2, 10.6</text>
+<rect x="2140" y="1980" width="360" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="2038" text-anchor="start">SAR, MAR, CRSUB, CRMGR</text>
+<rect x="100" y="2082" width="330" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2140" text-anchor="start">u_r (m_vlsit_axi_async_r)</text>
+<rect x="430" y="2082" width="1480" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="2107" text-anchor="start">R channel. It packs every field of the AXI read data channel into one word, writes it into an asynchronous Gray-code FIFO in the clock domain of</text>
+<text x="434" y="2129" text-anchor="start">the source side, and unpacks the word on the other side of the clock boundary. The handshake maps directly: the source ready is the inverse of the</text>
+<text x="434" y="2151" text-anchor="start">FIFO full flag and the destination valid is the inverse of the FIFO empty flag. The order of the words is kept and no field is changed or checked.</text>
+<text x="434" y="2173" text-anchor="start">Optional fields that are not present are not stored.</text>
+<rect x="1910" y="2082" width="230" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="2140" text-anchor="start">Section 14.2, 10.6</text>
+<rect x="2140" y="2082" width="360" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="2140" text-anchor="start">SR, MR, CRSUB, CRMGR</text>
+<rect x="100" y="2224" width="2400" height="1212" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1300" y="2251" text-anchor="middle" font-weight="bold">Interface Table</text>
+<rect x="100" y="2264" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2289" text-anchor="start" font-weight="bold">ID</text>
+<rect x="190" y="2264" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2289" text-anchor="start" font-weight="bold">Interface</text>
+<rect x="490" y="2264" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2289" text-anchor="start" font-weight="bold">Category</text>
+<rect x="600" y="2264" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2289" text-anchor="start" font-weight="bold">Active side -&gt; passive side</text>
+<rect x="1070" y="2264" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2289" text-anchor="start" font-weight="bold">Key signals</text>
+<rect x="100" y="2300" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2336" text-anchor="start">CRMGR</text>
+<rect x="190" y="2300" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2325" text-anchor="start">Clock and reset of the</text>
+<text x="194" y="2347" text-anchor="start">manager side</text>
+<rect x="490" y="2300" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2336" text-anchor="start">custom</text>
+<rect x="600" y="2300" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2336" text-anchor="start">SoC clock and reset controller -&gt; bridge</text>
+<rect x="1070" y="2300" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2336" text-anchor="start">i_clk_mgr, i_rst_n_mgr (reset: level, active-low)</text>
+<rect x="100" y="2358" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2394" text-anchor="start">CRSUB</text>
+<rect x="190" y="2358" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2383" text-anchor="start">Clock and reset of the</text>
+<text x="194" y="2405" text-anchor="start">subordinate side</text>
+<rect x="490" y="2358" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2394" text-anchor="start">custom</text>
+<rect x="600" y="2358" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2394" text-anchor="start">SoC clock and reset controller -&gt; bridge</text>
+<rect x="1070" y="2358" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2394" text-anchor="start">i_clk_sub, i_rst_n_sub (reset: level, active-low)</text>
+<rect x="100" y="2416" width="90" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2474" text-anchor="start">MAR</text>
+<rect x="190" y="2416" width="300" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2463" text-anchor="start">AXI read address channel,</text>
+<text x="194" y="2485" text-anchor="start">manager side (CLK-MGR)</text>
+<rect x="490" y="2416" width="110" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2441" text-anchor="start">standard</text>
+<text x="494" y="2463" text-anchor="start">protocol</text>
+<text x="494" y="2485" text-anchor="start">(AXI3 or</text>
+<text x="494" y="2507" text-anchor="start">AXI4)</text>
+<rect x="600" y="2416" width="470" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2474" text-anchor="start">bridge -&gt; external subordinate</text>
+<rect x="1070" y="2416" width="1430" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2463" text-anchor="start">bridge -&gt; external subordinate: o_axi_arvalid, o_axi_arid, o_axi_araddr, o_axi_arlen, o_axi_arsize, o_axi_arburst, o_axi_arlock,</text>
+<text x="1074" y="2485" text-anchor="start">o_axi_arcache, o_axi_arprot, o_axi_arqos, o_axi_arregion, o_axi_aruser; external subordinate -&gt; bridge: i_axi_arready</text>
+<rect x="100" y="2518" width="90" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2576" text-anchor="start">MAW</text>
+<rect x="190" y="2518" width="300" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2565" text-anchor="start">AXI write address channel,</text>
+<text x="194" y="2587" text-anchor="start">manager side (CLK-MGR)</text>
+<rect x="490" y="2518" width="110" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2543" text-anchor="start">standard</text>
+<text x="494" y="2565" text-anchor="start">protocol</text>
+<text x="494" y="2587" text-anchor="start">(AXI3 or</text>
+<text x="494" y="2609" text-anchor="start">AXI4)</text>
+<rect x="600" y="2518" width="470" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2576" text-anchor="start">bridge -&gt; external subordinate</text>
+<rect x="1070" y="2518" width="1430" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2565" text-anchor="start">bridge -&gt; external subordinate: o_axi_awvalid, o_axi_awid, o_axi_awaddr, o_axi_awlen, o_axi_awsize, o_axi_awburst, o_axi_awlock,</text>
+<text x="1074" y="2587" text-anchor="start">o_axi_awcache, o_axi_awprot, o_axi_awqos, o_axi_awregion, o_axi_awuser; external subordinate -&gt; bridge: i_axi_awready</text>
+<rect x="100" y="2620" width="90" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2678" text-anchor="start">MB</text>
+<rect x="190" y="2620" width="300" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2667" text-anchor="start">AXI write response channel,</text>
+<text x="194" y="2689" text-anchor="start">manager side (CLK-MGR)</text>
+<rect x="490" y="2620" width="110" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2645" text-anchor="start">standard</text>
+<text x="494" y="2667" text-anchor="start">protocol</text>
+<text x="494" y="2689" text-anchor="start">(AXI3 or</text>
+<text x="494" y="2711" text-anchor="start">AXI4)</text>
+<rect x="600" y="2620" width="470" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2678" text-anchor="start">external subordinate -&gt; bridge</text>
+<rect x="1070" y="2620" width="1430" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2678" text-anchor="start">external subordinate -&gt; bridge: i_axi_bvalid, i_axi_bid, i_axi_bresp, i_axi_buser; bridge -&gt; external subordinate: o_axi_bready</text>
+<rect x="100" y="2722" width="90" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2780" text-anchor="start">MR</text>
+<rect x="190" y="2722" width="300" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2769" text-anchor="start">AXI read data channel,</text>
+<text x="194" y="2791" text-anchor="start">manager side (CLK-MGR)</text>
+<rect x="490" y="2722" width="110" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2747" text-anchor="start">standard</text>
+<text x="494" y="2769" text-anchor="start">protocol</text>
+<text x="494" y="2791" text-anchor="start">(AXI3 or</text>
+<text x="494" y="2813" text-anchor="start">AXI4)</text>
+<rect x="600" y="2722" width="470" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2780" text-anchor="start">external subordinate -&gt; bridge</text>
+<rect x="1070" y="2722" width="1430" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2769" text-anchor="start">external subordinate -&gt; bridge: i_axi_rvalid, i_axi_rid, i_axi_rdata, i_axi_rresp, i_axi_rlast, i_axi_ruser; bridge -&gt; external subordinate:</text>
+<text x="1074" y="2791" text-anchor="start">o_axi_rready</text>
+<rect x="100" y="2824" width="90" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2882" text-anchor="start">MW</text>
+<rect x="190" y="2824" width="300" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2871" text-anchor="start">AXI write data channel,</text>
+<text x="194" y="2893" text-anchor="start">manager side (CLK-MGR)</text>
+<rect x="490" y="2824" width="110" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2849" text-anchor="start">standard</text>
+<text x="494" y="2871" text-anchor="start">protocol</text>
+<text x="494" y="2893" text-anchor="start">(AXI3 or</text>
+<text x="494" y="2915" text-anchor="start">AXI4)</text>
+<rect x="600" y="2824" width="470" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2882" text-anchor="start">bridge -&gt; external subordinate</text>
+<rect x="1070" y="2824" width="1430" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2871" text-anchor="start">bridge -&gt; external subordinate: o_axi_wvalid, o_axi_wid, o_axi_wdata, o_axi_wstrb, o_axi_wlast, o_axi_wuser; external subordinate -&gt; bridge:</text>
+<text x="1074" y="2893" text-anchor="start">i_axi_wready</text>
+<rect x="100" y="2926" width="90" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2984" text-anchor="start">SAR</text>
+<rect x="190" y="2926" width="300" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2973" text-anchor="start">AXI read address channel,</text>
+<text x="194" y="2995" text-anchor="start">subordinate side (CLK-SUB)</text>
+<rect x="490" y="2926" width="110" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2951" text-anchor="start">standard</text>
+<text x="494" y="2973" text-anchor="start">protocol</text>
+<text x="494" y="2995" text-anchor="start">(AXI3 or</text>
+<text x="494" y="3017" text-anchor="start">AXI4)</text>
+<rect x="600" y="2926" width="470" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2984" text-anchor="start">external manager -&gt; bridge</text>
+<rect x="1070" y="2926" width="1430" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2973" text-anchor="start">external manager -&gt; bridge: i_axi_arvalid, i_axi_arid, i_axi_araddr, i_axi_arlen, i_axi_arsize, i_axi_arburst, i_axi_arlock, i_axi_arcache,</text>
+<text x="1074" y="2995" text-anchor="start">i_axi_arprot, i_axi_arqos, i_axi_arregion, i_axi_aruser; bridge -&gt; external manager: o_axi_arready</text>
+<rect x="100" y="3028" width="90" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="3086" text-anchor="start">SAW</text>
+<rect x="190" y="3028" width="300" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="3075" text-anchor="start">AXI write address channel,</text>
+<text x="194" y="3097" text-anchor="start">subordinate side (CLK-SUB)</text>
+<rect x="490" y="3028" width="110" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="3053" text-anchor="start">standard</text>
+<text x="494" y="3075" text-anchor="start">protocol</text>
+<text x="494" y="3097" text-anchor="start">(AXI3 or</text>
+<text x="494" y="3119" text-anchor="start">AXI4)</text>
+<rect x="600" y="3028" width="470" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="3086" text-anchor="start">external manager -&gt; bridge</text>
+<rect x="1070" y="3028" width="1430" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="3075" text-anchor="start">external manager -&gt; bridge: i_axi_awvalid, i_axi_awid, i_axi_awaddr, i_axi_awlen, i_axi_awsize, i_axi_awburst, i_axi_awlock, i_axi_awcache,</text>
+<text x="1074" y="3097" text-anchor="start">i_axi_awprot, i_axi_awqos, i_axi_awregion, i_axi_awuser; bridge -&gt; external manager: o_axi_awready</text>
+<rect x="100" y="3130" width="90" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="3188" text-anchor="start">SB</text>
+<rect x="190" y="3130" width="300" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="3177" text-anchor="start">AXI write response channel,</text>
+<text x="194" y="3199" text-anchor="start">subordinate side (CLK-SUB)</text>
+<rect x="490" y="3130" width="110" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="3155" text-anchor="start">standard</text>
+<text x="494" y="3177" text-anchor="start">protocol</text>
+<text x="494" y="3199" text-anchor="start">(AXI3 or</text>
+<text x="494" y="3221" text-anchor="start">AXI4)</text>
+<rect x="600" y="3130" width="470" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="3188" text-anchor="start">bridge -&gt; external manager</text>
+<rect x="1070" y="3130" width="1430" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="3188" text-anchor="start">bridge -&gt; external manager: o_axi_bvalid, o_axi_bid, o_axi_bresp, o_axi_buser; external manager -&gt; bridge: i_axi_bready</text>
+<rect x="100" y="3232" width="90" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="3290" text-anchor="start">SR</text>
+<rect x="190" y="3232" width="300" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="3279" text-anchor="start">AXI read data channel,</text>
+<text x="194" y="3301" text-anchor="start">subordinate side (CLK-SUB)</text>
+<rect x="490" y="3232" width="110" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="3257" text-anchor="start">standard</text>
+<text x="494" y="3279" text-anchor="start">protocol</text>
+<text x="494" y="3301" text-anchor="start">(AXI3 or</text>
+<text x="494" y="3323" text-anchor="start">AXI4)</text>
+<rect x="600" y="3232" width="470" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="3290" text-anchor="start">bridge -&gt; external manager</text>
+<rect x="1070" y="3232" width="1430" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="3279" text-anchor="start">bridge -&gt; external manager: o_axi_rvalid, o_axi_rid, o_axi_rdata, o_axi_rresp, o_axi_rlast, o_axi_ruser; external manager -&gt; bridge:</text>
+<text x="1074" y="3301" text-anchor="start">i_axi_rready</text>
+<rect x="100" y="3334" width="90" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="3392" text-anchor="start">SW</text>
+<rect x="190" y="3334" width="300" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="3381" text-anchor="start">AXI write data channel,</text>
+<text x="194" y="3403" text-anchor="start">subordinate side (CLK-SUB)</text>
+<rect x="490" y="3334" width="110" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="3359" text-anchor="start">standard</text>
+<text x="494" y="3381" text-anchor="start">protocol</text>
+<text x="494" y="3403" text-anchor="start">(AXI3 or</text>
+<text x="494" y="3425" text-anchor="start">AXI4)</text>
+<rect x="600" y="3334" width="470" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="3392" text-anchor="start">external manager -&gt; bridge</text>
+<rect x="1070" y="3334" width="1430" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="3381" text-anchor="start">external manager -&gt; bridge: i_axi_wvalid, i_axi_wid, i_axi_wdata, i_axi_wstrb, i_axi_wlast, i_axi_wuser; bridge -&gt; external manager:</text>
+<text x="1074" y="3403" text-anchor="start">o_axi_wready</text>
+<path d="M 460 980 L 550 980" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="550,980 538,986 538,974" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 850 980 L 940 980" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="940,980 928,986 928,974" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 460 530 L 550 530" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="550,530 538,536 538,524" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 850 530 L 940 530" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="940,530 928,536 928,524" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 550 830 L 460 830" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="460,830 472,824 472,836" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 940 830 L 850 830" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="850,830 862,824 862,836" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 660 1260 L 660 1170" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="660,1170 666,1182 654,1182" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 750 1260 L 750 1170" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="750,1170 756,1182 744,1182" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 550 1130 L 460 1130" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="460,1130 472,1124 472,1136" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 940 1130 L 850 1130" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="850,1130 862,1124 862,1136" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 460 680 L 550 680" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="550,680 538,686 538,674" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 850 680 L 940 680" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="940,680 928,686 928,674" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 660 422 L 522 422 L 522 524 A 6 6 0 0 0 522 536 L 522 550 L 550 550" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="550,550 538,556 538,544" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 660 422 L 522 422 L 522 524 A 6 6 0 0 0 522 536 L 522 674 A 6 6 0 0 0 522 686 L 522 700 L 550 700" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="550,700 538,706 538,694" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 660 422 L 522 422 L 522 524 A 6 6 0 0 0 522 536 L 522 674 A 6 6 0 0 0 522 686 L 522 824 A 6 6 0 0 0 522 836 L 522 850 L 550 850" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="550,850 538,856 538,844" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 660 422 L 522 422 L 522 524 A 6 6 0 0 0 522 536 L 522 674 A 6 6 0 0 0 522 686 L 522 824 A 6 6 0 0 0 522 836 L 522 974 A 6 6 0 0 0 522 986 L 522 1000 L 550 1000" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="550,1000 538,1006 538,994" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 660 422 L 522 422 L 522 524 A 6 6 0 0 0 522 536 L 522 674 A 6 6 0 0 0 522 686 L 522 824 A 6 6 0 0 0 522 836 L 522 974 A 6 6 0 0 0 522 986 L 522 1124 A 6 6 0 0 0 522 1136 L 522 1150 L 550 1150" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="550,1150 538,1156 538,1144" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 750 422 L 878 422 L 878 524 A 6 6 0 0 0 878 536 L 878 550 L 850 550" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="850,550 862,544 862,556" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 750 422 L 878 422 L 878 524 A 6 6 0 0 0 878 536 L 878 674 A 6 6 0 0 0 878 686 L 878 700 L 850 700" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="850,700 862,694 862,706" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 750 422 L 878 422 L 878 524 A 6 6 0 0 0 878 536 L 878 674 A 6 6 0 0 0 878 686 L 878 824 A 6 6 0 0 0 878 836 L 878 850 L 850 850" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="850,850 862,844 862,856" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 750 422 L 878 422 L 878 524 A 6 6 0 0 0 878 536 L 878 674 A 6 6 0 0 0 878 686 L 878 824 A 6 6 0 0 0 878 836 L 878 974 A 6 6 0 0 0 878 986 L 878 1000 L 850 1000" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="850,1000 862,994 862,1006" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 750 422 L 878 422 L 878 524 A 6 6 0 0 0 878 536 L 878 674 A 6 6 0 0 0 878 686 L 878 824 A 6 6 0 0 0 878 836 L 878 974 A 6 6 0 0 0 878 986 L 878 1124 A 6 6 0 0 0 878 1136 L 878 1150 L 850 1150" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="850,1150 862,1144 862,1156" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 100 3551 L 260 3551" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="260,3551 248,3557 248,3545" fill="#000000" stroke="#000000" stroke-width="1"/>
+</svg>

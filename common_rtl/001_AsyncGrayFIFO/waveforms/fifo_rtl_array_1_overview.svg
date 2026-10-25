@@ -1,0 +1,251 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1245" height="704" font-family="Segoe UI, Arial, sans-serif" font-size="11">
+<rect width="1245" height="704" fill="#ffffff"/>
+<text x="8" y="16" font-size="14" font-weight="bold" fill="#222">Async Gray FIFO write and read, RTL array (CFG-BASE) - depth 4, 8-bit data, 2-stage synchronizers</text>
+<line x1="190.5" y1="48" x2="190.5" y2="674" stroke="#ececec"/>
+<text x="190.5" y="44" text-anchor="middle" fill="#888">100</text>
+<line x1="280.5" y1="48" x2="280.5" y2="674" stroke="#ececec"/>
+<text x="280.5" y="44" text-anchor="middle" fill="#888">120</text>
+<line x1="370.5" y1="48" x2="370.5" y2="674" stroke="#ececec"/>
+<text x="370.5" y="44" text-anchor="middle" fill="#888">140</text>
+<line x1="460.5" y1="48" x2="460.5" y2="674" stroke="#ececec"/>
+<text x="460.5" y="44" text-anchor="middle" fill="#888">160</text>
+<line x1="550.5" y1="48" x2="550.5" y2="674" stroke="#ececec"/>
+<text x="550.5" y="44" text-anchor="middle" fill="#888">180</text>
+<line x1="640.5" y1="48" x2="640.5" y2="674" stroke="#ececec"/>
+<text x="640.5" y="44" text-anchor="middle" fill="#888">200</text>
+<line x1="730.5" y1="48" x2="730.5" y2="674" stroke="#ececec"/>
+<text x="730.5" y="44" text-anchor="middle" fill="#888">220</text>
+<line x1="820.5" y1="48" x2="820.5" y2="674" stroke="#ececec"/>
+<text x="820.5" y="44" text-anchor="middle" fill="#888">240</text>
+<line x1="910.5" y1="48" x2="910.5" y2="674" stroke="#ececec"/>
+<text x="910.5" y="44" text-anchor="middle" fill="#888">260</text>
+<line x1="1000.5" y1="48" x2="1000.5" y2="674" stroke="#ececec"/>
+<text x="1000.5" y="44" text-anchor="middle" fill="#888">280</text>
+<line x1="1090.5" y1="48" x2="1090.5" y2="674" stroke="#ececec"/>
+<text x="1090.5" y="44" text-anchor="middle" fill="#888">300</text>
+<line x1="1180.5" y1="48" x2="1180.5" y2="674" stroke="#ececec"/>
+<text x="1180.5" y="44" text-anchor="middle" fill="#888">320</text>
+<text x="1239" y="16" text-anchor="end" fill="#888">time in ns</text>
+<rect x="0" y="54" width="1245" height="22" fill="#f1f1f1"/><text x="8" y="69" font-weight="bold" fill="#444">WRITE DOMAIN (i_clk_wr, period 10 ns)</text>
+<text x="8" y="91" fill="#222">i_clk_wr</text>
+<path d="M168.0,80 L190.5,80 L190.5,80 L190.5,94 L213.0,94 L213.0,94 L213.0,80 L235.5,80 L235.5,80 L235.5,94 L258.0,94 L258.0,94 L258.0,80 L280.5,80 L280.5,80 L280.5,94 L303.0,94 L303.0,94 L303.0,80 L325.5,80 L325.5,80 L325.5,94 L348.0,94 L348.0,94 L348.0,80 L370.5,80 L370.5,80 L370.5,94 L393.0,94 L393.0,94 L393.0,80 L415.5,80 L415.5,80 L415.5,94 L438.0,94 L438.0,94 L438.0,80 L460.5,80 L460.5,80 L460.5,94 L483.0,94 L483.0,94 L483.0,80 L505.5,80 L505.5,80 L505.5,94 L528.0,94 L528.0,94 L528.0,80 L550.5,80 L550.5,80 L550.5,94 L573.0,94 L573.0,94 L573.0,80 L595.5,80 L595.5,80 L595.5,94 L618.0,94 L618.0,94 L618.0,80 L640.5,80 L640.5,80 L640.5,94 L663.0,94 L663.0,94 L663.0,80 L685.5,80 L685.5,80 L685.5,94 L708.0,94 L708.0,94 L708.0,80 L730.5,80 L730.5,80 L730.5,94 L753.0,94 L753.0,94 L753.0,80 L775.5,80 L775.5,80 L775.5,94 L798.0,94 L798.0,94 L798.0,80 L820.5,80 L820.5,80 L820.5,94 L843.0,94 L843.0,94 L843.0,80 L865.5,80 L865.5,80 L865.5,94 L888.0,94 L888.0,94 L888.0,80 L910.5,80 L910.5,80 L910.5,94 L933.0,94 L933.0,94 L933.0,80 L955.5,80 L955.5,80 L955.5,94 L978.0,94 L978.0,94 L978.0,80 L1000.5,80 L1000.5,80 L1000.5,94 L1023.0,94 L1023.0,94 L1023.0,80 L1045.5,80 L1045.5,80 L1045.5,94 L1068.0,94 L1068.0,94 L1068.0,80 L1090.5,80 L1090.5,80 L1090.5,94 L1113.0,94 L1113.0,94 L1113.0,80 L1135.5,80 L1135.5,80 L1135.5,94 L1158.0,94 L1158.0,94 L1158.0,80 L1180.5,80 L1180.5,80 L1180.5,94 L1203.0,94 L1203.0,94 L1203.0,80 L1225.5,80 L1225.5,80 L1225.5,94 L1225.5,94" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="113" fill="#222">i_wr_en</text>
+<path d="M168.0,102 L393.0,102 L393.0,102 L393.0,116 L843.0,116 L843.0,116 L843.0,102 L888.0,102 L888.0,102 L888.0,116 L1225.5,116" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="135" fill="#222">i_wr_data</text>
+<path d="M171.0,124 L210.0,124 L213.0,131.0 L210.0,138 L171.0,138 L168.0,131.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="190.5" y="135" text-anchor="middle" fill="#111">11</text>
+<path d="M216.0,124 L255.0,124 L258.0,131.0 L255.0,138 L216.0,138 L213.0,131.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="235.5" y="135" text-anchor="middle" fill="#111">22</text>
+<path d="M261.0,124 L300.0,124 L303.0,131.0 L300.0,138 L261.0,138 L258.0,131.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="280.5" y="135" text-anchor="middle" fill="#111">33</text>
+<path d="M306.0,124 L345.0,124 L348.0,131.0 L345.0,138 L306.0,138 L303.0,131.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="325.5" y="135" text-anchor="middle" fill="#111">44</text>
+<path d="M351.0,124 L840.0,124 L843.0,131.0 L840.0,138 L351.0,138 L348.0,131.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="595.5" y="135" text-anchor="middle" fill="#111">55</text>
+<path d="M846.0,124 L1222.5,124 L1225.5,131.0 L1222.5,138 L846.0,138 L843.0,131.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="1034.2" y="135" text-anchor="middle" fill="#111">66</text>
+<text x="8" y="157" fill="#222">write accept (sampled at the edge)</text>
+<path d="M168.0,146 L348.0,146 L348.0,146 L348.0,160 L843.0,160 L843.0,160 L843.0,146 L888.0,146 L888.0,146 L888.0,160 L1225.5,160" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="179" fill="#222">o_full</text>
+<path d="M168.0,182 L348.0,182 L348.0,182 L348.0,168 L618.0,168 L618.0,168 L618.0,182 L1225.5,182" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="201" fill="#222">o_full_thr</text>
+<path d="M168.0,204 L303.0,204 L303.0,204 L303.0,190 L663.0,190 L663.0,190 L663.0,204 L1225.5,204" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="223" fill="#222">o_overflow</text>
+<path d="M168.0,226 L393.0,226 L393.0,226 L393.0,212 L438.0,212 L438.0,212 L438.0,226 L1225.5,226" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="245" fill="#222">write pointer (bin)</text>
+<path d="M171.0,234 L210.0,234 L213.0,241.0 L210.0,248 L171.0,248 L168.0,241.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="190.5" y="245" text-anchor="middle" fill="#111">0</text>
+<path d="M216.0,234 L255.0,234 L258.0,241.0 L255.0,248 L216.0,248 L213.0,241.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="235.5" y="245" text-anchor="middle" fill="#111">1</text>
+<path d="M261.0,234 L300.0,234 L303.0,241.0 L300.0,248 L261.0,248 L258.0,241.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="280.5" y="245" text-anchor="middle" fill="#111">2</text>
+<path d="M306.0,234 L345.0,234 L348.0,241.0 L345.0,248 L306.0,248 L303.0,241.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="325.5" y="245" text-anchor="middle" fill="#111">3</text>
+<path d="M351.0,234 L885.0,234 L888.0,241.0 L885.0,248 L351.0,248 L348.0,241.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="618.0" y="245" text-anchor="middle" fill="#111">4</text>
+<path d="M891.0,234 L1222.5,234 L1225.5,241.0 L1222.5,248 L891.0,248 L888.0,241.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="1056.8" y="245" text-anchor="middle" fill="#111">5</text>
+<text x="8" y="267" fill="#222">write pointer (gray)</text>
+<path d="M171.0,256 L210.0,256 L213.0,263.0 L210.0,270 L171.0,270 L168.0,263.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="190.5" y="267" text-anchor="middle" fill="#111">000</text>
+<path d="M216.0,256 L255.0,256 L258.0,263.0 L255.0,270 L216.0,270 L213.0,263.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="235.5" y="267" text-anchor="middle" fill="#111">001</text>
+<path d="M261.0,256 L300.0,256 L303.0,263.0 L300.0,270 L261.0,270 L258.0,263.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="280.5" y="267" text-anchor="middle" fill="#111">011</text>
+<path d="M306.0,256 L345.0,256 L348.0,263.0 L345.0,270 L306.0,270 L303.0,263.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="325.5" y="267" text-anchor="middle" fill="#111">010</text>
+<path d="M351.0,256 L885.0,256 L888.0,263.0 L885.0,270 L351.0,270 L348.0,263.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="618.0" y="267" text-anchor="middle" fill="#111">110</text>
+<path d="M891.0,256 L1222.5,256 L1225.5,263.0 L1222.5,270 L891.0,270 L888.0,263.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="1056.8" y="267" text-anchor="middle" fill="#111">111</text>
+<text x="8" y="289" fill="#222">rd gray, synchronized</text>
+<path d="M171.0,278 L615.0,278 L618.0,285.0 L615.0,292 L171.0,292 L168.0,285.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="393.0" y="289" text-anchor="middle" fill="#111">000</text>
+<path d="M621.0,278 L660.0,278 L663.0,285.0 L660.0,292 L621.0,292 L618.0,285.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="640.5" y="289" text-anchor="middle" fill="#111">001</text>
+<path d="M666.0,278 L705.0,278 L708.0,285.0 L705.0,292 L666.0,292 L663.0,285.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="685.5" y="289" text-anchor="middle" fill="#111">011</text>
+<path d="M711.0,278 L795.0,278 L798.0,285.0 L795.0,292 L711.0,292 L708.0,285.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="753.0" y="289" text-anchor="middle" fill="#111">010</text>
+<path d="M801.0,278 L1155.0,278 L1158.0,285.0 L1155.0,292 L801.0,292 L798.0,285.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="978.0" y="289" text-anchor="middle" fill="#111">110</text>
+<path d="M1161.0,278 L1222.5,278 L1225.5,285.0 L1222.5,292 L1161.0,292 L1158.0,285.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="1191.8" y="289" text-anchor="middle" fill="#111">111</text>
+<rect x="0" y="296" width="1245" height="22" fill="#f1f1f1"/><text x="8" y="311" font-weight="bold" fill="#444">RTL ARRAY (m_vlsit_afifo_mem)</text>
+<text x="8" y="333" fill="#222">i_wr_en (array)</text>
+<path d="M168.0,322 L348.0,322 L348.0,322 L348.0,336 L843.0,336 L843.0,336 L843.0,322 L888.0,322 L888.0,322 L888.0,336 L1225.5,336" fill="none" stroke="#2b8a3e" stroke-width="1.5"/>
+<text x="8" y="355" fill="#222">i_wr_addr</text>
+<path d="M171.0,344 L210.0,344 L213.0,351.0 L210.0,358 L171.0,358 L168.0,351.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="190.5" y="355" text-anchor="middle" fill="#111">0</text>
+<path d="M216.0,344 L255.0,344 L258.0,351.0 L255.0,358 L216.0,358 L213.0,351.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="235.5" y="355" text-anchor="middle" fill="#111">1</text>
+<path d="M261.0,344 L300.0,344 L303.0,351.0 L300.0,358 L261.0,358 L258.0,351.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="280.5" y="355" text-anchor="middle" fill="#111">2</text>
+<path d="M306.0,344 L345.0,344 L348.0,351.0 L345.0,358 L306.0,358 L303.0,351.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="325.5" y="355" text-anchor="middle" fill="#111">3</text>
+<path d="M351.0,344 L885.0,344 L888.0,351.0 L885.0,358 L351.0,358 L348.0,351.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="618.0" y="355" text-anchor="middle" fill="#111">0</text>
+<path d="M891.0,344 L1222.5,344 L1225.5,351.0 L1222.5,358 L891.0,358 L888.0,351.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="1056.8" y="355" text-anchor="middle" fill="#111">1</text>
+<text x="8" y="377" fill="#222">i_wr_data (array)</text>
+<path d="M171.0,366 L210.0,366 L213.0,373.0 L210.0,380 L171.0,380 L168.0,373.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="190.5" y="377" text-anchor="middle" fill="#111">11</text>
+<path d="M216.0,366 L255.0,366 L258.0,373.0 L255.0,380 L216.0,380 L213.0,373.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="235.5" y="377" text-anchor="middle" fill="#111">22</text>
+<path d="M261.0,366 L300.0,366 L303.0,373.0 L300.0,380 L261.0,380 L258.0,373.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="280.5" y="377" text-anchor="middle" fill="#111">33</text>
+<path d="M306.0,366 L345.0,366 L348.0,373.0 L345.0,380 L306.0,380 L303.0,373.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="325.5" y="377" text-anchor="middle" fill="#111">44</text>
+<path d="M351.0,366 L840.0,366 L843.0,373.0 L840.0,380 L351.0,380 L348.0,373.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="595.5" y="377" text-anchor="middle" fill="#111">55</text>
+<path d="M846.0,366 L1222.5,366 L1225.5,373.0 L1222.5,380 L846.0,380 L843.0,373.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="1034.2" y="377" text-anchor="middle" fill="#111">66</text>
+<text x="8" y="399" fill="#222">i_rd_addr (next rd pointer)</text>
+<path d="M171.0,388 L462.0,388 L465.0,395.0 L462.0,402 L171.0,402 L168.0,395.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="316.5" y="399" text-anchor="middle" fill="#111">0</text>
+<path d="M468.0,388 L525.0,388 L528.0,395.0 L525.0,402 L468.0,402 L465.0,395.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="496.5" y="399" text-anchor="middle" fill="#111">1</text>
+<path d="M531.0,388 L588.0,388 L591.0,395.0 L588.0,402 L531.0,402 L528.0,395.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="559.5" y="399" text-anchor="middle" fill="#111">2</text>
+<path d="M594.0,388 L651.0,388 L654.0,395.0 L651.0,402 L594.0,402 L591.0,395.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="622.5" y="399" text-anchor="middle" fill="#111">3</text>
+<path d="M657.0,388 L714.0,388 L717.0,395.0 L714.0,402 L657.0,402 L654.0,395.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="685.5" y="399" text-anchor="middle" fill="#111">0</text>
+<path d="M720.0,388 L1029.0,388 L1032.0,395.0 L1029.0,402 L720.0,402 L717.0,395.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="874.5" y="399" text-anchor="middle" fill="#111">0</text>
+<path d="M1035.0,388 L1092.0,388 L1095.0,395.0 L1092.0,402 L1035.0,402 L1032.0,395.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="1063.5" y="399" text-anchor="middle" fill="#111">1</text>
+<path d="M1098.0,388 L1222.5,388 L1225.5,395.0 L1222.5,402 L1098.0,402 L1095.0,395.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="1160.2" y="399" text-anchor="middle" fill="#111">1</text>
+<text x="8" y="421" fill="#222">o_rd_data (read register)</text>
+<path d="M171.0,410 L273.0,410 L276.0,417.0 L273.0,424 L171.0,424 L168.0,417.0 Z" fill="#ffc9c9" stroke="#e03131"/>
+<text x="222.0" y="421" text-anchor="middle" fill="#111">x</text>
+<path d="M279.0,410 L525.0,410 L528.0,417.0 L525.0,424 L279.0,424 L276.0,417.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="402.0" y="421" text-anchor="middle" fill="#111">11</text>
+<path d="M531.0,410 L588.0,410 L591.0,417.0 L588.0,424 L531.0,424 L528.0,417.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="559.5" y="421" text-anchor="middle" fill="#111">22</text>
+<path d="M594.0,410 L651.0,410 L654.0,417.0 L651.0,424 L594.0,424 L591.0,417.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="622.5" y="421" text-anchor="middle" fill="#111">33</text>
+<path d="M657.0,410 L714.0,410 L717.0,417.0 L714.0,424 L657.0,424 L654.0,417.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="685.5" y="421" text-anchor="middle" fill="#111">44</text>
+<path d="M720.0,410 L903.0,410 L906.0,417.0 L903.0,424 L720.0,424 L717.0,417.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="811.5" y="421" text-anchor="middle" fill="#111">11</text>
+<path d="M909.0,410 L1092.0,410 L1095.0,417.0 L1092.0,424 L909.0,424 L906.0,417.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="1000.5" y="421" text-anchor="middle" fill="#111">66</text>
+<path d="M1098.0,410 L1222.5,410 L1225.5,417.0 L1222.5,424 L1098.0,424 L1095.0,417.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="1160.2" y="421" text-anchor="middle" fill="#111">22</text>
+<rect x="0" y="428" width="1245" height="22" fill="#f1f1f1"/><text x="8" y="443" font-weight="bold" fill="#444">READ DOMAIN (i_clk_rd, period 14 ns)</text>
+<text x="8" y="465" fill="#222">i_clk_rd</text>
+<path d="M168.0,454 L181.5,454 L181.5,454 L181.5,468 L213.0,468 L213.0,468 L213.0,454 L244.5,454 L244.5,454 L244.5,468 L276.0,468 L276.0,468 L276.0,454 L307.5,454 L307.5,454 L307.5,468 L339.0,468 L339.0,468 L339.0,454 L370.5,454 L370.5,454 L370.5,468 L402.0,468 L402.0,468 L402.0,454 L433.5,454 L433.5,454 L433.5,468 L465.0,468 L465.0,468 L465.0,454 L496.5,454 L496.5,454 L496.5,468 L528.0,468 L528.0,468 L528.0,454 L559.5,454 L559.5,454 L559.5,468 L591.0,468 L591.0,468 L591.0,454 L622.5,454 L622.5,454 L622.5,468 L654.0,468 L654.0,468 L654.0,454 L685.5,454 L685.5,454 L685.5,468 L717.0,468 L717.0,468 L717.0,454 L748.5,454 L748.5,454 L748.5,468 L780.0,468 L780.0,468 L780.0,454 L811.5,454 L811.5,454 L811.5,468 L843.0,468 L843.0,468 L843.0,454 L874.5,454 L874.5,454 L874.5,468 L906.0,468 L906.0,468 L906.0,454 L937.5,454 L937.5,454 L937.5,468 L969.0,468 L969.0,468 L969.0,454 L1000.5,454 L1000.5,454 L1000.5,468 L1032.0,468 L1032.0,468 L1032.0,454 L1063.5,454 L1063.5,454 L1063.5,468 L1095.0,468 L1095.0,468 L1095.0,454 L1126.5,454 L1126.5,454 L1126.5,468 L1158.0,468 L1158.0,468 L1158.0,454 L1189.5,454 L1189.5,454 L1189.5,468 L1221.0,468 L1221.0,468 L1221.0,454 L1225.5,454" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="487" fill="#222">i_rd_en</text>
+<path d="M168.0,490 L465.0,490 L465.0,490 L465.0,476 L780.0,476 L780.0,476 L780.0,490 L1032.0,490 L1032.0,490 L1032.0,476 L1095.0,476 L1095.0,476 L1095.0,490 L1225.5,490" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="509" fill="#222">read accept (sampled at the edge)</text>
+<path d="M168.0,512 L465.0,512 L465.0,512 L465.0,498 L717.0,498 L717.0,498 L717.0,512 L1032.0,512 L1032.0,512 L1032.0,498 L1095.0,498 L1095.0,498 L1095.0,512 L1225.5,512" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="531" fill="#222">o_rd_data</text>
+<path d="M171.0,520 L273.0,520 L276.0,527.0 L273.0,534 L171.0,534 L168.0,527.0 Z" fill="#ffc9c9" stroke="#e03131"/>
+<text x="222.0" y="531" text-anchor="middle" fill="#111">x</text>
+<path d="M279.0,520 L525.0,520 L528.0,527.0 L525.0,534 L279.0,534 L276.0,527.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="402.0" y="531" text-anchor="middle" fill="#111">11</text>
+<path d="M531.0,520 L588.0,520 L591.0,527.0 L588.0,534 L531.0,534 L528.0,527.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="559.5" y="531" text-anchor="middle" fill="#111">22</text>
+<path d="M594.0,520 L651.0,520 L654.0,527.0 L651.0,534 L594.0,534 L591.0,527.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="622.5" y="531" text-anchor="middle" fill="#111">33</text>
+<path d="M657.0,520 L714.0,520 L717.0,527.0 L714.0,534 L657.0,534 L654.0,527.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="685.5" y="531" text-anchor="middle" fill="#111">44</text>
+<path d="M720.0,520 L903.0,520 L906.0,527.0 L903.0,534 L720.0,534 L717.0,527.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="811.5" y="531" text-anchor="middle" fill="#111">11</text>
+<path d="M909.0,520 L1092.0,520 L1095.0,527.0 L1092.0,534 L909.0,534 L906.0,527.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="1000.5" y="531" text-anchor="middle" fill="#111">66</text>
+<path d="M1098.0,520 L1222.5,520 L1225.5,527.0 L1222.5,534 L1098.0,534 L1095.0,527.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="1160.2" y="531" text-anchor="middle" fill="#111">22</text>
+<text x="8" y="553" fill="#222">o_empty</text>
+<path d="M168.0,542 L339.0,542 L339.0,542 L339.0,556 L717.0,556 L717.0,556 L717.0,542 L969.0,542 L969.0,542 L969.0,556 L1095.0,556 L1095.0,556 L1095.0,542 L1225.5,542" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="575" fill="#222">o_empty_thr</text>
+<path d="M168.0,564 L339.0,564 L339.0,564 L339.0,578 L654.0,578 L654.0,578 L654.0,564 L1225.5,564" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="597" fill="#222">o_underflow</text>
+<path d="M168.0,600 L780.0,600 L780.0,600 L780.0,586 L843.0,586 L843.0,586 L843.0,600 L1225.5,600" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="619" fill="#222">read pointer (bin)</text>
+<path d="M171.0,608 L525.0,608 L528.0,615.0 L525.0,622 L171.0,622 L168.0,615.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="348.0" y="619" text-anchor="middle" fill="#111">0</text>
+<path d="M531.0,608 L588.0,608 L591.0,615.0 L588.0,622 L531.0,622 L528.0,615.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="559.5" y="619" text-anchor="middle" fill="#111">1</text>
+<path d="M594.0,608 L651.0,608 L654.0,615.0 L651.0,622 L594.0,622 L591.0,615.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="622.5" y="619" text-anchor="middle" fill="#111">2</text>
+<path d="M657.0,608 L714.0,608 L717.0,615.0 L714.0,622 L657.0,622 L654.0,615.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="685.5" y="619" text-anchor="middle" fill="#111">3</text>
+<path d="M720.0,608 L1092.0,608 L1095.0,615.0 L1092.0,622 L720.0,622 L717.0,615.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="906.0" y="619" text-anchor="middle" fill="#111">4</text>
+<path d="M1098.0,608 L1222.5,608 L1225.5,615.0 L1222.5,622 L1098.0,622 L1095.0,615.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="1160.2" y="619" text-anchor="middle" fill="#111">5</text>
+<text x="8" y="641" fill="#222">read pointer (gray)</text>
+<path d="M171.0,630 L525.0,630 L528.0,637.0 L525.0,644 L171.0,644 L168.0,637.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="348.0" y="641" text-anchor="middle" fill="#111">000</text>
+<path d="M531.0,630 L588.0,630 L591.0,637.0 L588.0,644 L531.0,644 L528.0,637.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="559.5" y="641" text-anchor="middle" fill="#111">001</text>
+<path d="M594.0,630 L651.0,630 L654.0,637.0 L651.0,644 L594.0,644 L591.0,637.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="622.5" y="641" text-anchor="middle" fill="#111">011</text>
+<path d="M657.0,630 L714.0,630 L717.0,637.0 L714.0,644 L657.0,644 L654.0,637.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="685.5" y="641" text-anchor="middle" fill="#111">010</text>
+<path d="M720.0,630 L1092.0,630 L1095.0,637.0 L1092.0,644 L720.0,644 L717.0,637.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="906.0" y="641" text-anchor="middle" fill="#111">110</text>
+<path d="M1098.0,630 L1222.5,630 L1225.5,637.0 L1222.5,644 L1098.0,644 L1095.0,637.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="1160.2" y="641" text-anchor="middle" fill="#111">111</text>
+<text x="8" y="663" fill="#222">wr gray, synchronized</text>
+<path d="M171.0,652 L336.0,652 L339.0,659.0 L336.0,666 L171.0,666 L168.0,659.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="253.5" y="663" text-anchor="middle" fill="#111">000</text>
+<path d="M342.0,652 L399.0,652 L402.0,659.0 L399.0,666 L342.0,666 L339.0,659.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="370.5" y="663" text-anchor="middle" fill="#111">011</text>
+<path d="M405.0,652 L462.0,652 L465.0,659.0 L462.0,666 L405.0,666 L402.0,659.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="433.5" y="663" text-anchor="middle" fill="#111">010</text>
+<path d="M468.0,652 L966.0,652 L969.0,659.0 L966.0,666 L468.0,666 L465.0,659.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="717.0" y="663" text-anchor="middle" fill="#111">110</text>
+<path d="M972.0,652 L1222.5,652 L1225.5,659.0 L1222.5,666 L972.0,666 L969.0,659.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="1097.2" y="663" text-anchor="middle" fill="#111">111</text>
+<line x1="213.0" y1="50" x2="213.0" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="213.0" cy="30" r="9" fill="#d6336c"/><text x="213.0" y="34" text-anchor="middle" fill="#fff" font-weight="bold">1</text>
+<line x1="276.0" y1="50" x2="276.0" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="276.0" cy="30" r="9" fill="#d6336c"/><text x="276.0" y="34" text-anchor="middle" fill="#fff" font-weight="bold">2</text>
+<line x1="339.0" y1="50" x2="339.0" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="339.0" cy="30" r="9" fill="#d6336c"/><text x="339.0" y="34" text-anchor="middle" fill="#fff" font-weight="bold">3</text>
+<line x1="348.0" y1="50" x2="348.0" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="348.0" cy="30" r="9" fill="#d6336c"/><text x="348.0" y="34" text-anchor="middle" fill="#fff" font-weight="bold">4</text>
+<line x1="393.0" y1="50" x2="393.0" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="393.0" cy="30" r="9" fill="#d6336c"/><text x="393.0" y="34" text-anchor="middle" fill="#fff" font-weight="bold">5</text>
+<line x1="528.0" y1="50" x2="528.0" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="528.0" cy="30" r="9" fill="#d6336c"/><text x="528.0" y="34" text-anchor="middle" fill="#fff" font-weight="bold">6</text>
+<line x1="618.0" y1="50" x2="618.0" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="618.0" cy="30" r="9" fill="#d6336c"/><text x="618.0" y="34" text-anchor="middle" fill="#fff" font-weight="bold">7</text>
+<line x1="717.0" y1="50" x2="717.0" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="717.0" cy="30" r="9" fill="#d6336c"/><text x="717.0" y="34" text-anchor="middle" fill="#fff" font-weight="bold">8</text>
+<line x1="780.0" y1="50" x2="780.0" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="780.0" cy="30" r="9" fill="#d6336c"/><text x="780.0" y="34" text-anchor="middle" fill="#fff" font-weight="bold">9</text>
+<line x1="888.0" y1="50" x2="888.0" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="888.0" cy="30" r="9" fill="#d6336c"/><text x="888.0" y="34" text-anchor="middle" fill="#fff" font-weight="bold">10</text>
+<line x1="906.0" y1="50" x2="906.0" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="906.0" cy="30" r="9" fill="#d6336c"/><text x="906.0" y="34" text-anchor="middle" fill="#fff" font-weight="bold">11</text>
+<line x1="969.0" y1="50" x2="969.0" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="969.0" cy="30" r="9" fill="#d6336c"/><text x="969.0" y="34" text-anchor="middle" fill="#fff" font-weight="bold">12</text>
+<line x1="1095.0" y1="50" x2="1095.0" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="1095.0" cy="30" r="9" fill="#d6336c"/><text x="1095.0" y="34" text-anchor="middle" fill="#fff" font-weight="bold">13</text>
+<text x="168" y="694" fill="#555">numbers = events of the table next to the figure; red bus = unknown (X)</text>
+</svg>

@@ -1,0 +1,9 @@
+%Warning-UNUSEDSIGNAL: m_axi2apb_bridge.sv:35:36: Signal is not used: 'i_axi_wlast'
+                                                : ... note: In instance 'm_axi2apb_bridge'
+   35 |   input  wire                      i_axi_wlast,
+      |                                    ^~~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/UNUSEDSIGNAL?v=5.053
+                       ... Use "/* verilator lint_off UNUSEDSIGNAL */" and lint_on around source to disable this message.
+- V e r i l a t i o n   R e p o r t: Verilator 5.053 devel rev v5.052-352-gc265bd444 (mod)
+- Verilator: Built from 0.179 MB sources in 6 modules, into 0.132 MB in 3 C++ files needing 0.000 MB
+- Verilator: Walltime 0.024 s (elab=0.004, cvt=0.008, bld=0.000); cpu 0.000 s on 1 threads; allocated 18.551 MB

@@ -1,0 +1,1667 @@
+$date
+	Sun Oct 25 20:34:03 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module tb_apbcdc $end
+$var wire 4 ! m_pbuser [3:0] $end
+$var wire 4 " m_pruser [3:0] $end
+$var wire 4 # s_pauser [3:0] $end
+$var wire 4 $ s_pwuser [3:0] $end
+$var wire 1 % s_pwrite $end
+$var wire 16 & s_pwdata [15:0] $end
+$var wire 1 ' s_pwakeup $end
+$var wire 2 ( s_pstrb [1:0] $end
+$var wire 1 ) s_psel $end
+$var wire 3 * s_pprot [2:0] $end
+$var wire 1 + s_penable $end
+$var wire 16 , s_paddr [15:0] $end
+$var wire 1 - m_pslverr $end
+$var wire 1 . m_pready $end
+$var wire 16 / m_prdata [15:0] $end
+$var parameter 32 0 APB5 $end
+$var parameter 32 1 AW $end
+$var parameter 32 2 CELL $end
+$var parameter 32 3 CORRUPT $end
+$var parameter 32 4 DT $end
+$var parameter 32 5 DW $end
+$var parameter 32 6 HM $end
+$var parameter 32 7 HRST_AT $end
+$var parameter 32 8 HRST_CYC $end
+$var parameter 32 9 HS $end
+$var parameter 32 : HS_ $end
+$var parameter 32 ; NA $end
+$var parameter 32 < NOWK $end
+$var parameter 32 = NSLOT $end
+$var parameter 32 > NSTAGE $end
+$var parameter 32 ? NX $end
+$var parameter 32 @ REGRESS $end
+$var real 1 A TM $end
+$var real 1 B TS $end
+$var reg 1 C clk_mst $end
+$var reg 1 D clk_slv $end
+$var reg 1600 E fname [1599:0] $end
+$var reg 1 F hw_seen $end
+$var reg 1 G in_xfer $end
+$var reg 16 H m_paddr [15:0] $end
+$var reg 4 I m_pauser [3:0] $end
+$var reg 1 J m_penable $end
+$var reg 3 K m_pprot [2:0] $end
+$var reg 1 L m_psel $end
+$var reg 2 M m_pstrb [1:0] $end
+$var reg 1 N m_pwakeup $end
+$var reg 16 O m_pwdata [15:0] $end
+$var reg 1 P m_pwrite $end
+$var reg 4 Q m_pwuser [3:0] $end
+$var reg 1 R p_ack_s $end
+$var reg 2 S p_mst_state [1:0] $end
+$var reg 16 T p_paddr [15:0] $end
+$var reg 4 U p_pauser [3:0] $end
+$var reg 64 V p_payload [63:0] $end
+$var reg 1 W p_penable $end
+$var reg 3 X p_pprot [2:0] $end
+$var reg 1 Y p_pready $end
+$var reg 1 Z p_psel $end
+$var reg 1 [ p_pslverr $end
+$var reg 2 \ p_pstrb [1:0] $end
+$var reg 16 ] p_pwdata [15:0] $end
+$var reg 1 ^ p_pwrite $end
+$var reg 4 _ p_pwuser [3:0] $end
+$var reg 1 ` p_req $end
+$var reg 1 a p_up_ready_seen $end
+$var reg 1 b p_wk $end
+$var reg 4 c pb_s [3:0] $end
+$var reg 16 d pd_s [15:0] $end
+$var reg 1 e pe_s $end
+$var reg 1 f pr_s $end
+$var reg 4 g pu_s [3:0] $end
+$var reg 16 h q_paddr [15:0] $end
+$var reg 4 i q_pauser [3:0] $end
+$var reg 1 j q_penable $end
+$var reg 3 k q_pprot [2:0] $end
+$var reg 1 l q_pready $end
+$var reg 1 m q_psel $end
+$var reg 2 n q_pstrb [1:0] $end
+$var reg 16 o q_pwdata [15:0] $end
+$var reg 1 p q_pwrite $end
+$var reg 4 q q_pwuser [3:0] $end
+$var reg 1 r q_wk $end
+$var reg 1 s rst_n_mst $end
+$var reg 1 t rst_n_slv $end
+$var reg 4 u s_pbuser [3:0] $end
+$var reg 16 v s_prdata [15:0] $end
+$var reg 1 w s_pready $end
+$var reg 4 x s_pruser [3:0] $end
+$var reg 1 y s_pslverr $end
+$var reg 1 z started $end
+$var reg 1600 { stim [1599:0] $end
+$var reg 1760 | vcdname [1759:0] $end
+$var reg 64 } w_payload [63:0] $end
+$var real 1 ~ bound $end
+$var integer 32 !" ci [31:0] $end
+$var integer 32 "" cur_wait [31:0] $end
+$var integer 32 #" cwait [31:0] $end
+$var integer 32 $" dn_setups [31:0] $end
+$var integer 32 %" errors [31:0] $end
+$var integer 32 &" fc [31:0] $end
+$var integer 32 '" fq [31:0] $end
+$var integer 32 (" gap_cnt [31:0] $end
+$var integer 32 )" i [31:0] $end
+$var integer 32 *" k [31:0] $end
+$var integer 32 +" m_cnt [31:0] $end
+$var integer 32 ," never [31:0] $end
+$var integer 32 -" nreq [31:0] $end
+$var integer 32 ." rc [31:0] $end
+$var integer 32 /" rq_idx [31:0] $end
+$var integer 32 0" rq_state [31:0] $end
+$var integer 32 1" s_cnt [31:0] $end
+$var real 1 2" t_setup_end $end
+$var integer 32 3" total_bad [31:0] $end
+$var integer 32 4" up_done [31:0] $end
+$scope function aname $end
+$upscope $end
+$scope function applicable $end
+$upscope $end
+$scope module dut $end
+$var wire 16 5" i_apb_paddr [15:0] $end
+$var wire 4 6" i_apb_pauser [3:0] $end
+$var wire 4 7" i_apb_pbuser [3:0] $end
+$var wire 1 J i_apb_penable $end
+$var wire 3 8" i_apb_pprot [2:0] $end
+$var wire 16 9" i_apb_prdata [15:0] $end
+$var wire 1 w i_apb_pready $end
+$var wire 4 :" i_apb_pruser [3:0] $end
+$var wire 1 L i_apb_psel $end
+$var wire 1 y i_apb_pslverr $end
+$var wire 2 ;" i_apb_pstrb [1:0] $end
+$var wire 1 N i_apb_pwakeup $end
+$var wire 16 <" i_apb_pwdata [15:0] $end
+$var wire 1 P i_apb_pwrite $end
+$var wire 4 =" i_apb_pwuser [3:0] $end
+$var wire 1 C i_clk_mst $end
+$var wire 1 D i_clk_slv $end
+$var wire 1 s i_rst_n_mst $end
+$var wire 1 t i_rst_n_slv $end
+$var wire 4 >" o_apb_pauser [3:0] $end
+$var wire 4 ?" o_apb_pbuser [3:0] $end
+$var wire 4 @" o_apb_pruser [3:0] $end
+$var wire 4 A" o_apb_pwuser [3:0] $end
+$var wire 1 B" w_wakeup $end
+$var wire 17 C" w_resp_payload [16:0] $end
+$var wire 38 D" w_req_payload [37:0] $end
+$var wire 1 E" w_req $end
+$var wire 1 F" w_ack $end
+$var wire 1 % o_apb_pwrite $end
+$var wire 16 G" o_apb_pwdata [15:0] $end
+$var wire 1 ' o_apb_pwakeup $end
+$var wire 2 H" o_apb_pstrb [1:0] $end
+$var wire 1 - o_apb_pslverr $end
+$var wire 1 ) o_apb_psel $end
+$var wire 1 . o_apb_pready $end
+$var wire 16 I" o_apb_prdata [15:0] $end
+$var wire 3 J" o_apb_pprot [2:0] $end
+$var wire 1 + o_apb_penable $end
+$var wire 16 K" o_apb_paddr [15:0] $end
+$var parameter 32 L" LPARA_PROT_W $end
+$var parameter 32 M" LPARA_PUDAT_W $end
+$var parameter 32 N" LPARA_PUREQ_W $end
+$var parameter 32 O" LPARA_PURSP_W $end
+$var parameter 32 P" LPARA_REQ_W $end
+$var parameter 32 Q" LPARA_RESP_W $end
+$var parameter 32 R" LPARA_STRB_W $end
+$var parameter 32 S" LPARA_UDAT_W $end
+$var parameter 32 T" LPARA_UREQ_W $end
+$var parameter 32 U" LPARA_URSP_W $end
+$var parameter 32 V" PARA_APBCDC_ADDR_W $end
+$var parameter 32 W" PARA_APBCDC_APB5 $end
+$var parameter 32 X" PARA_APBCDC_CELL_TYPE $end
+$var parameter 32 Y" PARA_APBCDC_DATA_W $end
+$var parameter 32 Z" PARA_APBCDC_HS_TYPE $end
+$var parameter 32 [" PARA_APBCDC_USER_DATA_W $end
+$var parameter 32 \" PARA_APBCDC_USER_REQ_W $end
+$var parameter 32 ]" PARA_APBCDC_USER_RESP_W $end
+$scope module u_vlsit_apbcdc_mst $end
+$var wire 16 ^" i_apb_paddr [15:0] $end
+$var wire 4 _" i_apb_pauser [3:0] $end
+$var wire 1 J i_apb_penable $end
+$var wire 3 `" i_apb_pprot [2:0] $end
+$var wire 1 L i_apb_psel $end
+$var wire 2 a" i_apb_pstrb [1:0] $end
+$var wire 1 N i_apb_pwakeup $end
+$var wire 16 b" i_apb_pwdata [15:0] $end
+$var wire 1 P i_apb_pwrite $end
+$var wire 4 c" i_apb_pwuser [3:0] $end
+$var wire 1 C i_clk_mst $end
+$var wire 1 s i_rst_n_mst $end
+$var wire 4 d" o_apb_pbuser [3:0] $end
+$var wire 1 . o_apb_pready $end
+$var wire 4 e" o_apb_pruser [3:0] $end
+$var wire 1 E" o_req $end
+$var wire 38 f" o_req_payload [37:0] $end
+$var wire 1 B" o_wakeup $end
+$var wire 1 g" w_ack_event $end
+$var wire 1 h" w_clr_req $end
+$var wire 1 i" w_launch $end
+$var wire 1 j" w_load_resp $end
+$var wire 1 k" w_setup $end
+$var wire 38 l" w_req_payload [37:0] $end
+$var wire 1 m" w_ack_s $end
+$var wire 1 - o_apb_pslverr $end
+$var wire 16 n" o_apb_prdata [15:0] $end
+$var wire 17 o" i_resp_payload [16:0] $end
+$var wire 1 F" i_ack $end
+$var parameter 32 p" LPARA_OFF_AUSER $end
+$var parameter 32 q" LPARA_OFF_STRB $end
+$var parameter 32 r" LPARA_OFF_WDATA $end
+$var parameter 32 s" LPARA_OFF_WR $end
+$var parameter 32 t" LPARA_OFF_WUSER $end
+$var parameter 32 u" LPARA_PROT_W $end
+$var parameter 32 v" LPARA_PUDAT_W $end
+$var parameter 32 w" LPARA_PUREQ_W $end
+$var parameter 32 x" LPARA_PURSP_W $end
+$var parameter 32 y" LPARA_REQ_W $end
+$var parameter 32 z" LPARA_RESP_W $end
+$var parameter 32 {" LPARA_STRB_W $end
+$var parameter 32 |" LPARA_UDAT_W $end
+$var parameter 32 }" LPARA_UREQ_W $end
+$var parameter 32 ~" LPARA_URSP_W $end
+$var parameter 32 !# PARA_APBCDC_ADDR_W $end
+$var parameter 32 "# PARA_APBCDC_APB5 $end
+$var parameter 32 ## PARA_APBCDC_CELL_TYPE $end
+$var parameter 32 $# PARA_APBCDC_DATA_W $end
+$var parameter 32 %# PARA_APBCDC_HS_TYPE $end
+$var parameter 32 &# PARA_APBCDC_USER_DATA_W $end
+$var parameter 32 '# PARA_APBCDC_USER_REQ_W $end
+$var parameter 32 (# PARA_APBCDC_USER_RESP_W $end
+$var reg 2 )# reg_fsm_hs_current_state [1:0] $end
+$var reg 1 *# reg_pready $end
+$var reg 1 +# reg_req $end
+$var reg 38 ,# reg_req_payload [37:0] $end
+$var reg 17 -# reg_resp_payload [16:0] $end
+$var reg 1 .# reg_wakeup $end
+$var reg 2 /# w_fsm_hs_nxt_state [1:0] $end
+$var reg 1 0# w_req_nxt $end
+$scope begin gen_no_pbuser $end
+$upscope $end
+$scope begin gen_no_pruser $end
+$upscope $end
+$scope module u_sync_ack $end
+$var wire 1 C i_clk_dst $end
+$var wire 1 s i_rst_n_dst $end
+$var wire 1 m" o_data $end
+$var wire 1 F" i_data $end
+$var parameter 32 1# PARA_APBCDC_CELL_TYPE $end
+$var parameter 32 2# PARA_APBCDC_SYNC_RST_VAL $end
+$var parameter 32 3# PARA_APBCDC_SYNC_W $end
+$scope begin gen_bit_cell[0] $end
+$var parameter 2 4# gen_bit $end
+$scope module u_vlsit_apbcdc_cell_sync $end
+$var wire 1 C i_clk_dst $end
+$var wire 1 s i_rst_n_dst $end
+$var wire 1 m" o_q $end
+$var wire 1 F" i_d $end
+$var parameter 32 5# LPARA_TYPE_BYPASS $end
+$var parameter 32 6# LPARA_TYPE_DFF2 $end
+$var parameter 32 7# LPARA_TYPE_SYNC2 $end
+$var parameter 32 8# LPARA_TYPE_SYNC3 $end
+$var parameter 32 9# PARA_APBCDC_CELL_RST_VAL $end
+$var parameter 32 :# PARA_APBCDC_CELL_TYPE $end
+$scope begin gen_sync2 $end
+$scope begin gen_rn $end
+$scope module u_dont_touch_sync2ff $end
+$var wire 1 C CK $end
+$var wire 1 s RN $end
+$var wire 1 m" Q $end
+$var wire 1 F" D $end
+$var parameter 32 ;# LPARA_CELL_STAGE $end
+$var reg 2 <# reg_chain [1:0] $end
+$scope begin p_ff_cell $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope begin p_com_fsm_hs_nxt $end
+$upscope $end
+$scope begin p_com_req_nxt $end
+$upscope $end
+$scope begin p_ff_ctrl $end
+$upscope $end
+$scope begin p_ff_fsm_hs $end
+$upscope $end
+$scope begin p_ff_req_payload $end
+$upscope $end
+$scope begin p_ff_resp_payload $end
+$upscope $end
+$upscope $end
+$scope module u_vlsit_apbcdc_slv $end
+$var wire 4 =# i_apb_pbuser [3:0] $end
+$var wire 16 ># i_apb_prdata [15:0] $end
+$var wire 1 w i_apb_pready $end
+$var wire 4 ?# i_apb_pruser [3:0] $end
+$var wire 1 y i_apb_pslverr $end
+$var wire 1 D i_clk_slv $end
+$var wire 1 E" i_req $end
+$var wire 38 @# i_req_payload [37:0] $end
+$var wire 1 t i_rst_n_slv $end
+$var wire 1 B" i_wakeup $end
+$var wire 1 F" o_ack $end
+$var wire 4 A# o_apb_pauser [3:0] $end
+$var wire 1 + o_apb_penable $end
+$var wire 1 ) o_apb_psel $end
+$var wire 1 ' o_apb_pwakeup $end
+$var wire 4 B# o_apb_pwuser [3:0] $end
+$var wire 17 C# o_resp_payload [16:0] $end
+$var wire 1 D# w_done $end
+$var wire 1 E# w_load_req $end
+$var wire 1 F# w_req_event $end
+$var wire 1 G# w_wk_s $end
+$var wire 17 H# w_resp_payload [16:0] $end
+$var wire 1 I# w_req_s $end
+$var wire 1 % o_apb_pwrite $end
+$var wire 16 J# o_apb_pwdata [15:0] $end
+$var wire 2 K# o_apb_pstrb [1:0] $end
+$var wire 3 L# o_apb_pprot [2:0] $end
+$var wire 16 M# o_apb_paddr [15:0] $end
+$var parameter 32 N# LPARA_OFF_AUSER $end
+$var parameter 32 O# LPARA_OFF_STRB $end
+$var parameter 32 P# LPARA_OFF_WDATA $end
+$var parameter 32 Q# LPARA_OFF_WR $end
+$var parameter 32 R# LPARA_OFF_WUSER $end
+$var parameter 32 S# LPARA_PROT_W $end
+$var parameter 32 T# LPARA_PUDAT_W $end
+$var parameter 32 U# LPARA_PUREQ_W $end
+$var parameter 32 V# LPARA_PURSP_W $end
+$var parameter 32 W# LPARA_REQ_W $end
+$var parameter 32 X# LPARA_RESP_W $end
+$var parameter 32 Y# LPARA_STRB_W $end
+$var parameter 32 Z# LPARA_UDAT_W $end
+$var parameter 32 [# LPARA_UREQ_W $end
+$var parameter 32 \# LPARA_URSP_W $end
+$var parameter 32 ]# PARA_APBCDC_ADDR_W $end
+$var parameter 32 ^# PARA_APBCDC_APB5 $end
+$var parameter 32 _# PARA_APBCDC_CELL_TYPE $end
+$var parameter 32 `# PARA_APBCDC_DATA_W $end
+$var parameter 32 a# PARA_APBCDC_HS_TYPE $end
+$var parameter 32 b# PARA_APBCDC_USER_DATA_W $end
+$var parameter 32 c# PARA_APBCDC_USER_REQ_W $end
+$var parameter 32 d# PARA_APBCDC_USER_RESP_W $end
+$var reg 1 e# reg_ack $end
+$var reg 38 f# reg_apb_payload [37:0] $end
+$var reg 1 g# reg_apb_penable $end
+$var reg 1 h# reg_apb_psel $end
+$var reg 2 i# reg_fsm_hs_current_state [1:0] $end
+$var reg 1 j# reg_pwakeup $end
+$var reg 17 k# reg_resp_hold [16:0] $end
+$var reg 1 l# w_ack_nxt $end
+$var reg 2 m# w_fsm_hs_nxt_state [1:0] $end
+$scope begin gen_no_pauser $end
+$upscope $end
+$scope begin gen_no_pwuser $end
+$upscope $end
+$scope module u_sync_req $end
+$var wire 1 D i_clk_dst $end
+$var wire 1 E" i_data $end
+$var wire 1 t i_rst_n_dst $end
+$var wire 1 I# o_data $end
+$var parameter 32 n# PARA_APBCDC_CELL_TYPE $end
+$var parameter 32 o# PARA_APBCDC_SYNC_RST_VAL $end
+$var parameter 32 p# PARA_APBCDC_SYNC_W $end
+$scope begin gen_bit_cell[0] $end
+$var parameter 2 q# gen_bit $end
+$scope module u_vlsit_apbcdc_cell_sync $end
+$var wire 1 D i_clk_dst $end
+$var wire 1 E" i_d $end
+$var wire 1 t i_rst_n_dst $end
+$var wire 1 I# o_q $end
+$var parameter 32 r# LPARA_TYPE_BYPASS $end
+$var parameter 32 s# LPARA_TYPE_DFF2 $end
+$var parameter 32 t# LPARA_TYPE_SYNC2 $end
+$var parameter 32 u# LPARA_TYPE_SYNC3 $end
+$var parameter 32 v# PARA_APBCDC_CELL_RST_VAL $end
+$var parameter 32 w# PARA_APBCDC_CELL_TYPE $end
+$scope begin gen_sync2 $end
+$scope begin gen_rn $end
+$scope module u_dont_touch_sync2ff $end
+$var wire 1 D CK $end
+$var wire 1 E" D $end
+$var wire 1 t RN $end
+$var wire 1 I# Q $end
+$var parameter 32 x# LPARA_CELL_STAGE $end
+$var reg 2 y# reg_chain [1:0] $end
+$scope begin p_ff_cell $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope module u_sync_wk $end
+$var wire 1 D i_clk_dst $end
+$var wire 1 B" i_data $end
+$var wire 1 t i_rst_n_dst $end
+$var wire 1 G# o_data $end
+$var parameter 32 z# PARA_APBCDC_CELL_TYPE $end
+$var parameter 32 {# PARA_APBCDC_SYNC_RST_VAL $end
+$var parameter 32 |# PARA_APBCDC_SYNC_W $end
+$scope begin gen_bit_cell[0] $end
+$var parameter 2 }# gen_bit $end
+$scope module u_vlsit_apbcdc_cell_sync $end
+$var wire 1 D i_clk_dst $end
+$var wire 1 B" i_d $end
+$var wire 1 t i_rst_n_dst $end
+$var wire 1 G# o_q $end
+$var parameter 32 ~# LPARA_TYPE_BYPASS $end
+$var parameter 32 !$ LPARA_TYPE_DFF2 $end
+$var parameter 32 "$ LPARA_TYPE_SYNC2 $end
+$var parameter 32 #$ LPARA_TYPE_SYNC3 $end
+$var parameter 32 $$ PARA_APBCDC_CELL_RST_VAL $end
+$var parameter 32 %$ PARA_APBCDC_CELL_TYPE $end
+$scope begin gen_sync2 $end
+$scope begin gen_rn $end
+$scope module u_dont_touch_sync2ff $end
+$var wire 1 D CK $end
+$var wire 1 B" D $end
+$var wire 1 t RN $end
+$var wire 1 G# Q $end
+$var parameter 32 &$ LPARA_CELL_STAGE $end
+$var reg 2 '$ reg_chain [1:0] $end
+$scope begin p_ff_cell $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope begin p_com_ack_nxt $end
+$upscope $end
+$scope begin p_com_fsm_hs_nxt $end
+$upscope $end
+$scope begin p_ff_apb_payload $end
+$upscope $end
+$scope begin p_ff_ctrl $end
+$upscope $end
+$scope begin p_ff_fsm_hs $end
+$upscope $end
+$scope begin p_ff_resp_hold $end
+$upscope $end
+$upscope $end
+$upscope $end
+$scope task chk $end
+$upscope $end
+$scope task report_and_finish $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b10 &$
+b10 %$
+b0 $$
+b11 #$
+b10 "$
+b1 !$
+b0 ~#
+b0 }#
+b1 |#
+b0 {#
+b10 z#
+b10 x#
+b10 w#
+b0 v#
+b11 u#
+b10 t#
+b1 s#
+b0 r#
+b0 q#
+b1 p#
+b0 o#
+b10 n#
+b100 d#
+b100 c#
+b100 b#
+b0 a#
+b10000 `#
+b10 _#
+b0 ^#
+b10000 ]#
+b0 \#
+b0 [#
+b0 Z#
+b10 Y#
+b10001 X#
+b100110 W#
+b100 V#
+b100 U#
+b100 T#
+b11 S#
+b100110 R#
+b10011 Q#
+b10110 P#
+b10100 O#
+b100110 N#
+b10 ;#
+b10 :#
+b0 9#
+b11 8#
+b10 7#
+b1 6#
+b0 5#
+b0 4#
+b1 3#
+b0 2#
+b10 1#
+b100 (#
+b100 '#
+b100 &#
+b0 %#
+b10000 $#
+b10 ##
+b0 "#
+b10000 !#
+b0 ~"
+b0 }"
+b0 |"
+b10 {"
+b10001 z"
+b100110 y"
+b100 x"
+b100 w"
+b100 v"
+b11 u"
+b100110 t"
+b10011 s"
+b10110 r"
+b10100 q"
+b100110 p"
+b100 ]"
+b100 \"
+b100 ["
+b0 Z"
+b10000 Y"
+b10 X"
+b0 W"
+b10000 V"
+b0 U"
+b0 T"
+b0 S"
+b10 R"
+b10001 Q"
+b100110 P"
+b100 O"
+b100 N"
+b100 M"
+b11 L"
+r10 B
+r10 A
+b0 @
+b10000 ?
+b10 >
+b1100100 =
+b0 <
+b11100 ;
+b101 :
+b0 9
+b10 8
+b0 7
+b101 6
+b10000 5
+b101 4
+b0 3
+b10 2
+b10000 1
+b0 0
+$end
+#0
+$dumpvars
+bx '$
+bx y#
+bx m#
+xl#
+bx k#
+xj#
+bx i#
+xh#
+xg#
+bx f#
+xe#
+bx M#
+bx L#
+bx K#
+bx J#
+xI#
+b0 H#
+xG#
+xF#
+xE#
+0D#
+bx C#
+b0 B#
+b0 A#
+bx @#
+b0 ?#
+b0 >#
+b0 =#
+bx <#
+x0#
+b0 /#
+x.#
+bx -#
+bx ,#
+x+#
+x*#
+bx )#
+bx o"
+bx n"
+xm"
+b0 l"
+0k"
+xj"
+0i"
+0h"
+xg"
+bx f"
+b0 e"
+b0 d"
+b0 c"
+b0 b"
+b0 a"
+b0 `"
+b0 _"
+b0 ^"
+bx K"
+bx J"
+bx I"
+bx H"
+bx G"
+xF"
+xE"
+bx D"
+bx C"
+xB"
+b0 A"
+b0 @"
+b0 ?"
+b0 >"
+b0 ="
+b0 <"
+b0 ;"
+b0 :"
+b0 9"
+b0 8"
+b0 7"
+b0 6"
+b0 5"
+b0 4"
+bx 3"
+r0 2"
+b0 1"
+b0 0"
+b0 /"
+b101 ."
+b1 -"
+bx ,"
+b0 +"
+b0 *"
+b1 )"
+b0 ("
+b10000000000000000000000000000011 '"
+b10000000000000000000000000000100 &"
+b0 %"
+b0 $"
+b0 #"
+b0 ""
+b0 !"
+r0 ~
+b0 }
+b100001100111010001011110100100001010001011101010110000101101110001011110011000100110000001100100101111101001101011110010100011101101001011101000110100001110101011000100010111101010110010011000101001101001001010101000101111101010010010101000100110001011111010001110110010101101110011001010111001001100001011101000110111101110010010111110100000101001001010111110100110101101111011001000110010101101100001011110110001101101111011011010110110101101111011011100101111101110010011101000110110000101111001100000011000000110100010111110100000101110011011110010110111001100011010000010101000001000010010000100111001001101001011001000110011101100101001011110111011001100101011100100110100101100110011010010110001101100001011101000110100101101111011011100010111101110111011000010111011001100101011001100110111101110010011011010111001101011111011100110110100101101101001011110110000101110000011000100110001101100100011000110101111101110111011001100011000000110000001100100101111101110010011001010110000101100100010111110110111001101111010111110111011101100001011010010111010000101110011101100110001101100100 |
+b100001100111010001011110100100001010001011101010110000101101110001011110011000100110000001100100101111101001101011110010100011101101001011101000110100001110101011000100010111101010110010011000101001101001001010101000101111101010010010101000100110001011111010001110110010101101110011001010111001001100001011101000110111101110010010111110100000101001001010111110100110101101111011001000110010101101100001011110110001101101111011011010110110101101111011011100101111101110010011101000110110000101111001100000011000000110100010111110100000101110011011110010110111001100011010000010101000001000010010000100111001001101001011001000110011101100101001011110111011001100101011100100110100101100110011010010110001101100001011101000110100101101111011011100010111101100010011101010110100101101100011001000101111101110111011000010111011001100101011100110010111101100001011100000110001001100011011001000110001101011111011101110110011000110000001100000011001001011111011100100110010101100001011001000101111101101110011011110101111101110111011000010110100101110100 {
+0z
+0y
+b0 x
+0w
+b0 v
+b0 u
+0t
+0s
+0r
+b0 q
+0p
+b0 o
+b0 n
+0m
+0l
+b0 k
+0j
+b0 i
+b0 h
+bx g
+xf
+xe
+bx d
+bx c
+0b
+0a
+0`
+b0 _
+0^
+b0 ]
+b0 \
+0[
+0Z
+0Y
+b0 X
+0W
+b0 V
+b0 U
+b0 T
+b0 S
+0R
+b0 Q
+0P
+b0 O
+0N
+b0 M
+0L
+b0 K
+0J
+b0 I
+b0 H
+0G
+0F
+b1000011001110100010111101001000010100010111010101100001011011100010111100110001001100000011001001011111010011010111100101000111011010010111010001101000011101010110001000101111010101100100110001010011010010010101010001011111010100100101010001001100010111110100011101100101011011100110010101110010011000010111010001101111011100100101111101000001010010010101111101001101011011110110010001100101011011000010111101100011011011110110110101101101011011110110111001011111011100100111010001101100001011110011000000110000001101000101111101000001011100110111100101101110011000110100000101010000010000100100001001110010011010010110010001100111011001010010111101110110011001010111001001101001011001100110100101100011011000010111010001101001011011110110111000101111011000100111010101101001011011000110010001011111011101110110000101110110011001010111001100101111011000010111000001100010011000110110010001100011010111110111011101100110001100000011000000110010010111110111001001100101011000010110010001011111011011100110111101011111011101110110000101101001011101000101111101100011011011010111000000101110011101000111100001110100 E
+0D
+0C
+bx /
+x.
+x-
+bx ,
+x+
+bx *
+x)
+bx (
+x'
+bx &
+x%
+b0 $
+b0 #
+b0 "
+b0 !
+$end
+#2500
+b1 *"
+#5000
+0j"
+0E#
+b0 ,
+b0 K"
+b0 M#
+b0 *
+b0 J"
+b0 L#
+0%
+b0 (
+b0 H"
+b0 K#
+b0 &
+b0 G"
+b0 J#
+0F#
+0l#
+b0 m#
+0G#
+0I#
+b0 /
+b0 I"
+b0 n"
+0-
+00#
+1g"
+0m"
+b0 C"
+b0 o"
+b0 C#
+b0 k#
+b0 f#
+0'
+0j#
+0+
+0g#
+0)
+0h#
+0F"
+0e#
+b0 i#
+b0 '$
+b0 y#
+b0 -#
+b0 D"
+b0 f"
+b0 @#
+b0 ,#
+0.
+0*#
+0B"
+0.#
+0E"
+0+#
+b0 )#
+b0 <#
+b0 c
+b0 g
+1D
+1C
+#5200
+b10 ("
+#7500
+b10 *"
+#10000
+0D
+0C
+#12500
+b11 *"
+#15000
+b0 d
+0e
+0f
+1D
+1C
+#17500
+b100 *"
+#20000
+0D
+0C
+#22500
+b101 *"
+#25000
+1D
+1C
+#27500
+b110 *"
+#30000
+0D
+0C
+#32500
+b111 *"
+#35000
+1D
+1C
+#37500
+b1000 *"
+#40000
+0D
+0C
+#42500
+b1001 *"
+#45000
+1D
+1C
+#45200
+1s
+#47500
+b1010 *"
+#50000
+0D
+0C
+#52500
+b1011 *"
+#55000
+1D
+1C
+#55200
+1t
+#57500
+b1100 *"
+#60000
+0D
+0C
+#62500
+b1101 *"
+#65000
+1D
+1C
+#67500
+b1110 *"
+#70000
+0D
+0C
+#72500
+b1111 *"
+#75000
+1z
+1D
+1C
+#75200
+b1 ("
+#77500
+b10000 *"
+#80000
+0D
+0C
+#82500
+b10001 *"
+#85000
+1D
+1C
+#85200
+1N
+b0 ("
+#87500
+b10010 *"
+#90000
+0D
+0C
+#92500
+b10011 *"
+#95000
+1D
+1C
+#95200
+10#
+b100000000001000100 l"
+1i"
+b1 /#
+1k"
+b1 0"
+b10 K
+b10 8"
+b10 `"
+b1000100 H
+b1000100 5"
+b1000100 ^"
+1L
+#97500
+b10100 *"
+#100000
+0D
+0C
+#102500
+b10101 *"
+#105000
+0j"
+0g"
+b1 /#
+0i"
+b100000000001000100 D"
+b100000000001000100 f"
+b100000000001000100 @#
+b100000000001000100 ,#
+1E"
+1+#
+b1 )#
+b10 X
+b1000100 T
+1Z
+1G
+r105 2"
+1D
+1C
+#105200
+0k"
+b10 0"
+1J
+#107500
+b10110 *"
+#110000
+0D
+0C
+#112500
+b10111 *"
+#115000
+b1 y#
+b100000000001000100 V
+1`
+b1 S
+1W
+b100000000001000100 }
+1D
+1C
+#117500
+b11000 *"
+#120000
+0D
+0C
+#122500
+b11001 *"
+#125000
+1E#
+b1 m#
+1F#
+1I#
+b11 y#
+1D
+1C
+#127500
+b11010 *"
+#130000
+0D
+0C
+#132500
+b11011 *"
+#135000
+b1000100 ,
+b1000100 K"
+b1000100 M#
+b10 *
+b10 J"
+b10 L#
+b10 m#
+0E#
+b100000000001000100 f#
+1)
+1h#
+b1 i#
+1D
+1C
+#137500
+b11100 *"
+#140000
+0D
+0C
+#142500
+b11101 *"
+#145000
+1l#
+b101101001011010 H#
+1D#
+b0 m#
+b101101001011010 v
+b101101001011010 9"
+b101101001011010 >#
+1w
+1+
+1g#
+b10 i#
+b10 k
+b1000100 h
+1m
+b1 $"
+1D
+1C
+#147500
+b11110 *"
+#150000
+0D
+0C
+#152500
+b11111 *"
+#155000
+b0 H#
+b0 v
+b0 9"
+b0 >#
+0w
+0F#
+b0 m#
+0E#
+0D#
+b101101001011010 C"
+b101101001011010 o"
+b101101001011010 C#
+b101101001011010 k#
+0+
+0g#
+0)
+0h#
+1F"
+1e#
+b0 i#
+1l
+1j
+b1 1"
+1D
+1C
+#157500
+b100000 *"
+#160000
+0D
+0C
+#162500
+b100001 *"
+#165000
+b1 <#
+0l
+0j
+0m
+1D
+1C
+#167500
+b100010 *"
+#170000
+0D
+0C
+#172500
+b100011 *"
+#175000
+1j"
+b11 /#
+1g"
+1m"
+b11 <#
+1D
+1C
+#177500
+b100100 *"
+#180000
+0D
+0C
+#182500
+b100101 *"
+#185000
+0j"
+b101101001011010 /
+b101101001011010 I"
+b101101001011010 n"
+b0 /#
+b101101001011010 -#
+1.
+1*#
+b11 )#
+1D
+1C
+#187500
+b100110 *"
+#190000
+0D
+0C
+#192500
+b100111 *"
+#195000
+0.
+0*#
+b0 )#
+b1 +"
+b11 S
+1Y
+b1 4"
+0G
+r100 ~
+b101101001011010 d
+1f
+1D
+1C
+#195200
+b1 !"
+0N
+b0 0"
+0J
+0L
+b1 /"
+#197500
+b101000 *"
+#200000
+0D
+0C
+#202500
+b101001 *"
+#205000
+b0 S
+0Y
+0W
+0Z
+0f
+1D
+1C
+#207500
+b101010 *"
+#210000
+0D
+0C
+#212500
+b101011 *"
+#215000
+1D
+1C
+#217500
+b101100 *"
+#220000
+0D
+0C
+#222500
+b101101 *"
+#225000
+1D
+1C
+#227500
+b101110 *"
+#230000
+0D
+0C
+#232500
+b101111 *"
+#235000
+1D
+1C
+#237500
+b110000 *"
+#240000
+0D
+0C
+#242500
+b110001 *"
+#245000
+1D
+1C
+#247500
+b110010 *"
+#250000
+0D
+0C
+#252500
+b110011 *"
+#255000
+1D
+1C
+#257500
+b110100 *"
+#260000
+0D
+0C
+#262500
+b110101 *"
+#265000
+1D
+1C
+#267500
+b110110 *"
+#270000
+0D
+0C
+#272500
+b110111 *"
+#275000
+1D
+1C
+#277500
+b111000 *"
+#280000
+0D
+0C
+#282500
+b111001 *"
+#285000
+1D
+1C
+#287500
+b111010 *"
+#290000
+0D
+0C
+#292500
+b111011 *"
+#295000
+1D
+1C
+#297500
+b111100 *"
+#300000
+0D
+0C
+#302500
+b111101 *"
+#305000
+1D
+1C
+#307500
+b111110 *"
+#310000
+0D
+0C
+#312500
+b111111 *"
+#315000
+1D
+1C
+#317500
+b1000000 *"
+#320000
+0D
+0C
+#322500
+b1000001 *"
+#325000
+1D
+1C
+#327500
+b1000010 *"
+#330000
+0D
+0C
+#332500
+b1000011 *"
+#335000
+1D
+1C
+#337500
+b1000100 *"
+#340000
+0D
+0C
+#342500
+b1000101 *"
+#345000
+1D
+1C
+#347500
+b1000110 *"
+#350000
+0D
+0C
+#352500
+b1000111 *"
+#355000
+1D
+1C
+#357500
+b1001000 *"
+#360000
+0D
+0C
+#362500
+b1001001 *"
+#365000
+1D
+1C
+#367500
+b1001010 *"
+#370000
+0D
+0C
+#372500
+b1001011 *"
+#375000
+1D
+1C
+#377500
+b1001100 *"
+#380000
+0D
+0C
+#382500
+b1001101 *"
+#385000
+1D
+1C
+#387500
+b1001110 *"
+#390000
+0D
+0C
+#392500
+b1001111 *"
+#395000
+1D
+1C
+#397500
+b1010000 *"
+#400000
+0D
+0C
+#402500
+b1010001 *"
+#405000
+1D
+1C
+#407500
+b1010010 *"
+#410000
+0D
+0C
+#412500
+b1010011 *"
+#415000
+1D
+1C
+#417500
+b1010100 *"
+#420000
+0D
+0C
+#422500
+b1010101 *"
+#425000
+1D
+1C
+#427500
+b1010110 *"
+#430000
+0D
+0C
+#432500
+b1010111 *"
+#435000
+1D
+1C
+#437500
+b1011000 *"
+#440000
+0D
+0C
+#442500
+b1011001 *"
+#445000
+1D
+1C
+#447500
+b1011010 *"
+#450000
+0D
+0C
+#452500
+b1011011 *"
+#455000
+1D
+1C
+#457500
+b1011100 *"
+#460000
+0D
+0C
+#462500
+b1011101 *"
+#465000
+1D
+1C
+#467500
+b1011110 *"
+#470000
+0D
+0C
+#472500
+b1011111 *"
+#475000
+1D
+1C
+#477500
+b1100000 *"
+#480000
+0D
+0C
+#482500
+b1100001 *"
+#485000
+1D
+1C
+#487500
+b1100010 *"
+#490000
+0D
+0C
+#492500
+b1100011 *"
+#495000
+1D
+1C
+#497500
+b1100100 *"
+#500000
+0D
+0C
+#502500
+b1100101 *"
+#505000
+1D
+1C
+#507500
+b1100110 *"
+#510000
+0D
+0C
+#512500
+b1100111 *"
+#515000
+1D
+1C
+#517500
+b1101000 *"
+#520000
+0D
+0C
+#522500
+b1101001 *"
+#525000
+1D
+1C
+#527500
+b1101010 *"
+#530000
+0D
+0C
+#532500
+b1101011 *"
+#535000
+1D
+1C
+#537500
+b1101100 *"
+#540000
+0D
+0C
+#542500
+b1101101 *"
+#545000
+1D
+1C
+#547500
+b1101110 *"
+#550000
+0D
+0C
+#552500
+b1101111 *"
+#555000
+1D
+1C
+#557500
+b1110000 *"
+#560000
+0D
+0C
+#562500
+b1110001 *"
+#565000
+1D
+1C
+#567500
+b1110010 *"
+#570000
+0D
+0C
+#572500
+b1110011 *"
+#575000
+1D
+1C
+#577500
+b1110100 *"
+#580000
+0D
+0C
+#582500
+b1110101 *"
+#585000
+1D
+1C
+#587500
+b1110110 *"
+#590000
+0D
+0C
+#592500
+b1110111 *"
+#595000
+1D
+1C
+#597500
+b1111000 *"
+#600000
+0D
+0C
+#602500
+b1111001 *"
+#605000
+1D
+1C
+#607500
+b1111010 *"
+#610000
+0D
+0C
+#612500
+b1111011 *"
+#615000
+1D
+1C
+#617500
+b1111100 *"
+#620000
+0D
+0C
+#622500
+b1111101 *"
+#625000
+1D
+1C
+#627500
+b1111110 *"
+#630000
+0D
+0C
+#632500
+b1111111 *"
+#635000
+1D
+1C
+#637500
+b10000000 *"
+#640000
+0D
+0C
+#642500
+b10000001 *"
+#645000
+1D
+1C
+#647500
+b10000010 *"
+#650000
+0D
+0C
+#652500
+b10000011 *"
+#655000
+1D
+1C
+#657500
+b10000100 *"
+#660000
+0D
+0C
+#662500
+b10000101 *"
+#665000
+1D
+1C
+#667500
+b10000110 *"
+#670000
+0D
+0C
+#672500
+b10000111 *"
+#675000
+1D
+1C
+#677500
+b10001000 *"
+#680000
+0D
+0C
+#682500
+b10001001 *"
+#685000
+1D
+1C
+#687500
+b10001010 *"
+#690000
+0D
+0C
+#692500
+b10001011 *"
+#695000
+1D
+1C
+#697500
+b11100 )"
+b0 ,"
+b0 3"
+b10001100 *"

@@ -1,0 +1,11 @@
+{
+  "signal": [
+    {"name": "i_clk_core", "wave": "p............."},
+    ["Out-of-profile AHB stimulus", {"name": "i_ahb_haddr", "wave": "x=............", "data": ["0x0FFC"]}, {"name": "i_ahb_hburst", "wave": "x=............", "data": ["INCR4"]}],
+    ["AXI sub-burst 0", {"name": "o_axi_awvalid", "wave": "0.11..........."}, {"name": "o_axi_awaddr", "wave": "x.=x...........", "data": ["0x0FFC"]}, {"name": "o_axi_awlen", "wave": "x.=x...........", "data": ["0"]}, {"name": "o_axi_wlast", "wave": "0..1..........."}, {"name": "i_axi_bresp", "wave": "x....=.........", "data": ["OKAY"]}],
+    ["AXI sub-burst 1", {"name": "o_axi_awvalid", "wave": "0......11......"}, {"name": "o_axi_awaddr", "wave": "x......=x......", "data": ["0x1000"]}, {"name": "o_axi_awlen", "wave": "x......=x......", "data": ["2"]}, {"name": "o_axi_wlast", "wave": "0..........1..."}, {"name": "i_axi_bresp", "wave": "x...........=..", "data": ["SLVERR"]}],
+    ["AHB completion", {"name": "o_ahb_hresp", "wave": "0............11"}, {"name": "o_ahb_hreadyout", "wave": "111111111111101"}]
+  ],
+  "head": {"text": "WF-006 — Defensive 4 KiB split and response aggregation"},
+  "foot": {"text": "Stimulus crosses the AHB 1 KiB rule and is out of profile; it checks defensive AXI 4 KiB splitting only. Either sub-burst error makes final AHB HRESP=ERROR. / Kích thích vượt quy tắc AHB 1 KiB nên ngoài profile; chỉ kiểm tra split AXI 4 KiB. Lỗi ở sub-burst nào cũng làm HRESP cuối báo ERROR."}
+}

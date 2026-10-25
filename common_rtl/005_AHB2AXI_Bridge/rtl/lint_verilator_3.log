@@ -1,0 +1,117 @@
+$ C:\Tools\oss-cad-suite\bin\verilator_bin.exe --lint-only -Wall --top-module m_ahb2axi_top m_ahb2axi_ahb_if.sv m_ahb2axi_axi_if.sv ../../002_SyncFIFO/rtl/m_vlsit_sfifo_mem.sv ../../002_SyncFIFO/rtl/m_vlsit_sfifo_rd.sv ../../002_SyncFIFO/rtl/m_vlsit_sfifo_wr.sv ../../002_SyncFIFO/rtl/m_vlsit_sfifo_top.sv m_ahb2axi_ctrl.sv m_ahb2axi_top.sv
+(cwd C:\HQuan\102_MyGithub\VLSIT_RTL_Generator_AI_Model\common_rtl\005_AHB2AXI_Bridge\rtl)
+
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1060:6: Instance pin connected by name with empty reference: 'o_full_thr'
+ 1060 |     .o_full_thr     (),
+      |      ^~~~~~~~~~
+                          ... For warning description see https://verilator.org/warn/PINCONNECTEMPTY?v=5.053
+                          ... Use "/* verilator lint_off PINCONNECTEMPTY */" and lint_on around source to disable this message.
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1061:6: Instance pin connected by name with empty reference: 'o_overflow'
+ 1061 |     .o_overflow     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1063:6: Instance pin connected by name with empty reference: 'o_sw_rst_busy'
+ 1063 |     .o_sw_rst_busy  (),
+      |      ^~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1070:6: Instance pin connected by name with empty reference: 'o_empty_thr'
+ 1070 |     .o_empty_thr    (),
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1071:6: Instance pin connected by name with empty reference: 'o_underflow'
+ 1071 |     .o_underflow    ()
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1084:6: Instance pin connected by name with empty reference: 'o_full_thr'
+ 1084 |     .o_full_thr     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1085:6: Instance pin connected by name with empty reference: 'o_overflow'
+ 1085 |     .o_overflow     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1087:6: Instance pin connected by name with empty reference: 'o_sw_rst_busy'
+ 1087 |     .o_sw_rst_busy  (),
+      |      ^~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1094:6: Instance pin connected by name with empty reference: 'o_empty_thr'
+ 1094 |     .o_empty_thr    (),
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1095:6: Instance pin connected by name with empty reference: 'o_underflow'
+ 1095 |     .o_underflow    ()
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1108:6: Instance pin connected by name with empty reference: 'o_full_thr'
+ 1108 |     .o_full_thr     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1109:6: Instance pin connected by name with empty reference: 'o_overflow'
+ 1109 |     .o_overflow     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1111:6: Instance pin connected by name with empty reference: 'o_sw_rst_busy'
+ 1111 |     .o_sw_rst_busy  (),
+      |      ^~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1118:6: Instance pin connected by name with empty reference: 'o_empty_thr'
+ 1118 |     .o_empty_thr    (),
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1119:6: Instance pin connected by name with empty reference: 'o_underflow'
+ 1119 |     .o_underflow    ()
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1132:6: Instance pin connected by name with empty reference: 'o_full_thr'
+ 1132 |     .o_full_thr     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1133:6: Instance pin connected by name with empty reference: 'o_overflow'
+ 1133 |     .o_overflow     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1135:6: Instance pin connected by name with empty reference: 'o_sw_rst_busy'
+ 1135 |     .o_sw_rst_busy  (),
+      |      ^~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1142:6: Instance pin connected by name with empty reference: 'o_empty_thr'
+ 1142 |     .o_empty_thr    (),
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1143:6: Instance pin connected by name with empty reference: 'o_underflow'
+ 1143 |     .o_underflow    ()
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1156:6: Instance pin connected by name with empty reference: 'o_full_thr'
+ 1156 |     .o_full_thr     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1157:6: Instance pin connected by name with empty reference: 'o_overflow'
+ 1157 |     .o_overflow     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1159:6: Instance pin connected by name with empty reference: 'o_sw_rst_busy'
+ 1159 |     .o_sw_rst_busy  (),
+      |      ^~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1166:6: Instance pin connected by name with empty reference: 'o_empty_thr'
+ 1166 |     .o_empty_thr    (),
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1167:6: Instance pin connected by name with empty reference: 'o_underflow'
+ 1167 |     .o_underflow    ()
+      |      ^~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: m_ahb2axi_ctrl.sv:120:16: Bits of signal are not used: 'reg_cmd_prot'[6]
+                                               : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  120 |   logic [6:0]  reg_cmd_prot;
+      |                ^~~~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/UNUSEDSIGNAL?v=5.053
+                       ... Use "/* verilator lint_off UNUSEDSIGNAL */" and lint_on around source to disable this message.
+%Warning-UNUSEDSIGNAL: m_ahb2axi_ctrl.sv:342:24: Bits of function variable are not used: 'addr'[31:2]
+                                               : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  342 |     input logic [31:0] addr,
+      |                        ^~~~
+%Warning-UNUSEDSIGNAL: m_ahb2axi_ctrl.sv:345:23: Bits of function variable are not used: 'prot'[1:0]
+                                               : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  345 |     input logic [6:0] prot,
+      |                       ^~~~
+%Warning-UNUSEDSIGNAL: m_ahb2axi_ctrl.sv:358:23: Bits of function variable are not used: 'hprot_attr'[3]
+                                               : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl'
+  358 |     input logic [4:0] hprot_attr,
+      |                       ^~~~~~~~~~
+%Warning-UNUSEDSIGNAL: m_ahb2axi_axi_if.sv:14:23: Signal is not used: 'i_clk_core'
+                                                : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl.u_ahb2axi_axi_if'
+   14 |   input  wire         i_clk_core,
+      |                       ^~~~~~~~~~
+%Warning-UNUSEDSIGNAL: m_ahb2axi_axi_if.sv:15:23: Signal is not used: 'i_rst_n_core'
+                                                : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl.u_ahb2axi_axi_if'
+   15 |   input  wire         i_rst_n_core,
+      |                       ^~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: ../../002_SyncFIFO/rtl\m_vlsit_sfifo_wr.sv:101:29: Bits of signal are not used: 'w_addr_ext'[31:1]
+                                                                        : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl.u_vlsit_sfifo_top_2.u_vlsit_sfifo_wr'
+  101 |   logic [LPARA_ARITH_W-1:0] w_addr_ext;
+      |                             ^~~~~~~~~~
+%Warning-UNUSEDSIGNAL: ../../002_SyncFIFO/rtl\m_vlsit_sfifo_rd.sv:96:29: Bits of signal are not used: 'w_addr_ext'[31:1]
+                                                                       : ... note: In instance 'm_ahb2axi_top.u_ahb2axi_ctrl.u_vlsit_sfifo_top_2.u_vlsit_sfifo_rd'
+   96 |   logic [LPARA_ARITH_W-1:0] w_addr_ext;
+      |                             ^~~~~~~~~~
+%Error: Exiting due to 33 warning(s)
+
+exit code 1

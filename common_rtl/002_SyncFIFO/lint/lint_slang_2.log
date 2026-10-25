@@ -1,0 +1,10 @@
+$ C:\Tools\oss-cad-suite\bin\slang.exe --top m_vlsit_sfifo_top -Wextra -D VLSIT_SYNTHESIS ../../000_Common/rtl_cells/VLSIT_CELL_SRAM_1W1R.sv ../../000_Common/rtl_lib/m_vlsit_sfifo_ram_macro.sv ../rtl/m_vlsit_sfifo_mem.sv ../rtl/m_vlsit_sfifo_rd.sv ../rtl/m_vlsit_sfifo_wr.sv ../rtl/m_vlsit_sfifo_top.sv
+(cwd C:\HQuan\102_MyGithub\VLSIT_RTL_Generator_AI_Model\common_rtl\002_SyncFIFO\lint)
+
+Top level design units:
+    m_vlsit_sfifo_top
+
+
+Build succeeded: 0 errors, 0 warnings
+
+exit code 0

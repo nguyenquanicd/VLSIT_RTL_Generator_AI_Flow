@@ -1,0 +1,73 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_axi",
+      "wave": "p......."
+    },
+    [
+      "AXI request/response",
+      {
+        "name": "i_axi_arvalid",
+        "wave": "01000000"
+      },
+      {
+        "name": "o_axi_arready",
+        "wave": "01000000"
+      },
+      {
+        "name": "i_axi_araddr",
+        "wave": "x=......",
+        "data": [
+          "UNMAPPED"
+        ]
+      },
+      {
+        "name": "o_axi_rvalid",
+        "wave": "00001000"
+      },
+      {
+        "name": "i_axi_rready",
+        "wave": "00001000"
+      },
+      {
+        "name": "o_axi_rresp",
+        "wave": "xxxx=...",
+        "data": [
+          "SLVERR"
+        ]
+      }
+    ],
+    [
+      "APB default error Completer",
+      {
+        "name": "o_apb_psel",
+        "wave": "00100000"
+      },
+      {
+        "name": "o_apb_penable",
+        "wave": "00010000"
+      },
+      {
+        "name": "i_apb_pready",
+        "wave": "00010000"
+      },
+      {
+        "name": "i_apb_pslverr",
+        "wave": "00010000"
+      },
+      {
+        "name": "o_apb_paddr",
+        "wave": "xx=..xxx",
+        "data": [
+          "UNMAPPED"
+        ]
+      }
+    ]
+  ],
+  "head": {
+    "text": "Unmapped address returns APB error"
+  },
+  "foot": {
+    "text": "Default APB Completer returns PREADY and PSLVERR; bridge returns AXI SLVERR."
+  }
+}

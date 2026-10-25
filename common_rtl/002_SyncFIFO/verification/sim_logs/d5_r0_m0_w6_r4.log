@@ -1,0 +1,43 @@
+PHASE T1 @148000 ps
+PHASE T2 @148000 ps
+PHASE T3 @516000 ps
+PHASE T4 @1308000 ps
+PHASE T5 @12076000 ps
+PHASE T6 @15852000 ps
+PHASE T7 @18844000 ps
+PHASE T8 @79700000 ps
+---- assertion table (name, hits, failures) DEPTH=5 RETIME=0 MACRO=0 HW=6 HR=4 ----
+  [ 0] WR-FULL-EXACT          REQ-FUNC-004 (full when DEPTH words stored)                    hits=690 fails=0
+  [ 1] WR-NO-ACCEPT-WHEN-FULL REQ-FUNC-001/SVA-001 (accepted write needs a free place)       hits=3381 fails=0
+  [ 2] WR-OVERFLOW-PULSE      REQ-FUNC-008 (rejected write gives a pulse)                    hits=712 fails=0
+  [ 3] WR-OVERFLOW-ONLY-THEN  REQ-FUNC-008 (pulse only after a rejected write)               hits=712 fails=0
+  [ 4] WR-BLOCK-FULL-NOW      REQ-SRST-002 (i_rst_n_sw low gives o_full at once)             hits=18 fails=0
+  [ 5] WR-BLOCK-FULL-THR      REQ-SRST-002 (o_full_thr shows empty FIFO while blocked)       hits=18 fails=0
+  [ 6] WR-BUSY-RISES          REQ-SRST-006 (busy follows the request)                        hits=5 fails=0
+  [ 7] WR-RESET-VALUES        REQ-RESET-001 (write domain reset values)                      hits=7 fails=0
+  [ 8] WR-FULL-NEXT-CYCLE     REQ-PERF-005 (full in the cycle after the last place)          hits=406 fails=0
+  [ 9] WR-FULL-THR-AT-FULL    REQ-FUNC-007 (full threshold set when full)                    hits=690 fails=0
+  [10] WR-NO-X                REQ-IF-002 (write outputs not X)                               hits=7829 fails=0
+  [11] WR-NO-PULSE-BLOCKED    REQ-SRST-002 (no overflow for a blocked write)                 hits=24 fails=0
+  [12] RD-EMPTY-EXACT         REQ-FUNC-005 (empty when no word stored)                       hits=2735 fails=0
+  [13] RD-NONEMPTY-HAS-DATA   REQ-FUNC-005 (o_empty low means a word exists)                 hits=7723 fails=0
+  [14] RD-SHOW-AHEAD-DATA     REQ-FUNC-002/IF-003 (o_rd_data is the oldest word)             hits=7723 fails=0
+  [15] RD-UNDERFLOW-PULSE     REQ-FUNC-009 (rejected read gives a pulse)                     hits=2692 fails=0
+  [16] RD-UNDERFLOW-ONLY-THEN REQ-FUNC-009 (pulse only after a rejected read)                hits=2692 fails=0
+  [17] RD-EMPTY-THR-IMPLIED   REQ-FUNC-007 (empty implies empty threshold)                   hits=3968 fails=0
+  [18] RD-RESET-VALUES        REQ-RESET-001 (read domain reset values)                       hits=13 fails=0
+  [19] RD-EMPTY-NEXT-CYCLE    REQ-PERF-005 (empty in the cycle after the last word)          hits=1227 fails=0
+  [20] RD-NO-X                REQ-IF-002 (read outputs not X, data not X when valid)         hits=11739 fails=0
+  [21] RD-FIFO-ORDER          REQ-FUNC-003 (word read equals oldest word written)            hits=3358 fails=0
+  [22] PERF-EMPTY-FALL-LAT    REQ-PERF-003 (o_empty falls after 1 + RETIME later read edges) hits=2 fails=0
+  [23] PERF-FULL-FALL-LAT     REQ-PERF-004 (o_full falls after 1 + RETIME later write edges) hits=2 fails=0
+  [24] PERF-GAPLESS           REQ-PERF-002 (no stall of the unlimited side)                  hits=1 fails=0
+  [25] SRST-SEQUENCE          REQ-SRST-001/004/005 (busy ends, FIFO empty, order kept after) hits=4 fails=0
+  [26] SRST-BLOCK-NO-ACCEPT   REQ-SRST-002 (no write accepted while blocked)                 hits=24 fails=0
+  [27] THR-FULL-SWEEP         REQ-FUNC-007 (o_full_thr equals occupancy >= threshold)        hits=66 fails=0
+  [28] THR-EMPTY-SWEEP        REQ-FUNC-007 (o_empty_thr equals occupancy <= threshold)       hits=66 fails=0
+  [29] HWRST-RECOVERY         REQ-SRST-007/REQ-RESET-002 (clean start after hardware reset)  hits=3 fails=0
+  [30] REJECT-NO-CHANGE       REQ-FUNC-010 (rejected requests change nothing)                hits=713 fails=0
+assertion failures: 0, assertions never exercised: 0
+RESULT PASS
+C:\HQuan\102_MyGithub\VLSIT_RTL_Generator_AI_Model\common_rtl\002_SyncFIFO\verification\tb_sfifo.sv:519: $finish called at 94188000 (1ps)

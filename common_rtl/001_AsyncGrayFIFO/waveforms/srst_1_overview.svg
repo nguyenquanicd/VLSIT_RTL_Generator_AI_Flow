@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="704" font-family="Segoe UI, Arial, sans-serif" font-size="11">
+<rect width="1300" height="704" fill="#ffffff"/>
+<text x="8" y="16" font-size="14" font-weight="bold" fill="#222">Software reset 1 - overview: three words in the FIFO, producer and consumer keep requesting</text>
+<line x1="229.5" y1="48" x2="229.5" y2="674" stroke="#ececec"/>
+<text x="229.5" y="44" text-anchor="middle" fill="#888">200</text>
+<line x1="319.9" y1="48" x2="319.9" y2="674" stroke="#ececec"/>
+<text x="319.9" y="44" text-anchor="middle" fill="#888">250</text>
+<line x1="410.3" y1="48" x2="410.3" y2="674" stroke="#ececec"/>
+<text x="410.3" y="44" text-anchor="middle" fill="#888">300</text>
+<line x1="500.7" y1="48" x2="500.7" y2="674" stroke="#ececec"/>
+<text x="500.7" y="44" text-anchor="middle" fill="#888">350</text>
+<line x1="591.1" y1="48" x2="591.1" y2="674" stroke="#ececec"/>
+<text x="591.1" y="44" text-anchor="middle" fill="#888">400</text>
+<line x1="681.5" y1="48" x2="681.5" y2="674" stroke="#ececec"/>
+<text x="681.5" y="44" text-anchor="middle" fill="#888">450</text>
+<line x1="771.9" y1="48" x2="771.9" y2="674" stroke="#ececec"/>
+<text x="771.9" y="44" text-anchor="middle" fill="#888">500</text>
+<line x1="862.3" y1="48" x2="862.3" y2="674" stroke="#ececec"/>
+<text x="862.3" y="44" text-anchor="middle" fill="#888">550</text>
+<line x1="952.7" y1="48" x2="952.7" y2="674" stroke="#ececec"/>
+<text x="952.7" y="44" text-anchor="middle" fill="#888">600</text>
+<line x1="1043.1" y1="48" x2="1043.1" y2="674" stroke="#ececec"/>
+<text x="1043.1" y="44" text-anchor="middle" fill="#888">650</text>
+<line x1="1133.5" y1="48" x2="1133.5" y2="674" stroke="#ececec"/>
+<text x="1133.5" y="44" text-anchor="middle" fill="#888">700</text>
+<line x1="1223.9" y1="48" x2="1223.9" y2="674" stroke="#ececec"/>
+<text x="1223.9" y="44" text-anchor="middle" fill="#888">750</text>
+<text x="1294" y="16" text-anchor="end" fill="#888">time in ns</text>
+<rect x="0" y="54" width="1300" height="22" fill="#f1f1f1"/><text x="8" y="69" font-weight="bold" fill="#444">WRITE DOMAIN (i_clk_wr, period 10 ns)</text>
+<text x="8" y="91" fill="#222">i_clk_wr</text>
+<path d="M168.0,80 L177.0,80 L177.0,80 L177.0,94 L186.1,94 L186.1,94 L186.1,80 L195.1,80 L195.1,80 L195.1,94 L204.2,94 L204.2,94 L204.2,80 L213.2,80 L213.2,80 L213.2,94 L222.2,94 L222.2,94 L222.2,80 L231.3,80 L231.3,80 L231.3,94 L240.3,94 L240.3,94 L240.3,80 L249.4,80 L249.4,80 L249.4,94 L258.4,94 L258.4,94 L258.4,80 L267.4,80 L267.4,80 L267.4,94 L276.5,94 L276.5,94 L276.5,80 L285.5,80 L285.5,80 L285.5,94 L294.6,94 L294.6,94 L294.6,80 L303.6,80 L303.6,80 L303.6,94 L312.7,94 L312.7,94 L312.7,80 L321.7,80 L321.7,80 L321.7,94 L330.7,94 L330.7,94 L330.7,80 L339.8,80 L339.8,80 L339.8,94 L348.8,94 L348.8,94 L348.8,80 L357.9,80 L357.9,80 L357.9,94 L366.9,94 L366.9,94 L366.9,80 L375.9,80 L375.9,80 L375.9,94 L385.0,94 L385.0,94 L385.0,80 L394.0,80 L394.0,80 L394.0,94 L403.1,94 L403.1,94 L403.1,80 L412.1,80 L412.1,80 L412.1,94 L421.1,94 L421.1,94 L421.1,80 L430.2,80 L430.2,80 L430.2,94 L439.2,94 L439.2,94 L439.2,80 L448.3,80 L448.3,80 L448.3,94 L457.3,94 L457.3,94 L457.3,80 L466.3,80 L466.3,80 L466.3,94 L475.4,94 L475.4,94 L475.4,80 L484.4,80 L484.4,80 L484.4,94 L493.5,94 L493.5,94 L493.5,80 L502.5,80 L502.5,80 L502.5,94 L511.5,94 L511.5,94 L511.5,80 L520.6,80 L520.6,80 L520.6,94 L529.6,94 L529.6,94 L529.6,80 L538.7,80 L538.7,80 L538.7,94 L547.7,94 L547.7,94 L547.7,80 L556.7,80 L556.7,80 L556.7,94 L565.8,94 L565.8,94 L565.8,80 L574.8,80 L574.8,80 L574.8,94 L583.9,94 L583.9,94 L583.9,80 L592.9,80 L592.9,80 L592.9,94 L602.0,94 L602.0,94 L602.0,80 L611.0,80 L611.0,80 L611.0,94 L620.0,94 L620.0,94 L620.0,80 L629.1,80 L629.1,80 L629.1,94 L638.1,94 L638.1,94 L638.1,80 L647.2,80 L647.2,80 L647.2,94 L656.2,94 L656.2,94 L656.2,80 L665.2,80 L665.2,80 L665.2,94 L674.3,94 L674.3,94 L674.3,80 L683.3,80 L683.3,80 L683.3,94 L692.4,94 L692.4,94 L692.4,80 L701.4,80 L701.4,80 L701.4,94 L710.4,94 L710.4,94 L710.4,80 L719.5,80 L719.5,80 L719.5,94 L728.5,94 L728.5,94 L728.5,80 L737.6,80 L737.6,80 L737.6,94 L746.6,94 L746.6,94 L746.6,80 L755.6,80 L755.6,80 L755.6,94 L764.7,94 L764.7,94 L764.7,80 L773.7,80 L773.7,80 L773.7,94 L782.8,94 L782.8,94 L782.8,80 L791.8,80 L791.8,80 L791.8,94 L800.8,94 L800.8,94 L800.8,80 L809.9,80 L809.9,80 L809.9,94 L818.9,94 L818.9,94 L818.9,80 L828.0,80 L828.0,80 L828.0,94 L837.0,94 L837.0,94 L837.0,80 L846.0,80 L846.0,80 L846.0,94 L855.1,94 L855.1,94 L855.1,80 L864.1,80 L864.1,80 L864.1,94 L873.2,94 L873.2,94 L873.2,80 L882.2,80 L882.2,80 L882.2,94 L891.3,94 L891.3,94 L891.3,80 L900.3,80 L900.3,80 L900.3,94 L909.3,94 L909.3,94 L909.3,80 L918.4,80 L918.4,80 L918.4,94 L927.4,94 L927.4,94 L927.4,80 L936.5,80 L936.5,80 L936.5,94 L945.5,94 L945.5,94 L945.5,80 L954.5,80 L954.5,80 L954.5,94 L963.6,94 L963.6,94 L963.6,80 L972.6,80 L972.6,80 L972.6,94 L981.7,94 L981.7,94 L981.7,80 L990.7,80 L990.7,80 L990.7,94 L999.7,94 L999.7,94 L999.7,80 L1008.8,80 L1008.8,80 L1008.8,94 L1017.8,94 L1017.8,94 L1017.8,80 L1026.9,80 L1026.9,80 L1026.9,94 L1035.9,94 L1035.9,94 L1035.9,80 L1044.9,80 L1044.9,80 L1044.9,94 L1054.0,94 L1054.0,94 L1054.0,80 L1063.0,80 L1063.0,80 L1063.0,94 L1072.1,94 L1072.1,94 L1072.1,80 L1081.1,80 L1081.1,80 L1081.1,94 L1090.1,94 L1090.1,94 L1090.1,80 L1099.2,80 L1099.2,80 L1099.2,94 L1108.2,94 L1108.2,94 L1108.2,80 L1117.3,80 L1117.3,80 L1117.3,94 L1126.3,94 L1126.3,94 L1126.3,80 L1135.3,80 L1135.3,80 L1135.3,94 L1144.4,94 L1144.4,94 L1144.4,80 L1153.4,80 L1153.4,80 L1153.4,94 L1162.5,94 L1162.5,94 L1162.5,80 L1171.5,80 L1171.5,80 L1171.5,94 L1180.6,94 L1180.6,94 L1180.6,80 L1189.6,80 L1189.6,80 L1189.6,94 L1198.6,94 L1198.6,94 L1198.6,80 L1207.7,80 L1207.7,80 L1207.7,94 L1216.7,94 L1216.7,94 L1216.7,80 L1225.8,80 L1225.8,80 L1225.8,94 L1234.8,94 L1234.8,94 L1234.8,80 L1243.8,80 L1243.8,80 L1243.8,94 L1252.9,94 L1252.9,94 L1252.9,80 L1261.9,80 L1261.9,80 L1261.9,94 L1271.0,94 L1271.0,94 L1271.0,80 L1280.0,80" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="113" fill="#222">i_rst_n_sw (active-low)</text>
+<path d="M168.0,102 L276.5,102 L276.5,102 L276.5,116 L511.5,116 L511.5,116 L511.5,102 L1280.0,102" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="135" fill="#222">o_sw_rst_busy</text>
+<path d="M168.0,138 L294.6,138 L294.6,138 L294.6,124 L638.1,124 L638.1,124 L638.1,138 L1280.0,138" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="157" fill="#222">write reset FSM</text>
+<path d="M171.0,146 L291.6,146 L294.6,153.0 L291.6,160 L171.0,160 L168.0,153.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="231.3" y="157" text-anchor="middle" fill="#111">RUN</text>
+<path d="M297.6,146 L436.2,146 L439.2,153.0 L436.2,160 L297.6,160 L294.6,153.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="366.9" y="157" text-anchor="middle" fill="#111">REQ</text>
+<path d="M442.2,146 L454.3,146 L457.3,153.0 L454.3,160 L442.2,160 L439.2,153.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<path d="M460.3,146 L526.6,146 L529.6,153.0 L526.6,160 L460.3,160 L457.3,153.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="493.5" y="157" text-anchor="middle" fill="#111">HOLD</text>
+<path d="M532.6,146 L635.1,146 L638.1,153.0 L635.1,160 L532.6,160 L529.6,153.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="583.9" y="157" text-anchor="middle" fill="#111">REL</text>
+<path d="M641.1,146 L1277.0,146 L1280.0,153.0 L1277.0,160 L641.1,160 L638.1,153.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="959.1" y="157" text-anchor="middle" fill="#111">RUN</text>
+<text x="8" y="179" fill="#222">write blocked (wr_blk)</text>
+<path d="M168.0,182 L276.5,182 L276.5,182 L276.5,168 L638.1,168 L638.1,168 L638.1,182 L1280.0,182" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="201" fill="#222">i_wr_en</text>
+<path d="M168.0,204 L276.5,204 L276.5,204 L276.5,190 L638.1,190 L638.1,190 L638.1,204 L728.5,204 L728.5,204 L728.5,190 L764.7,190 L764.7,190 L764.7,204 L1280.0,204" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="223" fill="#222">write accepted</text>
+<path d="M168.0,226 L276.5,226 L276.5,226 L276.5,226 L638.1,226 L638.1,226 L638.1,226 L728.5,226 L728.5,226 L728.5,212 L764.7,212 L764.7,212 L764.7,226 L1280.0,226" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="245" fill="#222">o_full</text>
+<path d="M168.0,248 L276.5,248 L276.5,248 L276.5,234 L638.1,234 L638.1,234 L638.1,248 L1280.0,248" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="267" fill="#222">o_full_thr (thr = 3)</text>
+<path d="M168.0,256 L276.5,256 L276.5,256 L276.5,270 L1280.0,270" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="289" fill="#222">o_overflow</text>
+<path d="M168.0,292 L1280.0,292" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="311" fill="#222">write pointer</text>
+<path d="M171.0,300 L454.3,300 L457.3,307.0 L454.3,314 L171.0,314 L168.0,307.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="312.7" y="311" text-anchor="middle" fill="#111">3</text>
+<path d="M460.3,300 L743.6,300 L746.6,307.0 L743.6,314 L460.3,314 L457.3,307.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="602.0" y="311" text-anchor="middle" fill="#111">0</text>
+<path d="M749.6,300 L761.7,300 L764.7,307.0 L761.7,314 L749.6,314 L746.6,307.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="755.6" y="311" text-anchor="middle" fill="#111">1</text>
+<path d="M767.7,300 L1277.0,300 L1280.0,307.0 L1277.0,314 L767.7,314 L764.7,307.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="1022.3" y="311" text-anchor="middle" fill="#111">2</text>
+<text x="8" y="333" fill="#222">req_wr (to read domain)</text>
+<path d="M168.0,336 L294.6,336 L294.6,336 L294.6,322 L529.6,322 L529.6,322 L529.6,336 L1280.0,336" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="355" fill="#222">ack (synchronized in wr)</text>
+<path d="M168.0,358 L421.1,358 L421.1,358 L421.1,344 L620.0,344 L620.0,344 L620.0,358 L1280.0,358" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="377" fill="#222">rd gray (synchronized in wr)</text>
+<path d="M171.0,366 L345.8,366 L348.8,373.0 L345.8,380 L171.0,380 L168.0,373.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="258.4" y="377" text-anchor="middle" fill="#111">000</text>
+<path d="M351.8,366 L363.9,366 L366.9,373.0 L363.9,380 L351.8,380 L348.8,373.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<path d="M369.9,366 L418.1,366 L421.1,373.0 L418.1,380 L369.9,380 L366.9,373.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="394.0" y="377" text-anchor="middle" fill="#111">011</text>
+<path d="M424.1,366 L1051.0,366 L1054.0,373.0 L1051.0,380 L424.1,380 L421.1,373.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="737.6" y="377" text-anchor="middle" fill="#111">000</text>
+<path d="M1057.0,366 L1069.1,366 L1072.1,373.0 L1069.1,380 L1057.0,380 L1054.0,373.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<path d="M1075.1,366 L1277.0,366 L1280.0,373.0 L1277.0,380 L1075.1,380 L1072.1,373.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="1176.0" y="377" text-anchor="middle" fill="#111">011</text>
+<rect x="0" y="384" width="1300" height="22" fill="#f1f1f1"/><text x="8" y="399" font-weight="bold" fill="#444">READ DOMAIN (i_clk_rd, period 14 ns)</text>
+<text x="8" y="421" fill="#222">i_clk_rd</text>
+<path d="M168.0,410 L175.2,410 L175.2,410 L175.2,424 L187.9,424 L187.9,424 L187.9,410 L200.5,410 L200.5,410 L200.5,424 L213.2,424 L213.2,424 L213.2,410 L225.9,410 L225.9,410 L225.9,424 L238.5,424 L238.5,424 L238.5,410 L251.2,410 L251.2,410 L251.2,424 L263.8,424 L263.8,424 L263.8,410 L276.5,410 L276.5,410 L276.5,424 L289.1,424 L289.1,424 L289.1,410 L301.8,410 L301.8,410 L301.8,424 L314.5,424 L314.5,424 L314.5,410 L327.1,410 L327.1,410 L327.1,424 L339.8,424 L339.8,424 L339.8,410 L352.4,410 L352.4,410 L352.4,424 L365.1,424 L365.1,424 L365.1,410 L377.7,410 L377.7,410 L377.7,424 L390.4,424 L390.4,424 L390.4,410 L403.1,410 L403.1,410 L403.1,424 L415.7,424 L415.7,424 L415.7,410 L428.4,410 L428.4,410 L428.4,424 L441.0,424 L441.0,424 L441.0,410 L453.7,410 L453.7,410 L453.7,424 L466.3,424 L466.3,424 L466.3,410 L479.0,410 L479.0,410 L479.0,424 L491.7,424 L491.7,424 L491.7,410 L504.3,410 L504.3,410 L504.3,424 L517.0,424 L517.0,424 L517.0,410 L529.6,410 L529.6,410 L529.6,424 L542.3,424 L542.3,424 L542.3,410 L554.9,410 L554.9,410 L554.9,424 L567.6,424 L567.6,424 L567.6,410 L580.3,410 L580.3,410 L580.3,424 L592.9,424 L592.9,424 L592.9,410 L605.6,410 L605.6,410 L605.6,424 L618.2,424 L618.2,424 L618.2,410 L630.9,410 L630.9,410 L630.9,424 L643.5,424 L643.5,424 L643.5,410 L656.2,410 L656.2,410 L656.2,424 L668.9,424 L668.9,424 L668.9,410 L681.5,410 L681.5,410 L681.5,424 L694.2,424 L694.2,424 L694.2,410 L706.8,410 L706.8,410 L706.8,424 L719.5,424 L719.5,424 L719.5,410 L732.1,410 L732.1,410 L732.1,424 L744.8,424 L744.8,424 L744.8,410 L757.5,410 L757.5,410 L757.5,424 L770.1,424 L770.1,424 L770.1,410 L782.8,410 L782.8,410 L782.8,424 L795.4,424 L795.4,424 L795.4,410 L808.1,410 L808.1,410 L808.1,424 L820.7,424 L820.7,424 L820.7,410 L833.4,410 L833.4,410 L833.4,424 L846.0,424 L846.0,424 L846.0,410 L858.7,410 L858.7,410 L858.7,424 L871.4,424 L871.4,424 L871.4,410 L884.0,410 L884.0,410 L884.0,424 L896.7,424 L896.7,424 L896.7,410 L909.3,410 L909.3,410 L909.3,424 L922.0,424 L922.0,424 L922.0,410 L934.6,410 L934.6,410 L934.6,424 L947.3,424 L947.3,424 L947.3,410 L960.0,410 L960.0,410 L960.0,424 L972.6,424 L972.6,424 L972.6,410 L985.3,410 L985.3,410 L985.3,424 L997.9,424 L997.9,424 L997.9,410 L1010.6,410 L1010.6,410 L1010.6,424 L1023.2,424 L1023.2,424 L1023.2,410 L1035.9,410 L1035.9,410 L1035.9,424 L1048.6,424 L1048.6,424 L1048.6,410 L1061.2,410 L1061.2,410 L1061.2,424 L1073.9,424 L1073.9,424 L1073.9,410 L1086.5,410 L1086.5,410 L1086.5,424 L1099.2,424 L1099.2,424 L1099.2,410 L1111.8,410 L1111.8,410 L1111.8,424 L1124.5,424 L1124.5,424 L1124.5,410 L1137.2,410 L1137.2,410 L1137.2,424 L1149.8,424 L1149.8,424 L1149.8,410 L1162.5,410 L1162.5,410 L1162.5,424 L1175.1,424 L1175.1,424 L1175.1,410 L1187.8,410 L1187.8,410 L1187.8,424 L1200.4,424 L1200.4,424 L1200.4,410 L1213.1,410 L1213.1,410 L1213.1,424 L1225.8,424 L1225.8,424 L1225.8,410 L1238.4,410 L1238.4,410 L1238.4,424 L1251.1,424 L1251.1,424 L1251.1,410 L1263.7,410 L1263.7,410 L1263.7,424 L1280.0,424" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="443" fill="#222">req (synchronized in rd)</text>
+<path d="M168.0,446 L339.8,446 L339.8,446 L339.8,432 L567.6,432 L567.6,432 L567.6,446 L1280.0,446" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="465" fill="#222">read reset FSM</text>
+<path d="M171.0,454 L362.1,454 L365.1,461.0 L362.1,468 L171.0,468 L168.0,461.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="266.5" y="465" text-anchor="middle" fill="#111">RUN</text>
+<path d="M368.1,454 L387.4,454 L390.4,461.0 L387.4,468 L368.1,468 L365.1,461.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<path d="M393.4,454 L589.9,454 L592.9,461.0 L589.9,468 L393.4,468 L390.4,461.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="491.7" y="465" text-anchor="middle" fill="#111">ACK</text>
+<path d="M595.9,454 L1277.0,454 L1280.0,461.0 L1277.0,468 L595.9,468 L592.9,461.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="936.5" y="465" text-anchor="middle" fill="#111">RUN</text>
+<text x="8" y="487" fill="#222">read blocked (rd_blk)</text>
+<path d="M168.0,490 L339.8,490 L339.8,490 L339.8,476 L592.9,476 L592.9,476 L592.9,490 L1280.0,490" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="509" fill="#222">i_rd_en</text>
+<path d="M168.0,512 L289.1,512 L289.1,512 L289.1,498 L643.5,498 L643.5,498 L643.5,512 L997.9,512 L997.9,512 L997.9,498 L1099.2,498 L1099.2,498 L1099.2,512 L1280.0,512" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="531" fill="#222">read accepted</text>
+<path d="M168.0,534 L289.1,534 L289.1,534 L289.1,520 L339.8,520 L339.8,520 L339.8,534 L997.9,534 L997.9,534 L997.9,520 L1048.6,520 L1048.6,520 L1048.6,534 L1280.0,534" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="553" fill="#222">o_empty</text>
+<path d="M168.0,556 L339.8,556 L339.8,556 L339.8,542 L795.4,542 L795.4,542 L795.4,556 L1048.6,556 L1048.6,556 L1048.6,542 L1280.0,542" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="575" fill="#222">o_empty_thr (thr = 1)</text>
+<path d="M168.0,578 L339.8,578 L339.8,578 L339.8,564 L795.4,564 L795.4,564 L795.4,578 L1023.2,578 L1023.2,578 L1023.2,564 L1280.0,564" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="597" fill="#222">o_underflow</text>
+<path d="M168.0,600 L618.2,600 L618.2,600 L618.2,586 L668.9,586 L668.9,586 L668.9,600 L1073.9,600 L1073.9,600 L1073.9,586 L1124.5,586 L1124.5,586 L1124.5,600 L1280.0,600" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="619" fill="#222">read pointer</text>
+<path d="M171.0,608 L311.5,608 L314.5,615.0 L311.5,622 L171.0,622 L168.0,615.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="241.2" y="619" text-anchor="middle" fill="#111">0</text>
+<path d="M317.5,608 L336.8,608 L339.8,615.0 L336.8,622 L317.5,622 L314.5,615.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="327.1" y="619" text-anchor="middle" fill="#111">1</text>
+<path d="M342.8,608 L387.4,608 L390.4,615.0 L387.4,622 L342.8,622 L339.8,615.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="365.1" y="619" text-anchor="middle" fill="#111">2</text>
+<path d="M393.4,608 L1020.2,608 L1023.2,615.0 L1020.2,622 L393.4,622 L390.4,615.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="706.8" y="619" text-anchor="middle" fill="#111">0</text>
+<path d="M1026.2,608 L1045.6,608 L1048.6,615.0 L1045.6,622 L1026.2,622 L1023.2,615.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="1035.9" y="619" text-anchor="middle" fill="#111">1</text>
+<path d="M1051.6,608 L1277.0,608 L1280.0,615.0 L1277.0,622 L1051.6,622 L1048.6,615.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="1164.3" y="619" text-anchor="middle" fill="#111">2</text>
+<text x="8" y="641" fill="#222">ack_rd (to write domain)</text>
+<path d="M168.0,644 L390.4,644 L390.4,644 L390.4,630 L592.9,630 L592.9,630 L592.9,644 L1280.0,644" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="663" fill="#222">wr gray (synchronized in rd)</text>
+<path d="M171.0,652 L488.7,652 L491.7,659.0 L488.7,666 L171.0,666 L168.0,659.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="329.8" y="663" text-anchor="middle" fill="#111">010</text>
+<path d="M494.7,652 L792.4,652 L795.4,659.0 L792.4,666 L494.7,666 L491.7,659.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="643.5" y="663" text-anchor="middle" fill="#111">000</text>
+<path d="M798.4,652 L1277.0,652 L1280.0,659.0 L1277.0,666 L798.4,666 L795.4,659.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="1037.7" y="663" text-anchor="middle" fill="#111">011</text>
+<line x1="276.5" y1="50" x2="276.5" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="276.5" cy="30" r="9" fill="#d6336c"/><text x="276.5" y="34" text-anchor="middle" fill="#fff" font-weight="bold">1</text>
+<line x1="294.6" y1="50" x2="294.6" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="294.6" cy="30" r="9" fill="#d6336c"/><text x="294.6" y="34" text-anchor="middle" fill="#fff" font-weight="bold">2</text>
+<line x1="339.8" y1="50" x2="339.8" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="339.8" cy="30" r="9" fill="#d6336c"/><text x="339.8" y="34" text-anchor="middle" fill="#fff" font-weight="bold">3</text>
+<line x1="365.1" y1="50" x2="365.1" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="365.1" cy="30" r="9" fill="#d6336c"/><text x="365.1" y="34" text-anchor="middle" fill="#fff" font-weight="bold">4</text>
+<line x1="390.4" y1="50" x2="390.4" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="390.4" cy="30" r="9" fill="#d6336c"/><text x="390.4" y="34" text-anchor="middle" fill="#fff" font-weight="bold">5</text>
+<line x1="421.1" y1="50" x2="421.1" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="421.1" cy="30" r="9" fill="#d6336c"/><text x="421.1" y="34" text-anchor="middle" fill="#fff" font-weight="bold">6</text>
+<line x1="439.2" y1="50" x2="439.2" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="439.2" cy="30" r="9" fill="#d6336c"/><text x="439.2" y="34" text-anchor="middle" fill="#fff" font-weight="bold">7</text>
+<line x1="511.5" y1="50" x2="511.5" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="511.5" cy="30" r="9" fill="#d6336c"/><text x="511.5" y="34" text-anchor="middle" fill="#fff" font-weight="bold">8</text>
+<line x1="529.6" y1="50" x2="529.6" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="529.6" cy="30" r="9" fill="#d6336c"/><text x="529.6" y="34" text-anchor="middle" fill="#fff" font-weight="bold">9</text>
+<line x1="567.6" y1="50" x2="567.6" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="567.6" cy="30" r="9" fill="#d6336c"/><text x="567.6" y="34" text-anchor="middle" fill="#fff" font-weight="bold">10</text>
+<line x1="592.9" y1="50" x2="592.9" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="592.9" cy="30" r="9" fill="#d6336c"/><text x="592.9" y="34" text-anchor="middle" fill="#fff" font-weight="bold">11</text>
+<line x1="620.0" y1="50" x2="620.0" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="620.0" cy="30" r="9" fill="#d6336c"/><text x="620.0" y="34" text-anchor="middle" fill="#fff" font-weight="bold">12</text>
+<line x1="638.1" y1="50" x2="638.1" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="638.1" cy="30" r="9" fill="#d6336c"/><text x="638.1" y="34" text-anchor="middle" fill="#fff" font-weight="bold">13</text>
+<line x1="728.5" y1="50" x2="728.5" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="728.5" cy="30" r="9" fill="#d6336c"/><text x="728.5" y="34" text-anchor="middle" fill="#fff" font-weight="bold">14</text>
+<line x1="795.4" y1="50" x2="795.4" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="795.4" cy="30" r="9" fill="#d6336c"/><text x="795.4" y="34" text-anchor="middle" fill="#fff" font-weight="bold">15</text>
+<text x="168" y="694" fill="#555">numbers = events of the table next to the figure; blue = write clock domain, orange = read clock domain</text>
+</svg>

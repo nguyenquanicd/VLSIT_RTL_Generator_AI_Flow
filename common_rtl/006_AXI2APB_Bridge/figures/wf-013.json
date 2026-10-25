@@ -1,0 +1,85 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_axi",
+      "wave": "p..........."
+    },
+    [
+      "AXI AR",
+      {
+        "name": "i_axi_arvalid",
+        "wave": "010000000000"
+      },
+      {
+        "name": "o_axi_arready",
+        "wave": "010000000000"
+      },
+      {
+        "name": "i_axi_araddr",
+        "wave": "x=..........",
+        "data": [
+          "0x0FFC"
+        ]
+      },
+      {
+        "name": "i_axi_arlen",
+        "wave": "x=..........",
+        "data": [
+          "3"
+        ]
+      },
+      {
+        "name": "i_axi_arsize",
+        "wave": "x=..........",
+        "data": [
+          "2"
+        ]
+      },
+      {
+        "name": "i_axi_arburst",
+        "wave": "x=..........",
+        "data": [
+          "INCR"
+        ]
+      }
+    ],
+    [
+      "AXI error beats",
+      {
+        "name": "o_axi_rvalid",
+        "wave": "001111000000"
+      },
+      {
+        "name": "i_axi_rready",
+        "wave": "001111000000"
+      },
+      {
+        "name": "o_axi_rresp",
+        "wave": "xx====......",
+        "data": [
+          "SLVERR",
+          "SLVERR",
+          "SLVERR",
+          "SLVERR"
+        ]
+      },
+      {
+        "name": "o_axi_rlast",
+        "wave": "000001000000"
+      }
+    ],
+    [
+      "APB",
+      {
+        "name": "o_apb_psel",
+        "wave": "000000000000"
+      }
+    ]
+  ],
+  "head": {
+    "text": "Reject a burst crossing 4 KiB"
+  },
+  "foot": {
+    "text": "INCR4 from 0x0FFC crosses 4 KiB; no APB is issued and four error beats return."
+  }
+}

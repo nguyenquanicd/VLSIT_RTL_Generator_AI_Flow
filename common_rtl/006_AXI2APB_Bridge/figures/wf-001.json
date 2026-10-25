@@ -1,0 +1,45 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_axi",
+      "wave": "p......."
+    },
+    [
+      "Reset and bridge outputs",
+      {
+        "name": "i_rst_n_axi",
+        "wave": "00111111"
+      },
+      {
+        "name": "o_axi_arready",
+        "wave": "00000000"
+      },
+      {
+        "name": "o_axi_awready",
+        "wave": "00000000"
+      },
+      {
+        "name": "o_axi_rvalid",
+        "wave": "00000000"
+      },
+      {
+        "name": "o_axi_bvalid",
+        "wave": "00000000"
+      },
+      {
+        "name": "o_apb_psel",
+        "wave": "00000000"
+      },
+      {
+        "name": "o_apb_penable",
+        "wave": "00000000"
+      }
+    ]
+  ],
+  "head": {
+    "text": "Synchronous reset assertion and release"
+  },
+  "foot": {
+    "text": "Reset is sampled on the rising clock edge; SoC supplies synchronous reset."
+  }
+}

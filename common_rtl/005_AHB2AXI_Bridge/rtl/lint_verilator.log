@@ -1,0 +1,88 @@
+$ C:\Tools\oss-cad-suite\bin\verilator_bin.exe --lint-only -Wall --top-module m_ahb2axi_top m_ahb2axi_ahb_if.sv m_ahb2axi_axi_if.sv ../../002_SyncFIFO/rtl/m_vlsit_sfifo_mem.sv ../../002_SyncFIFO/rtl/m_vlsit_sfifo_rd.sv ../../002_SyncFIFO/rtl/m_vlsit_sfifo_wr.sv ../../002_SyncFIFO/rtl/m_vlsit_sfifo_top.sv m_ahb2axi_ctrl.sv m_ahb2axi_top.sv
+(cwd C:\HQuan\102_MyGithub\VLSIT_RTL_Generator_AI_Model\common_rtl\005_AHB2AXI_Bridge\rtl)
+
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1044:6: Instance pin connected by name with empty reference: 'o_full_thr'
+ 1044 |     .o_full_thr     (),
+      |      ^~~~~~~~~~
+                          ... For warning description see https://verilator.org/warn/PINCONNECTEMPTY?v=5.053
+                          ... Use "/* verilator lint_off PINCONNECTEMPTY */" and lint_on around source to disable this message.
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1045:6: Instance pin connected by name with empty reference: 'o_overflow'
+ 1045 |     .o_overflow     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1047:6: Instance pin connected by name with empty reference: 'o_sw_rst_busy'
+ 1047 |     .o_sw_rst_busy  (),
+      |      ^~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1054:6: Instance pin connected by name with empty reference: 'o_empty_thr'
+ 1054 |     .o_empty_thr    (),
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1055:6: Instance pin connected by name with empty reference: 'o_underflow'
+ 1055 |     .o_underflow    ()
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1068:6: Instance pin connected by name with empty reference: 'o_full_thr'
+ 1068 |     .o_full_thr     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1069:6: Instance pin connected by name with empty reference: 'o_overflow'
+ 1069 |     .o_overflow     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1071:6: Instance pin connected by name with empty reference: 'o_sw_rst_busy'
+ 1071 |     .o_sw_rst_busy  (),
+      |      ^~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1078:6: Instance pin connected by name with empty reference: 'o_empty_thr'
+ 1078 |     .o_empty_thr    (),
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1079:6: Instance pin connected by name with empty reference: 'o_underflow'
+ 1079 |     .o_underflow    ()
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1092:6: Instance pin connected by name with empty reference: 'o_full_thr'
+ 1092 |     .o_full_thr     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1093:6: Instance pin connected by name with empty reference: 'o_overflow'
+ 1093 |     .o_overflow     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1095:6: Instance pin connected by name with empty reference: 'o_sw_rst_busy'
+ 1095 |     .o_sw_rst_busy  (),
+      |      ^~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1102:6: Instance pin connected by name with empty reference: 'o_empty_thr'
+ 1102 |     .o_empty_thr    (),
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1103:6: Instance pin connected by name with empty reference: 'o_underflow'
+ 1103 |     .o_underflow    ()
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1116:6: Instance pin connected by name with empty reference: 'o_full_thr'
+ 1116 |     .o_full_thr     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1117:6: Instance pin connected by name with empty reference: 'o_overflow'
+ 1117 |     .o_overflow     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1119:6: Instance pin connected by name with empty reference: 'o_sw_rst_busy'
+ 1119 |     .o_sw_rst_busy  (),
+      |      ^~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1126:6: Instance pin connected by name with empty reference: 'o_empty_thr'
+ 1126 |     .o_empty_thr    (),
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1127:6: Instance pin connected by name with empty reference: 'o_underflow'
+ 1127 |     .o_underflow    ()
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1140:6: Instance pin connected by name with empty reference: 'o_full_thr'
+ 1140 |     .o_full_thr     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1141:6: Instance pin connected by name with empty reference: 'o_overflow'
+ 1141 |     .o_overflow     (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1143:6: Instance pin connected by name with empty reference: 'o_sw_rst_busy'
+ 1143 |     .o_sw_rst_busy  (),
+      |      ^~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1150:6: Instance pin connected by name with empty reference: 'o_empty_thr'
+ 1150 |     .o_empty_thr    (),
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_ahb2axi_ctrl.sv:1151:6: Instance pin connected by name with empty reference: 'o_underflow'
+ 1151 |     .o_underflow    ()
+      |      ^~~~~~~~~~~
+%Error: m_ahb2axi_ctrl.sv:786:11: Can't find definition of variable: 'w_idle_cmd_start'
+                                : ... Suggested alternative: 'w_rd_cmd_start'
+  786 |       if (w_idle_cmd_start) begin
+      |           ^~~~~~~~~~~~~~~~
+        ... See the manual at https://verilator.org/verilator_doc.html?v=5.053 for more assistance.
+%Error: Exiting due to 1 error(s), 25 warning(s)
+
+exit code 1

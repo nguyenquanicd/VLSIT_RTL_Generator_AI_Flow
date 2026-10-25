@@ -1,0 +1,83 @@
+$ C:\Tools\oss-cad-suite\bin\verilator_bin.exe --lint-only -Wall --top-module m_vlsit_axi_user_async_top +define+VLSIT_SYNTHESIS -GPARA_AXI_CELL_TYPE=3 -GPARA_AXI_MEM_USE_MACRO=1 -GPARA_AXI_AWUSER_W=2 -GPARA_AXI_WUSER_W=8 -GPARA_AXI_BUSER_W=4 -GPARA_AXI_ARUSER_W=3 -GPARA_AXI_RUSER_W=16 ../../../000_Common/rtl_cells/VLSIT_CELL_SRAM_1W1R.sv ../../../000_Common/rtl_lib/m_vlsit_afifo_ram_macro.sv ../../../001_AsyncGrayFIFO/rtl/m_vlsit_afifo_mem.sv ../../../000_Common/rtl_cells/VLSIT_CELL_SYNC_2FF_RN.sv ../../../000_Common/rtl_cells/VLSIT_CELL_SYNC_2FF_SN.sv ../../../000_Common/rtl_cells/VLSIT_CELL_SYNC_3FF_RN.sv ../../../000_Common/rtl_cells/VLSIT_CELL_SYNC_3FF_SN.sv ../../../000_Common/rtl_cells/VLSIT_CELL_SYNC_4FF_RN.sv ../../../000_Common/rtl_cells/VLSIT_CELL_SYNC_4FF_SN.sv ../../../000_Common/rtl_cells/VLSIT_CELL_SYNC_DFF_RN.sv ../../../000_Common/rtl_cells/VLSIT_CELL_SYNC_DFF_SN.sv ../../../000_Common/rtl_lib/m_vlsit_afifo_cell_sync.sv ../../../001_AsyncGrayFIFO/rtl/m_vlsit_afifo_sync.sv ../../../001_AsyncGrayFIFO/rtl/m_vlsit_afifo_rd.sv ../../../001_AsyncGrayFIFO/rtl/m_vlsit_afifo_wr.sv ../../../001_AsyncGrayFIFO/rtl/m_vlsit_afifo_top.sv m_vlsit_axi_user_async_ar.sv m_vlsit_axi_user_async_aw.sv m_vlsit_axi_user_async_b.sv m_vlsit_axi_user_async_r.sv m_vlsit_axi_user_async_w.sv m_vlsit_axi_user_async_top.sv
+(cwd C:\HQuan\102_MyGithub\VLSIT_RTL_Generator_AI_Model\common_rtl\003_AsyncAXI4Bridge\rtl\axi4_user)
+
+%Warning-PINCONNECTEMPTY: m_vlsit_axi_user_async_ar.sv:138:6: Instance pin connected by name with empty reference: 'o_full_thr'
+  138 |     .o_full_thr      (),
+      |      ^~~~~~~~~~
+                          ... For warning description see https://verilator.org/warn/PINCONNECTEMPTY?v=5.053
+                          ... Use "/* verilator lint_off PINCONNECTEMPTY */" and lint_on around source to disable this message.
+%Warning-PINCONNECTEMPTY: m_vlsit_axi_user_async_ar.sv:139:6: Instance pin connected by name with empty reference: 'o_overflow'
+  139 |     .o_overflow      (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_vlsit_axi_user_async_ar.sv:141:6: Instance pin connected by name with empty reference: 'o_sw_rst_busy'
+  141 |     .o_sw_rst_busy   (),
+      |      ^~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_vlsit_axi_user_async_ar.sv:148:6: Instance pin connected by name with empty reference: 'o_empty_thr'
+  148 |     .o_empty_thr     (),
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_vlsit_axi_user_async_ar.sv:149:6: Instance pin connected by name with empty reference: 'o_underflow'
+  149 |     .o_underflow     ()
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_vlsit_axi_user_async_aw.sv:138:6: Instance pin connected by name with empty reference: 'o_full_thr'
+  138 |     .o_full_thr      (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_vlsit_axi_user_async_aw.sv:139:6: Instance pin connected by name with empty reference: 'o_overflow'
+  139 |     .o_overflow      (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_vlsit_axi_user_async_aw.sv:141:6: Instance pin connected by name with empty reference: 'o_sw_rst_busy'
+  141 |     .o_sw_rst_busy   (),
+      |      ^~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_vlsit_axi_user_async_aw.sv:148:6: Instance pin connected by name with empty reference: 'o_empty_thr'
+  148 |     .o_empty_thr     (),
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_vlsit_axi_user_async_aw.sv:149:6: Instance pin connected by name with empty reference: 'o_underflow'
+  149 |     .o_underflow     ()
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_vlsit_axi_user_async_b.sv:95:6: Instance pin connected by name with empty reference: 'o_full_thr'
+   95 |     .o_full_thr      (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_vlsit_axi_user_async_b.sv:96:6: Instance pin connected by name with empty reference: 'o_overflow'
+   96 |     .o_overflow      (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_vlsit_axi_user_async_b.sv:98:6: Instance pin connected by name with empty reference: 'o_sw_rst_busy'
+   98 |     .o_sw_rst_busy   (),
+      |      ^~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_vlsit_axi_user_async_b.sv:105:6: Instance pin connected by name with empty reference: 'o_empty_thr'
+  105 |     .o_empty_thr     (),
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_vlsit_axi_user_async_b.sv:106:6: Instance pin connected by name with empty reference: 'o_underflow'
+  106 |     .o_underflow     ()
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_vlsit_axi_user_async_r.sv:107:6: Instance pin connected by name with empty reference: 'o_full_thr'
+  107 |     .o_full_thr      (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_vlsit_axi_user_async_r.sv:108:6: Instance pin connected by name with empty reference: 'o_overflow'
+  108 |     .o_overflow      (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_vlsit_axi_user_async_r.sv:110:6: Instance pin connected by name with empty reference: 'o_sw_rst_busy'
+  110 |     .o_sw_rst_busy   (),
+      |      ^~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_vlsit_axi_user_async_r.sv:117:6: Instance pin connected by name with empty reference: 'o_empty_thr'
+  117 |     .o_empty_thr     (),
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_vlsit_axi_user_async_r.sv:118:6: Instance pin connected by name with empty reference: 'o_underflow'
+  118 |     .o_underflow     ()
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_vlsit_axi_user_async_w.sv:99:6: Instance pin connected by name with empty reference: 'o_full_thr'
+   99 |     .o_full_thr      (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_vlsit_axi_user_async_w.sv:100:6: Instance pin connected by name with empty reference: 'o_overflow'
+  100 |     .o_overflow      (),
+      |      ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_vlsit_axi_user_async_w.sv:102:6: Instance pin connected by name with empty reference: 'o_sw_rst_busy'
+  102 |     .o_sw_rst_busy   (),
+      |      ^~~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_vlsit_axi_user_async_w.sv:109:6: Instance pin connected by name with empty reference: 'o_empty_thr'
+  109 |     .o_empty_thr     (),
+      |      ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: m_vlsit_axi_user_async_w.sv:110:6: Instance pin connected by name with empty reference: 'o_underflow'
+  110 |     .o_underflow     ()
+      |      ^~~~~~~~~~~
+%Error: Exiting due to 25 warning(s)
+
+exit code 1

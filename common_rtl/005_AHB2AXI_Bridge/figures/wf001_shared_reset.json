@@ -1,0 +1,10 @@
+{
+  "signal": [
+    {"name": "i_clk_core", "wave": "p......."},
+    {"name": "i_rst_n_core", "wave": "00..1..."},
+    {"name": "o_ahb_hreadyout", "wave": "11111111"},
+    ["AXI4 AR", {"name": "o_axi_arvalid", "wave": "0.....10"}, {"name": "i_axi_arready", "wave": "0......1"}]
+  ],
+  "head": {"text": "WF-001 — Shared-clock reset release and startup"},
+  "foot": {"text": "One clock and one reset are shared by AHB, AXI and all FIFOs. Traffic starts after reset release. / AHB, AXI và các FIFO dùng chung một clock, một reset; traffic bắt đầu sau khi nhả reset."}
+}

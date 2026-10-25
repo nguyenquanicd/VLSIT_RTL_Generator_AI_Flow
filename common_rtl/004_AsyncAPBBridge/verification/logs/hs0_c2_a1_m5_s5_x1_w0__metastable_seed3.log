@@ -1,0 +1,34 @@
+APBCDC_MSYNC: tb_apbcdc.dut.u_vlsit_apbcdc_mst.u_sync_ack.gen_bit_cell[0].u_vlsit_apbcdc_cell_sync.gen_sim_msync seed=3 enable=1 stages=2
+APBCDC_MSYNC: tb_apbcdc.dut.u_vlsit_apbcdc_slv.u_sync_req.gen_bit_cell[0].u_vlsit_apbcdc_cell_sync.gen_sim_msync seed=3 enable=1 stages=2
+APBCDC_MSYNC: tb_apbcdc.dut.u_vlsit_apbcdc_slv.u_sync_wk.gen_bit_cell[0].u_vlsit_apbcdc_cell_sync.gen_sim_msync seed=3 enable=1 stages=2
+SIM-BRANCH: metastable seed=3
+START 235.000
+---- assertion table (name, hits, failures) HS=0 CELL=2 APB5=1 HM=5 HS_=5 ----
+  [ 0] UP-PREADY-ONLY-IN-ACCESS   REQ-FUNC-004 (IHI0024D 3.1, 4.1)                                hits=40 fails=0
+  [ 1] UP-PREADY-ONE-CYCLE        REQ-FUNC-004                                                    hits=40 fails=0
+  [ 2] UP-PSLVERR-WITH-PREADY     REQ-FUNC-006 (IHI0024D 3.4)                                     hits=12 fails=0
+  [ 3] UP-RESPONSE-EQUALS-COMP    REQ-FUNC-002 (response of the completer returned)               hits=40 fails=0
+  [ 4] DN-PENABLE-NEEDS-PSEL      REQ-FUNC-008 (IHI0024D 4.1)                                     hits=128 fails=0
+  [ 5] DN-PENABLE-AFTER-SETUP     REQ-FUNC-008 (Setup one cycle, then Access)                     hits=80 fails=0
+  [ 6] DN-FIELDS-STABLE-IN-WAIT   REQ-FUNC-008 (IHI0024D 3.1)                                     hits=128 fails=0
+  [ 7] DN-IDLE-LOW-IN-RESET       REQ-FUNC-008, REQ-RESET-001                                     hits=16 fails=0
+  [ 8] DN-REQUEST-EQUALS-SETUP    REQ-FUNC-001 (fields of the Setup cycle)                        hits=40 fails=0
+  [ 9] ONE-TO-ONE                 REQ-FUNC-003 (one completer transfer per requester transfer)    hits=1 fails=0
+  [10] NO-SECOND-SETUP-BEFORE-RESP REQ-FUNC-003, REQ-FUNC-007                                     hits=40 fails=0
+  [11] PAYLOAD-STABLE             REQ-HS-002 (hold registers stable in flight)                    hits=494 fails=0
+  [12] HS2-TOGGLE-ONCE            REQ-HS-001 (request bit changes once per transfer)              hits=534 fails=0
+  [14] WAKEUP-NOT-AFTER-PSEL      REQ-APB5-001 (IHI0024D 3.6)                                     hits=40 fails=0
+  [15] WAKEUP-HELD-UNTIL-READY    REQ-APB5-001 (IHI0024D 3.6)                                     hits=128 fails=0
+  [16] RESET-VALUES-MST           REQ-RESET-001                                                   hits=15 fails=0
+  [17] RESET-VALUES-SLV           REQ-RESET-001                                                   hits=16 fails=0
+  [18] NO-X-UP                    REQ-IF-003 (IHI0024D Appendix A)                                hits=691 fails=0
+  [19] NO-X-DN                    REQ-IF-003 (IHI0024D Appendix A)                                hits=691 fails=0
+  [20] LATENCY-BOUND              REQ-PERF-001, REQ-PERF-002                                      hits=40 fails=0
+  [22] DN-PSEL-FALLS-AFTER-PREADY REQ-FUNC-008 (IHI0024D 4.1)                                     hits=40 fails=0
+  [24] UP-PRDATA-KNOWN-WITH-READY REQ-IF-003 (IHI0024D Appendix A)                                hits=26 fails=0
+  [25] DN-PWRITE-STABLE-STRB-READ REQ-FUNC-009 (fields forwarded unchanged)                       hits=26 fails=0
+  [26] UP-PREADY-HIGH-AFTER-SETUP REQ-FUNC-004 (never in the Setup cycle)                         hits=40 fails=0
+  [27] UP-PSLVERR-CLEARED         REQ-FUNC-006 (low outside the PREADY cycle)                     hits=651 fails=0
+assertion failures: 0, assertions never exercised: 0
+RESULT PASS
+C:\HQuan\102_MyGithub\VLSIT_RTL_Generator_AI_Model\common_rtl\004_AsyncAPBBridge\verification\tb_apbcdc.sv:441: $finish called at 7145000 (1ps)

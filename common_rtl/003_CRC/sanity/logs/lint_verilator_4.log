@@ -1,0 +1,8 @@
+$ C:\Tools\oss-cad-suite\bin\verilator_bin.exe --lint-only -Wall --top-module m_crc_parallel_crcw m_crc_serial.sv m_crc_initial_value.sv m_crc_parallel.sv m_crc_parallel_crcw.sv m_crc_parallel_full.sv
+(cwd C:\HQuan\102_MyGithub\VLSIT_RTL_Generator_AI_Model\common_rtl\003_CRC\rtl)
+
+- V e r i l a t i o n   R e p o r t: Verilator 5.053 devel rev v5.052-352-gc265bd444 (mod)
+- Verilator: Built from 0.134 MB sources in 7 modules, into 0.054 MB in 3 C++ files needing 0.000 MB
+- Verilator: Walltime 0.019 s (elab=0.000, cvt=0.009, bld=0.000); cpu 0.000 s on 1 threads; allocated 15.383 MB
+
+exit code 0

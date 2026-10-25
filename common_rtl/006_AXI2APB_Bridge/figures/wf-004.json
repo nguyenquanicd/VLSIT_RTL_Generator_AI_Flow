@@ -1,0 +1,86 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_axi",
+      "wave": "p..................."
+    },
+    [
+      "AXI AR requests",
+      {
+        "name": "i_axi_arvalid",
+        "wave": "10000000010000000000"
+      },
+      {
+        "name": "o_axi_arready",
+        "wave": "10000000010000000000"
+      },
+      {
+        "name": "i_axi_araddr",
+        "wave": "=........=..........",
+        "data": [
+          "0x1004",
+          "0x100C"
+        ]
+      },
+      {
+        "name": "i_axi_arburst",
+        "wave": "=........=..........",
+        "data": [
+          "FIXED",
+          "WRAP"
+        ]
+      },
+      {
+        "name": "i_axi_arlen",
+        "wave": "=........=..........",
+        "data": [
+          "3",
+          "3"
+        ]
+      },
+      {
+        "name": "i_axi_arsize",
+        "wave": "=........=..........",
+        "data": [
+          "2",
+          "2"
+        ]
+      }
+    ],
+    [
+      "APB PADDR by beat",
+      {
+        "name": "o_apb_psel",
+        "wave": "01010101001010101000"
+      },
+      {
+        "name": "o_apb_penable",
+        "wave": "00101010100101010100"
+      },
+      {
+        "name": "i_apb_pready",
+        "wave": "00101010100101010100"
+      },
+      {
+        "name": "o_apb_paddr",
+        "wave": "x=.=.=.=..=.=.=.=...",
+        "data": [
+          "0x1004",
+          "0x1004",
+          "0x1004",
+          "0x1004",
+          "0x100C",
+          "0x1000",
+          "0x1004",
+          "0x1008"
+        ]
+      }
+    ]
+  ],
+  "head": {
+    "text": "FIXED and WRAP address sequences"
+  },
+  "foot": {
+    "text": "FIXED repeats one address. Four-beat WRAP from 0x100C wraps to 0x1000."
+  }
+}

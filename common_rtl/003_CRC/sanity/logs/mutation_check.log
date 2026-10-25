@@ -1,0 +1,56 @@
+Timed simulation: Verilator + g++
+$ C:\Tools\oss-cad-suite\bin\verilator_bin.exe --cc --timing --main -Wno-fatal -Itests --top-module tb_crc_parallel --Mdir C:\HQuan\102_MyGithub\VLSIT_RTL_Generator_AI_Model\common_rtl\003_CRC\tests\build\obj_mutation_check tests/tb_crc_parallel.sv tests\build\mutation\m_crc_parallel_mutant.sv
+- V e r i l a t i o n   R e p o r t: Verilator 5.053 devel rev v5.052-352-gc265bd444 (mod)
+- Verilator: Built from 0.064 MB sources in 4 modules, into 0.353 MB in 6 C++ files needing 0.001 MB
+- Verilator: Walltime 0.086 s (elab=0.005, cvt=0.030, bld=0.000); cpu 0.000 s on 1 threads; allocated 20.207 MB
+
+
+$ C:\Users\PC\Tools\msys64\ucrt64\bin\g++.exe -std=gnu++17 -fcoroutines -O0 -DVL_TIME_CONTEXT -DVM_TIMING=1 -IC:\HQuan\102_MyGithub\VLSIT_RTL_Generator_AI_Model\common_rtl\003_CRC\tests\build\obj_mutation_check -IC:\Tools\oss-cad-suite\share\verilator\include -IC:\Tools\oss-cad-suite\share\verilator\include\vltstd C:\HQuan\102_MyGithub\VLSIT_RTL_Generator_AI_Model\common_rtl\003_CRC\tests\build\obj_mutation_check\Vtb_crc_parallel.cpp C:\HQuan\102_MyGithub\VLSIT_RTL_Generator_AI_Model\common_rtl\003_CRC\tests\build\obj_mutation_check\Vtb_crc_parallel___024root__0.cpp C:\HQuan\102_MyGithub\VLSIT_RTL_Generator_AI_Model\common_rtl\003_CRC\tests\build\obj_mutation_check\Vtb_crc_parallel___024root__0__Slow.cpp C:\HQuan\102_MyGithub\VLSIT_RTL_Generator_AI_Model\common_rtl\003_CRC\tests\build\obj_mutation_check\Vtb_crc_parallel___024root__Slow.cpp C:\HQuan\102_MyGithub\VLSIT_RTL_Generator_AI_Model\common_rtl\003_CRC\tests\build\obj_mutation_check\Vtb_crc_parallel__main.cpp C:\HQuan\102_MyGithub\VLSIT_RTL_Generator_AI_Model\common_rtl\003_CRC\tests\build\obj_mutation_check\Vtb_crc_parallel__Syms__Slow.cpp C:\Tools\oss-cad-suite\share\verilator\include\verilated.cpp C:\Tools\oss-cad-suite\share\verilator\include\verilated_timing.cpp C:\Tools\oss-cad-suite\share\verilator\include\verilated_threads.cpp -pthread -o C:\HQuan\102_MyGithub\VLSIT_RTL_Generator_AI_Model\common_rtl\003_CRC\tests\build\obj_mutation_check\mutation_check.exe
+
+C:\Tools\oss-cad-suite\share\verilator\include\verilated.cpp:78:10: warning: 'STDOUT_FILENO' redefined
+   78 | # define STDOUT_FILENO _fileno(stdout)
+      |          ^~~~~~~~~~~~~
+In file included from C:/Users/PC/Tools/msys64/ucrt64/include/locale.h:12,
+                 from C:/Users/PC/Tools/msys64/ucrt64/include/c++/16.2.0/clocale:47,
+                 from C:/Users/PC/Tools/msys64/ucrt64/include/c++/16.2.0/x86_64-w64-mingw32/bits/c++locale.h:41,
+                 from C:/Users/PC/Tools/msys64/ucrt64/include/c++/16.2.0/bits/localefwd.h:42,
+                 from C:/Users/PC/Tools/msys64/ucrt64/include/c++/16.2.0/string:48,
+                 from C:\Tools\oss-cad-suite\share\verilator\include\verilatedos.h:680,
+                 from C:\Tools\oss-cad-suite\share\verilator\include\verilated.cpp:51:
+C:/Users/PC/Tools/msys64/ucrt64/include/stdio.h:56:9: note: this is the location of the previous definition
+   56 | #define STDOUT_FILENO   1
+      |         ^~~~~~~~~~~~~
+C:\Tools\oss-cad-suite\share\verilator\include\verilated.cpp:79:10: warning: 'STDERR_FILENO' redefined
+   79 | # define STDERR_FILENO _fileno(stderr)
+      |          ^~~~~~~~~~~~~
+C:/Users/PC/Tools/msys64/ucrt64/include/stdio.h:57:9: note: this is the location of the previous definition
+   57 | #define STDERR_FILENO   2
+      |         ^~~~~~~~~~~~~
+
+$ C:\HQuan\102_MyGithub\VLSIT_RTL_Generator_AI_Model\common_rtl\003_CRC\tests\build\obj_mutation_check\mutation_check.exe +SEED=20261025 +N=0
+ASSERT FAIL [CRC-README CRC recurrence] at 76000: CRC README Common CRC convention: MSB-first augmented remainder
+ASSERT FAIL [CRC-README busy request handling] at 76000: CRC README transaction rule: busy-time request was ignored
+ASSERT FAIL [CRC-README result hold] at 86000: CRC README: result remains stable until another accepted request
+ASSERT FAIL [CRC-README CRC recurrence] at 106000: CRC README Common CRC convention: MSB-first augmented remainder
+ASSERT FAIL [CRC-README busy request handling] at 106000: CRC README transaction rule: busy-time request was ignored
+ASSERT FAIL [CRC-README result hold] at 116000: CRC README: result remains stable until another accepted request
+ASSERT FAIL [CRC-README CRC recurrence] at 136000: CRC README Common CRC convention: MSB-first augmented remainder
+ASSERT FAIL [CRC-README busy request handling] at 136000: CRC README transaction rule: busy-time request was ignored
+ASSERT FAIL [CRC-README result hold] at 146000: CRC README: result remains stable until another accepted request
+ASSERT FAIL [CRC-README CRC recurrence] at 166000: CRC README Common CRC convention: MSB-first augmented remainder
+ASSERT FAIL [CRC-README busy request handling] at 166000: CRC README transaction rule: busy-time request was ignored
+ASSERT FAIL [CRC-README result hold] at 176000: CRC README: result remains stable until another accepted request
+ASSERTION TABLE: assertion_id | hits | failures
+  CRC-README reset behavior | 2 | 0
+  CRC-README request acceptance | 6 | 0
+  CRC-README one-cycle latency | 5 | 0
+  CRC-README CRC recurrence | 5 | 4
+  CRC-README busy request handling | 5 | 4
+  CRC-README result hold | 5 | 4
+ASSERTIONS: checks=28 failures=12
+[200000] %Fatal: crc_tb_assertions.svh:52: Assertion failed in tb_crc_parallel.tb_report_assertions: CRC testbench failed: 12 failure(s)
+%Error: tests\crc_tb_assertions.svh:52: Verilog $stop
+Aborting...
+
+
+simulation exit code: 1

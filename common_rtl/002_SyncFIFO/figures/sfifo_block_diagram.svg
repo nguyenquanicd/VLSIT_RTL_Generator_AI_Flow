@@ -1,0 +1,215 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2460" height="2271" viewBox="70 280 2460 2271" font-family="Arial, Helvetica, sans-serif" font-size="18">
+<rect x="70" y="280" width="2460" height="2271" fill="#FFFFFF"/>
+<rect x="540" y="410" width="1000" height="350" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<rect x="580" y="510" width="240" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="700" y="536" text-anchor="middle">u_wr</text>
+<text x="700" y="558" text-anchor="middle">(m_vlsit_sfifo_wr)</text>
+<rect x="1260" y="510" width="240" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1380" y="536" text-anchor="middle">u_rd</text>
+<text x="1380" y="558" text-anchor="middle">(m_vlsit_sfifo_rd)</text>
+<rect x="920" y="660" width="240" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1040" y="686" text-anchor="middle">u_mem</text>
+<text x="1040" y="708" text-anchor="middle">(m_vlsit_sfifo_mem)</text>
+<text x="410" y="581" text-anchor="middle">CRWR</text>
+<text x="410" y="603" text-anchor="middle">i_clk_wr, i_rst_n_wr</text>
+<text x="700" y="331" text-anchor="middle">SRST</text>
+<text x="700" y="353" text-anchor="middle">i_rst_n_sw, o_sw_rst_busy</text>
+<text x="1518" y="451" text-anchor="end">TOP</text>
+<text x="1518" y="473" text-anchor="end">(m_vlsit_sfifo_top)</text>
+<text x="845" y="526" text-anchor="middle">PTR</text>
+<text x="745" y="666" text-anchor="middle">MWP</text>
+<text x="1185" y="666" text-anchor="middle">MRP</text>
+<text x="104" y="2367" text-anchor="start" font-weight="bold">Legend</text>
+<text x="284" y="2408" text-anchor="start">Interface connector (one per signal group; arrow = active to passive)</text>
+<text x="104" y="2483" text-anchor="start">The enclosing frame is the top module; blocks inside are its instances. The two clocks are synchronous to each other, so the pointers cross between the sides as timed paths.</text>
+<text x="1640" y="491" text-anchor="middle">RDI</text>
+<text x="1640" y="513" text-anchor="middle">read interface</text>
+<text x="1670" y="581" text-anchor="middle">CRRD</text>
+<text x="1670" y="603" text-anchor="middle">i_clk_rd, i_rst_n_rd</text>
+<text x="435" y="491" text-anchor="middle">WRI</text>
+<text x="435" y="513" text-anchor="middle">write interface</text>
+<rect x="100" y="1090" width="2400" height="374" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1300" y="1117" text-anchor="middle" font-weight="bold">Block Functions &amp; Interfaces</text>
+<rect x="100" y="1130" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1155" text-anchor="start" font-weight="bold">Block</text>
+<rect x="430" y="1130" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1155" text-anchor="start" font-weight="bold">Function</text>
+<rect x="1910" y="1130" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1155" text-anchor="start" font-weight="bold">Source</text>
+<rect x="2140" y="1130" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1155" text-anchor="start" font-weight="bold">Interfaces (mnemonics)</text>
+<rect x="100" y="1166" width="330" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1202" text-anchor="start">TOP (m_vlsit_sfifo_top) frame</text>
+<rect x="430" y="1166" width="1480" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1191" text-anchor="start">Structural top of the FIFO that moves words between two synchronous clocks of different frequency. It joins the write side, the read side and the</text>
+<text x="434" y="1213" text-anchor="start">storage and holds no logic of its own. The two pointers cross between the sides as timed paths with no synchronizer.</text>
+<rect x="1910" y="1166" width="230" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1202" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1166" width="360" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1202" text-anchor="start">WRI, RDI, SRST, CRWR, CRRD</text>
+<rect x="100" y="1224" width="330" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1271" text-anchor="start">u_wr (m_vlsit_sfifo_wr)</text>
+<rect x="430" y="1224" width="1480" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1249" text-anchor="start">Write side in the write clock domain. It owns the write pointer, accepts a write when the FIFO is not full and no software reset blocks it, and</text>
+<text x="434" y="1271" text-anchor="start">keeps the full and full-threshold flags exact by computing them from the next pointers. It raises a one-cycle overflow pulse for a rejected write,</text>
+<text x="434" y="1293" text-anchor="start">drives the memory write port, and runs the write half of the four-phase software reset sequence.</text>
+<rect x="1910" y="1224" width="230" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1271" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1224" width="360" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1271" text-anchor="start">PTR, MWP, WRI, SRST, CRWR</text>
+<rect x="100" y="1304" width="330" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1362" text-anchor="start">u_rd (m_vlsit_sfifo_rd)</text>
+<rect x="430" y="1304" width="1480" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1329" text-anchor="start">Read side in the read clock domain. It owns the read pointer, accepts a read when the FIFO is not empty and no software reset blocks it, and keeps</text>
+<text x="434" y="1351" text-anchor="start">the empty and empty-threshold flags exact by computing them from the next pointers. It addresses the storage with the next read pointer so that the</text>
+<text x="434" y="1373" text-anchor="start">output already shows the following word (show-ahead), raises a one-cycle underflow pulse for a rejected read, and runs the read half of the</text>
+<text x="434" y="1395" text-anchor="start">software reset sequence.</text>
+<rect x="1910" y="1304" width="230" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1362" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1304" width="360" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1362" text-anchor="start">PTR, MRP, RDI, CRRD</text>
+<rect x="100" y="1406" width="330" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1442" text-anchor="start">u_mem (m_vlsit_sfifo_mem)</text>
+<rect x="430" y="1406" width="1480" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1420" text-anchor="start">Storage of the FIFO: one write port in the write clock domain and one read port in the read clock domain with a registered output. It is a flop</text>
+<text x="434" y="1442" text-anchor="start">array by default or a library SRAM behind a wrapper. The content is not reset; it is consumed only after the write pointer proved that the entry</text>
+<text x="434" y="1464" text-anchor="start">was written.</text>
+<rect x="1910" y="1406" width="230" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1442" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1406" width="360" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1442" text-anchor="start">MWP, MRP, CRWR, CRRD</text>
+<rect x="100" y="1504" width="2400" height="782" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1300" y="1531" text-anchor="middle" font-weight="bold">Interface Table</text>
+<rect x="100" y="1544" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1569" text-anchor="start" font-weight="bold">ID</text>
+<rect x="190" y="1544" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1569" text-anchor="start" font-weight="bold">Interface</text>
+<rect x="490" y="1544" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1569" text-anchor="start" font-weight="bold">Category</text>
+<rect x="600" y="1544" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1569" text-anchor="start" font-weight="bold">Active side -&gt; passive side</text>
+<rect x="1070" y="1544" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1569" text-anchor="start" font-weight="bold">Key signals</text>
+<rect x="100" y="1580" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1616" text-anchor="start">CRRD</text>
+<rect x="190" y="1580" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1605" text-anchor="start">Clock and reset of the read</text>
+<text x="194" y="1627" text-anchor="start">side</text>
+<rect x="490" y="1580" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1616" text-anchor="start">custom</text>
+<rect x="600" y="1580" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1616" text-anchor="start">SoC -&gt; TOP</text>
+<rect x="1070" y="1580" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1616" text-anchor="start">i_clk_rd, i_rst_n_rd (reset: level, active-low)</text>
+<rect x="100" y="1638" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1674" text-anchor="start">CRWR</text>
+<rect x="190" y="1638" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1663" text-anchor="start">Clock and reset of the write</text>
+<text x="194" y="1685" text-anchor="start">side</text>
+<rect x="490" y="1638" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1674" text-anchor="start">custom</text>
+<rect x="600" y="1638" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1674" text-anchor="start">SoC -&gt; TOP</text>
+<rect x="1070" y="1638" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1674" text-anchor="start">i_clk_wr, i_rst_n_wr (reset: level, active-low)</text>
+<rect x="100" y="1696" width="90" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1743" text-anchor="start">MRP</text>
+<rect x="190" y="1696" width="300" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1743" text-anchor="start">Memory read port</text>
+<rect x="490" y="1696" width="110" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1721" text-anchor="start">custom</text>
+<text x="494" y="1743" text-anchor="start">(memory</text>
+<text x="494" y="1765" text-anchor="start">port)</text>
+<rect x="600" y="1696" width="470" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1743" text-anchor="start">u_rd -&gt; u_mem</text>
+<rect x="1070" y="1696" width="1430" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1743" text-anchor="start">u_rd -&gt; u_mem: o_mem_rd_addr; u_mem -&gt; u_rd: i_mem_rd_data</text>
+<rect x="100" y="1776" width="90" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1823" text-anchor="start">MWP</text>
+<rect x="190" y="1776" width="300" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1823" text-anchor="start">Memory write port</text>
+<rect x="490" y="1776" width="110" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1801" text-anchor="start">custom</text>
+<text x="494" y="1823" text-anchor="start">(memory</text>
+<text x="494" y="1845" text-anchor="start">port)</text>
+<rect x="600" y="1776" width="470" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1823" text-anchor="start">u_wr -&gt; u_mem</text>
+<rect x="1070" y="1776" width="1430" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1823" text-anchor="start">u_wr -&gt; u_mem: o_mem_wr_en, o_mem_wr_addr, o_mem_wr_data</text>
+<rect x="100" y="1856" width="90" height="124" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1925" text-anchor="start">PTR</text>
+<rect x="190" y="1856" width="300" height="124" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1914" text-anchor="start">Pointer exchange and software</text>
+<text x="194" y="1936" text-anchor="start">reset handshake</text>
+<rect x="490" y="1856" width="110" height="124" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1892" text-anchor="start">custom</text>
+<text x="494" y="1914" text-anchor="start">(timed</text>
+<text x="494" y="1936" text-anchor="start">paths, no</text>
+<text x="494" y="1958" text-anchor="start">synchronizer)</text>
+<rect x="600" y="1856" width="470" height="124" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1914" text-anchor="start">u_wr -&gt; u_rd (the read side answers with its</text>
+<text x="604" y="1936" text-anchor="start">pointer and acknowledge)</text>
+<rect x="1070" y="1856" width="1430" height="124" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1925" text-anchor="start">u_wr -&gt; u_rd: o_wr_ptr, o_req_wr; u_rd -&gt; u_wr: o_rd_ptr, o_ack_rd</text>
+<rect x="100" y="1980" width="90" height="124" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2049" text-anchor="start">RDI</text>
+<rect x="190" y="1980" width="300" height="124" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2049" text-anchor="start">Read interface (CLK-RD)</text>
+<rect x="490" y="1980" width="110" height="124" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2005" text-anchor="start">handshake</text>
+<text x="494" y="2027" text-anchor="start">(request,</text>
+<text x="494" y="2049" text-anchor="start">flags,</text>
+<text x="494" y="2071" text-anchor="start">show-ahead</text>
+<text x="494" y="2093" text-anchor="start">data)</text>
+<rect x="600" y="1980" width="470" height="124" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2049" text-anchor="start">external reader -&gt; TOP</text>
+<rect x="1070" y="1980" width="1430" height="124" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2049" text-anchor="start">external -&gt; TOP: i_rd_en [level], i_empty_thr [static]; TOP -&gt; external: o_rd_data, o_empty [level], o_empty_thr [level], o_underflow [pulse]</text>
+<rect x="100" y="2104" width="90" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2162" text-anchor="start">SRST</text>
+<rect x="190" y="2104" width="300" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2162" text-anchor="start">Software reset (CLK-WR)</text>
+<rect x="490" y="2104" width="110" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2129" text-anchor="start">handshake</text>
+<text x="494" y="2151" text-anchor="start">(level</text>
+<text x="494" y="2173" text-anchor="start">request,</text>
+<text x="494" y="2195" text-anchor="start">busy)</text>
+<rect x="600" y="2104" width="470" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2162" text-anchor="start">external controller -&gt; TOP</text>
+<rect x="1070" y="2104" width="1430" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2162" text-anchor="start">external -&gt; TOP: i_rst_n_sw [level, active-low]; TOP -&gt; external: o_sw_rst_busy [level]</text>
+<rect x="100" y="2206" width="90" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2253" text-anchor="start">WRI</text>
+<rect x="190" y="2206" width="300" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2253" text-anchor="start">Write interface (CLK-WR)</text>
+<rect x="490" y="2206" width="110" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2231" text-anchor="start">handshake</text>
+<text x="494" y="2253" text-anchor="start">(request,</text>
+<text x="494" y="2275" text-anchor="start">flags)</text>
+<rect x="600" y="2206" width="470" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2253" text-anchor="start">external writer -&gt; TOP</text>
+<rect x="1070" y="2206" width="1430" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2253" text-anchor="start">external -&gt; TOP: i_wr_en [level], i_wr_data, i_full_thr [static]; TOP -&gt; external: o_full [level], o_full_thr [level], o_overflow [pulse]</text>
+<path d="M 1500 530 L 1590 530" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1590,530 1578,536 1578,524" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1590 550 L 1500 550" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1500,550 1512,544 1512,556" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 490 530 L 580 530" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="580,530 568,536 568,524" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 490 550 L 580 550" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="580,550 568,556 568,544" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 700 360 L 700 510" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="700,510 694,498 706,498" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 580 422 L 552 422 L 552 524 A 6 6 0 0 0 552 536 L 552 544 A 6 6 0 0 0 552 556 L 552 700 L 920 700" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="920,700 908,706 908,694" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1500 422 L 1528 422 L 1528 524 A 6 6 0 0 0 1528 536 L 1528 544 A 6 6 0 0 0 1528 556 L 1528 700 L 1160 700" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1160,700 1172,694 1172,706" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 820 540 L 1260 540" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1260,540 1248,546 1248,534" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 700 570 L 700 680 L 920 680" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="920,680 908,686 908,674" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1380 570 L 1380 680 L 1160 680" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1160,680 1172,674 1172,686" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 100 2401 L 260 2401" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="260,2401 248,2407 248,2395" fill="#000000" stroke="#000000" stroke-width="1"/>
+</svg>

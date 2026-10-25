@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="330" font-family="Segoe UI, Arial, sans-serif" font-size="11">
+<rect width="1300" height="330" fill="#ffffff"/>
+<text x="8" y="16" font-size="14" font-weight="bold" fill="#222">o_sw_rst_busy between two sequences (scenario 3, one-cycle gap)</text>
+<line x1="197.7" y1="48" x2="197.7" y2="300" stroke="#ececec"/>
+<text x="197.7" y="44" text-anchor="middle" fill="#888">320</text>
+<line x1="345.9" y1="48" x2="345.9" y2="300" stroke="#ececec"/>
+<text x="345.9" y="44" text-anchor="middle" fill="#888">340</text>
+<line x1="494.2" y1="48" x2="494.2" y2="300" stroke="#ececec"/>
+<text x="494.2" y="44" text-anchor="middle" fill="#888">360</text>
+<line x1="642.5" y1="48" x2="642.5" y2="300" stroke="#ececec"/>
+<text x="642.5" y="44" text-anchor="middle" fill="#888">380</text>
+<line x1="790.7" y1="48" x2="790.7" y2="300" stroke="#ececec"/>
+<text x="790.7" y="44" text-anchor="middle" fill="#888">400</text>
+<line x1="939.0" y1="48" x2="939.0" y2="300" stroke="#ececec"/>
+<text x="939.0" y="44" text-anchor="middle" fill="#888">420</text>
+<line x1="1087.3" y1="48" x2="1087.3" y2="300" stroke="#ececec"/>
+<text x="1087.3" y="44" text-anchor="middle" fill="#888">440</text>
+<line x1="1235.5" y1="48" x2="1235.5" y2="300" stroke="#ececec"/>
+<text x="1235.5" y="44" text-anchor="middle" fill="#888">460</text>
+<text x="1294" y="16" text-anchor="end" fill="#888">time in ns</text>
+<rect x="0" y="54" width="1300" height="22" fill="#f1f1f1"/><text x="8" y="69" font-weight="bold" fill="#444">WRITE DOMAIN (i_clk_wr, period 10 ns)</text>
+<text x="8" y="91" fill="#222">i_clk_wr</text>
+<path d="M168.0,80 L205.1,80 L205.1,80 L205.1,94 L242.1,94 L242.1,94 L242.1,80 L279.2,80 L279.2,80 L279.2,94 L316.3,94 L316.3,94 L316.3,80 L353.3,80 L353.3,80 L353.3,94 L390.4,94 L390.4,94 L390.4,80 L427.5,80 L427.5,80 L427.5,94 L464.5,94 L464.5,94 L464.5,80 L501.6,80 L501.6,80 L501.6,94 L538.7,94 L538.7,94 L538.7,80 L575.7,80 L575.7,80 L575.7,94 L612.8,94 L612.8,94 L612.8,80 L649.9,80 L649.9,80 L649.9,94 L686.9,94 L686.9,94 L686.9,80 L724.0,80 L724.0,80 L724.0,94 L761.1,94 L761.1,94 L761.1,80 L798.1,80 L798.1,80 L798.1,94 L835.2,94 L835.2,94 L835.2,80 L872.3,80 L872.3,80 L872.3,94 L909.3,94 L909.3,94 L909.3,80 L946.4,80 L946.4,80 L946.4,94 L983.5,94 L983.5,94 L983.5,80 L1020.5,80 L1020.5,80 L1020.5,94 L1057.6,94 L1057.6,94 L1057.6,80 L1094.7,80 L1094.7,80 L1094.7,94 L1131.7,94 L1131.7,94 L1131.7,80 L1168.8,80 L1168.8,80 L1168.8,94 L1205.9,94 L1205.9,94 L1205.9,80 L1242.9,80 L1242.9,80 L1242.9,94 L1280.0,94 L1280.0,94 L1280.0,80 L1280.0,80" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="113" fill="#222">i_rst_n_sw (active-low)</text>
+<path d="M168.0,102 L316.3,102 L316.3,102 L316.3,116 L1280.0,116" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="135" fill="#222">write reset FSM</text>
+<path d="M171.0,124 L239.1,124 L242.1,131.0 L239.1,138 L171.0,138 L168.0,131.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="205.1" y="135" text-anchor="middle" fill="#111">HOLD</text>
+<path d="M245.1,124 L683.9,124 L686.9,131.0 L683.9,138 L245.1,138 L242.1,131.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="464.5" y="135" text-anchor="middle" fill="#111">REL</text>
+<path d="M689.9,124 L758.1,124 L761.1,131.0 L758.1,138 L689.9,138 L686.9,131.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="724.0" y="135" text-anchor="middle" fill="#111">RUN</text>
+<path d="M764.1,124 L1277.0,124 L1280.0,131.0 L1277.0,138 L764.1,138 L761.1,131.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="1020.5" y="135" text-anchor="middle" fill="#111">REQ</text>
+<text x="8" y="157" fill="#222">write blocked (wr_blk)</text>
+<path d="M168.0,146 L1280.0,146" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="179" fill="#222">o_sw_rst_busy (flip-flop)</text>
+<path d="M168.0,168 L686.9,168 L686.9,168 L686.9,182 L761.1,182 L761.1,182 L761.1,168 L1280.0,168" fill="none" stroke="#7048e8" stroke-width="1.5"/>
+<text x="8" y="201" fill="#222">req_wr (to read domain)</text>
+<path d="M168.0,190 L242.1,190 L242.1,190 L242.1,204 L761.1,204 L761.1,204 L761.1,190 L1280.0,190" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="223" fill="#222">ack (synchronized in wr)</text>
+<path d="M168.0,212 L612.8,212 L612.8,212 L612.8,226 L1205.9,226 L1205.9,226 L1205.9,212 L1280.0,212" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="245" fill="#222">i_wr_en</text>
+<path d="M168.0,248 L316.3,248 L316.3,248 L316.3,234 L1280.0,234" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="267" fill="#222">write accepted</text>
+<path d="M168.0,270 L1280.0,270" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="289" fill="#222">o_full</text>
+<path d="M168.0,278 L1280.0,278" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<line x1="316.3" y1="50" x2="316.3" y2="300" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="316.3" cy="30" r="9" fill="#d6336c"/><text x="316.3" y="34" text-anchor="middle" fill="#fff" font-weight="bold">1</text>
+<line x1="686.9" y1="50" x2="686.9" y2="300" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="686.9" cy="30" r="9" fill="#d6336c"/><text x="686.9" y="34" text-anchor="middle" fill="#fff" font-weight="bold">2</text>
+<line x1="761.1" y1="50" x2="761.1" y2="300" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="761.1" cy="30" r="9" fill="#d6336c"/><text x="761.1" y="34" text-anchor="middle" fill="#fff" font-weight="bold">3</text>
+<text x="168" y="320" fill="#555">numbers = events of the table next to the figure; violet = o_sw_rst_busy</text>
+</svg>

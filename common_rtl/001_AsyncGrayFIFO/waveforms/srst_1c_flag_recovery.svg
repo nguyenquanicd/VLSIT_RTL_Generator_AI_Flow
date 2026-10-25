@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="704" font-family="Segoe UI, Arial, sans-serif" font-size="11">
+<rect width="1300" height="704" fill="#ffffff"/>
+<text x="8" y="16" font-size="14" font-weight="bold" fill="#222">Software reset 1c - flags return to the FIFO logic after the release</text>
+<line x1="258.5" y1="48" x2="258.5" y2="674" stroke="#ececec"/>
+<text x="258.5" y="44" text-anchor="middle" fill="#888">400</text>
+<line x1="387.8" y1="48" x2="387.8" y2="674" stroke="#ececec"/>
+<text x="387.8" y="44" text-anchor="middle" fill="#888">420</text>
+<line x1="517.1" y1="48" x2="517.1" y2="674" stroke="#ececec"/>
+<text x="517.1" y="44" text-anchor="middle" fill="#888">440</text>
+<line x1="646.4" y1="48" x2="646.4" y2="674" stroke="#ececec"/>
+<text x="646.4" y="44" text-anchor="middle" fill="#888">460</text>
+<line x1="775.7" y1="48" x2="775.7" y2="674" stroke="#ececec"/>
+<text x="775.7" y="44" text-anchor="middle" fill="#888">480</text>
+<line x1="905.0" y1="48" x2="905.0" y2="674" stroke="#ececec"/>
+<text x="905.0" y="44" text-anchor="middle" fill="#888">500</text>
+<line x1="1034.3" y1="48" x2="1034.3" y2="674" stroke="#ececec"/>
+<text x="1034.3" y="44" text-anchor="middle" fill="#888">520</text>
+<line x1="1163.6" y1="48" x2="1163.6" y2="674" stroke="#ececec"/>
+<text x="1163.6" y="44" text-anchor="middle" fill="#888">540</text>
+<text x="1294" y="16" text-anchor="end" fill="#888">time in ns</text>
+<rect x="0" y="54" width="1300" height="22" fill="#f1f1f1"/><text x="8" y="69" font-weight="bold" fill="#444">WRITE DOMAIN (i_clk_wr, period 10 ns)</text>
+<text x="8" y="91" fill="#222">i_clk_wr</text>
+<path d="M168.0,80 L200.3,80 L200.3,80 L200.3,94 L232.7,94 L232.7,94 L232.7,80 L265.0,80 L265.0,80 L265.0,94 L297.3,94 L297.3,94 L297.3,80 L329.6,80 L329.6,80 L329.6,94 L362.0,94 L362.0,94 L362.0,80 L394.3,80 L394.3,80 L394.3,94 L426.6,94 L426.6,94 L426.6,80 L458.9,80 L458.9,80 L458.9,94 L491.3,94 L491.3,94 L491.3,80 L523.6,80 L523.6,80 L523.6,94 L555.9,94 L555.9,94 L555.9,80 L588.2,80 L588.2,80 L588.2,94 L620.6,94 L620.6,94 L620.6,80 L652.9,80 L652.9,80 L652.9,94 L685.2,94 L685.2,94 L685.2,80 L717.5,80 L717.5,80 L717.5,94 L749.9,94 L749.9,94 L749.9,80 L782.2,80 L782.2,80 L782.2,94 L814.5,94 L814.5,94 L814.5,80 L846.8,80 L846.8,80 L846.8,94 L879.2,94 L879.2,94 L879.2,80 L911.5,80 L911.5,80 L911.5,94 L943.8,94 L943.8,94 L943.8,80 L976.1,80 L976.1,80 L976.1,94 L1008.5,94 L1008.5,94 L1008.5,80 L1040.8,80 L1040.8,80 L1040.8,94 L1073.1,94 L1073.1,94 L1073.1,80 L1105.4,80 L1105.4,80 L1105.4,94 L1137.8,94 L1137.8,94 L1137.8,80 L1170.1,80 L1170.1,80 L1170.1,94 L1202.4,94 L1202.4,94 L1202.4,80 L1234.7,80 L1234.7,80 L1234.7,94 L1267.1,94 L1267.1,94 L1267.1,80 L1280.0,80" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="113" fill="#222">i_rst_n_sw (active-low)</text>
+<path d="M168.0,102 L1280.0,102" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="135" fill="#222">o_sw_rst_busy</text>
+<path d="M168.0,124 L426.6,124 L426.6,124 L426.6,138 L1280.0,138" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="157" fill="#222">write reset FSM</text>
+<path d="M171.0,146 L423.6,146 L426.6,153.0 L423.6,160 L171.0,160 L168.0,153.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="297.3" y="157" text-anchor="middle" fill="#111">REL</text>
+<path d="M429.6,146 L1277.0,146 L1280.0,153.0 L1277.0,160 L429.6,160 L426.6,153.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="853.3" y="157" text-anchor="middle" fill="#111">RUN</text>
+<text x="8" y="179" fill="#222">write blocked (wr_blk)</text>
+<path d="M168.0,168 L426.6,168 L426.6,168 L426.6,182 L1280.0,182" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="201" fill="#222">i_wr_en</text>
+<path d="M168.0,190 L426.6,190 L426.6,190 L426.6,204 L749.9,204 L749.9,204 L749.9,190 L879.2,190 L879.2,190 L879.2,204 L1280.0,204" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="223" fill="#222">write accepted</text>
+<path d="M168.0,226 L426.6,226 L426.6,226 L426.6,226 L749.9,226 L749.9,226 L749.9,212 L879.2,212 L879.2,212 L879.2,226 L1280.0,226" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="245" fill="#222">o_full</text>
+<path d="M168.0,234 L426.6,234 L426.6,234 L426.6,248 L1280.0,248" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="267" fill="#222">o_full_thr (thr = 3)</text>
+<path d="M168.0,270 L1280.0,270" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="289" fill="#222">o_overflow</text>
+<path d="M168.0,292 L1280.0,292" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="311" fill="#222">write pointer</text>
+<path d="M171.0,300 L811.5,300 L814.5,307.0 L811.5,314 L171.0,314 L168.0,307.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="491.3" y="311" text-anchor="middle" fill="#111">0</text>
+<path d="M817.5,300 L876.2,300 L879.2,307.0 L876.2,314 L817.5,314 L814.5,307.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="846.8" y="311" text-anchor="middle" fill="#111">1</text>
+<path d="M882.2,300 L1277.0,300 L1280.0,307.0 L1277.0,314 L882.2,314 L879.2,307.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="1079.6" y="311" text-anchor="middle" fill="#111">2</text>
+<text x="8" y="333" fill="#222">req_wr (to read domain)</text>
+<path d="M168.0,336 L1280.0,336" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="355" fill="#222">ack (synchronized in wr)</text>
+<path d="M168.0,344 L362.0,344 L362.0,344 L362.0,358 L1280.0,358" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="377" fill="#222">rd gray (synchronized in wr)</text>
+<path d="M171.0,366 L1277.0,366 L1280.0,373.0 L1277.0,380 L171.0,380 L168.0,373.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="724.0" y="377" text-anchor="middle" fill="#111">000</text>
+<rect x="0" y="384" width="1300" height="22" fill="#f1f1f1"/><text x="8" y="399" font-weight="bold" fill="#444">READ DOMAIN (i_clk_rd, period 14 ns)</text>
+<text x="8" y="421" fill="#222">i_clk_rd</text>
+<path d="M168.0,424 L174.5,424 L174.5,424 L174.5,410 L219.7,410 L219.7,410 L219.7,424 L265.0,424 L265.0,424 L265.0,410 L310.2,410 L310.2,410 L310.2,424 L355.5,424 L355.5,424 L355.5,410 L400.7,410 L400.7,410 L400.7,424 L446.0,424 L446.0,424 L446.0,410 L491.3,410 L491.3,410 L491.3,424 L536.5,424 L536.5,424 L536.5,410 L581.8,410 L581.8,410 L581.8,424 L627.0,424 L627.0,424 L627.0,410 L672.3,410 L672.3,410 L672.3,424 L717.5,424 L717.5,424 L717.5,410 L762.8,410 L762.8,410 L762.8,424 L808.0,424 L808.0,424 L808.0,410 L853.3,410 L853.3,410 L853.3,424 L898.6,424 L898.6,424 L898.6,410 L943.8,410 L943.8,410 L943.8,424 L989.1,424 L989.1,424 L989.1,410 L1034.3,410 L1034.3,410 L1034.3,424 L1079.6,424 L1079.6,424 L1079.6,410 L1124.8,410 L1124.8,410 L1124.8,424 L1170.1,424 L1170.1,424 L1170.1,410 L1215.3,410 L1215.3,410 L1215.3,424 L1260.6,424 L1260.6,424 L1260.6,410 L1280.0,410" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="443" fill="#222">req (synchronized in rd)</text>
+<path d="M168.0,432 L174.5,432 L174.5,432 L174.5,446 L1280.0,446" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="465" fill="#222">read reset FSM</text>
+<path d="M171.0,454 L262.0,454 L265.0,461.0 L262.0,468 L171.0,468 L168.0,461.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="216.5" y="465" text-anchor="middle" fill="#111">ACK</text>
+<path d="M268.0,454 L1277.0,454 L1280.0,461.0 L1277.0,468 L268.0,468 L265.0,461.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="772.5" y="465" text-anchor="middle" fill="#111">RUN</text>
+<text x="8" y="487" fill="#222">read blocked (rd_blk)</text>
+<path d="M168.0,476 L265.0,476 L265.0,476 L265.0,490 L1280.0,490" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="509" fill="#222">i_rd_en</text>
+<path d="M168.0,498 L446.0,498 L446.0,498 L446.0,512 L1280.0,512" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="531" fill="#222">read accepted</text>
+<path d="M168.0,534 L1280.0,534" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="553" fill="#222">o_empty</text>
+<path d="M168.0,542 L989.1,542 L989.1,542 L989.1,556 L1280.0,556" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="575" fill="#222">o_empty_thr (thr = 1)</text>
+<path d="M168.0,564 L989.1,564 L989.1,564 L989.1,578 L1280.0,578" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="597" fill="#222">o_underflow</text>
+<path d="M168.0,600 L355.5,600 L355.5,600 L355.5,586 L536.5,586 L536.5,586 L536.5,600 L1280.0,600" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="619" fill="#222">read pointer</text>
+<path d="M171.0,608 L1277.0,608 L1280.0,615.0 L1277.0,622 L171.0,622 L168.0,615.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="724.0" y="619" text-anchor="middle" fill="#111">0</text>
+<text x="8" y="641" fill="#222">ack_rd (to write domain)</text>
+<path d="M168.0,630 L265.0,630 L265.0,630 L265.0,644 L1280.0,644" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="663" fill="#222">wr gray (synchronized in rd)</text>
+<path d="M171.0,652 L986.1,652 L989.1,659.0 L986.1,666 L171.0,666 L168.0,659.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="578.5" y="663" text-anchor="middle" fill="#111">000</text>
+<path d="M992.1,652 L1277.0,652 L1280.0,659.0 L1277.0,666 L992.1,666 L989.1,659.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="1134.5" y="663" text-anchor="middle" fill="#111">011</text>
+<line x1="426.6" y1="50" x2="426.6" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="426.6" cy="30" r="9" fill="#d6336c"/><text x="426.6" y="34" text-anchor="middle" fill="#fff" font-weight="bold">13</text>
+<line x1="749.9" y1="50" x2="749.9" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="749.9" cy="30" r="9" fill="#d6336c"/><text x="749.9" y="34" text-anchor="middle" fill="#fff" font-weight="bold">14</text>
+<line x1="989.1" y1="50" x2="989.1" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="989.1" cy="30" r="9" fill="#d6336c"/><text x="989.1" y="34" text-anchor="middle" fill="#fff" font-weight="bold">15</text>
+<text x="168" y="694" fill="#555">numbers = events of the table next to the figure; blue = write clock domain, orange = read clock domain</text>
+</svg>

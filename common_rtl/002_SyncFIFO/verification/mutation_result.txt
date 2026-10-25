@@ -1,0 +1,17 @@
+wr full late (> instead of >=)                CAUGHT by d8_r0_m0_w5_r5: ASSERT FAIL @645000 ps: WR-FULL-EXACT          REQ-FUNC-004 (full when DEPTH words stored)
+wr block ignores i_rst_n_sw                   CAUGHT by d8_r0_m0_w5_r5: ASSERT FAIL @30165000 ps: WR-BLOCK-FULL-NOW      REQ-SRST-002 (i_rst_n_sw low gives o_full at once)
+rd no show-ahead (address of current ptr)     CAUGHT by d8_r0_m0_w5_r5: ASSERT FAIL @1015000 ps: RD-SHOW-AHEAD-DATA     REQ-FUNC-002/IF-003 (o_rd_data is the oldest word)
+rd empty from current pointer (not look-ahead) CAUGHT by d8_r0_m0_w5_r5: ASSERT FAIL @415000 ps: RD-NO-X                REQ-IF-002 (read outputs not X, data not X when valid)
+wr pointer wrap off by one                    CAUGHT by d5_r1_m0_w6_r4: ASSERT FAIL @2226000 ps: WR-FULL-EXACT          REQ-FUNC-004 (full when DEPTH words stored)
+wr overflow also when blocked                 CAUGHT by d8_r0_m0_w5_r5: ASSERT FAIL @31035000 ps: WR-NO-PULSE-BLOCKED    REQ-SRST-002 (no overflow for a blocked write)
+rd underflow stuck 0                          CAUGHT by d8_r0_m0_w5_r5: ASSERT FAIL @185000 ps: RD-UNDERFLOW-PULSE     REQ-FUNC-009 (rejected read gives a pulse)
+wr pointer not reset by software reset        CAUGHT by d8_r0_m0_w5_r5: ASSERT FAIL @31555000 ps: SRST-SEQUENCE          REQ-SRST-001/004/005 (busy ends, FIFO empty, order kept after)
+rd ignores PTR_RETIME                         CAUGHT by d5_r1_m0_w6_r4: ASSERT FAIL @236000 ps: PERF-EMPTY-FALL-LAT    REQ-PERF-003 (o_empty falls after 1 + RETIME later read edges)
+wr full threshold > instead of >=             CAUGHT by d8_r0_m0_w5_r5: ASSERT FAIL @645000 ps: WR-FULL-THR-AT-FULL    REQ-FUNC-007 (full threshold set when full)
+rd empty threshold < instead of <=            CAUGHT by d8_r0_m0_w5_r5: ASSERT FAIL @115000 ps: RD-EMPTY-THR-IMPLIED   REQ-FUNC-007 (empty implies empty threshold)
+mem write address off by one                  CAUGHT by d8_r0_m0_w5_r5: ASSERT FAIL @265000 ps: RD-NO-X                REQ-IF-002 (read outputs not X, data not X when valid)
+rd read accepted while empty                  CAUGHT by d8_r0_m0_w5_r5: ASSERT FAIL @185000 ps: RD-NO-X                REQ-IF-002 (read outputs not X, data not X when valid)
+wr write accepted while full                  CAUGHT by d8_r0_m0_w5_r5: ASSERT FAIL @815000 ps: RD-SHOW-AHEAD-DATA     REQ-FUNC-002/IF-003 (o_rd_data is the oldest word)
+rd release without flush check                NOT CAUGHT
+wr busy never rises                           CAUGHT by d8_r0_m0_w5_r5: ASSERT FAIL @30175000 ps: WR-BUSY-RISES          REQ-SRST-006 (busy follows the request)
+caught 15 of 16

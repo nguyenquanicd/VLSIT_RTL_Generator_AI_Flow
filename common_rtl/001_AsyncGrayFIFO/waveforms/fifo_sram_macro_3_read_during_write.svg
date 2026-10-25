@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1268" height="726" font-family="Segoe UI, Arial, sans-serif" font-size="11">
+<rect width="1268" height="726" fill="#ffffff"/>
+<text x="8" y="16" font-size="14" font-weight="bold" fill="#222">SRAM macro (CFG-MACRO) - write to an empty FIFO whose read port reads the same entry every cycle (zoom)</text>
+<line x1="248.0" y1="48" x2="248.0" y2="696" stroke="#ececec"/>
+<text x="248.0" y="44" text-anchor="middle" fill="#888">240</text>
+<line x1="448.0" y1="48" x2="448.0" y2="696" stroke="#ececec"/>
+<text x="448.0" y="44" text-anchor="middle" fill="#888">250</text>
+<line x1="648.0" y1="48" x2="648.0" y2="696" stroke="#ececec"/>
+<text x="648.0" y="44" text-anchor="middle" fill="#888">260</text>
+<line x1="848.0" y1="48" x2="848.0" y2="696" stroke="#ececec"/>
+<text x="848.0" y="44" text-anchor="middle" fill="#888">270</text>
+<line x1="1048.0" y1="48" x2="1048.0" y2="696" stroke="#ececec"/>
+<text x="1048.0" y="44" text-anchor="middle" fill="#888">280</text>
+<line x1="1248.0" y1="48" x2="1248.0" y2="696" stroke="#ececec"/>
+<text x="1248.0" y="44" text-anchor="middle" fill="#888">290</text>
+<text x="1262" y="16" text-anchor="end" fill="#888">time in ns</text>
+<rect x="0" y="54" width="1268" height="22" fill="#f1f1f1"/><text x="8" y="69" font-weight="bold" fill="#444">WRITE DOMAIN (i_clk_wr, period 10 ns)</text>
+<text x="8" y="91" fill="#222">i_clk_wr</text>
+<path d="M168.0,80 L248.0,80 L248.0,80 L248.0,94 L348.0,94 L348.0,94 L348.0,80 L448.0,80 L448.0,80 L448.0,94 L548.0,94 L548.0,94 L548.0,80 L648.0,80 L648.0,80 L648.0,94 L748.0,94 L748.0,94 L748.0,80 L848.0,80 L848.0,80 L848.0,94 L948.0,94 L948.0,94 L948.0,80 L1048.0,80 L1048.0,80 L1048.0,94 L1148.0,94 L1148.0,94 L1148.0,80 L1248.0,80 L1248.0,80 L1248.0,94 L1248.0,94" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="113" fill="#222">i_wr_en</text>
+<path d="M168.0,116 L348.0,116 L348.0,116 L348.0,102 L548.0,102 L548.0,102 L548.0,116 L1248.0,116" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="135" fill="#222">i_wr_data</text>
+<path d="M171.0,124 L345.0,124 L348.0,131.0 L345.0,138 L171.0,138 L168.0,131.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="258.0" y="135" text-anchor="middle" fill="#111">55</text>
+<path d="M351.0,124 L1245.0,124 L1248.0,131.0 L1245.0,138 L351.0,138 L348.0,131.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="798.0" y="135" text-anchor="middle" fill="#111">66</text>
+<text x="8" y="157" fill="#222">write accept (sampled at the edge)</text>
+<path d="M168.0,160 L348.0,160 L348.0,160 L348.0,146 L548.0,146 L548.0,146 L548.0,160 L1248.0,160" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="179" fill="#222">o_full</text>
+<path d="M168.0,182 L1248.0,182" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="201" fill="#222">o_full_thr</text>
+<path d="M168.0,204 L1248.0,204" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="223" fill="#222">o_overflow</text>
+<path d="M168.0,226 L1248.0,226" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="245" fill="#222">write pointer (bin)</text>
+<path d="M171.0,234 L545.0,234 L548.0,241.0 L545.0,248 L171.0,248 L168.0,241.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="358.0" y="245" text-anchor="middle" fill="#111">4</text>
+<path d="M551.0,234 L1245.0,234 L1248.0,241.0 L1245.0,248 L551.0,248 L548.0,241.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="898.0" y="245" text-anchor="middle" fill="#111">5</text>
+<text x="8" y="267" fill="#222">write pointer (gray)</text>
+<path d="M171.0,256 L545.0,256 L548.0,263.0 L545.0,270 L171.0,270 L168.0,263.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="358.0" y="267" text-anchor="middle" fill="#111">110</text>
+<path d="M551.0,256 L1245.0,256 L1248.0,263.0 L1245.0,270 L551.0,270 L548.0,263.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="898.0" y="267" text-anchor="middle" fill="#111">111</text>
+<text x="8" y="289" fill="#222">rd gray, synchronized</text>
+<path d="M171.0,278 L1245.0,278 L1248.0,285.0 L1245.0,292 L171.0,292 L168.0,285.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="708.0" y="289" text-anchor="middle" fill="#111">110</text>
+<rect x="0" y="296" width="1268" height="22" fill="#f1f1f1"/><text x="8" y="311" font-weight="bold" fill="#444">SRAM MACRO (VLSIT_CELL_SRAM_1W1R)</text>
+<text x="8" y="333" fill="#222">WEB (active low)</text>
+<path d="M168.0,322 L348.0,322 L348.0,322 L348.0,336 L548.0,336 L548.0,336 L548.0,322 L1248.0,322" fill="none" stroke="#2b8a3e" stroke-width="1.5"/>
+<text x="8" y="355" fill="#222">AW</text>
+<path d="M171.0,344 L545.0,344 L548.0,351.0 L545.0,358 L171.0,358 L168.0,351.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="358.0" y="355" text-anchor="middle" fill="#111">0</text>
+<path d="M551.0,344 L1245.0,344 L1248.0,351.0 L1245.0,358 L551.0,358 L548.0,351.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="898.0" y="355" text-anchor="middle" fill="#111">1</text>
+<text x="8" y="377" fill="#222">DW</text>
+<path d="M171.0,366 L345.0,366 L348.0,373.0 L345.0,380 L171.0,380 L168.0,373.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="258.0" y="377" text-anchor="middle" fill="#111">55</text>
+<path d="M351.0,366 L1245.0,366 L1248.0,373.0 L1245.0,380 L351.0,380 L348.0,373.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="798.0" y="377" text-anchor="middle" fill="#111">66</text>
+<text x="8" y="399" fill="#222">REB (tied low)</text>
+<path d="M168.0,402 L1248.0,402" fill="none" stroke="#2b8a3e" stroke-width="1.5"/>
+<text x="8" y="421" fill="#222">AR (next rd pointer)</text>
+<path d="M171.0,410 L1185.0,410 L1188.0,417.0 L1185.0,424 L171.0,424 L168.0,417.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="678.0" y="421" text-anchor="middle" fill="#111">0</text>
+<path d="M1191.0,410 L1245.0,410 L1248.0,417.0 L1245.0,424 L1191.0,424 L1188.0,417.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="1218.0" y="421" text-anchor="middle" fill="#111">1</text>
+<text x="8" y="443" fill="#222">QR</text>
+<path d="M171.0,432 L625.0,432 L628.0,439.0 L625.0,446 L171.0,446 L168.0,439.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="398.0" y="443" text-anchor="middle" fill="#111">11</text>
+<path d="M631.0,432 L1245.0,432 L1248.0,439.0 L1245.0,446 L631.0,446 L628.0,439.0 Z" fill="#d3f9d8" stroke="#2b8a3e"/>
+<text x="938.0" y="443" text-anchor="middle" fill="#111">66</text>
+<rect x="0" y="450" width="1268" height="22" fill="#f1f1f1"/><text x="8" y="465" font-weight="bold" fill="#444">READ DOMAIN (i_clk_rd, period 14 ns)</text>
+<text x="8" y="487" fill="#222">i_clk_rd</text>
+<path d="M168.0,476 L208.0,476 L208.0,476 L208.0,490 L348.0,490 L348.0,490 L348.0,476 L488.0,476 L488.0,476 L488.0,490 L628.0,490 L628.0,490 L628.0,476 L768.0,476 L768.0,476 L768.0,490 L908.0,490 L908.0,490 L908.0,476 L1048.0,476 L1048.0,476 L1048.0,490 L1188.0,490 L1188.0,490 L1188.0,476 L1248.0,476" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="509" fill="#222">i_rd_en</text>
+<path d="M168.0,512 L1188.0,512 L1188.0,512 L1188.0,498 L1248.0,498" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="531" fill="#222">read accept (sampled at the edge)</text>
+<path d="M168.0,534 L1188.0,534 L1188.0,534 L1188.0,520 L1248.0,520" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="553" fill="#222">o_rd_data</text>
+<path d="M171.0,542 L625.0,542 L628.0,549.0 L625.0,556 L171.0,556 L168.0,549.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="398.0" y="553" text-anchor="middle" fill="#111">11</text>
+<path d="M631.0,542 L1245.0,542 L1248.0,549.0 L1245.0,556 L631.0,556 L628.0,549.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="938.0" y="553" text-anchor="middle" fill="#111">66</text>
+<text x="8" y="575" fill="#222">o_empty</text>
+<path d="M168.0,564 L908.0,564 L908.0,564 L908.0,578 L1248.0,578" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="597" fill="#222">o_empty_thr</text>
+<path d="M168.0,586 L1248.0,586" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="619" fill="#222">o_underflow</text>
+<path d="M168.0,608 L348.0,608 L348.0,608 L348.0,622 L1248.0,622" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="641" fill="#222">read pointer (bin)</text>
+<path d="M171.0,630 L1245.0,630 L1248.0,637.0 L1245.0,644 L171.0,644 L168.0,637.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="708.0" y="641" text-anchor="middle" fill="#111">4</text>
+<text x="8" y="663" fill="#222">read pointer (gray)</text>
+<path d="M171.0,652 L1245.0,652 L1248.0,659.0 L1245.0,666 L171.0,666 L168.0,659.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="708.0" y="663" text-anchor="middle" fill="#111">110</text>
+<text x="8" y="685" fill="#222">wr gray, synchronized</text>
+<path d="M171.0,674 L905.0,674 L908.0,681.0 L905.0,688 L171.0,688 L168.0,681.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="538.0" y="685" text-anchor="middle" fill="#111">110</text>
+<path d="M911.0,674 L1245.0,674 L1248.0,681.0 L1245.0,688 L911.0,688 L908.0,681.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="1078.0" y="685" text-anchor="middle" fill="#111">111</text>
+<line x1="548.0" y1="50" x2="548.0" y2="696" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="548.0" cy="30" r="9" fill="#d6336c"/><text x="548.0" y="34" text-anchor="middle" fill="#fff" font-weight="bold">10</text>
+<line x1="628.0" y1="50" x2="628.0" y2="696" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="628.0" cy="30" r="9" fill="#d6336c"/><text x="628.0" y="34" text-anchor="middle" fill="#fff" font-weight="bold">11</text>
+<line x1="908.0" y1="50" x2="908.0" y2="696" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="908.0" cy="30" r="9" fill="#d6336c"/><text x="908.0" y="34" text-anchor="middle" fill="#fff" font-weight="bold">12</text>
+<text x="168" y="716" fill="#555">numbers = events of the table next to the figure; red bus = unknown (X)</text>
+</svg>

@@ -1,0 +1,10 @@
+{
+  "signal": [
+    {"name": "i_clk_core", "wave": "p......."},
+    ["AHB5", {"name": "i_ahb_htrans", "wave": "x=......", "data": ["NONSEQ"]}, {"name": "o_ahb_hreadyout", "wave": "11000001"}, {"name": "o_ahb_hresp", "wave": "0.....11"}],
+    ["AXI4 AR", {"name": "o_axi_arvalid", "wave": "0.1110.."}, {"name": "i_axi_arready", "wave": "0....1.."}, {"name": "o_axi_arlen", "wave": "x.=.x...", "data": ["0"]}],
+    ["AXI4 R", {"name": "i_axi_rvalid", "wave": "0....1.."}, {"name": "o_axi_rready", "wave": "0.....1."}, {"name": "i_axi_rresp", "wave": "x....=x.", "data": ["SLVERR"]}]
+  ],
+  "head": {"text": "WF-002 — Serialized single read with RRESP error"},
+  "foot": {"text": "One accepted AHB read creates ARLEN=0. SLVERR is returned as a two-cycle AHB ERROR. / Một AHB read tạo ARLEN=0; SLVERR thành AHB ERROR hai chu kỳ."}
+}

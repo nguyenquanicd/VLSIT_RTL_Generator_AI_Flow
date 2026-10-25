@@ -1,0 +1,8 @@
+$ C:\Tools\oss-cad-suite\bin\verilator_bin.exe --lint-only -Wall --top-module m_vlsit_afifo_top +define+VLSIT_SYNTHESIS ../../000_Common/rtl_cells/VLSIT_CELL_SYNC_DFF_RN.sv ../../000_Common/rtl_cells/VLSIT_CELL_SYNC_DFF_SN.sv ../../000_Common/rtl_cells/VLSIT_CELL_SYNC_2FF_RN.sv ../../000_Common/rtl_cells/VLSIT_CELL_SYNC_2FF_SN.sv ../../000_Common/rtl_cells/VLSIT_CELL_SYNC_3FF_RN.sv ../../000_Common/rtl_cells/VLSIT_CELL_SYNC_3FF_SN.sv ../../000_Common/rtl_cells/VLSIT_CELL_SYNC_4FF_RN.sv ../../000_Common/rtl_cells/VLSIT_CELL_SYNC_4FF_SN.sv ../../000_Common/rtl_cells/VLSIT_CELL_SRAM_1W1R.sv ../../000_Common/rtl_lib/m_vlsit_afifo_ram_macro.sv ../rtl/m_vlsit_afifo_mem.sv ../../000_Common/rtl_lib/m_vlsit_afifo_cell_sync.sv ../rtl/m_vlsit_afifo_sync.sv ../rtl/m_vlsit_afifo_rd.sv ../rtl/m_vlsit_afifo_wr.sv ../rtl/m_vlsit_afifo_top.sv
+(cwd C:\HQuan\102_MyGithub\VLSIT_RTL_Generator_AI_Model\common_rtl\001_AsyncGrayFIFO\lint)
+
+- V e r i l a t i o n   R e p o r t: Verilator 5.053 devel rev v5.052-352-gc265bd444 (mod)
+- Verilator: Built from 0.548 MB sources in 18 modules, into 0.084 MB in 3 C++ files needing 0.000 MB
+- Verilator: Walltime 0.068 s (elab=0.002, cvt=0.014, bld=0.000); cpu 0.000 s on 1 threads; allocated 17.285 MB
+
+exit code 0

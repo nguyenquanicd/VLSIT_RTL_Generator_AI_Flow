@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="704" font-family="Segoe UI, Arial, sans-serif" font-size="11">
+<rect width="1300" height="704" fill="#ffffff"/>
+<text x="8" y="16" font-size="14" font-weight="bold" fill="#222">Software reset 1b - release order: read side first, write side last</text>
+<line x1="248.1" y1="48" x2="248.1" y2="674" stroke="#ececec"/>
+<text x="248.1" y="44" text-anchor="middle" fill="#888">340</text>
+<line x1="426.0" y1="48" x2="426.0" y2="674" stroke="#ececec"/>
+<text x="426.0" y="44" text-anchor="middle" fill="#888">360</text>
+<line x1="603.9" y1="48" x2="603.9" y2="674" stroke="#ececec"/>
+<text x="603.9" y="44" text-anchor="middle" fill="#888">380</text>
+<line x1="781.8" y1="48" x2="781.8" y2="674" stroke="#ececec"/>
+<text x="781.8" y="44" text-anchor="middle" fill="#888">400</text>
+<line x1="959.7" y1="48" x2="959.7" y2="674" stroke="#ececec"/>
+<text x="959.7" y="44" text-anchor="middle" fill="#888">420</text>
+<line x1="1137.7" y1="48" x2="1137.7" y2="674" stroke="#ececec"/>
+<text x="1137.7" y="44" text-anchor="middle" fill="#888">440</text>
+<text x="1294" y="16" text-anchor="end" fill="#888">time in ns</text>
+<rect x="0" y="54" width="1300" height="22" fill="#f1f1f1"/><text x="8" y="69" font-weight="bold" fill="#444">WRITE DOMAIN (i_clk_wr, period 10 ns)</text>
+<text x="8" y="91" fill="#222">i_clk_wr</text>
+<path d="M168.0,94 L212.5,94 L212.5,94 L212.5,80 L257.0,80 L257.0,80 L257.0,94 L301.4,94 L301.4,94 L301.4,80 L345.9,80 L345.9,80 L345.9,94 L390.4,94 L390.4,94 L390.4,80 L434.9,80 L434.9,80 L434.9,94 L479.4,94 L479.4,94 L479.4,80 L523.8,80 L523.8,80 L523.8,94 L568.3,94 L568.3,94 L568.3,80 L612.8,80 L612.8,80 L612.8,94 L657.3,94 L657.3,94 L657.3,80 L701.8,80 L701.8,80 L701.8,94 L746.2,94 L746.2,94 L746.2,80 L790.7,80 L790.7,80 L790.7,94 L835.2,94 L835.2,94 L835.2,80 L879.7,80 L879.7,80 L879.7,94 L924.2,94 L924.2,94 L924.2,80 L968.6,80 L968.6,80 L968.6,94 L1013.1,94 L1013.1,94 L1013.1,80 L1057.6,80 L1057.6,80 L1057.6,94 L1102.1,94 L1102.1,94 L1102.1,80 L1146.6,80 L1146.6,80 L1146.6,94 L1191.0,94 L1191.0,94 L1191.0,80 L1235.5,80 L1235.5,80 L1235.5,94 L1280.0,94 L1280.0,94 L1280.0,80 L1280.0,80" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="113" fill="#222">i_rst_n_sw (active-low)</text>
+<path d="M168.0,116 L390.4,116 L390.4,116 L390.4,102 L1280.0,102" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="135" fill="#222">o_sw_rst_busy</text>
+<path d="M168.0,124 L1013.1,124 L1013.1,124 L1013.1,138 L1280.0,138" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="157" fill="#222">write reset FSM</text>
+<path d="M171.0,146 L476.4,146 L479.4,153.0 L476.4,160 L171.0,160 L168.0,153.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="323.7" y="157" text-anchor="middle" fill="#111">HOLD</text>
+<path d="M482.4,146 L1010.1,146 L1013.1,153.0 L1010.1,160 L482.4,160 L479.4,153.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="746.2" y="157" text-anchor="middle" fill="#111">REL</text>
+<path d="M1016.1,146 L1277.0,146 L1280.0,153.0 L1277.0,160 L1016.1,160 L1013.1,153.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="1146.6" y="157" text-anchor="middle" fill="#111">RUN</text>
+<text x="8" y="179" fill="#222">write blocked (wr_blk)</text>
+<path d="M168.0,168 L1013.1,168 L1013.1,168 L1013.1,182 L1280.0,182" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="201" fill="#222">i_wr_en</text>
+<path d="M168.0,190 L1013.1,190 L1013.1,190 L1013.1,204 L1280.0,204" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="223" fill="#222">write accepted</text>
+<path d="M168.0,226 L1013.1,226 L1013.1,226 L1013.1,226 L1280.0,226" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="245" fill="#222">o_full</text>
+<path d="M168.0,234 L1013.1,234 L1013.1,234 L1013.1,248 L1280.0,248" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="267" fill="#222">o_full_thr (thr = 3)</text>
+<path d="M168.0,270 L1280.0,270" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="289" fill="#222">o_overflow</text>
+<path d="M168.0,292 L1280.0,292" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="311" fill="#222">write pointer</text>
+<path d="M171.0,300 L1277.0,300 L1280.0,307.0 L1277.0,314 L171.0,314 L168.0,307.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="724.0" y="311" text-anchor="middle" fill="#111">0</text>
+<text x="8" y="333" fill="#222">req_wr (to read domain)</text>
+<path d="M168.0,322 L479.4,322 L479.4,322 L479.4,336 L1280.0,336" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="355" fill="#222">ack (synchronized in wr)</text>
+<path d="M168.0,344 L924.2,344 L924.2,344 L924.2,358 L1280.0,358" fill="none" stroke="#1f5fbf" stroke-width="1.5"/>
+<text x="8" y="377" fill="#222">rd gray (synchronized in wr)</text>
+<path d="M171.0,366 L1277.0,366 L1280.0,373.0 L1277.0,380 L171.0,380 L168.0,373.0 Z" fill="#dbe8ff" stroke="#1f5fbf"/>
+<text x="724.0" y="377" text-anchor="middle" fill="#111">000</text>
+<rect x="0" y="384" width="1300" height="22" fill="#f1f1f1"/><text x="8" y="399" font-weight="bold" fill="#444">READ DOMAIN (i_clk_rd, period 14 ns)</text>
+<text x="8" y="421" fill="#222">i_clk_rd</text>
+<path d="M168.0,410 L230.3,410 L230.3,410 L230.3,424 L292.5,424 L292.5,424 L292.5,410 L354.8,410 L354.8,410 L354.8,424 L417.1,424 L417.1,424 L417.1,410 L479.4,410 L479.4,410 L479.4,424 L541.6,424 L541.6,424 L541.6,410 L603.9,410 L603.9,410 L603.9,424 L666.2,424 L666.2,424 L666.2,410 L728.4,410 L728.4,410 L728.4,424 L790.7,424 L790.7,424 L790.7,410 L853.0,410 L853.0,410 L853.0,424 L915.3,424 L915.3,424 L915.3,410 L977.5,410 L977.5,410 L977.5,424 L1039.8,424 L1039.8,424 L1039.8,410 L1102.1,410 L1102.1,410 L1102.1,424 L1164.4,424 L1164.4,424 L1164.4,410 L1226.6,410 L1226.6,410 L1226.6,424 L1280.0,424" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="443" fill="#222">req (synchronized in rd)</text>
+<path d="M168.0,432 L666.2,432 L666.2,432 L666.2,446 L1280.0,446" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="465" fill="#222">read reset FSM</text>
+<path d="M171.0,454 L787.7,454 L790.7,461.0 L787.7,468 L171.0,468 L168.0,461.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="479.4" y="465" text-anchor="middle" fill="#111">ACK</text>
+<path d="M793.7,454 L1277.0,454 L1280.0,461.0 L1277.0,468 L793.7,468 L790.7,461.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="1035.4" y="465" text-anchor="middle" fill="#111">RUN</text>
+<text x="8" y="487" fill="#222">read blocked (rd_blk)</text>
+<path d="M168.0,476 L790.7,476 L790.7,476 L790.7,490 L1280.0,490" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="509" fill="#222">i_rd_en</text>
+<path d="M168.0,498 L1039.8,498 L1039.8,498 L1039.8,512 L1280.0,512" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="531" fill="#222">read accepted</text>
+<path d="M168.0,534 L1280.0,534" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="553" fill="#222">o_empty</text>
+<path d="M168.0,542 L1280.0,542" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="575" fill="#222">o_empty_thr (thr = 1)</text>
+<path d="M168.0,564 L1280.0,564" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="597" fill="#222">o_underflow</text>
+<path d="M168.0,600 L915.3,600 L915.3,600 L915.3,586 L1164.4,586 L1164.4,586 L1164.4,600 L1280.0,600" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="619" fill="#222">read pointer</text>
+<path d="M171.0,608 L1277.0,608 L1280.0,615.0 L1277.0,622 L171.0,622 L168.0,615.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="724.0" y="619" text-anchor="middle" fill="#111">0</text>
+<text x="8" y="641" fill="#222">ack_rd (to write domain)</text>
+<path d="M168.0,630 L790.7,630 L790.7,630 L790.7,644 L1280.0,644" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<text x="8" y="663" fill="#222">wr gray (synchronized in rd)</text>
+<path d="M171.0,652 L289.5,652 L292.5,659.0 L289.5,666 L171.0,666 L168.0,659.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="230.3" y="663" text-anchor="middle" fill="#111">010</text>
+<path d="M295.5,652 L1277.0,652 L1280.0,659.0 L1277.0,666 L295.5,666 L292.5,659.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="786.3" y="663" text-anchor="middle" fill="#111">000</text>
+<line x1="390.4" y1="50" x2="390.4" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="390.4" cy="30" r="9" fill="#d6336c"/><text x="390.4" y="34" text-anchor="middle" fill="#fff" font-weight="bold">8</text>
+<line x1="479.4" y1="50" x2="479.4" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="479.4" cy="30" r="9" fill="#d6336c"/><text x="479.4" y="34" text-anchor="middle" fill="#fff" font-weight="bold">9</text>
+<line x1="666.2" y1="50" x2="666.2" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="666.2" cy="30" r="9" fill="#d6336c"/><text x="666.2" y="34" text-anchor="middle" fill="#fff" font-weight="bold">10</text>
+<line x1="790.7" y1="50" x2="790.7" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="790.7" cy="30" r="9" fill="#d6336c"/><text x="790.7" y="34" text-anchor="middle" fill="#fff" font-weight="bold">11</text>
+<line x1="924.2" y1="50" x2="924.2" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="924.2" cy="30" r="9" fill="#d6336c"/><text x="924.2" y="34" text-anchor="middle" fill="#fff" font-weight="bold">12</text>
+<line x1="1013.1" y1="50" x2="1013.1" y2="674" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="1013.1" cy="30" r="9" fill="#d6336c"/><text x="1013.1" y="34" text-anchor="middle" fill="#fff" font-weight="bold">13</text>
+<text x="168" y="694" fill="#555">numbers = events of the table next to the figure; blue = write clock domain, orange = read clock domain</text>
+</svg>

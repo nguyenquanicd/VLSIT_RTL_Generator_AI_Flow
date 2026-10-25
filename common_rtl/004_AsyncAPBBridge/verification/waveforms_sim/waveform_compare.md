@@ -1,0 +1,18 @@
+# Simulated waveforms of the delivered RTL against the specification figures
+
+Produced by `vlsit_gen_sim_waves.py` (synthesis branch, `-DVLSIT_SYNTHESIS`). The metastability branch is run for the assertions only, because its latency differs from the figure by design (R-034).
+
+| Waveform ID | Specification figure | Simulated waveform | Result | Note |
+|---|---|---|---|---|
+| WF-001 | waveforms/apbcdc_wf001_write_no_wait.svg | waveforms_sim/apbcdc_wf001_write_no_wait.svg | MATCH | Same rows, wave strings and data labels as the figure (RTL, synthesis branch); assertions pass in the synthesis branch and with metastability seeds 1 to 3 |
+| WF-002 | waveforms/apbcdc_wf002_read_no_wait.svg | waveforms_sim/apbcdc_wf002_read_no_wait.svg | MATCH | Same rows, wave strings and data labels as the figure (RTL, synthesis branch); assertions pass in the synthesis branch and with metastability seeds 1 to 3 |
+| WF-003 | waveforms/apbcdc_wf003_write_wait_states.svg | waveforms_sim/apbcdc_wf003_write_wait_states.svg | MATCH | Same rows, wave strings and data labels as the figure (RTL, synthesis branch); assertions pass in the synthesis branch and with metastability seeds 1 to 3 |
+| WF-004 | waveforms/apbcdc_wf004_read_error.svg | waveforms_sim/apbcdc_wf004_read_error.svg | MATCH | Same rows, wave strings and data labels as the figure (RTL, synthesis branch); assertions pass in the synthesis branch and with metastability seeds 1 to 3 |
+| WF-005 | waveforms/apbcdc_wf005_write_error.svg | waveforms_sim/apbcdc_wf005_write_error.svg | MATCH | Same rows, wave strings and data labels as the figure (RTL, synthesis branch); assertions pass in the synthesis branch and with metastability seeds 1 to 3 |
+| WF-006 | waveforms/apbcdc_wf006_back_to_back.svg | waveforms_sim/apbcdc_wf006_back_to_back.svg | MATCH | Same rows, wave strings and data labels as the figure (RTL, synthesis branch); assertions pass in the synthesis branch and with metastability seeds 1 to 3 |
+| WF-007 | waveforms/apbcdc_wf007_four_phase_write.svg | waveforms_sim/apbcdc_wf007_four_phase_write.svg | MATCH | Same rows, wave strings and data labels as the figure (RTL, synthesis branch); assertions pass in the synthesis branch and with metastability seeds 1 to 3 |
+| WF-008 | waveforms/apbcdc_wf008_sparse_write.svg | waveforms_sim/apbcdc_wf008_sparse_write.svg | MATCH | Same rows, wave strings and data labels as the figure (RTL, synthesis branch); assertions pass in the synthesis branch and with metastability seeds 1 to 3 |
+| WF-009 | waveforms/apbcdc_wf009_apb5_wakeup_user.svg | waveforms_sim/apbcdc_wf009_apb5_wakeup_user.svg | MATCH | Same rows, wave strings and data labels as the figure (RTL, synthesis branch); assertions pass in the synthesis branch and with metastability seeds 1 to 3 |
+| WF-010 | waveforms/apbcdc_wf010_requester_clock_fast.svg | waveforms_sim/apbcdc_wf010_requester_clock_fast.svg | MATCH | Same rows, wave strings and data labels as the figure (RTL, synthesis branch); assertions pass in the synthesis branch and with metastability seeds 1 to 3 |
+| WF-011 | waveforms/apbcdc_wf011_completer_clock_fast.svg | waveforms_sim/apbcdc_wf011_completer_clock_fast.svg | MATCH | Same rows, wave strings and data labels as the figure (RTL, synthesis branch); assertions pass in the synthesis branch and with metastability seeds 1 to 3 |
+| WF-012 | waveforms/apbcdc_wf012_hardware_reset.svg | waveforms_sim/apbcdc_wf012_hardware_reset.svg | MATCH | Same rows, wave strings and data labels as the figure (RTL, synthesis branch); assertions pass in the synthesis branch and with metastability seeds 1 to 3 |
