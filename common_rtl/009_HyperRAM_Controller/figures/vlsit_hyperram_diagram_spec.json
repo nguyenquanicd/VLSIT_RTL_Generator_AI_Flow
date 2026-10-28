@@ -1,0 +1,411 @@
+{
+  "page_name": "BLOCK_DIAGRAM",
+  "out_name": "block_diagram.drawio",
+  "table_suffix": "",
+  "layout": {
+    "gap_h": 120,
+    "gap_v": 240,
+    "margin": 40,
+    "block_h": 60
+  },
+  "top": {
+    "frame_label": [
+      "TOP",
+      "(m_vlsit_hyperram_controller)"
+    ],
+    "block_label": [
+      "TOP",
+      "(m_vlsit_hyperram_controller)"
+    ],
+    "block_row": [
+      "TOP (m_vlsit_hyperram_controller)",
+      "Single structural top; instantiates six RTL child modules.",
+      "Section 14.2"
+    ]
+  },
+  "frame_row": [
+    "TOP (m_vlsit_hyperram_controller) frame",
+    "One structural top with APB4 CSR, AXI4, HyperBus control and PHY children.",
+    "Section 14.2"
+  ],
+  "frame_interfaces": [
+    "AXIO",
+    "APBI",
+    "HBIN",
+    "HBOUT",
+    "PWR",
+    "IDLE",
+    "INTR",
+    "CRCO",
+    "CRAP",
+    "APBX",
+    "CSR",
+    "CFG",
+    "AXI",
+    "PHY"
+  ],
+  "blocks": [
+    {
+      "key": "U_VLSIT_APB4_IF",
+      "label": [
+        "u_vlsit_apb4_if",
+        "(m_vlsit_apb4_if)"
+      ],
+      "width": 220,
+      "row": 0,
+      "col": 2,
+      "row_name": "u_vlsit_apb4_if (m_vlsit_apb4_if)",
+      "function": "APB4 bus transfer capture and response generation",
+      "source": "Section 14.2"
+    },
+    {
+      "key": "U_VLSIT_APB4_CDC",
+      "label": [
+        "u_vlsit_apb4_cdc",
+        "(m_vlsit_apb4_cdc)"
+      ],
+      "width": 220,
+      "row": 0,
+      "col": 1,
+      "row_name": "u_vlsit_apb4_cdc (m_vlsit_apb4_cdc)",
+      "function": "APB/core asynchronous request/response crossing with independent APB-side reset",
+      "source": "Section 14.2"
+    },
+    {
+      "key": "U_VLSIT_CSR_REGFILE",
+      "label": [
+        "u_vlsit_csr_regfile",
+        "(m_vlsit_csr_regfile)"
+      ],
+      "width": 260,
+      "row": 0,
+      "col": 0,
+      "row_name": "u_vlsit_csr_regfile (m_vlsit_csr_regfile)",
+      "function": "Configuration, status, timing, and interrupt register state",
+      "source": "Section 14.2"
+    },
+    {
+      "key": "U_VLSIT_AXI4_FRONTEND",
+      "label": [
+        "u_vlsit_axi4_frontend",
+        "(m_vlsit_axi4_frontend)"
+      ],
+      "width": 280,
+      "row": 1,
+      "col": 0,
+      "row_name": "u_vlsit_axi4_frontend (m_vlsit_axi4_frontend)",
+      "function": "AXI channel handshakes, request admission, response delivery",
+      "source": "Section 14.2"
+    },
+    {
+      "key": "U_VLSIT_HYPERBUS_CTRL",
+      "label": [
+        "u_vlsit_hyperbus_ctrl",
+        "(m_vlsit_hyperbus_ctrl)"
+      ],
+      "width": 280,
+      "row": 1,
+      "col": 2,
+      "row_name": "u_vlsit_hyperbus_ctrl (m_vlsit_hyperbus_ctrl)",
+      "function": "HyperBus transaction sequencing, initialization, segmentation, and error state",
+      "source": "Section 14.2"
+    },
+    {
+      "key": "U_VLSIT_HYPERBUS_PHY",
+      "label": [
+        "u_vlsit_hyperbus_phy",
+        "(m_vlsit_hyperbus_phy)"
+      ],
+      "width": 260,
+      "row": 1,
+      "col": 3,
+      "row_name": "u_vlsit_hyperbus_phy (m_vlsit_hyperbus_phy)",
+      "function": "DDR launch/capture and split DQ/RWDS input, output, OE pad-interface signals",
+      "source": "Section 14.2"
+    }
+  ],
+  "connectors": [
+    {
+      "src_side": "L",
+      "dst": "U_VLSIT_APB4_CDC",
+      "id": "APBX",
+      "dst_side": "R",
+      "src": "U_VLSIT_APB4_IF"
+    },
+    {
+      "src_side": "L",
+      "dst": "U_VLSIT_CSR_REGFILE",
+      "id": "CSR",
+      "dst_side": "R",
+      "src": "U_VLSIT_APB4_CDC"
+    },
+    {
+      "src_side": "R",
+      "dst": "U_VLSIT_HYPERBUS_CTRL",
+      "id": "AXI",
+      "dst_side": "L",
+      "src": "U_VLSIT_AXI4_FRONTEND"
+    },
+    {
+      "src_side": "B",
+      "dst": "U_VLSIT_HYPERBUS_CTRL",
+      "id": "CFG",
+      "dst_side": "T",
+      "src": "U_VLSIT_CSR_REGFILE"
+    },
+    {
+      "src_side": "R",
+      "dst": "U_VLSIT_HYPERBUS_PHY",
+      "id": "PHY",
+      "dst_side": "L",
+      "src": "U_VLSIT_HYPERBUS_CTRL"
+    }
+  ],
+  "externals": [
+    {
+      "id": "AXIO",
+      "block": "U_VLSIT_AXI4_FRONTEND",
+      "side": "L",
+      "dir": "in",
+      "pos": 0,
+      "text": [
+        "AXI4",
+        "SoC manager"
+      ]
+    },
+    {
+      "id": "APBI",
+      "block": "U_VLSIT_APB4_IF",
+      "side": "R",
+      "dir": "in",
+      "pos": 0,
+      "text": [
+        "APB4",
+        "SoC completer"
+      ]
+    },
+    {
+      "id": "HBIN",
+      "block": "U_VLSIT_HYPERBUS_PHY",
+      "side": "R",
+      "dir": "in",
+      "pos": -32,
+      "text": [
+        "PAD / MEMORY",
+        "i_hb_dq",
+        "i_hb_rwds"
+      ]
+    },
+    {
+      "id": "HBOUT",
+      "block": "U_VLSIT_HYPERBUS_PHY",
+      "side": "R",
+      "dir": "out",
+      "pos": 32,
+      "text": [
+        "SOC PAD WRAPPER",
+        "o_hb_dq / OE",
+        "o_hb_rwds / OE",
+        "CK / CS# / RESET#"
+      ]
+    },
+    {
+      "id": "PWR",
+      "block": "U_VLSIT_HYPERBUS_CTRL",
+      "side": "B",
+      "dir": "in",
+      "pos": -40,
+      "text": [
+        "PWR",
+        "i_mem_pwr_good"
+      ]
+    },
+    {
+      "id": "IDLE",
+      "block": "U_VLSIT_HYPERBUS_CTRL",
+      "side": "B",
+      "dir": "out",
+      "pos": 40,
+      "text": [
+        "IDLE",
+        "o_idle"
+      ]
+    },
+    {
+      "id": "INTR",
+      "block": "U_VLSIT_CSR_REGFILE",
+      "side": "L",
+      "dir": "out",
+      "pos": 0,
+      "text": [
+        "IRQ",
+        "o_int_hyperram"
+      ]
+    },
+    {
+      "id": "CRCO",
+      "block": "U_VLSIT_CSR_REGFILE",
+      "side": "T",
+      "dir": "in",
+      "pos": 0,
+      "text": [
+        "CLK/RESET-CORE",
+        "i_clk_core, i_rst_n_core"
+      ]
+    },
+    {
+      "id": "CRAP",
+      "block": "U_VLSIT_APB4_IF",
+      "side": "T",
+      "dir": "in",
+      "pos": 0,
+      "text": [
+        "CLK/RESET-APB",
+        "i_clk_apb, i_rst_n_apb"
+      ]
+    }
+  ],
+  "nets": [
+    {
+      "entry": "CRCO",
+      "sinks": [
+        {
+          "side": "B",
+          "id": "CC0",
+          "pos": -20,
+          "block": "U_VLSIT_APB4_CDC"
+        },
+        {
+          "side": "B",
+          "id": "CC1",
+          "pos": 0,
+          "block": "U_VLSIT_AXI4_FRONTEND"
+        },
+        {
+          "side": "B",
+          "id": "CC2",
+          "pos": -20,
+          "block": "U_VLSIT_HYPERBUS_CTRL"
+        },
+        {
+          "side": "B",
+          "id": "CC3",
+          "pos": 20,
+          "block": "U_VLSIT_HYPERBUS_PHY"
+        }
+      ]
+    },
+    {
+      "entry": "CRAP",
+      "sinks": [
+        {
+          "side": "T",
+          "id": "CA0",
+          "pos": 0,
+          "block": "U_VLSIT_APB4_CDC"
+        }
+      ]
+    }
+  ],
+  "interfaces": [
+    {
+      "id": "AXIO",
+      "name": "AXI4 subordinate interface",
+      "category": "Arm AMBA AXI4 IHI 0022 H.c",
+      "active": "SoC manager ↔ controller",
+      "signals": "AWID, AWADDR, AWLEN, AWSIZE, AWBURST, AWLOCK, AWCACHE, AWPROT, AWVALID, AWREADY; WDATA, WSTRB, WLAST, WVALID, WREADY; BID, BRESP, BVALID, BREADY; ARID, ARADDR, ARLEN, ARSIZE, ARBURST, ARLOCK, ARCACHE, ARPROT, ARVALID, ARREADY; RID, RDATA, RRESP, RLAST, RVALID, RREADY"
+    },
+    {
+      "id": "APBI",
+      "name": "APB4 CSR subordinate interface",
+      "category": "Arm AMBA APB4 IHI 0024 Issue D",
+      "active": "SoC APB manager ↔ controller",
+      "signals": "PADDR, PSEL, PENABLE, PWRITE, PWDATA, PSTRB, PPROT, PREADY, PRDATA, PSLVERR"
+    },
+    {
+      "id": "HBIN",
+      "name": "HyperBus DQ and RWDS input data",
+      "category": "HyperBus Rev. H and selected device profiles",
+      "active": "HyperRAM pads → SoC pad wrapper → PHY",
+      "signals": "i_hb_dq[PARA_MEM_DQ_W-1:0], i_hb_rwds[PARA_MEM_DQ_W/8-1:0]"
+    },
+    {
+      "id": "HBOUT",
+      "name": "HyperBus data, output enables and control outputs",
+      "category": "HyperBus Rev. H and selected device profiles",
+      "active": "PHY → SoC pad wrapper → HyperRAM pads",
+      "signals": "o_hb_dq and o_hb_dq_oe; o_hb_rwds and o_hb_rwds_oe; CK, CK#, CS#, o_rst_n_mem"
+    },
+    {
+      "id": "PWR",
+      "name": "External memory power-good level",
+      "category": "custom asynchronous status",
+      "active": "SoC power supervisor → controller",
+      "signals": "i_mem_pwr_good"
+    },
+    {
+      "id": "IDLE",
+      "name": "Fully drained and initialized status",
+      "category": "custom status",
+      "active": "controller → SoC reset controller",
+      "signals": "o_idle"
+    },
+    {
+      "id": "INTR",
+      "name": "Enabled interrupt status",
+      "category": "custom interrupt",
+      "active": "controller → SoC interrupt controller",
+      "signals": "o_int_hyperram"
+    },
+    {
+      "id": "CRCO",
+      "name": "Shared AXI4/HyperBus clock and core reset",
+      "category": "clock/reset",
+      "active": "SoC clock/reset controller → core modules",
+      "signals": "i_clk_core, i_rst_n_core"
+    },
+    {
+      "id": "CRAP",
+      "name": "Independent APB4 clock and reset",
+      "category": "clock/reset",
+      "active": "SoC clock/reset controller → APB modules",
+      "signals": "i_clk_apb, i_rst_n_apb"
+    },
+    {
+      "id": "APBX",
+      "name": "APB4 transfer request and response",
+      "category": "internal interface",
+      "active": "APB interface → CDC bridge",
+      "signals": "address, write direction, write data, byte strobes, protection attributes, response data, ready, transfer error"
+    },
+    {
+      "id": "CSR",
+      "name": "Cross-domain CSR request and response",
+      "category": "internal interface",
+      "active": "CDC bridge ↔ CSR register file",
+      "signals": "request address, request direction, request write data, request byte strobes, request valid, request ready, response read data, response error, response valid, response ready"
+    },
+    {
+      "id": "CFG",
+      "name": "Controller configuration and status",
+      "category": "internal interface",
+      "active": "CSR register file ↔ HyperBus controller",
+      "signals": "enable, timing counts, segmentation limit, initialization status, busy status, event status"
+    },
+    {
+      "id": "AXI",
+      "name": "Memory transaction request and response",
+      "category": "internal interface",
+      "active": "AXI frontend ↔ HyperBus controller",
+      "signals": "address, transaction ID, burst length, transfer size, burst type, write data, byte strobes, read data, response status, request and response handshakes"
+    },
+    {
+      "id": "PHY",
+      "name": "HyperBus command, data and timing controls",
+      "category": "internal interface",
+      "active": "HyperBus controller → PHY",
+      "signals": "command/address, read/write direction, data, byte mask, chip select, reset, pin output enables, captured data, RWDS status"
+    }
+  ],
+  "legend_note": "The top module is structural. AXI4 and HyperBus share CLK-CORE; APB4 is asynchronous on CLK-APB. DQ/RWDS cross the top boundary as separate input, output, and active-high OE signals; the SoC pad wrapper creates the physical bidirectional buses. APB-only reset requires an idle APB bus and no CDC request or response pending and preserves core and memory state."
+}

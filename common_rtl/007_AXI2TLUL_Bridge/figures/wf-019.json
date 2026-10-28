@@ -1,0 +1,183 @@
+{
+ "signal": [
+  {
+   "name": "i_clk_main",
+   "wave": "p........."
+  },
+  [
+   "AXI AR",
+   {
+    "name": "i_axi_arvalid",
+    "wave": "0100000000"
+   },
+   {
+    "name": "o_axi_arready",
+    "wave": "0111111111"
+   },
+   {
+    "name": "i_axi_arid",
+    "wave": "x=xxxxxxxx",
+    "data": [
+     "1"
+    ]
+   },
+   {
+    "name": "i_axi_araddr",
+    "wave": "x=xxxxxxxx",
+    "data": [
+     "0x100"
+    ]
+   },
+   {
+    "name": "i_axi_arlen",
+    "wave": "x=xxxxxxxx",
+    "data": [
+     "1"
+    ]
+   },
+   {
+    "name": "i_axi_arsize",
+    "wave": "x=xxxxxxxx",
+    "data": [
+     "2"
+    ]
+   },
+   {
+    "name": "i_axi_arburst",
+    "wave": "x=xxxxxxxx",
+    "data": [
+     "INCR"
+    ]
+   }
+  ],
+  [
+   "TL-UL A",
+   {
+    "name": "o_tl_a_valid",
+    "wave": "0011000000"
+   },
+   {
+    "name": "i_tl_a_ready",
+    "wave": "1111111111"
+   },
+   {
+    "name": "o_tl_a_opcode",
+    "wave": "xx=.xxxxxx",
+    "data": [
+     "Get"
+    ]
+   },
+   {
+    "name": "o_tl_a_src",
+    "wave": "xx==xxxxxx",
+    "data": [
+     "rd0",
+     "rd1"
+    ]
+   },
+   {
+    "name": "o_tl_a_addr",
+    "wave": "xx==xxxxxx",
+    "data": [
+     "0x100",
+     "0x104"
+    ]
+   },
+   {
+    "name": "o_tl_a_size",
+    "wave": "xx=.xxxxxx",
+    "data": [
+     "2"
+    ]
+   },
+   {
+    "name": "o_tl_a_mask",
+    "wave": "xx=.xxxxxx",
+    "data": [
+     "1111"
+    ]
+   }
+  ],
+  [
+   "TL-UL D",
+   {
+    "name": "i_tl_d_valid",
+    "wave": "0000101000"
+   },
+   {
+    "name": "o_tl_d_ready",
+    "wave": "0111111111"
+   },
+   {
+    "name": "i_tl_d_opcode",
+    "wave": "xxxx=x=xxx",
+    "data": [
+     "AckData",
+     "AckData"
+    ]
+   },
+   {
+    "name": "i_tl_d_src",
+    "wave": "xxxx=x=xxx",
+    "data": [
+     "rd1",
+     "rd0"
+    ]
+   },
+   {
+    "name": "i_tl_d_data",
+    "wave": "xxxx=x=xxx",
+    "data": [
+     "D1",
+     "D0"
+    ]
+   },
+   {
+    "name": "i_tl_d_err",
+    "wave": "0000000000"
+   }
+  ],
+  [
+   "AXI R",
+   {
+    "name": "o_axi_rvalid",
+    "wave": "0000000101"
+   },
+   {
+    "name": "i_axi_rready",
+    "wave": "1111111111"
+   },
+   {
+    "name": "o_axi_rid",
+    "wave": "xxxxxxx=x=",
+    "data": [
+     "1",
+     "1"
+    ]
+   },
+   {
+    "name": "o_axi_rdata",
+    "wave": "xxxxxxx=x=",
+    "data": [
+     "D0",
+     "D1"
+    ]
+   },
+   {
+    "name": "o_axi_rresp",
+    "wave": "xxxxxxx=x=",
+    "data": [
+     "OKAY",
+     "OKAY"
+    ]
+   },
+   {
+    "name": "o_axi_rlast",
+    "wave": "0000000001"
+   }
+  ]
+ ],
+ "head": {
+  "text": "WF-019 One ID, responses in reverse order"
+ }
+}

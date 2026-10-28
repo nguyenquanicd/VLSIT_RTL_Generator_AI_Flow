@@ -1,0 +1,7 @@
+{
+  "kind": "simulation-derived waveform",
+  "image": "meta_model_S3.svg",
+  "generator": "waveforms/proto/run_waveforms.py",
+  "regenerate": "cd waveforms/proto && python run_waveforms.py <out dir>",
+  "note": "The image is drawn from a simulation (iverilog) of the RTL or the prototype by wavelib.py; it has no WaveJSON source."
+}

@@ -1,0 +1,104 @@
+{
+  "head": {
+    "text": "WF-005 Partial write and DQ/RWDS output enables",
+    "tick": 0
+  },
+  "signal": [
+    [
+      "AXI write",
+      {
+        "name": "AWVALID",
+        "wave": "001....."
+      },
+      {
+        "name": "AWREADY",
+        "wave": "11111111"
+      },
+      {
+        "name": "AWADDR",
+        "wave": "x.=.....",
+        "data": [
+          "ADDR_0"
+        ]
+      },
+      {
+        "name": "WVALID",
+        "wave": "0.111..."
+      },
+      {
+        "name": "WREADY",
+        "wave": "11111111"
+      },
+      {
+        "name": "WDATA",
+        "wave": "x.===...",
+        "data": [
+          "DATA_0",
+          "DATA_1",
+          "DATA_2"
+        ]
+      },
+      {
+        "name": "WSTRB",
+        "wave": "x.===...",
+        "data": [
+          "MASK_0",
+          "MASK_1",
+          "MASK_2"
+        ]
+      },
+      {
+        "name": "BVALID",
+        "wave": "0....1.."
+      },
+      {
+        "name": "BRESP",
+        "wave": "x....=..",
+        "data": [
+          "OKAY"
+        ]
+      }
+    ],
+    {},
+    [
+      "HyperBus pad-side logical pins",
+      {
+        "name": "o_hb_dq_oe",
+        "wave": "0.11100."
+      },
+      {
+        "name": "o_hb_dq",
+        "wave": "x.===..x",
+        "data": [
+          "DATA_0",
+          "DATA_1",
+          "DATA_2"
+        ]
+      },
+      {
+        "name": "o_hb_rwds_oe",
+        "wave": "0.11100."
+      },
+      {
+        "name": "o_hb_rwds",
+        "wave": "x.===..x",
+        "data": [
+          "MASK_0",
+          "MASK_1",
+          "MASK_2"
+        ]
+      },
+      {
+        "name": "CS#",
+        "wave": "1.00011."
+      }
+    ]
+  ],
+  "foot": {
+    "text": "RWDS carries the byte mask; exact lane values depend on the configured width and WSTRB.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

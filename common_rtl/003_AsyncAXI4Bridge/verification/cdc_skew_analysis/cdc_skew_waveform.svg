@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 666" width="1180" font-family="Consolas, Menlo, monospace" font-size="12">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="10" y="22" font-size="15" font-weight="bold">AXI3 AW channel FIFO, metastability seed 1: a Gray pointer code that never existed</text>
+<text x="10" y="42" fill="#444">Read from failed_meta_axi3_seed1.vcd, instance u_vlsit_axi3_async_aw. Time axis in ns.</text>
+<line x1="230.0" y1="62" x2="230.0" y2="546" stroke="#e3e3e3"/>
+<text x="230.0" y="56" text-anchor="middle" fill="#666">120</text>
+<line x1="354.0" y1="62" x2="354.0" y2="546" stroke="#e3e3e3"/>
+<text x="354.0" y="56" text-anchor="middle" fill="#666">130</text>
+<line x1="478.0" y1="62" x2="478.0" y2="546" stroke="#e3e3e3"/>
+<text x="478.0" y="56" text-anchor="middle" fill="#666">140</text>
+<line x1="602.0" y1="62" x2="602.0" y2="546" stroke="#e3e3e3"/>
+<text x="602.0" y="56" text-anchor="middle" fill="#666">150</text>
+<line x1="726.0" y1="62" x2="726.0" y2="546" stroke="#e3e3e3"/>
+<text x="726.0" y="56" text-anchor="middle" fill="#666">160</text>
+<line x1="850.0" y1="62" x2="850.0" y2="546" stroke="#e3e3e3"/>
+<text x="850.0" y="56" text-anchor="middle" fill="#666">170</text>
+<line x1="974.0" y1="62" x2="974.0" y2="546" stroke="#e3e3e3"/>
+<text x="974.0" y="56" text-anchor="middle" fill="#666">180</text>
+<line x1="1098.0" y1="62" x2="1098.0" y2="546" stroke="#e3e3e3"/>
+<text x="1098.0" y="56" text-anchor="middle" fill="#666">190</text>
+<text x="222" y="91.0" text-anchor="end" fill="#111">i_clk_wr (10 ns)</text>
+<path d="M230.0,96.0 L292.0,96.0 L292.0,76.0 L354.0,76.0 L354.0,96.0 L416.0,96.0 L416.0,76.0 L478.0,76.0 L478.0,96.0 L540.0,96.0 L540.0,76.0 L602.0,76.0 L602.0,96.0 L664.0,96.0 L664.0,76.0 L726.0,76.0 L726.0,96.0 L788.0,96.0 L788.0,76.0 L850.0,76.0 L850.0,96.0 L912.0,96.0 L912.0,76.0 L974.0,76.0 L974.0,96.0 L1036.0,96.0 L1036.0,76.0 L1098.0,76.0 L1098.0,96.0 L1160.0,96.0 L1160.0,76.0 L1160.0,76.0" fill="none" stroke="#888" stroke-width="1.6"/>
+<text x="222" y="125.0" text-anchor="end" fill="#111">reg_wgray [2:0] (write)</text>
+<polygon points="233.0,121 237.0,110 285.0,110 289.0,121 285.0,132 237.0,132" fill="#f4f6fa" stroke="#555"/>
+<text x="261.0" y="125.0" text-anchor="middle">000</text>
+<polygon points="295.0,121 299.0,110 409.0,110 413.0,121 409.0,132 299.0,132" fill="#f4f6fa" stroke="#555"/>
+<text x="354.0" y="125.0" text-anchor="middle">001</text>
+<polygon points="419.0,121 423.0,110 533.0,110 537.0,121 533.0,132 423.0,132" fill="#f4f6fa" stroke="#555"/>
+<text x="478.0" y="125.0" text-anchor="middle">011</text>
+<polygon points="543.0,121 547.0,110 657.0,110 661.0,121 657.0,132 547.0,132" fill="#f4f6fa" stroke="#555"/>
+<text x="602.0" y="125.0" text-anchor="middle">010</text>
+<polygon points="667.0,121 671.0,110 1153.0,110 1157.0,121 1153.0,132 671.0,132" fill="#f4f6fa" stroke="#555"/>
+<text x="912.0" y="125.0" text-anchor="middle">110</text>
+<text x="222" y="159.0" text-anchor="end" fill="#111">sync bit0 input</text>
+<path d="M230.0,164.0 L292.0,164.0 L292.0,144.0 L540.0,144.0 L540.0,164.0 L1160.0,164.0" fill="none" stroke="#1f5fbf" stroke-width="1.6"/>
+<text x="222" y="193.0" text-anchor="end" fill="#111">sync bit0 output</text>
+<path d="M230.0,198.0 L577.2,198.0 L577.2,178.0 L750.8,178.0 L750.8,198.0 L1160.0,198.0" fill="none" stroke="#c0392b" stroke-width="1.6"/>
+<text x="222" y="227.0" text-anchor="end" fill="#111">sync bit1 input</text>
+<path d="M230.0,232.0 L416.0,232.0 L416.0,212.0 L1160.0,212.0" fill="none" stroke="#1f5fbf" stroke-width="1.6"/>
+<text x="222" y="261.0" text-anchor="end" fill="#111">sync bit1 output</text>
+<path d="M230.0,266.0 L1098.0,266.0 L1098.0,246.0 L1160.0,246.0" fill="none" stroke="#c0392b" stroke-width="1.6"/>
+<text x="222" y="295.0" text-anchor="end" fill="#111">sync bit2 input</text>
+<path d="M230.0,300.0 L664.0,300.0 L664.0,280.0 L1160.0,280.0" fill="none" stroke="#1f5fbf" stroke-width="1.6"/>
+<text x="222" y="329.0" text-anchor="end" fill="#111">sync bit2 output</text>
+<path d="M230.0,334.0 L1098.0,334.0 L1098.0,314.0 L1160.0,314.0" fill="none" stroke="#c0392b" stroke-width="1.6"/>
+<text x="222" y="363.0" text-anchor="end" fill="#111">i_clk_rd (14 ns)</text>
+<path d="M230.0,348.0 L316.8,348.0 L316.8,368.0 L403.6,368.0 L403.6,348.0 L490.4,348.0 L490.4,368.0 L577.2,368.0 L577.2,348.0 L664.0,348.0 L664.0,368.0 L750.8,368.0 L750.8,348.0 L837.6,348.0 L837.6,368.0 L924.4,368.0 L924.4,348.0 L1011.2,348.0 L1011.2,368.0 L1098.0,368.0 L1098.0,348.0 L1160.0,348.0" fill="none" stroke="#888" stroke-width="1.6"/>
+<text x="222" y="397.0" text-anchor="end" fill="#111">w_wgray_s [2:0] (read side)</text>
+<polygon points="233.0,393 237.0,382 570.2,382 574.2,393 570.2,404 237.0,404" fill="#f4f6fa" stroke="#555"/>
+<text x="403.6" y="397.0" text-anchor="middle">000</text>
+<polygon points="580.2,393 584.2,382 743.8,382 747.8,393 743.8,404 584.2,404" fill="#f4f6fa" stroke="#555"/>
+<text x="664.0" y="397.0" text-anchor="middle">001</text>
+<polygon points="753.8,393 757.8,382 1091.0,382 1095.0,393 1091.0,404 757.8,404" fill="#f4f6fa" stroke="#555"/>
+<text x="924.4" y="397.0" text-anchor="middle">000</text>
+<polygon points="1101.0,393 1105.0,382 1153.0,382 1157.0,393 1153.0,404 1105.0,404" fill="#f4f6fa" stroke="#555"/>
+<text x="1129.0" y="397.0" text-anchor="middle">110</text>
+<text x="222" y="431.0" text-anchor="end" fill="#111">reg_rgray [2:0] (read)</text>
+<polygon points="233.0,427 237.0,416 1153.0,416 1157.0,427 1153.0,438 237.0,438" fill="#f4f6fa" stroke="#555"/>
+<text x="695.0" y="431.0" text-anchor="middle">000</text>
+<text x="222" y="465.0" text-anchor="end" fill="#111">w_empty_n  (= wgray_s == rgray)</text>
+<path d="M230.0,450.0 L577.2,450.0 L577.2,470.0 L750.8,470.0 L750.8,450.0 L1098.0,450.0 L1098.0,470.0 L1160.0,470.0" fill="none" stroke="#c0392b" stroke-width="1.6"/>
+<text x="222" y="499.0" text-anchor="end" fill="#111">o_axi_awvalid (destination)</text>
+<path d="M230.0,504.0 L577.2,504.0 L577.2,484.0 L750.8,484.0 L750.8,504.0 L1098.0,504.0 L1098.0,484.0 L1160.0,484.0" fill="none" stroke="#1f5fbf" stroke-width="1.6"/>
+<text x="222" y="533.0" text-anchor="end" fill="#111">i_axi_awready (destination)</text>
+<path d="M230.0,538.0 L1160.0,538.0" fill="none" stroke="#1f5fbf" stroke-width="1.6"/>
+<line x1="750.8" y1="62" x2="750.8" y2="546" stroke="#c0392b" stroke-dasharray="5,4" stroke-width="1.4"/>
+<text x="754.8" y="564" fill="#c0392b" font-weight="bold">w_empty_n = 1 @ 162 ns</text>
+<line x1="750.8" y1="62" x2="750.8" y2="546" stroke="#c0392b" stroke-dasharray="5,4" stroke-width="1.4"/>
+<text x="754.8" y="580" fill="#c0392b" font-weight="bold">VALID drops @ 162 ns</text>
+<text x="10" y="606" fill="#333">Blue = bit entering the synchronizer (write domain). Red bit rows = bit leaving the synchronizer (read domain, with the metastability delay).</text>
+<text x="10" y="622" fill="#333">The read-side pointer w_wgray_s is built from the three red output bits, each delayed independently.</text>
+</svg>

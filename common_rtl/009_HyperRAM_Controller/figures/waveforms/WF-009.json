@@ -1,0 +1,73 @@
+{
+  "head": {
+    "text": "WF-009 Invalid APB address error and independent APB reset",
+    "tick": 0
+  },
+  "signal": [
+    [
+      "APB4 error access",
+      {
+        "name": "PSEL",
+        "wave": "0111...."
+      },
+      {
+        "name": "PENABLE",
+        "wave": "0011...."
+      },
+      {
+        "name": "PADDR",
+        "wave": "x.=.....",
+        "data": [
+          "INVALID_CSR_ADDR"
+        ]
+      },
+      {
+        "name": "PREADY",
+        "wave": "0001...."
+      },
+      {
+        "name": "PSLVERR",
+        "wave": "0001...."
+      },
+      {
+        "name": "Core CSR state",
+        "wave": "x.=.....",
+        "data": [
+          "STATE_BEFORE",
+          "UNCHANGED"
+        ]
+      }
+    ],
+    {},
+    [
+      "Independent reset / retained core",
+      {
+        "name": "i_rst_n_apb",
+        "wave": "11100011"
+      },
+      {
+        "name": "o_rst_n_mem",
+        "wave": "11111111"
+      },
+      {
+        "name": "Core active state",
+        "wave": "0.111111"
+      },
+      {
+        "name": "APB/CDC pending",
+        "wave": "00000000"
+      },
+      {
+        "name": "APB idle",
+        "wave": "11111111"
+      }
+    ]
+  ],
+  "foot": {
+    "text": "Invalid/reserved access completes with PREADY=1, PSLVERR=1 and no state change; APB reset is applied while bus/CDC are idle.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

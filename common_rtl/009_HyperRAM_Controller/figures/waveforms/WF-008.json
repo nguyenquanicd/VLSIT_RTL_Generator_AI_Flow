@@ -1,0 +1,80 @@
+{
+  "head": {
+    "text": "WF-008 APB CSR configuration and interrupt control",
+    "tick": 0
+  },
+  "signal": [
+    [
+      "APB4 CSR accesses",
+      {
+        "name": "PSEL",
+        "wave": "01111110."
+      },
+      {
+        "name": "PENABLE",
+        "wave": "00101010."
+      },
+      {
+        "name": "PWRITE",
+        "wave": "01111110."
+      },
+      {
+        "name": "PADDR",
+        "wave": "x.=.=.=..",
+        "data": [
+          "TIMING_CFG",
+          "IRQ_ENABLE",
+          "IRQ_INJECT"
+        ]
+      },
+      {
+        "name": "PWDATA",
+        "wave": "x.=.=.=..",
+        "data": [
+          "TIMING_VALUE",
+          "IRQ_MASK",
+          "EVENT_BIT"
+        ]
+      },
+      {
+        "name": "PREADY",
+        "wave": "00101010."
+      },
+      {
+        "name": "PSLVERR",
+        "wave": "00000000."
+      }
+    ],
+    {},
+    [
+      "Interrupt state",
+      {
+        "name": "Raw status",
+        "wave": "0......1."
+      },
+      {
+        "name": "Enable",
+        "wave": "0...1...."
+      },
+      {
+        "name": "Masked status",
+        "wave": "0......1."
+      },
+      {
+        "name": "IRQ",
+        "wave": "0......1."
+      },
+      {
+        "name": "Raw W1C clear",
+        "wave": "0.......1"
+      }
+    ]
+  ],
+  "foot": {
+    "text": "Symbolic CSR accesses; APB/core CDC latency and IRQ synchronization latency are not specified here.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

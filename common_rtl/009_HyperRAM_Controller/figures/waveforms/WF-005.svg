@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="462" height="568" viewBox="0 0 462 568" font-family="Helvetica,Arial,sans-serif">
+<rect width="100%" height="100%" fill="#fff"/>
+<text x="12" y="20" font-size="14" font-weight="bold">WF-005 Partial write and DQ/RWDS output enables</text>
+<line x1="162" y1="30" x2="162" y2="540" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="198" y1="30" x2="198" y2="540" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="234" y1="30" x2="234" y2="540" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="270" y1="30" x2="270" y2="540" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="306" y1="30" x2="306" y2="540" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="342" y1="30" x2="342" y2="540" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="378" y1="30" x2="378" y2="540" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="414" y1="30" x2="414" y2="540" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="450" y1="30" x2="450" y2="540" stroke="#ccc" stroke-dasharray="2,3"/>
+<text x="12" y="49" font-size="12" font-weight="bold" fill="#225">AXI write</text>
+<text x="154" y="79" font-size="12" text-anchor="end">AWVALID</text>
+<polyline points="162.0,81.0 198.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="198.0,81.0 234.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,81.0 234.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,63.0 270.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="270.0,63.0 306.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,63.0 342.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,63.0 378.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,63.0 414.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,63.0 450.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="109" font-size="12" text-anchor="end">AWREADY</text>
+<polyline points="162.0,93.0 198.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="198.0,93.0 234.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,93.0 270.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="270.0,93.0 306.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,93.0 342.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,93.0 378.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,93.0 414.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,93.0 450.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="139" font-size="12" text-anchor="end">AWADDR</text>
+<rect x="162.0" y="123.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="198.0" y="123.0" width="36.0" height="18.0" fill="#ddd" stroke="none"/>
+<polygon points="238.0,123.0 446.0,123.0 450.0,132.0 446.0,141.0 238.0,141.0 234.0,132.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="342.0" y="136.0" text-anchor="middle" font-size="11">ADDR_0</text>
+<text x="154" y="169" font-size="12" text-anchor="end">WVALID</text>
+<polyline points="162.0,171.0 198.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="198.0,171.0 234.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,171.0 234.0,153.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,153.0 270.0,153.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="270.0,153.0 306.0,153.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,153.0 342.0,153.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,153.0 378.0,153.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,153.0 414.0,153.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,153.0 450.0,153.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="199" font-size="12" text-anchor="end">WREADY</text>
+<polyline points="162.0,183.0 198.0,183.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="198.0,183.0 234.0,183.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,183.0 270.0,183.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="270.0,183.0 306.0,183.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,183.0 342.0,183.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,183.0 378.0,183.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,183.0 414.0,183.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,183.0 450.0,183.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="229" font-size="12" text-anchor="end">WDATA</text>
+<rect x="162.0" y="213.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="198.0" y="213.0" width="36.0" height="18.0" fill="#ddd" stroke="none"/>
+<polygon points="238.0,213.0 266.0,213.0 270.0,222.0 266.0,231.0 238.0,231.0 234.0,222.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="252.0" y="226.0" text-anchor="middle" font-size="11">DATA_0</text>
+<polygon points="274.0,213.0 302.0,213.0 306.0,222.0 302.0,231.0 274.0,231.0 270.0,222.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="288.0" y="226.0" text-anchor="middle" font-size="11">DATA_1</text>
+<polygon points="310.0,213.0 446.0,213.0 450.0,222.0 446.0,231.0 310.0,231.0 306.0,222.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="378.0" y="226.0" text-anchor="middle" font-size="11">DATA_2</text>
+<text x="154" y="259" font-size="12" text-anchor="end">WSTRB</text>
+<rect x="162.0" y="243.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="198.0" y="243.0" width="36.0" height="18.0" fill="#ddd" stroke="none"/>
+<polygon points="238.0,243.0 266.0,243.0 270.0,252.0 266.0,261.0 238.0,261.0 234.0,252.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="252.0" y="256.0" text-anchor="middle" font-size="11">MASK_0</text>
+<polygon points="274.0,243.0 302.0,243.0 306.0,252.0 302.0,261.0 274.0,261.0 270.0,252.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="288.0" y="256.0" text-anchor="middle" font-size="11">MASK_1</text>
+<polygon points="310.0,243.0 446.0,243.0 450.0,252.0 446.0,261.0 310.0,261.0 306.0,252.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="378.0" y="256.0" text-anchor="middle" font-size="11">MASK_2</text>
+<text x="154" y="289" font-size="12" text-anchor="end">BVALID</text>
+<polyline points="162.0,291.0 198.0,291.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="198.0,291.0 234.0,291.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,291.0 270.0,291.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="270.0,291.0 306.0,291.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,291.0 342.0,291.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,291.0 342.0,273.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,273.0 378.0,273.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,273.0 414.0,273.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,273.0 450.0,273.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="319" font-size="12" text-anchor="end">BRESP</text>
+<rect x="162.0" y="303.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="198.0" y="303.0" width="36.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="234.0" y="303.0" width="36.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="270.0" y="303.0" width="36.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="306.0" y="303.0" width="36.0" height="18.0" fill="#ddd" stroke="none"/>
+<polygon points="346.0,303.0 446.0,303.0 450.0,312.0 446.0,321.0 346.0,321.0 342.0,312.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="396.0" y="316.0" text-anchor="middle" font-size="11">OKAY</text>
+<text x="12" y="379" font-size="12" font-weight="bold" fill="#225">HyperBus pad-side logical pins</text>
+<text x="154" y="409" font-size="12" text-anchor="end">o_hb_dq_oe</text>
+<polyline points="162.0,411.0 198.0,411.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="198.0,411.0 234.0,411.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,411.0 234.0,393.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,393.0 270.0,393.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="270.0,393.0 306.0,393.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,393.0 342.0,393.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,393.0 342.0,411.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,411.0 378.0,411.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,411.0 414.0,411.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,411.0 450.0,411.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="439" font-size="12" text-anchor="end">o_hb_dq</text>
+<rect x="162.0" y="423.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="198.0" y="423.0" width="36.0" height="18.0" fill="#ddd" stroke="none"/>
+<polygon points="238.0,423.0 266.0,423.0 270.0,432.0 266.0,441.0 238.0,441.0 234.0,432.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="252.0" y="436.0" text-anchor="middle" font-size="11">DATA_0</text>
+<polygon points="274.0,423.0 302.0,423.0 306.0,432.0 302.0,441.0 274.0,441.0 270.0,432.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="288.0" y="436.0" text-anchor="middle" font-size="11">DATA_1</text>
+<polygon points="310.0,423.0 410.0,423.0 414.0,432.0 410.0,441.0 310.0,441.0 306.0,432.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="360.0" y="436.0" text-anchor="middle" font-size="11">DATA_2</text>
+<rect x="414.0" y="423.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<text x="154" y="469" font-size="12" text-anchor="end">o_hb_rwds_oe</text>
+<polyline points="162.0,471.0 198.0,471.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="198.0,471.0 234.0,471.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,471.0 234.0,453.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,453.0 270.0,453.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="270.0,453.0 306.0,453.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,453.0 342.0,453.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,453.0 342.0,471.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,471.0 378.0,471.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,471.0 414.0,471.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,471.0 450.0,471.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="499" font-size="12" text-anchor="end">o_hb_rwds</text>
+<rect x="162.0" y="483.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="198.0" y="483.0" width="36.0" height="18.0" fill="#ddd" stroke="none"/>
+<polygon points="238.0,483.0 266.0,483.0 270.0,492.0 266.0,501.0 238.0,501.0 234.0,492.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="252.0" y="496.0" text-anchor="middle" font-size="11">MASK_0</text>
+<polygon points="274.0,483.0 302.0,483.0 306.0,492.0 302.0,501.0 274.0,501.0 270.0,492.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="288.0" y="496.0" text-anchor="middle" font-size="11">MASK_1</text>
+<polygon points="310.0,483.0 410.0,483.0 414.0,492.0 410.0,501.0 310.0,501.0 306.0,492.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="360.0" y="496.0" text-anchor="middle" font-size="11">MASK_2</text>
+<rect x="414.0" y="483.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<text x="154" y="529" font-size="12" text-anchor="end">CS#</text>
+<polyline points="162.0,513.0 198.0,513.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="198.0,513.0 234.0,513.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,513.0 234.0,531.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,531.0 270.0,531.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="270.0,531.0 306.0,531.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,531.0 342.0,531.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,531.0 342.0,513.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,513.0 378.0,513.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,513.0 414.0,513.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,513.0 450.0,513.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="12" y="560" font-size="11" fill="#444">RWDS carries the byte mask; exact lane values depend on the configured width and WSTRB.</text>
+</svg>

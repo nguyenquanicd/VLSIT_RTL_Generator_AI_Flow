@@ -1,0 +1,61 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_crc",
+      "wave": "p...."
+    },
+    {
+      "name": "i_rst_n_crc",
+      "wave": "1...."
+    },
+    {
+      "name": "i_check_valid",
+      "wave": "010.."
+    },
+    {
+      "name": "o_check_data_ready",
+      "wave": "1.01."
+    },
+    {
+      "name": "i_check_data[31:0]",
+      "wave": "x=xxx",
+      "data": [
+        "DATA"
+      ]
+    },
+    {
+      "name": "i_check_last",
+      "wave": "010.."
+    },
+    {
+      "name": "i_check_crc",
+      "wave": "x=xxx",
+      "data": [
+        "REF"
+      ]
+    },
+    {
+      "name": "o_check_pass",
+      "wave": "x.1x."
+    },
+    {
+      "name": "o_check_crc_valid",
+      "wave": "0.10."
+    },
+    {
+      "name": "i_check_crc_ready",
+      "wave": "0.10."
+    }
+  ],
+  "head": {
+    "text": "Checker match with final-beat reference capture",
+    "tick": 0
+  },
+  "foot": {
+    "text": "Final-beat reference matches calculated CRC.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

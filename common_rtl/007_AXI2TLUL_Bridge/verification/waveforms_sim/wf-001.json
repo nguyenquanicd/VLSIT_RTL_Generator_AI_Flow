@@ -1,0 +1,93 @@
+{
+ "signal": [
+  {
+   "name": "i_clk_main",
+   "wave": "p............."
+  },
+  {
+   "name": "i_rst_n_main",
+   "wave": "11111001111111",
+   "data": []
+  },
+  {
+   "name": "i_axi_arvalid",
+   "wave": "01000000001000",
+   "data": []
+  },
+  {
+   "name": "o_axi_arready",
+   "wave": "01111000111111",
+   "data": []
+  },
+  {
+   "name": "i_axi_araddr",
+   "wave": "0=00000000=000",
+   "data": [
+    "0x100",
+    "0x200"
+   ]
+  },
+  {
+   "name": "i_axi_arlen",
+   "wave": "0=00000000=000",
+   "data": [
+    "0x3",
+    "0x0"
+   ]
+  },
+  {
+   "name": "i_axi_arsize",
+   "wave": "0=00000000.000",
+   "data": [
+    "0x2"
+   ]
+  },
+  {
+   "name": "i_axi_arburst",
+   "wave": "0=00000000.000",
+   "data": [
+    "0x1"
+   ]
+  },
+  {
+   "name": "o_axi_rvalid",
+   "wave": "00000000000000",
+   "data": []
+  },
+  {
+   "name": "o_axi_bvalid",
+   "wave": "00000000000000",
+   "data": []
+  },
+  {
+   "name": "o_tl_a_valid",
+   "wave": "00111000000100",
+   "data": []
+  },
+  {
+   "name": "i_tl_a_ready",
+   "wave": "11111111111111",
+   "data": []
+  },
+  {
+   "name": "o_tl_a_src",
+   "wave": "0001=000000000",
+   "data": [
+    "0x2"
+   ]
+  },
+  {
+   "name": "o_tl_d_ready",
+   "wave": "01111000111111",
+   "data": []
+  },
+  {
+   "name": "o_evt_orphan_resp",
+   "wave": "00000000000000",
+   "data": []
+  }
+ ],
+ "head": {
+  "text": "WF-001 Reset in the middle of traffic and release (simulated)"
+ }
+}

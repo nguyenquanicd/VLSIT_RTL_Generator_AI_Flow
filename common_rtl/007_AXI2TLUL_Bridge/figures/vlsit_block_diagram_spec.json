@@ -1,0 +1,523 @@
+{
+ "page_name": "BLOCK_DIAGRAM",
+ "out_name": "vlsit_block_diagram.drawio",
+ "table_suffix": "",
+ "layout": {
+  "gap_h": 70,
+  "gap_v": 120,
+  "margin": 40,
+  "block_h": 60
+ },
+ "top": {
+  "frame_label": [
+   "TOP",
+   "(m_vlsit_axi2tlul_top)"
+  ],
+  "block_label": [
+   "TOP",
+   "(m_vlsit_axi2tlul_top)"
+  ],
+  "block_row": [
+   "TOP (m_vlsit_axi2tlul_top)",
+   "AXI4 to TL-UL bridge.",
+   "Section 14.2"
+  ]
+ },
+ "frame_row": [
+  "TOP (m_vlsit_axi2tlul_top) frame",
+  "Structural top of the bridge. It instantiates the input slices, the two request engines, the arbiter, the response decoder, the two slot tables, and the storage, and holds no logic of its own. The AXI4 interface is on the left and top, the TL-UL interface on top and bottom.",
+  "Section 14.2"
+ ],
+ "frame_interfaces": [
+  "AR",
+  "AW",
+  "AXW",
+  "AXR",
+  "AXB",
+  "TLA",
+  "TLD",
+  "EVT",
+  "CRCLK"
+ ],
+ "blocks": [
+  {
+   "key": "ars",
+   "label": [
+    "u_ar_skid",
+    "(m_vlsit_axi2tlul_skid)"
+   ],
+   "width": 240,
+   "row": 0,
+   "col": 0,
+   "row_name": "u_ar_skid (m_vlsit_axi2tlul_skid)",
+   "function": "Two-entry slice of the read address channel with registered ready; an empty slice passes a beat in the same cycle.",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "aws",
+   "label": [
+    "u_aw_skid",
+    "(m_vlsit_axi2tlul_skid)"
+   ],
+   "width": 240,
+   "row": 1,
+   "col": 0,
+   "row_name": "u_aw_skid (m_vlsit_axi2tlul_skid)",
+   "function": "Two-entry slice of the write address channel with registered ready; an empty slice passes a beat in the same cycle.",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "ws",
+   "label": [
+    "u_w_skid",
+    "(m_vlsit_axi2tlul_skid)"
+   ],
+   "width": 240,
+   "row": 2,
+   "col": 0,
+   "row_name": "u_w_skid (m_vlsit_axi2tlul_skid)",
+   "function": "Two-entry slice of the write data channel with registered ready; holds data that arrives before its address.",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "rq",
+   "label": [
+    "u_rd_req",
+    "(m_vlsit_axi2tlul_rd_req)"
+   ],
+   "width": 240,
+   "row": 0,
+   "col": 1,
+   "row_name": "u_rd_req (m_vlsit_axi2tlul_rd_req)",
+   "function": "Checks the read burst, generates the beat address, size, and lane mask of each beat, and presents one read request per cycle; for an illegal burst it creates error beats without a request.",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "wq",
+   "label": [
+    "u_wr_req",
+    "(m_vlsit_axi2tlul_wr_req)"
+   ],
+   "width": 240,
+   "row": 1,
+   "col": 1,
+   "row_name": "u_wr_req (m_vlsit_axi2tlul_wr_req)",
+   "function": "Checks the write burst, pairs each data beat with its beat address, derives the strobe mask and the write opcode, presents one write request per cycle, and drops the data of an illegal burst.",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "ab",
+   "label": [
+    "u_arb",
+    "(m_vlsit_axi2tlul_arb)"
+   ],
+   "width": 240,
+   "row": 0,
+   "col": 2,
+   "row_name": "u_arb (m_vlsit_axi2tlul_arb)",
+   "function": "Selects the read or the write request by the arbitration mode, builds the tag and the user bits, and loads the request output register that holds the request until the device accepts it.",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "rd",
+   "label": [
+    "u_rsp_dec",
+    "(m_vlsit_axi2tlul_rsp_dec)"
+   ],
+   "width": 240,
+   "row": 1,
+   "col": 2,
+   "row_name": "u_rsp_dec (m_vlsit_axi2tlul_rsp_dec)",
+   "function": "Accepts every response beat, decodes the direction and slot from the tag, checks the slot and the opcode, and reports orphaned and wrong-opcode responses.",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "rr",
+   "label": [
+    "u_rd_rob",
+    "(m_vlsit_axi2tlul_rd_rob)"
+   ],
+   "width": 240,
+   "row": 0,
+   "col": 3,
+   "row_name": "u_rd_rob (m_vlsit_axi2tlul_rd_rob)",
+   "function": "Read slot table with ID contexts: reserves a slot per request, keeps the slots of one ID in request order, chooses the burst to return, passes the data straight to the read output register when possible, keeps other data in the storage, and never interleaves bursts.",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "wr",
+   "label": [
+    "u_wr_rob",
+    "(m_vlsit_axi2tlul_wr_rob)"
+   ],
+   "width": 240,
+   "row": 1,
+   "col": 3,
+   "row_name": "u_wr_rob (m_vlsit_axi2tlul_wr_rob)",
+   "function": "Write slot table with ID contexts: reserves a slot per request, keeps the slots of one ID in request order, accumulates the error of a burst, and loads the write response register at the last beat of a burst.",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "ev",
+   "label": [
+    "u_evt",
+    "(m_vlsit_axi2tlul_evt)"
+   ],
+   "width": 240,
+   "row": 2,
+   "col": 3,
+   "row_name": "u_evt (m_vlsit_axi2tlul_evt)",
+   "function": "Registers the three status pulses: the orphaned and wrong-opcode conditions of the response decoder and the illegal-burst conditions of the two request engines, one cycle later.",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "st",
+   "label": [
+    "u_rd_store",
+    "(m_vlsit_axi2tlul_store)"
+   ],
+   "width": 240,
+   "row": 0,
+   "col": 4,
+   "row_name": "u_rd_store (m_vlsit_axi2tlul_store)",
+   "function": "Read data storage with one write port and one read port and a read latency of one cycle; an array or an SRAM macro.",
+   "source": "Section 14.2"
+  }
+ ],
+ "connectors": [
+  {
+   "id": "ARQ",
+   "src": "ars",
+   "src_side": "R",
+   "dst": "rq",
+   "dst_side": "L"
+  },
+  {
+   "id": "AWQ",
+   "src": "aws",
+   "src_side": "R",
+   "dst": "wq",
+   "dst_side": "L"
+  },
+  {
+   "id": "WQ",
+   "src": "ws",
+   "src_side": "R",
+   "dst": "wq",
+   "dst_side": "B"
+  },
+  {
+   "id": "GET",
+   "src": "rq",
+   "src_side": "R",
+   "dst": "ab",
+   "dst_side": "L"
+  },
+  {
+   "id": "PUT",
+   "src": "wq",
+   "src_side": "R",
+   "dst": "ab",
+   "dst_side": "L"
+  },
+  {
+   "id": "RALOC",
+   "src": "ab",
+   "src_side": "R",
+   "dst": "rr",
+   "dst_side": "L"
+  },
+  {
+   "id": "WALOC",
+   "src": "ab",
+   "src_side": "R",
+   "dst": "wr",
+   "dst_side": "L"
+  },
+  {
+   "id": "RDONE",
+   "src": "rd",
+   "src_side": "R",
+   "dst": "rr",
+   "dst_side": "L"
+  },
+  {
+   "id": "WDONE",
+   "src": "rd",
+   "src_side": "R",
+   "dst": "wr",
+   "dst_side": "L"
+  },
+  {
+   "id": "COND",
+   "src": "rd",
+   "src_side": "R",
+   "dst": "ev",
+   "dst_side": "L"
+  },
+  {
+   "id": "STORE",
+   "src": "rr",
+   "src_side": "R",
+   "dst": "st",
+   "dst_side": "L"
+  }
+ ],
+ "externals": [
+  {
+   "id": "AR",
+   "block": "ars",
+   "side": "L",
+   "dir": "in",
+   "pos": 0,
+   "text": [
+    "AR",
+    "i_axi_ar*"
+   ]
+  },
+  {
+   "id": "AW",
+   "block": "aws",
+   "side": "L",
+   "dir": "in",
+   "pos": 0,
+   "text": [
+    "AW",
+    "i_axi_aw*"
+   ]
+  },
+  {
+   "id": "AXW",
+   "block": "ws",
+   "side": "L",
+   "dir": "in",
+   "pos": 0,
+   "text": [
+    "AXW",
+    "i_axi_w*"
+   ]
+  },
+  {
+   "id": "AXR",
+   "block": "rr",
+   "side": "T",
+   "dir": "out",
+   "pos": 0,
+   "text": [
+    "AXR",
+    "o_axi_r*, i_axi_rready"
+   ]
+  },
+  {
+   "id": "AXB",
+   "block": "wr",
+   "side": "R",
+   "dir": "out",
+   "pos": 0,
+   "text": [
+    "AXB",
+    "o_axi_b*, i_axi_bready"
+   ]
+  },
+  {
+   "id": "TLA",
+   "block": "ab",
+   "side": "T",
+   "dir": "out",
+   "pos": 0,
+   "text": [
+    "TLA",
+    "o_tl_a_*, i_tl_a_ready"
+   ]
+  },
+  {
+   "id": "TLD",
+   "block": "rd",
+   "side": "B",
+   "dir": "in",
+   "pos": -40,
+   "text": [
+    "TLD",
+    "i_tl_d_*, o_tl_d_ready"
+   ]
+  },
+  {
+   "id": "EVT",
+   "block": "ev",
+   "side": "B",
+   "dir": "out",
+   "pos": 0,
+   "text": [
+    "EVT",
+    "o_evt_*"
+   ]
+  },
+  {
+   "id": "CRCLK",
+   "block": "ws",
+   "side": "B",
+   "dir": "in",
+   "pos": 0,
+   "text": [
+    "CRCLK",
+    "i_clk_main, i_rst_n_main"
+   ]
+  }
+ ],
+ "nets": [
+  {
+   "entry": "CRCLK",
+   "sinks": [
+    {
+     "id": "CK1",
+     "block": "wq",
+     "side": "B",
+     "pos": 0
+    }
+   ]
+  }
+ ],
+ "interfaces": [
+  {
+   "id": "AR",
+   "name": "AXI read address channel",
+   "category": "handshake",
+   "active": "external -> TOP",
+   "signals": "external -> TOP: i_axi_arvalid, i_axi_arid, i_axi_araddr, i_axi_arlen, i_axi_arsize, i_axi_arburst, i_axi_arlock, i_axi_arcache, i_axi_arprot, i_axi_arqos, i_axi_arregion; TOP -> external: o_axi_arready"
+  },
+  {
+   "id": "AW",
+   "name": "AXI write address channel",
+   "category": "handshake",
+   "active": "external -> TOP",
+   "signals": "external -> TOP: i_axi_awvalid, i_axi_awid, i_axi_awaddr, i_axi_awlen, i_axi_awsize, i_axi_awburst, i_axi_awlock, i_axi_awcache, i_axi_awprot, i_axi_awqos, i_axi_awregion; TOP -> external: o_axi_awready"
+  },
+  {
+   "id": "AXW",
+   "name": "AXI write data channel",
+   "category": "handshake",
+   "active": "external -> TOP",
+   "signals": "external -> TOP: i_axi_wvalid, i_axi_wdata, i_axi_wstrb, i_axi_wlast; TOP -> external: o_axi_wready"
+  },
+  {
+   "id": "AXR",
+   "name": "AXI read data channel",
+   "category": "handshake",
+   "active": "TOP -> external",
+   "signals": "TOP -> external: o_axi_rvalid, o_axi_rid, o_axi_rdata, o_axi_rresp, o_axi_rlast; external -> TOP: i_axi_rready"
+  },
+  {
+   "id": "AXB",
+   "name": "AXI write response channel",
+   "category": "handshake",
+   "active": "TOP -> external",
+   "signals": "TOP -> external: o_axi_bvalid, o_axi_bid, o_axi_bresp; external -> TOP: i_axi_bready"
+  },
+  {
+   "id": "TLA",
+   "name": "TL-UL request channel A",
+   "category": "handshake",
+   "active": "TOP -> external",
+   "signals": "TOP -> external: o_tl_a_valid, o_tl_a_opcode, o_tl_a_param, o_tl_a_size, o_tl_a_src, o_tl_a_addr, o_tl_a_mask, o_tl_a_data, o_tl_a_user; external -> TOP: i_tl_a_ready"
+  },
+  {
+   "id": "TLD",
+   "name": "TL-UL response channel D",
+   "category": "handshake",
+   "active": "external -> TOP",
+   "signals": "external -> TOP: i_tl_d_valid, i_tl_d_opcode, i_tl_d_param, i_tl_d_size, i_tl_d_src, i_tl_d_sink, i_tl_d_data, i_tl_d_user, i_tl_d_err; TOP -> external: o_tl_d_ready"
+  },
+  {
+   "id": "EVT",
+   "name": "Status pulses",
+   "category": "custom",
+   "active": "TOP -> external",
+   "signals": "TOP -> external: o_evt_orphan_resp, o_evt_bad_resp, o_evt_axi_err_rd, o_evt_axi_err_wr"
+  },
+  {
+   "id": "CRCLK",
+   "name": "Clock and reset",
+   "category": "custom",
+   "active": "SoC -> TOP",
+   "signals": "i_clk_main, i_rst_n_main"
+  },
+  {
+   "id": "ARQ",
+   "name": "Read address beat",
+   "category": "handshake",
+   "active": "u_ar_skid -> u_rd_req",
+   "signals": "u_ar_skid -> u_rd_req: w_ar_valid, w_ar_payload; u_rd_req -> u_ar_skid: w_ar_ready"
+  },
+  {
+   "id": "AWQ",
+   "name": "Write address beat",
+   "category": "handshake",
+   "active": "u_aw_skid -> u_wr_req",
+   "signals": "u_aw_skid -> u_wr_req: w_aw_valid, w_aw_payload; u_wr_req -> u_aw_skid: w_aw_ready"
+  },
+  {
+   "id": "WQ",
+   "name": "Write data beat",
+   "category": "handshake",
+   "active": "u_w_skid -> u_wr_req",
+   "signals": "u_w_skid -> u_wr_req: w_w_valid, w_w_payload; u_wr_req -> u_w_skid: w_w_ready"
+  },
+  {
+   "id": "GET",
+   "name": "Read request",
+   "category": "handshake",
+   "active": "u_rd_req -> u_arb",
+   "signals": "u_rd_req -> u_arb: w_rd_req_valid, w_rd_req_payload; u_arb -> u_rd_req: w_rd_req_gnt"
+  },
+  {
+   "id": "PUT",
+   "name": "Write request",
+   "category": "handshake",
+   "active": "u_wr_req -> u_arb",
+   "signals": "u_wr_req -> u_arb: w_wr_req_valid, w_wr_req_payload; u_arb -> u_wr_req: w_wr_req_gnt"
+  },
+  {
+   "id": "RALOC",
+   "name": "Read slot allocation",
+   "category": "custom",
+   "active": "u_arb -> u_rd_rob",
+   "signals": "u_arb -> u_rd_rob: w_rd_aloc, w_rd_aloc_meta; u_rd_rob -> u_arb: w_rd_slot, w_rd_slot_free"
+  },
+  {
+   "id": "WALOC",
+   "name": "Write slot allocation",
+   "category": "custom",
+   "active": "u_arb -> u_wr_rob",
+   "signals": "u_arb -> u_wr_rob: w_wr_aloc, w_wr_aloc_meta; u_wr_rob -> u_arb: w_wr_slot, w_wr_slot_free"
+  },
+  {
+   "id": "RDONE",
+   "name": "Read completion",
+   "category": "custom",
+   "active": "u_rsp_dec -> u_rd_rob",
+   "signals": "u_rsp_dec -> u_rd_rob: w_rd_done, w_rd_done_slot, w_rd_done_data, w_rd_done_err"
+  },
+  {
+   "id": "WDONE",
+   "name": "Write completion",
+   "category": "custom",
+   "active": "u_rsp_dec -> u_wr_rob",
+   "signals": "u_rsp_dec -> u_wr_rob: w_wr_done, w_wr_done_slot, w_wr_done_err"
+  },
+  {
+   "id": "COND",
+   "name": "Status conditions",
+   "category": "custom",
+   "active": "u_rsp_dec -> u_evt",
+   "signals": "u_rsp_dec -> u_evt: w_evt_orphan, w_evt_bad; u_rd_req -> u_evt: w_evt_axi_err_rd; u_wr_req -> u_evt: w_evt_axi_err_wr"
+  },
+  {
+   "id": "STORE",
+   "name": "Storage ports",
+   "category": "custom",
+   "active": "u_rd_rob -> u_rd_store",
+   "signals": "u_rd_rob -> u_rd_store: w_store_wr_en, w_store_wr_addr, w_store_wr_data, w_store_rd_addr; u_rd_store -> u_rd_rob: w_store_rd_data"
+  }
+ ],
+ "legend_note": "The enclosing frame is the top module; blocks inside are its instances."
+}

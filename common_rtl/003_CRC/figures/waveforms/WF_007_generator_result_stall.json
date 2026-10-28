@@ -1,0 +1,57 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_crc",
+      "wave": "p......"
+    },
+    {
+      "name": "i_rst_n_crc",
+      "wave": "1......"
+    },
+    {
+      "name": "i_gen_valid",
+      "wave": "01....0"
+    },
+    {
+      "name": "o_gen_data_ready",
+      "wave": "10...1."
+    },
+    {
+      "name": "i_gen_data[31:0]",
+      "wave": "x=....x",
+      "data": [
+        "NEXT"
+      ]
+    },
+    {
+      "name": "i_gen_last",
+      "wave": "01....0"
+    },
+    {
+      "name": "o_gen_crc_valid",
+      "wave": "01...0."
+    },
+    {
+      "name": "o_gen_crc",
+      "wave": "x=...xx",
+      "data": [
+        "CRC"
+      ]
+    },
+    {
+      "name": "i_gen_crc_ready",
+      "wave": "0...10."
+    }
+  ],
+  "head": {
+    "text": "Generator result backpressure and next frame",
+    "tick": 0
+  },
+  "foot": {
+    "text": "Result stable until ready; next beat waits.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

@@ -1,0 +1,114 @@
+[
+  {
+    "config": "base0",
+    "result": "PASS",
+    "cells": 168,
+    "flipflops": 52,
+    "combinational": 116,
+    "latches": 0
+  },
+  {
+    "config": "base1",
+    "result": "PASS",
+    "cells": 449,
+    "flipflops": 138,
+    "combinational": 311,
+    "latches": 0
+  },
+  {
+    "config": "base2",
+    "result": "PASS",
+    "cells": 480,
+    "flipflops": 118,
+    "combinational": 362,
+    "latches": 0
+  },
+  {
+    "config": "base3",
+    "result": "PASS",
+    "cells": 718,
+    "flipflops": 126,
+    "combinational": 592,
+    "latches": 0
+  },
+  {
+    "config": "base4",
+    "result": "PASS",
+    "cells": 480,
+    "flipflops": 118,
+    "combinational": 362,
+    "latches": 0
+  },
+  {
+    "config": "ref0",
+    "result": "PASS",
+    "cells": 174,
+    "flipflops": 52,
+    "combinational": 122,
+    "latches": 0
+  },
+  {
+    "config": "ref1",
+    "result": "PASS",
+    "cells": 461,
+    "flipflops": 138,
+    "combinational": 323,
+    "latches": 0
+  },
+  {
+    "config": "ref2",
+    "result": "PASS",
+    "cells": 481,
+    "flipflops": 118,
+    "combinational": 363,
+    "latches": 0
+  },
+  {
+    "config": "ref3",
+    "result": "PASS",
+    "cells": 714,
+    "flipflops": 126,
+    "combinational": 588,
+    "latches": 0
+  },
+  {
+    "config": "ref4",
+    "result": "PASS",
+    "cells": 481,
+    "flipflops": 118,
+    "combinational": 363,
+    "latches": 0
+  },
+  {
+    "config": "chunk6_partial",
+    "result": "PASS",
+    "cells": 633,
+    "flipflops": 100,
+    "combinational": 533,
+    "latches": 0
+  },
+  {
+    "config": "word8_crc16",
+    "result": "PASS",
+    "cells": 395,
+    "flipflops": 104,
+    "combinational": 291,
+    "latches": 0
+  },
+  {
+    "config": "chunk32",
+    "result": "PASS",
+    "cells": 4606,
+    "flipflops": 242,
+    "combinational": 4364,
+    "latches": 0
+  },
+  {
+    "config": "full32",
+    "result": "PASS",
+    "cells": 1981,
+    "flipflops": 238,
+    "combinational": 1743,
+    "latches": 0
+  }
+]

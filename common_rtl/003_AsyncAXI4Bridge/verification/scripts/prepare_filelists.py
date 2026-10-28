@@ -8,9 +8,9 @@ PROJECT = VERIFICATION.parent
 RTL = PROJECT / "rtl"
 OUT = VERIFICATION / "filelists"
 PROFILES = {
-    "axi4_base": "m_vlsit_axi_async_top",
-    "axi4_user": "m_vlsit_axi_user_async_top",
-    "axi3": "m_vlsit_axi3_async_top",
+    "axi4_base": "m_vlsit_async_axi4_bridge",
+    "axi4_user": "m_vlsit_async_user_axi4_bridge",
+    "axi3": "m_vlsit_async_axi3_bridge",
 }
 
 

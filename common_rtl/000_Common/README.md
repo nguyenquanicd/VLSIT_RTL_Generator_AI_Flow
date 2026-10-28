@@ -5,7 +5,7 @@ Library and cell RTL shared by the IPs of `common_rtl`. Any library wrapper, tec
 | Folder | Content |
 |---|---|
 | `rtl_lib` | Wrapper modules that are the only place naming library cells or macros (for example `m_vlsit_afifo_cell_sync`, `m_vlsit_afifo_ram_macro`, `m_vlsit_rst_sync`, `m_vlsit_tie`). Their instances of cells are named `u_dont_touch_<function>`. Each wrapper has a branch with `VLSIT_SYNTHESIS` (instances of cells) and a simulation-only branch (model of the cell behavior) |
-| `lib_tests` | Verification of `m_vlsit_rst_sync` and `m_vlsit_tie` in both flows (`tb_rst_sync.sv`, `tb_tie.sv`, `run_lib_tests.py`); not part of the design file set |
+| `lib_tests` | Verification of `m_vlsit_rst_sync`, `m_vlsit_tie` in both flows and of the metastability model of `m_vlsit_afifo_cell_sync` (`tb_rst_sync.sv`, `tb_tie.sv`, `tb_afifo_cell_sync.sv`, `run_lib_tests.py`); not part of the design file set |
 | `rtl_cells` | Technology cell models, stand-ins of the real library views: the basic cells `VLSIT_CELL_<FUNCTION>` (rule R-032) and the example cells and macro model `VLSIT_CELL_SYNC_*`, `VLSIT_CELL_SRAM_1W1R`. Module and pin names keep the library style and are exempt from the naming rule |
 | `cell_tests` | Verification of the basic cells (not part of the design file set): `tb_cells_comb.sv` (exhaustive truth tables), `tb_cells_seq.sv` (random test of flip-flops, latches and clock gate against a reference model), `run_cell_tests.py` |
 
@@ -38,3 +38,13 @@ Run the tests with `python cell_tests/run_cell_tests.py` (needs `iverilog`/`vvp`
 | `m_vlsit_tie` | Tie-off of a selectable width and value, one `VLSIT_CELL_TIEH` or `VLSIT_CELL_TIEL` per bit. Simulation branch: constant | `PARA_TIE_WIDTH` (1 to 32), `PARA_TIE_VALUE` |
 
 Run `python lib_tests/run_lib_tests.py` (needs `iverilog`/`vvp` on PATH).
+
+### Metastability models of the simulation branches
+
+| Module | Model | Why |
+|---|---|---|
+| `m_vlsit_afifo_cell_sync` (bits of the Gray pointers and of the software reset handshake of `001_AsyncGrayFIFO`) | Aperture window: the first flop captures the new or the old value, 50% each, only when the input changed less than W before the capturing edge; W = `+AFIFO_MSYNC_WIN_PCT` percent (default 10) of the measured period of `i_clk_dst`; latency S-1 or S cycles after the first capturing edge (spec `001_AsyncGrayFIFO` DEC-048) | A random extra latency on every change reorders the bits of a Gray pointer and the read side sees a code that the write side never produced (analysis: `003_AsyncAXI4Bridge/verification/cdc_skew_analysis`). Condition: the source clock is at most 100 / WIN_PCT times faster than the destination clock |
+| `m_vlsit_apbcdc_cell_sync` (handshake of `004_AsyncAPBBridge`) | Random extra latency of 0, 1 or 2 cycles on every change (`+APBCDC_MSYNC_SEED`) | The payload is bundled with the request and is stable before the request crosses; every crossing is a single control bit, so no multi-bit code is sampled and the order of bits does not matter. The wider latency range is a stronger test of the handshake |
+| `m_vlsit_rst_sync` | Random extra latency of 0, 1 or 2 cycles on the de-assertion (`+RSTSYNC_MSYNC_SEED`) | One bit, no relation between bits |
+
+If a new IP crosses a multi-bit code (a Gray pointer, a bus) with its own synchronizer wrapper, it needs the aperture-window model, not an unconditional random latency.

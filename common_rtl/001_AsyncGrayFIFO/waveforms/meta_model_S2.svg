@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1387" height="418" font-family="Segoe UI, Arial, sans-serif" font-size="11">
 <rect width="1387" height="418" fill="#ffffff"/>
-<text x="8" y="16" font-size="14" font-weight="bold" fill="#222">Synchronizer metastability model, S = 2: random per-bit latency 1, 2 or 3 cycles after the first capturing edge</text>
+<text x="8" y="16" font-size="14" font-weight="bold" fill="#222">Synchronizer metastability model, S = 2: per-bit latency 1 or 2 cycles after the first capturing edge (window 50% of the destination period)</text>
 <line x1="179.0" y1="48" x2="179.0" y2="388" stroke="#ececec"/>
 <text x="179.0" y="44" text-anchor="middle" fill="#888">100</text>
 <line x1="289.0" y1="48" x2="289.0" y2="388" stroke="#ececec"/>
@@ -57,58 +57,46 @@
 <path d="M747.4,190 L1364.0,190 L1367.0,197.0 L1364.0,204 L747.4,204 L744.4,197.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
 <text x="1055.7" y="201" text-anchor="middle" fill="#111">111</text>
 <text x="8" y="223" fill="#222">meta model, Gray bits</text>
-<path d="M171.0,212 L248.6,212 L251.6,219.0 L248.6,226 L171.0,226 L168.0,219.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
-<text x="209.8" y="223" text-anchor="middle" fill="#111">000</text>
-<path d="M254.6,212 L371.8,212 L374.8,219.0 L371.8,226 L254.6,226 L251.6,219.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
-<text x="313.2" y="223" text-anchor="middle" fill="#111">001</text>
-<path d="M377.8,212 L525.8,212 L528.8,219.0 L525.8,226 L377.8,226 L374.8,219.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
-<text x="451.8" y="223" text-anchor="middle" fill="#111">011</text>
-<path d="M531.8,212 L618.2,212 L621.2,219.0 L618.2,226 L531.8,226 L528.8,219.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
-<text x="575.0" y="223" text-anchor="middle" fill="#111">010</text>
-<path d="M624.2,212 L772.2,212 L775.2,219.0 L772.2,226 L624.2,226 L621.2,219.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
-<text x="698.2" y="223" text-anchor="middle" fill="#111">110</text>
-<path d="M778.2,212 L1364.0,212 L1367.0,219.0 L1364.0,226 L778.2,226 L775.2,219.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
-<text x="1071.1" y="223" text-anchor="middle" fill="#111">111</text>
+<path d="M171.0,212 L217.8,212 L220.8,219.0 L217.8,226 L171.0,226 L168.0,219.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="194.4" y="223" text-anchor="middle" fill="#111">000</text>
+<path d="M223.8,212 L371.8,212 L374.8,219.0 L371.8,226 L223.8,226 L220.8,219.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="297.8" y="223" text-anchor="middle" fill="#111">001</text>
+<path d="M377.8,212 L464.2,212 L467.2,219.0 L464.2,226 L377.8,226 L374.8,219.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="421.0" y="223" text-anchor="middle" fill="#111">011</text>
+<path d="M470.2,212 L618.2,212 L621.2,219.0 L618.2,226 L470.2,226 L467.2,219.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="544.2" y="223" text-anchor="middle" fill="#111">010</text>
+<path d="M624.2,212 L741.4,212 L744.4,219.0 L741.4,226 L624.2,226 L621.2,219.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="682.8" y="223" text-anchor="middle" fill="#111">110</text>
+<path d="M747.4,212 L1364.0,212 L1367.0,219.0 L1364.0,226 L747.4,226 L744.4,219.0 Z" fill="#ffe6cc" stroke="#c25a00"/>
+<text x="1055.7" y="223" text-anchor="middle" fill="#111">111</text>
 <text x="8" y="245" fill="#222">plain 2-FF chain, bit 3</text>
 <path d="M168.0,248 L898.4,248 L898.4,248 L898.4,234 L929.2,234 L929.2,234 L929.2,248 L1114.0,248 L1114.0,248 L1114.0,234 L1367.0,234" fill="none" stroke="#c25a00" stroke-width="1.5"/>
 <text x="8" y="267" fill="#222">meta model, bit 3</text>
-<path d="M168.0,270 L1144.8,270 L1144.8,270 L1144.8,256 L1367.0,256" fill="none" stroke="#c25a00" stroke-width="1.5"/>
+<path d="M168.0,270 L898.4,270 L898.4,270 L898.4,256 L929.2,256 L929.2,256 L929.2,270 L1114.0,270 L1114.0,270 L1114.0,256 L1367.0,256" fill="none" stroke="#c25a00" stroke-width="1.5"/>
 <rect x="0" y="274" width="1387" height="22" fill="#f1f1f1"/><text x="8" y="289" font-weight="bold" fill="#444">MODEL INTERNALS</text>
-<text x="8" y="311" fill="#222">latency chosen, bit 0 (cycles)</text>
+<text x="8" y="311" fill="#222">latency observed, bit 0 (cycles)</text>
 <path d="M171.0,300 L217.8,300 L220.8,307.0 L217.8,314 L171.0,314 L168.0,307.0 Z" fill="#e5dbff" stroke="#7048e8"/>
 <text x="194.4" y="311" text-anchor="middle" fill="#111">0</text>
-<path d="M223.8,300 L464.2,300 L467.2,307.0 L464.2,314 L223.8,314 L220.8,307.0 Z" fill="#e5dbff" stroke="#7048e8"/>
-<text x="344.0" y="311" text-anchor="middle" fill="#111">2</text>
-<path d="M470.2,300 L741.4,300 L744.4,307.0 L741.4,314 L470.2,314 L467.2,307.0 Z" fill="#e5dbff" stroke="#7048e8"/>
-<text x="605.8" y="311" text-anchor="middle" fill="#111">3</text>
-<path d="M747.4,300 L1364.0,300 L1367.0,307.0 L1364.0,314 L747.4,314 L744.4,307.0 Z" fill="#e5dbff" stroke="#7048e8"/>
-<text x="1055.7" y="311" text-anchor="middle" fill="#111">2</text>
-<text x="8" y="333" fill="#222">latency chosen, bit 1</text>
-<path d="M171.0,322 L341.0,322 L344.0,329.0 L341.0,336 L171.0,336 L168.0,329.0 Z" fill="#e5dbff" stroke="#7048e8"/>
-<text x="256.0" y="333" text-anchor="middle" fill="#111">0</text>
-<path d="M347.0,322 L1364.0,322 L1367.0,329.0 L1364.0,336 L347.0,336 L344.0,329.0 Z" fill="#e5dbff" stroke="#7048e8"/>
-<text x="855.5" y="333" text-anchor="middle" fill="#111">2</text>
-<text x="8" y="355" fill="#222">latency chosen, bit 2</text>
+<path d="M223.8,300 L1364.0,300 L1367.0,307.0 L1364.0,314 L223.8,314 L220.8,307.0 Z" fill="#e5dbff" stroke="#7048e8"/>
+<text x="793.9" y="311" text-anchor="middle" fill="#111">1</text>
+<text x="8" y="333" fill="#222">latency observed, bit 1</text>
+<path d="M171.0,322 L371.8,322 L374.8,329.0 L371.8,336 L171.0,336 L168.0,329.0 Z" fill="#e5dbff" stroke="#7048e8"/>
+<text x="271.4" y="333" text-anchor="middle" fill="#111">0</text>
+<path d="M377.8,322 L1364.0,322 L1367.0,329.0 L1364.0,336 L377.8,336 L374.8,329.0 Z" fill="#e5dbff" stroke="#7048e8"/>
+<text x="870.9" y="333" text-anchor="middle" fill="#111">2</text>
+<text x="8" y="355" fill="#222">latency observed, bit 2</text>
 <path d="M171.0,344 L618.2,344 L621.2,351.0 L618.2,358 L171.0,358 L168.0,351.0 Z" fill="#e5dbff" stroke="#7048e8"/>
 <text x="394.6" y="355" text-anchor="middle" fill="#111">0</text>
 <path d="M624.2,344 L1364.0,344 L1367.0,351.0 L1364.0,358 L624.2,358 L621.2,351.0 Z" fill="#e5dbff" stroke="#7048e8"/>
 <text x="994.1" y="355" text-anchor="middle" fill="#111">1</text>
-<text x="8" y="377" fill="#222">latency chosen, bit 3</text>
+<text x="8" y="377" fill="#222">latency observed, bit 3</text>
 <path d="M171.0,366 L895.4,366 L898.4,373.0 L895.4,380 L171.0,380 L168.0,373.0 Z" fill="#e5dbff" stroke="#7048e8"/>
 <text x="533.2" y="377" text-anchor="middle" fill="#111">0</text>
-<path d="M901.4,366 L926.2,366 L929.2,373.0 L926.2,380 L901.4,380 L898.4,373.0 Z" fill="#e5dbff" stroke="#7048e8"/>
-<text x="913.8" y="377" text-anchor="middle" fill="#111">3</text>
-<path d="M932.2,366 L1111.0,366 L1114.0,373.0 L1111.0,380 L932.2,380 L929.2,373.0 Z" fill="#e5dbff" stroke="#7048e8"/>
-<text x="1021.6" y="377" text-anchor="middle" fill="#111">1</text>
-<path d="M1117.0,366 L1364.0,366 L1367.0,373.0 L1364.0,380 L1117.0,380 L1114.0,373.0 Z" fill="#e5dbff" stroke="#7048e8"/>
-<text x="1240.5" y="377" text-anchor="middle" fill="#111">2</text>
+<path d="M901.4,366 L1364.0,366 L1367.0,373.0 L1364.0,380 L901.4,380 L898.4,373.0 Z" fill="#e5dbff" stroke="#7048e8"/>
+<text x="1132.7" y="377" text-anchor="middle" fill="#111">1</text>
 <line x1="220.8" y1="50" x2="220.8" y2="388" stroke="#d6336c" stroke-dasharray="4,3"/>
 <circle cx="220.8" cy="30" r="9" fill="#d6336c"/><text x="220.8" y="34" text-anchor="middle" fill="#fff" font-weight="bold">1</text>
-<line x1="467.2" y1="50" x2="467.2" y2="388" stroke="#d6336c" stroke-dasharray="4,3"/>
-<circle cx="467.2" cy="30" r="9" fill="#d6336c"/><text x="467.2" y="34" text-anchor="middle" fill="#fff" font-weight="bold">2</text>
-<line x1="621.2" y1="50" x2="621.2" y2="388" stroke="#d6336c" stroke-dasharray="4,3"/>
-<circle cx="621.2" cy="30" r="9" fill="#d6336c"/><text x="621.2" y="34" text-anchor="middle" fill="#fff" font-weight="bold">3</text>
-<line x1="929.2" y1="50" x2="929.2" y2="388" stroke="#d6336c" stroke-dasharray="4,3"/>
-<circle cx="929.2" cy="30" r="9" fill="#d6336c"/><text x="929.2" y="34" text-anchor="middle" fill="#fff" font-weight="bold">4</text>
+<line x1="344.0" y1="50" x2="344.0" y2="388" stroke="#d6336c" stroke-dasharray="4,3"/>
+<circle cx="344.0" cy="30" r="9" fill="#d6336c"/><text x="344.0" y="34" text-anchor="middle" fill="#fff" font-weight="bold">2</text>
 <text x="168" y="408" fill="#555">numbers = examples listed in the table next to the figure; the model output equals the plain chain output when the extra delay is 0</text>
 </svg>

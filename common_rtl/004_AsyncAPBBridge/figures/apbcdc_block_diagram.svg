@@ -1,41 +1,181 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.1" width="784.13" height="246.24" viewBox="0 0 784.13 246.24">
-<path transform="matrix(1,0,0,-1,30.64735,67.55205)" stroke-width=".3985" stroke-linecap="butt" stroke-dasharray="2.98883,2.98883" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#000000" d="M236.50595 28.78671H132.00255C129.8016 28.78671 128.01744 27.00255 128.01744 24.8016V-166.53568C128.01744-168.73662 129.8016-170.52079 132.00255-170.52079H236.50595C238.7069-170.52079 240.49106-168.73662 240.49106-166.53568V24.8016C240.49106 27.00255 238.7069 28.78671 236.50595 28.78671ZM128.01744-170.52079"/>
-<text xml:space="preserve" transform="matrix(1 0 -0 1 111.39766 37.753938)" font-size="6.973848" font-family="LMRoman7" font-style="italic"><tspan y="-4.44417" x="-41.35265 -35.508565 -30.382786 -24.141192 -21.163359 -13.896608 -9.279921 -.4580028 2.9312876 5.4976637 11.537016 15.33079 17.492684 21.286458 27.32581 33.99281 37.3821 40.157693">CLK-MST(i_clk_mst)</tspan></text>
-<path transform="matrix(1,0,0,-1,30.64735,67.55205)" stroke-width=".3985" stroke-linecap="butt" stroke-dasharray="2.98883,2.98883" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#000000" d="M590.8411 28.78671H486.33769C484.13673 28.78671 482.35258 27.00255 482.35258 24.8016V-166.53568C482.35258-168.73662 484.13673-170.52079 486.33769-170.52079H590.8411C593.042-170.52079 594.8262-168.73662 594.8262-166.53568V24.8016C594.8262 27.00255 593.042 28.78671 590.8411 28.78671ZM482.35258-170.52079"/>
-<text xml:space="preserve" transform="matrix(1 0 -0 1 471.9814 37.753938)" font-size="6.973848" font-family="LMRoman7" font-style="italic"><tspan y="-4.44417" x="-41.35265 -35.508565 -30.382786 -24.141192 -21.163359 -16.54667 -12.229859 -3.2196477 .16964269 2.736019 8.775372 12.569145 14.731038 18.52481 24.564164 27.953454 30.115345 33.90912">CLK-SLV(i_clk_slv)</tspan></text>
-<text xml:space="preserve" transform="matrix(1 0 -0 1 54.51535 79.71737)" font-size="8.966376" font-family="LMSans9"><tspan y="-15.40307" x="-32.96908 -26.809182 -20.918272">APB</tspan><tspan y="-4.44417" x="-41.352655 -38.205457 -34.107824 -29.346676 -24.58553 -20.487896 -16.955143 -13.628617 -9.530983">requester</tspan></text>
-<path transform="matrix(1,0,0,-1,30.64735,67.55205)" d="M138.89939-18.42546H229.6091V18.42546H138.89939Z" fill="#ffffff"/>
-<path transform="matrix(1,0,0,-1,30.64735,67.55205)" stroke-width=".79701" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#000000" d="M138.89939-18.42546H229.6091V18.42546H138.89939Z"/>
-<text xml:space="preserve" transform="matrix(1 0 -0 1 214.93218 85.196887)" font-size="8.966376" font-family="LMSans9"><tspan y="-26.36197" x="-41.35265 -34.036088 -27.876187 -23.626124 -21.429362 -17.896609 -15.699846 -12.373321 -6.21342 -1.78403 2.977116 7.998287 12.0959219 16.857068 20.9547 27.114602 34.431165 37.963918">m_vlsit_apbcdc_mst</tspan><tspan y="-15.40307" x="-32.30558 -28.207947 -23.778557 -19.01741 -15.690885 -10.929739 -7.782541 -3.6849066 1.9549444 5.1021425 9.199777 13.960922 18.722069 22.819703 26.352456 29.678982">capture,request,</tspan><tspan y="-4.44417" x="-30.74094 -27.593743 -23.496109 -19.963356 -14.942184 -10.3334679 -5.5723216 -2.039569 5.1335327 9.74225 14.503397 17.829922 22.591069 27.352215">responseoutput</tspan></text>
-<path transform="matrix(1,0,0,-1,30.64735,67.55205)" d="M493.23454-18.42546H583.9442V18.42546H493.23454Z" fill="#ffffff"/>
-<path transform="matrix(1,0,0,-1,30.64735,67.55205)" stroke-width=".79701" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#000000" d="M493.23454-18.42546H583.9442V18.42546H493.23454Z"/>
-<text xml:space="preserve" transform="matrix(1 0 -0 1 570.4195 85.196887)" font-size="8.966376" font-family="LMSans9"><tspan y="-26.36197" x="-40.40667 -33.090108 -26.930207 -22.680144 -20.483382 -16.950629 -14.753866 -11.4273409 -5.26744 -.8380499 3.9230962 8.944267 13.041902 17.803048 21.90068 28.060582 31.593335 33.790098">m_vlsit_apbcdc_slv</tspan><tspan y="-15.40307" x="-41.35265 -35.19275 -29.30184 -20.07544 -16.928242 -12.830607 -8.069462 -3.3083158 .78931859 4.322071 7.648597 11.746231 17.968895 23.250092 28.369893 36.4217">APBrequesterFSM,</tspan><tspan y="-4.44417" x="-33.43083 -30.28363 -26.185997 -22.653244 -17.632073 -13.0233559 -8.262209 -4.7294566 2.443645 6.5412795 10.970669 15.731815 19.058342 23.819489 26.966687">responsecapture</tspan></text>
-<text xml:space="preserve" transform="matrix(1 0 -0 1 776.0185 79.71737)" font-size="8.966376" font-family="LMSans9"><tspan y="-15.40307" x="-31.62862 -25.46872 -19.57781">APB</tspan><tspan y="-4.44417" x="-41.35265 -37.255018 -32.646299 -25.329735 -20.568589 -18.371827 -14.274192 -10.947666 -6.850032">completer</tspan></text>
-<path transform="matrix(1,0,0,-1,30.64735,67.55205)" d="M138.37871-160.15952H230.12979V-123.30859H138.37871Z" fill="#ffffff"/>
-<path transform="matrix(1,0,0,-1,30.64735,67.55205)" stroke-width=".79701" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#000000" d="M138.37871-160.15952H230.12979V-123.30859H138.37871Z"/>
-<text xml:space="preserve" transform="matrix(1 0 -0 1 213.69928 221.39762)" font-size="8.966376" font-family="LMSans9"><tspan y="-15.40307" x="-41.35265 -34.036088 -27.876187 -23.626124 -21.429362 -17.896609 -15.699846 -12.373321 -6.21342 -1.78403 2.977116 7.998287 12.0959219 16.857068 20.9547 27.114602 30.647355 34.897417 39.65856">m_vlsit_apbcdc_sync</tspan><tspan y="-4.44417" x="-22.895359 -18.46597 -14.368335 -9.867214 -5.106068 -.7484093 5.545987 7.742749 11.840384 16.60153 21.210247">acknowledge</tspan></text>
-<path transform="matrix(1,0,0,-1,30.64735,67.55205)" d="M492.71385-160.15952H584.4649V-123.30859H492.71385Z" fill="#ffffff"/>
-<path transform="matrix(1,0,0,-1,30.64735,67.55205)" stroke-width=".79701" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#000000" d="M492.71385-160.15952H584.4649V-123.30859H492.71385Z"/>
-<text xml:space="preserve" transform="matrix(1 0 -0 1 568.0344 221.45142)" font-size="8.966376" font-family="LMSans9"><tspan y="-15.40307" x="-41.35265 -34.036088 -27.876187 -23.626124 -21.429362 -17.896609 -15.699846 -12.373321 -6.21342 -1.78403 2.977116 7.998287 12.0959219 16.857068 20.9547 27.114602 30.647355 34.897417 39.65856">m_vlsit_apbcdc_sync</tspan><tspan y="-4.44417" x="-29.64257 -26.495373 -22.39774 -17.636593 -12.875446 -8.777812 -5.2450597 -1.9185338 3.721317 9.764655 14.194045 18.43514 22.532776 27.293923">request,wakeup</tspan></text>
-<path transform="matrix(1,0,0,-1,30.64735,67.55205)" stroke-width=".79701" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#000000" d="M23.6738 0H80.68883 137.70388"/>
-<path transform="matrix(-1,-0,0,1,53.92263,67.55205)" stroke-width=".79701" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke="#000000" d="M-2.55046 3.11095C-2.0845 1.24435-1.04614 .36295 0 0-1.04614-.36295-2.0845-1.24435-2.55046-3.11095"/>
-<path transform="matrix(1,0,0,-1,168.74974,67.55205)" stroke-width=".79701" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke="#000000" d="M-2.55046 3.11095C-2.0845 1.24435-1.04614 .36295 0 0-1.04614-.36295-2.0845-1.24435-2.55046-3.11095"/>
-<text xml:space="preserve" transform="matrix(1 0 -0 1 127.2444 66.5337)" font-size="6.973848" font-family="LMRoman7"><tspan y="-4.44417" x="-41.35265 -35.473695 -30.117779 -24.545674 -17.892624 -11.239573 -5.3606188 -.0047035219 5.567401">APB4/APB5</tspan></text>
-<path transform="matrix(1,0,0,-1,30.64735,67.55205)" stroke-width=".79701" stroke-linecap="butt" stroke-dasharray="2.98883,2.98883" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#000000" d="M230.80463 0H361.4218 492.039"/>
-<path transform="matrix(-1,-0,0,1,261.05348,67.55205)" stroke-width=".79701" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke="#000000" d="M-2.55046 3.11095C-2.0845 1.24435-1.04614 .36295 0 0-1.04614-.36295-2.0845-1.24435-2.55046-3.11095"/>
-<path transform="matrix(1,0,0,-1,523.0849,67.55205)" stroke-width=".79701" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke="#000000" d="M-2.55046 3.11095C-2.0845 1.24435-1.04614 .36295 0 0-1.04614-.36295-2.0845-1.24435-2.55046-3.11095"/>
-<text xml:space="preserve" transform="matrix(1 0 -0 1 366.9218 66.540668)" font-size="6.973848" font-family="LMRoman7"><tspan y="-4.44417" x="-41.35265 -38.242315 -34.6996 -30.515292 -26.114792 -22.572077 -19.412924 -16.302588 -11.365103 -6.9646046 -2.564106 1.8363924 6.236891 8.489444 12.032159 16.969643 20.937762 24.271262 28.45557 33.386079 36.496416 40.039129 43.19828 47.81497 51.78309 56.183588 59.34274 65.57038 68.68072 71.79105 74.04361 80.59206 84.13477 88.53527">request,bundle,ack,response(timed)</tspan></text>
-<path transform="matrix(1,0,0,-1,30.64735,67.55205)" stroke-width=".79701" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#000000" d="M585.1398 0H642.1548 699.16989"/>
-<path transform="matrix(-1,-0,0,1,615.38858,67.55205)" stroke-width=".79701" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke="#000000" d="M-2.55046 3.11095C-2.0845 1.24435-1.04614 .36295 0 0-1.04614-.36295-2.0845-1.24435-2.55046-3.11095"/>
-<path transform="matrix(1,0,0,-1,730.2157,67.55205)" stroke-width=".79701" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke="#000000" d="M-2.55046 3.11095C-2.0845 1.24435-1.04614 .36295 0 0-1.04614-.36295-2.0845-1.24435-2.55046-3.11095"/>
-<text xml:space="preserve" transform="matrix(1 0 -0 1 688.7104 66.5337)" font-size="6.973848" font-family="LMRoman7"><tspan y="-4.44417" x="-41.35265 -35.473695 -30.117779 -24.545674 -17.892624 -11.239573 -5.3606188 -.0047035219 5.567401">APB4/APB5</tspan></text>
-<path transform="matrix(1,0,0,-1,30.64735,67.55205)" stroke-width=".79701" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#000000" d="M184.25424-122.91006V-70.867H184.25423 184.25424V-24.66174"/>
-<path transform="matrix(0,-1,-1,-0,214.9016,92.21379)" d="M4.19469 0C3.67955 .12816 1.41522 .85442 0 1.64478V-1.64478C1.41522-.85442 3.67955-.12816 4.19469 0Z"/>
-<path transform="matrix(0,-1,-1,-0,214.9016,92.21379)" stroke-width=".79701" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#000000" d="M4.19469 0C3.67955 .12816 1.41522 .85442 0 1.64478V-1.64478C1.41522-.85442 3.67955-.12816 4.19469 0Z"/>
-<text xml:space="preserve" transform="matrix(1 0 -0 1 250.5147 139.07444)" font-size="6.973848" font-family="LMRoman7"><tspan y="-4.44417" x="-41.35265 -37.38453 -34.051034">ack</tspan></text>
-<path transform="matrix(1,0,0,-1,30.64735,67.55205)" stroke-width=".79701" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#000000" d="M538.5894-122.91006V-70.867H538.58938 538.5894V-24.66174"/>
-<path transform="matrix(0,-1,-1,-0,569.23678,92.21379)" d="M4.19469 0C3.67955 .12816 1.41522 .85442 0 1.64478V-1.64478C1.41522-.85442 3.67955-.12816 4.19469 0Z"/>
-<path transform="matrix(0,-1,-1,-0,569.23678,92.21379)" stroke-width=".79701" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#000000" d="M4.19469 0C3.67955 .12816 1.41522 .85442 0 1.64478V-1.64478C1.41522-.85442 3.67955-.12816 4.19469 0Z"/>
-<text xml:space="preserve" transform="matrix(1 0 -0 1 605.17068 137.79123)" font-size="6.973848" font-family="LMRoman7"><tspan y="-4.44417" x="-41.35265 -38.242315 -34.6996">req</tspan></text>
-<text xml:space="preserve" transform="matrix(1 0 -0 1 248.6523 23.202378)" font-size="9.96264" font-family="LMRoman10" font-weight="bold"><tspan y="-4.44417" x="-41.35265 -32.695116 -28.172076 -22.124752 -15.758625 -10.976557 -4.6104295 .11186218 5.8403809 12.206509 17.935029 24.301156 32.62992 41.287458 49.11809 61.083227 67.449359 72.171649 75.34973 81.71586 87.444377 96.510379 102.8765 106.05459 112.101909 116.88397 126.73702 133.10315 136.28124 141.85036 147.57888 152.30117 157.87029 171.23018 175.68347 182.0496 187.61873 193.98487 200.351 204.87404 211.24018 216.8093 222.54778 231.6038 239.88275 243.06084 247.51413 257.69596 264.06208 270.4282 276.7943 283.16044 286.3385 291.5888 301.77064 308.13676 313.70588 318.15919 323.7283">AsynchronousAPBbridgeblockdiagram(handshakewithbundleddata)</tspan></text>
+<svg xmlns="http://www.w3.org/2000/svg" width="2460" height="2141" viewBox="70 280 2460 2141" font-family="Arial, Helvetica, sans-serif" font-size="18">
+<rect x="70" y="280" width="2460" height="2141" fill="#FFFFFF"/>
+<rect x="530" y="410" width="700" height="350" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<rect x="570" y="510" width="260" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="700" y="536" text-anchor="middle">u_vlsit_apbcdc_mst</text>
+<text x="700" y="558" text-anchor="middle">(m_vlsit_apbcdc_mst)</text>
+<rect x="930" y="660" width="260" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1060" y="686" text-anchor="middle">u_vlsit_apbcdc_slv</text>
+<text x="1060" y="708" text-anchor="middle">(m_vlsit_apbcdc_slv)</text>
+<text x="1380" y="686" text-anchor="middle">APS</text>
+<text x="1380" y="708" text-anchor="middle">completer-side APB</text>
+<text x="1208" y="451" text-anchor="end">TOP</text>
+<text x="1208" y="473" text-anchor="end">(m_vlsit_async_apb_bridge)</text>
+<text x="855" y="526" text-anchor="middle">REQ</text>
+<text x="705" y="718" text-anchor="middle">RSP</text>
+<text x="104" y="2237" text-anchor="start" font-weight="bold">Legend</text>
+<text x="284" y="2278" text-anchor="start">Interface connector (one per signal group; arrow = active to passive)</text>
+<text x="104" y="2353" text-anchor="start">The enclosing frame is the top module; blocks inside are its instances. The two clocks are asynchronous. Only the control bits pass through synchronizers inside the two blocks; the bundles are timed paths.</text>
+<text x="380" y="536" text-anchor="middle">APM</text>
+<text x="380" y="558" text-anchor="middle">requester-side APB</text>
+<text x="700" y="331" text-anchor="middle">CRMST</text>
+<text x="700" y="353" text-anchor="middle">i_clk_mst, i_rst_n_mst</text>
+<text x="1060" y="831" text-anchor="middle">CRSLV</text>
+<text x="1060" y="853" text-anchor="middle">i_clk_slv, i_rst_n_slv</text>
+<rect x="100" y="1090" width="2400" height="338" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1300" y="1117" text-anchor="middle" font-weight="bold">Block Functions &amp; Interfaces</text>
+<rect x="100" y="1130" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1155" text-anchor="start" font-weight="bold">Block</text>
+<rect x="430" y="1130" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1155" text-anchor="start" font-weight="bold">Function</text>
+<rect x="1910" y="1130" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1155" text-anchor="start" font-weight="bold">Source</text>
+<rect x="2140" y="1130" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1155" text-anchor="start" font-weight="bold">Interfaces (mnemonics)</text>
+<rect x="100" y="1166" width="330" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1191" text-anchor="start">TOP (m_vlsit_async_apb_bridge)</text>
+<text x="104" y="1213" text-anchor="start">frame</text>
+<rect x="430" y="1166" width="1480" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1180" text-anchor="start">Structural top of the asynchronous APB bridge. It joins the requester-side block and the completer-side block and holds no logic of its own. One</text>
+<text x="434" y="1202" text-anchor="start">APB transfer crosses the clock boundary as a request bundle and a response bundle; only the request and acknowledge control bits pass through</text>
+<text x="434" y="1224" text-anchor="start">synchronizers.</text>
+<rect x="1910" y="1166" width="230" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1202" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1166" width="360" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1202" text-anchor="start">APM, APS, CRMST, CRSLV</text>
+<rect x="100" y="1224" width="330" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1271" text-anchor="start">u_vlsit_apbcdc_mst</text>
+<text x="104" y="1293" text-anchor="start">(m_vlsit_apbcdc_mst)</text>
+<rect x="430" y="1224" width="1480" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1249" text-anchor="start">APB completer of the requester side, in the requester clock domain. It captures the Setup phase of a transfer into a hold register, launches the</text>
+<text x="434" y="1271" text-anchor="start">request control bit (a toggle in the two-phase handshake, a level in the four-phase handshake), keeps the response-ready output low until the</text>
+<text x="434" y="1293" text-anchor="start">answer is available, then loads the response bundle and raises the ready output for one cycle. It receives the acknowledge control bit through a</text>
+<text x="434" y="1315" text-anchor="start">synchronizer and passes the optional wake-up indication on to the other side.</text>
+<rect x="1910" y="1224" width="230" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1282" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1224" width="360" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1282" text-anchor="start">REQ, RSP, APM, CRMST</text>
+<rect x="100" y="1326" width="330" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1373" text-anchor="start">u_vlsit_apbcdc_slv</text>
+<text x="104" y="1395" text-anchor="start">(m_vlsit_apbcdc_slv)</text>
+<rect x="430" y="1326" width="1480" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1351" text-anchor="start">APB requester of the completer side, in the completer clock domain. It receives the request control bit and the wake-up indication through</text>
+<text x="434" y="1373" text-anchor="start">synchronizers, loads the request bundle into a payload register, drives one APB transfer to the external completer, captures the response into a</text>
+<text x="434" y="1395" text-anchor="start">hold register, and launches the acknowledge control bit. The request and response bundles are stable for the whole handshake, so they cross as</text>
+<text x="434" y="1417" text-anchor="start">timed paths without synchronizers.</text>
+<rect x="1910" y="1326" width="230" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1384" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1326" width="360" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1384" text-anchor="start">REQ, RSP, APS, CRSLV</text>
+<rect x="100" y="1468" width="2400" height="688" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1300" y="1495" text-anchor="middle" font-weight="bold">Interface Table</text>
+<rect x="100" y="1508" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1533" text-anchor="start" font-weight="bold">ID</text>
+<rect x="190" y="1508" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1533" text-anchor="start" font-weight="bold">Interface</text>
+<rect x="490" y="1508" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1533" text-anchor="start" font-weight="bold">Category</text>
+<rect x="600" y="1508" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1533" text-anchor="start" font-weight="bold">Active side -&gt; passive side</text>
+<rect x="1070" y="1508" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1533" text-anchor="start" font-weight="bold">Key signals</text>
+<rect x="100" y="1544" width="90" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1602" text-anchor="start">APM</text>
+<rect x="190" y="1544" width="300" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1591" text-anchor="start">APB interface of the</text>
+<text x="194" y="1613" text-anchor="start">requester side (CLK-MST)</text>
+<rect x="490" y="1544" width="110" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1569" text-anchor="start">standard</text>
+<text x="494" y="1591" text-anchor="start">protocol</text>
+<text x="494" y="1613" text-anchor="start">(APB4 or</text>
+<text x="494" y="1635" text-anchor="start">APB5)</text>
+<rect x="600" y="1544" width="470" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1602" text-anchor="start">external requester -&gt; TOP</text>
+<rect x="1070" y="1544" width="1430" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1591" text-anchor="start">external -&gt; TOP: i_apb_psel, i_apb_penable, i_apb_pwrite, i_apb_paddr, i_apb_pprot, i_apb_pwdata, i_apb_pstrb, i_apb_pwakeup, i_apb_pauser,</text>
+<text x="1074" y="1613" text-anchor="start">i_apb_pwuser; TOP -&gt; external: o_apb_pready, o_apb_prdata, o_apb_pslverr, o_apb_pruser, o_apb_pbuser</text>
+<rect x="100" y="1646" width="90" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1704" text-anchor="start">APS</text>
+<rect x="190" y="1646" width="300" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1693" text-anchor="start">APB interface of the</text>
+<text x="194" y="1715" text-anchor="start">completer side (CLK-SLV)</text>
+<rect x="490" y="1646" width="110" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1671" text-anchor="start">standard</text>
+<text x="494" y="1693" text-anchor="start">protocol</text>
+<text x="494" y="1715" text-anchor="start">(APB4 or</text>
+<text x="494" y="1737" text-anchor="start">APB5)</text>
+<rect x="600" y="1646" width="470" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1704" text-anchor="start">TOP -&gt; external completer</text>
+<rect x="1070" y="1646" width="1430" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1693" text-anchor="start">TOP -&gt; external: o_apb_psel, o_apb_penable, o_apb_pwrite, o_apb_paddr, o_apb_pprot, o_apb_pwdata, o_apb_pstrb, o_apb_pwakeup, o_apb_pauser,</text>
+<text x="1074" y="1715" text-anchor="start">o_apb_pwuser; external -&gt; TOP: i_apb_pready, i_apb_prdata, i_apb_pslverr, i_apb_pruser, i_apb_pbuser</text>
+<rect x="100" y="1748" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1784" text-anchor="start">CRMST</text>
+<rect x="190" y="1748" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1773" text-anchor="start">Clock and reset of the</text>
+<text x="194" y="1795" text-anchor="start">requester side</text>
+<rect x="490" y="1748" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1784" text-anchor="start">custom</text>
+<rect x="600" y="1748" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1784" text-anchor="start">SoC -&gt; TOP</text>
+<rect x="1070" y="1748" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1784" text-anchor="start">i_clk_mst, i_rst_n_mst (reset: level, active-low)</text>
+<rect x="100" y="1806" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1842" text-anchor="start">CRSLV</text>
+<rect x="190" y="1806" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1831" text-anchor="start">Clock and reset of the</text>
+<text x="194" y="1853" text-anchor="start">completer side</text>
+<rect x="490" y="1806" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1842" text-anchor="start">custom</text>
+<rect x="600" y="1806" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1842" text-anchor="start">SoC -&gt; TOP</text>
+<rect x="1070" y="1806" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1842" text-anchor="start">i_clk_slv, i_rst_n_slv (reset: level, active-low)</text>
+<rect x="100" y="1864" width="90" height="146" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1944" text-anchor="start">REQ</text>
+<rect x="190" y="1864" width="300" height="146" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1933" text-anchor="start">Request crossing (control bit</text>
+<text x="194" y="1955" text-anchor="start">and request bundle)</text>
+<rect x="490" y="1864" width="110" height="146" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1889" text-anchor="start">handshake</text>
+<text x="494" y="1911" text-anchor="start">(timed</text>
+<text x="494" y="1933" text-anchor="start">bundle,</text>
+<text x="494" y="1955" text-anchor="start">synchronized</text>
+<text x="494" y="1977" text-anchor="start">control</text>
+<text x="494" y="1999" text-anchor="start">bit)</text>
+<rect x="600" y="1864" width="470" height="146" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1944" text-anchor="start">u_vlsit_apbcdc_mst -&gt; u_vlsit_apbcdc_slv</text>
+<rect x="1070" y="1864" width="1430" height="146" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1944" text-anchor="start">u_mst -&gt; u_slv: o_req, o_req_payload, o_wakeup</text>
+<rect x="100" y="2010" width="90" height="146" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2090" text-anchor="start">RSP</text>
+<rect x="190" y="2010" width="300" height="146" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2068" text-anchor="start">Response crossing</text>
+<text x="194" y="2090" text-anchor="start">(acknowledge bit and response</text>
+<text x="194" y="2112" text-anchor="start">bundle)</text>
+<rect x="490" y="2010" width="110" height="146" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2035" text-anchor="start">handshake</text>
+<text x="494" y="2057" text-anchor="start">(timed</text>
+<text x="494" y="2079" text-anchor="start">bundle,</text>
+<text x="494" y="2101" text-anchor="start">synchronized</text>
+<text x="494" y="2123" text-anchor="start">control</text>
+<text x="494" y="2145" text-anchor="start">bit)</text>
+<rect x="600" y="2010" width="470" height="146" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2090" text-anchor="start">u_vlsit_apbcdc_slv -&gt; u_vlsit_apbcdc_mst</text>
+<rect x="1070" y="2010" width="1430" height="146" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2090" text-anchor="start">u_slv -&gt; u_mst: i_ack, i_resp_payload (mst-side names)</text>
+<path d="M 480 540 L 570 540" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="570,540 558,546 558,534" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 700 360 L 700 510" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="700,510 694,498 706,498" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1060 810 L 1060 720" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1060,720 1066,732 1054,732" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1190 690 L 1280 690" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1280,690 1268,696 1268,684" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 830 540 L 1060 540 L 1060 660" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1060,660 1054,648 1066,648" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 930 690 L 700 690 L 700 570" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="700,570 706,582 694,582" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 100 2271 L 260 2271" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="260,2271 248,2277 248,2265" fill="#000000" stroke="#000000" stroke-width="1"/>
 </svg>

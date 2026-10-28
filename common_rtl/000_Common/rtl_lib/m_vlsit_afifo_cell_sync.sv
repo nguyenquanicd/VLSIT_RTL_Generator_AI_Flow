@@ -12,10 +12,13 @@
  *                reset to 0, or with asynchronous set to 1, by PARA_AFIFO_CELL_RST_VAL), named
  *                u_dont_touch_<function>. Without the macro it contains the simulation model of
  *                the same option with the same number of stages and the metastability model of
- *                REQ-VER-001: a random extra latency of 0, 1 or 2 cycles on the output, controlled
- *                by the plusargs +AFIFO_MSYNC_SEED=<n> (default 1) and +AFIFO_MSYNC_EN=<0|1>
- *                (default 1). The simulation branch is excluded from the RTL rules by rule R-027
- *                (spec DEC-021, DEC-038). This is the only module that models metastability.
+ *                REQ-VER-001: the first flop resolves to the old or to the new value, 50% each,
+ *                when the input changes inside an aperture window before the capturing edge, so the
+ *                output is 0 or 1 cycle later than nominal. The window is a percentage of the
+ *                measured period of i_clk_dst. Plusargs: +AFIFO_MSYNC_SEED=<n> (default 1),
+ *                +AFIFO_MSYNC_EN=<0|1> (default 1), +AFIFO_MSYNC_WIN_PCT=<0..100> (default 10).
+ *                The simulation branch is excluded from the RTL rules by rule R-027 (spec DEC-021,
+ *                DEC-038, DEC-048). This is the only module that models metastability.
  */
 `timescale 1ns/1ps
 
@@ -85,12 +88,17 @@ module m_vlsit_afifo_cell_sync #(
   end
 `else
   // ---------------------------------------------------------------------------------------------
-  // Simulation branch (REQ-VER-001, DEC-012, DEC-038). Option 0 is the bypass. Options 1 to 4 are
-  // a chain of 2, 2, 3 and 4 flops, the same function as the cells of the synthesis branch, with
-  // the metastability model on the output: when the input of the last stage changes, a random
-  // extra delay of 0, 1 or 2 cycles is applied. Latency counted after the first capturing edge:
-  // nominal N-1 for N stages, so N-1, N or N+1. A new input value replaces a pending change and
-  // restarts the delay. The cell is one bit, so every bit of a synchronizer is independent.
+  // Simulation branch (REQ-VER-001, DEC-012, DEC-038, DEC-048). Option 0 is the bypass. Options 1 to 4
+  // are a chain of 2, 2, 3 and 4 flops, the same function as the cells of the synthesis branch. The
+  // metastability model is in the first flop: when the input changed less than the window W before
+  // the capturing edge, the flop resolves to the new value or to the old value with a probability of
+  // 50% each (the old value then reaches the next flop one edge later, because the input is stable at
+  // the following edge). A change outside the window, or at the same time as the edge, is captured
+  // as by a plain flop. W is WIN_PCT percent of the last measured period of i_clk_dst, so the
+  // latency counted after the first capturing edge is N-1 or N for N stages. Only a bit that changes
+  // inside the window can be late: bits that change one source period apart are not reordered when
+  // W is shorter than the source period (the source clock is at most 100 / WIN_PCT times faster).
+  // The cell is one bit, so every bit of a synchronizer is independent.
   // ---------------------------------------------------------------------------------------------
   if (PARA_AFIFO_CELL_TYPE == LPARA_TYPE_BYPASS) begin : gen_sim_bypass
     // Option 0: bypass, no stage and nothing to model.
@@ -99,14 +107,19 @@ module m_vlsit_afifo_cell_sync #(
     localparam int SIM_STAGE = (PARA_AFIFO_CELL_TYPE == LPARA_TYPE_DFF2) ? 2 :
                                (PARA_AFIFO_CELL_TYPE > 32'd4) ? 4 : int'(PARA_AFIFO_CELL_TYPE);
 
-    logic [SIM_STAGE-1:0] sim_ch;
-    logic        sim_last, sim_cur, sim_nxt, sim_pend, sim_din_last;
-    int          sim_cnt;
+    logic [SIM_STAGE-1:0] sim_ch;   // flop chain, sim_ch[0] is the first flop
     logic [31:0] sim_rs;
     logic        sim_en;
     int          sim_seed;
     int          sim_en_arg;
-    int          sim_extra;
+    int          sim_win_pct;
+    real         sim_t_chg;         // time of the last change of i_d
+    real         sim_t_edge;        // time of the previous capturing edge
+    real         sim_t_per;         // last measured period of i_clk_dst
+    real         sim_t_now;
+    int          sim_n_win;         // captures with the input changed inside the window
+    int          sim_n_old;         // of these, captures of the old value
+    logic        sim_pick_new;
 
     // Xorshift step of the pseudo random generator (deterministic for a given seed).
     function automatic logic [31:0] f_sim_next(input logic [31:0] x);
@@ -132,54 +145,63 @@ module m_vlsit_afifo_cell_sync #(
 
     // Plusargs and seed printing at the start of the simulation.
     initial begin
-      sim_seed = 1;
-      sim_en   = 1'b1;
+      sim_seed    = 1;
+      sim_en      = 1'b1;
+      sim_win_pct = 10;
+      sim_t_chg   = -1.0;
+      sim_t_edge  = -1.0;
+      sim_t_per   = 0.0;
+      sim_n_win   = 0;
+      sim_n_old   = 0;
       if ($value$plusargs("AFIFO_MSYNC_SEED=%d", sim_seed))
         ;
       if ($value$plusargs("AFIFO_MSYNC_EN=%d", sim_en_arg))
         sim_en = (sim_en_arg != 0);
-      sim_rs = (32'(sim_seed) ^ f_sim_hash($sformatf("%m")) ^ 32'h9e3779b9) | 32'd1;
-      $display("AFIFO_MSYNC: %m seed=%0d enable=%0d stages=%0d", sim_seed, sim_en, SIM_STAGE);
+      if ($value$plusargs("AFIFO_MSYNC_WIN_PCT=%d", sim_win_pct)) begin
+        if (sim_win_pct < 0)   sim_win_pct = 0;
+        if (sim_win_pct > 100) sim_win_pct = 100;
+      end
+      sim_rs = ((32'(sim_seed) * 32'h9e3779b1) ^ f_sim_hash($sformatf("%m"))) | 32'd1;
+      for (int k = 0; k < 8; k++) sim_rs = f_sim_next(sim_rs);
+      $display("AFIFO_MSYNC: %m seed=%0d enable=%0d window=%0d%% stages=%0d", sim_seed, sim_en, sim_win_pct, SIM_STAGE);
     end
 
-    // din_last is the value that the last stage captures at this very edge.
-    assign sim_din_last = sim_ch[SIM_STAGE-2];
+    // Time of the last change of the input (written as a process with an event wait: a plain
+    // 'always @(i_d)' form is not evaluated with the time by the Verilator timing scheduler).
+    always begin
+      @(i_d);
+      sim_t_chg = $realtime;
+    end
 
-    // Chain and delay model.
+    // Flop chain with the metastability model in the first flop.
     always @(posedge i_clk_dst or negedge i_rst_n_dst) begin
       if (!i_rst_n_dst) begin
-        sim_ch   <= {SIM_STAGE{PARA_AFIFO_CELL_RST_VAL[0]}};
-        sim_last <= PARA_AFIFO_CELL_RST_VAL[0];
-        sim_cur  <= PARA_AFIFO_CELL_RST_VAL[0];
-        sim_pend <= 1'b0;
-        sim_cnt   = 0;
+        sim_ch <= {SIM_STAGE{PARA_AFIFO_CELL_RST_VAL[0]}};
       end else begin
+        sim_t_now = $realtime;
+        if (sim_t_edge >= 0.0) sim_t_per = sim_t_now - sim_t_edge;
+        sim_t_edge = sim_t_now;
         sim_ch <= {sim_ch[SIM_STAGE-2:0], i_d};
-        if (sim_din_last !== sim_last) begin
-          sim_last <= sim_din_last;
-          sim_rs    = f_sim_next(sim_rs);
-          sim_extra = int'((sim_rs >> 7) % 3);
-          if (sim_extra == 0) begin
-            sim_cur  <= sim_din_last;
-            sim_pend <= 1'b0;
-          end else begin
-            sim_nxt  <= sim_din_last;
-            sim_cnt   = sim_extra - 1;
-            sim_pend <= 1'b1;
-          end
-        end else if (sim_pend) begin
-          if (sim_cnt == 0) begin
-            sim_cur  <= sim_nxt;
-            sim_pend <= 1'b0;
-          end else begin
-            sim_cnt = sim_cnt - 1;
+        if (sim_en && (i_d !== sim_ch[0]) && (sim_t_chg >= 0.0) && (sim_t_chg < sim_t_now) &&
+            ((sim_t_now - sim_t_chg) < (sim_t_per * sim_win_pct / 100.0))) begin
+          sim_rs       = f_sim_next(sim_rs);
+          sim_pick_new = sim_rs[16];
+          sim_n_win    = sim_n_win + 1;
+          if (!sim_pick_new) begin
+            sim_ch[0] <= sim_ch[0];
+            sim_n_old  = sim_n_old + 1;
           end
         end
       end
     end
 
-    // Output: random-latency value when the model is enabled, plain chain output otherwise.
-    assign o_q = sim_en ? sim_cur : sim_ch[SIM_STAGE-1];
+    // Statistics at the end of the simulation: evidence that the window was exercised.
+    final begin
+      if (sim_en)
+        $display("AFIFO_MSYNC_STAT: %m window_captures=%0d old_value_captures=%0d", sim_n_win, sim_n_old);
+    end
+
+    assign o_q = sim_ch[SIM_STAGE-1];
   end
 `endif
 

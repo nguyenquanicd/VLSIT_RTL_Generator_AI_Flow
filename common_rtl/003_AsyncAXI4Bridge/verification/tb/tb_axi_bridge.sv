@@ -212,7 +212,7 @@ module tb_axi_bridge;
 `endif
 
 `ifdef TB_AXI3
-  m_vlsit_axi3_async_top #(
+  m_vlsit_async_axi3_bridge #(
     .PARA_AXI_ADDR_W(PARA_AXI_ADDR_W), .PARA_AXI_DATA_W(PARA_AXI_DATA_W),
     .PARA_AXI_ID_W(PARA_AXI_ID_W), .PARA_AXI_AW_DEPTH(PARA_AXI_AW_DEPTH),
     .PARA_AXI_W_DEPTH(PARA_AXI_W_DEPTH), .PARA_AXI_B_DEPTH(PARA_AXI_B_DEPTH),
@@ -220,7 +220,7 @@ module tb_axi_bridge;
     .PARA_AXI_CELL_TYPE(PARA_AXI_CELL_TYPE), .PARA_AXI_MEM_USE_MACRO(PARA_AXI_MEM_USE_MACRO)
   ) dut (.*);
 `elsif TB_AXI4_USER
-  m_vlsit_axi_user_async_top #(
+  m_vlsit_async_user_axi4_bridge #(
     .PARA_AXI_ADDR_W(PARA_AXI_ADDR_W), .PARA_AXI_DATA_W(PARA_AXI_DATA_W),
     .PARA_AXI_ID_W(PARA_AXI_ID_W), .PARA_AXI_AWUSER_W(PARA_AXI_AWUSER_W),
     .PARA_AXI_WUSER_W(PARA_AXI_WUSER_W), .PARA_AXI_BUSER_W(PARA_AXI_BUSER_W),
@@ -231,7 +231,7 @@ module tb_axi_bridge;
     .PARA_AXI_MEM_USE_MACRO(PARA_AXI_MEM_USE_MACRO)
   ) dut (.*);
 `else
-  m_vlsit_axi_async_top #(
+  m_vlsit_async_axi4_bridge #(
     .PARA_AXI_ADDR_W(PARA_AXI_ADDR_W), .PARA_AXI_DATA_W(PARA_AXI_DATA_W),
     .PARA_AXI_ID_W(PARA_AXI_ID_W), .PARA_AXI_AW_DEPTH(PARA_AXI_AW_DEPTH),
     .PARA_AXI_W_DEPTH(PARA_AXI_W_DEPTH), .PARA_AXI_B_DEPTH(PARA_AXI_B_DEPTH),

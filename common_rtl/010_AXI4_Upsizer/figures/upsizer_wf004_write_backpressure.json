@@ -1,0 +1,227 @@
+{
+ "signal": [
+  {
+   "name": "i_clk_axi",
+   "wave": "p..............................."
+  },
+  {
+   "name": "i_rst_n_axi",
+   "wave": "1..............................."
+  },
+  [
+   "AW subordinate side",
+   {
+    "name": "i_axi_awvalid",
+    "wave": "010............................."
+   },
+   {
+    "name": "o_axi_awready",
+    "wave": "01.............................."
+   },
+   {
+    "name": "i_axi_awaddr",
+    "wave": "x=x.............................",
+    "data": [
+     "1000"
+    ]
+   },
+   {
+    "name": "i_axi_awlen",
+    "wave": "x=x.............................",
+    "data": [
+     "15"
+    ]
+   },
+   {
+    "name": "i_axi_awsize",
+    "wave": "x=x.............................",
+    "data": [
+     "2"
+    ]
+   },
+   {
+    "name": "i_axi_awburst",
+    "wave": "x=x.............................",
+    "data": [
+     "INCR"
+    ]
+   },
+   {
+    "name": "i_axi_awcache",
+    "wave": "x=x.............................",
+    "data": [
+     "2"
+    ]
+   }
+  ],
+  [
+   "AW manager side",
+   {
+    "name": "o_axi_awvalid",
+    "wave": "0.1..0.........................."
+   },
+   {
+    "name": "i_axi_awready",
+    "wave": "10..1..........................."
+   },
+   {
+    "name": "o_axi_awaddr",
+    "wave": "x.=..x..........................",
+    "data": [
+     "1000"
+    ]
+   },
+   {
+    "name": "o_axi_awlen",
+    "wave": "x.=..x..........................",
+    "data": [
+     "3"
+    ]
+   },
+   {
+    "name": "o_axi_awsize",
+    "wave": "x.=..x..........................",
+    "data": [
+     "4"
+    ]
+   },
+   {
+    "name": "o_axi_awburst",
+    "wave": "x.=..x..........................",
+    "data": [
+     "INCR"
+    ]
+   }
+  ],
+  [
+   "W subordinate side (32 bit)",
+   {
+    "name": "i_axi_wvalid",
+    "wave": "0.1.....0.1...........0........."
+   },
+   {
+    "name": "o_axi_wready",
+    "wave": "0.1............0.1....0........."
+   },
+   {
+    "name": "i_axi_wdata",
+    "wave": "x.======x.======..====x.........",
+    "data": [
+     "p0",
+     "p1",
+     "p2",
+     "p3",
+     "p4",
+     "p5",
+     "p6",
+     "p7",
+     "p8",
+     "p9",
+     "p10",
+     "p11",
+     "p12",
+     "p13",
+     "p14",
+     "p15"
+    ]
+   },
+   {
+    "name": "i_axi_wstrb",
+    "wave": "x.=.....x.=...........x.........",
+    "data": [
+     "F",
+     "F"
+    ]
+   },
+   {
+    "name": "i_axi_wlast",
+    "wave": "x.=.....x.=..........=x.........",
+    "data": [
+     "0",
+     "0",
+     "1"
+    ]
+   }
+  ],
+  [
+   "W manager side (128 bit)",
+   {
+    "name": "o_axi_wvalid",
+    "wave": "0.....1............0..10........"
+   },
+   {
+    "name": "i_axi_wready",
+    "wave": "1.....0.........1..............."
+   },
+   {
+    "name": "o_axi_wdata",
+    "wave": "x.....=..........==x..=x........",
+    "data": [
+     "p3|p2|p1|p0",
+     "p7|p6|p5|p4",
+     "p11|p10|p9|p8",
+     "p15|p14|p13|p12"
+    ]
+   },
+   {
+    "name": "o_axi_wstrb",
+    "wave": "x.....=............x..=x........",
+    "data": [
+     "FFFF",
+     "FFFF"
+    ]
+   },
+   {
+    "name": "o_axi_wlast",
+    "wave": "x.....=............x..=x........",
+    "data": [
+     "0",
+     "1"
+    ]
+   }
+  ],
+  [
+   "B manager side",
+   {
+    "name": "i_axi_bvalid",
+    "wave": "0.......................10......"
+   },
+   {
+    "name": "o_axi_bready",
+    "wave": "01.............................."
+   },
+   {
+    "name": "i_axi_bresp",
+    "wave": "x.......................=x......",
+    "data": [
+     "OKAY"
+    ]
+   }
+  ],
+  [
+   "B subordinate side",
+   {
+    "name": "o_axi_bvalid",
+    "wave": "0........................10....."
+   },
+   {
+    "name": "i_axi_bready",
+    "wave": "1..............................."
+   },
+   {
+    "name": "o_axi_bresp",
+    "wave": "x........................=x.....",
+    "data": [
+     "OKAY"
+    ]
+   }
+  ]
+ ],
+ "head": {
+  "text": "WF-004 write with AWREADY and WREADY low on the manager side and a gap in WVALID",
+  "tick": 0
+ },
+ "config": {
+  "hscale": 1
+ }
+}

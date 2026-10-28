@@ -1,0 +1,5 @@
+{
+  "result": "PASS",
+  "detected": true,
+  "fault": "Invert generated CRC bit 0 on a copied method-2 module"
+}

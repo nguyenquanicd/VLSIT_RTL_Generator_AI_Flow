@@ -1,0 +1,178 @@
+{
+ "signal": [
+  {
+   "name": "i_clk_axi",
+   "wave": "p................."
+  },
+  {
+   "name": "i_rst_n_axi",
+   "wave": "1................."
+  },
+  [
+   "AR subordinate side",
+   {
+    "name": "i_axi_arvalid",
+    "wave": "010..............."
+   },
+   {
+    "name": "o_axi_arready",
+    "wave": "01................"
+   },
+   {
+    "name": "i_axi_araddr",
+    "wave": "x=x...............",
+    "data": [
+     "1000"
+    ]
+   },
+   {
+    "name": "i_axi_arlen",
+    "wave": "x=x...............",
+    "data": [
+     "7"
+    ]
+   },
+   {
+    "name": "i_axi_arsize",
+    "wave": "x=x...............",
+    "data": [
+     "2"
+    ]
+   },
+   {
+    "name": "i_axi_arburst",
+    "wave": "x=x...............",
+    "data": [
+     "INCR"
+    ]
+   },
+   {
+    "name": "i_axi_arcache",
+    "wave": "x=x...............",
+    "data": [
+     "2"
+    ]
+   }
+  ],
+  [
+   "AR manager side",
+   {
+    "name": "o_axi_arvalid",
+    "wave": "0.10.............."
+   },
+   {
+    "name": "i_axi_arready",
+    "wave": "1................."
+   },
+   {
+    "name": "o_axi_araddr",
+    "wave": "x.=x..............",
+    "data": [
+     "1000"
+    ]
+   },
+   {
+    "name": "o_axi_arlen",
+    "wave": "x.=x..............",
+    "data": [
+     "1"
+    ]
+   },
+   {
+    "name": "o_axi_arsize",
+    "wave": "x.=x..............",
+    "data": [
+     "4"
+    ]
+   },
+   {
+    "name": "o_axi_arburst",
+    "wave": "x.=x..............",
+    "data": [
+     "INCR"
+    ]
+   }
+  ],
+  [
+   "R manager side (128 bit)",
+   {
+    "name": "i_axi_rvalid",
+    "wave": "0...1....0........"
+   },
+   {
+    "name": "o_axi_rready",
+    "wave": "0.1..0..10........"
+   },
+   {
+    "name": "i_axi_rdata",
+    "wave": "x...==...x........",
+    "data": [
+     "r3|r2|r1|r0",
+     "r7|r6|r5|r4"
+    ]
+   },
+   {
+    "name": "i_axi_rresp",
+    "wave": "x...=....x........",
+    "data": [
+     "OKAY"
+    ]
+   },
+   {
+    "name": "i_axi_rlast",
+    "wave": "x...==...x........",
+    "data": [
+     "0",
+     "1"
+    ]
+   }
+  ],
+  [
+   "R subordinate side (32 bit)",
+   {
+    "name": "o_axi_rvalid",
+    "wave": "0.....1.......0..."
+   },
+   {
+    "name": "i_axi_rready",
+    "wave": "1................."
+   },
+   {
+    "name": "o_axi_rdata",
+    "wave": "x.....========x...",
+    "data": [
+     "r0",
+     "r1",
+     "r2",
+     "r3",
+     "r4",
+     "r5",
+     "r6",
+     "r7"
+    ]
+   },
+   {
+    "name": "o_axi_rresp",
+    "wave": "x.....=.......x...",
+    "data": [
+     "OKAY"
+    ]
+   },
+   {
+    "name": "o_axi_rlast",
+    "wave": "x.....=......=x...",
+    "data": [
+     "0",
+     "1"
+    ]
+   }
+  ]
+ ],
+ "head": {
+  "text": "WF-007 read INCR packed: each M beat is split into 4 S beats",
+  "tick": 0
+ },
+ "config": {
+  "hscale": 1
+ }
+}

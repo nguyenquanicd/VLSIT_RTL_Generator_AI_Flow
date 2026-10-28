@@ -13,4 +13,4 @@
 ../rtl/m_vlsit_apbcdc_sync.sv
 ../rtl/m_vlsit_apbcdc_mst.sv
 ../rtl/m_vlsit_apbcdc_slv.sv
-../rtl/m_vlsit_apbcdc_top.sv
+../rtl/m_vlsit_async_apb_bridge.sv

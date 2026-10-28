@@ -1,0 +1,338 @@
+[
+  {
+    "config": "base1",
+    "seed": 20261027,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 30819
+  },
+  {
+    "config": "base1",
+    "seed": 19,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 29598
+  },
+  {
+    "config": "base1",
+    "seed": 97,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 29875
+  },
+  {
+    "config": "base0",
+    "seed": 20261027,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 23,
+    "assertion_hits": 35377
+  },
+  {
+    "config": "base0",
+    "seed": 19,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 23,
+    "assertion_hits": 34204
+  },
+  {
+    "config": "base0",
+    "seed": 97,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 23,
+    "assertion_hits": 34219
+  },
+  {
+    "config": "base2",
+    "seed": 20261027,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 8982
+  },
+  {
+    "config": "base2",
+    "seed": 19,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 8827
+  },
+  {
+    "config": "base2",
+    "seed": 97,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 8889
+  },
+  {
+    "config": "base3",
+    "seed": 20261027,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 11040
+  },
+  {
+    "config": "base3",
+    "seed": 19,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 10772
+  },
+  {
+    "config": "base3",
+    "seed": 97,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 10825
+  },
+  {
+    "config": "base4",
+    "seed": 20261027,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 8982
+  },
+  {
+    "config": "base4",
+    "seed": 19,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 8827
+  },
+  {
+    "config": "base4",
+    "seed": 97,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 8889
+  },
+  {
+    "config": "ref0",
+    "seed": 20261027,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 23,
+    "assertion_hits": 35377
+  },
+  {
+    "config": "ref0",
+    "seed": 19,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 23,
+    "assertion_hits": 34204
+  },
+  {
+    "config": "ref0",
+    "seed": 97,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 23,
+    "assertion_hits": 34219
+  },
+  {
+    "config": "ref1",
+    "seed": 20261027,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 30819
+  },
+  {
+    "config": "ref1",
+    "seed": 19,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 29598
+  },
+  {
+    "config": "ref1",
+    "seed": 97,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 29875
+  },
+  {
+    "config": "ref2",
+    "seed": 20261027,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 8982
+  },
+  {
+    "config": "ref2",
+    "seed": 19,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 8827
+  },
+  {
+    "config": "ref2",
+    "seed": 97,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 8889
+  },
+  {
+    "config": "ref3",
+    "seed": 20261027,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 11040
+  },
+  {
+    "config": "ref3",
+    "seed": 19,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 10772
+  },
+  {
+    "config": "ref3",
+    "seed": 97,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 10825
+  },
+  {
+    "config": "ref4",
+    "seed": 20261027,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 8982
+  },
+  {
+    "config": "ref4",
+    "seed": 19,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 8827
+  },
+  {
+    "config": "ref4",
+    "seed": 97,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 8889
+  },
+  {
+    "config": "chunk6_partial",
+    "seed": 20261027,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 12218
+  },
+  {
+    "config": "chunk6_partial",
+    "seed": 19,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 11977
+  },
+  {
+    "config": "chunk6_partial",
+    "seed": 97,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 11988
+  },
+  {
+    "config": "word8_crc16",
+    "seed": 20261027,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 13167
+  },
+  {
+    "config": "word8_crc16",
+    "seed": 19,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 12812
+  },
+  {
+    "config": "word8_crc16",
+    "seed": 97,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 12849
+  },
+  {
+    "config": "full32",
+    "seed": 20261027,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 8982
+  },
+  {
+    "config": "full32",
+    "seed": 19,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 8827
+  },
+  {
+    "config": "full32",
+    "seed": 97,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 8889
+  },
+  {
+    "config": "chunk32",
+    "seed": 20261027,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 9046
+  },
+  {
+    "config": "chunk32",
+    "seed": 19,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 8891
+  },
+  {
+    "config": "chunk32",
+    "seed": 97,
+    "result": "PASS",
+    "frames": 128,
+    "assertions": 25,
+    "assertion_hits": 8953
+  }
+]

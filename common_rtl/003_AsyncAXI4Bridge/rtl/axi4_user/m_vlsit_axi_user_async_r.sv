@@ -6,7 +6,6 @@
  * Date         : 2026-10-25
  * Description  : AXI4 R channel crossing with one asynchronous FIFO.
  */
-`default_nettype none
 `timescale 1ns/1ps
 
 module m_vlsit_axi_user_async_r #(
@@ -45,26 +44,26 @@ module m_vlsit_axi_user_async_r #(
   localparam logic [31:0] LPARA_PTR_W = $clog2(PARA_AXI_R_DEPTH) + 32'd1
 ) (
   // Clock and reset.
-  input i_clk_sub,
-  input i_rst_n_sub,
-  input i_clk_mgr,
-  input i_rst_n_mgr,
+  input  wire                        i_clk_sub,
+  input  wire                        i_rst_n_sub,
+  input  wire                        i_clk_mgr,
+  input  wire                        i_rst_n_mgr,
 
   // Manager-side R channel.
-  input i_axi_rvalid,
+  input  wire                        i_axi_rvalid,
   output logic                       o_axi_rready,
-  input [PARA_AXI_ID_W-1:0]   i_axi_rid,
-  input [PARA_AXI_DATA_W-1:0] i_axi_rdata,
-  input [LPARA_RESP_W-1:0]                 i_axi_rresp,
-  input i_axi_rlast,
-  input [LPARA_RUSER_W-1:0]   i_axi_ruser,
+  input  wire  [PARA_AXI_ID_W-1:0]   i_axi_rid,
+  input  wire  [PARA_AXI_DATA_W-1:0] i_axi_rdata,
+  input  wire  [LPARA_RESP_W-1:0]    i_axi_rresp,
+  input  wire                        i_axi_rlast,
+  input  wire  [LPARA_RUSER_W-1:0]   i_axi_ruser,
 
   // Subordinate-side R channel.
   output logic                       o_axi_rvalid,
-  input i_axi_rready,
+  input  wire                        i_axi_rready,
   output logic [PARA_AXI_ID_W-1:0]   o_axi_rid,
   output logic [PARA_AXI_DATA_W-1:0] o_axi_rdata,
-  output logic [LPARA_RESP_W-1:0]                 o_axi_rresp,
+  output logic [LPARA_RESP_W-1:0]    o_axi_rresp,
   output logic                       o_axi_rlast,
   output logic [LPARA_RUSER_W-1:0]   o_axi_ruser
 );
@@ -119,4 +118,3 @@ module m_vlsit_axi_user_async_r #(
   );
 
 endmodule
-`default_nettype wire

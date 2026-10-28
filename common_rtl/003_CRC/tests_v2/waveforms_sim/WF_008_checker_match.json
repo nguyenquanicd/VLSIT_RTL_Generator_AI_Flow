@@ -1,0 +1,63 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_crc",
+      "wave": "010101010101010101010"
+    },
+    {
+      "name": "i_rst_n_crc",
+      "wave": "1...................."
+    },
+    {
+      "name": "i_check_valid",
+      "wave": "0.1.0...........1.0.."
+    },
+    {
+      "name": "o_check_data_ready",
+      "wave": "1..0...........1.0..."
+    },
+    {
+      "name": "i_check_data[31:0]",
+      "wave": "=.=.............=....",
+      "data": [
+        "0x0",
+        "0x12000000",
+        "0x34560000"
+      ]
+    },
+    {
+      "name": "i_check_last",
+      "wave": "0.1.0...........1.0.."
+    },
+    {
+      "name": "i_check_crc",
+      "wave": "=.=.............=....",
+      "data": [
+        "0x0",
+        "0x7E",
+        "0x9"
+      ]
+    },
+    {
+      "name": "o_check_pass",
+      "wave": "0....1.........0....."
+    },
+    {
+      "name": "o_check_crc_valid",
+      "wave": "0....1.........0...1."
+    },
+    {
+      "name": "i_check_crc_ready",
+      "wave": "0.............1.0...."
+    }
+  ],
+  "head": {
+    "text": "WF-008 measured: base2"
+  },
+  "foot": {
+    "text": "5 ns per slot; cycles 168 to 177; seed 20261027"
+  },
+  "config": {
+    "hscale": 1
+  }
+}

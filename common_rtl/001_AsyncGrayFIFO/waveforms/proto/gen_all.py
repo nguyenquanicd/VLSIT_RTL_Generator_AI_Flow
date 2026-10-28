@@ -186,7 +186,7 @@ log = open(os.path.join(HERE, 'meta_log.txt')).read().splitlines()
 lat = [re.match(r'LAT S=(\d) t=([\d.]+) bit=(\d) new=(\d) extra=(\d) latency=(\d)', l) for l in log if l.startswith('LAT')]
 lat = [m.groups() for m in lat if m]
 repl = [re.match(r'REPL S=(\d) t=([\d.]+) bit=(\d) pending=(\d) replaced by (\d)', l).groups() for l in log if l.startswith('REPL')]
-mv = Vcd(os.path.join(HERE, 'meta_seed.vcd')); mv.set_tick(0.01)
+mv = Vcd(os.path.join(HERE, 'meta_seed.vcd')); mv.set_tick(0.001)   # the demo is compiled with the cell wrapper (1 ps precision): the VCD tick is 1 ps
 def meta_rows(S):
     nom = 'q_nom' if S == 2 else 'q_nom3'
     g_nom, t_nom = ('g_nom', 't_nom') if S == 2 else ('g_nom3', 't_nom3')
@@ -204,17 +204,17 @@ def meta_rows(S):
         (f'plain {S}-FF chain, bit 3', t_nom, 'bit', 'r'),
         ('meta model, bit 3', t_m, 'bit', 'r'),
         ('MODEL INTERNALS', None, None, None),
-        ('latency chosen, bit 0 (cycles)', la[0], 'dec', 's'),
-        ('latency chosen, bit 1', la[1], 'dec', 's'),
-        ('latency chosen, bit 2', la[2], 'dec', 's'),
-        ('latency chosen, bit 3', la[3], 'dec', 's'),
+        ('latency observed, bit 0 (cycles)', la[0], 'dec', 's'),
+        ('latency observed, bit 1', la[1], 'dec', 's'),
+        ('latency observed, bit 2', la[2], 'dec', 's'),
+        ('latency observed, bit 3', la[3], 'dec', 's'),
     ]
 for S in (2, 3):
     rows = meta_rows(S)
     sel = [x for x in lat if int(x[0]) == S]
     ev = {}
     marks = []
-    # one marker per distinct extra value (first occurrence) and one for the first replacement
+    # one marker per distinct extra value (first occurrence; with the aperture window the values are 0 and 1) and one for the first replacement
     seen = set()
     for g in sel:
         if g[4] not in seen and len(seen) < 3:
@@ -223,7 +223,7 @@ for S in (2, 3):
     if rp:
         n = len(ev) + 1; ev[n] = float(rp[0][1]); marks.append((n, ('REPL',) + rp[0]))
     render(mv, rows, 95, 640, 2.2, os.path.join(OUT, f'meta_model_S{S}.svg'),
-           f'Synchronizer metastability model, S = {S}: random per-bit latency {S-1}, {S} or {S+1} cycles after the first capturing edge',
+           f'Synchronizer metastability model, S = {S}: per-bit latency {S-1} or {S} cycles after the first capturing edge (window 50% of the destination period)',
            ev, sorted(ev), note='numbers = examples listed in the table next to the figure; the model output equals the plain chain output when the extra delay is 0')
     md.append(f'META_S{S}')
     md.append('| No. | Time (ns) | What happens |')
@@ -233,9 +233,9 @@ for S in (2, 3):
             md.append(f'| {n} | {g[2]} | Bit {g[3]}: the pending change to {g[4]} is replaced by the new input value {g[5]}; the delay restarts. |')
         else:
             nom = float(g[1])
-            md.append(f'| {n} | {nom} | Bit {g[2]} changes to {g[3]} at the last synchronizer stage. The model chose {g[4]} extra cycle(s): latency {g[5]} cycles after the first capturing edge, so the model output changes {int(g[4])*14} ns after the plain chain output. |')
+            md.append(f'| {n} | {nom} | Bit {g[2]} changes to {g[3]} at the last synchronizer stage. The first flop captured the {'old' if int(g[4]) else 'new'} value: extra delay {g[4]} cycle(s), latency {g[5]} cycles after the first capturing edge, so the model output changes {int(g[4])*14} ns after the plain chain output. |')
     md.append('')
-    md.append(f'All latency choices of the run with S = {S}: ' + '; '.join(f't={g[1]} ns bit {g[2]} extra {g[4]} (latency {g[5]})' for g in sel))
+    md.append(f'All latencies observed in the run with S = {S}: ' + '; '.join(f't={g[1]} ns bit {g[2]} extra {g[4]} (latency {g[5]})' for g in sel))
     md.append('')
 open(os.path.join(OUT, 'tables.txt'), 'w', encoding='utf-8').write('\n'.join(md))
 print('\n'.join(md)[:3000])

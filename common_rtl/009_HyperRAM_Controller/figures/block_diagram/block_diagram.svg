@@ -1,0 +1,358 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2460" height="2877" viewBox="70 280 2460 2877" font-family="Arial, Helvetica, sans-serif" font-size="18">
+<rect x="70" y="280" width="2460" height="2877" fill="#FFFFFF"/>
+<rect x="520" y="410" width="1480" height="500" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<rect x="1330" y="510" width="220" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1440" y="536" text-anchor="middle">u_vlsit_apb4_if</text>
+<text x="1440" y="558" text-anchor="middle">(m_vlsit_apb4_if)</text>
+<rect x="960" y="510" width="220" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1070" y="536" text-anchor="middle">u_vlsit_apb4_cdc</text>
+<text x="1070" y="558" text-anchor="middle">(m_vlsit_apb4_cdc)</text>
+<rect x="570" y="510" width="260" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="700" y="536" text-anchor="middle">u_vlsit_csr_regfile</text>
+<text x="700" y="558" text-anchor="middle">(m_vlsit_csr_regfile)</text>
+<rect x="560" y="810" width="280" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="700" y="836" text-anchor="middle">u_vlsit_axi4_frontend</text>
+<text x="700" y="858" text-anchor="middle">(m_vlsit_axi4_frontend)</text>
+<rect x="1300" y="810" width="280" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1440" y="836" text-anchor="middle">u_vlsit_hyperbus_ctrl</text>
+<text x="1440" y="858" text-anchor="middle">(m_vlsit_hyperbus_ctrl)</text>
+<rect x="1700" y="810" width="260" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1830" y="836" text-anchor="middle">u_vlsit_hyperbus_phy</text>
+<text x="1830" y="858" text-anchor="middle">(m_vlsit_hyperbus_phy)</text>
+<text x="1440" y="331" text-anchor="middle">CLK/RESET-APB</text>
+<text x="1440" y="353" text-anchor="middle">i_clk_apb, i_rst_n_apb</text>
+<text x="405" y="836" text-anchor="middle">AXI4</text>
+<text x="405" y="858" text-anchor="middle">SoC manager</text>
+<text x="390" y="536" text-anchor="middle">IRQ</text>
+<text x="390" y="558" text-anchor="middle">o_int_hyperram</text>
+<text x="700" y="331" text-anchor="middle">CLK/RESET-CORE</text>
+<text x="700" y="353" text-anchor="middle">i_clk_core, i_rst_n_core</text>
+<text x="1260" y="956" text-anchor="middle">PWR</text>
+<text x="1260" y="978" text-anchor="middle">i_mem_pwr_good</text>
+<text x="1580" y="956" text-anchor="middle">IDLE</text>
+<text x="1580" y="978" text-anchor="middle">o_idle</text>
+<text x="2090" y="770" text-anchor="middle">PAD / MEMORY</text>
+<text x="2090" y="792" text-anchor="middle">i_hb_dq</text>
+<text x="2090" y="814" text-anchor="middle">i_hb_rwds</text>
+<text x="2115" y="879" text-anchor="middle">SOC PAD WRAPPER</text>
+<text x="2115" y="901" text-anchor="middle">o_hb_dq / OE</text>
+<text x="2115" y="923" text-anchor="middle">o_hb_rwds / OE</text>
+<text x="2115" y="945" text-anchor="middle">CK / CS# / RESET#</text>
+<text x="1978" y="451" text-anchor="end">TOP</text>
+<text x="1978" y="473" text-anchor="end">(m_vlsit_hyperram_controller)</text>
+<text x="1220" y="526" text-anchor="middle">APBX</text>
+<text x="855" y="526" text-anchor="middle">CSR</text>
+<text x="865" y="826" text-anchor="middle">AXI</text>
+<text x="745" y="776" text-anchor="middle">CFG</text>
+<text x="1605" y="826" text-anchor="middle">PHY</text>
+<text x="104" y="2973" text-anchor="start" font-weight="bold">Legend</text>
+<text x="284" y="3014" text-anchor="start">Interface connector (one per signal group; arrow = active to passive)</text>
+<text x="104" y="3089" text-anchor="start">The top module is structural. AXI4 and HyperBus share CLK-CORE; APB4 is asynchronous on CLK-APB. DQ/RWDS cross the top boundary as separate input, output, and active-high OE signals; the SoC pad wrapper creates the physical bidirectional buses. APB-only reset requires an idle APB bus and no CDC request or response pending and preserves core and memory state.</text>
+<text x="2125" y="536" text-anchor="middle">APB4</text>
+<text x="2125" y="558" text-anchor="middle">SoC completer</text>
+<rect x="100" y="1240" width="2400" height="504" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1300" y="1267" text-anchor="middle" font-weight="bold">Block Functions &amp; Interfaces</text>
+<rect x="100" y="1280" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1305" text-anchor="start" font-weight="bold">Block</text>
+<rect x="430" y="1280" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1305" text-anchor="start" font-weight="bold">Function</text>
+<rect x="1910" y="1280" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1305" text-anchor="start" font-weight="bold">Source</text>
+<rect x="2140" y="1280" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1305" text-anchor="start" font-weight="bold">Interfaces (mnemonics)</text>
+<rect x="100" y="1316" width="330" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1341" text-anchor="start">TOP</text>
+<text x="104" y="1363" text-anchor="start">(m_vlsit_hyperram_controller)</text>
+<text x="104" y="1385" text-anchor="start">frame</text>
+<rect x="430" y="1316" width="1480" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1363" text-anchor="start">One structural top with APB4 CSR, AXI4, HyperBus control and PHY children.</text>
+<rect x="1910" y="1316" width="230" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1363" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1316" width="360" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1341" text-anchor="start">AXIO, APBI, HBIN, HBOUT, PWR, IDLE,</text>
+<text x="2144" y="1363" text-anchor="start">INTR, CRCO, CRAP, APBX, CSR, CFG,</text>
+<text x="2144" y="1385" text-anchor="start">AXI, PHY</text>
+<rect x="100" y="1396" width="330" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1421" text-anchor="start">u_vlsit_apb4_if</text>
+<text x="104" y="1443" text-anchor="start">(m_vlsit_apb4_if)</text>
+<rect x="430" y="1396" width="1480" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1432" text-anchor="start">APB4 bus transfer capture and response generation</text>
+<rect x="1910" y="1396" width="230" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1432" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1396" width="360" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1432" text-anchor="start">APBX, APBI, CRAP</text>
+<rect x="100" y="1454" width="330" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1479" text-anchor="start">u_vlsit_apb4_cdc</text>
+<text x="104" y="1501" text-anchor="start">(m_vlsit_apb4_cdc)</text>
+<rect x="430" y="1454" width="1480" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1490" text-anchor="start">APB/core asynchronous request/response crossing with independent APB-side reset</text>
+<rect x="1910" y="1454" width="230" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1490" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1454" width="360" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1490" text-anchor="start">APBX, CSR, CRCO, CRAP</text>
+<rect x="100" y="1512" width="330" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1537" text-anchor="start">u_vlsit_csr_regfile</text>
+<text x="104" y="1559" text-anchor="start">(m_vlsit_csr_regfile)</text>
+<rect x="430" y="1512" width="1480" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1548" text-anchor="start">Configuration, status, timing, and interrupt register state</text>
+<rect x="1910" y="1512" width="230" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1548" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1512" width="360" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1548" text-anchor="start">CSR, CFG, INTR, CRCO</text>
+<rect x="100" y="1570" width="330" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1595" text-anchor="start">u_vlsit_axi4_frontend</text>
+<text x="104" y="1617" text-anchor="start">(m_vlsit_axi4_frontend)</text>
+<rect x="430" y="1570" width="1480" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1606" text-anchor="start">AXI channel handshakes, request admission, response delivery</text>
+<rect x="1910" y="1570" width="230" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1606" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1570" width="360" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1606" text-anchor="start">AXI, AXIO, CRCO</text>
+<rect x="100" y="1628" width="330" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1653" text-anchor="start">u_vlsit_hyperbus_ctrl</text>
+<text x="104" y="1675" text-anchor="start">(m_vlsit_hyperbus_ctrl)</text>
+<rect x="430" y="1628" width="1480" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1664" text-anchor="start">HyperBus transaction sequencing, initialization, segmentation, and error state</text>
+<rect x="1910" y="1628" width="230" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1664" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1628" width="360" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1664" text-anchor="start">AXI, CFG, PHY, PWR, IDLE, CRCO</text>
+<rect x="100" y="1686" width="330" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1711" text-anchor="start">u_vlsit_hyperbus_phy</text>
+<text x="104" y="1733" text-anchor="start">(m_vlsit_hyperbus_phy)</text>
+<rect x="430" y="1686" width="1480" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1722" text-anchor="start">DDR launch/capture and split DQ/RWDS input, output, OE pad-interface signals</text>
+<rect x="1910" y="1686" width="230" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1722" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1686" width="360" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1722" text-anchor="start">PHY, HBIN, HBOUT, CRCO</text>
+<rect x="100" y="1784" width="2400" height="1108" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1300" y="1811" text-anchor="middle" font-weight="bold">Interface Table</text>
+<rect x="100" y="1824" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1849" text-anchor="start" font-weight="bold">ID</text>
+<rect x="190" y="1824" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1849" text-anchor="start" font-weight="bold">Interface</text>
+<rect x="490" y="1824" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1849" text-anchor="start" font-weight="bold">Category</text>
+<rect x="600" y="1824" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1849" text-anchor="start" font-weight="bold">Active side -&gt; passive side</text>
+<rect x="1070" y="1824" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1849" text-anchor="start" font-weight="bold">Key signals</text>
+<rect x="100" y="1860" width="90" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1918" text-anchor="start">APBI</text>
+<rect x="190" y="1860" width="300" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1907" text-anchor="start">APB4 CSR subordinate</text>
+<text x="194" y="1929" text-anchor="start">interface</text>
+<rect x="490" y="1860" width="110" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1885" text-anchor="start">Arm AMBA</text>
+<text x="494" y="1907" text-anchor="start">APB4 IHI</text>
+<text x="494" y="1929" text-anchor="start">0024 Issue</text>
+<text x="494" y="1951" text-anchor="start">D</text>
+<rect x="600" y="1860" width="470" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1918" text-anchor="start">SoC APB manager ↔ controller</text>
+<rect x="1070" y="1860" width="1430" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1918" text-anchor="start">PADDR, PSEL, PENABLE, PWRITE, PWDATA, PSTRB, PPROT, PREADY, PRDATA, PSLVERR</text>
+<rect x="100" y="1962" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1998" text-anchor="start">APBX</text>
+<rect x="190" y="1962" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1987" text-anchor="start">APB4 transfer request and</text>
+<text x="194" y="2009" text-anchor="start">response</text>
+<rect x="490" y="1962" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1987" text-anchor="start">internal</text>
+<text x="494" y="2009" text-anchor="start">interface</text>
+<rect x="600" y="1962" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1998" text-anchor="start">APB interface → CDC bridge</text>
+<rect x="1070" y="1962" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1998" text-anchor="start">address, write direction, write data, byte strobes, protection attributes, response data, ready, transfer error</text>
+<rect x="100" y="2020" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2056" text-anchor="start">AXI</text>
+<rect x="190" y="2020" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2045" text-anchor="start">Memory transaction request</text>
+<text x="194" y="2067" text-anchor="start">and response</text>
+<rect x="490" y="2020" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2045" text-anchor="start">internal</text>
+<text x="494" y="2067" text-anchor="start">interface</text>
+<rect x="600" y="2020" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2056" text-anchor="start">AXI frontend ↔ HyperBus controller</text>
+<rect x="1070" y="2020" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2045" text-anchor="start">address, transaction ID, burst length, transfer size, burst type, write data, byte strobes, read data, response status, request and response</text>
+<text x="1074" y="2067" text-anchor="start">handshakes</text>
+<rect x="100" y="2078" width="90" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2125" text-anchor="start">AXIO</text>
+<rect x="190" y="2078" width="300" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2125" text-anchor="start">AXI4 subordinate interface</text>
+<rect x="490" y="2078" width="110" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2103" text-anchor="start">Arm AMBA</text>
+<text x="494" y="2125" text-anchor="start">AXI4 IHI</text>
+<text x="494" y="2147" text-anchor="start">0022 H.c</text>
+<rect x="600" y="2078" width="470" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2125" text-anchor="start">SoC manager ↔ controller</text>
+<rect x="1070" y="2078" width="1430" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2114" text-anchor="start">AWID, AWADDR, AWLEN, AWSIZE, AWBURST, AWLOCK, AWCACHE, AWPROT, AWVALID, AWREADY; WDATA, WSTRB, WLAST, WVALID, WREADY; BID, BRESP, BVALID,</text>
+<text x="1074" y="2136" text-anchor="start">BREADY; ARID, ARADDR, ARLEN, ARSIZE, ARBURST, ARLOCK, ARCACHE, ARPROT, ARVALID, ARREADY; RID, RDATA, RRESP, RLAST, RVALID, RREADY</text>
+<rect x="100" y="2158" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2194" text-anchor="start">CFG</text>
+<rect x="190" y="2158" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2183" text-anchor="start">Controller configuration and</text>
+<text x="194" y="2205" text-anchor="start">status</text>
+<rect x="490" y="2158" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2183" text-anchor="start">internal</text>
+<text x="494" y="2205" text-anchor="start">interface</text>
+<rect x="600" y="2158" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2194" text-anchor="start">CSR register file ↔ HyperBus controller</text>
+<rect x="1070" y="2158" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2194" text-anchor="start">enable, timing counts, segmentation limit, initialization status, busy status, event status</text>
+<rect x="100" y="2216" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2252" text-anchor="start">CRAP</text>
+<rect x="190" y="2216" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2241" text-anchor="start">Independent APB4 clock and</text>
+<text x="194" y="2263" text-anchor="start">reset</text>
+<rect x="490" y="2216" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2252" text-anchor="start">clock/reset</text>
+<rect x="600" y="2216" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2252" text-anchor="start">SoC clock/reset controller → APB modules</text>
+<rect x="1070" y="2216" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2252" text-anchor="start">i_clk_apb, i_rst_n_apb</text>
+<rect x="100" y="2274" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2310" text-anchor="start">CRCO</text>
+<rect x="190" y="2274" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2299" text-anchor="start">Shared AXI4/HyperBus clock</text>
+<text x="194" y="2321" text-anchor="start">and core reset</text>
+<rect x="490" y="2274" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2310" text-anchor="start">clock/reset</text>
+<rect x="600" y="2274" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2310" text-anchor="start">SoC clock/reset controller → core modules</text>
+<rect x="1070" y="2274" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2310" text-anchor="start">i_clk_core, i_rst_n_core</text>
+<rect x="100" y="2332" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2368" text-anchor="start">CSR</text>
+<rect x="190" y="2332" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2357" text-anchor="start">Cross-domain CSR request and</text>
+<text x="194" y="2379" text-anchor="start">response</text>
+<rect x="490" y="2332" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2357" text-anchor="start">internal</text>
+<text x="494" y="2379" text-anchor="start">interface</text>
+<rect x="600" y="2332" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2368" text-anchor="start">CDC bridge ↔ CSR register file</text>
+<rect x="1070" y="2332" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2357" text-anchor="start">request address, request direction, request write data, request byte strobes, request valid, request ready, response read data, response</text>
+<text x="1074" y="2379" text-anchor="start">error, response valid, response ready</text>
+<rect x="100" y="2390" width="90" height="124" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2459" text-anchor="start">HBIN</text>
+<rect x="190" y="2390" width="300" height="124" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2448" text-anchor="start">HyperBus DQ and RWDS input</text>
+<text x="194" y="2470" text-anchor="start">data</text>
+<rect x="490" y="2390" width="110" height="124" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2415" text-anchor="start">HyperBus</text>
+<text x="494" y="2437" text-anchor="start">Rev. H and</text>
+<text x="494" y="2459" text-anchor="start">selected</text>
+<text x="494" y="2481" text-anchor="start">device</text>
+<text x="494" y="2503" text-anchor="start">profiles</text>
+<rect x="600" y="2390" width="470" height="124" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2459" text-anchor="start">HyperRAM pads → SoC pad wrapper → PHY</text>
+<rect x="1070" y="2390" width="1430" height="124" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2459" text-anchor="start">i_hb_dq[PARA_MEM_DQ_W-1:0], i_hb_rwds[PARA_MEM_DQ_W/8-1:0]</text>
+<rect x="100" y="2514" width="90" height="124" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2583" text-anchor="start">HBOUT</text>
+<rect x="190" y="2514" width="300" height="124" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2572" text-anchor="start">HyperBus data, output enables</text>
+<text x="194" y="2594" text-anchor="start">and control outputs</text>
+<rect x="490" y="2514" width="110" height="124" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2539" text-anchor="start">HyperBus</text>
+<text x="494" y="2561" text-anchor="start">Rev. H and</text>
+<text x="494" y="2583" text-anchor="start">selected</text>
+<text x="494" y="2605" text-anchor="start">device</text>
+<text x="494" y="2627" text-anchor="start">profiles</text>
+<rect x="600" y="2514" width="470" height="124" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2583" text-anchor="start">PHY → SoC pad wrapper → HyperRAM pads</text>
+<rect x="1070" y="2514" width="1430" height="124" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2583" text-anchor="start">o_hb_dq and o_hb_dq_oe; o_hb_rwds and o_hb_rwds_oe; CK, CK#, CS#, o_rst_n_mem</text>
+<rect x="100" y="2638" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2674" text-anchor="start">IDLE</text>
+<rect x="190" y="2638" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2663" text-anchor="start">Fully drained and initialized</text>
+<text x="194" y="2685" text-anchor="start">status</text>
+<rect x="490" y="2638" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2663" text-anchor="start">custom</text>
+<text x="494" y="2685" text-anchor="start">status</text>
+<rect x="600" y="2638" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2674" text-anchor="start">controller → SoC reset controller</text>
+<rect x="1070" y="2638" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2674" text-anchor="start">o_idle</text>
+<rect x="100" y="2696" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2732" text-anchor="start">INTR</text>
+<rect x="190" y="2696" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2732" text-anchor="start">Enabled interrupt status</text>
+<rect x="490" y="2696" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2721" text-anchor="start">custom</text>
+<text x="494" y="2743" text-anchor="start">interrupt</text>
+<rect x="600" y="2696" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2732" text-anchor="start">controller → SoC interrupt controller</text>
+<rect x="1070" y="2696" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2732" text-anchor="start">o_int_hyperram</text>
+<rect x="100" y="2754" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2790" text-anchor="start">PHY</text>
+<rect x="190" y="2754" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2779" text-anchor="start">HyperBus command, data and</text>
+<text x="194" y="2801" text-anchor="start">timing controls</text>
+<rect x="490" y="2754" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2779" text-anchor="start">internal</text>
+<text x="494" y="2801" text-anchor="start">interface</text>
+<rect x="600" y="2754" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2790" text-anchor="start">HyperBus controller → PHY</text>
+<rect x="1070" y="2754" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2790" text-anchor="start">command/address, read/write direction, data, byte mask, chip select, reset, pin output enables, captured data, RWDS status</text>
+<rect x="100" y="2812" width="90" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2859" text-anchor="start">PWR</text>
+<rect x="190" y="2812" width="300" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2848" text-anchor="start">External memory power-good</text>
+<text x="194" y="2870" text-anchor="start">level</text>
+<rect x="490" y="2812" width="110" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2837" text-anchor="start">custom</text>
+<text x="494" y="2859" text-anchor="start">asynchronous</text>
+<text x="494" y="2881" text-anchor="start">status</text>
+<rect x="600" y="2812" width="470" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2859" text-anchor="start">SoC power supervisor → controller</text>
+<rect x="1070" y="2812" width="1430" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2859" text-anchor="start">i_mem_pwr_good</text>
+<path d="M 2050 540 L 1550 540" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1550,540 1562,534 1562,546" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1440 360 L 1440 510" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1440,510 1434,498 1446,498" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 470 840 L 560 840" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="560,840 548,846 548,834" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 570 540 L 470 540" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="470,540 482,534 482,546" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 700 360 L 700 510" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="700,510 694,498 706,498" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1350 960 L 1350 870" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1350,870 1356,882 1344,882" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1530 870 L 1530 960" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1530,960 1524,948 1536,948" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 2050 830 L 1960 830" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1960,830 1972,824 1972,836" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1960 850 L 2050 850" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="2050,850 2038,856 2038,844" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 700 422 L 532 422 L 532 534 A 6 6 0 0 0 532 546 L 532 834 A 6 6 0 0 0 532 846 L 532 898 L 1070 898 L 1070 570" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1070,570 1076,582 1064,582" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 700 422 L 532 422 L 532 534 A 6 6 0 0 0 532 546 L 532 834 A 6 6 0 0 0 532 846 L 532 898 L 700 898 L 700 870" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="700,870 706,882 694,882" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 700 422 L 532 422 L 532 534 A 6 6 0 0 0 532 546 L 532 834 A 6 6 0 0 0 532 846 L 532 898 L 1344 898 A 6 6 0 0 1 1356 898 L 1440 898 L 1440 870" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1440,870 1446,882 1434,882" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 700 422 L 532 422 L 532 534 A 6 6 0 0 0 532 546 L 532 834 A 6 6 0 0 0 532 846 L 532 898 L 1344 898 A 6 6 0 0 1 1356 898 L 1524 898 A 6 6 0 0 1 1536 898 L 1830 898 L 1830 870" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1830,870 1836,882 1824,882" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1440 422 L 1070 422 L 1070 510" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1070,510 1064,498 1076,498" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1330 540 L 1180 540" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1180,540 1192,534 1192,546" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 960 540 L 830 540" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="830,540 842,534 842,546" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 840 840 L 1064 840 A 6 6 0 0 1 1076 840 L 1300 840" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1300,840 1288,846 1288,834" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1580 840 L 1700 840" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1700,840 1688,846 1688,834" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 700 570 L 700 790 L 1064 790 A 6 6 0 0 1 1076 790 L 1440 790 L 1440 810" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1440,810 1434,798 1446,798" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 100 3007 L 260 3007" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="260,3007 248,3013 248,3001" fill="#000000" stroke="#000000" stroke-width="1"/>
+</svg>

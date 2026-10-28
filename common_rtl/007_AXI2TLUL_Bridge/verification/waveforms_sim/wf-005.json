@@ -1,0 +1,110 @@
+{
+ "signal": [
+  {
+   "name": "i_clk_main",
+   "wave": "p........"
+  },
+  {
+   "name": "i_axi_arvalid",
+   "wave": "011000000",
+   "data": []
+  },
+  {
+   "name": "o_axi_arready",
+   "wave": "011111111",
+   "data": []
+  },
+  {
+   "name": "i_axi_araddr",
+   "wave": "0==000000",
+   "data": [
+    "0x101",
+    "0x203"
+   ]
+  },
+  {
+   "name": "i_axi_arlen",
+   "wave": "0==000000",
+   "data": [
+    "0x2",
+    "0x1"
+   ]
+  },
+  {
+   "name": "i_axi_arsize",
+   "wave": "0==000000",
+   "data": [
+    "0x1",
+    "0x0"
+   ]
+  },
+  {
+   "name": "i_axi_arburst",
+   "wave": "0=.000000",
+   "data": [
+    "0x1"
+   ]
+  },
+  {
+   "name": "o_tl_a_valid",
+   "wave": "001111100",
+   "data": []
+  },
+  {
+   "name": "i_tl_a_ready",
+   "wave": "111111111",
+   "data": []
+  },
+  {
+   "name": "o_tl_a_opcode",
+   "wave": "00=....xx",
+   "data": [
+    "0x4"
+   ]
+  },
+  {
+   "name": "o_tl_a_src",
+   "wave": "00=====xx",
+   "data": [
+    "0x0",
+    "0x1",
+    "0x2",
+    "0x3",
+    "0x4"
+   ]
+  },
+  {
+   "name": "o_tl_a_addr",
+   "wave": "00=====xx",
+   "data": [
+    "0x100",
+    "0x102",
+    "0x104",
+    "0x203",
+    "0x204"
+   ]
+  },
+  {
+   "name": "o_tl_a_size",
+   "wave": "00=..=.00",
+   "data": [
+    "0x1",
+    "0x0"
+   ]
+  },
+  {
+   "name": "o_tl_a_mask",
+   "wave": "00=====11",
+   "data": [
+    "0x2",
+    "0xc",
+    "0x3",
+    "0x8",
+    "0x1"
+   ]
+  }
+ ],
+ "head": {
+  "text": "WF-005 Unaligned and narrow reads (simulated)"
+ }
+}

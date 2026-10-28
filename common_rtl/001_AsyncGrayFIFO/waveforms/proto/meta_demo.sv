@@ -2,50 +2,56 @@
 //------------------------------------------------------------------------------
 // Demonstration of the synchronizer metastability simulation model (branch without VLSIT_SYNTHESIS).
 // Only used to draw the waveform of the specification (not the RTL / model deliverable itself).
-//   S stages (+S=2|3|4), W bits. Every bit has its own random extra delay.
-//   Spec semantics: the latency is counted in destination cycles AFTER the first capturing edge.
-//   Nominal = S-1, the model adds 0, 1 or 2 extra cycles  ->  S-1, S or S+1.
-//   If the input changes again during the delay, the new value replaces the pending change.
+//   S stages (+S=2|3), W bits. The metastability model is the real wrapper m_vlsit_afifo_cell_sync
+//   (one instance per bit): the first flop resolves to the old or to the new value, 50% each, when the
+//   input changed inside the aperture window before the capturing edge (+AFIFO_MSYNC_WIN_PCT, percent
+//   of the period of the destination clock), so a change reaches the output S or S+1 edges after the
+//   change; the latency counted after the first capturing edge is S-1 or S.
+//   The plain chain (EN = 0) is a chain of S flops. The demo measures, for every bit, how many
+//   destination periods the model output is later than the plain chain output ("extra") and prints it.
 //------------------------------------------------------------------------------
 module msync_model #(parameter W = 4, parameter S = 2, parameter ID = 1, parameter EN = 1) (
   input clk, input rst_n, input [31:0] seed, input [W-1:0] d, output [W-1:0] q, output reg [W*3-1:0] lat);
   reg [W-1:0] ch [0:3];
-  reg [W-1:0] last, cur, nxt, pend;
-  integer cnt [0:W-1];
-  reg [31:0] rs;
-  integer b, i, k;
-  wire [W-1:0] chain_out = ch[S-1];
-  wire [W-1:0] din_last = ch[S-2];
-  assign q = EN ? cur : chain_out;
-  function [31:0] nextrs(input [31:0] x);
-    reg [31:0] y;
-    begin y = x; y = y ^ (y << 13); y = y ^ (y >> 17); y = y ^ (y << 5); nextrs = y; end
-  endfunction
+  integer i;
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
       for (i = 0; i < 4; i = i + 1) ch[i] <= 0;
-      last <= 0; cur <= 0; pend <= 0; lat <= 0;
-      rs <= (seed ^ (32'h9e3779b9 * (ID + 1))) | 1;
-      for (b = 0; b < W; b = b + 1) cnt[b] = 0;
     end else begin
       ch[0] <= d;
       for (i = 1; i < 4; i = i + 1) ch[i] <= ch[i-1];
-      for (b = 0; b < W; b = b + 1) begin
-        // din_last is the value that the last stage captures at this very edge: the nominal output changes now
-        if (din_last[b] !== last[b]) begin
-          if (EN && pend[b]) $display("REPL S=%0d t=%0.1f bit=%0d pending=%b replaced by %b", S, $realtime, b, nxt[b], din_last[b]);
-          last[b] <= din_last[b]; rs <= nextrs(rs);
-          k = (nextrs(rs) >> 7) % 3;                       // extra cycles 0, 1, 2
-          lat[b*3 +: 3] <= (S - 1) + k;                    // latency counted after the first capturing edge
-          if (EN) $display("LAT S=%0d t=%0.1f bit=%0d new=%b extra=%0d latency=%0d", S, $realtime, b, din_last[b], k, (S - 1) + k);
-          if (k == 0) begin cur[b] <= din_last[b]; pend[b] <= 0; end
-          else begin nxt[b] <= din_last[b]; cnt[b] = k - 1; pend[b] <= 1; end   // a new value replaces the pending one
-        end else if (pend[b]) begin
-          if (cnt[b] == 0) begin cur[b] <= nxt[b]; pend[b] <= 0; end else cnt[b] = cnt[b] - 1;
+    end
+  end
+  wire [W-1:0] chain_out = ch[S-1];
+  initial lat = 0;
+  generate
+    if (EN == 0) begin : g_plain
+      assign q = chain_out;
+    end else begin : g_meta
+      wire [W-1:0] qm;
+      assign q = qm;
+      genvar b;
+      for (b = 0; b < W; b = b + 1) begin : g_b
+        m_vlsit_afifo_cell_sync #(.PARA_AFIFO_CELL_TYPE(S)) u_c (.i_clk_dst(clk), .i_rst_n_dst(rst_n), .i_d(d[b]), .o_q(qm[b]));
+        real tp;
+        reg  pend;
+        integer extra;
+        initial begin tp = 0; pend = 0; end
+        // time of the change of the plain chain output of this bit
+        always @(chain_out[b]) begin tp = $realtime; pend = 1; end
+        // the model output follows the plain chain output with 0 or 1 destination periods of extra delay
+        always @(qm[b]) begin
+          #0.02;
+          if (pend && rst_n) begin
+            extra = (($realtime - 0.02 - tp) + 1.0) / 14.0;
+            $display("LAT S=%0d t=%0.1f bit=%0d new=%b extra=%0d latency=%0d", S, tp, b, qm[b], extra, (S - 1) + extra);
+            lat[b*3 +: 3] <= (S - 1) + extra;
+            pend = 0;
+          end
         end
       end
     end
-  end
+  endgenerate
 endmodule
 
 module meta_demo;

@@ -11,20 +11,20 @@
  "top": {
   "frame_label": [
    "TOP",
-   "(m_vlsit_axi_async_top)"
+   "(m_vlsit_async_axi4_bridge)"
   ],
   "block_label": [
    "TOP",
-   "(m_vlsit_axi_async_top)"
+   "(m_vlsit_async_axi4_bridge)"
   ],
   "block_row": [
-   "TOP (m_vlsit_axi_async_top)",
+   "TOP (m_vlsit_async_axi4_bridge)",
    "Asynchronous AXI bridge.",
    "Section 14.2"
   ]
  },
  "frame_row": [
-  "TOP (m_vlsit_axi_async_top) frame",
+  "TOP (m_vlsit_async_axi4_bridge) frame",
   "Structural top of the asynchronous AXI bridge. It instantiates one module per AXI channel and holds no logic of its own. The subordinate-side interface is on the left and the manager-side interface is on the right.",
   "Section 14.2"
  ],

@@ -6,7 +6,6 @@
  * Date         : 2026-10-25
  * Description  : AXI4 AW channel crossing with one asynchronous FIFO.
  */
-`default_nettype none
 `timescale 1ns/1ps
 
 module m_vlsit_axi_user_async_aw #(
@@ -58,39 +57,39 @@ module m_vlsit_axi_user_async_aw #(
   localparam logic [31:0] LPARA_PTR_W = $clog2(PARA_AXI_AW_DEPTH) + 32'd1
 ) (
   // Clock and reset.
-  input i_clk_sub,
-  input i_rst_n_sub,
-  input i_clk_mgr,
-  input i_rst_n_mgr,
+  input  wire                        i_clk_sub,
+  input  wire                        i_rst_n_sub,
+  input  wire                        i_clk_mgr,
+  input  wire                        i_rst_n_mgr,
 
   // Subordinate-side AW channel.
-  input i_axi_awvalid,
+  input  wire                        i_axi_awvalid,
   output logic                       o_axi_awready,
-  input [PARA_AXI_ID_W-1:0]   i_axi_awid,
-  input [PARA_AXI_ADDR_W-1:0] i_axi_awaddr,
-  input [LPARA_LEN_W-1:0]     i_axi_awlen,
-  input [LPARA_SIZE_W-1:0]                 i_axi_awsize,
-  input [LPARA_BURST_W-1:0]                 i_axi_awburst,
-  input [LPARA_LOCK_W-1:0]    i_axi_awlock,
-  input [LPARA_CACHE_W-1:0]                 i_axi_awcache,
-  input [LPARA_PROT_W-1:0]                 i_axi_awprot,
-  input [LPARA_QOS_W-1:0]                 i_axi_awqos,
-  input [LPARA_REGION_W-1:0]                 i_axi_awregion,
-  input [LPARA_AWUSER_W-1:0]  i_axi_awuser,
+  input  wire  [PARA_AXI_ID_W-1:0]   i_axi_awid,
+  input  wire  [PARA_AXI_ADDR_W-1:0] i_axi_awaddr,
+  input  wire  [LPARA_LEN_W-1:0]     i_axi_awlen,
+  input  wire  [LPARA_SIZE_W-1:0]    i_axi_awsize,
+  input  wire  [LPARA_BURST_W-1:0]   i_axi_awburst,
+  input  wire  [LPARA_LOCK_W-1:0]    i_axi_awlock,
+  input  wire  [LPARA_CACHE_W-1:0]   i_axi_awcache,
+  input  wire  [LPARA_PROT_W-1:0]    i_axi_awprot,
+  input  wire  [LPARA_QOS_W-1:0]     i_axi_awqos,
+  input  wire  [LPARA_REGION_W-1:0]  i_axi_awregion,
+  input  wire  [LPARA_AWUSER_W-1:0]  i_axi_awuser,
 
   // Manager-side AW channel.
   output logic                       o_axi_awvalid,
-  input i_axi_awready,
+  input  wire                        i_axi_awready,
   output logic [PARA_AXI_ID_W-1:0]   o_axi_awid,
   output logic [PARA_AXI_ADDR_W-1:0] o_axi_awaddr,
   output logic [LPARA_LEN_W-1:0]     o_axi_awlen,
-  output logic [LPARA_SIZE_W-1:0]                 o_axi_awsize,
-  output logic [LPARA_BURST_W-1:0]                 o_axi_awburst,
+  output logic [LPARA_SIZE_W-1:0]    o_axi_awsize,
+  output logic [LPARA_BURST_W-1:0]   o_axi_awburst,
   output logic [LPARA_LOCK_W-1:0]    o_axi_awlock,
-  output logic [LPARA_CACHE_W-1:0]                 o_axi_awcache,
-  output logic [LPARA_PROT_W-1:0]                 o_axi_awprot,
-  output logic [LPARA_QOS_W-1:0]                 o_axi_awqos,
-  output logic [LPARA_REGION_W-1:0]                 o_axi_awregion,
+  output logic [LPARA_CACHE_W-1:0]   o_axi_awcache,
+  output logic [LPARA_PROT_W-1:0]    o_axi_awprot,
+  output logic [LPARA_QOS_W-1:0]     o_axi_awqos,
+  output logic [LPARA_REGION_W-1:0]  o_axi_awregion,
   output logic [LPARA_AWUSER_W-1:0]  o_axi_awuser
 );
 
@@ -150,4 +149,3 @@ module m_vlsit_axi_user_async_aw #(
   );
 
 endmodule
-`default_nettype wire

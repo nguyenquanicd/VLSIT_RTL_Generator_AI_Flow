@@ -1,0 +1,64 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_crc",
+      "wave": "p....."
+    },
+    {
+      "name": "i_rst_n_crc",
+      "wave": "1....."
+    },
+    {
+      "name": "i_gen_valid",
+      "wave": "010..."
+    },
+    {
+      "name": "o_gen_data_ready",
+      "wave": "1.01.."
+    },
+    {
+      "name": "i_gen_data[31:0]",
+      "wave": "x=xxxx",
+      "data": [
+        "3CA5"
+      ]
+    },
+    {
+      "name": "i_gen_keep[3:0]",
+      "wave": "x=xxxx",
+      "data": [
+        "1100"
+      ]
+    },
+    {
+      "name": "i_gen_last",
+      "wave": "010..."
+    },
+    {
+      "name": "o_gen_crc_valid",
+      "wave": "0.10.."
+    },
+    {
+      "name": "o_gen_crc[7:0]",
+      "wave": "xx=xxx",
+      "data": [
+        "RFX"
+      ]
+    },
+    {
+      "name": "i_gen_crc_ready",
+      "wave": "0.10.."
+    }
+  ],
+  "head": {
+    "text": "Method 4: reflected input/output and XOR finalization",
+    "tick": 0
+  },
+  "foot": {
+    "text": "REF_IN=1; REF_OUT=1; XOR_OUT=8'h5A.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

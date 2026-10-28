@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2460" height="1933" viewBox="70 160 2460 1933" font-family="Arial, Helvetica, sans-serif" font-size="18">
+<rect x="70" y="160" width="2460" height="1933" fill="#FFFFFF"/>
+<rect x="450" y="290" width="840" height="640" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<rect x="970" y="710" width="160" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1050" y="736" text-anchor="middle">u_crc_gen</text>
+<text x="1050" y="758" text-anchor="middle">(m_crc_gen)</text>
+<rect x="610" y="510" width="180" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="700" y="536" text-anchor="middle">u_crc_check</text>
+<text x="700" y="558" text-anchor="middle">(m_crc_check)</text>
+<text x="1400" y="736" text-anchor="middle">GOUT</text>
+<text x="1400" y="758" text-anchor="middle">CRC result</text>
+<text x="1050" y="211" text-anchor="middle">CLKRS</text>
+<text x="1050" y="233" text-anchor="middle">Clock/reset</text>
+<text x="1268" y="331" text-anchor="end">TOP</text>
+<text x="1268" y="353" text-anchor="end">(m_crc_engine)</text>
+<text x="104" y="1909" text-anchor="start" font-weight="bold">Legend</text>
+<text x="284" y="1950" text-anchor="start">Interface connector (one per signal group; arrow = active to passive)</text>
+<text x="104" y="2025" text-anchor="start">The enclosing frame is m_crc_engine. Each child wrapper instantiates one copy of the selected method.</text>
+<text x="355" y="491" text-anchor="middle">CIN</text>
+<text x="355" y="513" text-anchor="middle">Checker input</text>
+<text x="375" y="581" text-anchor="middle">COUT</text>
+<text x="375" y="603" text-anchor="middle">Pass/fail</text>
+<text x="315" y="736" text-anchor="middle">GIN</text>
+<text x="315" y="758" text-anchor="middle">Generator input</text>
+<rect x="100" y="1260" width="2400" height="184" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1300" y="1287" text-anchor="middle" font-weight="bold">Block Functions &amp; Interfaces</text>
+<rect x="100" y="1300" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1325" text-anchor="start" font-weight="bold">Block</text>
+<rect x="430" y="1300" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1325" text-anchor="start" font-weight="bold">Function</text>
+<rect x="1910" y="1300" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1325" text-anchor="start" font-weight="bold">Source</text>
+<rect x="2140" y="1300" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1325" text-anchor="start" font-weight="bold">Interfaces (mnemonics)</text>
+<rect x="100" y="1336" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1361" text-anchor="start">TOP (m_crc_engine) frame</text>
+<rect x="430" y="1336" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1361" text-anchor="start">The generator and checker process separate frames concurrently. Each channel contains one instance of the selected CRC method.</text>
+<rect x="1910" y="1336" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1361" text-anchor="start">Sections 5.1, 14.2</text>
+<rect x="2140" y="1336" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1361" text-anchor="start">GIN, GOUT, CIN, COUT, CLKRS</text>
+<rect x="100" y="1372" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1397" text-anchor="start">u_crc_gen (m_crc_gen)</text>
+<rect x="430" y="1372" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1397" text-anchor="start">Accumulates one frame and returns its finalized CRC using the selected method.</text>
+<rect x="1910" y="1372" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1397" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1372" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1397" text-anchor="start">GIN, GOUT, CLKRS</text>
+<rect x="100" y="1408" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1433" text-anchor="start">u_crc_check (m_crc_check)</text>
+<rect x="430" y="1408" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1433" text-anchor="start">Accumulates a separate frame, compares its finalized CRC with the final-beat reference, and reports pass or fail.</text>
+<rect x="1910" y="1408" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1433" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1408" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1433" text-anchor="start">CIN, COUT, CLKRS</text>
+<rect x="100" y="1484" width="2400" height="344" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1300" y="1511" text-anchor="middle" font-weight="bold">Interface Table</text>
+<rect x="100" y="1524" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1549" text-anchor="start" font-weight="bold">ID</text>
+<rect x="190" y="1524" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1549" text-anchor="start" font-weight="bold">Interface</text>
+<rect x="490" y="1524" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1549" text-anchor="start" font-weight="bold">Category</text>
+<rect x="600" y="1524" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1549" text-anchor="start" font-weight="bold">Active side -&gt; passive side</text>
+<rect x="1070" y="1524" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1549" text-anchor="start" font-weight="bold">Key signals</text>
+<rect x="100" y="1560" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1596" text-anchor="start">CIN</text>
+<rect x="190" y="1560" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1585" text-anchor="start">Checker frame stream and</text>
+<text x="194" y="1607" text-anchor="start">reference CRC</text>
+<rect x="490" y="1560" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1596" text-anchor="start">handshake</text>
+<rect x="600" y="1560" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1585" text-anchor="start">external -&gt; u_crc_check; ready returns to</text>
+<text x="604" y="1607" text-anchor="start">external</text>
+<rect x="1070" y="1560" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1596" text-anchor="start">external -&gt; u_crc_check: i_check_data, i_check_keep, i_check_valid, i_check_last, i_check_crc; u_crc_check -&gt; external: o_check_data_ready</text>
+<rect x="100" y="1618" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1643" text-anchor="start">CLKRS</text>
+<rect x="190" y="1618" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1643" text-anchor="start">Clock and synchronous reset</text>
+<rect x="490" y="1618" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1643" text-anchor="start">custom</text>
+<rect x="600" y="1618" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1643" text-anchor="start">SoC -&gt; TOP</text>
+<rect x="1070" y="1618" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1643" text-anchor="start">i_clk_crc, i_rst_n_crc</text>
+<rect x="100" y="1654" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1690" text-anchor="start">COUT</text>
+<rect x="190" y="1654" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1690" text-anchor="start">Checker pass/fail result</text>
+<rect x="490" y="1654" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1690" text-anchor="start">handshake</text>
+<rect x="600" y="1654" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1679" text-anchor="start">u_crc_check -&gt; external; ready returns to</text>
+<text x="604" y="1701" text-anchor="start">u_crc_check</text>
+<rect x="1070" y="1654" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1690" text-anchor="start">u_crc_check -&gt; external: o_check_pass, o_check_crc_valid; external -&gt; u_crc_check: i_check_crc_ready</text>
+<rect x="100" y="1712" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1748" text-anchor="start">GIN</text>
+<rect x="190" y="1712" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1748" text-anchor="start">Generator frame stream</text>
+<rect x="490" y="1712" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1748" text-anchor="start">handshake</text>
+<rect x="600" y="1712" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1737" text-anchor="start">external -&gt; u_crc_gen; ready returns to</text>
+<text x="604" y="1759" text-anchor="start">external</text>
+<rect x="1070" y="1712" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1748" text-anchor="start">external -&gt; u_crc_gen: i_gen_data, i_gen_keep, i_gen_valid, i_gen_last; u_crc_gen -&gt; external: o_gen_data_ready</text>
+<rect x="100" y="1770" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1806" text-anchor="start">GOUT</text>
+<rect x="190" y="1770" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1806" text-anchor="start">Generator CRC result</text>
+<rect x="490" y="1770" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1806" text-anchor="start">handshake</text>
+<rect x="600" y="1770" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1795" text-anchor="start">u_crc_gen -&gt; external; ready returns to</text>
+<text x="604" y="1817" text-anchor="start">u_crc_gen</text>
+<rect x="1070" y="1770" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1806" text-anchor="start">u_crc_gen -&gt; external: o_gen_crc, o_gen_crc_valid; external -&gt; u_crc_gen: i_gen_crc_ready</text>
+<path d="M 400 530 L 610 530" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="610,530 598,536 598,524" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 610 550 L 400 550" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="400,550 412,544 412,556" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 400 740 L 970 740" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="970,740 958,746 958,734" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1130 740 L 1340 740" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1340,740 1328,746 1328,734" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1050 240 L 1050 710" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1050,710 1044,698 1056,698" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1050 302 L 700 302 L 700 510" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="700,510 694,498 706,498" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 100 1943 L 260 1943" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="260,1943 248,1949 248,1937" fill="#000000" stroke="#000000" stroke-width="1"/>
+</svg>

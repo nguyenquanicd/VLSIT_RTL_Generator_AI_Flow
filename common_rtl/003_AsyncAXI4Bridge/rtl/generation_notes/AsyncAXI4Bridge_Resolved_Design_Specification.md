@@ -53,7 +53,7 @@ The bridge **forwards** the information: it does not check, interpret, reorder o
 
 **Included:**
 
-- Structural top `m_vlsit_axi_async_top`.
+- Structural top `m_vlsit_async_axi4_bridge`.
 - Five channel modules (AW, W, B, AR, R). Each packs the fields of its channel into one FIFO word, instantiates one `m_vlsit_afifo_top` and unpacks the word on the other side.
 - Parameterized address, data and ID widths; optional QOS and REGION fields; optional user signals per channel; AXI3 option.
 - Selectable FIFO depth per channel, selectable synchronizer cell option (common to the five FIFOs), selectable memory branch (common to the five FIFOs).
@@ -181,7 +181,7 @@ The bridge has five independent channels. Each channel is an asynchronous FIFO w
 
 | Block | Responsibility | Inputs / outputs | Clock/reset domain | State or storage |
 |---|---|---|---|---|
-| m_vlsit_axi_async_top | Structural top: ports, parameters, derived widths, five channel instances | All ports of Section 6.2 | CLK-SUB, CLK-MGR | None |
+| m_vlsit_async_axi4_bridge | Structural top: ports, parameters, derived widths, five channel instances | All ports of Section 6.2 | CLK-SUB, CLK-MGR | None |
 | m_vlsit_axi_async_aw | AW channel: packs AWID to AWUSER into one word, FIFO, unpacks | AW signals of both sides | Source CLK-SUB / RST-SUB, destination CLK-MGR / RST-MGR | FIFO depth `PARA_AXI_AW_DEPTH` |
 | m_vlsit_axi_async_w | W channel: packs WID (AXI3), WDATA, WSTRB, WLAST, WUSER | W signals of both sides | Source CLK-SUB, destination CLK-MGR | FIFO depth `PARA_AXI_W_DEPTH` |
 | m_vlsit_axi_async_b | B channel: packs BID, BRESP, BUSER | B signals of both sides | Source CLK-MGR, destination CLK-SUB | FIFO depth `PARA_AXI_B_DEPTH` |
@@ -224,7 +224,7 @@ The bridge has five independent channels. Each channel is an asynchronous FIFO w
 
 Port names follow the default naming rule (DEC-001) and PRT-01: `<direction>_axi_<signal>` with the exact lowercase mnemonic of the protocol, where the direction is `i` or `o` at the boundary of this module (not the manager or subordinate role). The two interfaces use the same mnemonics in opposite directions, so the names are distinct: the subordinate side has `i_axi_awvalid` and `o_axi_awready`, the manager side `o_axi_awvalid` and `i_axi_awready`. The meaning column names the side. Widths use `LPARA_*` (Section 8). Optional fields that are not present keep their port (REQ-IF-002, DEC-022). The ports of the internal modules are in Section 14.2.1. Every port has a function, a clock domain and a **signal type**.
 
-**m_vlsit_axi_async_top**
+**m_vlsit_async_axi4_bridge**
 
 | Port | Direction | Width | Meaning (function) | Clock domain | Signal type | Reset / idle value | Timing / sampling | Configurations |
 |---|---|---:|---|---|---|---|---|---|
@@ -556,7 +556,7 @@ Let S be the number of synchronizer stages (2 for `PARA_AXI_CELL_TYPE` 1 and 2, 
 |---|---|---|---|
 | Source edge t0 | VALID = 1 and READY = 1 | The word is written into the FIFO; the Gray write pointer updates | READY may fall if the FIFO is now full |
 | Destination edges 1 to S | None | The pointer crosses the synchronizer | Destination VALID is 0 |
-| After destination edge S (up to S + 2 with the metastability model) | None | The empty flag falls | Destination VALID = 1 and the payload shows the word |
+| After destination edge S (up to S + 1 with the metastability model of REF-002, DEC-048) | None | The empty flag falls | Destination VALID = 1 and the payload shows the word |
 | Destination edge with READY = 1 | VALID = 1 | The word is read; the read pointer updates and crosses back | The next word appears at once if the FIFO holds one (show-ahead) |
 | Source edges after the read pointer crossed back | None | The full flag falls | Source READY = 1 again |
 
@@ -648,12 +648,12 @@ The VLSIT RTL Design Rules v2 in VLSIT_RTL_Design_Rule.md (REF-003) are the mand
 
 | Module | Responsibility | Parent / instance | Clock/reset domains | Interface |
 |---|---|---|---|---|
-| m_vlsit_axi_async_top | Structural top | Top | CLK-SUB and CLK-MGR | All ports of Section 6.2 |
-| m_vlsit_axi_async_aw | AW channel: pack, FIFO, unpack | m_vlsit_axi_async_top / u_aw | Source CLK-SUB, destination CLK-MGR | AW signals of both sides, clocks and resets |
-| m_vlsit_axi_async_w | W channel | m_vlsit_axi_async_top / u_w | Source CLK-SUB, destination CLK-MGR | W signals of both sides |
-| m_vlsit_axi_async_b | B channel | m_vlsit_axi_async_top / u_b | Source CLK-MGR, destination CLK-SUB | B signals of both sides |
-| m_vlsit_axi_async_ar | AR channel | m_vlsit_axi_async_top / u_ar | Source CLK-SUB, destination CLK-MGR | AR signals of both sides |
-| m_vlsit_axi_async_r | R channel | m_vlsit_axi_async_top / u_r | Source CLK-MGR, destination CLK-SUB | R signals of both sides |
+| m_vlsit_async_axi4_bridge | Structural top | Top | CLK-SUB and CLK-MGR | All ports of Section 6.2 |
+| m_vlsit_axi_async_aw | AW channel: pack, FIFO, unpack | m_vlsit_async_axi4_bridge / u_aw | Source CLK-SUB, destination CLK-MGR | AW signals of both sides, clocks and resets |
+| m_vlsit_axi_async_w | W channel | m_vlsit_async_axi4_bridge / u_w | Source CLK-SUB, destination CLK-MGR | W signals of both sides |
+| m_vlsit_axi_async_b | B channel | m_vlsit_async_axi4_bridge / u_b | Source CLK-MGR, destination CLK-SUB | B signals of both sides |
+| m_vlsit_axi_async_ar | AR channel | m_vlsit_async_axi4_bridge / u_ar | Source CLK-SUB, destination CLK-MGR | AR signals of both sides |
+| m_vlsit_axi_async_r | R channel | m_vlsit_async_axi4_bridge / u_r | Source CLK-MGR, destination CLK-SUB | R signals of both sides |
 | m_vlsit_afifo_top | Asynchronous Gray FIFO of `001_AsyncGrayFIFO` | Each channel module / u_vlsit_afifo_top | Source and destination domain | FIFO ports of REF-002 section 6.2 |
 
 State is owned by the FIFOs; the channel modules and the top have no flip-flops. There is no register logic and no protocol checker.
@@ -681,12 +681,12 @@ Each channel module has the ports of its channel from Section 6.2 (the same name
 
 | Item | Value / source |
 |---|---|
-| Top / source file list | m_vlsit_axi_async_top, the five channel modules, the RTL of `001_AsyncGrayFIFO`, the wrappers and cells of `000_Common` |
+| Top / source file list | m_vlsit_async_axi4_bridge, the five channel modules, the RTL of `001_AsyncGrayFIFO`, the wrappers and cells of `000_Common` |
 | Frontend version and options | Recorded per run (REF-003 SCP-02) |
 | Parameters/configuration | CFG-AXI4, CFG-USER, CFG-AXI3, CFG-WIDE, CFG-MIN, CFG-MACRO, CFG-CELL |
 | Libraries/corners | Chosen by the integrator (OI-001) |
 | Memory flow | Flop array by default; library SRAM through the wrapper for CFG-MACRO |
-| Lint rule configuration | The project lint set with `default_nettype none` checking |
+| Lint rule configuration | The project lint set, which reports undeclared identifiers (implicit nets); the RTL has no `default_nettype` directive |
 
 ## 15. Verification specification
 
@@ -832,16 +832,16 @@ Do not use a whole-domain `set_false_path` or an unqualified `set_clock_groups -
 | REQ-FUNC-008 | Channel modules, top | TEST-007, COV-004 | Simulation | CFG-AXI3 |
 | REQ-FUNC-009 | m_vlsit_axi_async_w | TEST-007 | Simulation | CFG-AXI3 |
 | REQ-FUNC-010 | m_vlsit_axi_async_aw, m_vlsit_axi_async_ar | TEST-008, SVA-008, COV-004 | Simulation | CFG-AXI4 |
-| REQ-IF-001 | m_vlsit_axi_async_top | TEST-012 | Lint, review | All |
+| REQ-IF-001 | m_vlsit_async_axi4_bridge | TEST-012 | Lint, review | All |
 | REQ-IF-002 | Channel modules, top | TEST-008, TEST-012 | Simulation, lint | All |
 | REQ-CLK-001 | All modules | TEST-002, TEST-013, COV-003 | Simulation with several ratios | All |
 | REQ-CLK-002 | Channel modules, FIFOs | TEST-011, TEST-012 | CDC review, structural check | All |
-| REQ-RESET-001 | m_vlsit_axi_async_top | TEST-001, TEST-010 | Simulation | All |
+| REQ-RESET-001 | m_vlsit_async_axi4_bridge | TEST-001, TEST-010 | Simulation | All |
 | REQ-RESET-002 | FIFOs | TEST-001, SVA-007 | Simulation, assertion | All |
 | REQ-RESET-003 | FIFOs | TEST-010 | Simulation | All |
-| REQ-PARAM-001 | m_vlsit_axi_async_top | TEST-009 | Elaboration | CFG-WIDE, CFG-MIN |
+| REQ-PARAM-001 | m_vlsit_async_axi4_bridge | TEST-009 | Elaboration | CFG-WIDE, CFG-MIN |
 | REQ-PARAM-002 | Channel modules | TEST-003, TEST-014 | Simulation | All |
-| REQ-PARAM-003 | m_vlsit_axi_async_top | TEST-009 | Elaboration | CFG-CELL |
+| REQ-PARAM-003 | m_vlsit_async_axi4_bridge | TEST-009 | Elaboration | CFG-CELL |
 | REQ-PERF-001 | FIFOs | TEST-013, COV-001, COV-002 | Throughput sweep | All |
 | REQ-PERF-002 | FIFOs | TEST-013, SVA-009 | Latency measurement | All |
 | REQ-PERF-003 | Channel modules, FIFOs | TEST-004, SVA-006, COV-001 | Simulation, assertion | All |
@@ -889,7 +889,7 @@ Do not use a whole-domain `set_false_path` or an unqualified `set_clock_groups -
 | DEC-018 | Decision | The waveform plan is the proposed list of eleven waveforms | Section 10.3 | Confirmed by the designer, 2026-10-25 (answer 16A) |
 | DEC-019 | Decision | The bridge only forwards: no protocol check, no validation, no response generation | REQ-FUNC-006 | Confirmed by the designer, 2026-10-25 (answer 17A) |
 | DEC-020 | Decision | The two resets are asserted together and released synchronously outside the IP | REQ-RESET-001 | Confirmed by the designer, 2026-10-25 (answer 18A) |
-| DEC-021 | Decision | Approved AXI4_BASE module names and PARA_AXI_* / LPARA_* naming | All names | Confirmed by the designer, 2026-10-25; see Section 23.3 |
+| DEC-021 | Decision | Approved profile top names, channel-module naming, and PARA_AXI_* / LPARA_* naming | All names | Existing naming confirmed on 2026-10-25; profile top names updated per designer request on 2026-10-26; see Section 23.3 |
 | DEC-022 | Decision | Use three fixed interface profiles; absent optional fields have no ports, in accordance with PRT-03 | REQ-IF-001, Section 23.1 | Confirmed by the designer, 2026-10-25; supersedes placeholder-port text |
 | DEC-023 | Decision | ID width minimum is 1 bit with no design-specific maximum | Section 8 | Confirmed by the designer, 2026-10-25; see Section 23.2 |
 | DEC-024 | Decision | Channel-word fields are packed in Section 9 order, with the first field at the LSB | Section 9 | Confirmed in the approved RTL plan, 2026-10-25 |
@@ -948,11 +948,11 @@ The profile selection replaces the single `PARA_AXI_AXI3_EN`, `PARA_AXI_QOS_EN` 
 
 - `PARA_AXI_ID_W` has a minimum of 1 and no design-specific maximum. The practical limit is set by elaboration tools and the integration target.
 - `PARA_AXI_DATA_W` is one of 8, 16, 32, 64, 128, 256, 512 or 1024. `PARA_AXI_ADDR_W` is 1 to 64.
-- The latency limit in REQ-PERF-002 is retained: at most `S+2` destination-clock periods.
+- The latency limit in REQ-PERF-002 is retained: at most `S+2` destination-clock periods. The bound is kept as a conservative limit: with the metastability model of REF-002 after DEC-048 (first flop captures the old or the new value inside an aperture window) the flags change after destination edge S or S + 1, so the measured latency stays below S + 2.
 - AXI3 W beats and WID pass in accepted order without ID-based scheduling. For example, input WID sequence 1, 0, 1 is output in the same order; the bridge does not correlate AWID and WID.
 - The FIFO field packing order remains the least-significant-first order specified in Section 9. FIFO threshold and unused-status connections remain as specified by REQ-RTL-002.
 
 ### 23.3 Module naming and output
 
-The designer approved output under `003_AsyncAXI4Bridge/rtl` with 18 modules in three profile folders. AXI4_BASE modules are `m_vlsit_axi_async_top` and `m_vlsit_axi_async_aw/w/b/ar/r`; AXI4_USER modules are `m_vlsit_axi_user_async_top` and `m_vlsit_axi_user_async_aw/w/b/ar/r`; AXI3 modules are `m_vlsit_axi3_async_top` and `m_vlsit_axi3_async_aw/w/b/ar/r`. The approved instance name uses `u_` plus the complete module function after `m_`, for example `m_vlsit_axi_async_aw` is instantiated as `u_vlsit_axi_async_aw`.
+The designer approved output under `003_AsyncAXI4Bridge/rtl` with 18 modules in three profile folders. The AXI4_BASE top is `m_vlsit_async_axi4_bridge`, with channel modules `m_vlsit_axi_async_aw/w/b/ar/r`. The AXI4_USER top is `m_vlsit_async_user_axi4_bridge`, with channel modules `m_vlsit_axi_user_async_aw/w/b/ar/r`. The AXI3 top is `m_vlsit_async_axi3_bridge`, with channel modules `m_vlsit_axi3_async_aw/w/b/ar/r`. The approved instance name uses `u_` plus the complete module function after `m_`, for example `m_vlsit_axi_async_aw` is instantiated as `u_vlsit_axi_async_aw`.
 

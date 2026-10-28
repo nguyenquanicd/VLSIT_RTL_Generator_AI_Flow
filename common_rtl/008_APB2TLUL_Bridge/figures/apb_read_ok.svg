@@ -1,0 +1,199 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="538" height="838" viewBox="0 0 538 838" font-family="Helvetica,Arial,sans-serif">
+<rect width="100%" height="100%" fill="#fff"/>
+<text x="12" y="20" font-size="14" font-weight="bold">APB4 read to TL-UL Get (device responds one cycle after acceptance)</text>
+<line x1="162" y1="30" x2="162" y2="810" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="214" y1="30" x2="214" y2="810" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="266" y1="30" x2="266" y2="810" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="318" y1="30" x2="318" y2="810" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="370" y1="30" x2="370" y2="810" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="422" y1="30" x2="422" y2="810" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="474" y1="30" x2="474" y2="810" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="526" y1="30" x2="526" y2="810" stroke="#ccc" stroke-dasharray="2,3"/>
+<text x="154" y="49" font-size="12" text-anchor="end">i_clk_core</text>
+<polyline points="162.0,51.0 162.0,33.0 188.0,33.0 188.0,51.0 214.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="214.0,51.0 214.0,33.0 240.0,33.0 240.0,51.0 266.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="266.0,51.0 266.0,33.0 292.0,33.0 292.0,51.0 318.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="318.0,51.0 318.0,33.0 344.0,33.0 344.0,51.0 370.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="370.0,51.0 370.0,33.0 396.0,33.0 396.0,51.0 422.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="422.0,51.0 422.0,33.0 448.0,33.0 448.0,51.0 474.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="474.0,51.0 474.0,33.0 500.0,33.0 500.0,51.0 526.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="12" y="79" font-size="12" font-weight="bold" fill="#225">APB4 (Completer)</text>
+<text x="154" y="109" font-size="12" text-anchor="end">i_apb_psel</text>
+<polyline points="162.0,111.0 214.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="214.0,111.0 214.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="214.0,93.0 266.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="266.0,93.0 318.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="318.0,93.0 370.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="370.0,93.0 422.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="422.0,93.0 422.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="422.0,111.0 474.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="474.0,111.0 526.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="139" font-size="12" text-anchor="end">i_apb_penable</text>
+<polyline points="162.0,141.0 214.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="214.0,141.0 266.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="266.0,141.0 266.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="266.0,123.0 318.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="318.0,123.0 370.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="370.0,123.0 422.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="422.0,123.0 422.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="422.0,141.0 474.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="474.0,141.0 526.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="169" font-size="12" text-anchor="end">i_apb_pwrite</text>
+<rect x="162.0" y="153.0" width="52.0" height="18.0" fill="#ddd" stroke="#000"/>
+<polyline points="214.0,162.0 214.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="214.0,171.0 266.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="266.0,171.0 318.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="318.0,171.0 370.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="370.0,171.0 422.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<rect x="422.0" y="153.0" width="52.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="474.0" y="153.0" width="52.0" height="18.0" fill="#ddd" stroke="none"/>
+<text x="154" y="199" font-size="12" text-anchor="end">i_apb_paddr</text>
+<rect x="162.0" y="183.0" width="52.0" height="18.0" fill="#ddd" stroke="#000"/>
+<polygon points="218.0,183.0 418.0,183.0 422.0,192.0 418.0,201.0 218.0,201.0 214.0,192.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="318.0" y="196.0" text-anchor="middle" font-size="11">A0</text>
+<rect x="422.0" y="183.0" width="52.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="474.0" y="183.0" width="52.0" height="18.0" fill="#ddd" stroke="none"/>
+<text x="154" y="229" font-size="12" text-anchor="end">i_apb_pstrb</text>
+<rect x="162.0" y="213.0" width="52.0" height="18.0" fill="#ddd" stroke="#000"/>
+<polygon points="218.0,213.0 418.0,213.0 422.0,222.0 418.0,231.0 218.0,231.0 214.0,222.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="318.0" y="226.0" text-anchor="middle" font-size="11">0</text>
+<rect x="422.0" y="213.0" width="52.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="474.0" y="213.0" width="52.0" height="18.0" fill="#ddd" stroke="none"/>
+<text x="154" y="259" font-size="12" text-anchor="end">i_apb_pwdata</text>
+<rect x="162.0" y="243.0" width="52.0" height="18.0" fill="#ddd" stroke="#000"/>
+<polygon points="218.0,243.0 418.0,243.0 422.0,252.0 418.0,261.0 218.0,261.0 214.0,252.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="318.0" y="256.0" text-anchor="middle" font-size="11">D0</text>
+<rect x="422.0" y="243.0" width="52.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="474.0" y="243.0" width="52.0" height="18.0" fill="#ddd" stroke="none"/>
+<text x="12" y="289" font-size="12" font-weight="bold" fill="#225">APB FSM / TL-UL FSM</text>
+<text x="154" y="319" font-size="12" text-anchor="end">reg_fsm_apb_current_state</text>
+<polygon points="166.0,303.0 262.0,303.0 266.0,312.0 262.0,321.0 166.0,321.0 162.0,312.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="214.0" y="316.0" text-anchor="middle" font-size="11">IDLE</text>
+<polygon points="270.0,303.0 366.0,303.0 370.0,312.0 366.0,321.0 270.0,321.0 266.0,312.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="318.0" y="316.0" text-anchor="middle" font-size="11">BUSY</text>
+<polygon points="374.0,303.0 418.0,303.0 422.0,312.0 418.0,321.0 374.0,321.0 370.0,312.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="396.0" y="316.0" text-anchor="middle" font-size="11">DONE</text>
+<polygon points="426.0,303.0 522.0,303.0 526.0,312.0 522.0,321.0 426.0,321.0 422.0,312.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="474.0" y="316.0" text-anchor="middle" font-size="11">IDLE</text>
+<text x="154" y="349" font-size="12" text-anchor="end">reg_fsm_tlul_current_state</text>
+<polygon points="166.0,333.0 262.0,333.0 266.0,342.0 262.0,351.0 166.0,351.0 162.0,342.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="214.0" y="346.0" text-anchor="middle" font-size="11">IDLE</text>
+<polygon points="270.0,333.0 314.0,333.0 318.0,342.0 314.0,351.0 270.0,351.0 266.0,342.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="292.0" y="346.0" text-anchor="middle" font-size="11">REQ</text>
+<polygon points="322.0,333.0 366.0,333.0 370.0,342.0 366.0,351.0 322.0,351.0 318.0,342.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="344.0" y="346.0" text-anchor="middle" font-size="11">WAIT</text>
+<polygon points="374.0,333.0 522.0,333.0 526.0,342.0 522.0,351.0 374.0,351.0 370.0,342.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="448.0" y="346.0" text-anchor="middle" font-size="11">IDLE</text>
+<text x="12" y="379" font-size="12" font-weight="bold" fill="#225">TL-UL channel A (host)</text>
+<text x="154" y="409" font-size="12" text-anchor="end">o_tlul_a_valid</text>
+<polyline points="162.0,411.0 214.0,411.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="214.0,411.0 266.0,411.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="266.0,411.0 266.0,393.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="266.0,393.0 318.0,393.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="318.0,393.0 318.0,411.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="318.0,411.0 370.0,411.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="370.0,411.0 422.0,411.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="422.0,411.0 474.0,411.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="474.0,411.0 526.0,411.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="439" font-size="12" text-anchor="end">i_tlul_a_ready</text>
+<polyline points="162.0,441.0 214.0,441.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="214.0,441.0 266.0,441.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="266.0,441.0 266.0,423.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="266.0,423.0 318.0,423.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="318.0,423.0 318.0,441.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="318.0,441.0 370.0,441.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="370.0,441.0 422.0,441.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="422.0,441.0 474.0,441.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="474.0,441.0 526.0,441.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="469" font-size="12" text-anchor="end">o_tlul_a_opcode</text>
+<rect x="162.0" y="453.0" width="52.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="214.0" y="453.0" width="52.0" height="18.0" fill="#ddd" stroke="none"/>
+<polygon points="270.0,453.0 314.0,453.0 318.0,462.0 314.0,471.0 270.0,471.0 266.0,462.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="292.0" y="466.0" text-anchor="middle" font-size="11">Get</text>
+<rect x="318.0" y="453.0" width="52.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="370.0" y="453.0" width="52.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="422.0" y="453.0" width="52.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="474.0" y="453.0" width="52.0" height="18.0" fill="#ddd" stroke="none"/>
+<text x="154" y="499" font-size="12" text-anchor="end">o_tlul_a_address</text>
+<rect x="162.0" y="483.0" width="52.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="214.0" y="483.0" width="52.0" height="18.0" fill="#ddd" stroke="none"/>
+<polygon points="270.0,483.0 314.0,483.0 318.0,492.0 314.0,501.0 270.0,501.0 266.0,492.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="292.0" y="496.0" text-anchor="middle" font-size="11">A0</text>
+<rect x="318.0" y="483.0" width="52.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="370.0" y="483.0" width="52.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="422.0" y="483.0" width="52.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="474.0" y="483.0" width="52.0" height="18.0" fill="#ddd" stroke="none"/>
+<text x="12" y="529" font-size="12" font-weight="bold" fill="#225">TL-UL channel D (host)</text>
+<text x="154" y="559" font-size="12" text-anchor="end">o_tlul_d_ready</text>
+<polyline points="162.0,543.0 214.0,543.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="214.0,543.0 266.0,543.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="266.0,543.0 318.0,543.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="318.0,543.0 370.0,543.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="370.0,543.0 422.0,543.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="422.0,543.0 474.0,543.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="474.0,543.0 526.0,543.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="589" font-size="12" text-anchor="end">i_tlul_d_valid</text>
+<polyline points="162.0,591.0 214.0,591.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="214.0,591.0 266.0,591.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="266.0,591.0 318.0,591.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="318.0,591.0 318.0,573.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="318.0,573.0 370.0,573.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="370.0,573.0 370.0,591.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="370.0,591.0 422.0,591.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="422.0,591.0 474.0,591.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="474.0,591.0 526.0,591.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="619" font-size="12" text-anchor="end">i_tlul_d_opcode</text>
+<rect x="162.0" y="603.0" width="52.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="214.0" y="603.0" width="52.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="266.0" y="603.0" width="52.0" height="18.0" fill="#ddd" stroke="none"/>
+<polygon points="322.0,603.0 366.0,603.0 370.0,612.0 366.0,621.0 322.0,621.0 318.0,612.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="344.0" y="616.0" text-anchor="middle" font-size="11">AckData</text>
+<rect x="370.0" y="603.0" width="52.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="422.0" y="603.0" width="52.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="474.0" y="603.0" width="52.0" height="18.0" fill="#ddd" stroke="none"/>
+<text x="154" y="649" font-size="12" text-anchor="end">i_tlul_d_data</text>
+<rect x="162.0" y="633.0" width="52.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="214.0" y="633.0" width="52.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="266.0" y="633.0" width="52.0" height="18.0" fill="#ddd" stroke="none"/>
+<polygon points="322.0,633.0 366.0,633.0 370.0,642.0 366.0,651.0 322.0,651.0 318.0,642.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="344.0" y="646.0" text-anchor="middle" font-size="11">R0</text>
+<rect x="370.0" y="633.0" width="52.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="422.0" y="633.0" width="52.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="474.0" y="633.0" width="52.0" height="18.0" fill="#ddd" stroke="none"/>
+<text x="154" y="679" font-size="12" text-anchor="end">i_tlul_d_error</text>
+<rect x="162.0" y="663.0" width="52.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="214.0" y="663.0" width="52.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="266.0" y="663.0" width="52.0" height="18.0" fill="#ddd" stroke="none"/>
+<polyline points="318.0,672.0 318.0,681.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="318.0,681.0 370.0,681.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<rect x="370.0" y="663.0" width="52.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="422.0" y="663.0" width="52.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="474.0" y="663.0" width="52.0" height="18.0" fill="#ddd" stroke="none"/>
+<text x="12" y="709" font-size="12" font-weight="bold" fill="#225">APB4 completion</text>
+<text x="154" y="739" font-size="12" text-anchor="end">o_apb_pready</text>
+<polyline points="162.0,741.0 214.0,741.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="214.0,741.0 266.0,741.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="266.0,741.0 318.0,741.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="318.0,741.0 370.0,741.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="370.0,741.0 370.0,723.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="370.0,723.0 422.0,723.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="422.0,723.0 422.0,741.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="422.0,741.0 474.0,741.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="474.0,741.0 526.0,741.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="769" font-size="12" text-anchor="end">o_apb_pslverr</text>
+<polyline points="162.0,771.0 214.0,771.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="214.0,771.0 266.0,771.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="266.0,771.0 318.0,771.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="318.0,771.0 370.0,771.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="370.0,771.0 422.0,771.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="422.0,771.0 474.0,771.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="474.0,771.0 526.0,771.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="799" font-size="12" text-anchor="end">o_apb_prdata</text>
+<polyline points="162.0,801.0 214.0,801.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="214.0,801.0 266.0,801.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="266.0,801.0 318.0,801.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="318.0,801.0 370.0,801.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polygon points="374.0,783.0 522.0,783.0 526.0,792.0 522.0,801.0 374.0,801.0 370.0,792.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="448.0" y="796.0" text-anchor="middle" font-size="11">R0</text>
+<text x="12" y="830" font-size="11" fill="#444">Read data registered at the end of A2, returned in A3.</text>
+</svg>

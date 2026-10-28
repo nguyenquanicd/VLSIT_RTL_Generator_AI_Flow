@@ -1,5 +1,5 @@
 // filelist.f - RTL files in compile order (leaf modules first, top last).
-// Top module: m_vlsit_axi_user_async_top
+// Top module: m_vlsit_async_user_axi4_bridge
 // Paths are relative to the folder of this file; run tools from that folder.
 +define+VLSIT_SYNTHESIS
 ../../../000_Common/rtl_cells/VLSIT_CELL_SRAM_1W1R.sv
@@ -23,4 +23,4 @@ m_vlsit_axi_user_async_aw.sv
 m_vlsit_axi_user_async_b.sv
 m_vlsit_axi_user_async_r.sv
 m_vlsit_axi_user_async_w.sv
-m_vlsit_axi_user_async_top.sv
+m_vlsit_async_user_axi4_bridge.sv

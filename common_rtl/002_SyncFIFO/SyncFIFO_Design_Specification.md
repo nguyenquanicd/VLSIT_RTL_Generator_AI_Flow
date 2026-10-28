@@ -684,7 +684,7 @@ Same columns and signal types as Section 6.2. The legend of the signal types is 
 | Parameters/configuration | CFG-BASE, CFG-RETIME, CFG-MACRO, CFG-ODD, CFG-MIN |
 | Libraries/corners | Chosen by the integrator (OI-001) |
 | Memory flow | Flop array by default; library SRAM through the wrapper for CFG-MACRO |
-| Lint rule configuration | The project lint set with `default_nettype none` checking |
+| Lint rule configuration | The project lint set, which reports undeclared identifiers (implicit nets); the RTL has no `default_nettype` directive |
 
 ## 15. Verification specification
 

@@ -1,0 +1,10 @@
+{
+  "m_crc_check.sv": "cae467af29157a730c8946f58379d0ede1a90c5a233cb25dc26cc62a74c49b23",
+  "m_crc_engine.sv": "d3086405547e12fcf1b911e5e26ef8dc4ecf27a2b586f5b9b6856314223fb631",
+  "m_crc_gen.sv": "a83a5e9e0ffd90eccb30c88a92881752268b57ea9503f356cab55621ec8bce5e",
+  "m_crc_initial_value.sv": "3beba8e3ff120d71ace04a4d02775a82e4308d053a9fea0bce9caf70d3976845",
+  "m_crc_parallel.sv": "ecd3c5d9e51a38276f9478117dd4ed627178b5c4e5ba47263e6dde06b7263de0",
+  "m_crc_parallel_crcw.sv": "26cc0d35d2af4e04d672750a5d15d822040e8aca533bc5dd0aa1ab7d96ef7b0e",
+  "m_crc_parallel_full.sv": "92e51882f1472a0550fe90b803c1eeb1758d2dd5a61c34c22e18a5e4ce93f9ad",
+  "m_crc_serial.sv": "970d028cde7b8d80e2e3ba28708d8d3c985204fd1182f319e5625d681d71a168"
+}

@@ -3,7 +3,7 @@
 Usage:  python run_waveforms.py <output_dir>
 Needs iverilog and vvp on PATH (OSS CAD Suite: both the bin and the lib directory).
 Steps: simulate the real RTL with tb_fifo_wave.sv (scenario 1: overview; scenario 2: back-to-back, each
-with the RTL array and with the SRAM macro model), simulate the metastability demo with seed 1, then draw the
+with the RTL array and with the SRAM macro model), simulate the metastability demo (real cell wrapper) with seed 1 and a window of 50%, then draw the
 SVG figures and the event tables with gen_all.py. The RTL files are taken from the folders of this IP and
 from ../../../000_Common.
 """
@@ -44,8 +44,8 @@ for scen, macro, extra, vcd in runs:
 vvp = os.path.join(WORK, 'meta.vvp')
 if os.path.exists(vvp):
     os.remove(vvp)
-run(['iverilog', '-g2012', '-o', vvp, os.path.join(HERE, 'meta_demo.sv')], WORK)
-log = run(['vvp', vvp, '+SEED=1'], WORK)
+run(['iverilog', '-g2012', '-o', vvp, os.path.join(HERE, 'meta_demo.sv'), os.path.join(COMMON, 'rtl_lib', 'm_vlsit_afifo_cell_sync.sv')], WORK)
+log = run(['vvp', vvp, '+AFIFO_MSYNC_SEED=1', '+AFIFO_MSYNC_WIN_PCT=50'], WORK)
 open(os.path.join(WORK, 'meta_log.txt'), 'w').write(log)
 shutil.move(os.path.join(WORK, 'meta.vcd'), os.path.join(WORK, 'meta_seed.vcd'))
 

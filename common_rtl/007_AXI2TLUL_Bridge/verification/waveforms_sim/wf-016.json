@@ -1,0 +1,190 @@
+{
+ "signal": [
+  {
+   "name": "i_clk_main",
+   "wave": "p..........."
+  },
+  {
+   "name": "i_axi_arvalid",
+   "wave": "010000000000",
+   "data": []
+  },
+  {
+   "name": "o_axi_arready",
+   "wave": "011111111111",
+   "data": []
+  },
+  {
+   "name": "i_axi_araddr",
+   "wave": "0=0000000000",
+   "data": [
+    "0x100"
+   ]
+  },
+  {
+   "name": "i_axi_arlen",
+   "wave": "0=0000000000",
+   "data": [
+    "0x3"
+   ]
+  },
+  {
+   "name": "i_axi_arsize",
+   "wave": "0=0000000000",
+   "data": [
+    "0x2"
+   ]
+  },
+  {
+   "name": "i_axi_arburst",
+   "wave": "0=0000000000",
+   "data": [
+    "0x1"
+   ]
+  },
+  {
+   "name": "i_axi_awvalid",
+   "wave": "010000000000",
+   "data": []
+  },
+  {
+   "name": "o_axi_awready",
+   "wave": "011111111111",
+   "data": []
+  },
+  {
+   "name": "i_axi_awaddr",
+   "wave": "0=0000000000",
+   "data": [
+    "0x200"
+   ]
+  },
+  {
+   "name": "i_axi_awlen",
+   "wave": "0=0000000000",
+   "data": [
+    "0x3"
+   ]
+  },
+  {
+   "name": "i_axi_awsize",
+   "wave": "0=0000000000",
+   "data": [
+    "0x2"
+   ]
+  },
+  {
+   "name": "i_axi_awburst",
+   "wave": "0=0000000000",
+   "data": [
+    "0x1"
+   ]
+  },
+  {
+   "name": "i_axi_wvalid",
+   "wave": "011111000000",
+   "data": []
+  },
+  {
+   "name": "o_axi_wready",
+   "wave": "011101011111",
+   "data": []
+  },
+  {
+   "name": "i_axi_wdata",
+   "wave": "0====.000000",
+   "data": [
+    "0x92fae9c0",
+    "0xe5fdd956",
+    "0x7cf488ec",
+    "0xbf3b87a"
+   ]
+  },
+  {
+   "name": "i_axi_wstrb",
+   "wave": "0=....000000",
+   "data": [
+    "0xf"
+   ]
+  },
+  {
+   "name": "i_axi_wlast",
+   "wave": "000011000000",
+   "data": []
+  },
+  {
+   "name": "o_tl_a_valid",
+   "wave": "001111111100",
+   "data": []
+  },
+  {
+   "name": "i_tl_a_ready",
+   "wave": "111111111111",
+   "data": []
+  },
+  {
+   "name": "o_tl_a_opcode",
+   "wave": "00=0.0.0.000",
+   "data": [
+    "0x4"
+   ]
+  },
+  {
+   "name": "o_tl_a_src",
+   "wave": "000=1=====xx",
+   "data": [
+    "0x10",
+    "0x11",
+    "0x2",
+    "0x12",
+    "0x3",
+    "0x13"
+   ]
+  },
+  {
+   "name": "o_tl_a_addr",
+   "wave": "00========xx",
+   "data": [
+    "0x100",
+    "0x200",
+    "0x104",
+    "0x204",
+    "0x108",
+    "0x208",
+    "0x10c",
+    "0x20c"
+   ]
+  },
+  {
+   "name": "o_tl_a_size",
+   "wave": "00=.......xx",
+   "data": [
+    "0x2"
+   ]
+  },
+  {
+   "name": "o_tl_a_mask",
+   "wave": "00=.......xx",
+   "data": [
+    "0xf"
+   ]
+  },
+  {
+   "name": "o_tl_a_data",
+   "wave": "00========xx",
+   "data": [
+    "0xffffffff",
+    "0x92fae9c0",
+    "0xffffffff",
+    "0xe5fdd956",
+    "0xffffffff",
+    "0x7cf488ec",
+    "0xffffffff",
+    "0xbf3b87a"
+   ]
+  }
+ ],
+ "head": {
+  "text": "WF-016 Read and write streams share TL-UL channel A (simulated)"
+ }
+}

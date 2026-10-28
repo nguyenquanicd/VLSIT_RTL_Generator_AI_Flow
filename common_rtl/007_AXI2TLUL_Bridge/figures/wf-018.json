@@ -1,0 +1,174 @@
+{
+ "signal": [
+  {
+   "name": "i_clk_main",
+   "wave": "p......."
+  },
+  [
+   "AXI AR",
+   {
+    "name": "i_axi_arvalid",
+    "wave": "01000000"
+   },
+   {
+    "name": "o_axi_arready",
+    "wave": "01111111"
+   },
+   {
+    "name": "i_axi_araddr",
+    "wave": "x=xxxxxx",
+    "data": [
+     "0x100"
+    ]
+   },
+   {
+    "name": "i_axi_arlen",
+    "wave": "x=xxxxxx",
+    "data": [
+     "0"
+    ]
+   },
+   {
+    "name": "i_axi_arsize",
+    "wave": "x=xxxxxx",
+    "data": [
+     "2"
+    ]
+   },
+   {
+    "name": "i_axi_arburst",
+    "wave": "x=xxxxxx",
+    "data": [
+     "INCR"
+    ]
+   }
+  ],
+  [
+   "TL-UL A",
+   {
+    "name": "o_tl_a_valid",
+    "wave": "00100000"
+   },
+   {
+    "name": "i_tl_a_ready",
+    "wave": "11111111"
+   },
+   {
+    "name": "o_tl_a_opcode",
+    "wave": "xx=xxxxx",
+    "data": [
+     "Get"
+    ]
+   },
+   {
+    "name": "o_tl_a_src",
+    "wave": "xx=xxxxx",
+    "data": [
+     "rd0"
+    ]
+   },
+   {
+    "name": "o_tl_a_addr",
+    "wave": "xx=xxxxx",
+    "data": [
+     "0x100"
+    ]
+   },
+   {
+    "name": "o_tl_a_size",
+    "wave": "xx=xxxxx",
+    "data": [
+     "2"
+    ]
+   },
+   {
+    "name": "o_tl_a_mask",
+    "wave": "xx=xxxxx",
+    "data": [
+     "1111"
+    ]
+   }
+  ],
+  [
+   "TL-UL D",
+   {
+    "name": "i_tl_d_valid",
+    "wave": "00010100"
+   },
+   {
+    "name": "o_tl_d_ready",
+    "wave": "01111111"
+   },
+   {
+    "name": "i_tl_d_opcode",
+    "wave": "xxx=x=xx",
+    "data": [
+     "Ack",
+     "AckData"
+    ]
+   },
+   {
+    "name": "i_tl_d_src",
+    "wave": "xxx=x=xx",
+    "data": [
+     "rd0",
+     "rd7"
+    ]
+   },
+   {
+    "name": "i_tl_d_data",
+    "wave": "xxxxx=xx",
+    "data": [
+     "D9"
+    ]
+   },
+   {
+    "name": "i_tl_d_err",
+    "wave": "00000000"
+   }
+  ],
+  [
+   "Events",
+   {
+    "name": "o_evt_bad_resp",
+    "wave": "00001000"
+   },
+   {
+    "name": "o_evt_orphan_resp",
+    "wave": "00000010"
+   }
+  ],
+  [
+   "AXI R",
+   {
+    "name": "o_axi_rvalid",
+    "wave": "00001000"
+   },
+   {
+    "name": "i_axi_rready",
+    "wave": "11111111"
+   },
+   {
+    "name": "o_axi_rdata",
+    "wave": "xxxx=xxx",
+    "data": [
+     "xxxxxxxx"
+    ]
+   },
+   {
+    "name": "o_axi_rresp",
+    "wave": "xxxx=xxx",
+    "data": [
+     "SLVERR"
+    ]
+   },
+   {
+    "name": "o_axi_rlast",
+    "wave": "00001000"
+   }
+  ]
+ ],
+ "head": {
+  "text": "WF-018 Wrong opcode and orphaned response"
+ }
+}

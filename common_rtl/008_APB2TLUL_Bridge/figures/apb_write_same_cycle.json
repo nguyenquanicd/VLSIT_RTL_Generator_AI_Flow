@@ -1,0 +1,148 @@
+{
+ "signal": [
+  {
+   "name": "i_clk_core",
+   "wave": "p....."
+  },
+  [
+   "APB4 (Completer)",
+   {
+    "name": "i_apb_psel",
+    "wave": "01..0."
+   },
+   {
+    "name": "i_apb_penable",
+    "wave": "0.1.0."
+   },
+   {
+    "name": "i_apb_pwrite",
+    "wave": "x1..x."
+   },
+   {
+    "name": "i_apb_paddr",
+    "wave": "x=..x.",
+    "data": [
+     "A0"
+    ]
+   },
+   {
+    "name": "i_apb_pstrb",
+    "wave": "x=..x.",
+    "data": [
+     "F"
+    ]
+   },
+   {
+    "name": "i_apb_pwdata",
+    "wave": "x=..x.",
+    "data": [
+     "D0"
+    ]
+   }
+  ],
+  [
+   "APB FSM / TL-UL FSM",
+   {
+    "name": "reg_fsm_apb_current_state",
+    "wave": "=.===.",
+    "data": [
+     "IDLE",
+     "BUSY",
+     "DONE",
+     "IDLE"
+    ]
+   },
+   {
+    "name": "reg_fsm_tlul_current_state",
+    "wave": "=.==..",
+    "data": [
+     "IDLE",
+     "REQ",
+     "IDLE"
+    ]
+   }
+  ],
+  [
+   "TL-UL channel A (host)",
+   {
+    "name": "o_tlul_a_valid",
+    "wave": "0.10.."
+   },
+   {
+    "name": "i_tlul_a_ready",
+    "wave": "0.10.."
+   },
+   {
+    "name": "o_tlul_a_opcode",
+    "wave": "x.=x..",
+    "data": [
+     "PutFull"
+    ]
+   },
+   {
+    "name": "o_tlul_a_address",
+    "wave": "x.=x..",
+    "data": [
+     "A0"
+    ]
+   },
+   {
+    "name": "o_tlul_a_data",
+    "wave": "x.=x..",
+    "data": [
+     "D0"
+    ]
+   }
+  ],
+  [
+   "TL-UL channel D (host)",
+   {
+    "name": "o_tlul_d_ready",
+    "wave": "1....."
+   },
+   {
+    "name": "i_tlul_d_valid",
+    "wave": "0.10.."
+   },
+   {
+    "name": "i_tlul_d_opcode",
+    "wave": "x.=x..",
+    "data": [
+     "Ack"
+    ]
+   },
+   {
+    "name": "i_tlul_d_source",
+    "wave": "x.=x..",
+    "data": [
+     "S0"
+    ]
+   },
+   {
+    "name": "i_tlul_d_error",
+    "wave": "x.0x.."
+   }
+  ],
+  [
+   "APB4 completion",
+   {
+    "name": "o_apb_pready",
+    "wave": "0..10."
+   },
+   {
+    "name": "o_apb_pslverr",
+    "wave": "0....."
+   },
+   {
+    "name": "o_apb_prdata",
+    "wave": "0....."
+   }
+  ]
+ ],
+ "head": {
+  "text": "Response in the acceptance cycle: 2 Access cycles"
+ },
+ "foot": {
+  "text": "The device answers in A1; PREADY is high in A2."
+ }
+}

@@ -1,0 +1,369 @@
+{
+ "signal": [
+  {
+   "name": "i_clk_axi",
+   "wave": "p....................."
+  },
+  {
+   "name": "i_rst_n_axi",
+   "wave": "1....................."
+  },
+  [
+   "AW subordinate side",
+   {
+    "name": "i_axi_awvalid",
+    "wave": "010..................."
+   },
+   {
+    "name": "o_axi_awready",
+    "wave": "01...................."
+   },
+   {
+    "name": "i_axi_awaddr",
+    "wave": "x=x...................",
+    "data": [
+     "1000"
+    ]
+   },
+   {
+    "name": "i_axi_awlen",
+    "wave": "x=x...................",
+    "data": [
+     "3"
+    ]
+   },
+   {
+    "name": "i_axi_awsize",
+    "wave": "x=x...................",
+    "data": [
+     "2"
+    ]
+   },
+   {
+    "name": "i_axi_awburst",
+    "wave": "x=x...................",
+    "data": [
+     "INCR"
+    ]
+   },
+   {
+    "name": "i_axi_awcache",
+    "wave": "x=x...................",
+    "data": [
+     "2"
+    ]
+   }
+  ],
+  [
+   "AW manager side",
+   {
+    "name": "o_axi_awvalid",
+    "wave": "0.10.................."
+   },
+   {
+    "name": "i_axi_awready",
+    "wave": "1....................."
+   },
+   {
+    "name": "o_axi_awaddr",
+    "wave": "x.=x..................",
+    "data": [
+     "1000"
+    ]
+   },
+   {
+    "name": "o_axi_awlen",
+    "wave": "x.=x..................",
+    "data": [
+     "0"
+    ]
+   },
+   {
+    "name": "o_axi_awsize",
+    "wave": "x.=x..................",
+    "data": [
+     "4"
+    ]
+   },
+   {
+    "name": "o_axi_awburst",
+    "wave": "x.=x..................",
+    "data": [
+     "INCR"
+    ]
+   }
+  ],
+  [
+   "W subordinate side (32 bit)",
+   {
+    "name": "i_axi_wvalid",
+    "wave": "0.1...0..............."
+   },
+   {
+    "name": "o_axi_wready",
+    "wave": "0.1...0..............."
+   },
+   {
+    "name": "i_axi_wdata",
+    "wave": "x.====x...............",
+    "data": [
+     "k0",
+     "k1",
+     "k2",
+     "k3"
+    ]
+   },
+   {
+    "name": "i_axi_wstrb",
+    "wave": "x.=...x...............",
+    "data": [
+     "F"
+    ]
+   },
+   {
+    "name": "i_axi_wlast",
+    "wave": "x.=..=x...............",
+    "data": [
+     "0",
+     "1"
+    ]
+   }
+  ],
+  [
+   "W manager side (128 bit)",
+   {
+    "name": "o_axi_wvalid",
+    "wave": "0.....10.............."
+   },
+   {
+    "name": "i_axi_wready",
+    "wave": "1....................."
+   },
+   {
+    "name": "o_axi_wdata",
+    "wave": "x.....=x..............",
+    "data": [
+     "k3|k2|k1|k0"
+    ]
+   },
+   {
+    "name": "o_axi_wstrb",
+    "wave": "x.....=x..............",
+    "data": [
+     "FFFF"
+    ]
+   },
+   {
+    "name": "o_axi_wlast",
+    "wave": "x.....=x..............",
+    "data": [
+     "1"
+    ]
+   }
+  ],
+  [
+   "B manager side",
+   {
+    "name": "i_axi_bvalid",
+    "wave": "0.......10............"
+   },
+   {
+    "name": "o_axi_bready",
+    "wave": "01...................."
+   },
+   {
+    "name": "i_axi_bresp",
+    "wave": "x.......=x............",
+    "data": [
+     "SLVERR"
+    ]
+   }
+  ],
+  [
+   "B subordinate side",
+   {
+    "name": "o_axi_bvalid",
+    "wave": "0........10..........."
+   },
+   {
+    "name": "i_axi_bready",
+    "wave": "1....................."
+   },
+   {
+    "name": "o_axi_bresp",
+    "wave": "x........=x...........",
+    "data": [
+     "SLVERR"
+    ]
+   }
+  ],
+  [
+   "AR subordinate side",
+   {
+    "name": "i_axi_arvalid",
+    "wave": "010..................."
+   },
+   {
+    "name": "o_axi_arready",
+    "wave": "01...................."
+   },
+   {
+    "name": "i_axi_araddr",
+    "wave": "x=x...................",
+    "data": [
+     "1100"
+    ]
+   },
+   {
+    "name": "i_axi_arlen",
+    "wave": "x=x...................",
+    "data": [
+     "7"
+    ]
+   },
+   {
+    "name": "i_axi_arsize",
+    "wave": "x=x...................",
+    "data": [
+     "2"
+    ]
+   },
+   {
+    "name": "i_axi_arburst",
+    "wave": "x=x...................",
+    "data": [
+     "INCR"
+    ]
+   },
+   {
+    "name": "i_axi_arcache",
+    "wave": "x=x...................",
+    "data": [
+     "2"
+    ]
+   }
+  ],
+  [
+   "AR manager side",
+   {
+    "name": "o_axi_arvalid",
+    "wave": "0.10.................."
+   },
+   {
+    "name": "i_axi_arready",
+    "wave": "1....................."
+   },
+   {
+    "name": "o_axi_araddr",
+    "wave": "x.=x..................",
+    "data": [
+     "1100"
+    ]
+   },
+   {
+    "name": "o_axi_arlen",
+    "wave": "x.=x..................",
+    "data": [
+     "1"
+    ]
+   },
+   {
+    "name": "o_axi_arsize",
+    "wave": "x.=x..................",
+    "data": [
+     "4"
+    ]
+   },
+   {
+    "name": "o_axi_arburst",
+    "wave": "x.=x..................",
+    "data": [
+     "INCR"
+    ]
+   }
+  ],
+  [
+   "R manager side (128 bit)",
+   {
+    "name": "i_axi_rvalid",
+    "wave": "0....1....0..........."
+   },
+   {
+    "name": "o_axi_rready",
+    "wave": "0.1...0..10..........."
+   },
+   {
+    "name": "i_axi_rdata",
+    "wave": "x....==...x...........",
+    "data": [
+     "q3|q2|q1|q0",
+     "q7|q6|q5|q4"
+    ]
+   },
+   {
+    "name": "i_axi_rresp",
+    "wave": "x....==...x...........",
+    "data": [
+     "OKAY",
+     "SLVERR"
+    ]
+   },
+   {
+    "name": "i_axi_rlast",
+    "wave": "x....==...x...........",
+    "data": [
+     "0",
+     "1"
+    ]
+   }
+  ],
+  [
+   "R subordinate side (32 bit)",
+   {
+    "name": "o_axi_rvalid",
+    "wave": "0......1.......0......"
+   },
+   {
+    "name": "i_axi_rready",
+    "wave": "1....................."
+   },
+   {
+    "name": "o_axi_rdata",
+    "wave": "x......========x......",
+    "data": [
+     "q0",
+     "q1",
+     "q2",
+     "q3",
+     "q4",
+     "q5",
+     "q6",
+     "q7"
+    ]
+   },
+   {
+    "name": "o_axi_rresp",
+    "wave": "x......=...=...x......",
+    "data": [
+     "OKAY",
+     "SLVERR"
+    ]
+   },
+   {
+    "name": "o_axi_rlast",
+    "wave": "x......=......=x......",
+    "data": [
+     "0",
+     "1"
+    ]
+   }
+  ]
+ ],
+ "head": {
+  "text": "WF-010 error responses: BRESP SLVERR, and RRESP SLVERR copied to the 4 S beats of one M beat",
+  "tick": 0
+ },
+ "config": {
+  "hscale": 1
+ }
+}

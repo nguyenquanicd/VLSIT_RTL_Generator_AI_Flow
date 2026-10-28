@@ -21,7 +21,7 @@ ROOT = os.path.abspath(os.path.join(HERE, ".."))
 COMMON = os.path.abspath(os.path.join(ROOT, "..", "000_Common"))
 OK_LINE = "assertion failures: 0, assertions never exercised: 0"
 RTL = [os.path.join(ROOT, "rtl", f) for f in ("m_vlsit_apbcdc_sync.sv", "m_vlsit_apbcdc_mst.sv", "m_vlsit_apbcdc_slv.sv",
-                                              "m_vlsit_apbcdc_top.sv")]
+                                              "m_vlsit_async_apb_bridge.sv")]
 CELLS = [os.path.join(COMMON, "rtl_cells", "VLSIT_CELL_SYNC_%s.sv" % n) for n in
          ("DFF_RN", "DFF_SN", "2FF_RN", "2FF_SN", "3FF_RN", "3FF_SN", "4FF_RN", "4FF_SN")]
 WRAP = [os.path.join(COMMON, "rtl_lib", "m_vlsit_apbcdc_cell_sync.sv")]

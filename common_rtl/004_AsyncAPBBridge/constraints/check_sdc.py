@@ -1,4 +1,4 @@
-"""Execute m_vlsit_apbcdc_top.sdc with stub SDC commands in a Tcl interpreter (tkinter) and print what it would apply.
+"""Execute m_vlsit_async_apb_bridge.sdc with stub SDC commands in a Tcl interpreter (tkinter) and print what it would apply.
 
 This checks the Tcl syntax, the variable handling and the computed budgets. It does NOT check the SDC semantics of a
 sign-off tool (set_max_delay -ignore_clock_latency, set_false_path -hold): those need Design Compiler or PrimeTime.
@@ -27,7 +27,7 @@ proc get_cells {args} { return "cells:[lindex $args end]" }
 proc sizeof_collection {c} { return 1 }
 """)
 tcl.eval("set T_MST %s; set T_SLV %s; set N_SYNC %d" % (t_mst, t_slv, n_sync))
-tcl.eval("source {%s}" % os.path.join(here, "m_vlsit_apbcdc_top.sdc").replace("\\", "/"))
+tcl.eval("source {%s}" % os.path.join(here, "m_vlsit_async_apb_bridge.sdc").replace("\\", "/"))
 lines = list(tcl.splitlist(tcl.eval("set ::LOG")))
 print("commands executed: %d" % len(lines))
 for l in lines:
@@ -40,7 +40,7 @@ exp = [want[k] for k in ("req_pld", "req_ctl", "ack_ctl", "rsp_pld", "wk_ctl")]
 ok = got == exp
 print("max-delay budgets (ns): %s, expected %s: %s" % (got, exp, "OK" if ok else "MISMATCH"))
 try:
-    tcl.eval("set N_SYNC 0; source {%s}" % os.path.join(here, "m_vlsit_apbcdc_top.sdc").replace("\\", "/"))
+    tcl.eval("set N_SYNC 0; source {%s}" % os.path.join(here, "m_vlsit_async_apb_bridge.sdc").replace("\\", "/"))
     print("N_SYNC = 0 was accepted: MISMATCH")
     ok = False
 except tkinter.TclError as e:
