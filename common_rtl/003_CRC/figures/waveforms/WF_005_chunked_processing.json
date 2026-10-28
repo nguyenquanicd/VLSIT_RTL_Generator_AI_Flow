@@ -1,0 +1,64 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_crc",
+      "wave": "p......."
+    },
+    {
+      "name": "i_rst_n_crc",
+      "wave": "1......."
+    },
+    {
+      "name": "i_gen_valid",
+      "wave": "010....."
+    },
+    {
+      "name": "o_gen_data_ready",
+      "wave": "1.0...1."
+    },
+    {
+      "name": "i_gen_data[31:0]",
+      "wave": "x=xxxxxx",
+      "data": [
+        "PAY"
+      ]
+    },
+    {
+      "name": "i_gen_keep[3:0]",
+      "wave": "x=xxxxxx",
+      "data": [
+        "4'b1110"
+      ]
+    },
+    {
+      "name": "i_gen_last",
+      "wave": "010....."
+    },
+    {
+      "name": "o_gen_crc_valid",
+      "wave": "0....10."
+    },
+    {
+      "name": "o_gen_crc",
+      "wave": "xxxxx=xx",
+      "data": [
+        "CRC"
+      ]
+    },
+    {
+      "name": "i_gen_crc_ready",
+      "wave": "0....10."
+    }
+  ],
+  "head": {
+    "text": "Method 3: chunk processing and finalization",
+    "tick": 0
+  },
+  "foot": {
+    "text": "Three byte chunks, then one augmentation chunk.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

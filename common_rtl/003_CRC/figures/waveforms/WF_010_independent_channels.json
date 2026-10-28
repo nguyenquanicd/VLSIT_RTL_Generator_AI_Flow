@@ -1,0 +1,74 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_crc",
+      "wave": "p......."
+    },
+    {
+      "name": "i_rst_n_crc",
+      "wave": "1......."
+    },
+    {
+      "name": "i_gen_valid",
+      "wave": "10......"
+    },
+    {
+      "name": "o_gen_data_ready",
+      "wave": "10....1."
+    },
+    {
+      "name": "i_gen_last",
+      "wave": "10......"
+    },
+    {
+      "name": "o_gen_crc",
+      "wave": "x=....xx",
+      "data": [
+        "GCRC"
+      ]
+    },
+    {
+      "name": "o_gen_crc_valid",
+      "wave": "01....0."
+    },
+    {
+      "name": "i_gen_crc_ready",
+      "wave": "0....10."
+    },
+    {
+      "name": "i_check_valid",
+      "wave": "0.10...."
+    },
+    {
+      "name": "o_check_data_ready",
+      "wave": "1..01..."
+    },
+    {
+      "name": "i_check_last",
+      "wave": "0.10...."
+    },
+    {
+      "name": "o_check_pass",
+      "wave": "xxx1xxxx"
+    },
+    {
+      "name": "o_check_crc_valid",
+      "wave": "0..10..."
+    },
+    {
+      "name": "i_check_crc_ready",
+      "wave": "0..10..."
+    }
+  ],
+  "head": {
+    "text": "Independent generator and checker progress",
+    "tick": 0
+  },
+  "foot": {
+    "text": "Generator is stalled; checker completes.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

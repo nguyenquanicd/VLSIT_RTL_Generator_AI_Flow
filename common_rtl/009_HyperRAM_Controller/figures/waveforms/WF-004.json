@@ -1,0 +1,62 @@
+{
+  "head": {
+    "text": "WF-004 Read address errors: DECERR and SLVERR",
+    "tick": 0
+  },
+  "signal": [
+    [
+      "AXI read requests",
+      {
+        "name": "ARVALID",
+        "wave": "001.1..."
+      },
+      {
+        "name": "ARREADY",
+        "wave": "11111111"
+      },
+      {
+        "name": "ARADDR",
+        "wave": "x.=.=...",
+        "data": [
+          "OUT_OF_RANGE",
+          "UNSUPPORTED_IN_RANGE"
+        ]
+      },
+      {
+        "name": "RVALID",
+        "wave": "0..1.1.."
+      },
+      {
+        "name": "RRESP",
+        "wave": "x..=.=..",
+        "data": [
+          "DECERR",
+          "SLVERR"
+        ]
+      },
+      {
+        "name": "RREADY",
+        "wave": "11111111"
+      }
+    ],
+    {},
+    [
+      "HyperBus",
+      {
+        "name": "CS#",
+        "wave": "11111111"
+      },
+      {
+        "name": "CA issued",
+        "wave": "00000000"
+      }
+    ]
+  ],
+  "foot": {
+    "text": "Two independent requests; neither rejected request starts a HyperBus transaction.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

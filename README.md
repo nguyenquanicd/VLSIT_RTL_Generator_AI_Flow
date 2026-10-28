@@ -192,10 +192,12 @@ REQ-ID → Specification/standard clause → Reviewed oracle/SVA/TC → DUT exec
 |---|---|---|
 | `000_Common` | Shared wrappers (reset synchronizer, tie-off, FIFO SRAM macros, synchronizer cells with a metastability model) and stand-in cell models | Wrapper dùng chung (reset synchronizer, tie-off, SRAM macro cho FIFO, synchronizer cell có mô hình metastability) và mô hình cell stand-in |
 | `001_AsyncGrayFIFO` | FIFO for unrelated write/read clocks (Gray pointers, software reset, thresholds) | FIFO cho write/read clock độc lập (Gray pointer, software reset, threshold) |
-| `002_SyncFIFO` | FIFO for related synchronous clocks, any depth, optional pointer retiming | FIFO cho clock đồng bộ có quan hệ, depth bất kỳ, tùy chọn retime pointer |
+| `002_SyncFIFO` | FIFO for related synchronous clocks, any depth, optional pointer retiming (specification, RTL, self-checking testbench) | FIFO cho clock đồng bộ có quan hệ, depth bất kỳ, tùy chọn retime pointer (specification, RTL, testbench tự kiểm) |
 | `003_AsyncAXI4Bridge`, `004_AsyncAPBBridge` | Asynchronous AXI4 and APB (APB4/APB5) bridges across unrelated clocks | Bridge AXI4 và APB (APB4/APB5) bất đồng bộ giữa các clock độc lập |
 | `003_CRC` | Five alternative CRC implementations | Năm phương án CRC thay thế nhau |
 | `005_AHB2AXI_Bridge`, `006_AXI2APB_Bridge` | AHB-to-AXI and AXI4-to-APB4 bridges | Bridge AHB sang AXI và AXI4 sang APB4 |
+| `007_AXI2TLUL_Bridge`, `008_APB2TLUL_Bridge` | AXI4-to-TL-UL and APB4-to-TL-UL bridges | Bridge AXI4 sang TL-UL và APB4 sang TL-UL |
+| `009_HyperRAM_Controller` | AXI4 subordinate HyperRAM controller (specification and research in progress) | Bộ điều khiển HyperRAM với AXI4 subordinate (đang viết specification và research) |
 
 **EN:** The status of each design differs (specification only, RTL with lint, RTL with simulation evidence); read the folder README or the specification section on open items before reuse. None of them includes timing closure, place-and-route or sign-off.
 
@@ -205,9 +207,17 @@ REQ-ID → Specification/standard clause → Reviewed oracle/SVA/TC → DUT exec
 
 **VI:** Rule coding mặc định ([spec_template/VLSIT_RTL_Design_Rule.md](spec_template/VLSIT_RTL_Design_Rule.md)) quy định đặt tên, cấu trúc file và danh sách cấm P1 đến P30. Bổ sung gần đây: NAM-09 (cell thư viện và macro chỉ được instantiate trong wrapper và đặt tên `u_dont_touch_<function>`), SCP-03 (mã mô phỏng duy nhất được phép trong file thiết kế là nhánh chọn bởi macro `VLSIT_SYNTHESIS`), FIL-04 đến FIL-06 (bố cục nhánh, danh sách port căn cột, port nhóm theo chức năng), TYP-06 (không khai báo dư như range một bit `[0:0]` hay signal nội bộ không dùng) và ENM-06 (thanh ghi current state của FSM gán trong một `always_ff` riêng).
 
+**EN:** The block diagram of every specification is drawn with draw.io from the VLSIT symbol library: `vlsit_spec_diagram.py` of the skill `vlsit-asic-ip-microspec` builds the `.drawio` file from a JSON diagram spec, validates the library use, runs the geometry check, renders an SVG for the Markdown specification and inserts it into section 5.2 (rules R-018 to R-020 and R-027 to R-029 of that skill). The diagram spec and the `.drawio` source sit in the `figures/` folder of each design.
+
+**VI:** Sơ đồ khối của mọi specification được vẽ bằng draw.io với thư viện symbol VLSIT: `vlsit_spec_diagram.py` của skill `vlsit-asic-ip-microspec` dựng file `.drawio` từ JSON mô tả sơ đồ, kiểm tra việc dùng thư viện, chạy kiểm tra hình học, xuất SVG cho specification Markdown và chèn vào mục 5.2 (rule R-018 đến R-020 và R-027 đến R-029 của skill). JSON mô tả và file nguồn `.drawio` nằm trong thư mục `figures/` của từng thiết kế.
+
 **EN:** The skills `vlsit-asic-ip-microspec` (specification, waveforms) and `vlsit-rtl-generator` (RTL under this rule file, rule checker, lint, optional testbench) of the companion repository `VLSIT_CODEX_CLAUDE_SKILLS` were used for several designs of `common_rtl`. For a testbench the generator skill requires protocol assertions, saved simulated waveforms next to the specified ones, and, for a clock-domain crossing, runs in both the `VLSIT_SYNTHESIS` branch and the metastability-model branch.
 
 **VI:** Skill `vlsit-asic-ip-microspec` (specification, waveform) và `vlsit-rtl-generator` (RTL theo file rule này, kiểm rule, lint, testbench tùy chọn) của repository đi kèm `VLSIT_CODEX_CLAUDE_SKILLS` đã được dùng cho nhiều thiết kế trong `common_rtl`. Với testbench, skill sinh RTL yêu cầu assertion cho giao thức, lưu waveform mô phỏng cạnh waveform trong specification và, với crossing giữa các miền clock, chạy cả nhánh `VLSIT_SYNTHESIS` lẫn nhánh có mô hình metastability.
+
+**EN:** The register blocks (APB slave with control and status registers) are never written by hand: the git submodule `APB-CSR-Generator` (`https://github.com/nguyenquanicd/APB-CSR-Generator`, script `CSR_Generation.py`) builds them from the CSR workbook `spec_template/VLSIT_CSR_Specification_Template.xlsx`. The skill `vlsit-asic-ip-microspec` plans the registers for it and `vlsit-rtl-generator` runs it (`vlsit_csr_generate.py`, rules R-039 to R-042). Clone with `git clone --recurse-submodules`, or run `git submodule update --init` after a clone.
+
+**VI:** Khối thanh ghi (APB slave có thanh ghi điều khiển và trạng thái) không viết tay: submodule `APB-CSR-Generator` (`https://github.com/nguyenquanicd/APB-CSR-Generator`, script `CSR_Generation.py`) sinh chúng từ workbook CSR `spec_template/VLSIT_CSR_Specification_Template.xlsx`. Skill `vlsit-asic-ip-microspec` lập kế hoạch thanh ghi cho generator và `vlsit-rtl-generator` chạy nó (`vlsit_csr_generate.py`, rule R-039 đến R-042). Clone bằng `git clone --recurse-submodules`, hoặc chạy `git submodule update --init` sau khi clone.
 
 ## Tools and environment | Công cụ và môi trường
 

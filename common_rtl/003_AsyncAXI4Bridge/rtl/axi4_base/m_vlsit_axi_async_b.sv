@@ -6,7 +6,6 @@
  * Date         : 2026-10-25
  * Description  : AXI4 B channel crossing with one asynchronous FIFO.
  */
-`default_nettype none
 `timescale 1ns/1ps
 
 module m_vlsit_axi_async_b #(
@@ -33,22 +32,22 @@ module m_vlsit_axi_async_b #(
   localparam logic [31:0] LPARA_PTR_W = $clog2(PARA_AXI_B_DEPTH) + 32'd1
 ) (
   // Clock and reset.
-  input i_clk_sub,
-  input i_rst_n_sub,
-  input i_clk_mgr,
-  input i_rst_n_mgr,
+  input  wire                      i_clk_sub,
+  input  wire                      i_rst_n_sub,
+  input  wire                      i_clk_mgr,
+  input  wire                      i_rst_n_mgr,
 
   // Manager-side B channel.
-  input i_axi_bvalid,
+  input  wire                      i_axi_bvalid,
   output logic                     o_axi_bready,
-  input [PARA_AXI_ID_W-1:0] i_axi_bid,
-  input [LPARA_RESP_W-1:0]               i_axi_bresp,
+  input  wire  [PARA_AXI_ID_W-1:0] i_axi_bid,
+  input  wire  [LPARA_RESP_W-1:0]  i_axi_bresp,
 
   // Subordinate-side B channel.
   output logic                     o_axi_bvalid,
-  input i_axi_bready,
+  input  wire                      i_axi_bready,
   output logic [PARA_AXI_ID_W-1:0] o_axi_bid,
-  output logic [LPARA_RESP_W-1:0]               o_axi_bresp
+  output logic [LPARA_RESP_W-1:0]  o_axi_bresp
 );
 
   // FIFO data and threshold interconnect.
@@ -98,4 +97,3 @@ module m_vlsit_axi_async_b #(
   );
 
 endmodule
-`default_nettype wire

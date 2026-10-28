@@ -8,7 +8,7 @@ The only supported top is `m_ahb2axi_top`. Three functional modules implement th
 
 Reads are serialized and never speculative. Eligible bufferable Normal Write-back fixed write bursts may map to AXI bursts of up to 16 beats when their address attributes remain constant. Other writes use ordered AXI single-beat transactions.
 
-RTL rule check passed with 0 errors and 2 advisory warnings: the controller combines its required control logic with child instances, and one AHB5 HPROT pattern is reported as a numeric literal. Verilator lint passed with 0 errors and 27 warnings. These are open unused status pins on the reused FIFOs and two unused address-extension bits in the reused `002_SyncFIFO` RTL. No testbench or functional simulation has been generated for this RTL.
+RTL rule check passed with 0 errors and 2 advisory warnings: the controller combines its required control logic with child instances, and one AHB5 HPROT pattern is reported as a numeric literal. Verilator lint passed with 0 errors and 27 warnings. The interface-only testbench has 71 protocol and bridge assertions and simulates all six specification scenarios: WF-001, WF-002 and WF-005 pass; WF-003, WF-004 and WF-006 expose RTL mismatches. See the [waveform comparison](verification/evidence/waveform_compare.md) and logs. Generic Yosys synthesis passed `check -assert` with 7,932 generic cells. This is not a foundry-mapped area or timing result.
 
 ## Tiếng Việt
 
@@ -18,12 +18,13 @@ Top duy nhất được hỗ trợ là `m_ahb2axi_top`. Ba module chức năng x
 
 Read được tuần tự hóa và không phát request suy đoán. Write burst cố định Normal Write-back có thuộc tính bufferable có thể ghép thành AXI burst tối đa 16 beat nếu thuộc tính địa chỉ không đổi. Các write khác dùng AXI single-beat theo thứ tự.
 
-Rule check RTL đạt với 0 lỗi và 2 cảnh báo tham khảo: controller vừa có logic điều khiển vừa chứa instance con theo kiến trúc đã chọn; một mẫu HPROT của AHB5 bị nhận diện là hằng số số học. Verilator lint đạt với 0 lỗi và 27 cảnh báo. Các cảnh báo này gồm chân trạng thái FIFO dùng lại được để trống và hai bit địa chỉ mở rộng không dùng trong RTL `002_SyncFIFO` dùng lại. Chưa tạo testbench hoặc chạy mô phỏng chức năng cho RTL này.
+Rule check RTL đạt với 0 lỗi và 2 cảnh báo tham khảo: controller vừa có logic điều khiển vừa chứa instance con theo kiến trúc đã chọn; một mẫu HPROT của AHB5 bị nhận diện là hằng số số học. Verilator lint đạt với 0 lỗi và 27 cảnh báo. Testbench chỉ dùng giao diện có 71 assertion protocol/chức năng và đã mô phỏng sáu kịch bản trong đặc tả: WF-001, WF-002 và WF-005 đạt; WF-003, WF-004 và WF-006 phát hiện sai khác RTL. Xem [bảng đối chiếu waveform](verification/evidence/waveform_compare.md) và log. Tổng hợp generic bằng Yosys đạt `check -assert` với 7.932 cell generic. Đây không phải kết quả area hoặc timing đã map theo thư viện foundry.
 
 ## Files / Tệp
 
 - [`AHB2AXI_Bridge_Design_Specification.md`](AHB2AXI_Bridge_Design_Specification.md): complete bilingual specification / đặc tả song ngữ.
 - [`rtl/`](rtl/): generated RTL, filelist, [rule-check report](rtl/rule_check_report.md) and [final Verilator log](rtl/lint_verilator_final.log) / RTL đã sinh, filelist, báo cáo rule-check và log Verilator cuối.
+- [`verification/`](verification/): independent testbench, [single Makefile](verification/Makefile), simulation logs, waveforms, synthesis log and generic netlist / testbench độc lập, một Makefile, log mô phỏng, waveform, log tổng hợp và netlist generic.
 - [`figures/`](figures/): module diagram and WaveJSON/SVG waveforms / sơ đồ module và waveform WaveJSON/SVG.
 - [`research/vlsit_reference_ip_log.md`](research/vlsit_reference_ip_log.md): reference-IP evaluation / đánh giá IP tham chiếu.
 

@@ -53,8 +53,8 @@
         <mxCell id="i29__2" value="MW&lt;br&gt;W (mgr)" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i29">
           <mxGeometry x="940" y="655" width="90" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="i41__2" value="TOP&lt;br&gt;(m_vlsit_axi_async_top)" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i41">
-          <mxGeometry x="622" y="430" width="250" height="50" as="geometry" />
+        <mxCell id="i41__2" value="TOP&lt;br&gt;(m_vlsit_async_axi4_bridge)" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i41">
+          <mxGeometry x="582" y="430" width="290" height="50" as="geometry" />
         </mxCell>
         <mxCell id="i44__2" value="&lt;b&gt;Legend&lt;/b&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i44">
           <mxGeometry x="100" y="3496" width="200" height="28" as="geometry" />
@@ -100,7 +100,7 @@
         <mxCell id="i42__r1" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i42__t" vlsit_native_table="1">
           <mxGeometry y="76" width="2400" height="58" as="geometry" />
         </mxCell>
-        <mxCell id="i42__r1__c0" value="TOP (m_vlsit_axi_async_top) frame" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i42__r1" vlsit_native_table="1">
+        <mxCell id="i42__r1__c0" value="TOP (m_vlsit_async_axi4_bridge) frame" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i42__r1" vlsit_native_table="1">
           <mxGeometry x="0" width="330" height="58" as="geometry">
             <mxRectangle width="330" height="58" as="alternateBounds" />
           </mxGeometry>

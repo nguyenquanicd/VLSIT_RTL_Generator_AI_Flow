@@ -1,0 +1,25 @@
+{
+  "title": "m_apb_tlul_bridge block diagram (single clock domain i_clk_core)",
+  "blocks": [
+    {"id": "io_apb", "label": "APB4\nCompleter", "x": 0.0, "y": -2.4, "kind": "io"},
+    {"id": "dec", "label": "Setup detect\nand legality", "x": 4.8, "y": 0.0},
+    {"id": "arsp", "label": "APB FSM and\nresponse flops", "x": 4.8, "y": -4.8},
+    {"id": "tla", "label": "A-channel flops\nand TL-UL FSM", "x": 10.6, "y": 0.0},
+    {"id": "tld", "label": "D-channel\nchecker", "x": 10.6, "y": -4.8},
+    {"id": "io_tl", "label": "TL-UL\nhost", "x": 15.6, "y": -2.4, "kind": "io"}
+  ],
+  "groups": [
+    {"label": "m_apb_if (APB side)", "blocks": ["dec", "arsp"]},
+    {"label": "m_tlul_if (TL-UL side)", "blocks": ["tla", "tld"]}
+  ],
+  "links": [
+    {"from": "io_apb", "to": "dec", "from_side": "north", "to_side": "west", "label": "PSEL..PSTRB"},
+    {"from": "dec", "to": "tla", "from_side": "east", "to_side": "west", "label": "launch, payload"},
+    {"from": "tla", "to": "io_tl", "from_side": "east", "to_side": "north", "label": "A channel (flops)"},
+    {"from": "io_tl", "to": "tld", "from_side": "south", "to_side": "east", "label": "D channel"},
+    {"from": "tld", "to": "arsp", "from_side": "west", "to_side": "east", "label": "resp, err, rdata"},
+    {"from": "arsp", "to": "io_apb", "from_side": "west", "to_side": "south", "label": "PREADY, PRDATA, PSLVERR"},
+    {"from": "dec", "to": "arsp", "from_side": "south", "to_side": "north", "style": "ctrl", "label": "local err"},
+    {"from": "tla", "to": "tld", "from_side": "south", "to_side": "north", "style": "ctrl", "label": "rd, wait"}
+  ]
+}

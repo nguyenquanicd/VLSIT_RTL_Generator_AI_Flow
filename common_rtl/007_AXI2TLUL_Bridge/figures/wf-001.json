@@ -1,0 +1,98 @@
+{
+ "signal": [
+  {
+   "name": "i_clk_main",
+   "wave": "p............."
+  },
+  [
+   "Clock and reset",
+   {
+    "name": "i_rst_n_main",
+    "wave": "11111001111111"
+   }
+  ],
+  [
+   "AXI read address",
+   {
+    "name": "i_axi_arvalid",
+    "wave": "01000000001000"
+   },
+   {
+    "name": "o_axi_arready",
+    "wave": "01111000111111"
+   },
+   {
+    "name": "i_axi_araddr",
+    "wave": "x=xxxxxxxx=xxx",
+    "data": [
+     "0x100",
+     "0x200"
+    ]
+   },
+   {
+    "name": "i_axi_arlen",
+    "wave": "x=xxxxxxxx=xxx",
+    "data": [
+     "3",
+     "0"
+    ]
+   },
+   {
+    "name": "i_axi_arsize",
+    "wave": "x=xxxxxxxx=xxx",
+    "data": [
+     "2",
+     "2"
+    ]
+   },
+   {
+    "name": "i_axi_arburst",
+    "wave": "x=xxxxxxxx=xxx",
+    "data": [
+     "INCR",
+     "INCR"
+    ]
+   }
+  ],
+  [
+   "AXI outputs",
+   {
+    "name": "o_axi_rvalid",
+    "wave": "00000000000000"
+   },
+   {
+    "name": "o_axi_bvalid",
+    "wave": "00000000000000"
+   }
+  ],
+  [
+   "TL-UL",
+   {
+    "name": "o_tl_a_valid",
+    "wave": "00111000000100"
+   },
+   {
+    "name": "i_tl_a_ready",
+    "wave": "11111111111111"
+   },
+   {
+    "name": "o_tl_a_src",
+    "wave": "0001=000000000",
+    "data": [
+     "rd2"
+    ]
+   },
+   {
+    "name": "o_tl_d_ready",
+    "wave": "01111000111111"
+   },
+   {
+    "name": "o_evt_orphan_resp",
+    "wave": "00000000000000"
+   }
+  ]
+ ],
+ "head": {
+  "text": "WF-001 Reset in the middle of traffic and release"
+ }
+}

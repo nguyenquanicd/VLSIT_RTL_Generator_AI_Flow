@@ -6,7 +6,6 @@
  * Date         : 2026-10-25
  * Description  : AXI3 W channel crossing with one asynchronous FIFO.
  */
-`default_nettype none
 `timescale 1ns/1ps
 
 module m_vlsit_axi3_async_w #(
@@ -39,22 +38,22 @@ module m_vlsit_axi3_async_w #(
   localparam logic [31:0] LPARA_PTR_W = $clog2(PARA_AXI_W_DEPTH) + 32'd1
 ) (
   // Clock and reset.
-  input i_clk_sub,
-  input i_rst_n_sub,
-  input i_clk_mgr,
-  input i_rst_n_mgr,
+  input  wire                        i_clk_sub,
+  input  wire                        i_rst_n_sub,
+  input  wire                        i_clk_mgr,
+  input  wire                        i_rst_n_mgr,
 
   // Subordinate-side W channel.
-  input i_axi_wvalid,
+  input  wire                        i_axi_wvalid,
   output logic                       o_axi_wready,
-  input [PARA_AXI_ID_W-1:0]   i_axi_wid,
-  input [PARA_AXI_DATA_W-1:0] i_axi_wdata,
-  input [LPARA_STRB_W-1:0]    i_axi_wstrb,
-  input i_axi_wlast,
+  input  wire  [PARA_AXI_ID_W-1:0]   i_axi_wid,
+  input  wire  [PARA_AXI_DATA_W-1:0] i_axi_wdata,
+  input  wire  [LPARA_STRB_W-1:0]    i_axi_wstrb,
+  input  wire                        i_axi_wlast,
 
   // Manager-side W channel.
   output logic                       o_axi_wvalid,
-  input i_axi_wready,
+  input  wire                        i_axi_wready,
   output logic [PARA_AXI_ID_W-1:0]   o_axi_wid,
   output logic [PARA_AXI_DATA_W-1:0] o_axi_wdata,
   output logic [LPARA_STRB_W-1:0]    o_axi_wstrb,
@@ -110,4 +109,3 @@ module m_vlsit_axi3_async_w #(
   );
 
 endmodule
-`default_nettype wire

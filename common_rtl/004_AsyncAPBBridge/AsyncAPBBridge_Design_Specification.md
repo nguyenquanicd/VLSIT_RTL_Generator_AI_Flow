@@ -14,7 +14,7 @@ csr_spec: "Not required (no software-visible registers)"
 
 > **Purpose:** Normative design contract for architecture, RTL, verification, DFT, and physical integration of this IP.
 >
-> **Status of this draft:** The decisions DEC-001 to DEC-014 were taken by the designer on 2026-10-25. The decisions DEC-015 to DEC-028 are choices of the author of this draft that the designer has not yet confirmed (Section 20); the RTL in `rtl/` was written with them as stated. The figures of Section 10.3, the latency table and the first regression of this document come from a throw-away prototype (`waveforms/proto/`); Section 15.1 records what was then reproduced on the delivered RTL. The SDC file `constraints/m_vlsit_apbcdc_top.sdc` was executed only with stub commands (`constraints/check_sdc.py`); it was not run in a sign-off tool (open item OI-004).
+> **Status of this draft:** The decisions DEC-001 to DEC-014 were taken by the designer on 2026-10-25. The decisions DEC-015 to DEC-028 are choices of the author of this draft that the designer has not yet confirmed (Section 20); the RTL in `rtl/` was written with them as stated. The figures of Section 10.3, the latency table and the first regression of this document come from a throw-away prototype (`waveforms/proto/`); Section 15.1 records what was then reproduced on the delivered RTL. The SDC file `constraints/m_vlsit_async_apb_bridge.sdc` was executed only with stub commands (`constraints/check_sdc.py`); it was not run in a sign-off tool (open item OI-004).
 >
 > Requirement terms: **shall** = mandatory and testable; **should** = recommended; **may** = optional.
 
@@ -188,13 +188,13 @@ The IP has two blocks, one per clock domain, and one structural top. Each block 
 | m_vlsit_apbcdc_mst | APB completer of the requester: captures the Setup phase into the request hold register, launches the request bit, receives the acknowledge through the synchronizer `u_sync_ack`, loads the response into the response output registers and raises `PREADY` for one cycle; registers `i_apb_pwakeup` for the crossing | Requester-side APB interface, crossing signals with the slv block | CLK-MST / RST-MST | `reg_req_payload`, `reg_req`, `reg_wakeup`, response output registers `reg_resp_payload`, `reg_fsm_hs_current_state` (IDLE, WAIT, CLOSE, RESP) |
 | m_vlsit_apbcdc_slv | APB requester of the completer: receives the request bit through `u_sync_req` and the wake-up through `u_sync_wk`, loads the request bundle into `reg_apb_payload`, drives one APB transfer, captures the response into `reg_resp_hold`, launches the acknowledge, and drives `o_apb_pwakeup` | Completer-side APB interface, crossing signals with the mst block | CLK-SLV / RST-SLV | `reg_apb_payload`, `reg_resp_hold`, `reg_ack`, `reg_fsm_hs_current_state` (IDLE, SETUP, ACCESS, REQ0), `reg_apb_psel`, `reg_apb_penable`, `reg_pwakeup` |
 | m_vlsit_apbcdc_sync | Synchronizer of a vector of control bits with the cell option `PARA_APBCDC_CELL_TYPE`; instantiates `m_vlsit_apbcdc_cell_sync` per bit | One bit per crossing control signal | Destination domain | Synchronizer stages |
-| m_vlsit_apbcdc_top | Structural wrapper: interface, parameters, interconnect and the two instances | All ports of Section 6.2 | CLK-MST, CLK-SLV | None |
+| m_vlsit_async_apb_bridge | Structural wrapper: interface, parameters, interconnect and the two instances | All ports of Section 6.2 | CLK-MST, CLK-SLV | None |
 
 ### 5.2 Block diagram
 
-![Block diagram of the asynchronous APB bridge](figures/apbcdc_block_diagram.svg)
+![Block diagram of the asynchronous APB bridge: requester-side and completer-side blocks in the top frame (diagram spec: figures/apbcdc_diagram_spec.json). Only the control bits pass through the synchronizers inside the blocks; the request and response bundles are timed paths](figures/apbcdc_block_diagram.svg)
 
-*Figure 5-1. Source: `figures/apbcdc_block_diagram.json`, generated as TikZ (`figures/apbcdc_block_diagram.tex`) by `vlsit_block_diagram.py`. The dashed link carries the request and acknowledge bits, the request bundle and the response bundle as timed paths; only the control bits pass through the synchronizers.*
+*Figure 5-1. Block diagram of the asynchronous APB bridge: requester-side and completer-side blocks in the top frame (diagram spec: figures/apbcdc_diagram_spec.json). Only the control bits pass through the synchronizers inside the blocks; the request and response bundles are timed paths. Source: `figures/apbcdc_block_diagram.drawio` (draw.io, VLSIT library, drawn by `vlsit_spec_diagram.py`). The frame is the top module, the blocks are its instances, each connector is one interface with its mnemonic, and the two tables under the diagram in the source file describe the blocks and the interfaces.*
 
 ### 5.3 Transaction and dataflow
 
@@ -559,9 +559,9 @@ The VLSIT RTL Design Rules v2 in VLSIT_RTL_Design_Rule.md (REF-003) are the mand
 
 | Module | Responsibility | Parent / instance | Clock/reset domains | Interface |
 |---|---|---|---|---|
-| m_vlsit_apbcdc_top | Structural top: ports, parameters, interconnect, instances | Top | CLK-MST and CLK-SLV | All ports of Section 6.2 |
-| m_vlsit_apbcdc_mst | Requester-side block | m_vlsit_apbcdc_top / u_vlsit_apbcdc_mst | CLK-MST / RST-MST | Requester-side APB, crossing signals |
-| m_vlsit_apbcdc_slv | Completer-side block | m_vlsit_apbcdc_top / u_vlsit_apbcdc_slv | CLK-SLV / RST-SLV | Completer-side APB, crossing signals |
+| m_vlsit_async_apb_bridge | Structural top: ports, parameters, interconnect, instances | Top | CLK-MST and CLK-SLV | All ports of Section 6.2 |
+| m_vlsit_apbcdc_mst | Requester-side block | m_vlsit_async_apb_bridge / u_vlsit_apbcdc_mst | CLK-MST / RST-MST | Requester-side APB, crossing signals |
+| m_vlsit_apbcdc_slv | Completer-side block | m_vlsit_async_apb_bridge / u_vlsit_apbcdc_slv | CLK-SLV / RST-SLV | Completer-side APB, crossing signals |
 | m_vlsit_apbcdc_sync | Synchronizer of a vector of control bits | mst: u_sync_ack; slv: u_sync_req, u_sync_wk | Destination domain | Clock, reset, data in, data out |
 | m_vlsit_apbcdc_cell_sync | Cell wrapper of one synchronizer bit, in `000_Common/rtl_lib`; synthesis branch with `VLSIT_CELL_SYNC_*` cells, simulation branch with the metastability model (plusargs `+APBCDC_MSYNC_SEED`, `+APBCDC_MSYNC_EN`) | m_vlsit_apbcdc_sync / u_vlsit_apbcdc_cell_sync per bit | Destination domain | Clock, reset, one bit in, one bit out |
 
@@ -606,12 +606,12 @@ Same columns and signal types as Section 6.2; module-internal bundle widths are 
 
 | Item | Value / source |
 |---|---|
-| Top / source file list | m_vlsit_apbcdc_top, the four design files of Section 14.2, the wrapper `m_vlsit_apbcdc_cell_sync` and the cell models of `000_Common` |
+| Top / source file list | m_vlsit_async_apb_bridge, the four design files of Section 14.2, the wrapper `m_vlsit_apbcdc_cell_sync` and the cell models of `000_Common` |
 | Frontend version and options | Recorded per run (REF-003 SCP-02) |
 | Parameters/configuration | CFG-APB4, CFG-4PH, CFG-APB5, CFG-USER, CFG-SYNC3, CFG-MIN |
 | Libraries/corners | Chosen by the integrator (OI-001) |
 | Memory flow | Not applicable: no memory |
-| Lint rule configuration | The project lint set with `default_nettype none` checking; flow macro `VLSIT_SYNTHESIS` defined for synthesis, lint, CDC and formal |
+| Lint rule configuration | The project lint set, which reports undeclared identifiers (implicit nets); the RTL has no `default_nettype` directive; flow macro `VLSIT_SYNTHESIS` defined for synthesis, lint, CDC and formal |
 
 ## 15. Verification specification
 
@@ -702,14 +702,14 @@ Assertions and coverage live outside the synthesis file list. They are disabled 
 
 ### 17.1 Timing constraints and budgets
 
-The SDC delivered with the IP, `constraints/m_vlsit_apbcdc_top.sdc` (Synopsys dialect, DEC-007), is the executable form of the tables below. The SoC owns the clock sources and the interface delays. The example values are T_mst = 10 ns (100 MHz) and T_slv = 20 ns (50 MHz), N = 2 (DEC-014); they are variables of the file. `constraints/check_sdc.py` executes the file with stub commands and checks the budgets against the formulas; it does not check the semantics in a sign-off tool (OI-004).
+The SDC delivered with the IP, `constraints/m_vlsit_async_apb_bridge.sdc` (Synopsys dialect, DEC-007), is the executable form of the tables below. The SoC owns the clock sources and the interface delays. The example values are T_mst = 10 ns (100 MHz) and T_slv = 20 ns (50 MHz), N = 2 (DEC-014); they are variables of the file. `constraints/check_sdc.py` executes the file with stub commands and checks the budgets against the formulas; it does not check the semantics in a sign-off tool (OI-004).
 
 #### 17.1.1 Clock and analysis scenarios
 
 | Clock ID | Port / source object | Primary/generated and master | Period, waveform, phase / ratio | Latency / uncertainty / transition | Clock group / mode | Constraint source |
 |---|---|---|---|---|---|---|
-| CLK-MST | i_clk_mst | Primary (`create_clock -name clk_mst`) | Variable T_mst, example 10 ns, 50 % duty | Ideal latency before CTS; setup uncertainty 0.10 ns, hold 0.05 ns, transition 0.10 ns (examples) | Unrelated to CLK-SLV; no clock group, no false path between the two (DEC-018) | `constraints/m_vlsit_apbcdc_top.sdc` |
-| CLK-SLV | i_clk_slv | Primary (`create_clock -name clk_slv`) | Variable T_slv, example 20 ns, 50 % duty | As CLK-MST | Unrelated to CLK-MST | `constraints/m_vlsit_apbcdc_top.sdc` |
+| CLK-MST | i_clk_mst | Primary (`create_clock -name clk_mst`) | Variable T_mst, example 10 ns, 50 % duty | Ideal latency before CTS; setup uncertainty 0.10 ns, hold 0.05 ns, transition 0.10 ns (examples) | Unrelated to CLK-SLV; no clock group, no false path between the two (DEC-018) | `constraints/m_vlsit_async_apb_bridge.sdc` |
+| CLK-SLV | i_clk_slv | Primary (`create_clock -name clk_slv`) | Variable T_slv, example 20 ns, 50 % duty | As CLK-MST | Unrelated to CLK-MST | `constraints/m_vlsit_async_apb_bridge.sdc` |
 
 Analysis scenarios: functional mode only; the IP has no test mode. Corners are chosen by the integrator.
 
@@ -792,7 +792,7 @@ This subsection answers the question of the designer of 2026-10-25 and corrects 
 | REQ-FUNC-007 | m_vlsit_apbcdc_mst | TEST-006, COV-003 | Simulation, coverage | All |
 | REQ-FUNC-008 | m_vlsit_apbcdc_slv | TEST-002, TEST-013, SVA-005, SVA-006, SVA-007 | Simulation, assertion | All |
 | REQ-FUNC-009 | m_vlsit_apbcdc_mst, m_vlsit_apbcdc_slv | TEST-007 | Simulation | All |
-| REQ-IF-001 | m_vlsit_apbcdc_top | TEST-015 | Lint, review | All |
+| REQ-IF-001 | m_vlsit_async_apb_bridge | TEST-015 | Lint, review | All |
 | REQ-IF-002 | m_vlsit_apbcdc_mst, m_vlsit_apbcdc_slv | TEST-015 | Static structural check | All |
 | REQ-IF-003 | m_vlsit_apbcdc_mst, m_vlsit_apbcdc_slv | TEST-001, TEST-013, SVA-017 | Simulation, assertion | All |
 | REQ-HS-001 | m_vlsit_apbcdc_mst, m_vlsit_apbcdc_slv | TEST-002, TEST-008, SVA-012, SVA-013, COV-004 | Simulation, assertion | All |
@@ -800,14 +800,14 @@ This subsection answers the question of the designer of 2026-10-25 and corrects 
 | REQ-HS-003 | m_vlsit_apbcdc_mst, m_vlsit_apbcdc_slv | TEST-015, TEST-016 | Structural check, STA review | All |
 | REQ-HS-004 | m_vlsit_apbcdc_mst | TEST-008, SVA-013 | Simulation, assertion | CFG-4PH |
 | REQ-CLK-001 | All modules | TEST-011, COV-001 | Simulation with many ratios | All |
-| REQ-CLK-002 | m_vlsit_apbcdc_top | TEST-015, TEST-019 | Structural check, simulation | All |
+| REQ-CLK-002 | m_vlsit_async_apb_bridge | TEST-015, TEST-019 | Structural check, simulation | All |
 | REQ-CLK-003 | m_vlsit_apbcdc_sync, m_vlsit_apbcdc_cell_sync | TEST-014, TEST-016, COV-004 | Elaboration, SDC check | All |
 | REQ-RESET-001 | m_vlsit_apbcdc_mst, m_vlsit_apbcdc_slv | TEST-001, SVA-016 | Reset test, assertion | All |
-| REQ-RESET-002 | m_vlsit_apbcdc_top | TEST-012, COV-006 | Simulation, coverage | All |
+| REQ-RESET-002 | m_vlsit_async_apb_bridge | TEST-012, COV-006 | Simulation, coverage | All |
 | REQ-APB5-001 | m_vlsit_apbcdc_slv | TEST-009, SVA-014, SVA-015, COV-005 | Simulation, assertion | CFG-APB5 |
 | REQ-APB5-002 | m_vlsit_apbcdc_mst, m_vlsit_apbcdc_slv | TEST-010, COV-005 | Simulation | CFG-USER |
-| REQ-APB5-003 | m_vlsit_apbcdc_top | TEST-009 | Simulation | CFG-APB4 |
-| REQ-PARAM-001 | m_vlsit_apbcdc_top | TEST-014 | Elaboration | CFG-MIN, CFG-USER |
+| REQ-APB5-003 | m_vlsit_async_apb_bridge | TEST-009 | Simulation | CFG-APB4 |
+| REQ-PARAM-001 | m_vlsit_async_apb_bridge | TEST-014 | Elaboration | CFG-MIN, CFG-USER |
 | REQ-PERF-001 | m_vlsit_apbcdc_mst, m_vlsit_apbcdc_slv | TEST-018, SVA-018 | Latency sweep, assertion | HS_TYPE 0 |
 | REQ-PERF-002 | m_vlsit_apbcdc_mst, m_vlsit_apbcdc_slv | TEST-018, SVA-018 | Latency sweep, assertion | HS_TYPE 1 |
 | REQ-PERF-003 | m_vlsit_apbcdc_mst | TEST-006, COV-003 | Simulation | All |
@@ -855,7 +855,7 @@ This subsection answers the question of the designer of 2026-10-25 and corrects 
 | DEC-012 | Decision | Waveform plan: the proposed list of 12 waveforms | Section 10.3 | Confirmed by the designer, 2026-10-25 (answer 13A) |
 | DEC-013 | Decision | One completer (one `PSEL`), one transfer at a time, two-phase default, 2-FF default, synchronizer depth by the cell option of `001_AsyncGrayFIFO` | Sections 4 and 8 | Confirmed by the designer, 2026-10-25 (answer 14A) |
 | DEC-014 | Decision | SDC examples: T_mst = 10 ns, T_slv = 20 ns; the budgets are formulas of the periods and N | Section 17 | Confirmed by the designer, 2026-10-25 (answer 15A) |
-| DEC-015 | Decision | Names: top `m_vlsit_apbcdc_top`, blocks `m_vlsit_apbcdc_mst` and `m_vlsit_apbcdc_slv`, synchronizer `m_vlsit_apbcdc_sync`, wrapper `m_vlsit_apbcdc_cell_sync`, parameters `PARA_APBCDC_*`, register names of Section 14.1 | All names | Author's choice; to be confirmed by the designer |
+| DEC-015 | Decision | Names: top `m_vlsit_async_apb_bridge`, blocks `m_vlsit_apbcdc_mst` and `m_vlsit_apbcdc_slv`, synchronizer `m_vlsit_apbcdc_sync`, wrapper `m_vlsit_apbcdc_cell_sync`, parameters `PARA_APBCDC_*`, register names of Section 14.1 | All names | Top name confirmed by designer on 2026-10-26; remaining names are unconfirmed |
 | DEC-016 | Decision | The request bit is launched at the same edge as the request bundle is loaded (no extra cycle); the budget relies on the synchronizer latency | REQ-HS-003, Section 17.1.4 | Author's choice; to be confirmed by the designer |
 | DEC-017 | Decision | The crossing budgets are `set_max_delay -ignore_clock_latency` with the values of Section 17.1.2 and a hold-only false path; the guard band of one destination period | REQ-TIM-002, REQ-TIM-003 | Author's choice; to be confirmed by the designer and in the sign-off tool (OI-004) |
 | DEC-018 | Decision | No `set_clock_groups` and no false path between the two clocks in the IP SDC | REQ-TIM-002, EXC-006 | Author's choice; to be confirmed by the designer |

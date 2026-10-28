@@ -1,0 +1,7 @@
+read_slang --std 1800-2017 --top m_crc_engine -G PARA_CRC_METHOD=32'h00000002 -G PARA_CRC_W=32'h00000008 -G PARA_DATA_W=32'h00000020 -G PARA_CRC_POLY=32'h00000007 -G PARA_CRC_INIT=32'h00000000 -G PARA_CRC_XOR_OUT=32'h00000000 -G PARA_CRC_REF_IN=32'h00000000 -G PARA_CRC_REF_OUT=32'h00000000 -G PARA_CAL_W=32'h00000008 C:/HQuan/102_MyGithub/VLSIT_RTL_Generator_AI_Model/common_rtl/003_CRC/rtl_v2/m_crc_check.sv C:/HQuan/102_MyGithub/VLSIT_RTL_Generator_AI_Model/common_rtl/003_CRC/rtl_v2/m_crc_engine.sv C:/HQuan/102_MyGithub/VLSIT_RTL_Generator_AI_Model/common_rtl/003_CRC/rtl_v2/m_crc_gen.sv C:/HQuan/102_MyGithub/VLSIT_RTL_Generator_AI_Model/common_rtl/003_CRC/rtl_v2/m_crc_initial_value.sv C:/HQuan/102_MyGithub/VLSIT_RTL_Generator_AI_Model/common_rtl/003_CRC/rtl_v2/m_crc_parallel.sv C:/HQuan/102_MyGithub/VLSIT_RTL_Generator_AI_Model/common_rtl/003_CRC/rtl_v2/m_crc_parallel_crcw.sv C:/HQuan/102_MyGithub/VLSIT_RTL_Generator_AI_Model/common_rtl/003_CRC/rtl_v2/m_crc_parallel_full.sv C:/HQuan/102_MyGithub/VLSIT_RTL_Generator_AI_Model/common_rtl/003_CRC/rtl_v2/m_crc_serial.sv
+hierarchy -check -top m_crc_engine
+synth -top m_crc_engine
+check -assert
+tee -o "C:/HQuan/102_MyGithub/VLSIT_RTL_Generator_AI_Model/common_rtl/003_CRC/sanity_v2/synthesis/base2/stats.json" stat -json
+write_verilog -noattr "C:/HQuan/102_MyGithub/VLSIT_RTL_Generator_AI_Model/common_rtl/003_CRC/sanity_v2/synthesis/base2/netlist.v"
+write_json "C:/HQuan/102_MyGithub/VLSIT_RTL_Generator_AI_Model/common_rtl/003_CRC/sanity_v2/synthesis/base2/netlist.json"

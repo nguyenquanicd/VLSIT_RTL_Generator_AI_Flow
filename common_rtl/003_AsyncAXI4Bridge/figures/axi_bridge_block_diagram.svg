@@ -37,7 +37,7 @@
 <text x="985" y="676" text-anchor="middle">MW</text>
 <text x="985" y="698" text-anchor="middle">W (mgr)</text>
 <text x="868" y="451" text-anchor="end">TOP</text>
-<text x="868" y="473" text-anchor="end">(m_vlsit_axi_async_top)</text>
+<text x="868" y="473" text-anchor="end">(m_vlsit_async_axi4_bridge)</text>
 <text x="104" y="3517" text-anchor="start" font-weight="bold">Legend</text>
 <text x="284" y="3558" text-anchor="start">Interface connector (one per signal group; arrow = active to passive)</text>
 <text x="104" y="3633" text-anchor="start">The enclosing frame is the top module; blocks inside are its instances. S = subordinate side, M = manager side of the bridge. Interface labels outside the frame mark connections to the outside.</text>
@@ -56,7 +56,7 @@
 <rect x="2140" y="1580" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
 <text x="2144" y="1605" text-anchor="start" font-weight="bold">Interfaces (mnemonics)</text>
 <rect x="100" y="1616" width="330" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
-<text x="104" y="1641" text-anchor="start">TOP (m_vlsit_axi_async_top)</text>
+<text x="104" y="1641" text-anchor="start">TOP (m_vlsit_async_axi4_bridge)</text>
 <text x="104" y="1663" text-anchor="start">frame</text>
 <rect x="430" y="1616" width="1480" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
 <text x="434" y="1641" text-anchor="start">Structural top of the asynchronous AXI bridge. It instantiates one module per AXI channel and holds no logic of its own. The subordinate-side</text>

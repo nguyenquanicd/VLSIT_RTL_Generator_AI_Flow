@@ -38,3 +38,31 @@ mutation-test: test-parallel
 
 clean:
 	rm -rf $(BUILD_DIR)
+
+# Streaming CRC top in rtl_v2: independent specification-based simulation and generic synthesis.
+.PHONY: v2-verify v2-sim v2-synth v2-mutation v2-waveforms v2-report v2-help
+v2-verify:
+	"$(PYTHON)" tests_v2/run_flow.py all
+
+v2-sim:
+	"$(PYTHON)" tests_v2/run_flow.py sim
+
+v2-synth:
+	"$(PYTHON)" tests_v2/run_flow.py synth
+
+v2-mutation:
+	"$(PYTHON)" tests_v2/run_flow.py mutation
+
+v2-waveforms:
+	"$(PYTHON)" tests_v2/run_flow.py evidence
+
+v2-report:
+	"$(PYTHON)" tests_v2/run_flow.py report
+
+v2-help:
+	@echo "v2-verify    Run simulation, synthesis, fault injection, waveforms and report"
+	@echo "v2-sim       Run 14 configurations, three seeds, two independent streams"
+	@echo "v2-synth     Run Yosys/slang generic synthesis and structural checks"
+	@echo "v2-mutation  Detect an injected CRC bug in a copied RTL source"
+	@echo "v2-waveforms Render ten measured simulation windows after v2-sim"
+	@echo "v2-report    Summarize retained logs and results"

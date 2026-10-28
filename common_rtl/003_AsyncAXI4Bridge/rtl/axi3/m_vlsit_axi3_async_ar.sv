@@ -6,7 +6,6 @@
  * Date         : 2026-10-25
  * Description  : AXI3 AR channel crossing with one asynchronous FIFO.
  */
-`default_nettype none
 `timescale 1ns/1ps
 
 module m_vlsit_axi3_async_ar #(
@@ -48,34 +47,34 @@ module m_vlsit_axi3_async_ar #(
   localparam logic [31:0] LPARA_PTR_W = $clog2(PARA_AXI_AR_DEPTH) + 32'd1
 ) (
   // Clock and reset.
-  input i_clk_sub,
-  input i_rst_n_sub,
-  input i_clk_mgr,
-  input i_rst_n_mgr,
+  input  wire                        i_clk_sub,
+  input  wire                        i_rst_n_sub,
+  input  wire                        i_clk_mgr,
+  input  wire                        i_rst_n_mgr,
 
   // Subordinate-side AR channel.
-  input i_axi_arvalid,
+  input  wire                        i_axi_arvalid,
   output logic                       o_axi_arready,
-  input [PARA_AXI_ID_W-1:0]   i_axi_arid,
-  input [PARA_AXI_ADDR_W-1:0] i_axi_araddr,
-  input [LPARA_LEN_W-1:0]     i_axi_arlen,
-  input [LPARA_SIZE_W-1:0]                 i_axi_arsize,
-  input [LPARA_BURST_W-1:0]                 i_axi_arburst,
-  input [LPARA_LOCK_W-1:0]    i_axi_arlock,
-  input [LPARA_CACHE_W-1:0]                 i_axi_arcache,
-  input [LPARA_PROT_W-1:0]                 i_axi_arprot,
+  input  wire  [PARA_AXI_ID_W-1:0]   i_axi_arid,
+  input  wire  [PARA_AXI_ADDR_W-1:0] i_axi_araddr,
+  input  wire  [LPARA_LEN_W-1:0]     i_axi_arlen,
+  input  wire  [LPARA_SIZE_W-1:0]    i_axi_arsize,
+  input  wire  [LPARA_BURST_W-1:0]   i_axi_arburst,
+  input  wire  [LPARA_LOCK_W-1:0]    i_axi_arlock,
+  input  wire  [LPARA_CACHE_W-1:0]   i_axi_arcache,
+  input  wire  [LPARA_PROT_W-1:0]    i_axi_arprot,
 
   // Manager-side AR channel.
   output logic                       o_axi_arvalid,
-  input i_axi_arready,
+  input  wire                        i_axi_arready,
   output logic [PARA_AXI_ID_W-1:0]   o_axi_arid,
   output logic [PARA_AXI_ADDR_W-1:0] o_axi_araddr,
   output logic [LPARA_LEN_W-1:0]     o_axi_arlen,
-  output logic [LPARA_SIZE_W-1:0]                 o_axi_arsize,
-  output logic [LPARA_BURST_W-1:0]                 o_axi_arburst,
+  output logic [LPARA_SIZE_W-1:0]    o_axi_arsize,
+  output logic [LPARA_BURST_W-1:0]   o_axi_arburst,
   output logic [LPARA_LOCK_W-1:0]    o_axi_arlock,
-  output logic [LPARA_CACHE_W-1:0]                 o_axi_arcache,
-  output logic [LPARA_PROT_W-1:0]                 o_axi_arprot
+  output logic [LPARA_CACHE_W-1:0]   o_axi_arcache,
+  output logic [LPARA_PROT_W-1:0]    o_axi_arprot
 );
 
   // FIFO data and threshold interconnect.
@@ -131,4 +130,3 @@ module m_vlsit_axi3_async_ar #(
   );
 
 endmodule
-`default_nettype wire

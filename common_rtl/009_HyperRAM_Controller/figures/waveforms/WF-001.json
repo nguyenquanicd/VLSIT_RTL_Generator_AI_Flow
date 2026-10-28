@@ -1,0 +1,84 @@
+{
+  "head": {
+    "text": "WF-001 Reset, timing setup, enable, startup",
+    "tick": 0
+  },
+  "signal": [
+    [
+      "APB4",
+      {
+        "name": "PSEL",
+        "wave": "01111110."
+      },
+      {
+        "name": "PENABLE",
+        "wave": "00101010."
+      },
+      {
+        "name": "PREADY",
+        "wave": "00101010."
+      },
+      {
+        "name": "PWRITE",
+        "wave": "01111110."
+      },
+      {
+        "name": "PADDR",
+        "wave": "x.=.=.=..",
+        "data": [
+          "TIMING_CFG_0",
+          "TIMING_CFG_1",
+          "ENABLE_CFG"
+        ]
+      },
+      {
+        "name": "PWDATA",
+        "wave": "x.=.=.=..",
+        "data": [
+          "TIMING_VALUE_0",
+          "TIMING_VALUE_1",
+          "ENABLE_VALUE"
+        ]
+      }
+    ],
+    {},
+    [
+      "Controller / memory",
+      {
+        "name": "i_rst_n_core",
+        "wave": "0.111111"
+      },
+      {
+        "name": "i_mem_pwr_good",
+        "wave": "1......."
+      },
+      {
+        "name": "o_rst_n_mem",
+        "wave": "0...0.11"
+      },
+      {
+        "name": "HyperBus CS#",
+        "wave": "1......."
+      },
+      {
+        "name": "Startup phase",
+        "wave": "x...=.=.",
+        "data": [
+          "RESET_WAIT_N_CK",
+          "STARTUP_WAIT_N_CK"
+        ]
+      },
+      {
+        "name": "AXI ready",
+        "wave": "0......1"
+      }
+    ]
+  ],
+  "foot": {
+    "text": "Illustrative phases; programmed waits are symbolic, not to scale.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

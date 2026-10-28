@@ -57,3 +57,14 @@ ucli.key
 **/waveforms/proto/build/
 **/verification/*_run.txt
 **/verification/mutation_result.txt
+
+# Non-redistributable protocol and device references (converted Markdown only)
+/common_rtl/009_HyperRAM_Controller/reference/md_doc/hyperbus_001-99253_rev_h.md
+/common_rtl/009_HyperRAM_Controller/reference/md_doc/infineon_s80ks2562_002-31337_rev_c.md
+/common_rtl/009_HyperRAM_Controller/reference/md_doc/infineon_s80ks2564_002-31341_rev_c.md
+/common_rtl/009_HyperRAM_Controller/reference/md_doc/winbond_w958d8nbya_256mb_x8_a01-003.md
+/common_rtl/009_HyperRAM_Controller/reference/md_doc/winbond_w958d6nbkx_256mb_x16_a01-001.md
+/common_rtl/009_HyperRAM_Controller/reference/md_doc/issi_is66wvh32m8dall_bll_rev_a7.md
+
+/common_rtl/009_HyperRAM_Controller/reference/md_doc/amba_apb_ihi0024d_apb4_profile.md
+/common_rtl/009_HyperRAM_Controller/reference/md_doc/vlsit_amba_axi_ihi0022hc.md

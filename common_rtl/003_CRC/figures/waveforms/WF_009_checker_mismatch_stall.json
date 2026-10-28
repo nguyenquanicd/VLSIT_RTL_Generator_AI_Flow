@@ -1,0 +1,50 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_crc",
+      "wave": "p......"
+    },
+    {
+      "name": "i_rst_n_crc",
+      "wave": "1......"
+    },
+    {
+      "name": "i_check_valid",
+      "wave": "010...."
+    },
+    {
+      "name": "o_check_data_ready",
+      "wave": "1.0..1."
+    },
+    {
+      "name": "i_check_crc",
+      "wave": "x=xxxxx",
+      "data": [
+        "BAD"
+      ]
+    },
+    {
+      "name": "o_check_pass",
+      "wave": "x.0..x."
+    },
+    {
+      "name": "o_check_crc_valid",
+      "wave": "0.1..0."
+    },
+    {
+      "name": "i_check_crc_ready",
+      "wave": "0...10."
+    }
+  ],
+  "head": {
+    "text": "Checker mismatch held under result backpressure",
+    "tick": 0
+  },
+  "foot": {
+    "text": "Mismatch: pass=0; decision held until ready.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_crc",
+      "wave": "p..........................."
+    },
+    {
+      "name": "i_rst_n_crc",
+      "wave": "1..........................."
+    },
+    {
+      "name": "i_gen_valid",
+      "wave": "010........................."
+    },
+    {
+      "name": "o_gen_data_ready",
+      "wave": "1.0.......................1."
+    },
+    {
+      "name": "i_gen_data[15:0]",
+      "wave": "x=xxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "data": [
+        "A5C3"
+      ]
+    },
+    {
+      "name": "i_gen_keep[1:0]",
+      "wave": "x=xxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "data": [
+        "11"
+      ]
+    },
+    {
+      "name": "i_gen_last",
+      "wave": "010........................."
+    },
+    {
+      "name": "o_gen_crc_valid",
+      "wave": "0........................10."
+    },
+    {
+      "name": "o_gen_crc",
+      "wave": "xxxxxxxxxxxxxxxxxxxxxxxxx=xx",
+      "data": [
+        "CRC"
+      ]
+    },
+    {
+      "name": "i_gen_crc_ready",
+      "wave": "0........................10."
+    }
+  ],
+  "head": {
+    "text": "Method 1: word capture and serial processing",
+    "tick": 0
+  },
+  "foot": {
+    "text": "16 payload bits + 8 augmentation steps.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

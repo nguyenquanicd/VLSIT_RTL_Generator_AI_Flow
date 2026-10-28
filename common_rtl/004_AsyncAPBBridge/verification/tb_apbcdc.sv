@@ -1,5 +1,5 @@
 `timescale 1ns/1ps
-// Self-checking testbench of m_vlsit_apbcdc_top (asynchronous APB bridge).
+// Self-checking testbench of m_vlsit_async_apb_bridge (asynchronous APB bridge).
 // Source of every check: AsyncAPBBridge_Design_Specification.md (requirement IDs in the assertion names) and
 // AMBA APB Issue D (IHI 0024D, clause numbers in the names). The RTL was read only for port names, widths and
 // parameters and for the register names that the specification fixes (Section 14.1).
@@ -55,7 +55,7 @@ module tb_apbcdc;
   logic [DW-1:0] s_prdata;
   logic [3:0] s_pruser, s_pbuser;
 
-  m_vlsit_apbcdc_top #(.PARA_APBCDC_ADDR_W(AW), .PARA_APBCDC_DATA_W(DW), .PARA_APBCDC_APB5(APB5),
+  m_vlsit_async_apb_bridge #(.PARA_APBCDC_ADDR_W(AW), .PARA_APBCDC_DATA_W(DW), .PARA_APBCDC_APB5(APB5),
                        .PARA_APBCDC_USER_REQ_W(4), .PARA_APBCDC_USER_DATA_W(4), .PARA_APBCDC_USER_RESP_W(4),
                        .PARA_APBCDC_HS_TYPE(HS), .PARA_APBCDC_CELL_TYPE(CELL)) dut (
     .i_clk_mst(clk_mst), .i_rst_n_mst(rst_n_mst), .i_apb_psel(m_psel), .i_apb_penable(m_penable),

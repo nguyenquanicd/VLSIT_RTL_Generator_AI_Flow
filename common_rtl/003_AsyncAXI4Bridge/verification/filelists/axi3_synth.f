@@ -20,4 +20,4 @@ C:/HQuan/102_MyGithub/VLSIT_RTL_Generator_AI_Model/common_rtl/003_AsyncAXI4Bridg
 C:/HQuan/102_MyGithub/VLSIT_RTL_Generator_AI_Model/common_rtl/003_AsyncAXI4Bridge/rtl/axi3/m_vlsit_axi3_async_b.sv
 C:/HQuan/102_MyGithub/VLSIT_RTL_Generator_AI_Model/common_rtl/003_AsyncAXI4Bridge/rtl/axi3/m_vlsit_axi3_async_r.sv
 C:/HQuan/102_MyGithub/VLSIT_RTL_Generator_AI_Model/common_rtl/003_AsyncAXI4Bridge/rtl/axi3/m_vlsit_axi3_async_w.sv
-C:/HQuan/102_MyGithub/VLSIT_RTL_Generator_AI_Model/common_rtl/003_AsyncAXI4Bridge/rtl/axi3/m_vlsit_axi3_async_top.sv
+C:/HQuan/102_MyGithub/VLSIT_RTL_Generator_AI_Model/common_rtl/003_AsyncAXI4Bridge/rtl/axi3/m_vlsit_async_axi3_bridge.sv

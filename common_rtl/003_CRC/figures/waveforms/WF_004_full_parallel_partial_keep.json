@@ -1,0 +1,66 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_crc",
+      "wave": "p......"
+    },
+    {
+      "name": "i_rst_n_crc",
+      "wave": "1......"
+    },
+    {
+      "name": "i_gen_valid",
+      "wave": "01..0.."
+    },
+    {
+      "name": "o_gen_data_ready",
+      "wave": "1.0101."
+    },
+    {
+      "name": "i_gen_data[31:0]",
+      "wave": "x==.xxx",
+      "data": [
+        "FULL",
+        "P"
+      ]
+    },
+    {
+      "name": "i_gen_keep[3:0]",
+      "wave": "x==.xxx",
+      "data": [
+        "1111",
+        "1100"
+      ]
+    },
+    {
+      "name": "i_gen_last",
+      "wave": "0.1.0.."
+    },
+    {
+      "name": "o_gen_crc_valid",
+      "wave": "0...10."
+    },
+    {
+      "name": "o_gen_crc",
+      "wave": "xxxx=xx",
+      "data": [
+        "CRC"
+      ]
+    },
+    {
+      "name": "i_gen_crc_ready",
+      "wave": "0...10."
+    }
+  ],
+  "head": {
+    "text": "Method 2: full-word processing with a partial final word",
+    "tick": 0
+  },
+  "foot": {
+    "text": "P denotes two valid MSB bytes.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

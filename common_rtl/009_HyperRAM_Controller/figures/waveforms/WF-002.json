@@ -1,0 +1,83 @@
+{
+  "head": {
+    "text": "WF-002 AXI INCR read with two-cycle RREADY stall",
+    "tick": 0
+  },
+  "signal": [
+    [
+      "AXI read",
+      {
+        "name": "ARVALID",
+        "wave": "001....."
+      },
+      {
+        "name": "ARREADY",
+        "wave": "11111111"
+      },
+      {
+        "name": "ARADDR",
+        "wave": "x.=.....",
+        "data": [
+          "ADDR_0"
+        ]
+      },
+      {
+        "name": "ARBURST",
+        "wave": "x.=.....",
+        "data": [
+          "INCR"
+        ]
+      },
+      {
+        "name": "RVALID",
+        "wave": "0....111"
+      },
+      {
+        "name": "RREADY",
+        "wave": "11111001"
+      },
+      {
+        "name": "RDATA",
+        "wave": "x....=..",
+        "data": [
+          "DATA_0"
+        ]
+      },
+      {
+        "name": "RRESP",
+        "wave": "x....=..",
+        "data": [
+          "OKAY"
+        ]
+      }
+    ],
+    {},
+    [
+      "HyperBus abstract phases",
+      {
+        "name": "CS#",
+        "wave": "1.000011"
+      },
+      {
+        "name": "Phase",
+        "wave": "x.=.==.x",
+        "data": [
+          "CA",
+          "LATENCY_N",
+          "DATA_0"
+        ]
+      },
+      {
+        "name": "DQ input valid",
+        "wave": "0....1.0"
+      }
+    ]
+  ],
+  "foot": {
+    "text": "READY-before-VALID baseline; RVALID/RDATA remain stable during the two-cycle response stall.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

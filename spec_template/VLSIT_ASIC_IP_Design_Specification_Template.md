@@ -288,6 +288,11 @@ The CSR specification of this IP shall be defined only in the VLSIT CSR Specific
 | CSR workbook file | <name and location of the project copy of VLSIT_CSR_Specification_Template.xlsx> |
 | Sheet used for this IP | <sheet name> |
 | Workbook revision / date | <revision or date> |
+| CSR generator | APB-CSR-Generator, <version or commit> (`https://github.com/nguyenquanicd/APB-CSR-Generator`) |
+| CSR module name | <`Module Name` cell of the sheet, in the project naming rule> |
+| Asynchronous | <0 = one clock, i_clk_apb only; 1 = APB clock i_clk_apb and register clock i_clk_reg> |
+| APB clock and register clock | <the clock of section 7 that drives i_clk_apb, and that drives i_clk_reg> |
+| Source of `i_protect_en` and `i_slverr_en` | <IP input port, or constant tie-off; constant after reset> |
 
 Workbook requirements:
 
@@ -296,11 +301,36 @@ Workbook requirements:
 - `Table - Register Definition` uses the columns REGISTER, OFFSET, BIT NAME, FIELD WIDTH, BIT TYPE, RESET VALUE, and DESCRIPTION. A register row (name, offset, reset value) is followed by one row per field (bit name, bit range such as `[31]` or `[28:27]`, bit type, reset value, description).
 - BIT TYPE is one of `rw`, `ro`, `rwi`, or `w1c`, as defined on the `Register_Description` sheet. Reserved bits use the bit name `reserved`.
 - Every software-visible register and field shall be declared in the workbook. The CSR RTL is generated from the workbook and shall comply with REF-003.
+- The register RTL is built by APB-CSR-Generator from the workbook, never written by hand. Register and field names are lower-case identifiers, because they become port names (`o_<reg>_<field>`, `i_<reg>_<field>`, `i_hw_wdata_<reg>_<field>`, `i_hw_we_<reg>_<field>`); the fields of a register cover bits 31..0 once, and a field named `reserved` is type `ro`.
 - A register behavior that the CSR template cannot express (another bus protocol, other widths, other access types, partial-strobe writes) is recorded as a decision in [Assumptions, dependencies, and decisions](#20-assumptions-dependencies-and-decisions). Do not add register tables to this document.
 
 ### 11.2 Software sequences
 
 Use register and field names exactly as written in the workbook. Document initialization, enable/disable, interrupt service, error clearing, safe reconfiguration, ordering, completion polling, and updates while active.
+
+### 11.3 CSR connection to the design
+
+Name each register and field only as written in the workbook; do not repeat offsets, widths, types, or reset values.
+
+| Workbook register.field | Direction at the CSR | Design signal | Clock domain of the signal | Behavior notes |
+|---|---|---|---|---|
+| <register.field> | <control out / status in / hardware load> | <signal or function of the IP> | <clock of section 7> | <for example: set by hardware for one cycle, cleared by software> |
+
+A signal from a clock domain other than the register clock is synchronized by the IP, not by the CSR. In one cycle a software write to an `rwi` field wins over a hardware load of the same field, so state how the IP repeats a load that was lost; a hardware load to a `w1c` field wins over a software clear, so a new event is kept.
+
+### 11.4 APB access behavior of the CSR
+
+State the behavior that the generated module gives (APB-CSR-Generator, version 1.2), or the decision that changes it (section 20).
+
+| Case | Behavior |
+|---|---|
+| Normal read or write | <PREADY after 1 wait state when Asynchronous = 0; when Asynchronous = 1 the wait states depend on the clock ratio and software waits for PREADY> |
+| Write with PSTRB not all ones | <PSLVERR and no change when `i_slverr_en` = 1; whole-word write when 0> |
+| Address not word aligned | <PSLVERR when `i_slverr_en` = 1> |
+| Aligned address that is not a register | <OKAY; read returns 0; write is ignored> |
+| Non-secure access (PPROT[1] = 1) | <PSLVERR when `i_protect_en` = 1 and `i_slverr_en` = 1> |
+| Reserved bits | <read as 0; write ignored> |
+| Reset | <registers take the reset value of the workbook; asynchronous assert, release synchronous to the register clock> |
 
 ## 12. Error handling and recovery
 
@@ -333,7 +363,7 @@ At minimum: use one synthesizable module per .sv file with matching module/filen
 
 Declare overridable parameters as parameter logic [31:0] PARA_<NAME>, with exactly the three PAR-02 comment lines immediately above each declaration. Declare derived localparams as localparam logic [31:0] LPARA_<NAME> in the parameter port list immediately after parameters. Use dedicated reset-synchronizer and CDC modules; asynchronous reset assertion may be asynchronous but release shall be synchronous per receiving domain. Test reset override/mux logic belongs in a wrapper/reset controller, not a functional leaf. CDC source values are registered with no combinational logic before the first synchronizer stage or between stages.
 
-Use statically bounded, zero-based generate loops and declare genvar in the generate-for header. Use named port and parameter connections. Prefer clock enables; any ICG must use an approved dedicated module with a scan test-enable. Do not use signed/two-state hardware types, packages/imports, interfaces, RTL macros, initial blocks, simulation delays, casex, plain always, latches, multiple drivers, positional/wildcard connections, or unsupported constructs. Each RTL file header shall contain Project, Author: <USER_NAME> (user), AI Flow, AI Flow Page, Date, and Description. Indent with spaces only, use default_nettype none with lint/elaboration checking, comment each logic section, and keep RTL comment lines at or below 100 characters. REF-003 is the detailed authority.
+Use statically bounded, zero-based generate loops and declare genvar in the generate-for header. Use named port and parameter connections. Prefer clock enables; any ICG must use an approved dedicated module with a scan test-enable. Do not use signed/two-state hardware types, packages/imports, interfaces, RTL macros, initial blocks, simulation delays, casex, plain always, latches, multiple drivers, positional/wildcard connections, or unsupported constructs. Each RTL file header shall contain Project, Author: <USER_NAME> (user), AI Flow, AI Flow Page, Date, and Description. Indent with spaces only, do not use the default_nettype directive (lint/elaboration checking finds undeclared identifiers), comment each logic section, and keep RTL comment lines at or below 100 characters. REF-003 is the detailed authority.
 ### 14.2 RTL hierarchy
 
 | Module | Responsibility | Parent / instance | Clock/reset domains | Interface |

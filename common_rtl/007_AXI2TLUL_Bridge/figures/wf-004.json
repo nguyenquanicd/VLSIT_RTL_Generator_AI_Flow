@@ -1,0 +1,109 @@
+{
+ "signal": [
+  {
+   "name": "i_clk_main",
+   "wave": "p........."
+  },
+  [
+   "AXI AR",
+   {
+    "name": "i_axi_arvalid",
+    "wave": "0110000000"
+   },
+   {
+    "name": "o_axi_arready",
+    "wave": "0111111111"
+   },
+   {
+    "name": "i_axi_araddr",
+    "wave": "x==xxxxxxx",
+    "data": [
+     "0x108",
+     "0x200"
+    ]
+   },
+   {
+    "name": "i_axi_arlen",
+    "wave": "x==xxxxxxx",
+    "data": [
+     "3",
+     "2"
+    ]
+   },
+   {
+    "name": "i_axi_arsize",
+    "wave": "x=.xxxxxxx",
+    "data": [
+     "2"
+    ]
+   },
+   {
+    "name": "i_axi_arburst",
+    "wave": "x==xxxxxxx",
+    "data": [
+     "WRAP",
+     "FIXED"
+    ]
+   }
+  ],
+  [
+   "TL-UL A",
+   {
+    "name": "o_tl_a_valid",
+    "wave": "0011111110"
+   },
+   {
+    "name": "i_tl_a_ready",
+    "wave": "1111111111"
+   },
+   {
+    "name": "o_tl_a_opcode",
+    "wave": "xx=......x",
+    "data": [
+     "Get"
+    ]
+   },
+   {
+    "name": "o_tl_a_src",
+    "wave": "xx=======x",
+    "data": [
+     "rd0",
+     "rd1",
+     "rd2",
+     "rd3",
+     "rd4",
+     "rd5",
+     "rd6"
+    ]
+   },
+   {
+    "name": "o_tl_a_addr",
+    "wave": "xx=====..x",
+    "data": [
+     "0x108",
+     "0x10C",
+     "0x100",
+     "0x104",
+     "0x200"
+    ]
+   },
+   {
+    "name": "o_tl_a_size",
+    "wave": "xx=......x",
+    "data": [
+     "2"
+    ]
+   },
+   {
+    "name": "o_tl_a_mask",
+    "wave": "xx=......x",
+    "data": [
+     "1111"
+    ]
+   }
+  ]
+ ],
+ "head": {
+  "text": "WF-004 WRAP burst from the middle of the container, then FIXED burst"
+ }
+}

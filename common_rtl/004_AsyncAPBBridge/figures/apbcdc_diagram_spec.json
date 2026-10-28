@@ -1,0 +1,173 @@
+{
+ "page_name": "BLOCK_DIAGRAM",
+ "out_name": "apbcdc_block_diagram.drawio",
+ "table_suffix": "",
+ "layout": {
+  "gap_h": 100,
+  "gap_v": 90,
+  "margin": 40,
+  "block_h": 60
+ },
+ "top": {
+  "frame_label": [
+   "TOP",
+   "(m_vlsit_async_apb_bridge)"
+  ],
+  "block_label": [
+   "TOP",
+   "(m_vlsit_async_apb_bridge)"
+  ],
+  "block_row": [
+   "TOP (m_vlsit_async_apb_bridge)",
+   "Asynchronous APB bridge.",
+   "Section 14.2"
+  ]
+ },
+ "frame_row": [
+  "TOP (m_vlsit_async_apb_bridge) frame",
+  "Structural top of the asynchronous APB bridge. It joins the requester-side block and the completer-side block and holds no logic of its own. One APB transfer crosses the clock boundary as a request bundle and a response bundle; only the request and acknowledge control bits pass through synchronizers.",
+  "Section 14.2"
+ ],
+ "frame_interfaces": [
+  "APM",
+  "APS",
+  "CRMST",
+  "CRSLV"
+ ],
+ "blocks": [
+  {
+   "key": "M",
+   "label": [
+    "u_vlsit_apbcdc_mst",
+    "(m_vlsit_apbcdc_mst)"
+   ],
+   "width": 260,
+   "row": 0,
+   "col": 0,
+   "row_name": "u_vlsit_apbcdc_mst (m_vlsit_apbcdc_mst)",
+   "function": "APB completer of the requester side, in the requester clock domain. It captures the Setup phase of a transfer into a hold register, launches the request control bit (a toggle in the two-phase handshake, a level in the four-phase handshake), keeps the response-ready output low until the answer is available, then loads the response bundle and raises the ready output for one cycle. It receives the acknowledge control bit through a synchronizer and passes the optional wake-up indication on to the other side.",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "S",
+   "label": [
+    "u_vlsit_apbcdc_slv",
+    "(m_vlsit_apbcdc_slv)"
+   ],
+   "width": 260,
+   "row": 1,
+   "col": 1,
+   "row_name": "u_vlsit_apbcdc_slv (m_vlsit_apbcdc_slv)",
+   "function": "APB requester of the completer side, in the completer clock domain. It receives the request control bit and the wake-up indication through synchronizers, loads the request bundle into a payload register, drives one APB transfer to the external completer, captures the response into a hold register, and launches the acknowledge control bit. The request and response bundles are stable for the whole handshake, so they cross as timed paths without synchronizers.",
+   "source": "Section 14.2"
+  }
+ ],
+ "connectors": [
+  {
+   "id": "REQ",
+   "src": "M",
+   "src_side": "R",
+   "dst": "S",
+   "dst_side": "T"
+  },
+  {
+   "id": "RSP",
+   "src": "S",
+   "src_side": "L",
+   "dst": "M",
+   "dst_side": "B"
+  }
+ ],
+ "externals": [
+  {
+   "id": "APM",
+   "block": "M",
+   "side": "L",
+   "dir": "in",
+   "pos": 0,
+   "text": [
+    "APM",
+    "requester-side APB"
+   ]
+  },
+  {
+   "id": "APS",
+   "block": "S",
+   "side": "R",
+   "dir": "out",
+   "pos": 0,
+   "text": [
+    "APS",
+    "completer-side APB"
+   ]
+  },
+  {
+   "id": "CRMST",
+   "block": "M",
+   "side": "T",
+   "dir": "in",
+   "pos": 0,
+   "text": [
+    "CRMST",
+    "i_clk_mst, i_rst_n_mst"
+   ]
+  },
+  {
+   "id": "CRSLV",
+   "block": "S",
+   "side": "B",
+   "dir": "in",
+   "pos": 0,
+   "text": [
+    "CRSLV",
+    "i_clk_slv, i_rst_n_slv"
+   ]
+  }
+ ],
+ "nets": [],
+ "interfaces": [
+  {
+   "id": "APM",
+   "name": "APB interface of the requester side (CLK-MST)",
+   "category": "standard protocol (APB4 or APB5)",
+   "active": "external requester -> TOP",
+   "signals": "external -> TOP: i_apb_psel, i_apb_penable, i_apb_pwrite, i_apb_paddr, i_apb_pprot, i_apb_pwdata, i_apb_pstrb, i_apb_pwakeup, i_apb_pauser, i_apb_pwuser; TOP -> external: o_apb_pready, o_apb_prdata, o_apb_pslverr, o_apb_pruser, o_apb_pbuser"
+  },
+  {
+   "id": "APS",
+   "name": "APB interface of the completer side (CLK-SLV)",
+   "category": "standard protocol (APB4 or APB5)",
+   "active": "TOP -> external completer",
+   "signals": "TOP -> external: o_apb_psel, o_apb_penable, o_apb_pwrite, o_apb_paddr, o_apb_pprot, o_apb_pwdata, o_apb_pstrb, o_apb_pwakeup, o_apb_pauser, o_apb_pwuser; external -> TOP: i_apb_pready, i_apb_prdata, i_apb_pslverr, i_apb_pruser, i_apb_pbuser"
+  },
+  {
+   "id": "REQ",
+   "name": "Request crossing (control bit and request bundle)",
+   "category": "handshake (timed bundle, synchronized control bit)",
+   "active": "u_vlsit_apbcdc_mst -> u_vlsit_apbcdc_slv",
+   "signals": "u_mst -> u_slv: o_req, o_req_payload, o_wakeup"
+  },
+  {
+   "id": "RSP",
+   "name": "Response crossing (acknowledge bit and response bundle)",
+   "category": "handshake (timed bundle, synchronized control bit)",
+   "active": "u_vlsit_apbcdc_slv -> u_vlsit_apbcdc_mst",
+   "signals": "u_slv -> u_mst: i_ack, i_resp_payload (mst-side names)"
+  },
+  {
+   "id": "CRMST",
+   "name": "Clock and reset of the requester side",
+   "category": "custom",
+   "active": "SoC -> TOP",
+   "signals": "i_clk_mst, i_rst_n_mst (reset: level, active-low)"
+  },
+  {
+   "id": "CRSLV",
+   "name": "Clock and reset of the completer side",
+   "category": "custom",
+   "active": "SoC -> TOP",
+   "signals": "i_clk_slv, i_rst_n_slv (reset: level, active-low)"
+  }
+ ],
+ "legend_note": "The enclosing frame is the top module; blocks inside are its instances. The two clocks are asynchronous. Only the control bits pass through synchronizers inside the two blocks; the bundles are timed paths."
+}

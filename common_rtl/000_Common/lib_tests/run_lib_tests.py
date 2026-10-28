@@ -1,4 +1,4 @@
-"""Run the tests of m_vlsit_rst_sync and m_vlsit_tie in both flows (needs iverilog and vvp on PATH).
+"""Run the tests of m_vlsit_rst_sync, m_vlsit_tie and the metastability model of m_vlsit_afifo_cell_sync in both flows (needs iverilog and vvp on PATH).
 
 Usage:  python run_lib_tests.py
 """
@@ -6,13 +6,16 @@ import glob, os, subprocess, sys, tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 COMMON = os.path.abspath(os.path.join(HERE, '..'))
-SRC = [os.path.join(COMMON, 'rtl_lib', 'm_vlsit_rst_sync.sv'), os.path.join(COMMON, 'rtl_lib', 'm_vlsit_tie.sv')]
+SRC = [os.path.join(COMMON, 'rtl_lib', f) for f in ('m_vlsit_rst_sync.sv', 'm_vlsit_tie.sv', 'm_vlsit_afifo_cell_sync.sv')]
 SRC += sorted(glob.glob(os.path.join(COMMON, 'rtl_cells', 'VLSIT_CELL_*.sv')))
 # (testbench, defines, plusargs)
 RUNS = [('tb_rst_sync.sv', ['-DVLSIT_SYNTHESIS'], []),
         ('tb_rst_sync.sv', [], ['+RSTSYNC_MSYNC_EN=0']),
         ('tb_tie.sv', ['-DVLSIT_SYNTHESIS'], []), ('tb_tie.sv', [], [])]
 RUNS += [('tb_rst_sync.sv', [], ['+RSTSYNC_MSYNC_SEED=%d' % s]) for s in (1, 2, 3, 11, 12345)]
+# metastability model of the Gray FIFO cell: latency outside and inside the window, 50% split, no reordering of a Gray bus
+RUNS += [('tb_afifo_cell_sync.sv', [], ['+AFIFO_MSYNC_SEED=%d' % s, '+AFIFO_MSYNC_WIN_PCT=%d' % w]) for s in (1, 2, 3, 11, 12345) for w in (10, 50)]
+RUNS += [('tb_afifo_cell_sync.sv', [], ['+AFIFO_MSYNC_EN=0']), ('tb_afifo_cell_sync.sv', [], ['+AFIFO_MSYNC_WIN_PCT=0'])]
 rc = 0
 with tempfile.TemporaryDirectory() as tmp:
     for tb, defs, plus in RUNS:

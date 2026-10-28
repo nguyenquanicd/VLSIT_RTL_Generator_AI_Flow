@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="462" height="388" viewBox="0 0 462 388" font-family="Helvetica,Arial,sans-serif">
+<rect width="100%" height="100%" fill="#fff"/>
+<text x="12" y="20" font-size="14" font-weight="bold">WF-004 Read address errors: DECERR and SLVERR</text>
+<line x1="162" y1="30" x2="162" y2="360" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="198" y1="30" x2="198" y2="360" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="234" y1="30" x2="234" y2="360" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="270" y1="30" x2="270" y2="360" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="306" y1="30" x2="306" y2="360" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="342" y1="30" x2="342" y2="360" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="378" y1="30" x2="378" y2="360" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="414" y1="30" x2="414" y2="360" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="450" y1="30" x2="450" y2="360" stroke="#ccc" stroke-dasharray="2,3"/>
+<text x="12" y="49" font-size="12" font-weight="bold" fill="#225">AXI read requests</text>
+<text x="154" y="79" font-size="12" text-anchor="end">ARVALID</text>
+<polyline points="162.0,81.0 198.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="198.0,81.0 234.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,81.0 234.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,63.0 270.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="270.0,63.0 306.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,63.0 342.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,63.0 378.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,63.0 414.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,63.0 450.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="109" font-size="12" text-anchor="end">ARREADY</text>
+<polyline points="162.0,93.0 198.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="198.0,93.0 234.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,93.0 270.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="270.0,93.0 306.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,93.0 342.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,93.0 378.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,93.0 414.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,93.0 450.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="139" font-size="12" text-anchor="end">ARADDR</text>
+<rect x="162.0" y="123.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="198.0" y="123.0" width="36.0" height="18.0" fill="#ddd" stroke="none"/>
+<polygon points="238.0,123.0 302.0,123.0 306.0,132.0 302.0,141.0 238.0,141.0 234.0,132.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="270.0" y="136.0" text-anchor="middle" font-size="11">OUT_OF_RANGE</text>
+<polygon points="310.0,123.0 446.0,123.0 450.0,132.0 446.0,141.0 310.0,141.0 306.0,132.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="378.0" y="136.0" text-anchor="middle" font-size="11">UNSUPPORTED_IN_RANGE</text>
+<text x="154" y="169" font-size="12" text-anchor="end">RVALID</text>
+<polyline points="162.0,171.0 198.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="198.0,171.0 234.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,171.0 270.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="270.0,171.0 270.0,153.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="270.0,153.0 306.0,153.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,153.0 342.0,153.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,153.0 378.0,153.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,153.0 414.0,153.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,153.0 450.0,153.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="199" font-size="12" text-anchor="end">RRESP</text>
+<rect x="162.0" y="183.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="198.0" y="183.0" width="36.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="234.0" y="183.0" width="36.0" height="18.0" fill="#ddd" stroke="none"/>
+<polygon points="274.0,183.0 338.0,183.0 342.0,192.0 338.0,201.0 274.0,201.0 270.0,192.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="306.0" y="196.0" text-anchor="middle" font-size="11">DECERR</text>
+<polygon points="346.0,183.0 446.0,183.0 450.0,192.0 446.0,201.0 346.0,201.0 342.0,192.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="396.0" y="196.0" text-anchor="middle" font-size="11">SLVERR</text>
+<text x="154" y="229" font-size="12" text-anchor="end">RREADY</text>
+<polyline points="162.0,213.0 198.0,213.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="198.0,213.0 234.0,213.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,213.0 270.0,213.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="270.0,213.0 306.0,213.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,213.0 342.0,213.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,213.0 378.0,213.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,213.0 414.0,213.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,213.0 450.0,213.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="12" y="289" font-size="12" font-weight="bold" fill="#225">HyperBus</text>
+<text x="154" y="319" font-size="12" text-anchor="end">CS#</text>
+<polyline points="162.0,303.0 198.0,303.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="198.0,303.0 234.0,303.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,303.0 270.0,303.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="270.0,303.0 306.0,303.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,303.0 342.0,303.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,303.0 378.0,303.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,303.0 414.0,303.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,303.0 450.0,303.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="349" font-size="12" text-anchor="end">CA issued</text>
+<polyline points="162.0,351.0 198.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="198.0,351.0 234.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,351.0 270.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="270.0,351.0 306.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,351.0 342.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,351.0 378.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,351.0 414.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,351.0 450.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="12" y="380" font-size="11" fill="#444">Two independent requests; neither rejected request starts a HyperBus transaction.</text>
+</svg>

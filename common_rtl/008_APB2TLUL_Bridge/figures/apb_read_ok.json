@@ -1,0 +1,145 @@
+{
+ "signal": [
+  {
+   "name": "i_clk_core",
+   "wave": "p......"
+  },
+  [
+   "APB4 (Completer)",
+   {
+    "name": "i_apb_psel",
+    "wave": "01...0."
+   },
+   {
+    "name": "i_apb_penable",
+    "wave": "0.1..0."
+   },
+   {
+    "name": "i_apb_pwrite",
+    "wave": "x0...x."
+   },
+   {
+    "name": "i_apb_paddr",
+    "wave": "x=...x.",
+    "data": [
+     "A0"
+    ]
+   },
+   {
+    "name": "i_apb_pstrb",
+    "wave": "x=...x.",
+    "data": [
+     "0"
+    ]
+   },
+   {
+    "name": "i_apb_pwdata",
+    "wave": "x=...x.",
+    "data": [
+     "D0"
+    ]
+   }
+  ],
+  [
+   "APB FSM / TL-UL FSM",
+   {
+    "name": "reg_fsm_apb_current_state",
+    "wave": "=.=.==.",
+    "data": [
+     "IDLE",
+     "BUSY",
+     "DONE",
+     "IDLE"
+    ]
+   },
+   {
+    "name": "reg_fsm_tlul_current_state",
+    "wave": "=.===..",
+    "data": [
+     "IDLE",
+     "REQ",
+     "WAIT",
+     "IDLE"
+    ]
+   }
+  ],
+  [
+   "TL-UL channel A (host)",
+   {
+    "name": "o_tlul_a_valid",
+    "wave": "0.10..."
+   },
+   {
+    "name": "i_tlul_a_ready",
+    "wave": "0.10..."
+   },
+   {
+    "name": "o_tlul_a_opcode",
+    "wave": "x.=x...",
+    "data": [
+     "Get"
+    ]
+   },
+   {
+    "name": "o_tlul_a_address",
+    "wave": "x.=x...",
+    "data": [
+     "A0"
+    ]
+   }
+  ],
+  [
+   "TL-UL channel D (host)",
+   {
+    "name": "o_tlul_d_ready",
+    "wave": "1......"
+   },
+   {
+    "name": "i_tlul_d_valid",
+    "wave": "0..10.."
+   },
+   {
+    "name": "i_tlul_d_opcode",
+    "wave": "x..=x..",
+    "data": [
+     "AckData"
+    ]
+   },
+   {
+    "name": "i_tlul_d_data",
+    "wave": "x..=x..",
+    "data": [
+     "R0"
+    ]
+   },
+   {
+    "name": "i_tlul_d_error",
+    "wave": "x..0x.."
+   }
+  ],
+  [
+   "APB4 completion",
+   {
+    "name": "o_apb_pready",
+    "wave": "0...10."
+   },
+   {
+    "name": "o_apb_pslverr",
+    "wave": "0......"
+   },
+   {
+    "name": "o_apb_prdata",
+    "wave": "0...=..",
+    "data": [
+     "R0"
+    ]
+   }
+  ]
+ ],
+ "head": {
+  "text": "APB4 read to TL-UL Get (device responds one cycle after acceptance)"
+ },
+ "foot": {
+  "text": "Read data registered at the end of A2, returned in A3."
+ }
+}

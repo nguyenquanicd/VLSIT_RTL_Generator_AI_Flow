@@ -1,0 +1,3 @@
+# Licensed source documents (Arm proprietary, no redistribution): kept locally, never committed (rule R-008)
+*
+!.gitignore

@@ -1,0 +1,68 @@
+{
+  "head": {
+    "text": "WF-007 Rejected write: drain W beats, issue no HyperBus command",
+    "tick": 0
+  },
+  "signal": [
+    [
+      "AXI write",
+      {
+        "name": "AWVALID",
+        "wave": "001....."
+      },
+      {
+        "name": "AWREADY",
+        "wave": "11111111"
+      },
+      {
+        "name": "AWADDR",
+        "wave": "x.=.....",
+        "data": [
+          "REJECTED_ADDR"
+        ]
+      },
+      {
+        "name": "WVALID",
+        "wave": "0.111..."
+      },
+      {
+        "name": "WREADY",
+        "wave": "11111111"
+      },
+      {
+        "name": "WLAST",
+        "wave": "0...1..."
+      },
+      {
+        "name": "BVALID",
+        "wave": "0....1.."
+      },
+      {
+        "name": "BRESP",
+        "wave": "x....=..",
+        "data": [
+          "DECERR_or_SLVERR"
+        ]
+      }
+    ],
+    {},
+    [
+      "HyperBus",
+      {
+        "name": "CS#",
+        "wave": "11111111"
+      },
+      {
+        "name": "CA issued",
+        "wave": "00000000"
+      }
+    ]
+  ],
+  "foot": {
+    "text": "The response status is DECERR out of range or SLVERR for unsupported in-range requests.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

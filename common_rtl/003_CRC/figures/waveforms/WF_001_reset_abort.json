@@ -1,0 +1,55 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_crc",
+      "wave": "p......."
+    },
+    {
+      "name": "i_rst_n_crc",
+      "wave": "1..0.1.."
+    },
+    {
+      "name": "i_gen_valid",
+      "wave": "01.0...."
+    },
+    {
+      "name": "o_gen_data_ready",
+      "wave": "1......."
+    },
+    {
+      "name": "i_check_valid",
+      "wave": "01.0...."
+    },
+    {
+      "name": "o_check_data_ready",
+      "wave": "1......."
+    },
+    {
+      "name": "o_gen_crc_valid",
+      "wave": "0.10...."
+    },
+    {
+      "name": "i_gen_crc_ready",
+      "wave": "0......."
+    },
+    {
+      "name": "o_check_crc_valid",
+      "wave": "0.10...."
+    },
+    {
+      "name": "i_check_crc_ready",
+      "wave": "0......."
+    }
+  ],
+  "head": {
+    "text": "Synchronous reset aborts both channels",
+    "tick": 0
+  },
+  "foot": {
+    "text": "Reset at edge 3 clears both channels.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

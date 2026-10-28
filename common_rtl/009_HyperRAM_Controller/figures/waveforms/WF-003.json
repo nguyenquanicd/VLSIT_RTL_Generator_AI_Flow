@@ -1,0 +1,88 @@
+{
+  "head": {
+    "text": "WF-003 AXI WRAP read where selected OPN supports wrapped bursts",
+    "tick": 0
+  },
+  "signal": [
+    [
+      "AXI read",
+      {
+        "name": "ARVALID",
+        "wave": "001......"
+      },
+      {
+        "name": "ARREADY",
+        "wave": "111111111"
+      },
+      {
+        "name": "ARADDR",
+        "wave": "x.=......",
+        "data": [
+          "WRAP_BASE"
+        ]
+      },
+      {
+        "name": "ARBURST",
+        "wave": "x.=......",
+        "data": [
+          "WRAP"
+        ]
+      },
+      {
+        "name": "RVALID",
+        "wave": "0..111..."
+      },
+      {
+        "name": "RREADY",
+        "wave": "111111111"
+      },
+      {
+        "name": "RDATA",
+        "wave": "x..===...",
+        "data": [
+          "DATA_0",
+          "DATA_1",
+          "DATA_WRAP"
+        ]
+      },
+      {
+        "name": "RLAST",
+        "wave": "0....1..."
+      }
+    ],
+    {},
+    [
+      "HyperBus abstract phases",
+      {
+        "name": "CS#",
+        "wave": "1.0000001"
+      },
+      {
+        "name": "Phase",
+        "wave": "x.=.===..",
+        "data": [
+          "CA",
+          "LATENCY_N",
+          "WRAPPED_DATA_0",
+          "WRAPPED_DATA_1"
+        ]
+      },
+      {
+        "name": "Address order",
+        "wave": "x..===...",
+        "data": [
+          "ADDR_0",
+          "ADDR_1",
+          "WRAP_ADDR"
+        ]
+      }
+    ]
+  ],
+  "foot": {
+    "text": "Symbolic wrapped sequence; waveform does not assert support for every OPN.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

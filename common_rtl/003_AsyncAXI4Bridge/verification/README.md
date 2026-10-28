@@ -17,7 +17,7 @@ The testbench checks each of the five AXI channels independently. It checks sour
 
 There are 36 named assertion counters: seven per channel and one reset check. The run fails if any check fails or receives no hit. Each passing log ends with `assertion failures: 0, assertions never exercised: 0`.
 
-**Current result (2026-10-25):** all three synthesis profiles and the depth-2 synthesis run pass. Seven of nine CDC runs pass; seed 1 fails the destination VALID-hold check for AXI4 USER (`AXI-SVA-09`) and AXI3 (`AXI-SVA-02`). All 11 waveform artifacts pass the waveform evidence check. The CDC evidence check correctly fails, so `make test` returns nonzero. See [simulation_report.md](simulation_report.md) for the trace and details.
+**Current result (2026-10-27):** `make test` returns 0. All three synthesis profiles and the depth-2 synthesis run pass, all nine CDC runs (3 profiles, seeds 1 to 3) pass, all 11 waveform artifacts pass the waveform evidence check, and the CDC evidence check passes. The two seed-1 failures of 2026-10-25 came from the metastability model of the Gray FIFO cell and are closed by the change of that model (spec `001_AsyncGrayFIFO` DEC-048); see [simulation_report.md](simulation_report.md) and [cdc_skew_analysis/CDC_Seed1_Failure_Analysis.md](cdc_skew_analysis/CDC_Seed1_Failure_Analysis.md).
 
 Logs are in `logs/`. Simulation VCD, WaveJSON and SVG files are in `waveforms_sim/`. The waveform index marks cycle-aligned comparison as `NOT-SIMULATED`; the scenarios run in the regression, but no waveform is claimed as a cycle-for-cycle match to the specification drawing.
 
@@ -40,7 +40,7 @@ Testbench kiểm tra riêng từng AXI channel: giữ VALID/payload phía nguồ
 
 Có 36 bộ đếm assertion: 7 cho mỗi channel và 1 kiểm tra reset. Mô phỏng lỗi nếu assertion thất bại hoặc không được hit. Log thành công kết thúc bằng `assertion failures: 0, assertions never exercised: 0`.
 
-**Kết quả hiện tại (2026-10-25):** cả ba profile synthesis và cấu hình synthesis depth 2 đều pass. Có 7/9 lượt CDC pass; seed 1 lỗi kiểm tra giữ VALID phía đích ở AXI4 USER (`AXI-SVA-09`) và AXI3 (`AXI-SVA-02`). Cả 11 waveform đều pass kiểm tra evidence. Kiểm tra CDC báo lỗi đúng với kết quả mô phỏng, vì vậy `make test` trả về mã khác 0. Xem [simulation_report.md](simulation_report.md) để biết trace và chi tiết.
+**Kết quả hiện tại (2026-10-27):** `make test` trả mã 0. Cả ba profile synthesis và cấu hình synthesis depth 2 đều pass, cả chín lượt CDC (3 profile, seed 1 đến 3) pass, cả 11 waveform pass evidence check và evidence check CDC pass. Hai lỗi seed 1 ngày 2026-10-25 do mô hình metastability của cell Gray FIFO và đã đóng bằng việc đổi mô hình đó (spec `001_AsyncGrayFIFO` DEC-048); xem [simulation_report.md](simulation_report.md) và [cdc_skew_analysis/CDC_Seed1_Failure_Analysis.md](cdc_skew_analysis/CDC_Seed1_Failure_Analysis.md).
 
 Log nằm trong `logs/`. VCD, WaveJSON và SVG mô phỏng nằm trong `waveforms_sim/`. Bảng waveform ghi `NOT-SIMULATED` cho việc so khớp từng chu kỳ: các hành vi có chạy trong regression, nhưng chưa khẳng định waveform khớp từng chu kỳ với hình trong specification.
 

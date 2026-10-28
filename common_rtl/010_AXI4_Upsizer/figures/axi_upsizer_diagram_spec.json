@@ -1,0 +1,295 @@
+{
+ "page_name": "BLOCK_DIAGRAM",
+ "out_name": "axi_upsizer_block_diagram.drawio",
+ "table_suffix": "",
+ "layout": {
+  "gap_h": 100,
+  "gap_v": 100,
+  "margin": 40,
+  "block_h": 80
+ },
+ "top": {
+  "frame_label": [
+   "TOP",
+   "(m_vlsit_axi4_upsizer)"
+  ],
+  "block_label": [
+   "TOP",
+   "(m_vlsit_axi4_upsizer)"
+  ],
+  "block_row": [
+   "TOP (m_vlsit_axi4_upsizer)",
+   "AXI4 upsizer.",
+   "Section 14.2"
+  ]
+ },
+ "frame_row": [
+  "TOP (m_vlsit_axi4_upsizer) frame",
+  "Structural top of the AXI4 upsizer (the AXI3 top has the same blocks). It instantiates the write path and the read path and holds no logic of its own. The subordinate-side interface (narrow data width S) is on the left and the manager-side interface (wide data width M) is on the right.",
+  "Section 14.2"
+ ],
+ "frame_interfaces": [
+  "SAW",
+  "SW",
+  "SB",
+  "SAR",
+  "SR",
+  "MAW",
+  "MW",
+  "MB",
+  "MAR",
+  "MR",
+  "CRAXI"
+ ],
+ "blocks": [
+  {
+   "key": "U_WR_PATH",
+   "label": [
+    "u_wr_path",
+    "(m_vlsit_ups_wr_path)"
+   ],
+   "width": 280,
+   "row": 0,
+   "col": 0,
+   "row_name": "u_wr_path (m_vlsit_ups_wr_path)",
+   "function": "Write path. It accepts the write address, classifies the transaction as packable or not, converts its attributes, keeps the accepted transactions in a queue, and moves the write data of the narrow side to the wide side: write data of a packable burst are merged into wide beats and the strobes are merged with them; all other write data are placed in the byte lane of their address. The write response passes back unchanged. A register slice holds every channel.",
+   "source": "Section 14.2, 10.2"
+  },
+  {
+   "key": "U_RD_PATH",
+   "label": [
+    "u_rd_path",
+    "(m_vlsit_ups_rd_path)"
+   ],
+   "width": 280,
+   "row": 1,
+   "col": 0,
+   "row_name": "u_rd_path (m_vlsit_ups_rd_path)",
+   "function": "Read path. It accepts the read address, classifies the transaction as packable or not, converts its attributes, keeps the accepted transactions in a queue, and moves the read data of the wide side to the narrow side: a wide beat of a packable burst is split into the narrow beats of its address sequence and the response is copied to each of them; all other read data are taken from the byte lane of their address. A register slice holds every channel.",
+   "source": "Section 14.2, 10.2"
+  }
+ ],
+ "connectors": [],
+ "externals": [
+  {
+   "id": "SAW",
+   "block": "U_WR_PATH",
+   "side": "L",
+   "dir": "in",
+   "pos": 0,
+   "text": [
+    "SAW",
+    "AW (sub)"
+   ]
+  },
+  {
+   "id": "SW",
+   "block": "U_WR_PATH",
+   "side": "L",
+   "dir": "in",
+   "pos": 0,
+   "text": [
+    "SW",
+    "W (sub)"
+   ]
+  },
+  {
+   "id": "SB",
+   "block": "U_WR_PATH",
+   "side": "L",
+   "dir": "out",
+   "pos": 0,
+   "text": [
+    "SB",
+    "B (sub)"
+   ]
+  },
+  {
+   "id": "MAW",
+   "block": "U_WR_PATH",
+   "side": "R",
+   "dir": "out",
+   "pos": 0,
+   "text": [
+    "MAW",
+    "AW (mgr)"
+   ]
+  },
+  {
+   "id": "MW",
+   "block": "U_WR_PATH",
+   "side": "R",
+   "dir": "out",
+   "pos": 0,
+   "text": [
+    "MW",
+    "W (mgr)"
+   ]
+  },
+  {
+   "id": "MB",
+   "block": "U_WR_PATH",
+   "side": "R",
+   "dir": "in",
+   "pos": 0,
+   "text": [
+    "MB",
+    "B (mgr)"
+   ]
+  },
+  {
+   "id": "SAR",
+   "block": "U_RD_PATH",
+   "side": "L",
+   "dir": "in",
+   "pos": 0,
+   "text": [
+    "SAR",
+    "AR (sub)"
+   ]
+  },
+  {
+   "id": "SR",
+   "block": "U_RD_PATH",
+   "side": "L",
+   "dir": "out",
+   "pos": 0,
+   "text": [
+    "SR",
+    "R (sub)"
+   ]
+  },
+  {
+   "id": "MAR",
+   "block": "U_RD_PATH",
+   "side": "R",
+   "dir": "out",
+   "pos": 0,
+   "text": [
+    "MAR",
+    "AR (mgr)"
+   ]
+  },
+  {
+   "id": "MR",
+   "block": "U_RD_PATH",
+   "side": "R",
+   "dir": "in",
+   "pos": 0,
+   "text": [
+    "MR",
+    "R (mgr)"
+   ]
+  },
+  {
+   "id": "CRAXI",
+   "block": "U_RD_PATH",
+   "side": "B",
+   "dir": "in",
+   "pos": 0,
+   "text": [
+    "CRAXI",
+    "i_clk_axi, i_rst_n_axi"
+   ]
+  }
+ ],
+ "nets": [
+  {
+   "entry": "CRAXI",
+   "sinks": [
+    {
+     "id": "CK0",
+     "block": "U_WR_PATH",
+     "side": "L",
+     "pos": 10
+    },
+    {
+     "id": "CK1",
+     "block": "U_RD_PATH",
+     "side": "L",
+     "pos": 10
+    }
+   ]
+  }
+ ],
+ "interfaces": [
+  {
+   "id": "SAW",
+   "name": "AXI write address channel, subordinate side (narrow, CLK-AXI)",
+   "category": "AXI4 or AXI3",
+   "active": "external manager -> TOP",
+   "signals": "external manager -> TOP: i_axi_awvalid, i_axi_awid, i_axi_awaddr, i_axi_awlen, i_axi_awsize, i_axi_awburst, i_axi_awlock, i_axi_awcache, i_axi_awprot, i_axi_awqos, i_axi_awregion; TOP -> external manager: o_axi_awready"
+  },
+  {
+   "id": "SW",
+   "name": "AXI write data channel, subordinate side (S bits, CLK-AXI)",
+   "category": "AXI4 or AXI3",
+   "active": "external manager -> TOP",
+   "signals": "external manager -> TOP: i_axi_wvalid, i_axi_wdata, i_axi_wstrb, i_axi_wlast; TOP -> external manager: o_axi_wready"
+  },
+  {
+   "id": "SB",
+   "name": "AXI write response channel, subordinate side (CLK-AXI)",
+   "category": "AXI4 or AXI3",
+   "active": "TOP -> external manager",
+   "signals": "TOP -> external manager: o_axi_bvalid, o_axi_bid, o_axi_bresp; external manager -> TOP: i_axi_bready"
+  },
+  {
+   "id": "SAR",
+   "name": "AXI read address channel, subordinate side (narrow, CLK-AXI)",
+   "category": "AXI4 or AXI3",
+   "active": "external manager -> TOP",
+   "signals": "external manager -> TOP: i_axi_arvalid, i_axi_arid, i_axi_araddr, i_axi_arlen, i_axi_arsize, i_axi_arburst, i_axi_arlock, i_axi_arcache, i_axi_arprot, i_axi_arqos, i_axi_arregion; TOP -> external manager: o_axi_arready"
+  },
+  {
+   "id": "SR",
+   "name": "AXI read data channel, subordinate side (S bits, CLK-AXI)",
+   "category": "AXI4 or AXI3",
+   "active": "TOP -> external manager",
+   "signals": "TOP -> external manager: o_axi_rvalid, o_axi_rid, o_axi_rdata, o_axi_rresp, o_axi_rlast; external manager -> TOP: i_axi_rready"
+  },
+  {
+   "id": "MAW",
+   "name": "AXI write address channel, manager side (wide, CLK-AXI)",
+   "category": "AXI4 or AXI3",
+   "active": "TOP -> external subordinate",
+   "signals": "TOP -> external subordinate: o_axi_awvalid, o_axi_awid, o_axi_awaddr, o_axi_awlen, o_axi_awsize, o_axi_awburst, o_axi_awlock, o_axi_awcache, o_axi_awprot, o_axi_awqos, o_axi_awregion; external subordinate -> TOP: i_axi_awready"
+  },
+  {
+   "id": "MW",
+   "name": "AXI write data channel, manager side (M bits, CLK-AXI)",
+   "category": "AXI4 or AXI3",
+   "active": "TOP -> external subordinate",
+   "signals": "TOP -> external subordinate: o_axi_wvalid, o_axi_wdata, o_axi_wstrb, o_axi_wlast; external subordinate -> TOP: i_axi_wready"
+  },
+  {
+   "id": "MB",
+   "name": "AXI write response channel, manager side (CLK-AXI)",
+   "category": "AXI4 or AXI3",
+   "active": "external subordinate -> TOP",
+   "signals": "external subordinate -> TOP: i_axi_bvalid, i_axi_bid, i_axi_bresp; TOP -> external subordinate: o_axi_bready"
+  },
+  {
+   "id": "MAR",
+   "name": "AXI read address channel, manager side (wide, CLK-AXI)",
+   "category": "AXI4 or AXI3",
+   "active": "TOP -> external subordinate",
+   "signals": "TOP -> external subordinate: o_axi_arvalid, o_axi_arid, o_axi_araddr, o_axi_arlen, o_axi_arsize, o_axi_arburst, o_axi_arlock, o_axi_arcache, o_axi_arprot, o_axi_arqos, o_axi_arregion; external subordinate -> TOP: i_axi_arready"
+  },
+  {
+   "id": "MR",
+   "name": "AXI read data channel, manager side (M bits, CLK-AXI)",
+   "category": "AXI4 or AXI3",
+   "active": "external subordinate -> TOP",
+   "signals": "external subordinate -> TOP: i_axi_rvalid, i_axi_rid, i_axi_rdata, i_axi_rresp, i_axi_rlast; TOP -> external subordinate: o_axi_rready"
+  },
+  {
+   "id": "CRAXI",
+   "name": "Clock and reset",
+   "category": "custom",
+   "active": "SoC -> TOP",
+   "signals": "SoC -> TOP: i_clk_axi, i_rst_n_axi"
+  }
+ ],
+ "legend_note": "The enclosing frame is the top module; blocks inside are its instances. S = subordinate side (narrow), M = manager side (wide). Interface labels outside the frame mark connections to the outside."
+}

@@ -1,0 +1,191 @@
+{
+ "signal": [
+  {
+   "name": "i_clk_main",
+   "wave": "p......."
+  },
+  [
+   "AXI AR",
+   {
+    "name": "i_axi_arvalid",
+    "wave": "01100000"
+   },
+   {
+    "name": "o_axi_arready",
+    "wave": "01111111"
+   },
+   {
+    "name": "i_axi_araddr",
+    "wave": "x==xxxxx",
+    "data": [
+     "0x100",
+     "0x104"
+    ]
+   },
+   {
+    "name": "i_axi_arlen",
+    "wave": "x=.xxxxx",
+    "data": [
+     "0"
+    ]
+   },
+   {
+    "name": "i_axi_arsize",
+    "wave": "x=.xxxxx",
+    "data": [
+     "2"
+    ]
+   },
+   {
+    "name": "i_axi_arburst",
+    "wave": "x=.xxxxx",
+    "data": [
+     "INCR"
+    ]
+   },
+   {
+    "name": "i_axi_arprot",
+    "wave": "x==xxxxx",
+    "data": [
+     "100",
+     "000"
+    ]
+   },
+   {
+    "name": "i_axi_arlock",
+    "wave": "x==xxxxx",
+    "data": [
+     "1",
+     "0"
+    ]
+   }
+  ],
+  [
+   "TL-UL A",
+   {
+    "name": "o_tl_a_valid",
+    "wave": "00110000"
+   },
+   {
+    "name": "i_tl_a_ready",
+    "wave": "11111111"
+   },
+   {
+    "name": "o_tl_a_opcode",
+    "wave": "xx=.xxxx",
+    "data": [
+     "Get"
+    ]
+   },
+   {
+    "name": "o_tl_a_src",
+    "wave": "xx==xxxx",
+    "data": [
+     "rd0",
+     "rd1"
+    ]
+   },
+   {
+    "name": "o_tl_a_addr",
+    "wave": "xx==xxxx",
+    "data": [
+     "0x100",
+     "0x104"
+    ]
+   },
+   {
+    "name": "o_tl_a_size",
+    "wave": "xx=.xxxx",
+    "data": [
+     "2"
+    ]
+   },
+   {
+    "name": "o_tl_a_mask",
+    "wave": "xx=.xxxx",
+    "data": [
+     "1111"
+    ]
+   },
+   {
+    "name": "o_tl_a_user",
+    "wave": "xx==xxxx",
+    "data": [
+     "instr 6",
+     "instr 9"
+    ]
+   }
+  ],
+  [
+   "TL-UL D",
+   {
+    "name": "i_tl_d_valid",
+    "wave": "00011000"
+   },
+   {
+    "name": "o_tl_d_ready",
+    "wave": "01111111"
+   },
+   {
+    "name": "i_tl_d_opcode",
+    "wave": "xxx=.xxx",
+    "data": [
+     "AckData"
+    ]
+   },
+   {
+    "name": "i_tl_d_src",
+    "wave": "xxx==xxx",
+    "data": [
+     "rd0",
+     "rd1"
+    ]
+   },
+   {
+    "name": "i_tl_d_data",
+    "wave": "xxx==xxx",
+    "data": [
+     "D0",
+     "D1"
+    ]
+   },
+   {
+    "name": "i_tl_d_err",
+    "wave": "00000000"
+   }
+  ],
+  [
+   "AXI R",
+   {
+    "name": "o_axi_rvalid",
+    "wave": "00001100"
+   },
+   {
+    "name": "i_axi_rready",
+    "wave": "11111111"
+   },
+   {
+    "name": "o_axi_rdata",
+    "wave": "xxxx==xx",
+    "data": [
+     "D0",
+     "D1"
+    ]
+   },
+   {
+    "name": "o_axi_rresp",
+    "wave": "xxxx=.xx",
+    "data": [
+     "OKAY"
+    ]
+   },
+   {
+    "name": "o_axi_rlast",
+    "wave": "00001100"
+   }
+  ]
+ ],
+ "head": {
+  "text": "WF-017 Exclusive read and instruction attribute"
+ }
+}

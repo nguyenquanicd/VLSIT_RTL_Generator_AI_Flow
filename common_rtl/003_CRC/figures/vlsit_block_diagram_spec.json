@@ -1,0 +1,175 @@
+{
+  "page_name": "BLOCK_DIAGRAM",
+  "out_name": "vlsit_block_diagram.drawio",
+  "table_suffix": "",
+  "layout": {
+    "gap_h": 180,
+    "gap_v": 140,
+    "margin": 160,
+    "block_h": 60
+  },
+  "top": {
+    "frame_label": [
+      "TOP",
+      "(m_crc_engine)"
+    ],
+    "block_label": [
+      "TOP",
+      "(m_crc_engine)"
+    ],
+    "block_row": [
+      "TOP (m_crc_engine)",
+      "Connects two independent CRC channels using the same elaboration-selected method and parameters.",
+      "Section 5.1"
+    ]
+  },
+  "frame_row": [
+    "TOP (m_crc_engine) frame",
+    "The generator and checker process separate frames concurrently. Each channel contains one instance of the selected CRC method.",
+    "Sections 5.1, 14.2"
+  ],
+  "frame_interfaces": [
+    "GIN",
+    "GOUT",
+    "CIN",
+    "COUT",
+    "CLKRS"
+  ],
+  "blocks": [
+    {
+      "key": "U_CRC_GEN",
+      "label": [
+        "u_crc_gen",
+        "(m_crc_gen)"
+      ],
+      "width": 160,
+      "row": 1,
+      "col": 1,
+      "row_name": "u_crc_gen (m_crc_gen)",
+      "function": "Accumulates one frame and returns its finalized CRC using the selected method.",
+      "source": "Section 14.2"
+    },
+    {
+      "key": "U_CRC_CHECK",
+      "label": [
+        "u_crc_check",
+        "(m_crc_check)"
+      ],
+      "width": 180,
+      "row": 0,
+      "col": 0,
+      "row_name": "u_crc_check (m_crc_check)",
+      "function": "Accumulates a separate frame, compares its finalized CRC with the final-beat reference, and reports pass or fail.",
+      "source": "Section 14.2"
+    }
+  ],
+  "connectors": [],
+  "externals": [
+    {
+      "id": "GIN",
+      "block": "U_CRC_GEN",
+      "side": "L",
+      "dir": "in",
+      "pos": 0,
+      "text": [
+        "GIN",
+        "Generator input"
+      ]
+    },
+    {
+      "id": "GOUT",
+      "block": "U_CRC_GEN",
+      "side": "R",
+      "dir": "out",
+      "pos": 0,
+      "text": [
+        "GOUT",
+        "CRC result"
+      ]
+    },
+    {
+      "id": "CIN",
+      "block": "U_CRC_CHECK",
+      "side": "L",
+      "dir": "in",
+      "pos": -20,
+      "text": [
+        "CIN",
+        "Checker input"
+      ]
+    },
+    {
+      "id": "COUT",
+      "block": "U_CRC_CHECK",
+      "side": "L",
+      "dir": "out",
+      "pos": 20,
+      "text": [
+        "COUT",
+        "Pass/fail"
+      ]
+    },
+    {
+      "id": "CLKRS",
+      "block": "U_CRC_GEN",
+      "side": "T",
+      "dir": "in",
+      "pos": 0,
+      "text": [
+        "CLKRS",
+        "Clock/reset"
+      ]
+    }
+  ],
+  "nets": [
+    {
+      "entry": "CLKRS",
+      "sinks": [
+        {
+          "id": "CK1",
+          "block": "U_CRC_CHECK",
+          "side": "T",
+          "pos": 0
+        }
+      ]
+    }
+  ],
+  "interfaces": [
+    {
+      "id": "GIN",
+      "name": "Generator frame stream",
+      "category": "handshake",
+      "active": "external -> u_crc_gen; ready returns to external",
+      "signals": "external -> u_crc_gen: i_gen_data, i_gen_keep, i_gen_valid, i_gen_last; u_crc_gen -> external: o_gen_data_ready"
+    },
+    {
+      "id": "GOUT",
+      "name": "Generator CRC result",
+      "category": "handshake",
+      "active": "u_crc_gen -> external; ready returns to u_crc_gen",
+      "signals": "u_crc_gen -> external: o_gen_crc, o_gen_crc_valid; external -> u_crc_gen: i_gen_crc_ready"
+    },
+    {
+      "id": "CIN",
+      "name": "Checker frame stream and reference CRC",
+      "category": "handshake",
+      "active": "external -> u_crc_check; ready returns to external",
+      "signals": "external -> u_crc_check: i_check_data, i_check_keep, i_check_valid, i_check_last, i_check_crc; u_crc_check -> external: o_check_data_ready"
+    },
+    {
+      "id": "COUT",
+      "name": "Checker pass/fail result",
+      "category": "handshake",
+      "active": "u_crc_check -> external; ready returns to u_crc_check",
+      "signals": "u_crc_check -> external: o_check_pass, o_check_crc_valid; external -> u_crc_check: i_check_crc_ready"
+    },
+    {
+      "id": "CLKRS",
+      "name": "Clock and synchronous reset",
+      "category": "custom",
+      "active": "SoC -> TOP",
+      "signals": "i_clk_crc, i_rst_n_crc"
+    }
+  ],
+  "legend_note": "The enclosing frame is m_crc_engine. Each child wrapper instantiates one copy of the selected method."
+}

@@ -53,7 +53,7 @@ The bridge **forwards** the information: it does not check, interpret, reorder o
 
 **Included:**
 
-- Structural top `m_vlsit_axi_async_top`.
+- Profile-specific structural tops: `m_vlsit_async_axi4_bridge` (AXI4 base), `m_vlsit_async_user_axi4_bridge` (AXI4 USER), and `m_vlsit_async_axi3_bridge` (AXI3).
 - Five channel modules (AW, W, B, AR, R). Each packs the fields of its channel into one FIFO word, instantiates one `m_vlsit_afifo_top` and unpacks the word on the other side.
 - Parameterized address, data and ID widths; optional QOS and REGION fields; optional user signals per channel; AXI3 option.
 - Selectable FIFO depth per channel, selectable synchronizer cell option (common to the five FIFOs), selectable memory branch (common to the five FIFOs).
@@ -181,7 +181,7 @@ The bridge has five independent channels. Each channel is an asynchronous FIFO w
 
 | Block | Responsibility | Inputs / outputs | Clock/reset domain | State or storage |
 |---|---|---|---|---|
-| m_vlsit_axi_async_top | Structural top: ports, parameters, derived widths, five channel instances | All ports of Section 6.2 | CLK-SUB, CLK-MGR | None |
+| m_vlsit_async_axi4_bridge | Structural top: ports, parameters, derived widths, five channel instances | All ports of Section 6.2 | CLK-SUB, CLK-MGR | None |
 | m_vlsit_axi_async_aw | AW channel: packs AWID to AWUSER into one word, FIFO, unpacks | AW signals of both sides | Source CLK-SUB / RST-SUB, destination CLK-MGR / RST-MGR | FIFO depth `PARA_AXI_AW_DEPTH` |
 | m_vlsit_axi_async_w | W channel: packs WID (AXI3), WDATA, WSTRB, WLAST, WUSER | W signals of both sides | Source CLK-SUB, destination CLK-MGR | FIFO depth `PARA_AXI_W_DEPTH` |
 | m_vlsit_axi_async_b | B channel: packs BID, BRESP, BUSER | B signals of both sides | Source CLK-MGR, destination CLK-SUB | FIFO depth `PARA_AXI_B_DEPTH` |
@@ -224,7 +224,7 @@ The bridge has five independent channels. Each channel is an asynchronous FIFO w
 
 Port names follow the default naming rule (DEC-001) and PRT-01: `<direction>_axi_<signal>` with the exact lowercase mnemonic of the protocol, where the direction is `i` or `o` at the boundary of this module (not the manager or subordinate role). The two interfaces use the same mnemonics in opposite directions, so the names are distinct: the subordinate side has `i_axi_awvalid` and `o_axi_awready`, the manager side `o_axi_awvalid` and `i_axi_awready`. The meaning column names the side. Widths use `LPARA_*` (Section 8). Optional fields that are not present keep their port (REQ-IF-002, DEC-022). The ports of the internal modules are in Section 14.2.1. Every port has a function, a clock domain and a **signal type**.
 
-**m_vlsit_axi_async_top**
+**m_vlsit_async_axi4_bridge**
 
 | Port | Direction | Width | Meaning (function) | Clock domain | Signal type | Reset / idle value | Timing / sampling | Configurations |
 |---|---|---:|---|---|---|---|---|---|
@@ -552,7 +552,7 @@ Let S be the number of synchronizer stages (2 for `PARA_AXI_CELL_TYPE` 1 and 2, 
 |---|---|---|---|
 | Source edge t0 | VALID = 1 and READY = 1 | The word is written into the FIFO; the Gray write pointer updates | READY may fall if the FIFO is now full |
 | Destination edges 1 to S | None | The pointer crosses the synchronizer | Destination VALID is 0 |
-| After destination edge S (up to S + 2 with the metastability model) | None | The empty flag falls | Destination VALID = 1 and the payload shows the word |
+| After destination edge S (up to S + 1 with the metastability model of REF-002, DEC-048) | None | The empty flag falls | Destination VALID = 1 and the payload shows the word |
 | Destination edge with READY = 1 | VALID = 1 | The word is read; the read pointer updates and crosses back | The next word appears at once if the FIFO holds one (show-ahead) |
 | Source edges after the read pointer crossed back | None | The full flag falls | Source READY = 1 again |
 
@@ -644,12 +644,12 @@ The VLSIT RTL Design Rules v2 in VLSIT_RTL_Design_Rule.md (REF-003) are the mand
 
 | Module | Responsibility | Parent / instance | Clock/reset domains | Interface |
 |---|---|---|---|---|
-| m_vlsit_axi_async_top | Structural top | Top | CLK-SUB and CLK-MGR | All ports of Section 6.2 |
-| m_vlsit_axi_async_aw | AW channel: pack, FIFO, unpack | m_vlsit_axi_async_top / u_aw | Source CLK-SUB, destination CLK-MGR | AW signals of both sides, clocks and resets |
-| m_vlsit_axi_async_w | W channel | m_vlsit_axi_async_top / u_w | Source CLK-SUB, destination CLK-MGR | W signals of both sides |
-| m_vlsit_axi_async_b | B channel | m_vlsit_axi_async_top / u_b | Source CLK-MGR, destination CLK-SUB | B signals of both sides |
-| m_vlsit_axi_async_ar | AR channel | m_vlsit_axi_async_top / u_ar | Source CLK-SUB, destination CLK-MGR | AR signals of both sides |
-| m_vlsit_axi_async_r | R channel | m_vlsit_axi_async_top / u_r | Source CLK-MGR, destination CLK-SUB | R signals of both sides |
+| m_vlsit_async_axi4_bridge | Structural top | Top | CLK-SUB and CLK-MGR | All ports of Section 6.2 |
+| m_vlsit_axi_async_aw | AW channel: pack, FIFO, unpack | m_vlsit_async_axi4_bridge / u_aw | Source CLK-SUB, destination CLK-MGR | AW signals of both sides, clocks and resets |
+| m_vlsit_axi_async_w | W channel | m_vlsit_async_axi4_bridge / u_w | Source CLK-SUB, destination CLK-MGR | W signals of both sides |
+| m_vlsit_axi_async_b | B channel | m_vlsit_async_axi4_bridge / u_b | Source CLK-MGR, destination CLK-SUB | B signals of both sides |
+| m_vlsit_axi_async_ar | AR channel | m_vlsit_async_axi4_bridge / u_ar | Source CLK-SUB, destination CLK-MGR | AR signals of both sides |
+| m_vlsit_axi_async_r | R channel | m_vlsit_async_axi4_bridge / u_r | Source CLK-MGR, destination CLK-SUB | R signals of both sides |
 | m_vlsit_afifo_top | Asynchronous Gray FIFO of `001_AsyncGrayFIFO` | Each channel module / u_vlsit_afifo_top | Source and destination domain | FIFO ports of REF-002 section 6.2 |
 
 State is owned by the FIFOs; the channel modules and the top have no flip-flops. There is no register logic and no protocol checker.
@@ -677,12 +677,12 @@ Each channel module has the ports of its channel from Section 6.2 (the same name
 
 | Item | Value / source |
 |---|---|
-| Top / source file list | m_vlsit_axi_async_top, the five channel modules, the RTL of `001_AsyncGrayFIFO`, the wrappers and cells of `000_Common` |
+| Top / source file list | m_vlsit_async_axi4_bridge, the five channel modules, the RTL of `001_AsyncGrayFIFO`, the wrappers and cells of `000_Common` |
 | Frontend version and options | Recorded per run (REF-003 SCP-02) |
 | Parameters/configuration | CFG-AXI4, CFG-USER, CFG-AXI3, CFG-WIDE, CFG-MIN, CFG-MACRO, CFG-CELL |
 | Libraries/corners | Chosen by the integrator (OI-001) |
 | Memory flow | Flop array by default; library SRAM through the wrapper for CFG-MACRO |
-| Lint rule configuration | The project lint set with `default_nettype none` checking |
+| Lint rule configuration | The project lint set, which reports undeclared identifiers (implicit nets); the RTL has no `default_nettype` directive |
 
 ## 15. Verification specification
 
@@ -828,16 +828,16 @@ Do not use a whole-domain `set_false_path` or an unqualified `set_clock_groups -
 | REQ-FUNC-008 | Channel modules, top | TEST-007, COV-004 | Simulation | CFG-AXI3 |
 | REQ-FUNC-009 | m_vlsit_axi_async_w | TEST-007 | Simulation | CFG-AXI3 |
 | REQ-FUNC-010 | m_vlsit_axi_async_aw, m_vlsit_axi_async_ar | TEST-008, SVA-008, COV-004 | Simulation | CFG-AXI4 |
-| REQ-IF-001 | m_vlsit_axi_async_top | TEST-012 | Lint, review | All |
+| REQ-IF-001 | m_vlsit_async_axi4_bridge | TEST-012 | Lint, review | All |
 | REQ-IF-002 | Channel modules, top | TEST-008, TEST-012 | Simulation, lint | All |
 | REQ-CLK-001 | All modules | TEST-002, TEST-013, COV-003 | Simulation with several ratios | All |
 | REQ-CLK-002 | Channel modules, FIFOs | TEST-011, TEST-012 | CDC review, structural check | All |
-| REQ-RESET-001 | m_vlsit_axi_async_top | TEST-001, TEST-010 | Simulation | All |
+| REQ-RESET-001 | m_vlsit_async_axi4_bridge | TEST-001, TEST-010 | Simulation | All |
 | REQ-RESET-002 | FIFOs | TEST-001, SVA-007 | Simulation, assertion | All |
 | REQ-RESET-003 | FIFOs | TEST-010 | Simulation | All |
-| REQ-PARAM-001 | m_vlsit_axi_async_top | TEST-009 | Elaboration | CFG-WIDE, CFG-MIN |
+| REQ-PARAM-001 | m_vlsit_async_axi4_bridge | TEST-009 | Elaboration | CFG-WIDE, CFG-MIN |
 | REQ-PARAM-002 | Channel modules | TEST-003, TEST-014 | Simulation | All |
-| REQ-PARAM-003 | m_vlsit_axi_async_top | TEST-009 | Elaboration | CFG-CELL |
+| REQ-PARAM-003 | m_vlsit_async_axi4_bridge | TEST-009 | Elaboration | CFG-CELL |
 | REQ-PERF-001 | FIFOs | TEST-013, COV-001, COV-002 | Throughput sweep | All |
 | REQ-PERF-002 | FIFOs | TEST-013, SVA-009 | Latency measurement | All |
 | REQ-PERF-003 | Channel modules, FIFOs | TEST-004, SVA-006, COV-001 | Simulation, assertion | All |
@@ -864,34 +864,34 @@ Do not use a whole-domain `set_false_path` or an unqualified `set_clock_groups -
 |---|---|---|---|---|
 | ASM-001 | Assumption | The two hardware resets are asserted together and released synchronously to their own clocks, outside the IP | Section 7.3 | Open; integration check |
 | ASM-002 | Assumption | The external manager and subordinate follow the AXI protocol; the bridge does not check it | Section 6.3, DEC-019 | Open; integration check |
-| ASM-003 | Assumption | The software reset of `001_AsyncGrayFIFO` is not used; `i_rst_n_sw` is tied to 1 | REQ-RTL-002 | Recorded as the answer of the designer to question 7 ("Software reset không dùng"); DEC-009 |
+| ASM-003 | Assumption | The software reset of `001_AsyncGrayFIFO` is not used; `i_rst_n_sw` is tied to 1 | REQ-RTL-002 | Recorded as the answer of the designer to question 7 ("software reset is not used"); DEC-009 |
 | DEC-001 | Decision | The naming rule is the default of the skill `vlsit-rtl-generator` (VLSIT_RTL_Design_Rule.md v2, sections 2 and 9) | Every name | Confirmed by the designer, 2026-10-25 (answer 1A) |
 | DEC-002 | Decision | The IP is an asynchronous AXI bridge with the same protocol on both sides, five channels, one asynchronous FIFO per channel | Section 5 | Confirmed by the designer, 2026-10-25 (answer 3A) |
 | DEC-003 | Decision | The two clocks are unrelated: any frequency and ratio | Section 7 | Confirmed by the designer, 2026-10-25 (answer 3A, note on clocks) |
-| DEC-004 | Decision | The FIFO depth is selectable per channel; the bypass option (no FIFO) is dropped | Section 8 | Confirmed by the designer, 2026-10-25 (round 2: depth per stage selectable; round 3: "Bỏ ý định bypass") |
+| DEC-004 | Decision | The FIFO depth is selectable per channel; the bypass option (no FIFO) is dropped | Section 8 | Confirmed by the designer, 2026-10-25 (round 2: depth per stage selectable; round 3: "drop the bypass option") |
 | DEC-005 | Decision | The user signals are optional, with an independent width per channel, default 0 | Section 8, REQ-FUNC-007 | Confirmed by the designer, 2026-10-25 (answers 4A, 4A) |
 | DEC-006 | Decision | The AXI standard is Arm IHI 0022 issue H.c, downloaded from the Arm documentation service and converted to Markdown | REF-001 | Confirmed by the designer, 2026-10-25 (answers 1B, 9A) |
 | DEC-007 | Decision | Address, data and ID widths are parameters; the full AXI4 field set is carried | Section 8, Section 9 | Confirmed by the designer, 2026-10-25 (answer 5A) |
 | DEC-008 | Decision | AXI4 with an option for AXI3 (`PARA_AXI_AXI3_EN`) | REQ-FUNC-008 | Confirmed by the designer, 2026-10-25 (answers 6A, 12A) |
-| DEC-009 | Decision | Two hardware resets; no software reset | Section 7.3, REQ-RTL-002 | Confirmed by the designer, 2026-10-25 (answer 7A and "Software reset không dùng") |
+| DEC-009 | Decision | Two hardware resets; no software reset | Section 7.3, REQ-RTL-002 | Confirmed by the designer, 2026-10-25 (answer 7A and "software reset is not used") |
 | DEC-010 | Decision | The domains are named `sub` (Subordinate) and `mgr` (Manager); the designer left the abbreviations to the author | `i_clk_sub`, `i_clk_mgr`, `i_rst_n_sub`, `i_rst_n_mgr` | The concepts confirmed by the designer, 2026-10-25 (answer 8B); the abbreviations `sub` and `mgr` are the author's choice |
 | DEC-011 | Decision | Each channel reuses `001_AsyncGrayFIFO` (`m_vlsit_afifo_top`) as it is | Section 14.2 | Confirmed by the designer, 2026-10-25 (answer 3A) |
 | DEC-012 | Decision | Default depths 4 (AW, AR, B) and 16 (W, R) | Section 8 | Confirmed by the designer, 2026-10-25 (answer 10A) |
 | DEC-013 | Decision | One synchronizer cell parameter `PARA_AXI_CELL_TYPE` for the five FIFOs | Section 8 | Confirmed by the designer, 2026-10-25 (answer 11A) |
 | DEC-014 | Decision | Subordinate and Manager are the names of the two roles (not Slave and Master) | All text | Confirmed by the designer, 2026-10-25 (answer 8B) |
 | DEC-015 | Decision | QOS and REGION have enable parameters, default on in AXI4, off in AXI3 | REQ-FUNC-010 | Confirmed by the designer, 2026-10-25 (answer 13A) |
-| DEC-016 | Decision | The threshold function of the FIFOs is not used; no status, overflow or underflow output | REQ-RTL-002 | Confirmed by the designer, 2026-10-25 (answer 14A, "Không dùng chức năng threshold") |
+| DEC-016 | Decision | The threshold function of the FIFOs is not used; no status, overflow or underflow output | REQ-RTL-002 | Confirmed by the designer, 2026-10-25 (answer 14A, "the threshold function is not used") |
 | DEC-017 | Decision | One parameter `PARA_AXI_MEM_USE_MACRO` for the five FIFOs | Section 8 | Confirmed by the designer, 2026-10-25 (answer 15A) |
 | DEC-018 | Decision | The waveform plan is the proposed list of eleven waveforms | Section 10.3 | Confirmed by the designer, 2026-10-25 (answer 16A) |
 | DEC-019 | Decision | The bridge only forwards: no protocol check, no validation, no response generation | REQ-FUNC-006 | Confirmed by the designer, 2026-10-25 (answer 17A) |
 | DEC-020 | Decision | The two resets are asserted together and released synchronously outside the IP | REQ-RESET-001 | Confirmed by the designer, 2026-10-25 (answer 18A) |
-| DEC-021 | Decision | Module names `m_vlsit_axi_async_top` and `m_vlsit_axi_async_` followed by the channel name (aw, w, b, ar, r); parameter names `PARA_AXI_*`; derived constants `LPARA_*` | All names | Author's choice; to be confirmed by the designer |
+| DEC-021 | Decision | Profile top modules are `m_vlsit_async_axi4_bridge`, `m_vlsit_async_user_axi4_bridge`, and `m_vlsit_async_axi3_bridge`; profile channel modules retain `m_vlsit_axi_async_` followed by the channel name, `m_vlsit_axi_user_async_` followed by the channel name, and `m_vlsit_axi3_async_` followed by the channel name respectively, with the channel name in {aw, w, b, ar, r}; parameter names `PARA_AXI_*`; derived constants `LPARA_*` | All names | Top names confirmed by the designer, 2026-10-26; other naming choices remain as recorded |
 | DEC-022 | Decision | A port of an optional field that is not present stays in the port list (width 1 or the stated width), input ignored and output 0, because a port list cannot change with a parameter value in SystemVerilog. This deviates from the strict reading of REF-003 PRT-03 | REQ-IF-002 | Author's choice; to be confirmed by the designer |
 | DEC-023 | Decision | The minimum ID width is 1 bit (the standard allows 0) | Section 8 | Author's choice; to be confirmed by the designer |
 | DEC-024 | Decision | The channel word packs the fields in the order of Section 9, LSB first | Section 9 | Author's choice; internal to the bridge |
 | DEC-025 | Decision | Legal data widths are 8 to 1024 in powers of 2, address widths 1 to 64, the limits of table E1-31 | Section 8 | Author's choice from the standard; to be confirmed by the designer |
 | DEC-026 | Decision | The FIFO thresholds are tied to depth (full) and 0 (empty) and the status outputs are left unconnected | REQ-RTL-002 | Author's detail of DEC-016; to be confirmed by the designer |
-| DEC-027 | Decision | The latency requirement is S + 2 destination periods, taken from REF-002 section 10.3 | REQ-PERF-002 | Author's choice; to be confirmed by the designer |
+| DEC-027 | Decision | The latency requirement is S + 2 destination periods, taken from REF-002 section 10.3 (the bound is kept as a conservative limit after the model of REF-002 changed to S or S + 1, DEC-048) | REQ-PERF-002 | Author's choice; to be confirmed by the designer |
 | DEC-028 | Decision | AXI3 write data interleaving is not handled: beats pass in the order presented with their WID | Section 6.3 | Author's choice; to be confirmed by the designer |
 | DEP-001 | Dependency | `001_AsyncGrayFIFO` (RTL and specification) and `000_Common` (cells, wrappers) | All configurations | Integration |
 | DEP-002 | Dependency | Two clock sources and one reset controller per domain | REQ-CLK-001, REQ-RESET-001 | Integration |

@@ -1,0 +1,13 @@
++define+VLSIT_SYNTHESIS
+../../000_Common/rtl_cells/VLSIT_CELL_SRAM_1W1R.sv
+../../000_Common/rtl_lib/m_vlsit_sfifo_ram_macro.sv
+../rtl/m_vlsit_axi2tlul_arb.sv
+../rtl/m_vlsit_axi2tlul_evt.sv
+../rtl/m_vlsit_axi2tlul_rd_req.sv
+../rtl/m_vlsit_axi2tlul_rd_rob.sv
+../rtl/m_vlsit_axi2tlul_rsp_dec.sv
+../rtl/m_vlsit_axi2tlul_skid.sv
+../rtl/m_vlsit_axi2tlul_store.sv
+../rtl/m_vlsit_axi2tlul_wr_req.sv
+../rtl/m_vlsit_axi2tlul_wr_rob.sv
+../rtl/m_vlsit_axi2tlul_top.sv

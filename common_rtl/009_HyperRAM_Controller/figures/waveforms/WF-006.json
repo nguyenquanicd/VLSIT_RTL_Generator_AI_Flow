@@ -1,0 +1,80 @@
+{
+  "head": {
+    "text": "WF-006 Burst segmentation at programmable tCSM limits",
+    "tick": 0
+  },
+  "signal": [
+    [
+      "AXI write",
+      {
+        "name": "AWVALID",
+        "wave": "001....."
+      },
+      {
+        "name": "AWREADY",
+        "wave": "11111111"
+      },
+      {
+        "name": "WVALID",
+        "wave": "0.111111"
+      },
+      {
+        "name": "WREADY",
+        "wave": "11111111"
+      },
+      {
+        "name": "W beat group",
+        "wave": "x.=.==..",
+        "data": [
+          "BEAT_0",
+          "BEAT_1",
+          "BEAT_N"
+        ]
+      },
+      {
+        "name": "BVALID",
+        "wave": "0......1"
+      }
+    ],
+    {},
+    [
+      "HyperBus segments",
+      {
+        "name": "CS#",
+        "wave": "1.0001100"
+      },
+      {
+        "name": "CK phase",
+        "wave": "x.=.==.=",
+        "data": [
+          "CA+DATA",
+          "SEGMENT_LIMIT",
+          "RESUME",
+          "FINAL_SEGMENT"
+        ]
+      },
+      {
+        "name": "Minimum CS# high",
+        "wave": "x....=..",
+        "data": [
+          ">=6_ns"
+        ]
+      },
+      {
+        "name": "Profile cap",
+        "wave": "x.=...=..",
+        "data": [
+          "x8:<=1_us",
+          "x16:<=4_us"
+        ]
+      }
+    ]
+  ],
+  "foot": {
+    "text": "Each CS#-low segment is bounded by the programmed limit: x8 <=1 us; x16 <=4 us. Gap is >=6 ns; drawing is not to scale.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

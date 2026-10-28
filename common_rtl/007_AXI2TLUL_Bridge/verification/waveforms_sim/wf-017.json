@@ -1,0 +1,181 @@
+{
+ "signal": [
+  {
+   "name": "i_clk_main",
+   "wave": "p......."
+  },
+  {
+   "name": "i_axi_arvalid",
+   "wave": "01100000",
+   "data": []
+  },
+  {
+   "name": "o_axi_arready",
+   "wave": "01111111",
+   "data": []
+  },
+  {
+   "name": "i_axi_araddr",
+   "wave": "0==00000",
+   "data": [
+    "0x100",
+    "0x104"
+   ]
+  },
+  {
+   "name": "i_axi_arlen",
+   "wave": "0=.00000",
+   "data": [
+    "0x0"
+   ]
+  },
+  {
+   "name": "i_axi_arsize",
+   "wave": "0=.00000",
+   "data": [
+    "0x2"
+   ]
+  },
+  {
+   "name": "i_axi_arburst",
+   "wave": "0=.00000",
+   "data": [
+    "0x1"
+   ]
+  },
+  {
+   "name": "i_axi_arprot",
+   "wave": "0==00000",
+   "data": [
+    "0x4",
+    "0x0"
+   ]
+  },
+  {
+   "name": "o_tl_a_valid",
+   "wave": "00110000",
+   "data": []
+  },
+  {
+   "name": "i_tl_a_ready",
+   "wave": "11111111",
+   "data": []
+  },
+  {
+   "name": "o_tl_a_opcode",
+   "wave": "00=.xxxx",
+   "data": [
+    "0x4"
+   ]
+  },
+  {
+   "name": "o_tl_a_src",
+   "wave": "00==1111",
+   "data": [
+    "0x0",
+    "0x1"
+   ]
+  },
+  {
+   "name": "o_tl_a_addr",
+   "wave": "00==xxxx",
+   "data": [
+    "0x100",
+    "0x104"
+   ]
+  },
+  {
+   "name": "o_tl_a_size",
+   "wave": "00=.xxxx",
+   "data": [
+    "0x2"
+   ]
+  },
+  {
+   "name": "o_tl_a_mask",
+   "wave": "00=.xxxx",
+   "data": [
+    "0xf"
+   ]
+  },
+  {
+   "name": "o_tl_a_user",
+   "wave": "00==xxxx",
+   "data": [
+    "0x1bfff",
+    "0x27fff"
+   ]
+  },
+  {
+   "name": "i_tl_d_valid",
+   "wave": "00011000",
+   "data": []
+  },
+  {
+   "name": "o_tl_d_ready",
+   "wave": "01111111",
+   "data": []
+  },
+  {
+   "name": "i_tl_d_opcode",
+   "wave": "000=.000",
+   "data": [
+    "0x1"
+   ]
+  },
+  {
+   "name": "i_tl_d_src",
+   "wave": "000==000",
+   "data": [
+    "0x0",
+    "0x1"
+   ]
+  },
+  {
+   "name": "i_tl_d_data",
+   "wave": "000==000",
+   "data": [
+    "0xf315a852",
+    "0x841298c4"
+   ]
+  },
+  {
+   "name": "i_tl_d_err",
+   "wave": "00000000",
+   "data": []
+  },
+  {
+   "name": "o_axi_rvalid",
+   "wave": "00001100",
+   "data": []
+  },
+  {
+   "name": "i_axi_rready",
+   "wave": "11111111",
+   "data": []
+  },
+  {
+   "name": "o_axi_rdata",
+   "wave": "0000==xx",
+   "data": [
+    "0xf315a852",
+    "0x841298c4"
+   ]
+  },
+  {
+   "name": "o_axi_rresp",
+   "wave": "0000=.00",
+   "data": [
+    "0x0"
+   ]
+  },
+  {
+   "name": "o_axi_rlast",
+   "wave": "00001111",
+   "data": []
+  }
+ ],
+ "head": {
+  "text": "WF-017 Exclusive read and instruction attribute (simulated)"
+ }
+}

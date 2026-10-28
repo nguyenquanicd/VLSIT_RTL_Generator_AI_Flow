@@ -1,0 +1,176 @@
+{
+ "signal": [
+  {
+   "name": "i_clk_main",
+   "wave": "p........"
+  },
+  [
+   "AXI AR",
+   {
+    "name": "i_axi_arvalid",
+    "wave": "010000000"
+   },
+   {
+    "name": "o_axi_arready",
+    "wave": "011111111"
+   },
+   {
+    "name": "i_axi_araddr",
+    "wave": "x=xxxxxxx",
+    "data": [
+     "0x100"
+    ]
+   },
+   {
+    "name": "i_axi_arlen",
+    "wave": "x=xxxxxxx",
+    "data": [
+     "3"
+    ]
+   },
+   {
+    "name": "i_axi_arsize",
+    "wave": "x=xxxxxxx",
+    "data": [
+     "2"
+    ]
+   },
+   {
+    "name": "i_axi_arburst",
+    "wave": "x=xxxxxxx",
+    "data": [
+     "INCR"
+    ]
+   }
+  ],
+  [
+   "TL-UL A",
+   {
+    "name": "o_tl_a_valid",
+    "wave": "001111000"
+   },
+   {
+    "name": "i_tl_a_ready",
+    "wave": "111111111"
+   },
+   {
+    "name": "o_tl_a_opcode",
+    "wave": "xx=...xxx",
+    "data": [
+     "Get"
+    ]
+   },
+   {
+    "name": "o_tl_a_src",
+    "wave": "xx====xxx",
+    "data": [
+     "rd0",
+     "rd1",
+     "rd2",
+     "rd0"
+    ]
+   },
+   {
+    "name": "o_tl_a_addr",
+    "wave": "xx====xxx",
+    "data": [
+     "0x100",
+     "0x104",
+     "0x108",
+     "0x10C"
+    ]
+   },
+   {
+    "name": "o_tl_a_size",
+    "wave": "xx=...xxx",
+    "data": [
+     "2"
+    ]
+   },
+   {
+    "name": "o_tl_a_mask",
+    "wave": "xx=...xxx",
+    "data": [
+     "1111"
+    ]
+   }
+  ],
+  [
+   "TL-UL D",
+   {
+    "name": "i_tl_d_valid",
+    "wave": "000111100"
+   },
+   {
+    "name": "o_tl_d_ready",
+    "wave": "011111111"
+   },
+   {
+    "name": "i_tl_d_opcode",
+    "wave": "xxx=...xx",
+    "data": [
+     "AckData"
+    ]
+   },
+   {
+    "name": "i_tl_d_src",
+    "wave": "xxx====xx",
+    "data": [
+     "rd0",
+     "rd1",
+     "rd2",
+     "rd0"
+    ]
+   },
+   {
+    "name": "i_tl_d_data",
+    "wave": "xxx====xx",
+    "data": [
+     "D0",
+     "D1",
+     "D2",
+     "D3"
+    ]
+   },
+   {
+    "name": "i_tl_d_err",
+    "wave": "000000000"
+   }
+  ],
+  [
+   "AXI R",
+   {
+    "name": "o_axi_rvalid",
+    "wave": "000011110"
+   },
+   {
+    "name": "i_axi_rready",
+    "wave": "111111111"
+   },
+   {
+    "name": "o_axi_rdata",
+    "wave": "xxxx====x",
+    "data": [
+     "D0",
+     "D1",
+     "D2",
+     "D3"
+    ]
+   },
+   {
+    "name": "o_axi_rresp",
+    "wave": "xxxx=...x",
+    "data": [
+     "OKAY"
+    ]
+   },
+   {
+    "name": "o_axi_rlast",
+    "wave": "000000010"
+   }
+  ]
+ ],
+ "head": {
+  "text": "WF-003 Four-beat INCR read at full rate"
+ }
+}
