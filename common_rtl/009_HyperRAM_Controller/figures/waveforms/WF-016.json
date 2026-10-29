@@ -1,0 +1,50 @@
+{
+  "head": {
+    "text": "WF-016 Read after write to the same bytes (hazard)",
+    "tick": 0
+  },
+  "signal": [
+    [
+      "AXI",
+      {
+        "name": "AWVALID",
+        "wave": "01.0.........."
+      },
+      {
+        "name": "ARVALID",
+        "wave": "0..1.......0.."
+      },
+      {
+        "name": "BVALID",
+        "wave": "0......10....."
+      },
+      {
+        "name": "RVALID",
+        "wave": "0...........1."
+      }
+    ],
+    {},
+    [
+      "HyperBus",
+      {
+        "name": "Write segment CS#",
+        "wave": "1..0...1......"
+      },
+      {
+        "name": "Read waits for write",
+        "wave": "0..1....0....."
+      },
+      {
+        "name": "Read segment CS#",
+        "wave": "1........0..1."
+      }
+    ]
+  ],
+  "foot": {
+    "text": "A read whose byte range overlaps an accepted, not yet completed write waits until the write has reached the RAM; the read segment starts after t_cshi and t_rwr. Symbolic timing.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "head": {
+    "text": "WF-011 Device register read (ID0) through cmd while AXI waits",
+    "tick": 0
+  },
+  "signal": [
+    [
+      "Software command",
+      {
+        "name": "hr_cmd.go",
+        "wave": "0.1.....0..."
+      },
+      {
+        "name": "hr_sts.cmd_busy",
+        "wave": "0..1....0..."
+      },
+      {
+        "name": "hr_cmd_rdata.rdata",
+        "wave": "x.......=...",
+        "data": [
+          "ID0"
+        ]
+      },
+      {
+        "name": "hr_cmd_rdata.done",
+        "wave": "0.......1..."
+      },
+      {
+        "name": "hr_irq_raw.cmd_done",
+        "wave": "0........1.."
+      }
+    ],
+    {},
+    [
+      "HyperBus and AXI",
+      {
+        "name": "HyperBus CS#",
+        "wave": "1...0...1..."
+      },
+      {
+        "name": "ARVALID",
+        "wave": "0..1.....0.."
+      },
+      {
+        "name": "ARREADY",
+        "wave": "1..0....1..."
+      }
+    ]
+  ],
+  "foot": {
+    "text": "go is cleared by hardware at completion; ARREADY stays LOW while the command runs (backpressure) and the read is accepted afterwards. Symbolic timing.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

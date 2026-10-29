@@ -1,0 +1,42 @@
+{
+  "head": {
+    "text": "WF-015 Reads to two chip selects",
+    "tick": 0
+  },
+  "signal": [
+    [
+      "AXI and HyperBus",
+      {
+        "name": "ARADDR",
+        "wave": "x=.=.xxxxxxx",
+        "data": [
+          "ADDR_IN_CS0",
+          "ADDR_IN_CS1"
+        ]
+      },
+      {
+        "name": "o_hb_cs_n[0]",
+        "wave": "1.0..1......"
+      },
+      {
+        "name": "o_hb_cs_n[1]",
+        "wave": "1......0..1."
+      },
+      {
+        "name": "Register group in use",
+        "wave": "x.=..x.=...x",
+        "data": [
+          "d0_* timing",
+          "d1_* timing"
+        ]
+      }
+    ]
+  ],
+  "foot": {
+    "text": "The chip select follows the address; at most one bit of o_hb_cs_n is LOW; each device uses its own register group. Symbolic timing.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

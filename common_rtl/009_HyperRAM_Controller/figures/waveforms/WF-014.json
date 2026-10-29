@@ -1,0 +1,49 @@
+{
+  "head": {
+    "text": "WF-014 Read capture with the delayed RWDS",
+    "tick": 0
+  },
+  "signal": [
+    [
+      "Device and capture (one slot = a quarter of a CK period)",
+      {
+        "name": "RWDS (device)",
+        "wave": "0.1.0.1.0.1.0.1."
+      },
+      {
+        "name": "DQ (device, edge aligned with RWDS)",
+        "wave": "=.=.=.=.=.=.=.=.",
+        "data": [
+          "D0",
+          "D1",
+          "D2",
+          "D3",
+          "D4",
+          "D5",
+          "D6",
+          "D7"
+        ]
+      },
+      {
+        "name": "i_clk_cap (RWDS through the delay line)",
+        "wave": "x0.1.0.1.0.1.0.1"
+      },
+      {
+        "name": "Captured pair (to the FIFO)",
+        "wave": "x.....=...=...=.",
+        "data": [
+          "P0",
+          "P1",
+          "P2"
+        ]
+      }
+    ]
+  ],
+  "foot": {
+    "text": "The delay line shifts RWDS by about a quarter of the CK period (hr_dN_rcap.tap) so that both edges of i_clk_cap fall in the middle of the DQ data interval; pairs are written to the capture FIFO and read on CLK-CORE.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

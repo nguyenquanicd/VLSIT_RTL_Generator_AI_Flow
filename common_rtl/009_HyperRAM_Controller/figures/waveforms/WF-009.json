@@ -1,6 +1,6 @@
 {
   "head": {
-    "text": "WF-009 Invalid APB address error and independent APB reset",
+    "text": "WF-009 Unmapped APB address error and independent APB reset",
     "tick": 0
   },
   "signal": [
@@ -18,7 +18,7 @@
         "name": "PADDR",
         "wave": "x.=.....",
         "data": [
-          "INVALID_CSR_ADDR"
+          "UNMAPPED_ADDR"
         ]
       },
       {
@@ -64,7 +64,7 @@
     ]
   ],
   "foot": {
-    "text": "Invalid/reserved access completes with PREADY=1, PSLVERR=1 and no state change; APB reset is applied while bus/CDC are idle.",
+    "text": "A word-aligned address that is not a register completes with PREADY = 1 and PSLVERR = 1 (decode in m_vlsit_apb4_if) and no state change; APB reset is applied while bus and CDC are idle.",
     "tock": 0
   },
   "config": {

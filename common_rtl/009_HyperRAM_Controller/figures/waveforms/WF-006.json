@@ -1,6 +1,6 @@
 {
   "head": {
-    "text": "WF-006 Burst segmentation at programmable tCSM limits",
+    "text": "WF-006 Burst segmentation at the programmed CS#-low limit",
     "tick": 0
   },
   "signal": [
@@ -8,32 +8,15 @@
       "AXI write",
       {
         "name": "AWVALID",
-        "wave": "001....."
-      },
-      {
-        "name": "AWREADY",
-        "wave": "11111111"
+        "wave": "01.0.........."
       },
       {
         "name": "WVALID",
-        "wave": "0.111111"
-      },
-      {
-        "name": "WREADY",
-        "wave": "11111111"
-      },
-      {
-        "name": "W beat group",
-        "wave": "x.=.==..",
-        "data": [
-          "BEAT_0",
-          "BEAT_1",
-          "BEAT_N"
-        ]
+        "wave": "0.1..........."
       },
       {
         "name": "BVALID",
-        "wave": "0......1"
+        "wave": "0............1"
       }
     ],
     {},
@@ -41,37 +24,35 @@
       "HyperBus segments",
       {
         "name": "CS#",
-        "wave": "1.0001100"
+        "wave": "1.0....1.0...1"
       },
       {
-        "name": "CK phase",
-        "wave": "x.=.==.=",
+        "name": "Segment",
+        "wave": "x.=....x.=...x",
         "data": [
-          "CA+DATA",
-          "SEGMENT_LIMIT",
-          "RESUME",
-          "FINAL_SEGMENT"
+          "SEG_1_CA_LAT_DATA",
+          "SEG_2_RESUME"
         ]
       },
       {
-        "name": "Minimum CS# high",
-        "wave": "x....=..",
+        "name": "CS# low count",
+        "wave": "x.=....x.=...x",
         "data": [
-          ">=6_ns"
+          "<=t_csm",
+          "<=t_csm"
         ]
       },
       {
-        "name": "Profile cap",
-        "wave": "x.=...=..",
+        "name": "CS# high gap",
+        "wave": "x......=.x....",
         "data": [
-          "x8:<=1_us",
-          "x16:<=4_us"
+          ">=t_cshi"
         ]
       }
     ]
   ],
   "foot": {
-    "text": "Each CS#-low segment is bounded by the programmed limit: x8 <=1 us; x16 <=4 us. Gap is >=6 ns; drawing is not to scale.",
+    "text": "Every CS#-low segment lasts at most hr_dN_tcsm.t_csm CK periods; the gap is at least t_cshi and t_rwr is respected. Drawing is not to scale.",
     "tock": 0
   },
   "config": {

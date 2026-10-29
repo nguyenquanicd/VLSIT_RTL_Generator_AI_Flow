@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="678" height="238" viewBox="0 0 678 238" font-family="Helvetica,Arial,sans-serif">
+<rect width="100%" height="100%" fill="#fff"/>
+<text x="12" y="20" font-size="14" font-weight="bold">WF-010 Variable-latency read with RWDS HIGH in the CA phase (2x latency)</text>
+<line x1="162" y1="30" x2="162" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="198" y1="30" x2="198" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="234" y1="30" x2="234" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="270" y1="30" x2="270" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="306" y1="30" x2="306" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="342" y1="30" x2="342" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="378" y1="30" x2="378" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="414" y1="30" x2="414" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="450" y1="30" x2="450" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="486" y1="30" x2="486" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="522" y1="30" x2="522" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="558" y1="30" x2="558" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="594" y1="30" x2="594" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="630" y1="30" x2="630" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="666" y1="30" x2="666" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<text x="12" y="49" font-size="12" font-weight="bold" fill="#225">HyperBus read (abstract, one slot = one CK period)</text>
+<text x="154" y="79" font-size="12" text-anchor="end">CS#</text>
+<polyline points="162.0,63.0 198.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="198.0,63.0 234.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,63.0 234.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,81.0 270.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="270.0,81.0 306.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,81.0 342.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,81.0 378.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,81.0 414.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,81.0 450.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="450.0,81.0 486.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="486.0,81.0 522.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="522.0,81.0 558.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="558.0,81.0 594.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="594.0,81.0 630.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="630.0,81.0 630.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="630.0,63.0 666.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="109" font-size="12" text-anchor="end">CK</text>
+<polyline points="162.0,111.0 198.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="198.0,111.0 234.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,111.0 234.0,93.0 252.0,93.0 252.0,111.0 270.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="270.0,111.0 270.0,93.0 288.0,93.0 288.0,111.0 306.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,111.0 306.0,93.0 324.0,93.0 324.0,111.0 342.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,111.0 342.0,93.0 360.0,93.0 360.0,111.0 378.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,111.0 378.0,93.0 396.0,93.0 396.0,111.0 414.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,111.0 414.0,93.0 432.0,93.0 432.0,111.0 450.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="450.0,111.0 450.0,93.0 468.0,93.0 468.0,111.0 486.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="486.0,111.0 486.0,93.0 504.0,93.0 504.0,111.0 522.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="522.0,111.0 522.0,93.0 540.0,93.0 540.0,111.0 558.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="558.0,111.0 558.0,93.0 576.0,93.0 576.0,111.0 594.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="594.0,111.0 630.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="630.0,111.0 666.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="139" font-size="12" text-anchor="end">DQ</text>
+<rect x="162.0" y="123.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="198.0" y="123.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<polygon points="238.0,123.0 266.0,123.0 270.0,132.0 266.0,141.0 238.0,141.0 234.0,132.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="252.0" y="136.0" text-anchor="middle" font-size="11">CA0</text>
+<polygon points="274.0,123.0 302.0,123.0 306.0,132.0 302.0,141.0 274.0,141.0 270.0,132.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="288.0" y="136.0" text-anchor="middle" font-size="11">CA1</text>
+<polygon points="310.0,123.0 338.0,123.0 342.0,132.0 338.0,141.0 310.0,141.0 306.0,132.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="324.0" y="136.0" text-anchor="middle" font-size="11">CA2</text>
+<polyline points="342.0,132.0 378.0,132.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,132.0 414.0,132.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,132.0 450.0,132.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="450.0,132.0 486.0,132.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polygon points="490.0,123.0 518.0,123.0 522.0,132.0 518.0,141.0 490.0,141.0 486.0,132.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="504.0" y="136.0" text-anchor="middle" font-size="11">D0</text>
+<polygon points="526.0,123.0 554.0,123.0 558.0,132.0 554.0,141.0 526.0,141.0 522.0,132.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="540.0" y="136.0" text-anchor="middle" font-size="11">D1</text>
+<polygon points="562.0,123.0 590.0,123.0 594.0,132.0 590.0,141.0 562.0,141.0 558.0,132.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="576.0" y="136.0" text-anchor="middle" font-size="11">D2</text>
+<polygon points="598.0,123.0 626.0,123.0 630.0,132.0 626.0,141.0 598.0,141.0 594.0,132.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="612.0" y="136.0" text-anchor="middle" font-size="11">D3</text>
+<polyline points="630.0,132.0 666.0,132.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="169" font-size="12" text-anchor="end">RWDS</text>
+<rect x="162.0" y="153.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="198.0" y="153.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<polyline points="234.0,162.0 234.0,153.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,153.0 270.0,153.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="270.0,153.0 306.0,153.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,153.0 342.0,153.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,153.0 342.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,171.0 378.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,171.0 414.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,171.0 450.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="450.0,171.0 486.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="486.0,171.0 486.0,153.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="486.0,153.0 522.0,153.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="522.0,153.0 522.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="522.0,171.0 558.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="558.0,171.0 558.0,153.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="558.0,153.0 594.0,153.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="594.0,153.0 594.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="594.0,171.0 630.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="630.0,162.0 666.0,162.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="199" font-size="12" text-anchor="end">Latency</text>
+<rect x="162.0" y="183.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="198.0" y="183.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="234.0" y="183.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="270.0" y="183.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="306.0" y="183.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<polygon points="346.0,183.0 482.0,183.0 486.0,192.0 482.0,201.0 346.0,201.0 342.0,192.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="414.0" y="196.0" text-anchor="middle" font-size="11">2x_init_lat</text>
+<rect x="486.0" y="183.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="522.0" y="183.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="558.0" y="183.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="594.0" y="183.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="630.0" y="183.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<text x="12" y="230" font-size="11" fill="#444">RWDS HIGH during the CA phase doubles the initial latency in variable mode (hr_dN_cfg.fixed_lat = 0); fixed mode always waits 2 x init_lat. Illustrative timing, init_lat shortened.</text>
+</svg>
