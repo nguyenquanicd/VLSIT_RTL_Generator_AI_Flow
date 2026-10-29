@@ -18,16 +18,16 @@ This folder contains the design specification and research for one structural AX
 | Path | Purpose |
 |---|---|
 | `HyperRAM_Controller_Design_Specification.md` | VLSIT design contract and open decisions in Section 20. |
-| `HyperRAM_Controller_CSR_Specification.xlsx` | VLSIT CSR workbook. The `ASYNC_CSR` sheet contains the 34-register map (2026-10-28) for configuration, status, device commands, diagnostics, interrupts and one timing group per chip select; it is pending designer approval. Unmapped addresses return APB `PSLVERR` through the decode of the APB interface module. |
+| `HyperRAM_Controller_CSR_Specification.xlsx` | VLSIT CSR workbook. The `ASYNC_CSR` sheet contains the 34-register map with the prefix `hr_` (2026-10-29) for configuration, status, device commands, diagnostics, interrupts and one timing group per chip select; it is pending designer approval. Unmapped addresses return APB `PSLVERR` through the decode of the APB interface module. |
 | `research/hyperram_protocol_and_product_research.md` | Protocol scope, target devices, and reference-source audit. |
 | `research/repair_pdf_md_pages.py` | Rebuilds selected converted document pages from their PDF text layer. |
 | `reference/md_doc/` | Locally converted standards and selected-device datasheets. Redistribution restrictions are recorded and enforced by `.gitignore`. |
 | `figures/block_diagram/` | Editable six-module block diagram and rendered SVG/PNG. |
-| `figures/waveforms/` | Nine WaveDrom figures (`.svg`), offline viewers (`.html`), and editable sources (`.json`). Timing is illustrative where noted. WF-001, WF-006 and WF-009 predate the 2026-10-28 decisions and are to be redrawn. |
+| `figures/waveforms/` | Sixteen WaveDrom figures (`.svg`), offline viewers (`.html`), and editable sources (`.json`); the plan was confirmed on 2026-10-28. Timing is illustrative where noted. |
 
 ## Status
 
-The specification was rewritten on 2026-10-28 from the designer's decisions DEC-022 to DEC-033 (single 400 MHz clock, CSR timing in CK periods, run-time presets, latency modes, write response and ordering, chip selects, device command port). `vlsit_spec_tool.py check` reports one error: the device command operation (OP-005) has no waveform until the designer confirms the extended waveform plan (Section 10.3, R-024). Open: the performance targets (TBD-001, TBD-002), the Winbond power-up and reset values (TBD-003, needs the PDFs), the delay-line characteristics (TBD-006), the redraw of the block diagram and three waveforms, and the designer's approval of the register map.
+The specification was rewritten on 2026-10-28 from the designer's decisions DEC-022 to DEC-033 (single 400 MHz clock, CSR timing in CK periods, run-time presets, latency modes, write response and ordering, chip selects, device command port). `vlsit_spec_tool.py check` passes. The Winbond timing values were read from the datasheet PDFs (DEC-034; the PDFs are in `reference/pdf_winbond/` and are git-ignored). Open: the performance targets (TBD-001, TBD-002), the delay-line characteristics (TBD-006), the redraw of the block diagram (OI-004), and the designer's approval of the register map.
 
 ---
 
@@ -56,9 +56,9 @@ Thư mục này chứa đặc tả thiết kế và tài liệu nghiên cứu ch
 | `research/repair_pdf_md_pages.py` | Dựng lại một số trang tài liệu đã chuyển đổi từ text layer của PDF. |
 | `reference/md_doc/` | Bản Markdown cục bộ của chuẩn và datasheet đã chọn. `.gitignore` áp dụng giới hạn tái phân phối. |
 | `figures/block_diagram/` | Sơ đồ sáu module có thể sửa và bản render SVG/PNG. |
-| `figures/waveforms/` | Chín waveform WaveDrom, gồm ảnh (`.svg`), viewer offline (`.html`) và tệp nguồn chỉnh sửa được (`.json`). Timing có tính minh họa tại các mục được ghi chú. WF-001, WF-006 và WF-009 có trước các quyết định ngày 2026-10-28, cần vẽ lại. |
+| `figures/waveforms/` | Mười sáu waveform WaveDrom, gồm ảnh (`.svg`), viewer offline (`.html`) và tệp nguồn chỉnh sửa được (`.json`); kế hoạch được xác nhận ngày 2026-10-28. Timing có tính minh họa tại các mục được ghi chú. |
 
 ## Trạng thái
 
-Đặc tả được viết lại ngày 2026-10-28 theo các quyết định DEC-022 đến DEC-033 của người thiết kế (một clock 400 MHz, timing CSR tính theo chu kỳ CK, preset lúc chạy, các chế độ latency, response ghi và thứ tự, chip select, cổng lệnh thiết bị). `vlsit_spec_tool.py check` báo một lỗi: thao tác lệnh thiết bị (OP-005) chưa có waveform cho tới khi người thiết kế xác nhận kế hoạch waveform mở rộng (Mục 10.3, R-024). Còn mở: mục tiêu hiệu năng (TBD-001, TBD-002), giá trị power-up và reset của Winbond (TBD-003, cần PDF), đặc tính delay line (TBD-006), vẽ lại sơ đồ khối và ba waveform, và người thiết kế duyệt bản đồ thanh ghi.
+Đặc tả được viết lại ngày 2026-10-28 theo các quyết định DEC-022 đến DEC-033 của người thiết kế (một clock 400 MHz, timing CSR tính theo chu kỳ CK, preset lúc chạy, các chế độ latency, response ghi và thứ tự, chip select, cổng lệnh thiết bị). `vlsit_spec_tool.py check` đạt. Các giá trị timing của Winbond được đọc từ PDF datasheet (DEC-034; PDF nằm ở `reference/pdf_winbond/` và bị git-ignore). Còn mở: mục tiêu hiệu năng (TBD-001, TBD-002), đặc tính delay line (TBD-006), vẽ lại sơ đồ khối (OI-004), và người thiết kế duyệt bản đồ thanh ghi.
 

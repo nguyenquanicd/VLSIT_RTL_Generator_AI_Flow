@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="750" height="208" viewBox="0 0 750 208" font-family="Helvetica,Arial,sans-serif">
+<rect width="100%" height="100%" fill="#fff"/>
+<text x="12" y="20" font-size="14" font-weight="bold">WF-014 Read capture with the delayed RWDS</text>
+<line x1="162" y1="30" x2="162" y2="180" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="198" y1="30" x2="198" y2="180" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="234" y1="30" x2="234" y2="180" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="270" y1="30" x2="270" y2="180" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="306" y1="30" x2="306" y2="180" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="342" y1="30" x2="342" y2="180" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="378" y1="30" x2="378" y2="180" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="414" y1="30" x2="414" y2="180" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="450" y1="30" x2="450" y2="180" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="486" y1="30" x2="486" y2="180" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="522" y1="30" x2="522" y2="180" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="558" y1="30" x2="558" y2="180" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="594" y1="30" x2="594" y2="180" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="630" y1="30" x2="630" y2="180" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="666" y1="30" x2="666" y2="180" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="702" y1="30" x2="702" y2="180" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="738" y1="30" x2="738" y2="180" stroke="#ccc" stroke-dasharray="2,3"/>
+<text x="12" y="49" font-size="12" font-weight="bold" fill="#225">Device and capture (one slot = a quarter of a CK period)</text>
+<text x="154" y="79" font-size="12" text-anchor="end">RWDS (device)</text>
+<polyline points="162.0,81.0 198.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="198.0,81.0 234.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,81.0 234.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,63.0 270.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="270.0,63.0 306.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,63.0 306.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,81.0 342.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,81.0 378.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,81.0 378.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,63.0 414.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,63.0 450.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="450.0,63.0 450.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="450.0,81.0 486.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="486.0,81.0 522.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="522.0,81.0 522.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="522.0,63.0 558.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="558.0,63.0 594.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="594.0,63.0 594.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="594.0,81.0 630.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="630.0,81.0 666.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="666.0,81.0 666.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="666.0,63.0 702.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="702.0,63.0 738.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="109" font-size="12" text-anchor="end">DQ (device, edge aligned with RWDS)</text>
+<polygon points="166.0,93.0 230.0,93.0 234.0,102.0 230.0,111.0 166.0,111.0 162.0,102.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="198.0" y="106.0" text-anchor="middle" font-size="11">D0</text>
+<polygon points="238.0,93.0 302.0,93.0 306.0,102.0 302.0,111.0 238.0,111.0 234.0,102.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="270.0" y="106.0" text-anchor="middle" font-size="11">D1</text>
+<polygon points="310.0,93.0 374.0,93.0 378.0,102.0 374.0,111.0 310.0,111.0 306.0,102.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="342.0" y="106.0" text-anchor="middle" font-size="11">D2</text>
+<polygon points="382.0,93.0 446.0,93.0 450.0,102.0 446.0,111.0 382.0,111.0 378.0,102.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="414.0" y="106.0" text-anchor="middle" font-size="11">D3</text>
+<polygon points="454.0,93.0 518.0,93.0 522.0,102.0 518.0,111.0 454.0,111.0 450.0,102.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="486.0" y="106.0" text-anchor="middle" font-size="11">D4</text>
+<polygon points="526.0,93.0 590.0,93.0 594.0,102.0 590.0,111.0 526.0,111.0 522.0,102.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="558.0" y="106.0" text-anchor="middle" font-size="11">D5</text>
+<polygon points="598.0,93.0 662.0,93.0 666.0,102.0 662.0,111.0 598.0,111.0 594.0,102.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="630.0" y="106.0" text-anchor="middle" font-size="11">D6</text>
+<polygon points="670.0,93.0 734.0,93.0 738.0,102.0 734.0,111.0 670.0,111.0 666.0,102.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="702.0" y="106.0" text-anchor="middle" font-size="11">D7</text>
+<text x="154" y="139" font-size="12" text-anchor="end">i_clk_cap (RWDS through the delay line)</text>
+<rect x="162.0" y="123.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<polyline points="198.0,132.0 198.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="198.0,141.0 234.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,141.0 270.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="270.0,141.0 270.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="270.0,123.0 306.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,123.0 342.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,123.0 342.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,141.0 378.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,141.0 414.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,141.0 414.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,123.0 450.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="450.0,123.0 486.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="486.0,123.0 486.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="486.0,141.0 522.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="522.0,141.0 558.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="558.0,141.0 558.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="558.0,123.0 594.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="594.0,123.0 630.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="630.0,123.0 630.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="630.0,141.0 666.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="666.0,141.0 702.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="702.0,141.0 702.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="702.0,123.0 738.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="169" font-size="12" text-anchor="end">Captured pair (to the FIFO)</text>
+<rect x="162.0" y="153.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="198.0" y="153.0" width="36.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="234.0" y="153.0" width="36.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="270.0" y="153.0" width="36.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="306.0" y="153.0" width="36.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="342.0" y="153.0" width="36.0" height="18.0" fill="#ddd" stroke="none"/>
+<polygon points="382.0,153.0 518.0,153.0 522.0,162.0 518.0,171.0 382.0,171.0 378.0,162.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="450.0" y="166.0" text-anchor="middle" font-size="11">P0</text>
+<polygon points="526.0,153.0 662.0,153.0 666.0,162.0 662.0,171.0 526.0,171.0 522.0,162.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="594.0" y="166.0" text-anchor="middle" font-size="11">P1</text>
+<polygon points="670.0,153.0 734.0,153.0 738.0,162.0 734.0,171.0 670.0,171.0 666.0,162.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="702.0" y="166.0" text-anchor="middle" font-size="11">P2</text>
+<text x="12" y="200" font-size="11" fill="#444">The delay line shifts RWDS by about a quarter of the CK period (hr_dN_rcap.tap) so that both edges of i_clk_cap fall in the middle of the DQ data interval; pairs are written to the capture FIFO and read on CLK-CORE.</text>
+</svg>

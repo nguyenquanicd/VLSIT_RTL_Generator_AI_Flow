@@ -1,0 +1,50 @@
+{
+  "head": {
+    "text": "WF-010 Variable-latency read with RWDS HIGH in the CA phase (2x latency)",
+    "tick": 0
+  },
+  "signal": [
+    [
+      "HyperBus read (abstract, one slot = one CK period)",
+      {
+        "name": "CS#",
+        "wave": "1.0..........1"
+      },
+      {
+        "name": "CK",
+        "wave": "0.pppppppppp0."
+      },
+      {
+        "name": "DQ",
+        "wave": "xx===zzzz====z",
+        "data": [
+          "CA0",
+          "CA1",
+          "CA2",
+          "D0",
+          "D1",
+          "D2",
+          "D3"
+        ]
+      },
+      {
+        "name": "RWDS",
+        "wave": "xx11100001010z"
+      },
+      {
+        "name": "Latency",
+        "wave": "xxxxx=...xxxxx",
+        "data": [
+          "2x_init_lat"
+        ]
+      }
+    ]
+  ],
+  "foot": {
+    "text": "RWDS HIGH during the CA phase doubles the initial latency in variable mode (hr_dN_cfg.fixed_lat = 0); fixed mode always waits 2 x init_lat. Illustrative timing, init_lat shortened.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

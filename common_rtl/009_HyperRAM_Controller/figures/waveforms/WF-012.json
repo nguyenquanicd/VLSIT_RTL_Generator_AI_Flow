@@ -1,0 +1,52 @@
+{
+  "head": {
+    "text": "WF-012 ID0 mismatch after startup",
+    "tick": 0
+  },
+  "signal": [
+    [
+      "Controller",
+      {
+        "name": "hr_dN_id.id_chk_en",
+        "wave": "1..........."
+      },
+      {
+        "name": "hr_dN_id.id0_exp",
+        "wave": "=...........",
+        "data": [
+          "ID0_EXPECTED"
+        ]
+      },
+      {
+        "name": "HyperBus CS#",
+        "wave": "1..0..1....."
+      },
+      {
+        "name": "Device ID0 data",
+        "wave": "xxxx=.xxxxxx",
+        "data": [
+          "ID0_ACTUAL"
+        ]
+      },
+      {
+        "name": "hr_irq_raw.id_mis",
+        "wave": "0.....1....."
+      },
+      {
+        "name": "hr_sts.init_done",
+        "wave": "0.....1....."
+      },
+      {
+        "name": "AXI ARREADY",
+        "wave": "0.....1....."
+      }
+    ]
+  ],
+  "foot": {
+    "text": "A mismatch sets hr_irq_raw.id_mis; initialization still completes and AXI access is not blocked. Symbolic timing.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

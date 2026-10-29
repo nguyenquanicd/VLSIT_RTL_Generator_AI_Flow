@@ -1,0 +1,44 @@
+{
+  "head": {
+    "text": "WF-013 CK and DQ phase for ck_phase = 0 and 1 (CK = CLK-CORE / 2)",
+    "tick": 0
+  },
+  "signal": [
+    [
+      "Launch (one slot = half a CLK-CORE period)",
+      {
+        "name": "i_clk_core",
+        "wave": "0101010101010101"
+      },
+      {
+        "name": "o_hb_dq (rising edge launch)",
+        "wave": "=.=.=.=.=.=.=.=.",
+        "data": [
+          "D0",
+          "D1",
+          "D2",
+          "D3",
+          "D4",
+          "D5",
+          "D6",
+          "D7"
+        ]
+      },
+      {
+        "name": "o_clk_hb, ck_phase = 0",
+        "wave": "0.1.0.1.0.1.0.1."
+      },
+      {
+        "name": "o_clk_hb, ck_phase = 1",
+        "wave": "01.0.1.0.1.0.1.0"
+      }
+    ]
+  ],
+  "foot": {
+    "text": "ck_phase = 0: CK toggles on the falling edge of i_clk_core, so each CK edge lies in the middle of a data interval (1.25 ns from the DQ change at 200 MHz CK). ck_phase = 1: CK and DQ change on the same rising edge.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

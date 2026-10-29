@@ -1,43 +1,17 @@
 {
   "head": {
-    "text": "WF-001 Reset, timing setup, enable, startup",
+    "text": "WF-001 Reset, preset load, enable, startup with CR0, CR1 and ID0",
     "tick": 0
   },
   "signal": [
     [
-      "APB4",
+      "APB4 writes",
       {
-        "name": "PSEL",
-        "wave": "01111110."
-      },
-      {
-        "name": "PENABLE",
-        "wave": "00101010."
-      },
-      {
-        "name": "PREADY",
-        "wave": "00101010."
-      },
-      {
-        "name": "PWRITE",
-        "wave": "01111110."
-      },
-      {
-        "name": "PADDR",
-        "wave": "x.=.=.=..",
+        "name": "APB write",
+        "wave": "x.=.=x........",
         "data": [
-          "TIMING_CFG_0",
-          "TIMING_CFG_1",
-          "ENABLE_CFG"
-        ]
-      },
-      {
-        "name": "PWDATA",
-        "wave": "x.=.=.=..",
-        "data": [
-          "TIMING_VALUE_0",
-          "TIMING_VALUE_1",
-          "ENABLE_VALUE"
+          "hr_d0_cfg.preset_go",
+          "hr_ctrl.en"
         ]
       }
     ],
@@ -46,36 +20,43 @@
       "Controller / memory",
       {
         "name": "i_rst_n_core",
-        "wave": "0.111111"
+        "wave": "0.1..........."
       },
       {
         "name": "i_mem_pwr_good",
-        "wave": "1......."
+        "wave": "1............."
       },
       {
         "name": "o_rst_n_mem",
-        "wave": "0...0.11"
-      },
-      {
-        "name": "HyperBus CS#",
-        "wave": "1......."
+        "wave": "0.....1......."
       },
       {
         "name": "Startup phase",
-        "wave": "x...=.=.",
+        "wave": "xxxx=..=.=.=.=",
         "data": [
-          "RESET_WAIT_N_CK",
-          "STARTUP_WAIT_N_CK"
+          "t_rp",
+          "t_rh, t_rph, t_vcs",
+          "CR0 and CR1 write",
+          "ID0 read",
+          "READY"
         ]
       },
       {
+        "name": "HyperBus CS#",
+        "wave": "1........0101."
+      },
+      {
+        "name": "hr_sts.init_done",
+        "wave": "0............1"
+      },
+      {
         "name": "AXI ready",
-        "wave": "0......1"
+        "wave": "0............1"
       }
     ]
   ],
   "foot": {
-    "text": "Illustrative phases; programmed waits are symbolic, not to scale.",
+    "text": "Illustrative phases; the counts t_rp, t_rh, t_rph and t_vcs are symbolic and not to scale. Presets are loaded while hr_ctrl.en = 0.",
     "tock": 0
   },
   "config": {

@@ -271,7 +271,7 @@ Suy ra cho controller ở CK 200 MHz (chu kỳ 5 ns):
 
 Việc chưa làm được: dựng lại bảng power-up và reset của Winbond (cần PDF, không có trong repo); đọc tCSHI, tCSS, tDSV của Infineon x16 và các dòng latency và drive strength của Winbond x16 và ISSI từ bản PDF.
 
-## 5A. Quyết định của người dùng (2026-10-28, đã ghi vào spec v0.2 và workbook 34 thanh ghi)
+## 5A. Quyết định của người dùng (2026-10-28, đã ghi vào spec v0.2, workbook 34 thanh ghi, kế hoạch 16 waveform, DEC-033 và DEC-034)
 
 | Câu | Quyết định | Hệ quả cho spec và workbook |
 |---|---|---|

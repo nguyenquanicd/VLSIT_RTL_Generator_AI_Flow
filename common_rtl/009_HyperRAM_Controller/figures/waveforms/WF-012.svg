@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="606" height="298" viewBox="0 0 606 298" font-family="Helvetica,Arial,sans-serif">
+<rect width="100%" height="100%" fill="#fff"/>
+<text x="12" y="20" font-size="14" font-weight="bold">WF-012 ID0 mismatch after startup</text>
+<line x1="162" y1="30" x2="162" y2="270" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="198" y1="30" x2="198" y2="270" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="234" y1="30" x2="234" y2="270" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="270" y1="30" x2="270" y2="270" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="306" y1="30" x2="306" y2="270" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="342" y1="30" x2="342" y2="270" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="378" y1="30" x2="378" y2="270" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="414" y1="30" x2="414" y2="270" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="450" y1="30" x2="450" y2="270" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="486" y1="30" x2="486" y2="270" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="522" y1="30" x2="522" y2="270" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="558" y1="30" x2="558" y2="270" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="594" y1="30" x2="594" y2="270" stroke="#ccc" stroke-dasharray="2,3"/>
+<text x="12" y="49" font-size="12" font-weight="bold" fill="#225">Controller</text>
+<text x="154" y="79" font-size="12" text-anchor="end">hr_dN_id.id_chk_en</text>
+<polyline points="162.0,63.0 198.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="198.0,63.0 234.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,63.0 270.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="270.0,63.0 306.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,63.0 342.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,63.0 378.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,63.0 414.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,63.0 450.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="450.0,63.0 486.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="486.0,63.0 522.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="522.0,63.0 558.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="558.0,63.0 594.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="109" font-size="12" text-anchor="end">hr_dN_id.id0_exp</text>
+<polygon points="166.0,93.0 590.0,93.0 594.0,102.0 590.0,111.0 166.0,111.0 162.0,102.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="378.0" y="106.0" text-anchor="middle" font-size="11">ID0_EXPECTED</text>
+<text x="154" y="139" font-size="12" text-anchor="end">HyperBus CS#</text>
+<polyline points="162.0,123.0 198.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="198.0,123.0 234.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,123.0 270.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="270.0,123.0 270.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="270.0,141.0 306.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,141.0 342.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,141.0 378.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,141.0 378.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,123.0 414.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,123.0 450.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="450.0,123.0 486.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="486.0,123.0 522.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="522.0,123.0 558.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="558.0,123.0 594.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="169" font-size="12" text-anchor="end">Device ID0 data</text>
+<rect x="162.0" y="153.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="198.0" y="153.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="234.0" y="153.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="270.0" y="153.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<polygon points="310.0,153.0 374.0,153.0 378.0,162.0 374.0,171.0 310.0,171.0 306.0,162.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="342.0" y="166.0" text-anchor="middle" font-size="11">ID0_ACTUAL</text>
+<rect x="378.0" y="153.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="414.0" y="153.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="450.0" y="153.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="486.0" y="153.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="522.0" y="153.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="558.0" y="153.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
+<text x="154" y="199" font-size="12" text-anchor="end">hr_irq_raw.id_mis</text>
+<polyline points="162.0,201.0 198.0,201.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="198.0,201.0 234.0,201.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,201.0 270.0,201.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="270.0,201.0 306.0,201.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,201.0 342.0,201.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,201.0 378.0,201.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,201.0 378.0,183.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,183.0 414.0,183.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,183.0 450.0,183.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="450.0,183.0 486.0,183.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="486.0,183.0 522.0,183.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="522.0,183.0 558.0,183.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="558.0,183.0 594.0,183.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="229" font-size="12" text-anchor="end">hr_sts.init_done</text>
+<polyline points="162.0,231.0 198.0,231.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="198.0,231.0 234.0,231.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,231.0 270.0,231.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="270.0,231.0 306.0,231.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,231.0 342.0,231.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,231.0 378.0,231.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,231.0 378.0,213.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,213.0 414.0,213.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,213.0 450.0,213.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="450.0,213.0 486.0,213.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="486.0,213.0 522.0,213.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="522.0,213.0 558.0,213.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="558.0,213.0 594.0,213.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="259" font-size="12" text-anchor="end">AXI ARREADY</text>
+<polyline points="162.0,261.0 198.0,261.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="198.0,261.0 234.0,261.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,261.0 270.0,261.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="270.0,261.0 306.0,261.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,261.0 342.0,261.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="342.0,261.0 378.0,261.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,261.0 378.0,243.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,243.0 414.0,243.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,243.0 450.0,243.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="450.0,243.0 486.0,243.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="486.0,243.0 522.0,243.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="522.0,243.0 558.0,243.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="558.0,243.0 594.0,243.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="12" y="290" font-size="11" fill="#444">A mismatch sets hr_irq_raw.id_mis; initialization still completes and AXI access is not blocked. Symbolic timing.</text>
+</svg>
