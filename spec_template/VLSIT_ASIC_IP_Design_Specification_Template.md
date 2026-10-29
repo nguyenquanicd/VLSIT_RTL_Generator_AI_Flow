@@ -289,7 +289,8 @@ The CSR specification of this IP shall be defined only in the VLSIT CSR Specific
 | Sheet used for this IP | <sheet name> |
 | Workbook revision / date | <revision or date> |
 | CSR generator | APB-CSR-Generator, <version or commit> (`https://github.com/nguyenquanicd/APB-CSR-Generator`) |
-| CSR module name | <`Module Name` cell of the sheet, in the project naming rule> |
+| CSR module name | <`Module Name` cell of the sheet: `m_vlsit_csr_<function>`, a different function name for every register set (rule R-036)> |
+| Register prefix | <the keyword that starts every register name, 2 to 8 lower-case characters (rule R-032)> |
 | Asynchronous | <0 = one clock, i_clk_apb only; 1 = APB clock i_clk_apb and register clock i_clk_reg> |
 | APB clock and register clock | <the clock of section 7 that drives i_clk_apb, and that drives i_clk_reg> |
 | Source of `i_protect_en` and `i_slverr_en` | <IP input port, or constant tie-off; constant after reset> |
@@ -301,6 +302,7 @@ Workbook requirements:
 - `Table - Register Definition` uses the columns REGISTER, OFFSET, BIT NAME, FIELD WIDTH, BIT TYPE, RESET VALUE, and DESCRIPTION. A register row (name, offset, reset value) is followed by one row per field (bit name, bit range such as `[31]` or `[28:27]`, bit type, reset value, description).
 - BIT TYPE is one of `rw`, `ro`, `rwi`, or `w1c`, as defined on the `Register_Description` sheet. Reserved bits use the bit name `reserved`.
 - Every software-visible register and field shall be declared in the workbook. The CSR RTL is generated from the workbook and shall comply with REF-003.
+- Names and descriptions follow the register conventions of the specification skill: every register is `<prefix>_<function>` with fewer than 30 characters and every field name has at most 20 characters; the register description is one line `Full name. Main meaning.`; the field description gives the explanation, `Usage:`, a `Values:` block of hexadecimal value lines, `Unit:` and `Limits:` with a blank line between the parts; a reserved field has a fixed description; the enable, injection and status interrupt registers carry the same fields as the raw interrupt register.
 - The register RTL is built by APB-CSR-Generator from the workbook, never written by hand. Register and field names are lower-case identifiers, because they become port names (`o_<reg>_<field>`, `i_<reg>_<field>`, `i_hw_wdata_<reg>_<field>`, `i_hw_we_<reg>_<field>`); the fields of a register cover bits 31..0 once, and a field named `reserved` is type `ro`.
 - A register behavior that the CSR template cannot express (another bus protocol, other widths, other access types, partial-strobe writes) is recorded as a decision in [Assumptions, dependencies, and decisions](#20-assumptions-dependencies-and-decisions). Do not add register tables to this document.
 
