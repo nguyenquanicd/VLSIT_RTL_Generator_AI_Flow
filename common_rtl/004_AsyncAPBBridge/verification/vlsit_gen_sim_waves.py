@@ -56,7 +56,7 @@ def run_rtl(name, d, branch, seed, vcd):
     if vcd:
         run.append("+VCD=" + vcd.replace("\\", "/"))
     if branch != "synthesis":
-        run.append("+APBCDC_MSYNC_SEED=%d" % seed)
+        run.append("+AFIFO_MSYNC_SEED=%d" % seed)
     out = subprocess.run(run, capture_output=True, text=True, env=ENV).stdout
     start, samples = None, []
     for line in out.splitlines():

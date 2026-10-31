@@ -5,4 +5,4 @@ m_vlsit_afifo_cell_sync.sv
 m_vlsit_sfifo_ram_macro.sv
 m_vlsit_rst_sync.sv
 m_vlsit_tie.sv
-m_vlsit_apbcdc_cell_sync.sv
+m_vlsit_clk_inv.sv

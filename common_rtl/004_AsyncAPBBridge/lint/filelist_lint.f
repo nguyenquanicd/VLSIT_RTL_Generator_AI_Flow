@@ -9,7 +9,7 @@
 ../../000_Common/rtl_cells/VLSIT_CELL_SYNC_3FF_SN.sv
 ../../000_Common/rtl_cells/VLSIT_CELL_SYNC_4FF_RN.sv
 ../../000_Common/rtl_cells/VLSIT_CELL_SYNC_4FF_SN.sv
-../../000_Common/rtl_lib/m_vlsit_apbcdc_cell_sync.sv
+../../000_Common/rtl_lib/m_vlsit_afifo_cell_sync.sv
 ../rtl/m_vlsit_apbcdc_sync.sv
 ../rtl/m_vlsit_apbcdc_mst.sv
 ../rtl/m_vlsit_apbcdc_slv.sv

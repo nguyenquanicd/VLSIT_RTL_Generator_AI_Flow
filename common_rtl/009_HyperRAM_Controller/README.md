@@ -2,9 +2,9 @@
 
 ## Scope
 
-This folder contains the design specification and research for one structural AXI4-to-HyperRAM controller top. The top has six RTL child modules: APB4 interface, APB CDC, CSR register file, AXI4 frontend, HyperBus controller, and HyperBus PHY.
+This folder contains the design specification and research for one structural AXI4-to-HyperRAM controller top. The top has seven RTL child modules: APB4 interface, APB CDC, CSR register file, AXI4 clock crossing, AXI4 frontend, HyperBus controller, and HyperBus PHY.
 
-- One clock `CLK-CORE`, at twice the CK frequency (400 MHz for a 200 MHz CK), drives AXI4, the control logic and the PHY; CK is derived from it without a PLL, and a SoC delay line positions the read capture. APB4 uses a separate asynchronous `CLK-APB` domain.
+- One clock `CLK-CORE`, at twice the CK frequency (400 MHz for a 200 MHz CK), drives AXI4, the control logic and the PHY; CK is derived from it without a PLL, and a SoC delay line positions the read capture. The AXI4 clock is the same as `CLK-CORE` or asynchronous to it, selected by `PARA_AXI_CLK_ASYNC` (the clock and reset inputs `i_clk_axi` and `i_rst_n_axi` always exist). APB4 uses a separate asynchronous `CLK-APB` domain.
 - DQ/RWDS cross the RTL top as separate input, output, and active-high output-enable ports; the SoC pad wrapper connects physical bidirectional pads.
 - Reset values are safe for all five target OPNs, so software only sets enable for a 200 MHz CK. Enable runs the RESET#-low wait, the startup waits, the CR0 and CR1 writes and an ID0 read before AXI requests are accepted.
 - One elaboration-time parameter selects HyperBus x8 or Extended-I/O x16. AXI data width is 32 or 64 bits. The default is CFG-X8-32.
@@ -22,12 +22,12 @@ This folder contains the design specification and research for one structural AX
 | `research/hyperram_protocol_and_product_research.md` | Protocol scope, target devices, and reference-source audit. |
 | `research/repair_pdf_md_pages.py` | Rebuilds selected converted document pages from their PDF text layer. |
 | `reference/md_doc/` | Locally converted standards and selected-device datasheets. Redistribution restrictions are recorded and enforced by `.gitignore`. |
-| `figures/block_diagram/` | Editable six-module block diagram and rendered SVG/PNG. |
-| `figures/waveforms/` | Sixteen WaveDrom figures (`.svg`), offline viewers (`.html`), and editable sources (`.json`); the plan was confirmed on 2026-10-28. Timing is illustrative where noted. |
+| `figures/block_diagram/` | Editable seven-module block diagram and rendered SVG/PNG. |
+| `figures/waveforms/` | Nineteen WaveDrom figures (`.svg`), offline viewers (`.html`), and editable sources (`.json`); the plan was confirmed on 2026-10-28 and extended on 2026-10-31. Timing is illustrative where noted. |
 
 ## Status
 
-The specification was rewritten on 2026-10-28 from the designer's decisions DEC-022 to DEC-033 (single 400 MHz clock, CSR timing in CK periods, run-time presets, latency modes, write response and ordering, chip selects, device command port). `vlsit_spec_tool.py check` passes. The Winbond timing values were read from the datasheet PDFs (DEC-034; the PDFs are in `reference/pdf_winbond/` and are git-ignored). Open: the performance targets (TBD-001, TBD-002), the delay-line characteristics (TBD-006), the redraw of the block diagram (OI-004), and the designer's approval of the register map.
+The specification was rewritten on 2026-10-28 from the designer's decisions DEC-022 to DEC-033 (single 400 MHz clock, CSR timing in CK periods, run-time presets, latency modes, write response and ordering, chip selects, device command port). `vlsit_spec_tool.py check` passes. The Winbond timing values were read from the datasheet PDFs (DEC-034; the PDFs are in `reference/pdf_winbond/` and are git-ignored). Open: the performance targets the delay-line characteristics (TBD-006), and the designer's approval of the register map.
 
 ---
 
@@ -35,9 +35,9 @@ The specification was rewritten on 2026-10-28 from the designer's decisions DEC-
 
 ## Phạm vi
 
-Thư mục này chứa đặc tả thiết kế và tài liệu nghiên cứu cho một module top cấu trúc, chuyển tiếp AXI4 tới HyperRAM. Top có sáu module RTL con: giao diện APB4, CDC APB, bộ thanh ghi CSR, AXI4 frontend, bộ điều khiển HyperBus và PHY HyperBus.
+Thư mục này chứa đặc tả thiết kế và tài liệu nghiên cứu cho một module top cấu trúc, chuyển tiếp AXI4 tới HyperRAM. Top có bảy module RTL con: giao diện APB4, CDC APB, bộ thanh ghi CSR, cầu clock AXI4, AXI4 frontend, bộ điều khiển HyperBus và PHY HyperBus.
 
-- Một clock `CLK-CORE` bằng hai lần tần số CK (400 MHz cho CK 200 MHz) cấp cho AXI4, phần điều khiển và PHY; CK được tạo từ nó, không cần PLL, và delay line của SoC đặt vị trí lấy mẫu dữ liệu đọc. APB4 dùng miền `CLK-APB` bất đồng bộ riêng.
+- Một clock `CLK-CORE` bằng hai lần tần số CK (400 MHz cho CK 200 MHz) cấp cho AXI4, phần điều khiển và PHY; CK được tạo từ nó, không cần PLL, và delay line của SoC đặt vị trí lấy mẫu dữ liệu đọc. Clock AXI4 trùng `CLK-CORE` hoặc bất đồng bộ với nó, chọn bằng `PARA_AXI_CLK_ASYNC` (cổng `i_clk_axi` và `i_rst_n_axi` luôn có). APB4 dùng miền `CLK-APB` bất đồng bộ riêng.
 - DQ/RWDS qua top RTL bằng các cổng input, output và output-enable active-high riêng; SoC pad wrapper nối tới pad vật lý hai chiều.
 - Giá trị reset an toàn cho cả năm OPN mục tiêu, nên với CK 200 MHz phần mềm chỉ cần bật enable. Enable chạy thời gian RESET#-low, các startup wait, ghi CR0 và CR1 rồi đọc ID0 trước khi nhận request AXI.
 - Một parameter lúc elaboration chọn HyperBus x8 hoặc Extended-I/O x16. Độ rộng data AXI là 32 hoặc 64 bit. Cấu hình mặc định là CFG-X8-32.
@@ -51,14 +51,14 @@ Thư mục này chứa đặc tả thiết kế và tài liệu nghiên cứu ch
 | Đường dẫn | Mục đích |
 |---|---|
 | `HyperRAM_Controller_Design_Specification.md` | Đặc tả thiết kế VLSIT; các quyết định còn mở nằm ở Mục 20. |
-| `HyperRAM_Controller_CSR_Specification.xlsx` | Workbook CSR theo mẫu VLSIT. Sheet `ASYNC_CSR` có 34 thanh ghi (2026-10-28) cho cấu hình, trạng thái, lệnh thiết bị, chẩn đoán, interrupt và một nhóm timing cho mỗi chip select; đang chờ người thiết kế duyệt. Địa chỉ chưa ánh xạ trả APB `PSLVERR` nhờ bộ giải mã của module giao diện APB. |
+| `HyperRAM_Controller_CSR_Specification.xlsx` | Workbook CSR theo mẫu VLSIT. Sheet `ASYNC_CSR` có 40 thanh ghi (2026-10-31) cho cấu hình, trạng thái, lệnh thiết bị, chẩn đoán, interrupt và một nhóm timing cho mỗi chip select; đang chờ người thiết kế duyệt. Địa chỉ chưa ánh xạ trả APB `PSLVERR` nhờ bộ giải mã của module giao diện APB. |
 | `research/hyperram_protocol_and_product_research.md` | Phạm vi protocol, linh kiện mục tiêu và kiểm tra nguồn tham chiếu. |
 | `research/repair_pdf_md_pages.py` | Dựng lại một số trang tài liệu đã chuyển đổi từ text layer của PDF. |
 | `reference/md_doc/` | Bản Markdown cục bộ của chuẩn và datasheet đã chọn. `.gitignore` áp dụng giới hạn tái phân phối. |
-| `figures/block_diagram/` | Sơ đồ sáu module có thể sửa và bản render SVG/PNG. |
-| `figures/waveforms/` | Mười sáu waveform WaveDrom, gồm ảnh (`.svg`), viewer offline (`.html`) và tệp nguồn chỉnh sửa được (`.json`); kế hoạch được xác nhận ngày 2026-10-28. Timing có tính minh họa tại các mục được ghi chú. |
+| `figures/block_diagram/` | Sơ đồ bảy module có thể sửa và bản render SVG/PNG. |
+| `figures/waveforms/` | Mười chín waveform WaveDrom, gồm ảnh (`.svg`), viewer offline (`.html`) và tệp nguồn chỉnh sửa được (`.json`); kế hoạch được xác nhận ngày 2026-10-28. Timing có tính minh họa tại các mục được ghi chú. |
 
 ## Trạng thái
 
-Đặc tả được viết lại ngày 2026-10-28 theo các quyết định DEC-022 đến DEC-033 của người thiết kế (một clock 400 MHz, timing CSR tính theo chu kỳ CK, preset lúc chạy, các chế độ latency, response ghi và thứ tự, chip select, cổng lệnh thiết bị). `vlsit_spec_tool.py check` đạt. Các giá trị timing của Winbond được đọc từ PDF datasheet (DEC-034; PDF nằm ở `reference/pdf_winbond/` và bị git-ignore). Còn mở: mục tiêu hiệu năng (TBD-001, TBD-002), đặc tính delay line (TBD-006), vẽ lại sơ đồ khối (OI-004), và người thiết kế duyệt bản đồ thanh ghi.
+Đặc tả được viết lại ngày 2026-10-28 theo các quyết định DEC-022 đến DEC-033 của người thiết kế (một clock 400 MHz, timing CSR tính theo chu kỳ CK, preset lúc chạy, các chế độ latency, response ghi và thứ tự, chip select, cổng lệnh thiết bị). `vlsit_spec_tool.py check` đạt. Các giá trị timing của Winbond được đọc từ PDF datasheet (DEC-034; PDF nằm ở `reference/pdf_winbond/` và bị git-ignore). Còn mở: mục tiêu hiệu năng đặc tính delay line (TBD-006), và người thiết kế duyệt bản đồ thanh ghi.
 

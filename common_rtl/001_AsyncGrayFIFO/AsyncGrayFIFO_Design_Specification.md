@@ -525,31 +525,31 @@ read request  : accepted from the cycle after o_empty = 0
 
 `o_rd_data` is the storage output register; the read module gives the next-pointer address, so after an accepted read at edge R it shows the next word after R.
 
-**Waveform plan (rule R-024).** The figures of 10.6 and 10.7.4 are drawn from simulation of the RTL and of the protocol prototype, not from WaveJSON. The `.json` beside each figure is a source descriptor: it names the simulation script that regenerates the image (Section 10.6.6). The user confirmation of each figure is not recorded because the figures predate rule R-024.
+**Waveform plan (rule R-024).** The figures of 10.6 and 10.7.4 are drawn from simulation of the RTL and of the protocol prototype (Section 10.6.6), not from WaveJSON. They were made before rule R-017 required WaveDrom (2026-10-30), so each is marked `R-017 exempt`: its source is the simulation (`waveforms/proto`), not a `.json` file. The user confirmation of each figure is not recorded because the figures predate rule R-024.
 
 | Waveform ID | Function / operation | Scenario (success / error / corner) | Signals shown | Figure | Confirmed by user |
 |---|---|---|---|---|---|
-| WF-001 | RTL array, overview: four writes fill the FIFO, an overflow, reads empty it, an underflow (OP-001, OP-002, OP-003, OP-004) | success and error | write and read interface, flags, pointers | waveforms/fifo_rtl_array_1_overview.svg | not recorded |
-| WF-002 | RTL array, write to an empty FIFO until `o_empty` falls (OP-001, OP-002) | success | write and read interface, flags, pointers | waveforms/fifo_rtl_array_2_write_to_empty_fall.svg | not recorded |
-| WF-003 | RTL array, a write to an empty FIFO while the read side waits (OP-001, OP-002) | corner | write and read interface, flags, pointers | waveforms/fifo_rtl_array_3_read_during_write.svg | not recorded |
-| WF-004 | SRAM macro, overview with overflow and underflow (OP-001, OP-002, OP-003, OP-004) | success and error | write and read interface, flags, pointers | waveforms/fifo_sram_macro_1_overview.svg | not recorded |
-| WF-005 | SRAM macro, write to an empty FIFO until `o_empty` falls (OP-001, OP-002) | success | write and read interface, flags, pointers | waveforms/fifo_sram_macro_2_write_to_empty_fall.svg | not recorded |
-| WF-006 | SRAM macro, a write to an empty FIFO while the read side waits (OP-001, OP-002) | corner | write and read interface, flags, pointers | waveforms/fifo_sram_macro_3_read_during_write.svg | not recorded |
-| WF-007 | Metastability model, S = 2 (REQ-VER-001) | corner | write and read interface, flags, pointers | waveforms/meta_model_S2.svg | not recorded |
-| WF-008 | Metastability model, S = 3 (REQ-VER-001) | corner | write and read interface, flags, pointers | waveforms/meta_model_S3.svg | not recorded |
-| WF-009 | Back-to-back writes and reads, RTL array (OP-001, OP-002) | corner (back-to-back) | write and read interface, flags, pointers | waveforms/fifo_rtl_array_4_back_to_back.svg | not recorded |
-| WF-010 | Back-to-back, RTL array, zoom (OP-001, OP-002) | corner (back-to-back) | write and read interface, flags, pointers | waveforms/fifo_rtl_array_5_back_to_back_zoom.svg | not recorded |
-| WF-011 | Back-to-back writes and reads, SRAM macro (OP-001, OP-002) | corner (back-to-back) | write and read interface, flags, pointers | waveforms/fifo_sram_macro_4_back_to_back.svg | not recorded |
-| WF-012 | Back-to-back, SRAM macro, zoom (OP-001, OP-002) | corner (back-to-back) | write and read interface, flags, pointers | waveforms/fifo_sram_macro_5_back_to_back_zoom.svg | not recorded |
-| WF-013 | Software reset, overview of the main sequence (OP-005) | success | `i_rst_n_sw`, reset FSMs, flags, `o_sw_rst_busy` | waveforms/srst_1_overview.svg | not recorded |
-| WF-014 | Software reset, request and read-side reset (OP-005) | success | `i_rst_n_sw`, reset FSMs, flags, `o_sw_rst_busy` | waveforms/srst_1a_request_and_read_reset.svg | not recorded |
-| WF-015 | Software reset, release order (OP-005) | success | `i_rst_n_sw`, reset FSMs, flags, `o_sw_rst_busy` | waveforms/srst_1b_release_order.svg | not recorded |
-| WF-016 | Software reset, flag recovery (OP-005) | success | `i_rst_n_sw`, reset FSMs, flags, `o_sw_rst_busy` | waveforms/srst_1c_flag_recovery.svg | not recorded |
-| WF-017 | Software reset by a one-cycle pulse on a full FIFO with overflow (OP-003, OP-005) | error and corner | `i_rst_n_sw`, reset FSMs, flags, `o_sw_rst_busy` | waveforms/srst_2_short_pulse_full_fifo.svg | not recorded |
-| WF-018 | Software reset asserted again while the write FSM is in REL (OP-005) | corner | `i_rst_n_sw`, reset FSMs, flags, `o_sw_rst_busy` | waveforms/srst_3_reassert_in_rel.svg | not recorded |
-| WF-019 | Hardware reset in the middle of a software reset sequence (OP-005) | corner | `i_rst_n_sw`, reset FSMs, flags, `o_sw_rst_busy` | waveforms/srst_4_hardware_reset_during_sequence.svg | not recorded |
-| WF-020 | `o_sw_rst_busy` follows the write FSM (OP-005) | success | `i_rst_n_sw`, reset FSMs, flags, `o_sw_rst_busy` | waveforms/srst_5_busy_vs_state.svg | not recorded |
-| WF-021 | `o_sw_rst_busy` between two sequences (OP-005) | corner | `i_rst_n_sw`, reset FSMs, flags, `o_sw_rst_busy` | waveforms/srst_6_busy_between_sequences.svg | not recorded |
+| WF-001 | RTL array, overview: four writes fill the FIFO, an overflow, reads empty it, an underflow (OP-001, OP-002, OP-003, OP-004) | success and error | write and read interface, flags, pointers | waveforms/fifo_rtl_array_1_overview.svg R-017 exempt | not recorded |
+| WF-002 | RTL array, write to an empty FIFO until `o_empty` falls (OP-001, OP-002) | success | write and read interface, flags, pointers | waveforms/fifo_rtl_array_2_write_to_empty_fall.svg R-017 exempt | not recorded |
+| WF-003 | RTL array, a write to an empty FIFO while the read side waits (OP-001, OP-002) | corner | write and read interface, flags, pointers | waveforms/fifo_rtl_array_3_read_during_write.svg R-017 exempt | not recorded |
+| WF-004 | SRAM macro, overview with overflow and underflow (OP-001, OP-002, OP-003, OP-004) | success and error | write and read interface, flags, pointers | waveforms/fifo_sram_macro_1_overview.svg R-017 exempt | not recorded |
+| WF-005 | SRAM macro, write to an empty FIFO until `o_empty` falls (OP-001, OP-002) | success | write and read interface, flags, pointers | waveforms/fifo_sram_macro_2_write_to_empty_fall.svg R-017 exempt | not recorded |
+| WF-006 | SRAM macro, a write to an empty FIFO while the read side waits (OP-001, OP-002) | corner | write and read interface, flags, pointers | waveforms/fifo_sram_macro_3_read_during_write.svg R-017 exempt | not recorded |
+| WF-007 | Metastability model, S = 2 (REQ-VER-001) | corner | write and read interface, flags, pointers | waveforms/meta_model_S2.svg R-017 exempt | not recorded |
+| WF-008 | Metastability model, S = 3 (REQ-VER-001) | corner | write and read interface, flags, pointers | waveforms/meta_model_S3.svg R-017 exempt | not recorded |
+| WF-009 | Back-to-back writes and reads, RTL array (OP-001, OP-002) | corner (back-to-back) | write and read interface, flags, pointers | waveforms/fifo_rtl_array_4_back_to_back.svg R-017 exempt | not recorded |
+| WF-010 | Back-to-back, RTL array, zoom (OP-001, OP-002) | corner (back-to-back) | write and read interface, flags, pointers | waveforms/fifo_rtl_array_5_back_to_back_zoom.svg R-017 exempt | not recorded |
+| WF-011 | Back-to-back writes and reads, SRAM macro (OP-001, OP-002) | corner (back-to-back) | write and read interface, flags, pointers | waveforms/fifo_sram_macro_4_back_to_back.svg R-017 exempt | not recorded |
+| WF-012 | Back-to-back, SRAM macro, zoom (OP-001, OP-002) | corner (back-to-back) | write and read interface, flags, pointers | waveforms/fifo_sram_macro_5_back_to_back_zoom.svg R-017 exempt | not recorded |
+| WF-013 | Software reset, overview of the main sequence (OP-005) | success | `i_rst_n_sw`, reset FSMs, flags, `o_sw_rst_busy` | waveforms/srst_1_overview.svg R-017 exempt | not recorded |
+| WF-014 | Software reset, request and read-side reset (OP-005) | success | `i_rst_n_sw`, reset FSMs, flags, `o_sw_rst_busy` | waveforms/srst_1a_request_and_read_reset.svg R-017 exempt | not recorded |
+| WF-015 | Software reset, release order (OP-005) | success | `i_rst_n_sw`, reset FSMs, flags, `o_sw_rst_busy` | waveforms/srst_1b_release_order.svg R-017 exempt | not recorded |
+| WF-016 | Software reset, flag recovery (OP-005) | success | `i_rst_n_sw`, reset FSMs, flags, `o_sw_rst_busy` | waveforms/srst_1c_flag_recovery.svg R-017 exempt | not recorded |
+| WF-017 | Software reset by a one-cycle pulse on a full FIFO with overflow (OP-003, OP-005) | error and corner | `i_rst_n_sw`, reset FSMs, flags, `o_sw_rst_busy` | waveforms/srst_2_short_pulse_full_fifo.svg R-017 exempt | not recorded |
+| WF-018 | Software reset asserted again while the write FSM is in REL (OP-005) | corner | `i_rst_n_sw`, reset FSMs, flags, `o_sw_rst_busy` | waveforms/srst_3_reassert_in_rel.svg R-017 exempt | not recorded |
+| WF-019 | Hardware reset in the middle of a software reset sequence (OP-005) | corner | `i_rst_n_sw`, reset FSMs, flags, `o_sw_rst_busy` | waveforms/srst_4_hardware_reset_during_sequence.svg R-017 exempt | not recorded |
+| WF-020 | `o_sw_rst_busy` follows the write FSM (OP-005) | success | `i_rst_n_sw`, reset FSMs, flags, `o_sw_rst_busy` | waveforms/srst_5_busy_vs_state.svg R-017 exempt | not recorded |
+| WF-021 | `o_sw_rst_busy` between two sequences (OP-005) | corner | `i_rst_n_sw`, reset FSMs, flags, `o_sw_rst_busy` | waveforms/srst_6_busy_between_sequences.svg R-017 exempt | not recorded |
 
 ### 10.4 Arbitration, buffering, and throughput
 

@@ -1,0 +1,2724 @@
+    {
+    "Project": "APB-CSR-Generator",
+    "Module": "JSON debug file",
+    "Function": "Used to check the configuration after generation",
+    "Author": "Trthinh (Ethan)",
+    "Generator": "PC",
+    "Generator version": "2.1",
+    "Page": "VLSI Technology",
+    "Table - Configuration": [
+    {
+        "Module Name": "m_vlsit_csr_regfile",
+        "Address Width": "16",
+        "Data Width": "32",
+        "Protocol": "APB",
+        "Asynchornous": "1"
+    }
+    ],
+    "Table - Register Definition": [
+        {
+        "Register Name": "hr_ctrl",
+        "Offset": "0x0",
+        "Reset Value": "0x00000010",
+        "Descriprtion": "HyperRAM controller control register. Enables the controller and selects write response, arbitration and request merging.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:7]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "resume",
+                "Bit Type": "rwi",
+                "Bit Field": "[6]",
+                "Reset Value": "0x0",
+                "Description": "Resume command. Software writes 1 to leave the hold state after a timeout; hardware clears it when the controller accepts AXI requests again.
+
+Usage: write 1 only while hr_sts.hold = 1, after reading the log (hr_tmo_log, hr_tmo_addr) and, if needed, checking the device with the command port (hr_cmd); a write in any other state is ignored. A software write wins over the hardware clear in the same cycle.
+
+Values:
+0x0 no action (reset value);
+0x1 leave the hold state; reads 0x1 until the controller has resumed.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "tmo_act",
+                "Bit Type": "rw",
+                "Bit Field": "[5]",
+                "Reset Value": "0x0",
+                "Description": "Timeout action. Selects what the controller does after a device timeout: stop the failed access and wait for software, or re-initialize the device by itself.
+
+Usage: program it before enable or while idle. With 0 the controller ends the failed access, completes the AXI request with SLVERR, enters the hold state (hr_sts.hold = 1) and holds new AXI requests until software writes hr_ctrl.resume or clears hr_ctrl.en. With 1 it runs the start-up sequence again (RESET# low for t_rp, the waits, CR0, CR1, ID0), completes every queued AXI request with SLVERR, and then accepts requests; the RAM content is lost (REQ-RST-005).
+
+Values:
+0x0 abort and wait for software (reset value);
+0x1 re-initialize automatically.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "merge_en",
+                "Bit Type": "rw",
+                "Bit Field": "[4]",
+                "Reset Value": "0x1",
+                "Description": "Request merging enable. When 1, a request that continues the previous one (same direction, same chip select, next linear address) is sent inside the open HyperBus transaction without a new command and latency phase.
+
+Usage: program it before enable or while idle. Merging stops at the CS#-low limit of the chip select (hr_dN_tcsm.t_csm) and a new transaction starts.
+
+Values:
+0x0 every request starts a new HyperBus transaction;
+0x1 merge when possible (reset value).
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "arb_mode",
+                "Bit Type": "rw",
+                "Bit Field": "[3:2]",
+                "Reset Value": "0x0",
+                "Description": "Read and write arbitration mode. Selects which direction the controller serves first when a read and a write are both waiting for the HyperBus.
+
+Usage: program it before enable or while idle. A read that overlaps the bytes of an older pending write always waits for that write, whatever the mode. After 8 consecutive segments of the preferred direction one segment of the other direction is served.
+
+Values:
+0x0 round robin (reset value);
+0x1 read priority;
+0x2 write priority;
+0x3 reserved.
+
+Unit: none.
+
+Limits: do not write 0x3."
+            },
+            {
+                "Bit Name": "wr_posted",
+                "Bit Type": "rw",
+                "Bit Field": "[1]",
+                "Reset Value": "0x0",
+                "Description": "Posted write mode. Selects when the AXI write response (B channel) is returned: after the data reached the RAM, or as soon as the last write beat is stored in the controller write buffer.
+
+Usage: program it before enable or while the controller is idle; it is applied to writes accepted afterwards. With 1, o_idle stays low until the write buffer is empty, so wait for idle before a reset.
+
+Values:
+0x0 B response after the RAM write ended (reset value, safe);
+0x1 posted write, B response when the last W beat is buffered.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "en",
+                "Bit Type": "rw",
+                "Bit Field": "[0]",
+                "Reset Value": "0x0",
+                "Description": "Controller enable. Starts the start-up sequence of the controller: the RESET# low wait, the device wait times, the CR0 and CR1 writes and the ID0 read, after which AXI requests are accepted.
+
+Usage: program every timing and configuration field of the used chip selects while it is 0, then write 1. Writing 1 while a field is illegal is refused and sets hr_irq_raw.cfg_err. Software writes it; reset clears it. Clearing it later stops the controller and the RAM content is lost.
+
+Values:
+0x0 controller disabled, RESET# held low (reset value);
+0x1 controller enabled.
+
+Unit: none.
+
+Limits: none."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_sts",
+        "Offset": "0x4",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "HyperRAM controller status register. Shows the live state of the start-up, the AXI traffic and the device command port.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:15]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "hold",
+                "Bit Type": "ro",
+                "Bit Field": "[14]",
+                "Reset Value": "0x0",
+                "Description": "Hold state flag. Reads 1 while the controller waits for software after a device timeout with hr_ctrl.tmo_act = 0.
+
+Usage: read-only; while it is 1 new AXI requests wait and the device command port still works. Leave it by writing hr_ctrl.resume, or clear hr_ctrl.en to restart with a full start-up.
+
+Values:
+0x0 not in hold (reset value);
+0x1 hold.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "cmd_busy",
+                "Bit Type": "ro",
+                "Bit Field": "[13]",
+                "Reset Value": "0x0",
+                "Description": "Device command busy. Reads 1 while a device register command started through hr_cmd is running.
+
+Usage: read-only; do not rewrite hr_cmd while it is 1. AXI requests wait while it is 1.
+
+Values:
+0x0 no command running;
+0x1 command running.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "wr_out",
+                "Bit Type": "ro",
+                "Bit Field": "[12:10]",
+                "Reset Value": "0x0",
+                "Description": "Outstanding writes. Number of accepted AXI writes whose B response has not been delivered yet.
+
+Usage: read-only; with hr_ctrl.wr_posted = 1 the value also counts posted writes still in the buffer.
+
+Values:
+0x0 to 0x4 number of outstanding writes.
+
+Unit: writes.
+
+Limits: at most 0x4."
+            },
+            {
+                "Bit Name": "rd_out",
+                "Bit Type": "ro",
+                "Bit Field": "[9:7]",
+                "Reset Value": "0x0",
+                "Description": "Outstanding reads. Number of accepted AXI reads whose last data beat has not been delivered yet.
+
+Usage: read-only; useful to check that the AXI side is drained.
+
+Values:
+0x0 to 0x4 number of outstanding reads.
+
+Unit: reads.
+
+Limits: at most 0x4."
+            },
+            {
+                "Bit Name": "memrst_n",
+                "Bit Type": "ro",
+                "Bit Field": "[6]",
+                "Reset Value": "0x0",
+                "Description": "Memory RESET# level. Reads the level driven on the RESET# pin of the HyperRAM (active low).
+
+Usage: read-only; it is 0 while the controller is disabled, in reset or counting hr_dN_trst.t_rp, and 1 after the release.
+
+Values:
+0x0 RESET# asserted;
+0x1 RESET# released.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "pwr_good",
+                "Bit Type": "ro",
+                "Bit Field": "[5]",
+                "Reset Value": "0x0",
+                "Description": "Memory power good. Level of the memory power-good input after synchronization to the core clock.
+
+Usage: read-only; a falling edge sets hr_irq_raw.pwr_lost and blocks AXI access until the core reset sequence is run.
+
+Values:
+0x0 power not good;
+0x1 power good.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[4]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "cfg_valid",
+                "Bit Type": "ro",
+                "Bit Field": "[3]",
+                "Reset Value": "0x0",
+                "Description": "Configuration valid. Reads 1 when every timing and configuration field is inside its legal range.
+
+Usage: read-only; check it after programming and before writing hr_ctrl.en. When it is 0 the enable is refused and hr_irq_raw.cfg_err is set.
+
+Values:
+0x0 at least one field is illegal;
+0x1 all fields are legal.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "idle",
+                "Bit Type": "ro",
+                "Bit Field": "[2]",
+                "Reset Value": "0x0",
+                "Description": "Controller idle. Same condition as the o_idle output: all accepted work is finished, the write buffer is empty, no command runs and CS# is high.
+
+Usage: read-only; the SoC reset logic waits for 1 before it asserts the core reset (the APB side stays out of this wait).
+
+Values:
+0x0 busy or not initialized;
+0x1 idle.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "init_done",
+                "Bit Type": "ro",
+                "Bit Field": "[1]",
+                "Reset Value": "0x0",
+                "Description": "Initialization done. Reads 1 when the start-up sequence has completed and the controller accepts AXI requests and device commands.
+
+Usage: read-only; wait for 1 before any AXI access or hr_cmd command. A core reset or clearing hr_ctrl.en returns it to 0.
+
+Values:
+0x0 not ready;
+0x1 ready.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "init_busy",
+                "Bit Type": "ro",
+                "Bit Field": "[0]",
+                "Reset Value": "0x0",
+                "Description": "Start-up busy. Reads 1 while the controller runs the RESET#, wait, CR0, CR1 and ID0 sequence after enable.
+
+Usage: read-only; poll it after writing hr_ctrl.en. It falls to 0 when hr_sts.init_done rises.
+
+Values:
+0x0 not running;
+0x1 start-up running.
+
+Unit: none.
+
+Limits: none."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_cap",
+        "Offset": "0x8",
+        "Reset Value": "0x00000004",
+        "Descriprtion": "HyperRAM controller capability register. Reports the elaboration parameters of this build.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:8]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "dly_w",
+                "Bit Type": "ro",
+                "Bit Field": "[7:4]",
+                "Reset Value": "0x0",
+                "Description": "Delay-line select width. Reports the width of the delay-line tap select, PARA_DLY_TAP_W.
+
+Usage: read-only; the field hr_dN_rcap.tap uses only this many low bits.
+
+Values:
+0x1 to 0x8 width of the delay-line tap select.
+
+Unit: bits.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "num_cs",
+                "Bit Type": "ro",
+                "Bit Field": "[3:2]",
+                "Reset Value": "0x1",
+                "Description": "Number of chip selects. Reports the parameter PARA_NUM_CS.
+
+Usage: read-only; program the register group hr_d1_* only when it is 2.
+
+Values:
+0x1 one chip select;
+0x2 two chip selects.
+
+Unit: chip selects.
+
+Limits: 0x1 or 0x2."
+            },
+            {
+                "Bit Name": "mem_x16",
+                "Bit Type": "ro",
+                "Bit Field": "[1]",
+                "Reset Value": "0x0",
+                "Description": "Memory width. Reports the HyperBus profile chosen with the parameter PARA_MEM_DQ_W.
+
+Usage: read-only; select the device values that match this width.
+
+Values:
+0x0 x8 HyperBus;
+0x1 x16 Extended-I/O.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "axi_w64",
+                "Bit Type": "ro",
+                "Bit Field": "[0]",
+                "Reset Value": "0x0",
+                "Description": "AXI data width. Reports the width chosen with the parameter PARA_AXI_DATA_W.
+
+Usage: read-only; software uses it to size its AXI accesses.
+
+Values:
+0x0 32-bit AXI data;
+0x1 64-bit AXI data.
+
+Unit: none.
+
+Limits: none."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_size",
+        "Offset": "0xC",
+        "Reset Value": "0x02000000",
+        "Descriprtion": "HyperRAM aperture size register. Reports the byte capacity of one chip select.",
+        "Bits": [
+            {
+                "Bit Name": "bytes",
+                "Bit Type": "ro",
+                "Bit Field": "[31:0]",
+                "Reset Value": "0x2000000",
+                "Description": "Aperture size of one chip select. Reports the parameter PARA_MEM_SIZE_BYTES, the size of the AXI address window that maps to one device.
+
+Usage: read-only; the second chip select starts at this offset in the AXI window.
+
+Values:
+0x00000001 to 0x02000000 aperture size of one chip select (reset value 0x02000000, that is 32 MiB).
+
+Unit: bytes.
+
+Limits: not larger than the device capacity."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_clk",
+        "Offset": "0x10",
+        "Reset Value": "0x00000002",
+        "Descriprtion": "HyperBus clock register. Sets the clock divider, the clock type and the clock phase of the memory interface.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:10]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "ck_phase",
+                "Bit Type": "rw",
+                "Bit Field": "[9]",
+                "Reset Value": "0x0",
+                "Description": "CK phase select. Chooses the core clock edge on which CK toggles, which sets the offset between CK and the write data.
+
+Usage: program it while hr_ctrl.en = 0. With 0 the CK edge lies in the middle of each write data interval (1.25 ns from the data change at 200 MHz); with 1 CK and data change on the same edge.
+
+Values:
+0x0 CK toggles on the falling core clock edge (reset value);
+0x1 CK toggles on the rising edge.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "ck_diff",
+                "Bit Type": "rw",
+                "Bit Field": "[8]",
+                "Reset Value": "0x0",
+                "Description": "Differential clock enable. Selects whether the controller drives the complementary clock CK# or leaves it high; it is also written into CR1[6] of the device.
+
+Usage: program it while hr_ctrl.en = 0, before the start-up writes CR1; the devices must support the chosen clock type.
+
+Values:
+0x0 single-ended CK, CK# held high (reset value);
+0x1 differential CK and CK#.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "ck_div",
+                "Bit Type": "rw",
+                "Bit Field": "[7:0]",
+                "Reset Value": "0x2",
+                "Description": "HyperBus clock divider. Number of core clock cycles in one HyperBus CK period; CK is the core clock divided by this value.
+
+Usage: program it while hr_ctrl.en = 0 and rescale every timing count (they are counted in CK periods) when you change it. 2 gives CK = 200 MHz for a 400 MHz core clock.
+
+Values:
+0x02 to 0xFE even values only (reset value 0x02);
+0x03 to 0xFD odd values are illegal; 0x00 and 0x01 are illegal.
+
+Unit: core clock cycles per CK period.
+
+Limits: odd values, 0x00 and 0x01 are illegal (cfg_valid = 0); the CK frequency must not exceed 200 MHz."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_cmd",
+        "Offset": "0x14",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Device register command register. Starts a read or a write of one register of the HyperRAM device.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:3]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "cs",
+                "Bit Type": "rw",
+                "Bit Field": "[2]",
+                "Reset Value": "0x0",
+                "Description": "Command chip select. Selects the chip select (device) that receives the command.
+
+Usage: program it before writing hr_cmd.go; value 1 is legal only when hr_cap.num_cs is 2.
+
+Values:
+0x0 chip select 0;
+0x1 chip select 1.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "wr",
+                "Bit Type": "rw",
+                "Bit Field": "[1]",
+                "Reset Value": "0x0",
+                "Description": "Command direction. Selects whether the command reads or writes the device register.
+
+Usage: program it before writing hr_cmd.go. A write sends hr_cmd_wdata with zero latency; a read waits the programmed latency and captures one word into hr_cmd_rdata.rdata.
+
+Values:
+0x0 read the register;
+0x1 write the register.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "go",
+                "Bit Type": "rwi",
+                "Bit Field": "[0]",
+                "Reset Value": "0x0",
+                "Description": "Command start. Starting bit of a device register command; hardware clears it when the command has finished.
+
+Usage: first write hr_cmd_addr, hr_cmd_wdata (for a write), hr_cmd.wr and hr_cmd.cs, then write 1 here, only when hr_sts.cmd_busy = 0. A software write wins over the hardware clear in the same cycle, so do not rewrite the register while the command runs.
+
+Values:
+0x0 no command running (reset value);
+0x1 start the command; reads 0x1 until the command is done.
+
+Unit: none.
+
+Limits: a command before hr_sts.init_done = 1 is rejected and sets hr_cmd_rdata.err."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_cmd_addr",
+        "Offset": "0x18",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Device register address register. Holds the address of the device register for a command.",
+        "Bits": [
+            {
+                "Bit Name": "addr",
+                "Bit Type": "rw",
+                "Bit Field": "[31:0]",
+                "Reset Value": "0x0",
+                "Description": "Device register address. Word address sent in the command and address phase with the register-space bit set.
+
+Usage: program it before writing hr_cmd.go; the register addresses (for example ID0, ID1, CR0 and CR1) are given in the device datasheet.
+
+Values:
+0x00000000 to 0xFFFFFFFF word address of the device register space.
+
+Unit: 16-bit words.
+
+Limits: use only addresses that the device defines."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_cmd_wdata",
+        "Offset": "0x1C",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Device register write data register. Holds the data of a device register write command.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:16]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "wdata",
+                "Bit Type": "rw",
+                "Bit Field": "[15:0]",
+                "Reset Value": "0x0",
+                "Description": "Device register write data. The 16-bit value written into the device register by a write command.
+
+Usage: program it before writing hr_cmd.go with hr_cmd.wr = 1; unused for a read command.
+
+Values:
+0x0000 to 0xFFFF data of the register write.
+
+Unit: none.
+
+Limits: write reserved device fields with their default value; writing CR0[7:4] differently from hr_dN_cfg.init_lat sets hr_irq_raw.lat_mis."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_cmd_rdata",
+        "Offset": "0x20",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Device register read data register. Returns the data of a device register read command and its completion flags.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:18]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "err",
+                "Bit Type": "w1c",
+                "Bit Field": "[17]",
+                "Reset Value": "0x0",
+                "Description": "Command error flag. Hardware sets it when a command is rejected because the controller is not initialized.
+
+Usage: check it when hr_cmd_rdata.done does not rise; write 1 to clear.
+
+Values:
+0x0 no error;
+0x1 command rejected.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "done",
+                "Bit Type": "w1c",
+                "Bit Field": "[16]",
+                "Reset Value": "0x0",
+                "Description": "Command done flag. Hardware sets it when a device register command has completed; software clears it.
+
+Usage: poll it or use hr_irq_raw.cmd_done; write 1 to clear before the next command. A hardware set in the same cycle as the clear wins.
+
+Values:
+0x0 no completed command;
+0x1 command completed.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "rdata",
+                "Bit Type": "ro",
+                "Bit Field": "[15:0]",
+                "Reset Value": "0x0",
+                "Description": "Device register read data. The 16-bit word captured by the last read command.
+
+Usage: read it after hr_cmd_rdata.done is 1; its content is not defined before.
+
+Values:
+0x0000 to 0xFFFF content of the device register.
+
+Unit: none.
+
+Limits: none."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_irq_raw",
+        "Offset": "0x24",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Raw interrupt status register. Holds the sticky event flags of the controller before masking.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:9]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "tmo",
+                "Bit Type": "w1c",
+                "Bit Field": "[8]",
+                "Reset Value": "0x0",
+                "Description": "Device timeout event. Set when the device did not answer within the wait time of hr_dN_tmo.t_tmo, for example no read data strobe after the initial latency.
+
+Usage: read hr_tmo_log and hr_tmo_addr to find the command, the address and the step that was waited for; then act as hr_ctrl.tmo_act selects; write 1 to clear. The log stays until hr_tmo_log.valid is cleared.
+
+Values:
+0x0 no event;
+0x1 event occurred.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "cmd_done",
+                "Bit Type": "w1c",
+                "Bit Field": "[7]",
+                "Reset Value": "0x0",
+                "Description": "Device command done event. Set when a device register command has completed.
+
+Usage: together with hr_cmd_rdata.done; write 1 to clear.
+
+Values:
+0x0 no event;
+0x1 event occurred.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "lat_mis",
+                "Bit Type": "w1c",
+                "Bit Field": "[6]",
+                "Reset Value": "0x0",
+                "Description": "Latency mismatch event. Set when a device register write changes CR0[7:4] to a latency code that differs from hr_dN_cfg.init_lat.
+
+Usage: the controller keeps its own latency; restore CR0 or change init_lat while disabled; write 1 to clear.
+
+Values:
+0x0 no event;
+0x1 event occurred.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "id_mis",
+                "Bit Type": "w1c",
+                "Bit Field": "[5]",
+                "Reset Value": "0x0",
+                "Description": "ID mismatch event. Set when the ID0 value read after start-up differs from hr_dN_id.id0_exp of that chip select.
+
+Usage: only active when hr_dN_id.id_chk_en = 1; AXI access is not blocked; write 1 to clear.
+
+Values:
+0x0 no event;
+0x1 event occurred.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "pwr_lost",
+                "Bit Type": "w1c",
+                "Bit Field": "[4]",
+                "Reset Value": "0x0",
+                "Description": "Power loss event. Set when the synchronized memory power-good signal falls.
+
+Usage: run the reset sequence of the SoC; accepted work may not complete; write 1 to clear.
+
+Values:
+0x0 no event;
+0x1 event occurred.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "slverr",
+                "Bit Type": "w1c",
+                "Bit Field": "[3]",
+                "Reset Value": "0x0",
+                "Description": "AXI slave error event. Set when a request with an unsupported burst type (FIXED) is answered with SLVERR.
+
+Usage: details are in hr_err_ri and hr_err_wi; write 1 to clear.
+
+Values:
+0x0 no event;
+0x1 event occurred.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "decerr",
+                "Bit Type": "w1c",
+                "Bit Field": "[2]",
+                "Reset Value": "0x0",
+                "Description": "AXI decode error event. Set when a request addresses bytes outside the aperture and is answered with DECERR.
+
+Usage: the address and ID of the request are in hr_err_ra and hr_err_wa; write 1 to clear.
+
+Values:
+0x0 no event;
+0x1 event occurred.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "cfg_err",
+                "Bit Type": "w1c",
+                "Bit Field": "[1]",
+                "Reset Value": "0x0",
+                "Description": "Configuration error event. Set when hr_ctrl.en is written with an illegal field, or when a CSR field is changed in a way that the controller refuses.
+
+Usage: read hr_sts.cfg_valid to find that a field is illegal; correct the field and write hr_ctrl.en again; write 1 to clear.
+
+Values:
+0x0 no event;
+0x1 event occurred.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "init_ok",
+                "Bit Type": "w1c",
+                "Bit Field": "[0]",
+                "Reset Value": "0x0",
+                "Description": "Initialization complete event. Set when the start-up sequence has finished.
+
+Usage: enable it in hr_irq_en to get an interrupt instead of polling hr_sts.init_done; write 1 to clear.
+
+Values:
+0x0 no event;
+0x1 event occurred.
+
+Unit: none.
+
+Limits: none."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_irq_en",
+        "Offset": "0x28",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Interrupt enable register. Selects which raw interrupt events drive the interrupt output.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:9]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "tmo",
+                "Bit Type": "rw",
+                "Bit Field": "[8]",
+                "Reset Value": "0x0",
+                "Description": "Device timeout interrupt enable. Lets the device timeout event of hr_irq_raw drive the interrupt output o_int_hyperram.
+
+Usage: program it at any time; the interrupt output is the OR of every raw event AND its enable. Clearing the enable does not clear the raw event, it only hides it.
+
+Values:
+0x0 masked, the event does not raise the interrupt output (reset value);
+0x1 enabled.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "cmd_done",
+                "Bit Type": "rw",
+                "Bit Field": "[7]",
+                "Reset Value": "0x0",
+                "Description": "Device command done interrupt enable. Lets the device command done event of hr_irq_raw drive the interrupt output o_int_hyperram.
+
+Usage: program it at any time; the interrupt output is the OR of every raw event AND its enable. Clearing the enable does not clear the raw event, it only hides it.
+
+Values:
+0x0 masked, the event does not raise the interrupt output (reset value);
+0x1 enabled.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "lat_mis",
+                "Bit Type": "rw",
+                "Bit Field": "[6]",
+                "Reset Value": "0x0",
+                "Description": "Latency mismatch interrupt enable. Lets the latency mismatch event of hr_irq_raw drive the interrupt output o_int_hyperram.
+
+Usage: program it at any time; the interrupt output is the OR of every raw event AND its enable. Clearing the enable does not clear the raw event, it only hides it.
+
+Values:
+0x0 masked, the event does not raise the interrupt output (reset value);
+0x1 enabled.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "id_mis",
+                "Bit Type": "rw",
+                "Bit Field": "[5]",
+                "Reset Value": "0x0",
+                "Description": "ID mismatch interrupt enable. Lets the id mismatch event of hr_irq_raw drive the interrupt output o_int_hyperram.
+
+Usage: program it at any time; the interrupt output is the OR of every raw event AND its enable. Clearing the enable does not clear the raw event, it only hides it.
+
+Values:
+0x0 masked, the event does not raise the interrupt output (reset value);
+0x1 enabled.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "pwr_lost",
+                "Bit Type": "rw",
+                "Bit Field": "[4]",
+                "Reset Value": "0x0",
+                "Description": "Power loss interrupt enable. Lets the power loss event of hr_irq_raw drive the interrupt output o_int_hyperram.
+
+Usage: program it at any time; the interrupt output is the OR of every raw event AND its enable. Clearing the enable does not clear the raw event, it only hides it.
+
+Values:
+0x0 masked, the event does not raise the interrupt output (reset value);
+0x1 enabled.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "slverr",
+                "Bit Type": "rw",
+                "Bit Field": "[3]",
+                "Reset Value": "0x0",
+                "Description": "AXI slave error interrupt enable. Lets the axi slave error event of hr_irq_raw drive the interrupt output o_int_hyperram.
+
+Usage: program it at any time; the interrupt output is the OR of every raw event AND its enable. Clearing the enable does not clear the raw event, it only hides it.
+
+Values:
+0x0 masked, the event does not raise the interrupt output (reset value);
+0x1 enabled.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "decerr",
+                "Bit Type": "rw",
+                "Bit Field": "[2]",
+                "Reset Value": "0x0",
+                "Description": "AXI decode error interrupt enable. Lets the axi decode error event of hr_irq_raw drive the interrupt output o_int_hyperram.
+
+Usage: program it at any time; the interrupt output is the OR of every raw event AND its enable. Clearing the enable does not clear the raw event, it only hides it.
+
+Values:
+0x0 masked, the event does not raise the interrupt output (reset value);
+0x1 enabled.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "cfg_err",
+                "Bit Type": "rw",
+                "Bit Field": "[1]",
+                "Reset Value": "0x0",
+                "Description": "Configuration error interrupt enable. Lets the configuration error event of hr_irq_raw drive the interrupt output o_int_hyperram.
+
+Usage: program it at any time; the interrupt output is the OR of every raw event AND its enable. Clearing the enable does not clear the raw event, it only hides it.
+
+Values:
+0x0 masked, the event does not raise the interrupt output (reset value);
+0x1 enabled.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "init_ok",
+                "Bit Type": "rw",
+                "Bit Field": "[0]",
+                "Reset Value": "0x0",
+                "Description": "Initialization complete interrupt enable. Lets the initialization complete event of hr_irq_raw drive the interrupt output o_int_hyperram.
+
+Usage: program it at any time; the interrupt output is the OR of every raw event AND its enable. Clearing the enable does not clear the raw event, it only hides it.
+
+Values:
+0x0 masked, the event does not raise the interrupt output (reset value);
+0x1 enabled.
+
+Unit: none.
+
+Limits: none."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_irq_sts",
+        "Offset": "0x2C",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Masked interrupt status register. Shows which raw interrupt events are raised and enabled.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:9]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "tmo",
+                "Bit Type": "ro",
+                "Bit Field": "[8]",
+                "Reset Value": "0x0",
+                "Description": "Device timeout masked interrupt status. Reads 1 when the device timeout event is raised in hr_irq_raw and enabled in hr_irq_en.
+
+Usage: read-only; read it in the interrupt handler to find the cause, then clear the cause in hr_irq_raw. The interrupt output is high when any bit is 1.
+
+Values:
+0x0 not pending (reset value);
+0x1 pending.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "cmd_done",
+                "Bit Type": "ro",
+                "Bit Field": "[7]",
+                "Reset Value": "0x0",
+                "Description": "Device command done masked interrupt status. Reads 1 when the device command done event is raised in hr_irq_raw and enabled in hr_irq_en.
+
+Usage: read-only; read it in the interrupt handler to find the cause, then clear the cause in hr_irq_raw. The interrupt output is high when any bit is 1.
+
+Values:
+0x0 not pending (reset value);
+0x1 pending.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "lat_mis",
+                "Bit Type": "ro",
+                "Bit Field": "[6]",
+                "Reset Value": "0x0",
+                "Description": "Latency mismatch masked interrupt status. Reads 1 when the latency mismatch event is raised in hr_irq_raw and enabled in hr_irq_en.
+
+Usage: read-only; read it in the interrupt handler to find the cause, then clear the cause in hr_irq_raw. The interrupt output is high when any bit is 1.
+
+Values:
+0x0 not pending (reset value);
+0x1 pending.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "id_mis",
+                "Bit Type": "ro",
+                "Bit Field": "[5]",
+                "Reset Value": "0x0",
+                "Description": "ID mismatch masked interrupt status. Reads 1 when the id mismatch event is raised in hr_irq_raw and enabled in hr_irq_en.
+
+Usage: read-only; read it in the interrupt handler to find the cause, then clear the cause in hr_irq_raw. The interrupt output is high when any bit is 1.
+
+Values:
+0x0 not pending (reset value);
+0x1 pending.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "pwr_lost",
+                "Bit Type": "ro",
+                "Bit Field": "[4]",
+                "Reset Value": "0x0",
+                "Description": "Power loss masked interrupt status. Reads 1 when the power loss event is raised in hr_irq_raw and enabled in hr_irq_en.
+
+Usage: read-only; read it in the interrupt handler to find the cause, then clear the cause in hr_irq_raw. The interrupt output is high when any bit is 1.
+
+Values:
+0x0 not pending (reset value);
+0x1 pending.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "slverr",
+                "Bit Type": "ro",
+                "Bit Field": "[3]",
+                "Reset Value": "0x0",
+                "Description": "AXI slave error masked interrupt status. Reads 1 when the axi slave error event is raised in hr_irq_raw and enabled in hr_irq_en.
+
+Usage: read-only; read it in the interrupt handler to find the cause, then clear the cause in hr_irq_raw. The interrupt output is high when any bit is 1.
+
+Values:
+0x0 not pending (reset value);
+0x1 pending.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "decerr",
+                "Bit Type": "ro",
+                "Bit Field": "[2]",
+                "Reset Value": "0x0",
+                "Description": "AXI decode error masked interrupt status. Reads 1 when the axi decode error event is raised in hr_irq_raw and enabled in hr_irq_en.
+
+Usage: read-only; read it in the interrupt handler to find the cause, then clear the cause in hr_irq_raw. The interrupt output is high when any bit is 1.
+
+Values:
+0x0 not pending (reset value);
+0x1 pending.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "cfg_err",
+                "Bit Type": "ro",
+                "Bit Field": "[1]",
+                "Reset Value": "0x0",
+                "Description": "Configuration error masked interrupt status. Reads 1 when the configuration error event is raised in hr_irq_raw and enabled in hr_irq_en.
+
+Usage: read-only; read it in the interrupt handler to find the cause, then clear the cause in hr_irq_raw. The interrupt output is high when any bit is 1.
+
+Values:
+0x0 not pending (reset value);
+0x1 pending.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "init_ok",
+                "Bit Type": "ro",
+                "Bit Field": "[0]",
+                "Reset Value": "0x0",
+                "Description": "Initialization complete masked interrupt status. Reads 1 when the initialization complete event is raised in hr_irq_raw and enabled in hr_irq_en.
+
+Usage: read-only; read it in the interrupt handler to find the cause, then clear the cause in hr_irq_raw. The interrupt output is high when any bit is 1.
+
+Values:
+0x0 not pending (reset value);
+0x1 pending.
+
+Unit: none.
+
+Limits: none."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_irq_inj",
+        "Offset": "0x30",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Interrupt injection register. Lets software raise raw interrupt events for test.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:9]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "tmo",
+                "Bit Type": "rw",
+                "Bit Field": "[8]",
+                "Reset Value": "0x0",
+                "Description": "Device timeout injection. A rising edge from 0 to 1 raises the device timeout event of hr_irq_raw once, as if the device did not answer within the programmed wait time.
+
+Usage: write 1 to inject and write 0 before the next injection, because only the rising edge counts; use it with hr_irq_en to test the interrupt path and its handler. The raw event is then cleared in hr_irq_raw as for a real event.
+
+Values:
+0x0 no injection (reset value);
+0x1 inject on the rising edge.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "cmd_done",
+                "Bit Type": "rw",
+                "Bit Field": "[7]",
+                "Reset Value": "0x0",
+                "Description": "Device command done injection. A rising edge from 0 to 1 raises the device command done event of hr_irq_raw once, as if a device register command has completed.
+
+Usage: write 1 to inject and write 0 before the next injection, because only the rising edge counts; use it with hr_irq_en to test the interrupt path and its handler. The raw event is then cleared in hr_irq_raw as for a real event.
+
+Values:
+0x0 no injection (reset value);
+0x1 inject on the rising edge.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "lat_mis",
+                "Bit Type": "rw",
+                "Bit Field": "[6]",
+                "Reset Value": "0x0",
+                "Description": "Latency mismatch injection. A rising edge from 0 to 1 raises the latency mismatch event of hr_irq_raw once, as if a device register write changes the CR0 latency code to a value that differs from init_lat.
+
+Usage: write 1 to inject and write 0 before the next injection, because only the rising edge counts; use it with hr_irq_en to test the interrupt path and its handler. The raw event is then cleared in hr_irq_raw as for a real event.
+
+Values:
+0x0 no injection (reset value);
+0x1 inject on the rising edge.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "id_mis",
+                "Bit Type": "rw",
+                "Bit Field": "[5]",
+                "Reset Value": "0x0",
+                "Description": "ID mismatch injection. A rising edge from 0 to 1 raises the id mismatch event of hr_irq_raw once, as if the ID0 read after start-up differs from the expected value.
+
+Usage: write 1 to inject and write 0 before the next injection, because only the rising edge counts; use it with hr_irq_en to test the interrupt path and its handler. The raw event is then cleared in hr_irq_raw as for a real event.
+
+Values:
+0x0 no injection (reset value);
+0x1 inject on the rising edge.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "pwr_lost",
+                "Bit Type": "rw",
+                "Bit Field": "[4]",
+                "Reset Value": "0x0",
+                "Description": "Power loss injection. A rising edge from 0 to 1 raises the power loss event of hr_irq_raw once, as if the synchronized memory power-good signal falls.
+
+Usage: write 1 to inject and write 0 before the next injection, because only the rising edge counts; use it with hr_irq_en to test the interrupt path and its handler. The raw event is then cleared in hr_irq_raw as for a real event.
+
+Values:
+0x0 no injection (reset value);
+0x1 inject on the rising edge.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "slverr",
+                "Bit Type": "rw",
+                "Bit Field": "[3]",
+                "Reset Value": "0x0",
+                "Description": "AXI slave error injection. A rising edge from 0 to 1 raises the axi slave error event of hr_irq_raw once, as if a request is answered with SLVERR.
+
+Usage: write 1 to inject and write 0 before the next injection, because only the rising edge counts; use it with hr_irq_en to test the interrupt path and its handler. The raw event is then cleared in hr_irq_raw as for a real event.
+
+Values:
+0x0 no injection (reset value);
+0x1 inject on the rising edge.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "decerr",
+                "Bit Type": "rw",
+                "Bit Field": "[2]",
+                "Reset Value": "0x0",
+                "Description": "AXI decode error injection. A rising edge from 0 to 1 raises the axi decode error event of hr_irq_raw once, as if a request is answered with DECERR.
+
+Usage: write 1 to inject and write 0 before the next injection, because only the rising edge counts; use it with hr_irq_en to test the interrupt path and its handler. The raw event is then cleared in hr_irq_raw as for a real event.
+
+Values:
+0x0 no injection (reset value);
+0x1 inject on the rising edge.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "cfg_err",
+                "Bit Type": "rw",
+                "Bit Field": "[1]",
+                "Reset Value": "0x0",
+                "Description": "Configuration error injection. A rising edge from 0 to 1 raises the configuration error event of hr_irq_raw once, as if hr_ctrl.en is written with an illegal field.
+
+Usage: write 1 to inject and write 0 before the next injection, because only the rising edge counts; use it with hr_irq_en to test the interrupt path and its handler. The raw event is then cleared in hr_irq_raw as for a real event.
+
+Values:
+0x0 no injection (reset value);
+0x1 inject on the rising edge.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "init_ok",
+                "Bit Type": "rw",
+                "Bit Field": "[0]",
+                "Reset Value": "0x0",
+                "Description": "Initialization complete injection. A rising edge from 0 to 1 raises the initialization complete event of hr_irq_raw once, as if the start-up sequence has finished.
+
+Usage: write 1 to inject and write 0 before the next injection, because only the rising edge counts; use it with hr_irq_en to test the interrupt path and its handler. The raw event is then cleared in hr_irq_raw as for a real event.
+
+Values:
+0x0 no injection (reset value);
+0x1 inject on the rising edge.
+
+Unit: none.
+
+Limits: none."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_err_cnt",
+        "Offset": "0x34",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "AXI error counter register. Counts the AXI requests answered with an error.",
+        "Bits": [
+            {
+                "Bit Name": "slverr_cnt",
+                "Bit Type": "ro",
+                "Bit Field": "[31:16]",
+                "Reset Value": "0x0",
+                "Description": "SLVERR counter. Number of AXI requests answered with SLVERR since the last core reset; saturates at the maximum.
+
+Usage: read-only; compare with hr_irq_raw.slverr to see repeated errors.
+
+Values:
+0x0000 to 0xFFFF number of rejected requests, saturating.
+
+Unit: requests.
+
+Limits: saturating, no clear by software."
+            },
+            {
+                "Bit Name": "decerr_cnt",
+                "Bit Type": "ro",
+                "Bit Field": "[15:0]",
+                "Reset Value": "0x0",
+                "Description": "DECERR counter. Number of AXI requests answered with DECERR since the last core reset; saturates at the maximum.
+
+Usage: read-only; compare with hr_irq_raw.decerr.
+
+Values:
+0x0000 to 0xFFFF number of rejected requests, saturating.
+
+Unit: requests.
+
+Limits: saturating, no clear by software."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_err_ra",
+        "Offset": "0x38",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Last read error address register. Holds the address of the last rejected AXI read.",
+        "Bits": [
+            {
+                "Bit Name": "addr",
+                "Bit Type": "ro",
+                "Bit Field": "[31:0]",
+                "Reset Value": "0x0",
+                "Description": "Last rejected read address. AXI address of the most recent read that was answered with an error.
+
+Usage: valid only when the valid bit of hr_err_ri is 1; it is overwritten by the next error.
+
+Values:
+0x00000000 to 0xFFFFFFFF byte address relative to the aperture window.
+
+Unit: bytes.
+
+Limits: none."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_err_ri",
+        "Offset": "0x3C",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Last read error info register. Holds the ID, the response and the valid flag of the last rejected AXI read.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:9]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "valid",
+                "Bit Type": "ro",
+                "Bit Field": "[8]",
+                "Reset Value": "0x0",
+                "Description": "Error info valid. Reads 1 when the address, ID and response registers hold a captured read error.
+
+Usage: read-only; it stays 1 after the first error until a core reset.
+
+Values:
+0x0 no error captured;
+0x1 captured.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[7:6]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "resp",
+                "Bit Type": "ro",
+                "Bit Field": "[5:4]",
+                "Reset Value": "0x0",
+                "Description": "Last rejected read response. AXI response code returned for the most recent rejected read.
+
+Usage: valid only when hr_err_ri.valid is 1.
+
+Values:
+0x2 SLVERR;
+0x3 DECERR.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "id",
+                "Bit Type": "ro",
+                "Bit Field": "[3:0]",
+                "Reset Value": "0x0",
+                "Description": "Last rejected read ID. AXI ID of the most recent read answered with an error.
+
+Usage: valid only when hr_err_ri.valid is 1.
+
+Values:
+0x0 to 0xF AXI ID of the request.
+
+Unit: none.
+
+Limits: none."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_err_wa",
+        "Offset": "0x40",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Last write error address register. Holds the address of the last rejected AXI write.",
+        "Bits": [
+            {
+                "Bit Name": "addr",
+                "Bit Type": "ro",
+                "Bit Field": "[31:0]",
+                "Reset Value": "0x0",
+                "Description": "Last rejected write address. AXI address of the most recent write that was answered with an error.
+
+Usage: valid only when the valid bit of hr_err_wi is 1; it is overwritten by the next error.
+
+Values:
+0x00000000 to 0xFFFFFFFF byte address relative to the aperture window.
+
+Unit: bytes.
+
+Limits: none."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_err_wi",
+        "Offset": "0x44",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Last write error info register. Holds the ID, the response and the valid flag of the last rejected AXI write.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:9]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "valid",
+                "Bit Type": "ro",
+                "Bit Field": "[8]",
+                "Reset Value": "0x0",
+                "Description": "Error info valid. Reads 1 when the address, ID and response registers hold a captured write error.
+
+Usage: read-only; it stays 1 after the first error until a core reset.
+
+Values:
+0x0 no error captured;
+0x1 captured.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[7:6]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "resp",
+                "Bit Type": "ro",
+                "Bit Field": "[5:4]",
+                "Reset Value": "0x0",
+                "Description": "Last rejected write response. AXI response code returned for the most recent rejected write.
+
+Usage: valid only when hr_err_wi.valid is 1.
+
+Values:
+0x2 SLVERR;
+0x3 DECERR.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "id",
+                "Bit Type": "ro",
+                "Bit Field": "[3:0]",
+                "Reset Value": "0x0",
+                "Description": "Last rejected write ID. AXI ID of the most recent write answered with an error.
+
+Usage: valid only when hr_err_wi.valid is 1.
+
+Values:
+0x0 to 0xF AXI ID of the request.
+
+Unit: none.
+
+Limits: none."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_tmo_log",
+        "Offset": "0x48",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Timeout log register. Holds what the controller was doing and waiting for when the last device timeout happened.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:24]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "wait",
+                "Bit Type": "ro",
+                "Bit Field": "[23:20]",
+                "Reset Value": "0x0",
+                "Description": "Waited-for event. The step that the controller was waiting for when the time ran out.
+
+Usage: read-only; valid only while valid = 1; together with cmd it tells whether the device or the AXI side was late.
+
+Values:
+0x0 none;
+0x1 RWDS level in the command phase;
+0x2 first read data strobe edge after the latency;
+0x3 next read data strobe edge in a burst;
+0x4 capture FIFO data;
+0x5 to 0xF reserved.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "cmd",
+                "Bit Type": "ro",
+                "Bit Field": "[19:16]",
+                "Reset Value": "0x0",
+                "Description": "Command in progress. The kind of command that the controller was executing.
+
+Usage: read-only; valid only while valid = 1.
+
+Values:
+0x0 none;
+0x1 start-up register write;
+0x2 start-up ID0 read;
+0x3 memory read;
+0x4 memory write;
+0x5 device register read;
+0x6 device register write;
+0x7 to 0xF reserved.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "beats",
+                "Bit Type": "ro",
+                "Bit Field": "[15:3]",
+                "Reset Value": "0x0",
+                "Description": "Completed words. Number of 16-bit words transferred in the failed transaction before the timeout.
+
+Usage: read-only; valid only while valid = 1; with hr_tmo_addr it gives the failing position inside a burst.
+
+Values:
+0x0000 to 0x1FFF number of completed 16-bit words, saturating.
+
+Unit: 16-bit words.
+
+Limits: counts up to 8191."
+            },
+            {
+                "Bit Name": "wr",
+                "Bit Type": "ro",
+                "Bit Field": "[2]",
+                "Reset Value": "0x0",
+                "Description": "Timed-out direction. Direction of the command that timed out.
+
+Usage: read-only; valid only while valid = 1.
+
+Values:
+0x0 read;
+0x1 write.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "cs",
+                "Bit Type": "ro",
+                "Bit Field": "[1]",
+                "Reset Value": "0x0",
+                "Description": "Timed-out chip select. The chip select (device) that did not answer.
+
+Usage: read-only; valid only while valid = 1.
+
+Values:
+0x0 chip select 0;
+0x1 chip select 1.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "valid",
+                "Bit Type": "w1c",
+                "Bit Field": "[0]",
+                "Reset Value": "0x0",
+                "Description": "Log valid flag. Hardware sets it with the first timeout and the log registers then keep their values; software clears it to arm the next capture.
+
+Usage: read the log (hr_tmo_log and hr_tmo_addr) after hr_irq_raw.tmo is set, then write 1 here. A second timeout while it is 1 does not overwrite the log. A hardware set in the same cycle as the clear wins.
+
+Values:
+0x0 no log captured (reset value);
+0x1 log captured.
+
+Unit: none.
+
+Limits: none."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_tmo_addr",
+        "Offset": "0x4C",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Timeout address register. Holds the address of the transaction that timed out.",
+        "Bits": [
+            {
+                "Bit Name": "addr",
+                "Bit Type": "ro",
+                "Bit Field": "[31:0]",
+                "Reset Value": "0x0",
+                "Description": "Timed-out address. Byte address, relative to the aperture window, of the first byte of the transaction that timed out; for a device register command it is the register word address.
+
+Usage: read-only; valid only while hr_tmo_log.valid = 1.
+
+Values:
+0x00000000 to 0xFFFFFFFF byte address relative to the aperture window.
+
+Unit: bytes.
+
+Limits: none."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_d0_cfg",
+        "Offset": "0x100",
+        "Reset Value": "0x0001C4E0",
+        "Descriprtion": "Chip select 0 device configuration register. Holds the latency and mode values written to the device.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:20]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "pasr",
+                "Bit Type": "rw",
+                "Bit Field": "[19:17]",
+                "Reset Value": "0x0",
+                "Description": "Partial array refresh code. Value written into CR1[4:2] to choose which part of the array is refreshed.
+
+Usage: program it while hr_ctrl.en = 0; the data outside the refreshed part is lost.
+
+Values:
+0x0 full array (reset value);
+0x1 to 0x7 other codes per the device datasheet.
+
+Unit: code.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "blen",
+                "Bit Type": "rw",
+                "Bit Field": "[16:15]",
+                "Reset Value": "0x3",
+                "Description": "Wrapped burst group size. Value written into CR0[1:0]; an AXI WRAP burst of the same byte length is sent as one wrapped HyperBus burst, others are split into two linear bursts.
+
+Usage: program it while hr_ctrl.en = 0; choose the cache line size of the system for critical-word-first reads.
+
+Values:
+0x0 128 bytes;
+0x1 64 bytes;
+0x2 16 bytes;
+0x3 32 bytes (reset value).
+
+Unit: code.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "hybrid",
+                "Bit Type": "rw",
+                "Bit Field": "[14]",
+                "Reset Value": "0x1",
+                "Description": "Hybrid burst control. Value written into CR0[2], which selects how a wrapped burst continues after the wrap group.
+
+Usage: program it while hr_ctrl.en = 0; it matters only for wrapped bursts of the devices that support hybrid burst.
+
+Values:
+0x0 hybrid burst as defined by the device;
+0x1 legacy wrapped burst (reset value).
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "drive",
+                "Bit Type": "rw",
+                "Bit Field": "[13:11]",
+                "Reset Value": "0x0",
+                "Description": "Output drive strength code. Value written into CR0[14:12] to set the output impedance of the DQ and RWDS drivers of the device.
+
+Usage: program it while hr_ctrl.en = 0; choose it for the board; the code meaning is given in the device datasheet.
+
+Values:
+0x0 to 0x7 drive strength code (reset value 0x0, 34 ohm on the target devices).
+
+Unit: code.
+
+Limits: some codes duplicate another code on some devices."
+            },
+            {
+                "Bit Name": "fixed_lat",
+                "Bit Type": "rw",
+                "Bit Field": "[10]",
+                "Reset Value": "0x1",
+                "Description": "Fixed latency enable. Selects whether the latency is always twice the initial latency or follows RWDS in the command and address phase; written into CR0[3].
+
+Usage: program it while hr_ctrl.en = 0 together with init_lat. In variable mode the controller samples RWDS during the CA phase and waits 1x or 2x init_lat.
+
+Values:
+0x0 variable latency (RWDS decides);
+0x1 fixed latency of 2 x init_lat (reset value).
+
+Unit: none.
+
+Limits: use 0x0 only with devices that support variable latency."
+            },
+            {
+                "Bit Name": "init_lat",
+                "Bit Type": "rw",
+                "Bit Field": "[9:5]",
+                "Reset Value": "0x7",
+                "Description": "Initial latency. Number of CK periods the controller waits between the command and address phase and the first data; the controller encodes it into CR0[7:4] at start-up.
+
+Usage: program it while hr_ctrl.en = 0; with fixed latency the wait is twice this value. Keep it equal to the latency code in the device CR0, otherwise hr_irq_raw.lat_mis is set when CR0 is changed by software.
+
+Values:
+0x03 to 0x08 number of CK periods (reset value 0x07, correct for a 200 MHz CK);
+0x08 exists only on devices that support it.
+
+Unit: CK periods.
+
+Limits: values outside 0x03 to 0x08 are illegal (cfg_valid = 0); the value must be correct for the CK frequency."
+            },
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[4:0]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_d0_trst",
+        "Offset": "0x104",
+        "Reset Value": "0x00500050",
+        "Descriprtion": "Chip select 0 RESET# timing register. Sets the RESET# low time and the wait after RESET# is released.",
+        "Bits": [
+            {
+                "Bit Name": "t_rh",
+                "Bit Type": "rw",
+                "Bit Field": "[31:16]",
+                "Reset Value": "0x50",
+                "Description": "RESET# high to CS# low time. Number of CK periods the controller waits after RESET# is released before CS# may go low.
+
+Usage: program it while hr_ctrl.en = 0; it must cover the device tRH (200 ns on the target devices).
+
+Values:
+0x0000 illegal;
+0x0001 to 0xFFFF number of CK periods (reset value 0x0050, that is 400 ns at 200 MHz).
+
+Unit: CK periods.
+
+Limits: 0x0 is illegal; rescale it when hr_clk.ck_div changes."
+            },
+            {
+                "Bit Name": "t_rp",
+                "Bit Type": "rw",
+                "Bit Field": "[15:0]",
+                "Reset Value": "0x50",
+                "Description": "RESET# pulse width. Number of CK periods the controller holds RESET# low at start-up.
+
+Usage: program it while hr_ctrl.en = 0; with two chip selects the larger value of both groups is used; it must cover the device tRP (200 ns on the target devices).
+
+Values:
+0x0000 illegal;
+0x0001 to 0xFFFF number of CK periods (reset value 0x0050, that is 400 ns at 200 MHz).
+
+Unit: CK periods.
+
+Limits: 0x0 is illegal; rescale it when hr_clk.ck_div changes."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_d0_trph",
+        "Offset": "0x108",
+        "Reset Value": "0x000000A0",
+        "Descriprtion": "Chip select 0 RESET# low to CS# low register. Sets the wait from the start of RESET# to the first access.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:16]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "t_rph",
+                "Bit Type": "rw",
+                "Bit Field": "[15:0]",
+                "Reset Value": "0xA0",
+                "Description": "RESET# low to CS# low time. Number of CK periods from the start of RESET# low to the first CS# low.
+
+Usage: program it while hr_ctrl.en = 0; it must cover the device tRPH (400 ns on the target devices).
+
+Values:
+0x0000 illegal;
+0x0001 to 0xFFFF number of CK periods (reset value 0x00A0, that is 800 ns at 200 MHz).
+
+Unit: CK periods.
+
+Limits: 0x0 is illegal; rescale it when hr_clk.ck_div changes."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_d0_tvcs",
+        "Offset": "0x10C",
+        "Reset Value": "0x00009C40",
+        "Descriprtion": "Chip select 0 power-up time register. Sets the wait before the first access after power-up.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:16]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "t_vcs",
+                "Bit Type": "rw",
+                "Bit Field": "[15:0]",
+                "Reset Value": "0x9C40",
+                "Description": "Power-up wait. Number of CK periods from VCC valid and RESET# high to the first access (device tVCS).
+
+Usage: program it while hr_ctrl.en = 0; it must cover the device tVCS (150 us on the target devices).
+
+Values:
+0x0000 illegal;
+0x0001 to 0xFFFF number of CK periods (reset value 0x9C40, that is 200 us at 200 MHz).
+
+Unit: CK periods.
+
+Limits: 0x0 is illegal; at a low CK frequency the maximum covers a shorter time, so check it."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_d0_tmin",
+        "Offset": "0x110",
+        "Reset Value": "0x00020702",
+        "Descriprtion": "Chip select 0 minimum wait register. Sets the minimum CS# high time, read-write recovery and CS# setup.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:24]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "t_css",
+                "Bit Type": "rw",
+                "Bit Field": "[23:16]",
+                "Reset Value": "0x2",
+                "Description": "CS# setup time. Number of CK periods between CS# going low and the first CK edge (device tCSS).
+
+Usage: program it while hr_ctrl.en = 0; the target devices need 3 to 4 ns.
+
+Values:
+0x00 illegal;
+0x01 to 0xFF number of CK periods (reset value 0x02, that is 10 ns at 200 MHz).
+
+Unit: CK periods.
+
+Limits: 0x0 is illegal."
+            },
+            {
+                "Bit Name": "t_rwr",
+                "Bit Type": "rw",
+                "Bit Field": "[15:8]",
+                "Reset Value": "0x7",
+                "Description": "Read-write recovery time. Minimum number of CK periods from the CS# rising edge of one transaction to the end of the CA1 phase of the next transaction to the same device (device tRWR).
+
+Usage: program it while hr_ctrl.en = 0; it sets the real gap between two transactions together with t_cshi.
+
+Values:
+0x00 illegal;
+0x01 to 0xFF number of CK periods (reset value 0x07, that is 35 ns at 200 MHz).
+
+Unit: CK periods.
+
+Limits: 0x0 is illegal."
+            },
+            {
+                "Bit Name": "t_cshi",
+                "Bit Type": "rw",
+                "Bit Field": "[7:0]",
+                "Reset Value": "0x2",
+                "Description": "CS# high time. Minimum number of CK periods that CS# stays high between two transactions to this device (device tCSHI).
+
+Usage: program it while hr_ctrl.en = 0; the target devices need 6 ns or less.
+
+Values:
+0x00 illegal;
+0x01 to 0xFF number of CK periods (reset value 0x02, that is 10 ns at 200 MHz).
+
+Unit: CK periods.
+
+Limits: 0x0 is illegal."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_d0_tcsm",
+        "Offset": "0x114",
+        "Reset Value": "0x000000A0",
+        "Descriprtion": "Chip select 0 CS# low limit register. Sets the longest time CS# may stay low.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:16]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "t_csm",
+                "Bit Type": "rw",
+                "Bit Field": "[15:0]",
+                "Reset Value": "0xA0",
+                "Description": "CS# low limit. Maximum number of CK periods from CS# low to CS# high, including the command, latency and data phases; the controller splits longer transfers (device tCSM).
+
+Usage: set it for the device and its operating temperature (1 us above 85 C on some devices, 4 us otherwise); a larger value gives fewer transaction restarts and higher throughput.
+
+Values:
+0x0000 and 0x0321 to 0xFFFF illegal;
+0x0001 to 0x0320 number of CK periods (reset value 0x00A0, that is 1 us at 200 MHz; 0x0320 is 4 us).
+
+Unit: CK periods.
+
+Limits: 0x0000 and values above 0x0320 are illegal; the device limit must not be exceeded."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_d0_rcap",
+        "Offset": "0x118",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Chip select 0 read capture register. Sets the delay-line tap used to capture read data.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:8]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "tap",
+                "Bit Type": "rw",
+                "Bit Field": "[7:0]",
+                "Reset Value": "0x0",
+                "Description": "Delay-line tap. Code sent to the external delay line that delays RWDS so that its edges fall in the middle of the read data of this device.
+
+Usage: program it while hr_ctrl.en = 0 and tune it on the board; it is applied between transactions. Only the low hr_cap.dly_w bits are used.
+
+Values:
+0x00 to the maximum tap of the delay line (reset value 0x00).
+
+Unit: delay-line steps (technology specific).
+
+Limits: the useful range depends on the delay line and on hr_clk.ck_div."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_d0_id",
+        "Offset": "0x11C",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Chip select 0 device ID check register. Holds the expected device ID and enables the check.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:17]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "id_chk_en",
+                "Bit Type": "rw",
+                "Bit Field": "[16]",
+                "Reset Value": "0x0",
+                "Description": "ID check enable. Enables the comparison of the device ID0 with id0_exp after start-up.
+
+Usage: program it while hr_ctrl.en = 0; a mismatch sets hr_irq_raw.id_mis and does not block AXI access.
+
+Values:
+0x0 no check (reset value);
+0x1 check ID0.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "id0_exp",
+                "Bit Type": "rw",
+                "Bit Field": "[15:0]",
+                "Reset Value": "0x0",
+                "Description": "Expected ID0 value. The value that the controller compares with the ID0 register of the device after start-up.
+
+Usage: program it while hr_ctrl.en = 0; it is used only when id_chk_en = 1.
+
+Values:
+0x0000 no expected value (reset value);
+0x0001 to 0xFFFF ID0 of the device.
+
+Unit: none.
+
+Limits: none."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_d0_tmo",
+        "Offset": "0x120",
+        "Reset Value": "0x00000200",
+        "Descriprtion": "Chip select 0 timeout register. Sets the longest time the controller waits for the device in one step.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:16]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "t_tmo",
+                "Bit Type": "rw",
+                "Bit Field": "[15:0]",
+                "Reset Value": "0x200",
+                "Description": "Device wait time. Maximum number of CK periods the controller waits for one answer of the device (read data strobe after the initial latency, next strobe edge in a burst) before it declares a timeout.
+
+Usage: program it while hr_ctrl.en = 0; the action after a timeout is chosen by hr_ctrl.tmo_act. The value must be longer than the longest legal wait of the device (initial latency 2 x init_lat plus refresh) so that no healthy access times out.
+
+Values:
+0x0000 timeout disabled;
+0x0001 to 0x000F illegal;
+0x0010 to 0xFFFF number of CK periods (reset value 0x0200, that is 2.56 us at 200 MHz).
+
+Unit: CK periods.
+
+Limits: values 1 to 15 are illegal (cfg_valid = 0); rescale it when hr_clk.ck_div changes."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_d0_idr",
+        "Offset": "0x124",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Chip select 0 device ID0 register. Holds the ID0 value that the controller read from the device at start-up.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:16]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "id0_act",
+                "Bit Type": "ro",
+                "Bit Field": "[15:0]",
+                "Reset Value": "0x0",
+                "Description": "Actual ID0. The 16-bit ID0 register of the device (row address bits, column address bits and manufacturer) read by the controller after start-up.
+
+Usage: read-only; valid after hr_sts.init_done = 1; compare it with the datasheet of the device, or read ID0 again at any time through the device command port (hr_cmd with the ID0 register address in hr_cmd_addr).
+
+Values:
+0x0000 to 0xFFFF ID0 value read from the device.
+
+Unit: none.
+
+Limits: 0x0000 before the start-up read."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_d1_cfg",
+        "Offset": "0x200",
+        "Reset Value": "0x0001C4E0",
+        "Descriprtion": "Chip select 1 device configuration register. Holds the latency and mode values written to the device.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:20]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "pasr",
+                "Bit Type": "rw",
+                "Bit Field": "[19:17]",
+                "Reset Value": "0x0",
+                "Description": "Partial array refresh code. Value written into CR1[4:2] to choose which part of the array is refreshed.
+
+Usage: program it while hr_ctrl.en = 0; the data outside the refreshed part is lost.
+
+Values:
+0x0 full array (reset value);
+0x1 to 0x7 other codes per the device datasheet.
+
+Unit: code.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "blen",
+                "Bit Type": "rw",
+                "Bit Field": "[16:15]",
+                "Reset Value": "0x3",
+                "Description": "Wrapped burst group size. Value written into CR0[1:0]; an AXI WRAP burst of the same byte length is sent as one wrapped HyperBus burst, others are split into two linear bursts.
+
+Usage: program it while hr_ctrl.en = 0; choose the cache line size of the system for critical-word-first reads.
+
+Values:
+0x0 128 bytes;
+0x1 64 bytes;
+0x2 16 bytes;
+0x3 32 bytes (reset value).
+
+Unit: code.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "hybrid",
+                "Bit Type": "rw",
+                "Bit Field": "[14]",
+                "Reset Value": "0x1",
+                "Description": "Hybrid burst control. Value written into CR0[2], which selects how a wrapped burst continues after the wrap group.
+
+Usage: program it while hr_ctrl.en = 0; it matters only for wrapped bursts of the devices that support hybrid burst.
+
+Values:
+0x0 hybrid burst as defined by the device;
+0x1 legacy wrapped burst (reset value).
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "drive",
+                "Bit Type": "rw",
+                "Bit Field": "[13:11]",
+                "Reset Value": "0x0",
+                "Description": "Output drive strength code. Value written into CR0[14:12] to set the output impedance of the DQ and RWDS drivers of the device.
+
+Usage: program it while hr_ctrl.en = 0; choose it for the board; the code meaning is given in the device datasheet.
+
+Values:
+0x0 to 0x7 drive strength code (reset value 0x0, 34 ohm on the target devices).
+
+Unit: code.
+
+Limits: some codes duplicate another code on some devices."
+            },
+            {
+                "Bit Name": "fixed_lat",
+                "Bit Type": "rw",
+                "Bit Field": "[10]",
+                "Reset Value": "0x1",
+                "Description": "Fixed latency enable. Selects whether the latency is always twice the initial latency or follows RWDS in the command and address phase; written into CR0[3].
+
+Usage: program it while hr_ctrl.en = 0 together with init_lat. In variable mode the controller samples RWDS during the CA phase and waits 1x or 2x init_lat.
+
+Values:
+0x0 variable latency (RWDS decides);
+0x1 fixed latency of 2 x init_lat (reset value).
+
+Unit: none.
+
+Limits: use 0x0 only with devices that support variable latency."
+            },
+            {
+                "Bit Name": "init_lat",
+                "Bit Type": "rw",
+                "Bit Field": "[9:5]",
+                "Reset Value": "0x7",
+                "Description": "Initial latency. Number of CK periods the controller waits between the command and address phase and the first data; the controller encodes it into CR0[7:4] at start-up.
+
+Usage: program it while hr_ctrl.en = 0; with fixed latency the wait is twice this value. Keep it equal to the latency code in the device CR0, otherwise hr_irq_raw.lat_mis is set when CR0 is changed by software.
+
+Values:
+0x03 to 0x08 number of CK periods (reset value 0x07, correct for a 200 MHz CK);
+0x08 exists only on devices that support it.
+
+Unit: CK periods.
+
+Limits: values outside 0x03 to 0x08 are illegal (cfg_valid = 0); the value must be correct for the CK frequency."
+            },
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[4:0]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_d1_trst",
+        "Offset": "0x204",
+        "Reset Value": "0x00500050",
+        "Descriprtion": "Chip select 1 RESET# timing register. Sets the RESET# low time and the wait after RESET# is released.",
+        "Bits": [
+            {
+                "Bit Name": "t_rh",
+                "Bit Type": "rw",
+                "Bit Field": "[31:16]",
+                "Reset Value": "0x50",
+                "Description": "RESET# high to CS# low time. Number of CK periods the controller waits after RESET# is released before CS# may go low.
+
+Usage: program it while hr_ctrl.en = 0; it must cover the device tRH (200 ns on the target devices).
+
+Values:
+0x0000 illegal;
+0x0001 to 0xFFFF number of CK periods (reset value 0x0050, that is 400 ns at 200 MHz).
+
+Unit: CK periods.
+
+Limits: 0x0 is illegal; rescale it when hr_clk.ck_div changes."
+            },
+            {
+                "Bit Name": "t_rp",
+                "Bit Type": "rw",
+                "Bit Field": "[15:0]",
+                "Reset Value": "0x50",
+                "Description": "RESET# pulse width. Number of CK periods the controller holds RESET# low at start-up.
+
+Usage: program it while hr_ctrl.en = 0; with two chip selects the larger value of both groups is used; it must cover the device tRP (200 ns on the target devices).
+
+Values:
+0x0000 illegal;
+0x0001 to 0xFFFF number of CK periods (reset value 0x0050, that is 400 ns at 200 MHz).
+
+Unit: CK periods.
+
+Limits: 0x0 is illegal; rescale it when hr_clk.ck_div changes."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_d1_trph",
+        "Offset": "0x208",
+        "Reset Value": "0x000000A0",
+        "Descriprtion": "Chip select 1 RESET# low to CS# low register. Sets the wait from the start of RESET# to the first access.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:16]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "t_rph",
+                "Bit Type": "rw",
+                "Bit Field": "[15:0]",
+                "Reset Value": "0xA0",
+                "Description": "RESET# low to CS# low time. Number of CK periods from the start of RESET# low to the first CS# low.
+
+Usage: program it while hr_ctrl.en = 0; it must cover the device tRPH (400 ns on the target devices).
+
+Values:
+0x0000 illegal;
+0x0001 to 0xFFFF number of CK periods (reset value 0x00A0, that is 800 ns at 200 MHz).
+
+Unit: CK periods.
+
+Limits: 0x0 is illegal; rescale it when hr_clk.ck_div changes."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_d1_tvcs",
+        "Offset": "0x20C",
+        "Reset Value": "0x00009C40",
+        "Descriprtion": "Chip select 1 power-up time register. Sets the wait before the first access after power-up.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:16]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "t_vcs",
+                "Bit Type": "rw",
+                "Bit Field": "[15:0]",
+                "Reset Value": "0x9C40",
+                "Description": "Power-up wait. Number of CK periods from VCC valid and RESET# high to the first access (device tVCS).
+
+Usage: program it while hr_ctrl.en = 0; it must cover the device tVCS (150 us on the target devices).
+
+Values:
+0x0000 illegal;
+0x0001 to 0xFFFF number of CK periods (reset value 0x9C40, that is 200 us at 200 MHz).
+
+Unit: CK periods.
+
+Limits: 0x0 is illegal; at a low CK frequency the maximum covers a shorter time, so check it."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_d1_tmin",
+        "Offset": "0x210",
+        "Reset Value": "0x00020702",
+        "Descriprtion": "Chip select 1 minimum wait register. Sets the minimum CS# high time, read-write recovery and CS# setup.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:24]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "t_css",
+                "Bit Type": "rw",
+                "Bit Field": "[23:16]",
+                "Reset Value": "0x2",
+                "Description": "CS# setup time. Number of CK periods between CS# going low and the first CK edge (device tCSS).
+
+Usage: program it while hr_ctrl.en = 0; the target devices need 3 to 4 ns.
+
+Values:
+0x00 illegal;
+0x01 to 0xFF number of CK periods (reset value 0x02, that is 10 ns at 200 MHz).
+
+Unit: CK periods.
+
+Limits: 0x0 is illegal."
+            },
+            {
+                "Bit Name": "t_rwr",
+                "Bit Type": "rw",
+                "Bit Field": "[15:8]",
+                "Reset Value": "0x7",
+                "Description": "Read-write recovery time. Minimum number of CK periods from the CS# rising edge of one transaction to the end of the CA1 phase of the next transaction to the same device (device tRWR).
+
+Usage: program it while hr_ctrl.en = 0; it sets the real gap between two transactions together with t_cshi.
+
+Values:
+0x00 illegal;
+0x01 to 0xFF number of CK periods (reset value 0x07, that is 35 ns at 200 MHz).
+
+Unit: CK periods.
+
+Limits: 0x0 is illegal."
+            },
+            {
+                "Bit Name": "t_cshi",
+                "Bit Type": "rw",
+                "Bit Field": "[7:0]",
+                "Reset Value": "0x2",
+                "Description": "CS# high time. Minimum number of CK periods that CS# stays high between two transactions to this device (device tCSHI).
+
+Usage: program it while hr_ctrl.en = 0; the target devices need 6 ns or less.
+
+Values:
+0x00 illegal;
+0x01 to 0xFF number of CK periods (reset value 0x02, that is 10 ns at 200 MHz).
+
+Unit: CK periods.
+
+Limits: 0x0 is illegal."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_d1_tcsm",
+        "Offset": "0x214",
+        "Reset Value": "0x000000A0",
+        "Descriprtion": "Chip select 1 CS# low limit register. Sets the longest time CS# may stay low.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:16]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "t_csm",
+                "Bit Type": "rw",
+                "Bit Field": "[15:0]",
+                "Reset Value": "0xA0",
+                "Description": "CS# low limit. Maximum number of CK periods from CS# low to CS# high, including the command, latency and data phases; the controller splits longer transfers (device tCSM).
+
+Usage: set it for the device and its operating temperature (1 us above 85 C on some devices, 4 us otherwise); a larger value gives fewer transaction restarts and higher throughput.
+
+Values:
+0x0000 and 0x0321 to 0xFFFF illegal;
+0x0001 to 0x0320 number of CK periods (reset value 0x00A0, that is 1 us at 200 MHz; 0x0320 is 4 us).
+
+Unit: CK periods.
+
+Limits: 0x0000 and values above 0x0320 are illegal; the device limit must not be exceeded."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_d1_rcap",
+        "Offset": "0x218",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Chip select 1 read capture register. Sets the delay-line tap used to capture read data.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:8]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "tap",
+                "Bit Type": "rw",
+                "Bit Field": "[7:0]",
+                "Reset Value": "0x0",
+                "Description": "Delay-line tap. Code sent to the external delay line that delays RWDS so that its edges fall in the middle of the read data of this device.
+
+Usage: program it while hr_ctrl.en = 0 and tune it on the board; it is applied between transactions. Only the low hr_cap.dly_w bits are used.
+
+Values:
+0x00 to the maximum tap of the delay line (reset value 0x00).
+
+Unit: delay-line steps (technology specific).
+
+Limits: the useful range depends on the delay line and on hr_clk.ck_div."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_d1_id",
+        "Offset": "0x21C",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Chip select 1 device ID check register. Holds the expected device ID and enables the check.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:17]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "id_chk_en",
+                "Bit Type": "rw",
+                "Bit Field": "[16]",
+                "Reset Value": "0x0",
+                "Description": "ID check enable. Enables the comparison of the device ID0 with id0_exp after start-up.
+
+Usage: program it while hr_ctrl.en = 0; a mismatch sets hr_irq_raw.id_mis and does not block AXI access.
+
+Values:
+0x0 no check (reset value);
+0x1 check ID0.
+
+Unit: none.
+
+Limits: none."
+            },
+            {
+                "Bit Name": "id0_exp",
+                "Bit Type": "rw",
+                "Bit Field": "[15:0]",
+                "Reset Value": "0x0",
+                "Description": "Expected ID0 value. The value that the controller compares with the ID0 register of the device after start-up.
+
+Usage: program it while hr_ctrl.en = 0; it is used only when id_chk_en = 1.
+
+Values:
+0x0000 no expected value (reset value);
+0x0001 to 0xFFFF ID0 of the device.
+
+Unit: none.
+
+Limits: none."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_d1_tmo",
+        "Offset": "0x220",
+        "Reset Value": "0x00000200",
+        "Descriprtion": "Chip select 1 timeout register. Sets the longest time the controller waits for the device in one step.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:16]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "t_tmo",
+                "Bit Type": "rw",
+                "Bit Field": "[15:0]",
+                "Reset Value": "0x200",
+                "Description": "Device wait time. Maximum number of CK periods the controller waits for one answer of the device (read data strobe after the initial latency, next strobe edge in a burst) before it declares a timeout.
+
+Usage: program it while hr_ctrl.en = 0; the action after a timeout is chosen by hr_ctrl.tmo_act. The value must be longer than the longest legal wait of the device (initial latency 2 x init_lat plus refresh) so that no healthy access times out.
+
+Values:
+0x0000 timeout disabled;
+0x0001 to 0x000F illegal;
+0x0010 to 0xFFFF number of CK periods (reset value 0x0200, that is 2.56 us at 200 MHz).
+
+Unit: CK periods.
+
+Limits: values 1 to 15 are illegal (cfg_valid = 0); rescale it when hr_clk.ck_div changes."
+            }
+          ]
+        },
+        {
+        "Register Name": "hr_d1_idr",
+        "Offset": "0x224",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Chip select 1 device ID0 register. Holds the ID0 value that the controller read from the device at start-up.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:16]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "id0_act",
+                "Bit Type": "ro",
+                "Bit Field": "[15:0]",
+                "Reset Value": "0x0",
+                "Description": "Actual ID0. The 16-bit ID0 register of the device (row address bits, column address bits and manufacturer) read by the controller after start-up.
+
+Usage: read-only; valid after hr_sts.init_done = 1; compare it with the datasheet of the device, or read ID0 again at any time through the device command port (hr_cmd with the ID0 register address in hr_cmd_addr).
+
+Values:
+0x0000 to 0xFFFF ID0 value read from the device.
+
+Unit: none.
+
+Limits: 0x0000 before the start-up read."
+            }
+          ]
+        }
+    ]
+}

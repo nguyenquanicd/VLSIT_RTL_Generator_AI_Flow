@@ -1,0 +1,83 @@
+{
+  "head": {
+    "text": "WF-017 Device timeout in a read burst, hold state and log (hr_ctrl.tmo_act = 0)",
+    "tick": 0
+  },
+  "signal": [
+    [
+      "AXI read",
+      {
+        "name": "ARVALID",
+        "wave": "01.0............"
+      },
+      {
+        "name": "RVALID",
+        "wave": "0.........1...0."
+      },
+      {
+        "name": "RRESP",
+        "wave": "x.........=.=.x.",
+        "data": [
+          "OKAY",
+          "SLVERR"
+        ]
+      }
+    ],
+    {},
+    [
+      "HyperBus pins",
+      {
+        "name": "o_hb_cs_n",
+        "wave": "1.0..........1.."
+      },
+      {
+        "name": "RWDS from the device",
+        "wave": "0.......1010...."
+      },
+      {
+        "name": "Wait counter (t_tmo)",
+        "wave": "x..........===x.",
+        "data": [
+          "1",
+          "2",
+          "t_tmo"
+        ]
+      }
+    ],
+    {},
+    [
+      "Controller and CSR",
+      {
+        "name": "Controller state",
+        "wave": "=.=..=..=....=.=",
+        "data": [
+          "READY",
+          "CA",
+          "LATENCY",
+          "DATA",
+          "TIMEOUT",
+          "HOLD"
+        ]
+      },
+      {
+        "name": "hr_irq_raw.tmo",
+        "wave": "0.............1."
+      },
+      {
+        "name": "hr_tmo_log.valid",
+        "wave": "0.............1."
+      },
+      {
+        "name": "hr_sts.hold",
+        "wave": "0..............1"
+      }
+    ]
+  ],
+  "foot": {
+    "text": "The read data strobe stops after two words. After t_tmo CK periods CS# goes high, the AXI request ends with SLVERR, the log is captured and hr_sts.hold = 1. Software reads hr_tmo_log and hr_tmo_addr and writes hr_ctrl.resume. Symbolic timing.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="678" height="388" viewBox="0 0 678 388" font-family="Helvetica,Arial,sans-serif">
 <rect width="100%" height="100%" fill="#fff"/>
-<text x="12" y="20" font-size="14" font-weight="bold">WF-001 Reset, preset load, enable, startup with CR0, CR1 and ID0</text>
+<text x="12" y="20" font-size="14" font-weight="bold">WF-001 Reset, CSR programming, enable, startup with CR0, CR1 and ID0</text>
 <line x1="162" y1="30" x2="162" y2="360" stroke="#ccc" stroke-dasharray="2,3"/>
 <line x1="198" y1="30" x2="198" y2="360" stroke="#ccc" stroke-dasharray="2,3"/>
 <line x1="234" y1="30" x2="234" y2="360" stroke="#ccc" stroke-dasharray="2,3"/>
@@ -21,7 +21,7 @@
 <rect x="162.0" y="63.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
 <rect x="198.0" y="63.0" width="36.0" height="18.0" fill="#ddd" stroke="none"/>
 <polygon points="238.0,63.0 302.0,63.0 306.0,72.0 302.0,81.0 238.0,81.0 234.0,72.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
-<text x="270.0" y="76.0" text-anchor="middle" font-size="11">hr_d0_cfg.preset_go</text>
+<text x="270.0" y="76.0" text-anchor="middle" font-size="11">timing and ID fields</text>
 <polygon points="310.0,63.0 338.0,63.0 342.0,72.0 338.0,81.0 310.0,81.0 306.0,72.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
 <text x="324.0" y="76.0" text-anchor="middle" font-size="11">hr_ctrl.en</text>
 <rect x="342.0" y="63.0" width="36.0" height="18.0" fill="#ddd" stroke="#000"/>
@@ -147,5 +147,5 @@
 <polyline points="594.0,351.0 630.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
 <polyline points="630.0,351.0 630.0,333.0" stroke="#000" stroke-width="1.4" fill="none"/>
 <polyline points="630.0,333.0 666.0,333.0" stroke="#000" stroke-width="1.4" fill="none"/>
-<text x="12" y="380" font-size="11" fill="#444">Illustrative phases; the counts t_rp, t_rh, t_rph and t_vcs are symbolic and not to scale. Presets are loaded while hr_ctrl.en = 0.</text>
+<text x="12" y="380" font-size="11" fill="#444">Illustrative phases; the counts t_rp, t_rh, t_rph and t_vcs are symbolic and not to scale. Software programs the timing and ID fields while hr_ctrl.en = 0.</text>
 </svg>
