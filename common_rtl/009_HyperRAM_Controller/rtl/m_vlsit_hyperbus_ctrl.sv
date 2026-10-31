@@ -13,7 +13,7 @@
  *                the controller issues one pin command for the next CK period: CS# low with CK off
  *                (t_css periods), the command and address phase (3 periods), the latency, the data
  *                units and one period with CS# high. The gap between transactions of one chip
- *                select is max(t_cshi, t_rwr - 2 - t_css); a transaction never keeps CS# low longer
+ *                select is max(t_cshi, t_rwr - 1 - t_css); a transaction never keeps CS# low longer
  *                than t_csm periods: a longer segment continues in the next transaction (DEC-046).
  *                A following segment of the same direction and chip select at the next linear
  *                address is merged when it is at the head of the queue 2 periods before the data
@@ -238,15 +238,16 @@ module m_vlsit_hyperbus_ctrl #(
   } mode_state_type_def;
 
   // Transaction FSM: one state per CK period of the pins.
-  typedef enum logic [2:0] {
-    ENUM_ST_TX_IDLE = 3'd0,
-    ENUM_ST_TX_CSS  = 3'd1,
-    ENUM_ST_TX_CA0  = 3'd2,
-    ENUM_ST_TX_CA1  = 3'd3,
-    ENUM_ST_TX_CA2  = 3'd4,
-    ENUM_ST_TX_LAT  = 3'd5,
-    ENUM_ST_TX_DATA = 3'd6,
-    ENUM_ST_TX_END  = 3'd7
+  typedef enum logic [3:0] {
+    ENUM_ST_TX_IDLE = 4'd0,
+    ENUM_ST_TX_CSS  = 4'd1,
+    ENUM_ST_TX_CA0  = 4'd2,
+    ENUM_ST_TX_CA1  = 4'd3,
+    ENUM_ST_TX_CA2  = 4'd4,
+    ENUM_ST_TX_LAT  = 4'd5,
+    ENUM_ST_TX_DATA = 4'd6,
+    ENUM_ST_TX_TAIL = 4'd7,
+    ENUM_ST_TX_END  = 4'd8
   } tx_state_type_def;
 
   mode_state_type_def         reg_fsm_mode_current_state;
@@ -317,7 +318,7 @@ module m_vlsit_hyperbus_ctrl #(
   logic                       reg_isinit;
   logic                       reg_iscmd;
   logic                       reg_op_active;
-  logic                       reg_cmd_hold;
+  logic [2:0]                 reg_cmd_hold;
   logic [9:0]                 reg_segs;
   logic                       reg_last_dir;
   logic [3:0]                 reg_consec;
@@ -467,16 +468,17 @@ module m_vlsit_hyperbus_ctrl #(
   endfunction
 
   // f_gap: CS# high periods between two transactions of one chip select: the larger of t_cshi and
-  // t_rwr minus the two periods of CA0 and CA1 and minus the t_css periods that follow
-  // (REQ-MEM-004).
+  // t_rwr minus the t_css periods and the CA0 period that follow, because the CA1 transfer ends at
+  // the falling CK edge in the second CA period, 1.5 to 1.75 periods after the start of CA0
+  // (REQ-MEM-004, found with the vendor timing check tRWR).
   function automatic logic [8:0] f_gap(input logic [7:0] a_t_cshi, input logic [7:0] a_t_rwr,
                                        input logic [7:0] a_t_css);
     logic [8:0] css;
     logic [8:0] rwr;
     css = (a_t_css == 8'd0) ? 9'd1 : {1'b0, a_t_css};
     rwr = 9'd0;
-    if ({1'b0, a_t_rwr} > (css + 9'd2)) begin
-      rwr = {1'b0, a_t_rwr} - css - 9'd2;
+    if ({1'b0, a_t_rwr} > (css + 9'd1)) begin
+      rwr = {1'b0, a_t_rwr} - css - 9'd1;
     end
     f_gap = {1'b0, a_t_cshi};
     if (rwr > f_gap)
@@ -831,11 +833,11 @@ module m_vlsit_hyperbus_ctrl #(
                          ~(reg_op_active & reg_iscmd);
 
   // A device command is taken in READY and HOLD after the initialization, and rejected before.
-  assign w_cmd_ok     = i_cmd_go & ~reg_cmd_hold & ~reg_op_active & reg_init_done &
+  assign w_cmd_ok     = i_cmd_go & (reg_cmd_hold == 3'd0) & ~reg_op_active & reg_init_done &
                         ((reg_fsm_mode_current_state == ENUM_ST_MODE_READY) |
                          (reg_fsm_mode_current_state == ENUM_ST_MODE_HOLD));
   // A command before the initialization is rejected.
-  assign w_cmd_reject = i_ck_tick & i_cmd_go & ~reg_cmd_hold & ~reg_op_active & ~reg_init_done &
+  assign w_cmd_reject = i_ck_tick & i_cmd_go & (reg_cmd_hold == 3'd0) & ~reg_op_active & ~reg_init_done &
                         (reg_fsm_tx_current_state == ENUM_ST_TX_IDLE);
   // Chip select of the command, forced to 0 with one chip select.
   assign w_cmd_cs     = i_cmd_cs & (PARA_NUM_CS == LPARA_TWO_CS);
@@ -1046,8 +1048,15 @@ module m_vlsit_hyperbus_ctrl #(
       end
       ENUM_ST_TX_DATA: begin
         if ((reg_cnt == 10'd0) && (w_merge_add == 10'd0)) begin
-          w_fsm_tx_nxt_state = ENUM_ST_TX_END;
+          if (w_kind_rd) begin
+            w_fsm_tx_nxt_state = ENUM_ST_TX_TAIL;
+          end else begin
+            w_fsm_tx_nxt_state = ENUM_ST_TX_END;
+          end
         end
+      end
+      ENUM_ST_TX_TAIL: begin
+        w_fsm_tx_nxt_state = ENUM_ST_TX_END;
       end
       ENUM_ST_TX_END: begin
         w_fsm_tx_nxt_state = ENUM_ST_TX_IDLE;
@@ -1067,10 +1076,11 @@ module m_vlsit_hyperbus_ctrl #(
   assign w_lat_nxt = (w_c_fixed_lat | (|i_rwds_smp)) ? {w_c_init_lat, 1'b0} :
                                                        {1'b0, w_c_init_lat};
 
-  // Data periods allowed under the CS#-low limit: t_csm minus CS#-before-CK, CA and latency.
+  // Data periods allowed under the CS#-low limit: t_csm minus CS#-before-CK, CA, latency and the
+  // tail period of a read.
   assign w_css      = (w_c_t_css == 8'd0) ? 9'd1 : {1'b0, w_c_t_css};
-  assign w_dmax_nxt = ({1'b0, w_c_t_csm} > ({8'd0, w_css} + 17'd3 + {11'd0, w_lat_nxt})) ?
-                      ({1'b0, w_c_t_csm} - ({8'd0, w_css} + 17'd3 + {11'd0, w_lat_nxt})) : 17'd1;
+  assign w_dmax_nxt = ({1'b0, w_c_t_csm} > ({8'd0, w_css} + 17'd4 + {11'd0, w_lat_nxt})) ?
+                      ({1'b0, w_c_t_csm} - ({8'd0, w_css} + 17'd4 + {11'd0, w_lat_nxt})) : 17'd1;
 
   // Data periods of this transaction: the units still to send, limited by the room.
   assign w_d = (reg_units_left >= {2'b00, reg_dmax}) ? reg_dmax : reg_units_left[9:0];
@@ -1155,7 +1165,10 @@ module m_vlsit_hyperbus_ctrl #(
           end
         end
         ENUM_ST_TX_END: begin
-          reg_segs <= 10'd0;
+          // The segments are answered at the END of the last transaction of a split set.
+          if (reg_units_left == '0) begin
+            reg_segs <= 10'd0;
+          end
         end
         default: begin
           // CA0 and CA1 only move the state.
@@ -1259,6 +1272,12 @@ module m_vlsit_hyperbus_ctrl #(
         w_cmd_ck_run_nxt       = 1'b1;
         w_cmd_dq_nxt           = w_ca_unit;
         w_cmd_dq_oe_nxt        = 1'b1;
+      end
+      ENUM_ST_TX_TAIL: begin
+        // One more CK period after the last unit of a read: the device drives the last data tCKD
+        // (up to 5 ns) after the last CK edge, so CS# stays low until that data have been sent.
+        w_cmd_cs_n_nxt         = ~(PARA_NUM_CS'(1) << reg_cs);
+        w_cmd_ck_run_nxt       = 1'b1;
       end
       ENUM_ST_TX_LAT: begin
         w_cmd_cs_n_nxt         = ~(PARA_NUM_CS'(1) << reg_cs);
@@ -1404,15 +1423,16 @@ module m_vlsit_hyperbus_ctrl #(
     end
   end
 
-  // A finished or rejected command keeps go high until the register file has cleared it; the
-  // controller does not start the same command again before it has seen go low.
+  // A finished or rejected command keeps go high until the register file has cleared it, which
+  // takes a few clocks after the clear pulse. The controller waits 4 clocks before it looks at go
+  // again, so that it does not start the same command twice.
   always_ff @(posedge i_clk_core, negedge i_rst_n_core) begin : p_ff_cmd_hold
     if (!i_rst_n_core) begin
-      reg_cmd_hold <= 1'b0;
-    end else if (!i_cmd_go) begin
-      reg_cmd_hold <= 1'b0;
+      reg_cmd_hold <= 3'd0;
     end else if ((w_op_done & reg_iscmd) | w_cmd_reject | (w_kill & reg_op_active & reg_iscmd)) begin
-      reg_cmd_hold <= 1'b1;
+      reg_cmd_hold <= 3'd4;
+    end else if (reg_cmd_hold != 3'd0) begin
+      reg_cmd_hold <= reg_cmd_hold - 3'd1;
     end
   end
 
