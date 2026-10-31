@@ -99,12 +99,46 @@ Keep in full, never abbreviate: `data`, `valid`, `ready`, `mode`, `depth`, `done
 
 ### 3.2 Parameters and constants
 
-- **PAR-01** Overridable parameters: `parameter logic [31:0] PARA_<NAME> = <default>`. Dependent constants: `localparam logic [31:0] LPARA_<NAME>`, placed in the parameter port list immediately after the parameters (confirm frontend support). Localparams are not instance overrides.
+- **PAR-01** Overridable parameters: `parameter logic [31:0] PARA_<NAME> = <default>`. Derived localparams use `localparam logic [31:0] LPARA_<NAME>` and are placed in the parameter port list immediately after the parameters (confirm frontend support). Fixed protocol encodings follow PAR-04 and use the exact field width. Localparams are not instance overrides.
 - **PAR-02** Immediately above every parameter, write exactly these three comment lines, in this order. "Configurable" alone is not acceptable.
   - `// Parameter Description: ...` purpose of the parameter, plus dependencies or restrictions on other parameters.
   - `// Parameter values: ...` legal values or inclusive range, and the default value.
   - `// Parameter unit: ...` unit of the value (for example `bit`, `byte`, `us`). This line is required. A parameter without a physical unit uses `count` for a quantity or `none` for a mode or flag code.
-- **PAR-03** Derive dependent widths (address, counter, field positions) from parameters or localparams; do not repeat literals. Design-specific constants are named parameters, localparams, or enum members.
+- **PAR-03** Derive dependent widths (address, counter, field positions) from parameters or localparams; do not repeat literals. Name design-specific constants as parameters, localparams, or enum members; fixed protocol encodings follow PAR-04.
+- **PAR-04** Fixed protocol encodings (for example, burst types, response codes, opcodes, and status values) are named width-matched `localparam logic` constants with the prefix `LPARA_`; use those names in `case` items, comparisons, and assignments instead of repeating the numeric encoding. Use an overridable `parameter` only for a configuration choice that the specification explicitly allows the integrator to select; a standard-defined encoding itself is never overridable. For example, AHB `HBURST` values use localparams, while a selected burst policy may be a parameter if the specification exposes that option.
+
+```systemverilog
+module m_ahb_ctrl #(
+  localparam logic [2:0] LPARA_HBURST_SINGLE = 3'b000,
+  localparam logic [2:0] LPARA_HBURST_INCR = 3'b001,
+  localparam logic [2:0] LPARA_HBURST_WRAP4 = 3'b010,
+  localparam logic [2:0] LPARA_HBURST_INCR4 = 3'b011,
+  localparam logic [2:0] LPARA_HBURST_WRAP8 = 3'b100,
+  localparam logic [2:0] LPARA_HBURST_INCR8 = 3'b101,
+  localparam logic [2:0] LPARA_HBURST_WRAP16 = 3'b110,
+  localparam logic [2:0] LPARA_HBURST_INCR16 = 3'b111
+) (
+  input  wire [2:0] i_ahb_hburst,
+  output logic      o_hburst_valid
+);
+
+// HBURST decode: marks each defined 3-bit encoding as valid.
+always_comb begin : p_com_hburst
+  o_hburst_valid = 1'b0;
+  case (i_ahb_hburst)
+    LPARA_HBURST_SINGLE,
+    LPARA_HBURST_INCR,
+    LPARA_HBURST_WRAP4,
+    LPARA_HBURST_INCR4,
+    LPARA_HBURST_WRAP8,
+    LPARA_HBURST_INCR8,
+    LPARA_HBURST_WRAP16,
+    LPARA_HBURST_INCR16: o_hburst_valid = 1'b1;
+    default:             o_hburst_valid = 1'b0;
+  endcase
+end
+endmodule
+```
 
 ```systemverilog
 // Parameter Description: datapath width of the operands and the result.
@@ -174,7 +208,7 @@ end
 ```
 
 - **COM-05** `[NEW]` Combinational loops are not allowed. Feedback passes through a register.
-- **COM-06** `[NEW]` Functions used in RTL are `automatic`, deterministic, and side-effect free (see P9).
+- **COM-06** `[NEW]` Functions used in RTL are `automatic`, deterministic, and side-effect free (see P9). Prefer direct RTL for a simple expression used once; use a function when logic is reused at multiple RTL call sites or a nontrivial transform is clearer as one named unit. Every function MUST have an immediately preceding comment describing its behavior and any non-obvious width or bit/byte ordering. If a nontrivial function has one call site, its comment also states why the abstraction improves clarity. A function is a source-level abstraction and does not by itself imply shared hardware or reduced area.
 - **COM-07** `[NEW]` An inferred latch is not allowed. Every signal that a combinational process drives MUST be assigned on every path: assign its default at the top of the process (COM-02) so that no `if` or `case` branch leaves it unassigned, and give every `case` a `default` (COM-03). A latch reported by lint (for example verilator `LATCH` or slang `inferred-latch`) is an error and MUST NOT be waived. Intentional storage uses a flip-flop (SEQ-01).
 - **COM-08** `[NEW]` A selection with three or more conditional branches (an `if` followed by two or more `else if`) MUST be written as a `case` or `casez` statement, chosen under COM-03 and COM-04, not as an `if` / `else if` chain. A selection on the value of one signal is a plain `case`. A priority selection among independent conditions is a `casez` on the concatenated condition bits with `?` for the bits of lower priority; it keeps the original priority, and its `default` assigns a defined value unless COM-04 allows `'x`. A chain of one or two conditions (with or without a final `else`), the reset test that opens a sequential process, and an elaboration-time `if` in a generate block are not counted.
 
@@ -406,7 +440,7 @@ endmodule
 | P7 | `always_latch` and inferred or intentional latches (COM-07) | Default assignments (COM-02, COM-07) or edge-triggered state |
 | P8 | Multiple drivers on one signal | One assignment source |
 | P9 | Functions with side effects or static state | Deterministic `automatic` functions (COM-06) |
-| P10 | Unexplained magic numbers | Named parameter, localparam, or enum member |
+| P10 | Unexplained magic numbers | Named `localparam` or enum member for fixed encodings; `parameter` only for specification-approved configurable values (PAR-04) |
 | P11 | `package` declarations and imports; SV `interface`/`modport` in design RTL. Allowed in simulation-only verification sources | Module-local types; packed-vector ports |
 | P12 | `` `define `` and `` `undef `` in RTL. Macros defined by the flow may be referenced | Parameters and localparams |
 | P13 | Positional instance connections and `.*` | Named connections (HIE-03) |

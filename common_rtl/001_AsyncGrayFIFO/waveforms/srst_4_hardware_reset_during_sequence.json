@@ -1,7 +1,0 @@
-{
-  "kind": "simulation-derived waveform",
-  "image": "srst_4_hardware_reset_during_sequence.svg",
-  "generator": "waveforms/proto/run_srst_waveforms.py",
-  "regenerate": "cd waveforms/proto && python run_srst_waveforms.py <out dir>",
-  "note": "The image is drawn from a simulation (iverilog) of the RTL or the prototype by wavelib.py; it has no WaveJSON source."
-}

@@ -9,7 +9,7 @@
 // Parameters (iverilog -P tb_apbcdc.<name>=<value>): HM and HS_ half periods in ns of the mst and slv clocks,
 // HS handshake type, CELL cell option (synchronizer depth), APB5, NX table size, HRST_AT hardware reset time (0 = none),
 // REGRESS 1 = run all transfers and finish, 0 = waveform mode (prints one sample line every DT ns and finishes after
-// NSLOT slots). Plusargs: +STIM=<stem>, +VCD=<file>, +APBCDC_MSYNC_SEED=<n> (simulation branch).
+// NSLOT slots). Plusargs: +STIM=<stem>, +VCD=<file>, +AFIFO_MSYNC_SEED=<n> (simulation branch).
 // The run prints SIM-BRANCH, the assertion table and "assertion failures: 0, assertions never exercised: 0".
 module tb_apbcdc;
   parameter integer HM = 5;
@@ -158,7 +158,7 @@ module tb_apbcdc;
     $display("SIM-BRANCH: synthesis");
 `else
     msync_seed = 1;
-    if ($value$plusargs("APBCDC_MSYNC_SEED=%d", msync_seed)) ;
+    if ($value$plusargs("AFIFO_MSYNC_SEED=%d", msync_seed)) ;
     $display("SIM-BRANCH: metastable seed=%0d", msync_seed);
 `endif
     if ($value$plusargs("VCD=%s", vcdname)) begin

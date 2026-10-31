@@ -1,0 +1,105 @@
+{
+  "head": {
+    "text": "WF-019 One APB write of hr_ctrl.en through the configuration path to the controller",
+    "tick": 0
+  },
+  "signal": [
+    [
+      "APB4 pins (CLK-APB)",
+      {
+        "name": "PSEL",
+        "wave": "01........0........."
+      },
+      {
+        "name": "PENABLE",
+        "wave": "0.1.......0........."
+      },
+      {
+        "name": "PWRITE",
+        "wave": "01........0........."
+      },
+      {
+        "name": "PADDR",
+        "wave": "x=........x.........",
+        "data": [
+          "hr_ctrl"
+        ]
+      },
+      {
+        "name": "PWDATA",
+        "wave": "x=........x.........",
+        "data": [
+          "en = 1"
+        ]
+      },
+      {
+        "name": "PREADY",
+        "wave": "0........10........."
+      },
+      {
+        "name": "PSLVERR",
+        "wave": "0..................."
+      }
+    ],
+    {},
+    [
+      "u_vlsit_apb4_if",
+      {
+        "name": "address decode hit",
+        "wave": "0.1.......0........."
+      },
+      {
+        "name": "request to the crossing",
+        "wave": "0..10..............."
+      }
+    ],
+    {},
+    [
+      "u_vlsit_apb4_cdc (CLK-APB to CLK-CORE)",
+      {
+        "name": "request in the core domain",
+        "wave": "0....10............."
+      },
+      {
+        "name": "response to the APB domain",
+        "wave": "0.......10.........."
+      }
+    ],
+    {},
+    [
+      "u_vlsit_csr_regfile (CLK-CORE)",
+      {
+        "name": "register write strobe",
+        "wave": "0.....10............"
+      },
+      {
+        "name": "o_hr_ctrl_en",
+        "wave": "0......1............"
+      }
+    ],
+    {},
+    [
+      "u_vlsit_hyperbus_ctrl",
+      {
+        "name": "Controller state",
+        "wave": "=.......=.....=.....",
+        "data": [
+          "CONFIGURED_DISABLED",
+          "RESET_LOW_WAIT",
+          "DEVICE_STARTUP"
+        ]
+      },
+      {
+        "name": "o_rst_n_mem",
+        "wave": "0.............1....."
+      }
+    ]
+  ],
+  "foot": {
+    "text": "The APB write crosses the interface, the clock-domain crossing and the register file; the enable bit starts the start-up sequence in the controller. One slot is one symbolic step; the crossing latency depends on the clock ratio.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

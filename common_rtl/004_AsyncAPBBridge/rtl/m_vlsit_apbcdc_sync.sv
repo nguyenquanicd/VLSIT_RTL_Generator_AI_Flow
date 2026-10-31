@@ -5,11 +5,11 @@
  * AI Flow Page : https://github.com/nguyenquanicd/VLSIT_RTL_Generator_AI_Model
  * Date         : 2026-10-25
  * Description  : Synchronizer of the asynchronous APB bridge for a vector of PARA_APBCDC_SYNC_W
- *                bits. It instantiates one technology cell wrapper m_vlsit_apbcdc_cell_sync per bit
+ *                bits. It instantiates one technology cell wrapper m_vlsit_afifo_cell_sync per bit
  *                and nothing else: the cell option PARA_APBCDC_CELL_TYPE (bypass, two D flip-flop
  *                cells, or a 2-FF, 3-FF or 4-FF cell) sets the number of stages, and the reset
  *                flavour of every bit follows its reset value bit. The synthesis cells and the
- *                metastability model of the simulation flow are inside m_vlsit_apbcdc_cell_sync
+ *                metastability model of the simulation flow are inside m_vlsit_afifo_cell_sync
  *                (DEC-022, REQ-RTL-002).
  */
 `timescale 1ns/1ps
@@ -44,10 +44,10 @@ module m_vlsit_apbcdc_sync #(
   // i_data[i] goes to the wrapper, and the wrapper output is o_data[i]. No logic is placed in
   // front of the first stage (CLK-01, P28).
   for (genvar gen_bit = 0; gen_bit < PARA_APBCDC_SYNC_W; gen_bit++) begin : gen_bit_cell
-    m_vlsit_apbcdc_cell_sync #(
-      .PARA_APBCDC_CELL_RST_VAL (32'(PARA_APBCDC_SYNC_RST_VAL[gen_bit])),
-      .PARA_APBCDC_CELL_TYPE    (PARA_APBCDC_CELL_TYPE)
-    ) u_vlsit_apbcdc_cell_sync (
+    m_vlsit_afifo_cell_sync #(
+      .PARA_AFIFO_CELL_RST_VAL (32'(PARA_APBCDC_SYNC_RST_VAL[gen_bit])),
+      .PARA_AFIFO_CELL_TYPE    (PARA_APBCDC_CELL_TYPE)
+    ) u_vlsit_afifo_cell_sync (
       .i_clk_dst   (i_clk_dst),
       .i_rst_n_dst (i_rst_n_dst),
       .i_d         (i_data[gen_bit]),

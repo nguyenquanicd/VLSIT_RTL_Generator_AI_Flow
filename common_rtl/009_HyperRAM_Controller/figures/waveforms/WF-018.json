@@ -1,0 +1,127 @@
+{
+  "head": {
+    "text": "WF-018 One AXI read through the first-level blocks (PARA_AXI_CLK_ASYNC = 0)",
+    "tick": 0
+  },
+  "signal": [
+    [
+      "AXI pins",
+      {
+        "name": "ARVALID",
+        "wave": "010................."
+      },
+      {
+        "name": "ARREADY",
+        "wave": "1..................."
+      },
+      {
+        "name": "RVALID",
+        "wave": "0.............1...0."
+      },
+      {
+        "name": "RDATA",
+        "wave": "x.............====x.",
+        "data": [
+          "D0",
+          "D1",
+          "D2",
+          "D3"
+        ]
+      }
+    ],
+    {},
+    [
+      "u_vlsit_axi4_cdc (wire-through)",
+      {
+        "name": "AR to frontend",
+        "wave": "010................."
+      },
+      {
+        "name": "R beats",
+        "wave": "0.............1...0."
+      }
+    ],
+    {},
+    [
+      "u_vlsit_axi4_frontend",
+      {
+        "name": "request to the controller",
+        "wave": "0.10................"
+      },
+      {
+        "name": "read buffer words",
+        "wave": "x............====x..",
+        "data": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    ],
+    {},
+    [
+      "u_vlsit_hyperbus_ctrl",
+      {
+        "name": "Controller state",
+        "wave": "=..==..=..=...==....",
+        "data": [
+          "IDLE",
+          "ARB",
+          "CA",
+          "LATENCY",
+          "DATA",
+          "END",
+          "IDLE"
+        ]
+      },
+      {
+        "name": "hr_sts.idle",
+        "wave": "1..0...........1...."
+      }
+    ],
+    {},
+    [
+      "u_vlsit_hyperbus_phy",
+      {
+        "name": "o_hb_cs_n",
+        "wave": "1...0.........1....."
+      },
+      {
+        "name": "o_clk_hb",
+        "wave": "0....ppppppppp0....."
+      },
+      {
+        "name": "DQ",
+        "wave": "z...=..z..=...z.....",
+        "data": [
+          "CA0 CA1 CA2",
+          "D0 D1 D2 D3"
+        ]
+      },
+      {
+        "name": "RWDS",
+        "wave": "0.........1010......"
+      },
+      {
+        "name": "i_clk_cap (delayed RWDS)",
+        "wave": "0..........1010....."
+      },
+      {
+        "name": "capture FIFO write",
+        "wave": "0..........1...0...."
+      },
+      {
+        "name": "capture FIFO read",
+        "wave": "0...........1...0..."
+      }
+    ]
+  ],
+  "foot": {
+    "text": "One slot is one symbolic step: the latency and data phases are compressed. The request crosses the AXI crossing, the frontend and the controller to the PHY; the data return through the capture FIFO and the read buffer to the R channel.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 1
+  }
+}

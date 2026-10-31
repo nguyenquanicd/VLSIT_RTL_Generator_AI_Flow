@@ -158,7 +158,7 @@ The handshake is selectable: a **two-phase (toggle)** handshake or a **four-phas
 | REQ-TIM-002 | Each crossing path shall be constrained by `set_max_delay` with the clock latency ignored; no `set_clock_groups -asynchronous` and no `set_false_path` (other than the hold-only false path of the crossings) shall exist between the two clocks. | DEC-018, DEC-017 | All configurations | SDC review in the sign-off tool: TEST-016 |
 | REQ-TIM-003 | After clock-tree synthesis the difference between the clock latencies of the launch and the capture flip-flops of every crossing shall be smaller than the guard band of one destination period used in the budget formulas. | DEC-017 | All configurations | Post-CTS report review: TEST-016 |
 | REQ-RTL-001 | The RTL shall comply with REF-003 and shall use the hierarchy of Section 14.2. | REF-003 | All configurations | Lint and rule check: TEST-015 |
-| REQ-RTL-002 | The synchronizer cells shall be instantiated only inside the wrapper `m_vlsit_apbcdc_cell_sync` of `000_Common/rtl_lib`, named `u_dont_touch_` followed by the function (REF-003 NAM-09), with a simulation model that adds a random extra latency of 0, 1 or 2 destination cycles to the output. | DEC-022, REF-003 CLK-02 | All configurations | Simulation: TEST-019; rule check: TEST-015 |
+| REQ-RTL-002 | The synchronizer cells shall be instantiated only inside the wrapper `m_vlsit_afifo_cell_sync` of `000_Common/rtl_lib`, named `u_dont_touch_` followed by the function (REF-003 NAM-09), with the simulation model of the common wrapper: the first flop captures the new or the old value, 50 percent each, when the input changed inside an aperture window before the capturing edge (DEC-027). | DEC-022, REF-003 CLK-02 | All configurations | Simulation: TEST-019; rule check: TEST-015 |
 | REQ-VER-001 | Every waveform of the plan of Section 10.3 shall exist as an image with its WaveJSON source, and the prototype scripts shall reproduce them. | DEC-012 | All configurations | File check and rerun: TEST-017 |
 | REQ-VER-002 | The random regression shall cover both handshake types, two synchronizer depths, APB4 and APB5, and at least ten clock ratios including equal clocks and a ratio of 9 to 1 in both directions, with wait states and errors, and shall report no error. | DEC-008 | All configurations | Regression: TEST-011 |
 
@@ -187,7 +187,7 @@ The IP has two blocks, one per clock domain, and one structural top. Each block 
 |---|---|---|---|---|
 | m_vlsit_apbcdc_mst | APB completer of the requester: captures the Setup phase into the request hold register, launches the request bit, receives the acknowledge through the synchronizer `u_sync_ack`, loads the response into the response output registers and raises `PREADY` for one cycle; registers `i_apb_pwakeup` for the crossing | Requester-side APB interface, crossing signals with the slv block | CLK-MST / RST-MST | `reg_req_payload`, `reg_req`, `reg_wakeup`, response output registers `reg_resp_payload`, `reg_fsm_hs_current_state` (IDLE, WAIT, CLOSE, RESP) |
 | m_vlsit_apbcdc_slv | APB requester of the completer: receives the request bit through `u_sync_req` and the wake-up through `u_sync_wk`, loads the request bundle into `reg_apb_payload`, drives one APB transfer, captures the response into `reg_resp_hold`, launches the acknowledge, and drives `o_apb_pwakeup` | Completer-side APB interface, crossing signals with the mst block | CLK-SLV / RST-SLV | `reg_apb_payload`, `reg_resp_hold`, `reg_ack`, `reg_fsm_hs_current_state` (IDLE, SETUP, ACCESS, REQ0), `reg_apb_psel`, `reg_apb_penable`, `reg_pwakeup` |
-| m_vlsit_apbcdc_sync | Synchronizer of a vector of control bits with the cell option `PARA_APBCDC_CELL_TYPE`; instantiates `m_vlsit_apbcdc_cell_sync` per bit | One bit per crossing control signal | Destination domain | Synchronizer stages |
+| m_vlsit_apbcdc_sync | Synchronizer of a vector of control bits with the cell option `PARA_APBCDC_CELL_TYPE`; instantiates `m_vlsit_afifo_cell_sync` per bit | One bit per crossing control signal | Destination domain | Synchronizer stages |
 | m_vlsit_async_apb_bridge | Structural wrapper: interface, parameters, interconnect and the two instances | All ports of Section 6.2 | CLK-MST, CLK-SLV | None |
 
 ### 5.2 Block diagram
@@ -563,7 +563,7 @@ The VLSIT RTL Design Rules v2 in VLSIT_RTL_Design_Rule.md (REF-003) are the mand
 | m_vlsit_apbcdc_mst | Requester-side block | m_vlsit_async_apb_bridge / u_vlsit_apbcdc_mst | CLK-MST / RST-MST | Requester-side APB, crossing signals |
 | m_vlsit_apbcdc_slv | Completer-side block | m_vlsit_async_apb_bridge / u_vlsit_apbcdc_slv | CLK-SLV / RST-SLV | Completer-side APB, crossing signals |
 | m_vlsit_apbcdc_sync | Synchronizer of a vector of control bits | mst: u_sync_ack; slv: u_sync_req, u_sync_wk | Destination domain | Clock, reset, data in, data out |
-| m_vlsit_apbcdc_cell_sync | Cell wrapper of one synchronizer bit, in `000_Common/rtl_lib`; synthesis branch with `VLSIT_CELL_SYNC_*` cells, simulation branch with the metastability model (plusargs `+APBCDC_MSYNC_SEED`, `+APBCDC_MSYNC_EN`) | m_vlsit_apbcdc_sync / u_vlsit_apbcdc_cell_sync per bit | Destination domain | Clock, reset, one bit in, one bit out |
+| m_vlsit_afifo_cell_sync | Cell wrapper of one synchronizer bit, in `000_Common/rtl_lib`; synthesis branch with `VLSIT_CELL_SYNC_*` cells, simulation branch with the metastability model (plusargs `+AFIFO_MSYNC_SEED`, `+AFIFO_MSYNC_EN`, `+AFIFO_MSYNC_WIN_PCT`) | m_vlsit_apbcdc_sync / u_vlsit_afifo_cell_sync per bit | Destination domain | Clock, reset, one bit in, one bit out |
 
 State is owned by the mst block (request hold register, request bit, wake-up register, response output registers, FSM), by the slv block (payload register, response hold register, acknowledge bit, FSM, APB output registers, wake-up flop) and by the synchronizers. There is no register logic and no protocol adapter other than the two FSMs.
 
@@ -600,13 +600,13 @@ Same columns and signal types as Section 6.2; module-internal bundle widths are 
 | i_data | Input | PARA_APBCDC_SYNC_W | Bits to synchronize, directly from a launch flop of the other domain | Other domain | Level (flop outputs) | Not applicable | First stage samples at every edge | All |
 | o_data | Output | PARA_APBCDC_SYNC_W | Synchronized bits, N stages later | Destination | Level (flop outputs of the last stage) | 0 | Changes at a destination edge | All |
 
-**m_vlsit_apbcdc_cell_sync** (wrapper, one bit): i_clk_dst, i_rst_n_dst, i_d (Level, from the launch flop), o_q (Level, last stage), parameters `PARA_APBCDC_CELL_TYPE` and the reset flavour `PARA_APBCDC_CELL_RST_VAL` (0, all control bits of this IP). Pin and cell names of the library cells keep the library style and are exempt from the naming rule as in `001_AsyncGrayFIFO`.
+**m_vlsit_afifo_cell_sync** (wrapper, one bit): i_clk_dst, i_rst_n_dst, i_d (Level, from the launch flop), o_q (Level, last stage), parameters `PARA_AFIFO_CELL_TYPE` and the reset flavour `PARA_AFIFO_CELL_RST_VAL` (0, all control bits of this IP). Pin and cell names of the library cells keep the library style and are exempt from the naming rule as in `001_AsyncGrayFIFO`.
 
 ### 14.3 Synthesis assumptions
 
 | Item | Value / source |
 |---|---|
-| Top / source file list | m_vlsit_async_apb_bridge, the four design files of Section 14.2, the wrapper `m_vlsit_apbcdc_cell_sync` and the cell models of `000_Common` |
+| Top / source file list | m_vlsit_async_apb_bridge, the four design files of Section 14.2, the wrapper `m_vlsit_afifo_cell_sync` and the cell models of `000_Common` |
 | Frontend version and options | Recorded per run (REF-003 SCP-02) |
 | Parameters/configuration | CFG-APB4, CFG-4PH, CFG-APB5, CFG-USER, CFG-SYNC3, CFG-MIN |
 | Libraries/corners | Chosen by the integrator (OI-001) |
@@ -801,7 +801,7 @@ This subsection answers the question of the designer of 2026-10-25 and corrects 
 | REQ-HS-004 | m_vlsit_apbcdc_mst | TEST-008, SVA-013 | Simulation, assertion | CFG-4PH |
 | REQ-CLK-001 | All modules | TEST-011, COV-001 | Simulation with many ratios | All |
 | REQ-CLK-002 | m_vlsit_async_apb_bridge | TEST-015, TEST-019 | Structural check, simulation | All |
-| REQ-CLK-003 | m_vlsit_apbcdc_sync, m_vlsit_apbcdc_cell_sync | TEST-014, TEST-016, COV-004 | Elaboration, SDC check | All |
+| REQ-CLK-003 | m_vlsit_apbcdc_sync, m_vlsit_afifo_cell_sync | TEST-014, TEST-016, COV-004 | Elaboration, SDC check | All |
 | REQ-RESET-001 | m_vlsit_apbcdc_mst, m_vlsit_apbcdc_slv | TEST-001, SVA-016 | Reset test, assertion | All |
 | REQ-RESET-002 | m_vlsit_async_apb_bridge | TEST-012, COV-006 | Simulation, coverage | All |
 | REQ-APB5-001 | m_vlsit_apbcdc_slv | TEST-009, SVA-014, SVA-015, COV-005 | Simulation, assertion | CFG-APB5 |
@@ -815,7 +815,7 @@ This subsection answers the question of the designer of 2026-10-25 and corrects 
 | REQ-TIM-002 | SDC file | TEST-016 | SDC review in the sign-off tool | All |
 | REQ-TIM-003 | Clock tree of the integration | TEST-016 | Post-CTS report review | All |
 | REQ-RTL-001 | All modules | TEST-015 | Lint, rule check | All |
-| REQ-RTL-002 | m_vlsit_apbcdc_cell_sync | TEST-015, TEST-019 | Rule check, simulation | All |
+| REQ-RTL-002 | m_vlsit_afifo_cell_sync | TEST-015, TEST-019 | Rule check, simulation | All |
 | REQ-VER-001 | Verification source set | TEST-017 | File check | All |
 | REQ-VER-002 | Verification source set | TEST-011 | Regression | All |
 
@@ -827,7 +827,7 @@ This subsection answers the question of the designer of 2026-10-25 and corrects 
 |---|---|---|---|---|
 | OI-001 | Open item | Frequency, area and power targets, libraries and corners are not given | Section 13 goals and Section 17 budgets | Needs the integrator |
 | OI-002 | Open item | Clock gating with `PWAKEUP`: if the completer-side clock is gated and enabled only by a wake-up, the bridge cannot see the request while the clock is stopped; the clock controller of the slv domain shall act on `i_apb_pwakeup` (or on a signal of the requester) before the request arrives | CFG-APB5 with gated `i_clk_slv` | Clarify with the designer (ASM-005) |
-| OI-003 | Open item | The wrapper `m_vlsit_apbcdc_cell_sync` (cells and simulation model with metastability) was created on 2026-10-25 in `000_Common/rtl_lib` as a copy of the structure of `m_vlsit_afifo_cell_sync` with the plusargs `+APBCDC_MSYNC_SEED` and `+APBCDC_MSYNC_EN` | RTL and simulation of every configuration | Resolved by the RTL; the wrapper itself is verified only through the bridge simulation (DEP-001) |
+| OI-003 | Open item | The wrapper `m_vlsit_apbcdc_cell_sync` that was created on 2026-10-25 was removed on 2026-10-31; the common wrapper `m_vlsit_afifo_cell_sync` of `000_Common/rtl_lib` (cells and simulation model with metastability, DEC-027) replaces it | RTL and simulation of every configuration | Resolved by the RTL; the wrapper itself is verified only through the bridge simulation (DEP-001) |
 | OI-004 | Open item | The SDC was executed only with stub commands. The semantics of `set_max_delay -ignore_clock_latency`, `set_false_path -hold`, the priority of these exceptions, and the absence of `set_clock_groups` were not confirmed in Design Compiler, PrimeTime or Fusion Compiler; the description of the options in Section 17.1.4 is the author's analysis supported by the AMD documents for the Vivado equivalents | REQ-TIM-001, REQ-TIM-002 | Run in the sign-off tool (TEST-016) and correct Section 17 and the SDC if the tool behaves differently |
 | OI-005 | Open item | The optional ports of APB5 are declared in every configuration of the RTL top (DEC-021), which deviates from PRT-03 | REQ-IF-001, port list of the top | Confirm with the designer, or deliver two tops |
 | OI-006 | Open item | The latency bounds were derived by analysis and checked on the prototype with one starting phase per ratio | REQ-PERF-001, REQ-PERF-002 | Repeat on the RTL for many phases (TEST-018) |
@@ -855,21 +855,22 @@ This subsection answers the question of the designer of 2026-10-25 and corrects 
 | DEC-012 | Decision | Waveform plan: the proposed list of 12 waveforms | Section 10.3 | Confirmed by the designer, 2026-10-25 (answer 13A) |
 | DEC-013 | Decision | One completer (one `PSEL`), one transfer at a time, two-phase default, 2-FF default, synchronizer depth by the cell option of `001_AsyncGrayFIFO` | Sections 4 and 8 | Confirmed by the designer, 2026-10-25 (answer 14A) |
 | DEC-014 | Decision | SDC examples: T_mst = 10 ns, T_slv = 20 ns; the budgets are formulas of the periods and N | Section 17 | Confirmed by the designer, 2026-10-25 (answer 15A) |
-| DEC-015 | Decision | Names: top `m_vlsit_async_apb_bridge`, blocks `m_vlsit_apbcdc_mst` and `m_vlsit_apbcdc_slv`, synchronizer `m_vlsit_apbcdc_sync`, wrapper `m_vlsit_apbcdc_cell_sync`, parameters `PARA_APBCDC_*`, register names of Section 14.1 | All names | Top name confirmed by designer on 2026-10-26; remaining names are unconfirmed |
+| DEC-015 | Decision | Names: top `m_vlsit_async_apb_bridge`, blocks `m_vlsit_apbcdc_mst` and `m_vlsit_apbcdc_slv`, synchronizer `m_vlsit_apbcdc_sync`, wrapper `m_vlsit_afifo_cell_sync` (DEC-027), parameters `PARA_APBCDC_*`, register names of Section 14.1 | All names | Top name confirmed by designer on 2026-10-26; remaining names are unconfirmed |
 | DEC-016 | Decision | The request bit is launched at the same edge as the request bundle is loaded (no extra cycle); the budget relies on the synchronizer latency | REQ-HS-003, Section 17.1.4 | Author's choice; to be confirmed by the designer |
 | DEC-017 | Decision | The crossing budgets are `set_max_delay -ignore_clock_latency` with the values of Section 17.1.2 and a hold-only false path; the guard band of one destination period | REQ-TIM-002, REQ-TIM-003 | Author's choice; to be confirmed by the designer and in the sign-off tool (OI-004) |
 | DEC-018 | Decision | No `set_clock_groups` and no false path between the two clocks in the IP SDC | REQ-TIM-002, EXC-006 | Author's choice; to be confirmed by the designer |
 | DEC-019 | Decision | Every APB output is a flip-flop output; `PREADY` is high only in state RESP, so it is high only when the Access phase has been reached | REQ-IF-002, REQ-FUNC-004 | Author's choice; to be confirmed by the designer |
 | DEC-020 | Decision | With the four-phase handshake the response is delivered only after the handshake closed (acknowledge low), so that the next Setup phase can always be accepted | REQ-HS-004 | Author's choice; to be confirmed by the designer |
 | DEC-021 | Decision | The RTL top declares the APB5 ports in every configuration (widths of at least 1 for absent user signals, unused inputs ignored, unused outputs 0), because SystemVerilog has no optional ports; this deviates from PRT-03 and is recorded in the module header | REQ-IF-001, OI-005 | Author's choice; to be confirmed by the designer |
-| DEC-022 | Decision | The wrapper `m_vlsit_apbcdc_cell_sync` contains the synchronization cells in the synthesis branch and a simulation model with random extra latency of 0, 1 or 2 cycles, as in `001_AsyncGrayFIFO` | REQ-RTL-002 | Author's choice; to be confirmed by the designer |
+| DEC-022 | Decision | The wrapper `m_vlsit_afifo_cell_sync` contains the synchronization cells in the synthesis branch and the aperture-window simulation model of `001_AsyncGrayFIFO` (the common wrapper, DEC-027) | REQ-RTL-002 | Author's choice; to be confirmed by the designer |
 | DEC-023 | Decision | Each bundle uses two registers, a hold register in the launching domain and a load register in the receiving domain, so that all APB outputs are flip-flops of their own domain | REQ-HS-002, area | Author's choice; to be confirmed by the designer |
 | DEC-024 | Decision | Fields that need not be valid hold their last value; every register resets to 0; `PSLVERR` is cleared after the `PREADY` cycle | REQ-IF-003 | Author's choice; to be confirmed by the designer |
 | DEC-025 | Decision | `i_apb_pwakeup` is registered in the mst block before the synchronizer; `o_apb_pwakeup` is a flip-flop that also covers the in-progress term and falls one cycle after the transfer | REQ-APB5-001 | Author's choice; to be confirmed by the designer |
 | DEC-026 | Decision | `PARA_APBCDC_CELL_TYPE` = 0 (no stage) is for simulation only; the SDC rejects a depth below 2 | REQ-CLK-003 | Author's choice; to be confirmed by the designer |
+| DEC-027 | Decision | The wrapper `m_vlsit_apbcdc_cell_sync` is removed; this IP and the generated CSR use the common wrapper `m_vlsit_afifo_cell_sync` of `000_Common/rtl_lib` for every synchronizer bit; its parameters are `PARA_AFIFO_CELL_TYPE` and `PARA_AFIFO_CELL_RST_VAL` and its plusargs `+AFIFO_MSYNC_SEED`, `+AFIFO_MSYNC_EN`, `+AFIFO_MSYNC_WIN_PCT` | Supersedes DEC-022. The aperture-window model delays a bit by 0 or 1 cycle only when it changes near the capturing edge, a narrower stress of the handshake than the earlier random 0 to 2 cycles; it requires the source clock to be at most 100 / WIN_PCT times faster than the destination clock (10 times with the default 10 percent) | Decided by the designer on 2026-10-31; the verification evidence of this specification was produced with the earlier model and shall be run again |
 | DEC-027 | Decision | A violation of APB by the requester is not detected; `PENABLE` without a Setup cycle is ignored | Section 12 | Author's choice; to be confirmed by the designer |
 | DEC-028 | Decision | `PPROT` and `PSTRB` are forwarded unchanged, including a non-zero `PSTRB` in a read | REQ-FUNC-009 | Author's choice; to be confirmed by the designer |
-| DEP-001 | Dependency | `000_Common`: the cell models `VLSIT_CELL_SYNC_*` and the new wrapper `m_vlsit_apbcdc_cell_sync` (OI-003) | REQ-RTL-002 | Integration |
+| DEP-001 | Dependency | `000_Common`: the cell models `VLSIT_CELL_SYNC_*` and the new wrapper `m_vlsit_afifo_cell_sync` (OI-003) | REQ-RTL-002 | Integration |
 | DEP-002 | Dependency | Two clock sources, two reset controllers with synchronous release | REQ-CLK-001, REQ-RESET-002 | Integration |
 | DEP-003 | Dependency | The prototype scripts of `waveforms/proto/` need iverilog, vvp, Python 3 and the skill script `vlsit_waveform_svg.py`; `constraints/check_sdc.py` needs Python 3 with tkinter | REQ-VER-001, REQ-TIM-001 | Tool setup |
 

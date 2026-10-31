@@ -1,6 +1,6 @@
 {
   "head": {
-    "text": "WF-001 Reset, preset load, enable, startup with CR0, CR1 and ID0",
+    "text": "WF-001 Reset, CSR programming, enable, startup with CR0, CR1 and ID0",
     "tick": 0
   },
   "signal": [
@@ -10,7 +10,7 @@
         "name": "APB write",
         "wave": "x.=.=x........",
         "data": [
-          "hr_d0_cfg.preset_go",
+          "timing and ID fields",
           "hr_ctrl.en"
         ]
       }
@@ -56,7 +56,7 @@
     ]
   ],
   "foot": {
-    "text": "Illustrative phases; the counts t_rp, t_rh, t_rph and t_vcs are symbolic and not to scale. Presets are loaded while hr_ctrl.en = 0.",
+    "text": "Illustrative phases; the counts t_rp, t_rh, t_rph and t_vcs are symbolic and not to scale. Software programs the timing and ID fields while hr_ctrl.en = 0.",
     "tock": 0
   },
   "config": {

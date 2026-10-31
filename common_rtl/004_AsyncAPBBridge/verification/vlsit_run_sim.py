@@ -24,7 +24,7 @@ RTL = [os.path.join(ROOT, "rtl", f) for f in ("m_vlsit_apbcdc_sync.sv", "m_vlsit
                                               "m_vlsit_async_apb_bridge.sv")]
 CELLS = [os.path.join(COMMON, "rtl_cells", "VLSIT_CELL_SYNC_%s.sv" % n) for n in
          ("DFF_RN", "DFF_SN", "2FF_RN", "2FF_SN", "3FF_RN", "3FF_SN", "4FF_RN", "4FF_SN")]
-WRAP = [os.path.join(COMMON, "rtl_lib", "m_vlsit_apbcdc_cell_sync.sv")]
+WRAP = [os.path.join(COMMON, "rtl_lib", "m_vlsit_afifo_cell_sync.sv")]
 TB = os.path.join(HERE, "tb_apbcdc.sv")
 
 
@@ -87,7 +87,7 @@ def build_and_run(cfg, branch, seed, stem, out, env, nx):
         return name, False, "COMPILE ERROR\n" + comp.stderr
     run = [vvp_exe, vvp, "+STIM=" + stem.replace("\\", "/")]
     if branch != "synthesis":
-        run.append("+APBCDC_MSYNC_SEED=%d" % seed)
+        run.append("+AFIFO_MSYNC_SEED=%d" % seed)
     res = subprocess.run(run, capture_output=True, text=True, env=env, timeout=600)
     log = res.stdout + res.stderr
     with open(os.path.join(out, "logs", name + ".log"), "w") as f:
