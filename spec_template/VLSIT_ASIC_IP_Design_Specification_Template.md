@@ -69,6 +69,14 @@ State the problem this IP solves, intended users/system context, observable beha
 |---|---|---|---|---|
 | FEAT-001 | <...> | Required | Always present | REQ-FUNC-001 |
 
+### 1.4 Real-world applications of the features
+
+For every feature of 1.3 name the real product or system that uses it and why that application needs it (rule R-041). Name a concrete system and an example product, not a field ("three-phase inverter of a brushless DC motor drive in an e-bike controller", not "motor control"); give the quantity that the application fixes, at least one number with unit, and the failure that follows when the feature is missing or wrong. Ask the user; if the user does not know, propose the application from a reference IP or a standard and record it as an assumption in section 20.
+
+| Feature ID | Real-world application (named system, example product) | What the application needs from the feature | Typical values | Consequence if missing or wrong | Requirements | Source |
+|---|---|---|---|---|---|---|
+| FEAT-001 | <named system, example product> | <need that fixes a value of the IP> | <number with unit, range> | <failure seen by the user> | REQ-FUNC-001 | <user answer date / standard clause / reference IP / ASM-nnn> |
+
 ## 2. Normative references and precedence
 
 ### 2.1 Normative references
