@@ -2,14 +2,14 @@
 
 ## Scope
 
-This folder contains the design specification and research for one structural AXI4-to-HyperRAM controller top. The top has seven RTL child modules: APB4 interface, APB CDC, CSR register file, AXI4 clock crossing, AXI4 frontend, HyperBus controller, and HyperBus PHY.
+This folder contains the design specification and research for one structural AXI4-to-HyperRAM controller top. The top has six RTL child modules: APB4 interface, CSR register file, AXI4 clock crossing, AXI4 frontend, HyperBus controller, and HyperBus PHY. APB4 connects directly to the generated CSR register file, which implements the APB/core CDC handshake internally.
 
 - One clock `CLK-CORE`, at twice the CK frequency (400 MHz for a 200 MHz CK), drives AXI4, the control logic and the PHY; CK is derived from it without a PLL, and a SoC delay line positions the read capture. The AXI4 clock is the same as `CLK-CORE` or asynchronous to it, selected by `PARA_AXI_CLK_ASYNC` (the clock and reset inputs `i_clk_axi` and `i_rst_n_axi` always exist). APB4 uses a separate asynchronous `CLK-APB` domain.
 - DQ/RWDS cross the RTL top as separate input, output, and active-high output-enable ports; the SoC pad wrapper connects physical bidirectional pads.
 - Reset values are safe for all five target OPNs, so software only sets enable for a 200 MHz CK. Enable runs the RESET#-low wait, the startup waits, the CR0 and CR1 writes and an ID0 read before AXI requests are accepted.
 - One elaboration-time parameter selects HyperBus x8 or Extended-I/O x16. AXI data width is 32 or 64 bits. The default is CFG-X8-32.
 - The approved AXI profile uses 32-bit byte addresses, 4-bit IDs, INCR/WRAP bursts, partial writes with WSTRB, and up to four outstanding reads and writes. USER, QOS, REGION, and exclusive transactions are excluded.
-- APB4 resets independently when its bus and CDC endpoint are idle. A core reset resets HyperRAM and invalidates its data; `o_idle` reports a fully drained, pin-idle controller.
+- APB4 can reset independently when the bus is idle and no APB/core CSR handshake is pending. A core reset resets HyperRAM and invalidates its data; `o_idle` reports a fully drained, pin-idle controller.
 - Every device timing is a CSR field counted in CK periods, per chip select (one or two); a run-time device preset loads the values of each OPN. Fixed and variable latency, posted writes, request merging, and a software command port for the device registers are supported.
 - Five device OPNs are approved as initial qualification targets, at up to 200 MHz. This is not a completed qualification claim.
 
@@ -22,7 +22,7 @@ This folder contains the design specification and research for one structural AX
 | `research/hyperram_protocol_and_product_research.md` | Protocol scope, target devices, and reference-source audit. |
 | `research/repair_pdf_md_pages.py` | Rebuilds selected converted document pages from their PDF text layer. |
 | `reference/md_doc/` | Locally converted standards and selected-device datasheets. Redistribution restrictions are recorded and enforced by `.gitignore`. |
-| `figures/block_diagram/` | Editable seven-module block diagram and rendered SVG/PNG. |
+| `figures/block_diagram/` | Editable six-module block diagram and rendered SVG/PNG. |
 | `figures/waveforms/` | Nineteen WaveDrom figures (`.svg`), offline viewers (`.html`), and editable sources (`.json`); the plan was confirmed on 2026-10-28 and extended on 2026-10-31. Timing is illustrative where noted. |
 
 ## Status
@@ -35,14 +35,14 @@ The specification was rewritten on 2026-10-28 from the designer's decisions DEC-
 
 ## Phạm vi
 
-Thư mục này chứa đặc tả thiết kế và tài liệu nghiên cứu cho một module top cấu trúc, chuyển tiếp AXI4 tới HyperRAM. Top có bảy module RTL con: giao diện APB4, CDC APB, bộ thanh ghi CSR, cầu clock AXI4, AXI4 frontend, bộ điều khiển HyperBus và PHY HyperBus.
+Thư mục này chứa đặc tả thiết kế và tài liệu nghiên cứu cho một module top cấu trúc, chuyển tiếp AXI4 tới HyperRAM. Top có sáu module RTL con: giao diện APB4, bộ thanh ghi CSR, cầu clock AXI4, AXI4 frontend, bộ điều khiển HyperBus và PHY HyperBus. APB4 nối trực tiếp tới CSR được sinh tự động; CSR tự xử lý handshake CDC giữa APB và core.
 
 - Một clock `CLK-CORE` bằng hai lần tần số CK (400 MHz cho CK 200 MHz) cấp cho AXI4, phần điều khiển và PHY; CK được tạo từ nó, không cần PLL, và delay line của SoC đặt vị trí lấy mẫu dữ liệu đọc. Clock AXI4 trùng `CLK-CORE` hoặc bất đồng bộ với nó, chọn bằng `PARA_AXI_CLK_ASYNC` (cổng `i_clk_axi` và `i_rst_n_axi` luôn có). APB4 dùng miền `CLK-APB` bất đồng bộ riêng.
 - DQ/RWDS qua top RTL bằng các cổng input, output và output-enable active-high riêng; SoC pad wrapper nối tới pad vật lý hai chiều.
 - Giá trị reset an toàn cho cả năm OPN mục tiêu, nên với CK 200 MHz phần mềm chỉ cần bật enable. Enable chạy thời gian RESET#-low, các startup wait, ghi CR0 và CR1 rồi đọc ID0 trước khi nhận request AXI.
 - Một parameter lúc elaboration chọn HyperBus x8 hoặc Extended-I/O x16. Độ rộng data AXI là 32 hoặc 64 bit. Cấu hình mặc định là CFG-X8-32.
 - Profile AXI đã duyệt dùng địa chỉ byte 32 bit, ID 4 bit, burst INCR/WRAP, ghi từng byte bằng WSTRB và tối đa bốn giao dịch đọc, bốn giao dịch ghi đang chờ. USER, QOS, REGION và exclusive không thuộc phạm vi.
-- APB4 có thể reset độc lập khi bus APB và endpoint CDC idle. Reset core reset HyperRAM và làm mất hiệu lực dữ liệu; `o_idle` báo controller đã drain và các chân bộ nhớ đã idle.
+- APB4 có thể reset độc lập khi bus idle và không có handshake APB/core CSR đang chờ. Reset core reset HyperRAM và làm mất hiệu lực dữ liệu; `o_idle` báo controller đã drain và các chân bộ nhớ đã idle.
 - Mọi timing của thiết bị là trường CSR tính theo chu kỳ CK, riêng cho từng chip select (một hoặc hai); preset thiết bị lúc chạy nạp giá trị của từng OPN. Hỗ trợ fixed và variable latency, ghi posted, gộp request liên tiếp và cổng lệnh phần mềm tới thanh ghi của thiết bị.
 - Năm mã OPN được duyệt làm mục tiêu qualification ban đầu, tối đa 200 MHz. Đây chưa phải kết quả qualification.
 
@@ -55,7 +55,7 @@ Thư mục này chứa đặc tả thiết kế và tài liệu nghiên cứu ch
 | `research/hyperram_protocol_and_product_research.md` | Phạm vi protocol, linh kiện mục tiêu và kiểm tra nguồn tham chiếu. |
 | `research/repair_pdf_md_pages.py` | Dựng lại một số trang tài liệu đã chuyển đổi từ text layer của PDF. |
 | `reference/md_doc/` | Bản Markdown cục bộ của chuẩn và datasheet đã chọn. `.gitignore` áp dụng giới hạn tái phân phối. |
-| `figures/block_diagram/` | Sơ đồ bảy module có thể sửa và bản render SVG/PNG. |
+| `figures/block_diagram/` | Sơ đồ sáu module có thể sửa và bản render SVG/PNG. |
 | `figures/waveforms/` | Mười chín waveform WaveDrom, gồm ảnh (`.svg`), viewer offline (`.html`) và tệp nguồn chỉnh sửa được (`.json`); kế hoạch được xác nhận ngày 2026-10-28. Timing có tính minh họa tại các mục được ghi chú. |
 
 ## Trạng thái

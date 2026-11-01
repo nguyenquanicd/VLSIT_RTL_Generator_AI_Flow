@@ -1,7 +1,6 @@
 // filelist.f - RTL files in compile order (leaf modules first, top last).
 // Top module: m_vlsit_hyperram_controller
 // Paths are relative to the folder of this file; run tools from that folder.
-m_vlsit_apb4_cdc.sv
 m_vlsit_apb4_if.sv
 ../../000_Common/rtl_cells/VLSIT_CELL_SRAM_1W1R.sv
 ../../000_Common/rtl_lib/m_vlsit_afifo_ram_macro.sv

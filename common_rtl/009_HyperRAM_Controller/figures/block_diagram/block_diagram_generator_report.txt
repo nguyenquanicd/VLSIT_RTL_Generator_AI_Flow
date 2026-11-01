@@ -1,1 +1,9 @@
-SCORE gapH=100 gapV=320 seed=0 failed=0 unplaced=0 issues=0 bend_gt5=0 bend5=0 bends=16 cross_total=6 cross_max_per_connector=3 frame=1460x580
+Updated 2026-11-01 after removing the standalone APB pass-through CDC module.
+The six-child architecture connects m_vlsit_apb4_if directly to m_vlsit_csr_regfile;
+the generated CSR retains the APB/core request-acknowledge CDC handshake.
+
+Rendered block_diagram.svg and block_diagram.png from block_diagram.drawio.
+Library validation: PASS, 50 library-derived cells across one page.
+Geometry review: 22 connectors and 6 physical crossings. The 18 shared-segment
+findings are the shared CLK-CORE fanout trunk among connectors i32__2 through
+i35__2; no other segment-overlap findings remain.

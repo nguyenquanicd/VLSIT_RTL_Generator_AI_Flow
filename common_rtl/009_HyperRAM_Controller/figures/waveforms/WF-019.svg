@@ -188,7 +188,7 @@
 <polyline points="774.0,351.0 810.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
 <polyline points="810.0,351.0 846.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
 <polyline points="846.0,351.0 882.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
-<text x="154" y="379" font-size="12" text-anchor="end">request to the crossing</text>
+<text x="154" y="379" font-size="12" text-anchor="end">APB request forwarded to CSR</text>
 <polyline points="162.0,381.0 198.0,381.0" stroke="#000" stroke-width="1.4" fill="none"/>
 <polyline points="198.0,381.0 234.0,381.0" stroke="#000" stroke-width="1.4" fill="none"/>
 <polyline points="234.0,381.0 270.0,381.0" stroke="#000" stroke-width="1.4" fill="none"/>
@@ -211,8 +211,8 @@
 <polyline points="774.0,381.0 810.0,381.0" stroke="#000" stroke-width="1.4" fill="none"/>
 <polyline points="810.0,381.0 846.0,381.0" stroke="#000" stroke-width="1.4" fill="none"/>
 <polyline points="846.0,381.0 882.0,381.0" stroke="#000" stroke-width="1.4" fill="none"/>
-<text x="12" y="439" font-size="12" font-weight="bold" fill="#225">u_vlsit_apb4_cdc (CLK-APB to CLK-CORE)</text>
-<text x="154" y="469" font-size="12" text-anchor="end">request in the core domain</text>
+<text x="12" y="439" font-size="12" font-weight="bold" fill="#225">u_vlsit_csr_regfile (CLK-APB / CLK-CORE)</text>
+<text x="154" y="469" font-size="12" text-anchor="end">request synchronized to core</text>
 <polyline points="162.0,471.0 198.0,471.0" stroke="#000" stroke-width="1.4" fill="none"/>
 <polyline points="198.0,471.0 234.0,471.0" stroke="#000" stroke-width="1.4" fill="none"/>
 <polyline points="234.0,471.0 270.0,471.0" stroke="#000" stroke-width="1.4" fill="none"/>
@@ -235,7 +235,7 @@
 <polyline points="774.0,471.0 810.0,471.0" stroke="#000" stroke-width="1.4" fill="none"/>
 <polyline points="810.0,471.0 846.0,471.0" stroke="#000" stroke-width="1.4" fill="none"/>
 <polyline points="846.0,471.0 882.0,471.0" stroke="#000" stroke-width="1.4" fill="none"/>
-<text x="154" y="499" font-size="12" text-anchor="end">response to the APB domain</text>
+<text x="154" y="499" font-size="12" text-anchor="end">acknowledge synchronized to APB</text>
 <polyline points="162.0,501.0 198.0,501.0" stroke="#000" stroke-width="1.4" fill="none"/>
 <polyline points="198.0,501.0 234.0,501.0" stroke="#000" stroke-width="1.4" fill="none"/>
 <polyline points="234.0,501.0 270.0,501.0" stroke="#000" stroke-width="1.4" fill="none"/>
@@ -258,8 +258,8 @@
 <polyline points="774.0,501.0 810.0,501.0" stroke="#000" stroke-width="1.4" fill="none"/>
 <polyline points="810.0,501.0 846.0,501.0" stroke="#000" stroke-width="1.4" fill="none"/>
 <polyline points="846.0,501.0 882.0,501.0" stroke="#000" stroke-width="1.4" fill="none"/>
-<text x="12" y="559" font-size="12" font-weight="bold" fill="#225">u_vlsit_csr_regfile (CLK-CORE)</text>
-<text x="154" y="589" font-size="12" text-anchor="end">register write strobe</text>
+<text x="12" y="559" font-size="12" font-weight="bold" fill="#225">u_vlsit_csr_regfile (core state)</text>
+<text x="154" y="589" font-size="12" text-anchor="end">core register write pulse</text>
 <polyline points="162.0,591.0 198.0,591.0" stroke="#000" stroke-width="1.4" fill="none"/>
 <polyline points="198.0,591.0 234.0,591.0" stroke="#000" stroke-width="1.4" fill="none"/>
 <polyline points="234.0,591.0 270.0,591.0" stroke="#000" stroke-width="1.4" fill="none"/>
@@ -334,5 +334,5 @@
 <polyline points="774.0,723.0 810.0,723.0" stroke="#000" stroke-width="1.4" fill="none"/>
 <polyline points="810.0,723.0 846.0,723.0" stroke="#000" stroke-width="1.4" fill="none"/>
 <polyline points="846.0,723.0 882.0,723.0" stroke="#000" stroke-width="1.4" fill="none"/>
-<text x="12" y="770" font-size="11" fill="#444">The APB write crosses the interface, the clock-domain crossing and the register file; the enable bit starts the start-up sequence in the controller. One slot is one symbolic step; the crossing latency depends on the clock ratio.</text>
+<text x="12" y="770" font-size="11" fill="#444">The APB interface forwards to the generated CSR. The CSR handshakes across CLK-APB/CLK-CORE; its core write updates hr_ctrl.en. Slot timing is symbolic.</text>
 </svg>
