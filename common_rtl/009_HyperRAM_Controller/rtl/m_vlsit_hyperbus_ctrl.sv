@@ -1142,7 +1142,10 @@ module m_vlsit_hyperbus_ctrl #(
             reg_cnt  <= 10'd0;
             reg_dcap <= 10'd0;
           end else begin
-            reg_cnt <= 10'(w_lat_nxt) - 10'd1;
+            // The first CK period of the data phase is the last period of the latency count:
+            // the device samples the first write byte at the rising edge that ends the count
+            // (the model of the S27KS0641 starts at that edge), so the LAT state is one shorter.
+            reg_cnt <= 10'(w_lat_nxt) - 10'd2;
           end
         end
         ENUM_ST_TX_LAT: begin
