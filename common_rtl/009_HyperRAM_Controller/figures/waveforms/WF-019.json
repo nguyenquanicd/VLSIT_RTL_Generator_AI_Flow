@@ -49,27 +49,27 @@
         "wave": "0.1.......0........."
       },
       {
-        "name": "request to the crossing",
+        "name": "APB request forwarded to CSR",
         "wave": "0..10..............."
       }
     ],
     {},
     [
-      "u_vlsit_apb4_cdc (CLK-APB to CLK-CORE)",
+      "u_vlsit_csr_regfile (CLK-APB ↔ CLK-CORE)",
       {
-        "name": "request in the core domain",
+        "name": "request synchronized to core",
         "wave": "0....10............."
       },
       {
-        "name": "response to the APB domain",
+        "name": "acknowledge synchronized to APB",
         "wave": "0.......10.........."
       }
     ],
     {},
     [
-      "u_vlsit_csr_regfile (CLK-CORE)",
+      "u_vlsit_csr_regfile (core state)",
       {
-        "name": "register write strobe",
+        "name": "core register write pulse",
         "wave": "0.....10............"
       },
       {
@@ -96,7 +96,7 @@
     ]
   ],
   "foot": {
-    "text": "The APB write crosses the interface, the clock-domain crossing and the register file; the enable bit starts the start-up sequence in the controller. One slot is one symbolic step; the crossing latency depends on the clock ratio.",
+    "text": "The APB interface forwards to the generated CSR. The CSR handshakes across CLK-APB/CLK-CORE; its core write updates hr_ctrl.en. Slot timing is symbolic.",
     "tock": 0
   },
   "config": {

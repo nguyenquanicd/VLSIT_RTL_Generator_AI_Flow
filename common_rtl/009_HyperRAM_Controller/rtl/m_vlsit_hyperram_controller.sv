@@ -167,16 +167,6 @@ module m_vlsit_hyperram_controller #(
   logic                         w_aif_pready;
   logic                         w_aif_pslverr;
   logic [LPARA_APB_DATA_W-1:0]  w_aif_prdata;
-  logic                         w_acd_psel;
-  logic                         w_acd_penable;
-  logic                         w_acd_pwrite;
-  logic [LPARA_APB_ADDR_W-1:0]  w_acd_paddr;
-  logic [LPARA_APB_DATA_W-1:0]  w_acd_pwdata;
-  logic [LPARA_APB_STRB_W-1:0]  w_acd_pstrb;
-  logic [2:0]                   w_acd_pprot;
-  logic                         w_acd_pready;
-  logic                         w_acd_pslverr;
-  logic [LPARA_APB_DATA_W-1:0]  w_acd_prdata;
   logic                         w_fe_axi_awvalid;
   logic                         w_fe_axi_awready;
   logic [LPARA_AXI_ID_W-1:0]    w_fe_axi_awid;
@@ -370,7 +360,7 @@ module m_vlsit_hyperram_controller #(
     .o_apb_pslverr (o_apb_pslverr),
     .o_apb_prdata  (o_apb_prdata),
 
-    // APB4 requester interface (toward the CDC marker)
+    // APB4 requester interface (toward the generated CSR register file)
     .o_apb_psel    (w_aif_psel),
     .o_apb_penable (w_aif_penable),
     .o_apb_pwrite  (w_aif_pwrite),
@@ -383,36 +373,8 @@ module m_vlsit_hyperram_controller #(
     .i_apb_prdata  (w_aif_prdata)
   );
 
-  // Marker of the crossing between the APB clock and the core clock; the handshake is in the
-  // register file.
-  m_vlsit_apb4_cdc u_vlsit_apb4_cdc (
-    // APB4 requester side (from the APB interface)
-    .i_apb_psel    (w_aif_psel),
-    .i_apb_penable (w_aif_penable),
-    .i_apb_pwrite  (w_aif_pwrite),
-    .i_apb_paddr   (w_aif_paddr),
-    .i_apb_pwdata  (w_aif_pwdata),
-    .i_apb_pstrb   (w_aif_pstrb),
-    .i_apb_pprot   (w_aif_pprot),
-    .o_apb_pready  (w_aif_pready),
-    .o_apb_pslverr (w_aif_pslverr),
-    .o_apb_prdata  (w_aif_prdata),
-
-    // APB4 completer side (toward the register file)
-    .o_apb_psel    (w_acd_psel),
-    .o_apb_penable (w_acd_penable),
-    .o_apb_pwrite  (w_acd_pwrite),
-    .o_apb_paddr   (w_acd_paddr),
-    .o_apb_pwdata  (w_acd_pwdata),
-    .o_apb_pstrb   (w_acd_pstrb),
-    .o_apb_pprot   (w_acd_pprot),
-    .i_apb_pready  (w_acd_pready),
-    .i_apb_pslverr (w_acd_pslverr),
-    .i_apb_prdata  (w_acd_prdata)
-  );
-
-  // Generated register file; the core clock is its register clock. Hardware loads: the clear or
-  // set pulses of the controller.
+  // Generated register file; it handles the APB/core CDC handshake internally. The core clock is
+  // its register clock. Hardware loads: the clear or set pulses of the controller.
   m_vlsit_csr_regfile u_vlsit_csr_regfile (
     // Clocks and resets (APB side and register side)
     .i_clk_apb                      (i_clk_apb),
@@ -421,16 +383,16 @@ module m_vlsit_hyperram_controller #(
     .i_rst_n_reg                    (i_rst_n_core),
 
     // APB4 completer interface
-    .i_apb_psel                     (w_acd_psel),
-    .i_apb_penable                  (w_acd_penable),
-    .i_apb_pwrite                   (w_acd_pwrite),
-    .i_apb_paddr                    (w_acd_paddr),
-    .i_apb_pwdata                   (w_acd_pwdata),
-    .i_apb_pstrb                    (w_acd_pstrb),
-    .i_apb_pprot                    (w_acd_pprot),
-    .o_apb_pready                   (w_acd_pready),
-    .o_apb_pslverr                  (w_acd_pslverr),
-    .o_apb_prdata                   (w_acd_prdata),
+    .i_apb_psel                     (w_aif_psel),
+    .i_apb_penable                  (w_aif_penable),
+    .i_apb_pwrite                   (w_aif_pwrite),
+    .i_apb_paddr                    (w_aif_paddr),
+    .i_apb_pwdata                   (w_aif_pwdata),
+    .i_apb_pstrb                    (w_aif_pstrb),
+    .i_apb_pprot                    (w_aif_pprot),
+    .o_apb_pready                   (w_aif_pready),
+    .o_apb_pslverr                  (w_aif_pslverr),
+    .o_apb_prdata                   (w_aif_prdata),
 
     // Access check control
     .i_protect_en                   (w_protect_en),
