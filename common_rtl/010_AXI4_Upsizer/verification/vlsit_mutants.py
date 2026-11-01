@@ -13,8 +13,7 @@ ROOT = os.path.abspath(os.path.join(IP, '..'))
 
 LIB = [os.path.join('000_Common', 'rtl_lib', 'm_vlsit_tie.sv'),
        os.path.join('000_Common', 'rtl_cells', 'VLSIT_CELL_TIEH.sv'),
-       os.path.join('000_Common', 'rtl_cells', 'VLSIT_CELL_TIEL.sv'),
-       os.path.join('002_SyncFIFO', 'rtl', 'm_vlsit_sfifo_1clk.sv')]
+       os.path.join('000_Common', 'rtl_cells', 'VLSIT_CELL_TIEL.sv')]
 
 # id, config, file (relative to 010_AXI4_Upsizer/rtl), old text, new text, requirement the bug breaks
 M = [

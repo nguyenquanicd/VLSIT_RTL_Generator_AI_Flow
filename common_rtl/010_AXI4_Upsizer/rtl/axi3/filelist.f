@@ -4,7 +4,7 @@
 ../../../000_Common/rtl_cells/VLSIT_CELL_TIEH.sv
 ../../../000_Common/rtl_cells/VLSIT_CELL_TIEL.sv
 ../../../000_Common/rtl_lib/m_vlsit_tie.sv
-../../../002_SyncFIFO/rtl/m_vlsit_sfifo_1clk.sv
+../common/m_vlsit_sfifo_1clk.sv
 ../common/m_vlsit_ups_attribute.sv
 ../common/m_vlsit_ups_beat_addr.sv
 ../common/m_vlsit_ups_rd_unpack.sv
