@@ -1,12 +1,11 @@
 /*
- * Project      : VLSIT Common RTL library
+ * Project      : VLSIT AXI4 Upsizer RTL
  * Author       : Nguyen Quan and Claude Sonnet 5.5 (user)
  * AI Flow      : VLSIT RTL Generator AI Automation Flow
  * AI Flow Page : https://github.com/nguyenquanicd/VLSIT_RTL_Generator_AI_Model
  * Date         : 2026-10-28
- * Description  : Single-clock synchronous FIFO of registers with a show-ahead read, a variant of
- *                the synchronous-clock FIFO of this folder for designs that have one clock and need
- *                the first word at once. Function: a word written at a rising edge of i_clk_fifo
+ * Description  : Local single-clock synchronous FIFO of registers for the AXI4 Upsizer, with a
+ *                show-ahead read. Function: a word written at a rising edge of i_clk_fifo
  *                (i_wr_en = 1, o_full = 0) is on o_rd_data from the next cycle and o_empty is 0
  *                from the next cycle; o_rd_data always shows the oldest word, and a read (i_rd_en =
  *                1, o_empty = 0) removes it at the rising edge. A write and a read can happen at
