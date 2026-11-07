@@ -1,0 +1,56 @@
+{
+  "head": {
+    "text": "WF-008 PWM-input period/pulse-width result and unread-result overrun"
+  },
+  "signal": [
+    {
+      "name": "i_clk_timer",
+      "wave": "p........................"
+    },
+    {
+      "name": "i_pwm_capture_in",
+      "wave": "0...1...0...1...0...1...0"
+    },
+    {
+      "name": "qualified_rising_edge",
+      "wave": "0...10......10......10..."
+    },
+    {
+      "name": "qualified_falling_edge",
+      "wave": "0.......10......10......1"
+    },
+    {
+      "name": "measurement_complete",
+      "wave": "0...............10......1"
+    },
+    {
+      "name": "result_commit",
+      "wave": "0...............10......."
+    },
+    {
+      "name": "pair_result_valid",
+      "wave": "0...............1........"
+    },
+    {
+      "name": "period_result",
+      "wave": "x...............=........",
+      "data": [
+        "8 ticks"
+      ]
+    },
+    {
+      "name": "active_pulse_width_result",
+      "wave": "x...............=........",
+      "data": [
+        "4 ticks"
+      ]
+    },
+    {
+      "name": "pair_overrun",
+      "wave": "0.......................1"
+    }
+  ],
+  "foot": {
+    "text": "Illustrative input: 8-tick period and 4-tick active pulse. The first complete measurement commits at cycle 16. Software leaves result_valid set; the next complete measurement at cycle 24 is dropped, the old result registers remain unchanged, and overrun sets."
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "head": {
+    "text": "WF-004 Compare actions across up and down counting"
+  },
+  "signal": [
+    {
+      "name": "i_clk_timer",
+      "wave": "p............."
+    },
+    {
+      "name": "direction_down",
+      "wave": "0.........1..."
+    },
+    {
+      "name": "counter",
+      "wave": "==============",
+      "data": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "3",
+        "2",
+        "1",
+        "0"
+      ]
+    },
+    {
+      "name": "compare_value",
+      "wave": "=.............",
+      "data": [
+        "2"
+      ]
+    },
+    {
+      "name": "action_ch0_ch1_ch2",
+      "wave": "=.............",
+      "data": [
+        "SET / CLEAR / TOGGLE"
+      ]
+    },
+    {
+      "name": "match_event",
+      "wave": "0.10...10..10."
+    },
+    {
+      "name": "o_timer_ch0_set",
+      "wave": "0.1..........."
+    },
+    {
+      "name": "o_timer_ch1_clear",
+      "wave": "1.0..........."
+    },
+    {
+      "name": "o_timer_ch2_toggle",
+      "wave": "0.1....0...1.."
+    },
+    {
+      "name": "irq_pending",
+      "wave": "0.1..........."
+    }
+  ],
+  "foot": {
+    "text": "Three channels use the same compare value with set, clear, and toggle actions. Down-count equality at 2 generates another match."
+  }
+}

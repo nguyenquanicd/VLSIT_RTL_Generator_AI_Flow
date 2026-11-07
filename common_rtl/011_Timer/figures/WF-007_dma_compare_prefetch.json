@@ -1,0 +1,91 @@
+{
+  "head": {
+    "text": "WF-007 DMA compare/update req/ack prefetch, boundary commit, early-ack error, and CSR clear"
+  },
+  "signal": [
+    {
+      "name": "i_clk_timer",
+      "wave": "p........................."
+    },
+    [
+      "Compare/update req/ack",
+      {
+        "name": "o_dma_cmp_req",
+        "wave": "01111110000011110000000111"
+      },
+      {
+        "name": "APB_compare_stream_write",
+        "wave": "x..==x........=x..........",
+        "data": [
+          "META_CH1_CCR",
+          "0x0000_0030",
+          "META_CH1_CCR"
+        ]
+      },
+      {
+        "name": "i_dma_cmp_ack",
+        "wave": "00000011100000011000000000"
+      },
+      {
+        "name": "compare_dma_state",
+        "wave": "==.....=..=.=...=...====..",
+        "data": [
+          "IDLE",
+          "REQ",
+          "WAITLOW",
+          "IDLE",
+          "REQ",
+          "ERR",
+          "CLEAR",
+          "DONE",
+          "IDLE",
+          "REQ"
+        ]
+      }
+    ],
+    [
+      "Boundary commit",
+      {
+        "name": "compare_batch_valid",
+        "wave": "00000001111000000000000000"
+      },
+      {
+        "name": "i_update_event",
+        "wave": "00000000001000000000000000"
+      },
+      {
+        "name": "CCR_active_ch1",
+        "wave": "=..........=..............",
+        "data": [
+          "0x20",
+          "0x30"
+        ]
+      }
+    ],
+    [
+      "Error and CSR clear",
+      {
+        "name": "dperr_event",
+        "wave": "00000000000000001000000000"
+      },
+      {
+        "name": "tmr_dma_cfg.cmp_clr",
+        "wave": "00000000000000000001110000"
+      },
+      {
+        "name": "tmr_dma_sts.cmp_clr_busy",
+        "wave": "00000000000000000000110000"
+      },
+      {
+        "name": "o_cmp_clr_done",
+        "wave": "00000000000000000000010000"
+      }
+    ]
+  ],
+  "foot": {
+    "text": "One 32-bit compare record uses metadata then value beats. req rises when a queue slot is free and no accepted batch waits; after both beats the DMA raises ack, the valid ack accepts the staged batch and drops req, and the next update event applies it atomically. In the second burst the DMA raises ack with the value beat missing: dperr, no commit, req dropped, ERR held until software sets cmp_clr; the Timer discards the staging area, loads 0 into cmp_clr, and may raise req again. Latency is illustrative."
+  },
+  "config": {
+    "hscale": 1
+  }
+}

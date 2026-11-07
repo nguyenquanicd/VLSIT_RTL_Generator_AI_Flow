@@ -1,0 +1,451 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2460" height="3787" viewBox="70 290 2460 3787" font-family="Arial, Helvetica, sans-serif" font-size="18">
+<rect x="70" y="290" width="2460" height="3787" fill="#FFFFFF"/>
+<rect x="560" y="400" width="920" height="620" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<rect x="610" y="500" width="180" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="700" y="536" text-anchor="middle">u_csr</text>
+<text x="700" y="558" text-anchor="middle">(m_vlsit_timer_csr)</text>
+<rect x="900" y="500" width="200" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1000" y="536" text-anchor="middle">u_counter</text>
+<text x="1000" y="558" text-anchor="middle">(m_vlsit_timer_counter)</text>
+<rect x="600" y="700" width="200" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="700" y="736" text-anchor="middle">u_filter_bank</text>
+<text x="700" y="758" text-anchor="middle">(m_vlsit_timer_input_filter)</text>
+<rect x="900" y="700" width="200" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1000" y="736" text-anchor="middle">u_channel_bank</text>
+<text x="1000" y="758" text-anchor="middle">(m_vlsit_timer_channel)</text>
+<rect x="1220" y="700" width="200" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1320" y="736" text-anchor="middle">u_capture_fifo_bank</text>
+<text x="1320" y="758" text-anchor="middle">(m_vlsit_timer_capture_fifo)</text>
+<rect x="1200" y="500" width="240" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1320" y="536" text-anchor="middle">u_dma_record_queue</text>
+<text x="1320" y="558" text-anchor="middle">(m_vlsit_timer_dma_record_queue)</text>
+<rect x="1230" y="900" width="180" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1320" y="936" text-anchor="middle">u_irq</text>
+<text x="1320" y="958" text-anchor="middle">(m_vlsit_timer_irq)</text>
+<text x="1000" y="342" text-anchor="middle">CRTMR</text>
+<text x="480" y="547" text-anchor="middle">APB4</text>
+<text x="700" y="342" text-anchor="middle">CRAPB</text>
+<text x="1530" y="502" text-anchor="middle">DCAP</text>
+<text x="1530" y="592" text-anchor="middle">DCMP</text>
+<text x="475" y="767" text-anchor="middle">CAPIN</text>
+<text x="1595" y="947" text-anchor="middle">o_irq_timer</text>
+<text x="1458" y="441" text-anchor="end">TOP</text>
+<text x="1458" y="463" text-anchor="end">(m_timer_4ch)</text>
+<text x="835" y="862" text-anchor="middle">UPDMA</text>
+<text x="630" y="852" text-anchor="middle">CCFG</text>
+<text x="743" y="612" text-anchor="middle">FLCFG</text>
+<text x="837" y="592" text-anchor="middle">CHCFG</text>
+<text x="840" y="746" text-anchor="middle">EDGE</text>
+<text x="1005" y="666" text-anchor="middle">COUNT</text>
+<text x="1145" y="788" text-anchor="middle">CAPTS</text>
+<text x="1358" y="612" text-anchor="middle">CFQD</text>
+<text x="1223" y="612" text-anchor="middle">PRELD</text>
+<text x="1125" y="906" text-anchor="middle">IRQEV</text>
+<text x="810" y="466" text-anchor="middle">DMDT</text>
+<text x="104" y="3893" text-anchor="start" font-weight="bold">Legend</text>
+<text x="284" y="3934" text-anchor="start">Interface connector (one per signal group; arrow = active to passive)</text>
+<text x="104" y="4009" text-anchor="start">Four channel, filter, and capture FIFO instances are represented by instance banks; each channel has its own mode, filter state, timestamp FIFO, and status. The shared counter update event reaches the IRQ aggregator through the channel/status bank. DMA data moves through memory-mapped timer data ports; the two req/ack pairs carry DMA request control, not payload data. APB/core CDC and DMA data-port placement remain open design details.</text>
+<text x="920" y="1092" text-anchor="middle">CHOUT</text>
+<rect x="100" y="1350" width="2400" height="584" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1300" y="1377" text-anchor="middle" font-weight="bold">Block Functions &amp; Interfaces</text>
+<rect x="100" y="1390" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1415" text-anchor="start" font-weight="bold">Block</text>
+<rect x="430" y="1390" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1415" text-anchor="start" font-weight="bold">Function</text>
+<rect x="1910" y="1390" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1415" text-anchor="start" font-weight="bold">Source</text>
+<rect x="2140" y="1390" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1415" text-anchor="start" font-weight="bold">Interfaces (mnemonics)</text>
+<rect x="100" y="1426" width="330" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1484" text-anchor="start">TOP (m_timer_4ch) frame</text>
+<rect x="430" y="1426" width="1480" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1473" text-anchor="start">Structural timer top. APB controls software-visible registers and DMA data ports; timer-core logic handles counting, channel events, DMA queues,</text>
+<text x="434" y="1495" text-anchor="start">and IRQ causes.</text>
+<rect x="1910" y="1426" width="230" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1473" text-anchor="start">Sections 5.1, 6.2,</text>
+<text x="1914" y="1495" text-anchor="start">14.2</text>
+<rect x="2140" y="1426" width="360" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1451" text-anchor="start">APB4, CRAPB, CRTMR, CAPIN, CHOUT,</text>
+<text x="2144" y="1473" text-anchor="start">DCAP, DCMP, o_irq_timer, CCFG,</text>
+<text x="2144" y="1495" text-anchor="start">FLCFG, CHCFG, EDGE, COUNT, CAPTS,</text>
+<text x="2144" y="1517" text-anchor="start">CFQD, PRELD, UPDMA, IRQEV, DMDT</text>
+<rect x="100" y="1528" width="330" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1564" text-anchor="start">u_csr (m_vlsit_timer_csr)</text>
+<rect x="430" y="1528" width="1480" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1564" text-anchor="start">Accepts APB accesses, stores software configuration and status, and bridges data-port operations across the selected clock profile.</text>
+<rect x="1910" y="1528" width="230" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1553" text-anchor="start">Sections 5.1, 6.2,</text>
+<text x="1914" y="1575" text-anchor="start">14.2</text>
+<rect x="2140" y="1528" width="360" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1553" text-anchor="start">CCFG, FLCFG, CHCFG, DMDT, APB4,</text>
+<text x="2144" y="1575" text-anchor="start">CRAPB</text>
+<rect x="100" y="1586" width="330" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1611" text-anchor="start">u_counter</text>
+<text x="104" y="1633" text-anchor="start">(m_vlsit_timer_counter)</text>
+<rect x="430" y="1586" width="1480" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1622" text-anchor="start">Generates the shared prescaled 32-bit timebase, direction-dependent terminal count, reload, and update event.</text>
+<rect x="1910" y="1586" width="230" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1611" text-anchor="start">Sections 5.1, 5.3,</text>
+<text x="1914" y="1633" text-anchor="start">14.2</text>
+<rect x="2140" y="1586" width="360" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1622" text-anchor="start">CCFG, COUNT, UPDMA, CRTMR</text>
+<rect x="100" y="1644" width="330" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1669" text-anchor="start">u_filter_bank</text>
+<text x="104" y="1691" text-anchor="start">(m_vlsit_timer_input_filter)</text>
+<rect x="430" y="1644" width="1480" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1669" text-anchor="start">Four independent instances synchronize each asynchronous input, sample it at the selected divider, and accept a level after the configured</text>
+<text x="434" y="1691" text-anchor="start">consecutive-sample threshold.</text>
+<rect x="1910" y="1644" width="230" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1669" text-anchor="start">Sections 5.1, 6.2,</text>
+<text x="1914" y="1691" text-anchor="start">14.2</text>
+<rect x="2140" y="1644" width="360" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1680" text-anchor="start">FLCFG, EDGE, CAPIN, CRTMR</text>
+<rect x="100" y="1702" width="330" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1727" text-anchor="start">u_channel_bank</text>
+<text x="104" y="1749" text-anchor="start">(m_vlsit_timer_channel)</text>
+<rect x="430" y="1702" width="1480" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1738" text-anchor="start">Four independent channel instances select capture, output-compare, or edge-aligned PWM and report channel-local and shared update status.</text>
+<rect x="1910" y="1702" width="230" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1727" text-anchor="start">Sections 5.1, 5.3,</text>
+<text x="1914" y="1749" text-anchor="start">14.2</text>
+<rect x="2140" y="1702" width="360" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1727" text-anchor="start">CHCFG, EDGE, COUNT, CAPTS, PRELD,</text>
+<text x="2144" y="1749" text-anchor="start">IRQEV, CHOUT, CRTMR</text>
+<rect x="100" y="1760" width="330" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1785" text-anchor="start">u_capture_fifo_bank</text>
+<text x="104" y="1807" text-anchor="start">(m_vlsit_timer_capture_fifo)</text>
+<rect x="430" y="1760" width="1480" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1796" text-anchor="start">Four independent depth-four queues retain capture timestamps and preserve older entries on overflow while setting a sticky overrun cause.</text>
+<rect x="1910" y="1760" width="230" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1785" text-anchor="start">Sections 5.1, 5.4,</text>
+<text x="1914" y="1807" text-anchor="start">14.2</text>
+<rect x="2140" y="1760" width="360" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1796" text-anchor="start">CAPTS, CFQD, CRTMR</text>
+<rect x="100" y="1818" width="330" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1843" text-anchor="start">u_dma_record_queue</text>
+<text x="104" y="1865" text-anchor="start">(m_vlsit_timer_dma_record_queue)</text>
+<rect x="430" y="1818" width="1480" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1843" text-anchor="start">Arbitrates tagged queues and exposes two DMA request groups with configurable one-to-four-record bursts, metadata-first framing, and</text>
+<text x="434" y="1865" text-anchor="start">availability/capacity gating.</text>
+<rect x="1910" y="1818" width="230" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1843" text-anchor="start">Sections 5.1, 5.3,</text>
+<text x="1914" y="1865" text-anchor="start">6.3, 14.2</text>
+<rect x="2140" y="1818" width="360" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1843" text-anchor="start">CFQD, PRELD, UPDMA, DMDT, DCAP,</text>
+<text x="2144" y="1865" text-anchor="start">DCMP, CRTMR</text>
+<rect x="100" y="1876" width="330" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1912" text-anchor="start">u_irq (m_vlsit_timer_irq)</text>
+<rect x="430" y="1876" width="1480" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1912" text-anchor="start">Combines enabled channel, overrun, compare, and update causes into one level-sensitive interrupt output.</text>
+<rect x="1910" y="1876" width="230" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1901" text-anchor="start">Sections 5.1, 6.4,</text>
+<text x="1914" y="1923" text-anchor="start">14.2</text>
+<rect x="2140" y="1876" width="360" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1912" text-anchor="start">IRQEV, o_irq_timer, CRTMR</text>
+<rect x="100" y="1974" width="2400" height="1838" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1300" y="2001" text-anchor="middle" font-weight="bold">Interface Table</text>
+<rect x="100" y="2014" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2039" text-anchor="start" font-weight="bold">ID</text>
+<rect x="190" y="2014" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2039" text-anchor="start" font-weight="bold">Interface</text>
+<rect x="490" y="2014" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2039" text-anchor="start" font-weight="bold">Category</text>
+<rect x="600" y="2014" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2039" text-anchor="start" font-weight="bold">Active side -&gt; passive side</text>
+<rect x="1070" y="2014" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2039" text-anchor="start" font-weight="bold">Key signals</text>
+<rect x="100" y="2050" width="90" height="124" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2119" text-anchor="start">APB4</text>
+<rect x="190" y="2050" width="300" height="124" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2108" text-anchor="start">APB4 subordinate register and</text>
+<text x="194" y="2130" text-anchor="start">DMA data-port interface</text>
+<rect x="490" y="2050" width="110" height="124" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2075" text-anchor="start">standard</text>
+<text x="494" y="2097" text-anchor="start">protocol</text>
+<text x="494" y="2119" text-anchor="start">APB4, IHI</text>
+<text x="494" y="2141" text-anchor="start">0024D</text>
+<text x="494" y="2163" text-anchor="start">Issue D</text>
+<rect x="600" y="2050" width="470" height="124" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2119" text-anchor="start">SoC requester -&gt; timer</text>
+<rect x="1070" y="2050" width="1430" height="124" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2108" text-anchor="start">SoC -&gt; timer: i_paddr_apb, i_psel_apb, i_penable_apb, i_pwrite_apb, i_pwdata_apb, i_pstrb_apb, i_pprot_apb; timer -&gt; SoC: o_pready_apb,</text>
+<text x="1074" y="2130" text-anchor="start">o_prdata_apb, o_pslverr_apb</text>
+<rect x="100" y="2174" width="90" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2221" text-anchor="start">CAPIN</text>
+<rect x="190" y="2174" width="300" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2210" text-anchor="start">Four asynchronous capture</text>
+<text x="194" y="2232" text-anchor="start">inputs</text>
+<rect x="490" y="2174" width="110" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2199" text-anchor="start">custom</text>
+<text x="494" y="2221" text-anchor="start">digital</text>
+<text x="494" y="2243" text-anchor="start">input</text>
+<rect x="600" y="2174" width="470" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2221" text-anchor="start">IO pads -&gt; timer</text>
+<rect x="1070" y="2174" width="1430" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2221" text-anchor="start">i_capture_ch0, i_capture_ch1, i_capture_ch2, i_capture_ch3</text>
+<rect x="100" y="2254" width="90" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2301" text-anchor="start">CAPTS</text>
+<rect x="190" y="2254" width="300" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2301" text-anchor="start">Capture timestamp enqueue</text>
+<rect x="490" y="2254" width="110" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2279" text-anchor="start">custom</text>
+<text x="494" y="2301" text-anchor="start">internal</text>
+<text x="494" y="2323" text-anchor="start">event/data</text>
+<rect x="600" y="2254" width="470" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2301" text-anchor="start">channel instances -&gt; capture FIFOs</text>
+<rect x="1070" y="2254" width="1430" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2301" text-anchor="start">w_capture_valid, w_capture_timestamp</text>
+<rect x="100" y="2334" width="90" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2392" text-anchor="start">CCFG</text>
+<rect x="190" y="2334" width="300" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2381" text-anchor="start">Counter configuration and</text>
+<text x="194" y="2403" text-anchor="start">status</text>
+<rect x="490" y="2334" width="110" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2370" text-anchor="start">custom</text>
+<text x="494" y="2392" text-anchor="start">internal</text>
+<text x="494" y="2414" text-anchor="start">control/data</text>
+<rect x="600" y="2334" width="470" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2392" text-anchor="start">CSR -&gt; counter</text>
+<rect x="1070" y="2334" width="1430" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2392" text-anchor="start">w_counter_cfg</text>
+<rect x="100" y="2436" width="90" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2483" text-anchor="start">CFQD</text>
+<rect x="190" y="2436" width="300" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2483" text-anchor="start">Capture FIFO data and status</text>
+<rect x="490" y="2436" width="110" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2461" text-anchor="start">custom</text>
+<text x="494" y="2483" text-anchor="start">internal</text>
+<text x="494" y="2505" text-anchor="start">event/data</text>
+<rect x="600" y="2436" width="470" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2483" text-anchor="start">capture FIFOs -&gt; DMA record queue</text>
+<rect x="1070" y="2436" width="1430" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2483" text-anchor="start">w_capture_fifo_valid, w_capture_fifo_data, w_capture_fifo_overrun</text>
+<rect x="100" y="2516" width="90" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2574" text-anchor="start">CHCFG</text>
+<rect x="190" y="2516" width="300" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2563" text-anchor="start">Channel configuration and</text>
+<text x="194" y="2585" text-anchor="start">status</text>
+<rect x="490" y="2516" width="110" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2552" text-anchor="start">custom</text>
+<text x="494" y="2574" text-anchor="start">internal</text>
+<text x="494" y="2596" text-anchor="start">control/data</text>
+<rect x="600" y="2516" width="470" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2574" text-anchor="start">CSR -&gt; channel instances</text>
+<rect x="1070" y="2516" width="1430" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2574" text-anchor="start">w_channel_cfg</text>
+<rect x="100" y="2618" width="90" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2665" text-anchor="start">CHOUT</text>
+<rect x="190" y="2618" width="300" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2665" text-anchor="start">Four compare/PWM outputs</text>
+<rect x="490" y="2618" width="110" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2643" text-anchor="start">custom</text>
+<text x="494" y="2665" text-anchor="start">digital</text>
+<text x="494" y="2687" text-anchor="start">output</text>
+<rect x="600" y="2618" width="470" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2665" text-anchor="start">timer -&gt; IO pads</text>
+<rect x="1070" y="2618" width="1430" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2665" text-anchor="start">o_timer_ch0, o_timer_ch1, o_timer_ch2, o_timer_ch3</text>
+<rect x="100" y="2698" width="90" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2745" text-anchor="start">COUNT</text>
+<rect x="190" y="2698" width="300" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2734" text-anchor="start">Shared timer count and update</text>
+<text x="194" y="2756" text-anchor="start">event</text>
+<rect x="490" y="2698" width="110" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2723" text-anchor="start">custom</text>
+<text x="494" y="2745" text-anchor="start">internal</text>
+<text x="494" y="2767" text-anchor="start">data/event</text>
+<rect x="600" y="2698" width="470" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2745" text-anchor="start">counter -&gt; channel instances</text>
+<rect x="1070" y="2698" width="1430" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2745" text-anchor="start">w_counter_value, w_update_event</text>
+<rect x="100" y="2778" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2814" text-anchor="start">CRAPB</text>
+<rect x="190" y="2778" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2814" text-anchor="start">APB clock and reset</text>
+<rect x="490" y="2778" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2803" text-anchor="start">custom</text>
+<text x="494" y="2825" text-anchor="start">clock/reset</text>
+<rect x="600" y="2778" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2814" text-anchor="start">SoC clock/reset controller -&gt; timer</text>
+<rect x="1070" y="2778" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2814" text-anchor="start">i_clk_apb, i_rst_n_apb</text>
+<rect x="100" y="2836" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2872" text-anchor="start">CRTMR</text>
+<rect x="190" y="2836" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2861" text-anchor="start">Timer-core clock and reset</text>
+<text x="194" y="2883" text-anchor="start">distribution</text>
+<rect x="490" y="2836" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2861" text-anchor="start">custom</text>
+<text x="494" y="2883" text-anchor="start">clock/reset</text>
+<rect x="600" y="2836" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2872" text-anchor="start">SoC clock/reset controller -&gt; timer core</text>
+<rect x="1070" y="2836" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2872" text-anchor="start">i_clk_timer, i_rst_n_timer</text>
+<rect x="100" y="2894" width="90" height="168" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2985" text-anchor="start">DCAP</text>
+<rect x="190" y="2894" width="300" height="168" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2985" text-anchor="start">DMA capture req/ack pair</text>
+<rect x="490" y="2894" width="110" height="168" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2930" text-anchor="start">4-phase</text>
+<text x="494" y="2952" text-anchor="start">level</text>
+<text x="494" y="2974" text-anchor="start">req/ack,</text>
+<text x="494" y="2996" text-anchor="start">HDS</text>
+<text x="494" y="3018" text-anchor="start">section</text>
+<text x="494" y="3040" text-anchor="start">6.3</text>
+<rect x="600" y="2894" width="470" height="168" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2985" text-anchor="start">timer req -&gt; DMA; DMA ack -&gt; timer</text>
+<rect x="1070" y="2894" width="1430" height="168" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2985" text-anchor="start">timer -&gt; DMA: o_dma_cap_req; DMA -&gt; timer: i_dma_cap_ack</text>
+<rect x="100" y="3062" width="90" height="168" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="3153" text-anchor="start">DCMP</text>
+<rect x="190" y="3062" width="300" height="168" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="3142" text-anchor="start">DMA compare/update req/ack</text>
+<text x="194" y="3164" text-anchor="start">pair</text>
+<rect x="490" y="3062" width="110" height="168" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="3098" text-anchor="start">4-phase</text>
+<text x="494" y="3120" text-anchor="start">level</text>
+<text x="494" y="3142" text-anchor="start">req/ack,</text>
+<text x="494" y="3164" text-anchor="start">HDS</text>
+<text x="494" y="3186" text-anchor="start">section</text>
+<text x="494" y="3208" text-anchor="start">6.3</text>
+<rect x="600" y="3062" width="470" height="168" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="3153" text-anchor="start">timer req -&gt; DMA; DMA ack -&gt; timer</text>
+<rect x="1070" y="3062" width="1430" height="168" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="3153" text-anchor="start">timer -&gt; DMA: o_dma_cmp_req; DMA -&gt; timer: i_dma_cmp_ack</text>
+<rect x="100" y="3230" width="90" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="3277" text-anchor="start">DMDT</text>
+<rect x="190" y="3230" width="300" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="3277" text-anchor="start">Memory-mapped DMA data ports</text>
+<rect x="490" y="3230" width="110" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="3255" text-anchor="start">custom APB</text>
+<text x="494" y="3277" text-anchor="start">data-port</text>
+<text x="494" y="3299" text-anchor="start">bridge</text>
+<rect x="600" y="3230" width="470" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="3277" text-anchor="start">DMA requester through APB -&gt; timer data queues</text>
+<rect x="1070" y="3230" width="1430" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="3277" text-anchor="start">w_dma_capture_read, w_dma_compare_write, w_dma_record_data</text>
+<rect x="100" y="3310" width="90" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="3357" text-anchor="start">EDGE</text>
+<rect x="190" y="3310" width="300" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="3357" text-anchor="start">Qualified capture edges</text>
+<rect x="490" y="3310" width="110" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="3335" text-anchor="start">custom</text>
+<text x="494" y="3357" text-anchor="start">internal</text>
+<text x="494" y="3379" text-anchor="start">event/data</text>
+<rect x="600" y="3310" width="470" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="3357" text-anchor="start">filter instances -&gt; channel instances</text>
+<rect x="1070" y="3310" width="1430" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="3357" text-anchor="start">w_filtered_edge</text>
+<rect x="100" y="3390" width="90" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="3437" text-anchor="start">FLCFG</text>
+<rect x="190" y="3390" width="300" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="3437" text-anchor="start">Input filter configuration</text>
+<rect x="490" y="3390" width="110" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="3415" text-anchor="start">custom</text>
+<text x="494" y="3437" text-anchor="start">internal</text>
+<text x="494" y="3459" text-anchor="start">control</text>
+<rect x="600" y="3390" width="470" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="3437" text-anchor="start">CSR -&gt; filter instances</text>
+<rect x="1070" y="3390" width="1430" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="3437" text-anchor="start">w_filter_cfg</text>
+<rect x="100" y="3470" width="90" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="3517" text-anchor="start">IRQEV</text>
+<rect x="190" y="3470" width="300" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="3506" text-anchor="start">Per-channel pending event</text>
+<text x="194" y="3528" text-anchor="start">causes</text>
+<rect x="490" y="3470" width="110" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="3495" text-anchor="start">custom</text>
+<text x="494" y="3517" text-anchor="start">internal</text>
+<text x="494" y="3539" text-anchor="start">status</text>
+<rect x="600" y="3470" width="470" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="3517" text-anchor="start">channel instances -&gt; IRQ aggregator</text>
+<rect x="1070" y="3470" width="1430" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="3517" text-anchor="start">w_capture_pending, w_overrun_pending, w_compare_pending, w_update_pending</text>
+<rect x="100" y="3550" width="90" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="3597" text-anchor="start">PRELD</text>
+<rect x="190" y="3550" width="300" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="3586" text-anchor="start">Tagged compare/PWM preload</text>
+<text x="194" y="3608" text-anchor="start">data</text>
+<rect x="490" y="3550" width="110" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="3575" text-anchor="start">custom</text>
+<text x="494" y="3597" text-anchor="start">internal</text>
+<text x="494" y="3619" text-anchor="start">event/data</text>
+<rect x="600" y="3550" width="470" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="3597" text-anchor="start">DMA record queue -&gt; channel instances</text>
+<rect x="1070" y="3550" width="1430" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="3597" text-anchor="start">w_preload_valid, w_preload_channel, w_preload_target, w_preload_value</text>
+<rect x="100" y="3630" width="90" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="3677" text-anchor="start">UPDMA</text>
+<rect x="190" y="3630" width="300" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="3677" text-anchor="start">Global update event for DMA</text>
+<rect x="490" y="3630" width="110" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="3655" text-anchor="start">custom</text>
+<text x="494" y="3677" text-anchor="start">internal</text>
+<text x="494" y="3699" text-anchor="start">event</text>
+<rect x="600" y="3630" width="470" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="3677" text-anchor="start">counter -&gt; DMA record queue</text>
+<rect x="1070" y="3630" width="1430" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="3677" text-anchor="start">w_period_update_event</text>
+<rect x="100" y="3710" width="90" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="3768" text-anchor="start">o_irq_timer</text>
+<rect x="190" y="3710" width="300" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="3768" text-anchor="start">Aggregated timer interrupt</text>
+<rect x="490" y="3710" width="110" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="3746" text-anchor="start">single-signal</text>
+<text x="494" y="3768" text-anchor="start">level</text>
+<text x="494" y="3790" text-anchor="start">interrupt</text>
+<rect x="600" y="3710" width="470" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="3768" text-anchor="start">timer -&gt; PLIC</text>
+<rect x="1070" y="3710" width="1430" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="3768" text-anchor="start">timer -&gt; PLIC: o_irq_timer</text>
+<path d="M 920 780 L 920 1070" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="920,1070 914,1058 926,1058" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1000 350 L 1000 500" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1000,500 994,488 1006,488" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 510 540 L 610 540" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="610,540 598,546 598,534" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 700 350 L 700 500" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="700,500 694,488 706,488" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1440 520 L 1530 520" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1530,520 1518,526 1518,514" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1440 560 L 1530 560" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1530,560 1518,566 1518,554" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 510 760 L 600 760" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="600,760 588,766 588,754" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1410 940 L 1530 940" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1530,940 1518,946 1518,934" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1000 412 L 706 412 A 6 6 0 0 0 694 412 L 572 412 L 572 534 A 6 6 0 0 0 572 546 L 572 720 L 600 720" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="600,720 588,726 588,714" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1000 412 L 706 412 A 6 6 0 0 0 694 412 L 572 412 L 572 534 A 6 6 0 0 0 572 546 L 572 754 A 6 6 0 0 0 572 766 L 572 1008 L 914 1008 A 6 6 0 0 1 926 1008 L 1000 1008 L 1000 780" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1000,780 1006,792 994,792" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1000 412 L 1468 412 L 1468 514 A 6 6 0 0 0 1468 526 L 1468 554 A 6 6 0 0 0 1468 566 L 1468 740 L 1420 740" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1420,740 1432,734 1432,746" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1000 412 L 1468 412 L 1468 514 A 6 6 0 0 0 1468 526 L 1468 540 L 1440 540" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1440,540 1452,534 1452,546" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1000 412 L 706 412 A 6 6 0 0 0 694 412 L 572 412 L 572 534 A 6 6 0 0 0 572 546 L 572 754 A 6 6 0 0 0 572 766 L 572 960 L 914 960 A 6 6 0 0 1 926 960 L 994 960 A 6 6 0 0 1 1006 960 L 1230 960" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1230,960 1218,966 1218,954" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 790 520 L 900 520" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="900,520 888,526 888,514" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 700 580 L 700 700" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="700,700 694,688 706,688" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 800 760 L 900 760" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="900,760 888,766 888,754" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1100 760 L 1220 760" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1220,760 1208,766 1208,754" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1320 700 L 1320 580" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1320,580 1326,592 1314,592" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1100 520 L 1180 520 L 1180 540 L 1200 540" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1200,540 1188,546 1188,534" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1100 560 L 1120 560 L 1120 680 L 1000 680 L 1000 700" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1000,700 994,688 1006,688" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1200 560 L 1180 560 L 1180 720 L 1100 720" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1100,720 1112,714 1112,726" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 790 560 L 880 560 L 880 720 L 900 720" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="900,720 888,726 888,714" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1080 780 L 1080 920 L 1230 920" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1230,920 1218,926 1218,914" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 790 540 L 810 540 L 810 526 A 6 6 0 0 1 810 514 L 810 480 L 994 480 A 6 6 0 0 1 1006 480 L 1180 480 L 1180 520 L 1200 520" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1200,520 1188,526 1188,514" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 100 3927 L 260 3927" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="260,3927 248,3933 248,3921" fill="#000000" stroke="#000000" stroke-width="1"/>
+</svg>

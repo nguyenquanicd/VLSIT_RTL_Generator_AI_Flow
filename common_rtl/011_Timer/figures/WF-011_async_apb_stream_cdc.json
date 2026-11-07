@@ -1,0 +1,125 @@
+{
+  "head": {
+    "text": "WF-011 Async APB stream CDC (clock ratio and wait duration illustrative only)"
+  },
+  "signal": [
+    [
+      "APB domain",
+      {
+        "name": "i_clk_apb",
+        "wave": "p..................."
+      },
+      {
+        "name": "i_psel_apb",
+        "wave": "01.......01.......0."
+      },
+      {
+        "name": "i_penable_apb",
+        "wave": "0.1......0.1......0."
+      },
+      {
+        "name": "i_paddr_apb",
+        "wave": "x=........=.........",
+        "data": [
+          "0x0200 capture",
+          "0x0204 compare/update"
+        ]
+      },
+      {
+        "name": "i_pwrite_apb",
+        "wave": "x0.......x1.......x."
+      },
+      {
+        "name": "i_pwdata_apb",
+        "wave": "x..........=........",
+        "data": [
+          "compare/update tag beat"
+        ]
+      },
+      {
+        "name": "reg_stream_payload_apb",
+        "wave": "x.=........=........",
+        "data": [
+          "capture metadata read tuple",
+          "compare/update tag write tuple"
+        ]
+      },
+      {
+        "name": "reg_stream_req_toggle_apb",
+        "wave": "0.1........0........"
+      },
+      {
+        "name": "w_stream_ack_toggle_apb_sync",
+        "wave": "0.......1........0.."
+      },
+      {
+        "name": "o_pready_apb",
+        "wave": "0.......10.......10."
+      },
+      {
+        "name": "o_prdata_apb",
+        "wave": "x.......=........=..",
+        "data": [
+          "CAP_META_CH5",
+          "0x00000000"
+        ]
+      },
+      {
+        "name": "o_pslverr_apb",
+        "wave": "0..................."
+      }
+    ],
+    [
+      "Timer-core domain",
+      {
+        "name": "i_clk_timer",
+        "wave": "p...................",
+        "period": 0.5
+      },
+      {
+        "name": "w_stream_req_toggle_timer_sync",
+        "wave": "0...1........0......"
+      },
+      {
+        "name": "w_stream_operation_timer",
+        "wave": "x....=........=.....",
+        "data": [
+          "one capture stream read beat",
+          "one compare/update stream write beat"
+        ]
+      },
+      {
+        "name": "reg_stream_rsp_timer",
+        "wave": "x......=........=...",
+        "data": [
+          "read data, PSLVERR=0",
+          "write response, PSLVERR=0"
+        ]
+      },
+      {
+        "name": "reg_stream_ack_toggle_timer",
+        "wave": "0.....1........0...."
+      },
+      {
+        "name": "reg_cap_dma_record_state_timer",
+        "wave": "x....=..............",
+        "data": [
+          "reserved; not popped before DMA burst ack"
+        ]
+      },
+      {
+        "name": "reg_cmp_dma_record_state_timer",
+        "wave": "x.............=.....",
+        "data": [
+          "staged; not committed before DMA burst ack"
+        ]
+      }
+    ]
+  ],
+  "foot": {
+    "text": "One APB stream beat is one bundled-data CDC transaction. The request and response buses remain stable until their matching toggles return. Queue effects execute only in the timer domain. DMA burst acknowledgement, not an APB beat, releases capture records or commits compare/update batches. The illustrated clock ratio, phase and wait duration are not timing requirements."
+  },
+  "config": {
+    "hscale": 2
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "head": {
+    "text": "WF-013 Set-dominant W1C interrupt pending state"
+  },
+  "signal": [
+    {
+      "name": "i_clk_timer",
+      "wave": "p......."
+    },
+    {
+      "name": "i_rst_n_timer",
+      "wave": "01111110"
+    },
+    {
+      "name": "hardware_event",
+      "wave": "00010010"
+    },
+    {
+      "name": "software_W1C_clear",
+      "wave": "00010100"
+    },
+    {
+      "name": "raw_pending_before_edge",
+      "wave": "00001101"
+    },
+    {
+      "name": "raw_pending_after_edge",
+      "wave": "00011010"
+    },
+    {
+      "name": "o_irq_timer",
+      "wave": "00011010"
+    }
+  ],
+  "foot": {
+    "text": "At cycle 3 a new event coincides with W1C; (q & ~clear) | event keeps pending set. At cycle 5 a clear without a new event clears it. Reset assertion at cycle 7 clears pending regardless of the event path."
+  }
+}

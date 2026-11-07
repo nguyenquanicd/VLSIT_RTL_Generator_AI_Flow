@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="574" height="268" viewBox="0 0 574 268" font-family="Helvetica,Arial,sans-serif">
+<rect width="100%" height="100%" fill="#fff"/>
+<text x="12" y="20" font-size="14" font-weight="bold">WF-013 Set-dominant W1C interrupt pending state</text>
+<line x1="162" y1="30" x2="162" y2="240" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="212" y1="30" x2="212" y2="240" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="262" y1="30" x2="262" y2="240" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="312" y1="30" x2="312" y2="240" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="362" y1="30" x2="362" y2="240" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="412" y1="30" x2="412" y2="240" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="462" y1="30" x2="462" y2="240" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="512" y1="30" x2="512" y2="240" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="562" y1="30" x2="562" y2="240" stroke="#ccc" stroke-dasharray="2,3"/>
+<text x="154" y="49" font-size="12" text-anchor="end">i_clk_timer</text>
+<polyline points="162.0,51.0 162.0,33.0 187.0,33.0 187.0,51.0 212.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="212.0,51.0 212.0,33.0 237.0,33.0 237.0,51.0 262.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="262.0,51.0 262.0,33.0 287.0,33.0 287.0,51.0 312.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="312.0,51.0 312.0,33.0 337.0,33.0 337.0,51.0 362.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="362.0,51.0 362.0,33.0 387.0,33.0 387.0,51.0 412.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="412.0,51.0 412.0,33.0 437.0,33.0 437.0,51.0 462.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="462.0,51.0 462.0,33.0 487.0,33.0 487.0,51.0 512.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="512.0,51.0 512.0,33.0 537.0,33.0 537.0,51.0 562.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="79" font-size="12" text-anchor="end">i_rst_n_timer</text>
+<polyline points="162.0,81.0 212.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="212.0,81.0 212.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="212.0,63.0 262.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="262.0,63.0 312.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="312.0,63.0 362.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="362.0,63.0 412.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="412.0,63.0 462.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="462.0,63.0 512.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="512.0,63.0 512.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="512.0,81.0 562.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="109" font-size="12" text-anchor="end">hardware_event</text>
+<polyline points="162.0,111.0 212.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="212.0,111.0 262.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="262.0,111.0 312.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="312.0,111.0 312.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="312.0,93.0 362.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="362.0,93.0 362.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="362.0,111.0 412.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="412.0,111.0 462.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="462.0,111.0 462.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="462.0,93.0 512.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="512.0,93.0 512.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="512.0,111.0 562.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="139" font-size="12" text-anchor="end">software_W1C_clear</text>
+<polyline points="162.0,141.0 212.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="212.0,141.0 262.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="262.0,141.0 312.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="312.0,141.0 312.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="312.0,123.0 362.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="362.0,123.0 362.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="362.0,141.0 412.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="412.0,141.0 412.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="412.0,123.0 462.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="462.0,123.0 462.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="462.0,141.0 512.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="512.0,141.0 562.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="169" font-size="12" text-anchor="end">raw_pending_before_edge</text>
+<polyline points="162.0,171.0 212.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="212.0,171.0 262.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="262.0,171.0 312.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="312.0,171.0 362.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="362.0,171.0 362.0,153.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="362.0,153.0 412.0,153.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="412.0,153.0 462.0,153.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="462.0,153.0 462.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="462.0,171.0 512.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="512.0,171.0 512.0,153.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="512.0,153.0 562.0,153.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="199" font-size="12" text-anchor="end">raw_pending_after_edge</text>
+<polyline points="162.0,201.0 212.0,201.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="212.0,201.0 262.0,201.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="262.0,201.0 312.0,201.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="312.0,201.0 312.0,183.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="312.0,183.0 362.0,183.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="362.0,183.0 412.0,183.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="412.0,183.0 412.0,201.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="412.0,201.0 462.0,201.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="462.0,201.0 462.0,183.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="462.0,183.0 512.0,183.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="512.0,183.0 512.0,201.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="512.0,201.0 562.0,201.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="229" font-size="12" text-anchor="end">o_irq_timer</text>
+<polyline points="162.0,231.0 212.0,231.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="212.0,231.0 262.0,231.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="262.0,231.0 312.0,231.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="312.0,231.0 312.0,213.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="312.0,213.0 362.0,213.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="362.0,213.0 412.0,213.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="412.0,213.0 412.0,231.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="412.0,231.0 462.0,231.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="462.0,231.0 462.0,213.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="462.0,213.0 512.0,213.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="512.0,213.0 512.0,231.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="512.0,231.0 562.0,231.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="12" y="260" font-size="11" fill="#444">At cycle 3 a new event coincides with W1C; (q &amp; ~clear) | event keeps pending set. At cycle 5 a clear without a new event clears it. Reset assertion at cycle 7 clears pending regardless of the event path.</text>
+</svg>
