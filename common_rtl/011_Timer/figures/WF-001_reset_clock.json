@@ -1,0 +1,50 @@
+{
+  "head": {
+    "text": "WF-001 Reset release and clock profiles (illustrative)"
+  },
+  "signal": [
+    [
+      "APB domain",
+      {
+        "name": "i_clk_apb",
+        "wave": "p..........."
+      },
+      {
+        "name": "i_rst_n_apb",
+        "wave": "0...1......."
+      }
+    ],
+    [
+      "Timer domain",
+      {
+        "name": "i_clk_timer",
+        "wave": "p.....",
+        "period": 2
+      },
+      {
+        "name": "i_rst_n_timer",
+        "wave": "0..1..",
+        "period": 2
+      }
+    ],
+    {
+      "name": "o_timer_ch[0]",
+      "wave": "x....0......"
+    },
+    {
+      "name": "o_irq_timer",
+      "wave": "x....0......"
+    },
+    {
+      "name": "o_dma_cap_req",
+      "wave": "x....0......"
+    },
+    {
+      "name": "o_dma_cmp_req",
+      "wave": "x....0......"
+    }
+  ],
+  "foot": {
+    "text": "Proposed baseline: active-low domain resets; outputs, IRQ, and DMA requests become inactive after reset release. Reset sequencing remains an open item."
+  }
+}

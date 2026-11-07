@@ -1,0 +1,64 @@
+{
+  "head": {
+    "text": "WF-010 One-pulse delay/width, ignored busy trigger, and software re-arm"
+  },
+  "signal": [
+    {
+      "name": "i_clk_timer",
+      "wave": "p...................."
+    },
+    {
+      "name": "software_rearm_mode",
+      "wave": "1...................."
+    },
+    {
+      "name": "delay_setting",
+      "wave": "=",
+      "data": [
+        "2 ticks"
+      ]
+    },
+    {
+      "name": "pulse_width_setting",
+      "wave": "=",
+      "data": [
+        "3 ticks"
+      ]
+    },
+    {
+      "name": "software_rearm_command",
+      "wave": "01.0......1.0........"
+    },
+    {
+      "name": "armed",
+      "wave": "0.10.......10........"
+    },
+    {
+      "name": "i_trigger",
+      "wave": "0..1010.....10.10...."
+    },
+    {
+      "name": "accepted_trigger",
+      "wave": "0..10.......10......."
+    },
+    {
+      "name": "busy_trigger_ignored",
+      "wave": "0....10........10...."
+    },
+    {
+      "name": "busy",
+      "wave": "0..1....0...1....0..."
+    },
+    {
+      "name": "o_one_pulse",
+      "wave": "0....1..0.....1..0..."
+    },
+    {
+      "name": "pulse_complete",
+      "wave": "0.......10.......10.."
+    }
+  ],
+  "foot": {
+    "text": "Software-controlled re-arm example. A command arms the channel; accepted triggers consume armed state, wait 2 timer ticks, and generate a 3-tick pulse. Triggers while busy are ignored. After completion, software must re-arm before another trigger is accepted."
+  }
+}

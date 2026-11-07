@@ -1,0 +1,65 @@
+{
+  "head": {
+    "text": "WF-005 PWM preload applied at PERIOD reload/update (proposed boundary)"
+  },
+  "signal": [
+    {
+      "name": "i_clk_timer",
+      "wave": "p............."
+    },
+    {
+      "name": "counter",
+      "wave": "==============",
+      "data": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "0",
+        "1",
+        "2",
+        "3"
+      ]
+    },
+    {
+      "name": "PERIOD",
+      "wave": "=.............",
+      "data": [
+        "4"
+      ]
+    },
+    {
+      "name": "CCR_shadow",
+      "wave": "=......=......",
+      "data": [
+        "2",
+        "3"
+      ]
+    },
+    {
+      "name": "CCR_active",
+      "wave": "=.........=...",
+      "data": [
+        "2",
+        "3"
+      ]
+    },
+    {
+      "name": "update_event",
+      "wave": "0....10...10.."
+    },
+    {
+      "name": "o_timer_ch0",
+      "wave": "1.0..1.0..1.0."
+    }
+  ],
+  "foot": {
+    "text": "Up-count edge-aligned PWM example. Shadow changes before reload; active compare changes only at the next reload. Output polarity/idle remain open."
+  }
+}

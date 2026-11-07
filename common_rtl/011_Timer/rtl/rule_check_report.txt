@@ -1,0 +1,171 @@
+# RTL rule check
+
+Files: m_vlsit_csr_timer.sv, m_csr_sync.sv, m_vlsit_timer.sv, m_vlsit_timer_apb_stream.sv, m_vlsit_timer_capture_fifo.sv, m_vlsit_timer_channel.sv, m_vlsit_timer_counter.sv, m_vlsit_timer_dma.sv, m_vlsit_timer_input_filter.sv, m_vlsit_timer_pwm_input.sv, m_vlsit_timer_record_fifo.sv, m_vlsit_timer_timing_stage.sv
+
+| Level | Rule | File:line | Finding |
+|---|---|---|---|
+| ERROR | FIL-01 | m_vlsit_csr_timer.sv:1 | header field Author must read '<USER_NAME> (user)' |
+| ERROR | FIL-01 | m_vlsit_timer.sv:1 | header field Author must read '<USER_NAME> (user)' |
+| ERROR | FIL-01 | m_vlsit_timer_apb_stream.sv:1 | header field Author must read '<USER_NAME> (user)' |
+| ERROR | FIL-01 | m_vlsit_timer_capture_fifo.sv:1 | header field Author must read '<USER_NAME> (user)' |
+| ERROR | FIL-01 | m_vlsit_timer_channel.sv:1 | header field Author must read '<USER_NAME> (user)' |
+| ERROR | FIL-01 | m_vlsit_timer_counter.sv:1 | header field Author must read '<USER_NAME> (user)' |
+| ERROR | FIL-01 | m_vlsit_timer_dma.sv:1 | header field Author must read '<USER_NAME> (user)' |
+| ERROR | FIL-01 | m_vlsit_timer_input_filter.sv:1 | header field Author must read '<USER_NAME> (user)' |
+| ERROR | FIL-01 | m_vlsit_timer_pwm_input.sv:1 | header field Author must read '<USER_NAME> (user)' |
+| ERROR | FIL-01 | m_vlsit_timer_record_fifo.sv:1 | header field Author must read '<USER_NAME> (user)' |
+| ERROR | FIL-01 | m_vlsit_timer_timing_stage.sv:1 | header field Author must read '<USER_NAME> (user)' |
+| ERROR | NAM-TBL | m_vlsit_csr_timer.sv:1680 | assigned signal 'reg_wmask' must be named w_<name> (or be an o_ port) |
+| WARN | CMT-01 | m_vlsit_csr_timer.sv:1680 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_csr_timer.sv:1844 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_csr_timer.sv:1882 | no functional comment before this process |
+| WARN | CMT-01 | m_vlsit_csr_timer.sv:1901 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_csr_timer.sv:1903 | no functional comment before this process |
+| WARN | CMT-01 | m_vlsit_csr_timer.sv:1922 | no functional comment before this process |
+| WARN | CMT-01 | m_vlsit_csr_timer.sv:1928 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_csr_timer.sv:1940 | no functional comment before this process |
+| WARN | CMT-01 | m_vlsit_csr_timer.sv:1946 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_csr_timer.sv:1951 | no functional comment before this process |
+| WARN | CMT-01 | m_vlsit_csr_timer.sv:1957 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_csr_timer.sv:1977 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_csr_timer.sv:1983 | no functional comment before this process |
+| WARN | CMT-01 | m_vlsit_csr_timer.sv:1989 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_csr_timer.sv:5510 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_csr_timer.sv:5519 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer.sv:1299 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer.sv:1303 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer.sv:1367 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer.sv:1368 | no functional comment before this process |
+| WARN | CMT-01 | m_vlsit_timer.sv:1860 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer.sv:1899 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer.sv:1918 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer.sv:1937 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer.sv:1956 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer.sv:1975 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer.sv:1994 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer.sv:2013 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer.sv:2032 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer.sv:2065 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer.sv:2069 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer.sv:2070 | no functional comment before this process |
+| WARN | CMT-01 | m_vlsit_timer.sv:2291 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer.sv:2293 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer.sv:2295 | no functional comment before this process |
+| WARN | CMT-01 | m_vlsit_timer_apb_stream.sv:74 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer_apb_stream.sv:76 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer_apb_stream.sv:83 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer_channel.sv:128 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer_channel.sv:131 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer_channel.sv:133 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer_channel.sv:135 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer_dma.sv:166 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer_dma.sv:171 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer_dma.sv:179 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer_dma.sv:182 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer_dma.sv:190 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer_dma.sv:192 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer_dma.sv:201 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer_dma.sv:215 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer_dma.sv:217 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer_dma.sv:219 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer_dma.sv:221 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer_dma.sv:225 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer_dma.sv:227 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer_dma.sv:307 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer_dma.sv:605 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer_timing_stage.sv:51 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer_timing_stage.sv:53 | no functional comment before this assign group |
+| WARN | CMT-01 | m_vlsit_timer_timing_stage.sv:56 | no functional comment before this assign group |
+| WARN | HIE-02 | m_vlsit_csr_timer.sv:14 | module has instances and also logic; a structural top should contain instances only (HIE-02) |
+| WARN | HIE-02 | m_vlsit_timer.sv:11 | module has instances and also logic; a structural top should contain instances only (HIE-02) |
+| WARN | HIE-02 | m_vlsit_timer_apb_stream.sv:11 | module has instances and also logic; a structural top should contain instances only (HIE-02) |
+| WARN | HIE-02 | m_vlsit_timer_capture_fifo.sv:11 | module has instances and also logic; a structural top should contain instances only (HIE-02) |
+| WARN | HIE-02 | m_vlsit_timer_input_filter.sv:12 | module has instances and also logic; a structural top should contain instances only (HIE-02) |
+| WARN | HIE-02 | m_vlsit_timer_record_fifo.sv:11 | module has instances and also logic; a structural top should contain instances only (HIE-02) |
+| WARN | NAM-08 | m_vlsit_timer.sv:24 | parameter 'PARA_COUNTER_WIDTH' spells out 'counter'; NAM-08 writes 'cnt' |
+| WARN | NAM-08 | m_vlsit_timer.sv:1179 | signal 'w_counter' spells out 'counter'; NAM-08 writes 'cnt' |
+| WARN | NAM-08 | m_vlsit_timer.sv:1182 | signal 'reg_counter_snapshot' spells out 'counter'; NAM-08 writes 'cnt' |
+| WARN | NAM-08 | m_vlsit_timer.sv:1183 | signal 'reg_counter_snapshot_valid' spells out 'counter'; NAM-08 writes 'cnt' |
+| WARN | NAM-08 | m_vlsit_timer.sv:1184 | signal 'w_counter_read_low' spells out 'counter'; NAM-08 writes 'cnt' |
+| WARN | NAM-08 | m_vlsit_timer.sv:1185 | signal 'w_counter_read_high' spells out 'counter'; NAM-08 writes 'cnt' |
+| WARN | NAM-08 | m_vlsit_timer.sv:1208 | signal 'reg_arb_rr_pointer' spells out 'pointer'; NAM-08 writes 'ptr' |
+| WARN | NAM-08 | m_vlsit_timer.sv:1212 | signal 'w_stream_write_timer' spells out 'write'; NAM-08 writes 'wr' |
+| WARN | NAM-08 | m_vlsit_timer.sv:1218 | signal 'w_stream_error_timer' spells out 'error'; NAM-08 writes 'err' |
+| WARN | NAM-08 | m_vlsit_timer.sv:1224 | signal 'w_dma_cap_req_status' spells out 'status'; NAM-08 writes 'sts' |
+| WARN | NAM-08 | m_vlsit_timer.sv:1225 | signal 'w_dma_cap_burst_status' spells out 'status'; NAM-08 writes 'sts' |
+| WARN | NAM-08 | m_vlsit_timer.sv:1226 | signal 'w_dma_cap_clr_status' spells out 'status'; NAM-08 writes 'sts' |
+| WARN | NAM-08 | m_vlsit_timer.sv:1227 | signal 'w_dma_cmp_req_status' spells out 'status'; NAM-08 writes 'sts' |
+| WARN | NAM-08 | m_vlsit_timer.sv:1228 | signal 'w_dma_cmp_burst_status' spells out 'status'; NAM-08 writes 'sts' |
+| WARN | NAM-08 | m_vlsit_timer.sv:1229 | signal 'w_dma_cmp_clr_status' spells out 'status'; NAM-08 writes 'sts' |
+| WARN | NAM-08 | m_vlsit_timer.sv:1230 | signal 'w_dma_error_event' spells out 'error'; NAM-08 writes 'err' |
+| WARN | NAM-08 | m_vlsit_timer.sv:1383 | instance 'u_timer_counter' spells out 'counter'; NAM-08 writes 'cnt' |
+| WARN | NAM-08 | m_vlsit_timer.sv:2052 | process label 'p_com_capture_arbiter' spells out 'arbiter'; NAM-08 writes 'arb' |
+| WARN | NAM-08 | m_vlsit_timer_apb_stream.sv:38 | port 'o_write_timer' spells out 'write'; NAM-08 writes 'wr' |
+| WARN | NAM-08 | m_vlsit_timer_apb_stream.sv:44 | port 'i_error_timer' spells out 'error'; NAM-08 writes 'err' |
+| WARN | NAM-08 | m_vlsit_timer_apb_stream.sv:52 | signal 'reg_response_timer' spells out 'response'; NAM-08 writes 'resp' |
+| WARN | NAM-08 | m_vlsit_timer_apb_stream.sv:59 | signal 'reg_response_apb' spells out 'response'; NAM-08 writes 'resp' |
+| WARN | NAM-08 | m_vlsit_timer_channel.sv:16 | parameter 'PARA_COUNTER_WIDTH' spells out 'counter'; NAM-08 writes 'cnt' |
+| WARN | NAM-08 | m_vlsit_timer_channel.sv:33 | port 'i_timer_enable' spells out 'enable'; NAM-08 writes 'en' |
+| WARN | NAM-08 | m_vlsit_timer_channel.sv:38 | port 'i_timeout_threshold' spells out 'threshold'; NAM-08 writes 'thr' |
+| WARN | NAM-08 | m_vlsit_timer_channel.sv:43 | port 'i_timeout_enable' spells out 'enable'; NAM-08 writes 'en' |
+| WARN | NAM-08 | m_vlsit_timer_channel.sv:49 | port 'i_force_enable' spells out 'enable'; NAM-08 writes 'en' |
+| WARN | NAM-08 | m_vlsit_timer_counter.sv:16 | parameter 'PARA_COUNTER_WIDTH' spells out 'counter'; NAM-08 writes 'cnt' |
+| WARN | NAM-08 | m_vlsit_timer_counter.sv:23 | port 'i_enable' spells out 'enable'; NAM-08 writes 'en' |
+| WARN | NAM-08 | m_vlsit_timer_counter.sv:50 | process label 'p_ff_counter' spells out 'counter'; NAM-08 writes 'cnt' |
+| WARN | NAM-08 | m_vlsit_timer_dma.sv:17 | parameter 'PARA_COUNTER_WIDTH' spells out 'counter'; NAM-08 writes 'cnt' |
+| WARN | NAM-08 | m_vlsit_timer_dma.sv:57 | port 'i_stream_write' spells out 'write'; NAM-08 writes 'wr' |
+| WARN | NAM-08 | m_vlsit_timer_dma.sv:63 | port 'o_stream_error' spells out 'error'; NAM-08 writes 'err' |
+| WARN | NAM-08 | m_vlsit_timer_dma.sv:69 | port 'o_dma_error_event' spells out 'error'; NAM-08 writes 'err' |
+| WARN | NAM-08 | m_vlsit_timer_dma.sv:76 | port 'o_cap_req_status' spells out 'status'; NAM-08 writes 'sts' |
+| WARN | NAM-08 | m_vlsit_timer_dma.sv:77 | port 'o_cap_burst_status' spells out 'status'; NAM-08 writes 'sts' |
+| WARN | NAM-08 | m_vlsit_timer_dma.sv:78 | port 'o_cap_clr_status' spells out 'status'; NAM-08 writes 'sts' |
+| WARN | NAM-08 | m_vlsit_timer_dma.sv:79 | port 'o_cmp_req_status' spells out 'status'; NAM-08 writes 'sts' |
+| WARN | NAM-08 | m_vlsit_timer_dma.sv:80 | port 'o_cmp_burst_status' spells out 'status'; NAM-08 writes 'sts' |
+| WARN | NAM-08 | m_vlsit_timer_dma.sv:81 | port 'o_cmp_clr_status' spells out 'status'; NAM-08 writes 'sts' |
+| WARN | NAM-08 | m_vlsit_timer_dma.sv:105 | signal 'reg_cap_record_index' spells out 'index'; NAM-08 writes 'idx' |
+| WARN | NAM-08 | m_vlsit_timer_dma.sv:106 | signal 'reg_cap_beat_index' spells out 'index'; NAM-08 writes 'idx' |
+| WARN | NAM-08 | m_vlsit_timer_dma.sv:107 | signal 'reg_cap_words_read' spells out 'read'; NAM-08 writes 'rd' |
+| WARN | NAM-08 | m_vlsit_timer_dma.sv:113 | signal 'w_cap_request' spells out 'request'; NAM-08 writes 'req' |
+| WARN | NAM-08 | m_vlsit_timer_dma.sv:130 | signal 'reg_cmp_beat_index' spells out 'index'; NAM-08 writes 'idx' |
+| WARN | NAM-08 | m_vlsit_timer_dma.sv:139 | signal 'w_cmp_request' spells out 'request'; NAM-08 writes 'req' |
+| WARN | NAM-08 | m_vlsit_timer_dma.sv:149 | signal 'reg_cap_error_event' spells out 'error'; NAM-08 writes 'err' |
+| WARN | NAM-08 | m_vlsit_timer_dma.sv:150 | signal 'reg_cmp_error_event' spells out 'error'; NAM-08 writes 'err' |
+| WARN | NAM-08 | m_vlsit_timer_dma.sv:151 | signal 'w_stream_read_data' spells out 'read'; NAM-08 writes 'rd' |
+| WARN | NAM-08 | m_vlsit_timer_dma.sv:152 | signal 'w_stream_error' spells out 'error'; NAM-08 writes 'err' |
+| WARN | NAM-08 | m_vlsit_timer_dma.sv:154 | signal 'w_stream_address_valid' spells out 'address'; NAM-08 writes 'addr' |
+| WARN | NAM-08 | m_vlsit_timer_dma.sv:259 | process label 'p_com_stream_read' spells out 'read'; NAM-08 writes 'rd' |
+| WARN | NAM-08 | m_vlsit_timer_pwm_input.sv:16 | parameter 'PARA_COUNTER_WIDTH' spells out 'counter'; NAM-08 writes 'cnt' |
+| WARN | NAM-08 | m_vlsit_timer_pwm_input.sv:23 | port 'i_enable' spells out 'enable'; NAM-08 writes 'en' |
+| WARN | NAM-08 | m_vlsit_timer_record_fifo.sv:90 | process label 'p_ff_fifo_status' spells out 'status'; NAM-08 writes 'sts' |
+| WARN | NAM-08 | m_vlsit_timer_timing_stage.sv:23 | port 'i_write_low' spells out 'write'; NAM-08 writes 'wr' |
+| WARN | NAM-08 | m_vlsit_timer_timing_stage.sv:24 | port 'i_write_high' spells out 'write'; NAM-08 writes 'wr' |
+| WARN | PAR-03 | m_vlsit_csr_timer.sv:1680 | literal 8 may be a magic number (P10); name it with a parameter, localparam or enum member |
+| WARN | PAR-03 | m_vlsit_timer.sv:1292 | literal 64 may be a magic number (P10); name it with a parameter, localparam or enum member |
+| WARN | PAR-03 | m_vlsit_timer.sv:1299 | literal 64 may be a magic number (P10); name it with a parameter, localparam or enum member |
+| WARN | PAR-03 | m_vlsit_timer.sv:1303 | literal 64 may be a magic number (P10); name it with a parameter, localparam or enum member |
+| WARN | PAR-03 | m_vlsit_timer.sv:1412 | literal 3'd4 may be a magic number (P10); name it with a parameter, localparam or enum member |
+| WARN | PAR-03 | m_vlsit_timer.sv:1427 | literal 3'd4 may be a magic number (P10); name it with a parameter, localparam or enum member |
+| WARN | PAR-03 | m_vlsit_timer.sv:1439 | literal 2 may be a magic number (P10); name it with a parameter, localparam or enum member |
+| WARN | PAR-03 | m_vlsit_timer.sv:1442 | literal 3'd4 may be a magic number (P10); name it with a parameter, localparam or enum member |
+| WARN | PAR-03 | m_vlsit_timer.sv:1454 | literal 3 may be a magic number (P10); name it with a parameter, localparam or enum member |
+| WARN | PAR-03 | m_vlsit_timer_apb_stream.sv:71 | literal 4 may be a magic number (P10); name it with a parameter, localparam or enum member |
+| WARN | PAR-03 | m_vlsit_timer_apb_stream.sv:73 | literal 4 may be a magic number (P10); name it with a parameter, localparam or enum member |
+| WARN | PAR-03 | m_vlsit_timer_dma.sv:220 | literal 32 may be a magic number (P10); name it with a parameter, localparam or enum member |
+| WARN | PAR-03 | m_vlsit_timer_dma.sv:222 | literal 3'd4 may be a magic number (P10); name it with a parameter, localparam or enum member |
+| WARN | PAR-03 | m_vlsit_timer_dma.sv:224 | literal 64 may be a magic number (P10); name it with a parameter, localparam or enum member |
+| WARN | PAR-03 | m_vlsit_timer_dma.sv:288 | literal 2'd2 may be a magic number (P10); name it with a parameter, localparam or enum member |
+| WARN | PAR-03 | m_vlsit_timer_dma.sv:292 | literal 32 may be a magic number (P10); name it with a parameter, localparam or enum member |
+| WARN | PAR-03 | m_vlsit_timer_dma.sv:418 | literal 32 may be a magic number (P10); name it with a parameter, localparam or enum member |
+| WARN | PAR-03 | m_vlsit_timer_dma.sv:545 | literal 32 may be a magic number (P10); name it with a parameter, localparam or enum member |
+| WARN | PAR-03 | m_vlsit_timer_dma.sv:555 | literal 2'd2 may be a magic number (P10); name it with a parameter, localparam or enum member |
+| WARN | PAR-03 | m_vlsit_timer_input_filter.sv:56 | literal 6'd2 may be a magic number (P10); name it with a parameter, localparam or enum member |
+| WARN | PAR-03 | m_vlsit_timer_input_filter.sv:57 | literal 3'd2 may be a magic number (P10); name it with a parameter, localparam or enum member |
+| WARN | PAR-03 | m_vlsit_timer_input_filter.sv:58 | literal 3'd3 may be a magic number (P10); name it with a parameter, localparam or enum member |
+| WARN | PAR-03 | m_vlsit_timer_input_filter.sv:59 | literal 3'd4 may be a magic number (P10); name it with a parameter, localparam or enum member |
+| WARN | PAR-03 | m_vlsit_timer_input_filter.sv:60 | literal 3'd5 may be a magic number (P10); name it with a parameter, localparam or enum member |
+| WARN | PAR-03 | m_vlsit_timer_timing_stage.sv:47 | literal 32 may be a magic number (P10); name it with a parameter, localparam or enum member |
+| WARN | PAR-03 | m_vlsit_timer_timing_stage.sv:50 | literal 32 may be a magic number (P10); name it with a parameter, localparam or enum member |
+
+Rules failed: FIL-01, NAM-TBL
+Rules warned: CMT-01, HIE-02, NAM-08, PAR-03
+Rules clean: ARI-04, CMT-05, COM-02, COM-03, COM-04, COM-06, COM-07, ENM-01, ENM-03, ENM-04, ENM-05, ENM-06, FIL-02, FIL-03, FIL-04, FIL-05, FIL-06, HIE-01, HIE-03, HIE-05, NAM-07, NAM-09, P1, P11, P12, P13, P14, P17, P18, P19, P2, P20, P21, P22, P24, P25, P26, P27, P29, P3, P30, P4, P6, P7, PAR-01, PAR-02, R-019, R-027, R-032, R-035, R-036, R-038, SCP-01, SEC-8.1, SEQ-01, TYP-02, TYP-06

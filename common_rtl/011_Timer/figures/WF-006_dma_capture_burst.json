@@ -1,0 +1,78 @@
+{
+  "head": {
+    "text": "WF-006 DMA capture req/ack burst, early-ack error, and CSR clear recovery"
+  },
+  "signal": [
+    {
+      "name": "i_clk_timer",
+      "wave": "p........................."
+    },
+    [
+      "Capture req/ack",
+      {
+        "name": "o_dma_cap_req",
+        "wave": "01111110000011100000000000"
+      },
+      {
+        "name": "APB_capture_stream_read",
+        "wave": "x..==x....................",
+        "data": [
+          "META_CH0",
+          "TS_0x17"
+        ]
+      },
+      {
+        "name": "i_dma_cap_ack",
+        "wave": "00000011100000110000000000"
+      },
+      {
+        "name": "capture_record_state",
+        "wave": "==...=.=...==..=...=....=.",
+        "data": [
+          "QUEUED",
+          "RESERVED",
+          "STREAMED",
+          "EMPTY",
+          "QUEUED",
+          "RESERVED",
+          "ERR_HELD",
+          "CLEARING",
+          "EMPTY"
+        ]
+      }
+    ],
+    [
+      "Error and CSR clear",
+      {
+        "name": "dperr_event",
+        "wave": "00000000000000010000000000"
+      },
+      {
+        "name": "tmr_dma_cfg.cap_clr",
+        "wave": "00000000000000000011111100"
+      },
+      {
+        "name": "o_cap_flush_clear",
+        "wave": "00000000000000000001000000"
+      },
+      {
+        "name": "capture_fifo_flush_busy",
+        "wave": "00000000000000000000110000"
+      },
+      {
+        "name": "tmr_dma_sts.cap_clr_busy",
+        "wave": "00000000000000000001111100"
+      },
+      {
+        "name": "o_cap_clr_done",
+        "wave": "00000000000000000000000100"
+      }
+    ]
+  ],
+  "foot": {
+    "text": "One 32-bit record uses metadata then timestamp beats. req rises, the DMA reads both beats, raises ack, the Timer drops req (valid ack releases the reservation) and the DMA drops ack. In the second burst the DMA raises ack before reading any beat: the Timer raises dperr, does not release the record, drops req and holds ERR until software sets cap_clr; the Timer then flushes the capture FIFOs, reports cap_clr_busy, and loads 0 into cap_clr. Latency is illustrative."
+  },
+  "config": {
+    "hscale": 1
+  }
+}

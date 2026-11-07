@@ -1,0 +1,71 @@
+{
+  "head": {
+    "text": "WF-003 Filtered capture, glitch rejection, and FIFO overrun"
+  },
+  "signal": [
+    {
+      "name": "i_clk_timer",
+      "wave": "p......................."
+    },
+    {
+      "name": "i_capture_ch0",
+      "wave": "0.10...1......0........."
+    },
+    {
+      "name": "sync_level",
+      "wave": "0...10...1......0......."
+    },
+    {
+      "name": "stable_sample_count",
+      "wave": "=........====...====....",
+      "data": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "0",
+        "1",
+        "2",
+        "3",
+        "0"
+      ]
+    },
+    {
+      "name": "qualified_edge",
+      "wave": "0..........10.....10...."
+    },
+    {
+      "name": "counter_value",
+      "wave": "=..........=......=.....",
+      "data": [
+        "0x10",
+        "0x17",
+        "0x1E"
+      ]
+    },
+    {
+      "name": "fifo_occupancy",
+      "wave": "=..........=......=.....",
+      "data": [
+        "3",
+        "4",
+        "4"
+      ]
+    },
+    {
+      "name": "timestamp_candidate",
+      "wave": "x..........=......=.....",
+      "data": [
+        "0x17",
+        "0x1E"
+      ]
+    },
+    {
+      "name": "overrun",
+      "wave": "0.................10...."
+    }
+  ],
+  "foot": {
+    "text": "Divider /1 and N=3 shown. A one-sample glitch is rejected; two qualified edges arrive with three entries initially, so the second is dropped at full and overrun sets."
+  }
+}

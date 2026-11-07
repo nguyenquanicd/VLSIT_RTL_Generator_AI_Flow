@@ -1,0 +1,65 @@
+{
+  "head": {
+    "text": "WF-002 APB4 normal access and proposed error response"
+  },
+  "signal": [
+    {
+      "name": "PCLK",
+      "wave": "p..........."
+    },
+    {
+      "name": "PSEL",
+      "wave": "01..01..0..."
+    },
+    {
+      "name": "PENABLE",
+      "wave": "0.1.0.1.0..."
+    },
+    {
+      "name": "PWRITE",
+      "wave": "01...1..0..."
+    },
+    {
+      "name": "PADDR",
+      "wave": "x=...=......",
+      "data": [
+        "0x0010",
+        "0x0005"
+      ]
+    },
+    {
+      "name": "PSTRB",
+      "wave": "x=...=......",
+      "data": [
+        "0xF",
+        "0x3"
+      ]
+    },
+    {
+      "name": "PWDATA",
+      "wave": "x=...=......",
+      "data": [
+        "0xA5A5_5A5A",
+        "0x0000_0001"
+      ]
+    },
+    {
+      "name": "PREADY",
+      "wave": "0..10..10..."
+    },
+    {
+      "name": "PSLVERR",
+      "wave": "0......10..."
+    },
+    {
+      "name": "PRDATA",
+      "wave": "x..=........",
+      "data": [
+        "0x0000_0000"
+      ]
+    }
+  ],
+  "foot": {
+    "text": "Normal write completes after a wait state. Partial/unaligned write error behavior is proposed to match the CSR generator profile; final APB policy is still open."
+  }
+}
