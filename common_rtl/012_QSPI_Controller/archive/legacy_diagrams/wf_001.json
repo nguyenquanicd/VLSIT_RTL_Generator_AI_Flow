@@ -1,0 +1,30 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_qspi",
+      "wave": "p......."
+    },
+    {
+      "name": "i_rst_n_qspi",
+      "wave": "0011...."
+    },
+    {
+      "name": "o_qspi_cs_n",
+      "wave": "1......."
+    },
+    {
+      "name": "o_qspi_sclk",
+      "wave": "0......."
+    },
+    {
+      "name": "o_irq_qspi",
+      "wave": "0......."
+    }
+  ],
+  "head": {
+    "text": "Reset and idle"
+  },
+  "foot": {
+    "text": "Reset clears state; CS is inactive and SCLK is low."
+  }
+}

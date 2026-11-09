@@ -1,0 +1,50 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_serial",
+      "wave": "p..........."
+    },
+    {
+      "name": "o_spi_cs_n",
+      "wave": "111000000001"
+    },
+    {
+      "name": "o_spi_sclk",
+      "wave": "000101010101"
+    },
+    {
+      "name": "o_flash_phase",
+      "wave": "xxx=.=.====.",
+      "data": [
+        "1-1-CMD",
+        "1-1-ADDR",
+        "1-1-2 DATA",
+        "1-2-2 DATA",
+        "1-1-4 DATA",
+        "1-4-4 DATA"
+      ]
+    },
+    {
+      "name": "o_spi_io_oe",
+      "wave": "xxx=.=.====.",
+      "data": [
+        "0001",
+        "0001",
+        "0011",
+        "0011",
+        "1111",
+        "1111"
+      ]
+    },
+    {
+      "name": "i_spi_io_i0",
+      "wave": "x1010101010x"
+    }
+  ],
+  "head": {
+    "text": "Dual and Quad lane phase selection"
+  },
+  "foot": {
+    "text": "Lane direction/count follows selected 1-1-2, 1-2-2, 1-1-4 or 1-4-4 profile; command bytes are flash-specific."
+  }
+}

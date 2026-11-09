@@ -4,7 +4,7 @@ Library and cell RTL shared by the IPs of `common_rtl`. Any library wrapper, tec
 
 | Folder | Content |
 |---|---|
-| `rtl_lib` | Wrapper modules that are the only place naming library cells or macros (for example `m_vlsit_afifo_cell_sync`, `m_vlsit_afifo_ram_macro`, `m_vlsit_rst_sync`, `m_vlsit_tie`). Their instances of cells are named `u_dont_touch_<function>`. Each wrapper has a branch with `VLSIT_SYNTHESIS` (instances of cells) and a simulation-only branch (model of the cell behavior) |
+| `rtl_lib` | Shared library modules and wrappers for technology cells or macros (for example `m_vlsit_event_sync`, `m_vlsit_afifo_cell_sync`, `m_vlsit_afifo_ram_macro`, `m_vlsit_rst_sync`, `m_vlsit_tie`). Their instances of cells are named `u_dont_touch_<function>`. Each wrapper has a branch with `VLSIT_SYNTHESIS` (instances of cells) and a simulation-only branch (model of the cell behavior) |
 | `lib_tests` | Verification of `m_vlsit_rst_sync`, `m_vlsit_tie` in both flows and of the metastability model of `m_vlsit_afifo_cell_sync` (`tb_rst_sync.sv`, `tb_tie.sv`, `tb_afifo_cell_sync.sv`, `run_lib_tests.py`); not part of the design file set |
 | `rtl_cells` | Technology cell models, stand-ins of the real library views: the basic cells `VLSIT_CELL_<FUNCTION>` (rule R-032) and the example cells and macro model `VLSIT_CELL_SYNC_*`, `VLSIT_CELL_SRAM_1W1R`. Module and pin names keep the library style and are exempt from the naming rule |
 | `cell_tests` | Verification of the basic cells (not part of the design file set): `tb_cells_comb.sv` (exhaustive truth tables), `tb_cells_seq.sv` (random test of flip-flops, latches and clock gate against a reference model), `run_cell_tests.py` |
@@ -34,6 +34,7 @@ Run the tests with `python cell_tests/run_cell_tests.py` (needs `iverilog`/`vvp`
 
 | Module | Function | Parameters |
 |---|---|---|
+| `m_vlsit_event_sync` | Transfers event pulses across unrelated clocks with a per-bit request/acknowledge toggle. One pending event is retained; further pulses coalesce until acknowledgement, and a pulse on the acknowledgement cycle is retained as the next event. Bypass is not supported. | `PARA_EVENT_SYNC_W`; `PARA_EVENT_SYNC_CELL_TYPE`: 1 = two DFF stages, 2 = VLSIT 2-FF cell |
 | `m_vlsit_rst_sync` | Reset synchronizer, active-low, asynchronous assertion and synchronous de-assertion, D of the first stage tied to 1 by `VLSIT_CELL_TIEH`. Simulation branch: chain of the same number of stages with the metastability model on the de-assertion (random extra latency of 0, 1 or 2 cycles; plusargs `+RSTSYNC_MSYNC_SEED=<n>`, `+RSTSYNC_MSYNC_EN=<0\|1>`) | `PARA_RST_SYNC_TYPE`: 1 = two `VLSIT_CELL_SYNC_DFF_RN`, 2/3/4 = one `VLSIT_CELL_SYNC_2FF/3FF/4FF_RN` |
 | `m_vlsit_tie` | Tie-off of a selectable width and value, one `VLSIT_CELL_TIEH` or `VLSIT_CELL_TIEL` per bit. Simulation branch: constant | `PARA_TIE_WIDTH` (1 to 32), `PARA_TIE_VALUE` |
 
@@ -49,3 +50,4 @@ Run `python lib_tests/run_lib_tests.py` (needs `iverilog`/`vvp` on PATH).
 The wrapper `m_vlsit_apbcdc_cell_sync` was removed on 2026-10-31; every IP uses `m_vlsit_afifo_cell_sync` (decision of the designer).
 
 If a new IP crosses a multi-bit code (a Gray pointer, a bus) with its own synchronizer wrapper, it needs the aperture-window model, not an unconditional random latency.
+

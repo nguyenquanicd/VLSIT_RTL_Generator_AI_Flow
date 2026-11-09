@@ -1,0 +1,463 @@
+{
+ "page_name": "BLOCK_DIAGRAM",
+ "out_name": "vlsit_sha_block_diagram.drawio",
+ "table_suffix": "",
+ "layout": {
+  "gap_h": 100,
+  "gap_v": 90,
+  "margin": 40,
+  "block_h": 60
+ },
+ "top": {
+  "frame_label": [
+   "TOP",
+   "(m_vlsit_sha_top)"
+  ],
+  "block_label": [
+   "TOP",
+   "(m_vlsit_sha_top)"
+  ],
+  "block_row": [
+   "TOP (m_vlsit_sha_top)",
+   "Structural top of the SHA2 and SHA3 hash IP.",
+   "Section 14.2"
+  ]
+ },
+ "frame_row": [
+  "TOP (m_vlsit_sha_top) frame",
+  "Structural top of the SHA2 and SHA3 hash IP. It instantiates the blocks below and holds no logic of its own. The AXI4 and register interfaces are on the left, the entropy input on the right.",
+  "Section 14.2"
+ ],
+ "frame_interfaces": [
+  "AXIS",
+  "APB",
+  "DMAH",
+  "IRQO",
+  "ENT",
+  "CRCLK"
+ ],
+ "blocks": [
+  {
+   "key": "AXI",
+   "label": [
+    "u_axi",
+    "(m_vlsit_sha_axi_sub)"
+   ],
+   "width": 260,
+   "row": 0,
+   "col": 0,
+   "row_name": "u_axi (m_vlsit_sha_axi_sub)",
+   "function": "AXI4 subordinate. It decodes the context window address, checks burst type, size and strobes, pushes message words, pops digest words and reports window errors.",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "CSR",
+   "label": [
+    "u_csr",
+    "(m_vlsit_csr_sha)"
+   ],
+   "width": 220,
+   "row": 2,
+   "col": 0,
+   "row_name": "u_csr (m_vlsit_csr_sha)",
+   "function": "Generated APB register block. It holds the control, command, security, status and interrupt registers and crosses between the APB clock and the core clock.",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "DMA",
+   "label": [
+    "u_dma",
+    "(m_vlsit_sha_dma)"
+   ],
+   "width": 220,
+   "row": 3,
+   "col": 0,
+   "row_name": "u_dma (m_vlsit_sha_dma)",
+   "function": "External DMA handshake. It raises the input and output requests with the four-phase protocol, counts the burst size and pads a short output burst after a timeout.",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "IRQ",
+   "label": [
+    "u_irq",
+    "(m_vlsit_sha_irq)"
+   ],
+   "width": 220,
+   "row": 4,
+   "col": 0,
+   "row_name": "u_irq (m_vlsit_sha_irq)",
+   "function": "Event capture. It collects the error, done and fault events and drives the interrupt and the alarm outputs.",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "INF",
+   "label": [
+    "u_in_fifo",
+    "(m_vlsit_sha_in_fifo)"
+   ],
+   "width": 260,
+   "row": 0,
+   "col": 1,
+   "row_name": "u_in_fifo (m_vlsit_sha_in_fifo)",
+   "function": "Input FIFOs, one per context. They hold the message words until a block is complete and give backpressure to the AXI4 write channel when full.",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "SEQ",
+   "label": [
+    "u_seq",
+    "(m_vlsit_sha_seq)"
+   ],
+   "width": 220,
+   "row": 1,
+   "col": 1,
+   "row_name": "u_seq (m_vlsit_sha_seq)",
+   "function": "Context sequencer. It owns the state machine of every context, assembles blocks, adds the padding, picks the next ready context by round robin and counts blocks and bytes.",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "CMEM",
+   "label": [
+    "u_ctxmem",
+    "(m_vlsit_sha_ctxmem)"
+   ],
+   "width": 260,
+   "row": 2,
+   "col": 1,
+   "row_name": "u_ctxmem (m_vlsit_sha_ctxmem)",
+   "function": "Context memory. It stores the hash state of every context that is not in a core, in flip-flops or in an SRAM macro.",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "OUTF",
+   "label": [
+    "u_out_fifo",
+    "(m_vlsit_sha_out_fifo)"
+   ],
+   "width": 280,
+   "row": 1,
+   "col": 0,
+   "row_name": "u_out_fifo (m_vlsit_sha_out_fifo)",
+   "function": "Output FIFOs, one per context. They hold the digest words, or the squeezed words of SHAKE, until the AXI4 read channel or the DMA takes them.",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "FLT",
+   "label": [
+    "u_fault",
+    "(m_vlsit_sha_fault)"
+   ],
+   "width": 240,
+   "row": 3,
+   "col": 2,
+   "row_name": "u_fault (m_vlsit_sha_fault)",
+   "function": "Fault detection. It compares duplicate cores, checks parity and compares recomputed blocks, then applies the selected responses.",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "C256",
+   "label": [
+    "u_core256",
+    "(m_vlsit_sha_core256)"
+   ],
+   "width": 260,
+   "row": 1,
+   "col": 2,
+   "row_name": "u_core256 (m_vlsit_sha_core256)",
+   "function": "SHA-224 and SHA-256 compression core with a selectable number of rounds per cycle.",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "C512",
+   "label": [
+    "u_core512",
+    "(m_vlsit_sha_core512)"
+   ],
+   "width": 260,
+   "row": 2,
+   "col": 2,
+   "row_name": "u_core512 (m_vlsit_sha_core512)",
+   "function": "SHA-384, SHA-512 and SHA-512/t compression core with a selectable number of rounds per cycle.",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "KEC",
+   "label": [
+    "u_keccak",
+    "(m_vlsit_sha_keccak)"
+   ],
+   "width": 260,
+   "row": 3,
+   "col": 1,
+   "row_name": "u_keccak (m_vlsit_sha_keccak)",
+   "function": "Keccak permutation core for SHA-3 and SHAKE with a selectable number of rounds per cycle.",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "DOM",
+   "label": [
+    "u_keccak_dom",
+    "(m_vlsit_sha_keccak_dom)"
+   ],
+   "width": 300,
+   "row": 4,
+   "col": 1,
+   "row_name": "u_keccak_dom (m_vlsit_sha_keccak_dom)",
+   "function": "Masked Keccak permutation core. It keeps the state as two shares and uses fresh random bits for each non-linear step.",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "PRNG",
+   "label": [
+    "u_prng",
+    "(m_vlsit_sha_prng)"
+   ],
+   "width": 240,
+   "row": 4,
+   "col": 2,
+   "row_name": "u_prng (m_vlsit_sha_prng)",
+   "function": "Random generator of the masked core, seeded from the entropy input or from the seed words of the register block.",
+   "source": "Section 14.2"
+  }
+ ],
+ "connectors": [
+  {
+   "id": "WRD",
+   "src": "AXI",
+   "src_side": "R",
+   "dst": "INF",
+   "dst_side": "L"
+  },
+  {
+   "id": "DIG",
+   "src": "OUTF",
+   "src_side": "T",
+   "dst": "AXI",
+   "dst_side": "B"
+  },
+  {
+   "id": "BLK",
+   "src": "INF",
+   "src_side": "B",
+   "dst": "SEQ",
+   "dst_side": "T"
+  },
+  {
+   "id": "DGS",
+   "src": "SEQ",
+   "src_side": "L",
+   "dst": "OUTF",
+   "dst_side": "R"
+  },
+  {
+   "id": "CTX",
+   "src": "SEQ",
+   "src_side": "B",
+   "dst": "CMEM",
+   "dst_side": "T"
+  },
+  {
+   "id": "S256",
+   "src": "SEQ",
+   "src_side": "R",
+   "dst": "C256",
+   "dst_side": "L"
+  },
+  {
+   "id": "SDOM",
+   "src": "KEC",
+   "src_side": "B",
+   "dst": "DOM",
+   "dst_side": "T"
+  },
+  {
+   "id": "RND",
+   "src": "PRNG",
+   "src_side": "L",
+   "dst": "DOM",
+   "dst_side": "R"
+  }
+ ],
+ "externals": [
+  {
+   "id": "AXIS",
+   "block": "AXI",
+   "side": "L",
+   "dir": "in",
+   "pos": -10,
+   "text": [
+    "AXIS",
+    "AXI4 sub"
+   ]
+  },
+  {
+   "id": "APB",
+   "block": "CSR",
+   "side": "L",
+   "dir": "in",
+   "pos": 0,
+   "text": [
+    "APB",
+    "APB4 cmp"
+   ]
+  },
+  {
+   "id": "DMAH",
+   "block": "DMA",
+   "side": "L",
+   "dir": "in",
+   "pos": 0,
+   "text": [
+    "DMAH",
+    "DMA handshake"
+   ]
+  },
+  {
+   "id": "IRQO",
+   "block": "IRQ",
+   "side": "L",
+   "dir": "out",
+   "pos": 0,
+   "text": [
+    "IRQO",
+    "Interrupt, alarm"
+   ]
+  },
+  {
+   "id": "ENT",
+   "block": "PRNG",
+   "side": "R",
+   "dir": "in",
+   "pos": 0,
+   "text": [
+    "ENT",
+    "Entropy"
+   ]
+  },
+  {
+   "id": "CRCLK",
+   "block": "AXI",
+   "side": "T",
+   "dir": "in",
+   "pos": 0,
+   "text": [
+    "CRCLK",
+    "Clock, reset"
+   ]
+  }
+ ],
+ "nets": [
+  {
+   "entry": "CRCLK",
+   "sinks": [
+    {
+     "id": "CK0",
+     "block": "INF",
+     "side": "T",
+     "pos": 0
+    }
+   ]
+  }
+ ],
+ "interfaces": [
+  {
+   "id": "WRD",
+   "name": "Message words from the AXI4 write channel",
+   "category": "custom",
+   "active": "u_axi -> u_in_fifo",
+   "signals": "u_axi -> u_in_fifo: w_in_push, w_in_wdata; u_in_fifo -> u_axi: w_in_full"
+  },
+  {
+   "id": "DIG",
+   "name": "Digest words to the AXI4 read channel",
+   "category": "custom",
+   "active": "u_out_fifo -> u_axi",
+   "signals": "u_out_fifo -> u_axi: w_out_rdata, w_out_empty; u_axi -> u_out_fifo: w_out_pop"
+  },
+  {
+   "id": "BLK",
+   "name": "Message words to the sequencer",
+   "category": "custom",
+   "active": "u_in_fifo -> u_seq",
+   "signals": "u_in_fifo -> u_seq: w_in_rdata, w_in_level; u_seq -> u_in_fifo: w_in_pop"
+  },
+  {
+   "id": "DGS",
+   "name": "Digest words from the sequencer",
+   "category": "custom",
+   "active": "u_seq -> u_out_fifo",
+   "signals": "u_seq -> u_out_fifo: w_out_push, w_out_wdata; u_out_fifo -> u_seq: w_out_full"
+  },
+  {
+   "id": "CTX",
+   "name": "Context state read and write",
+   "category": "custom",
+   "active": "u_seq <-> u_ctxmem",
+   "signals": "u_seq -> u_ctxmem: w_ctx_wr, w_ctx_wstate, w_ctx_rd; u_ctxmem -> u_seq: w_ctx_rstate"
+  },
+  {
+   "id": "S256",
+   "name": "Block and state to the SHA-256 core",
+   "category": "custom",
+   "active": "u_seq <-> u_core256",
+   "signals": "u_seq -> u_core256: w_c256_start, w_c256_block, w_c256_state; u_core256 -> u_seq: w_c256_done, w_c256_result"
+  },
+  {
+   "id": "SDOM",
+   "name": "Select of the masked core",
+   "category": "custom",
+   "active": "u_keccak -> u_keccak_dom",
+   "signals": "u_keccak -> u_keccak_dom: w_dom_select"
+  },
+  {
+   "id": "RND",
+   "name": "Random bits to the masked core",
+   "category": "custom",
+   "active": "u_prng -> u_keccak_dom",
+   "signals": "u_prng -> u_keccak_dom: w_rnd_bits, w_rnd_valid"
+  },
+  {
+   "id": "AXIS",
+   "name": "AXI4 subordinate interface (CLK-CORE)",
+   "category": "standard protocol (AXI4)",
+   "active": "external manager -> IP",
+   "signals": "external manager -> IP: i_axi_awvalid, i_axi_awid, i_axi_awaddr, i_axi_awlen, i_axi_awsize, i_axi_awburst, i_axi_wvalid, i_axi_wdata, i_axi_wstrb, i_axi_wlast, i_axi_bready, i_axi_arvalid, i_axi_arid, i_axi_araddr, i_axi_arlen, i_axi_arsize, i_axi_arburst, i_axi_rready; IP -> external manager: o_axi_awready, o_axi_wready, o_axi_bvalid, o_axi_bid, o_axi_bresp, o_axi_arready, o_axi_rvalid, o_axi_rid, o_axi_rdata, o_axi_rresp, o_axi_rlast"
+  },
+  {
+   "id": "APB",
+   "name": "APB4 completer interface (CLK-APB)",
+   "category": "standard protocol (APB4)",
+   "active": "external manager -> IP",
+   "signals": "external manager -> IP: i_apb_psel, i_apb_penable, i_apb_pwrite, i_apb_paddr, i_apb_pwdata, i_apb_pstrb, i_apb_pprot, i_protect_en, i_slverr_en; IP -> external manager: o_apb_pready, o_apb_pslverr, o_apb_prdata"
+  },
+  {
+   "id": "DMAH",
+   "name": "External DMA handshake (CLK-CORE)",
+   "category": "custom handshake",
+   "active": "IP <-> DMA controller",
+   "signals": "IP -> DMA controller: o_dma_in_req, o_dma_out_req; DMA controller -> IP: i_dma_in_ack, i_dma_out_ack"
+  },
+  {
+   "id": "IRQO",
+   "name": "Interrupt and alarm outputs (CLK-CORE)",
+   "category": "level outputs",
+   "active": "IP -> SoC",
+   "signals": "IP -> SoC: o_irq, o_alarm"
+  },
+  {
+   "id": "ENT",
+   "name": "Entropy input (CLK-CORE)",
+   "category": "custom handshake",
+   "active": "external source <-> IP",
+   "signals": "external source -> IP: i_ent_valid, i_ent_data; IP -> external source: o_ent_req"
+  },
+  {
+   "id": "CRCLK",
+   "name": "Clocks and resets",
+   "category": "clock and reset",
+   "active": "SoC -> IP",
+   "signals": "SoC -> IP: i_clk_core, i_rst_n_core, i_clk_apb, i_rst_n_apb"
+  }
+ ],
+ "legend_note": "The frame is the top module; blocks are its instances. Optional blocks exist only when their parameter selects them. Clocks and resets reach every block; bus links to the SHA-512 and Keccak cores are in section 5.1."
+}

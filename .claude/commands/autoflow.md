@@ -4,7 +4,7 @@ Run the specification-driven RTL and verification flow from design input through
 
 ## Start and resume
 
-Accept a specification path, --describe to invoke /spec_writer, or --from <phase> to resume from validated existing artifacts. For an existing RTL implementation, also accept `--rtl-source <directory>` with a specification path; ask for the top and a separate output path if they are not clear. If no input is given, explain the applicable modes with an example and recommendation, then ask. On resume, validate upstream approvals, artifact revisions, and file integrity before skipping completed work.
+Accept a specification path, --describe to invoke /spec_writer, or --from <phase> to resume from validated existing artifacts. A design HDS created or revised by this flow uses `spec/VLSIT_<DESIGN_FUNCTION>_HDS.md`; write the function name in uppercase and replace spaces or hyphens with underscores. With `--describe`, save the generated HDS at that canonical path and pass the same path through every phase. If a supplied in-repository HDS must be revised and has a legacy basename, rename it to the canonical form and update repository links before continuing. For an existing RTL implementation, also accept `--rtl-source <directory>` with a specification path; ask for the top and a separate output path if they are not clear. If no input is given, explain the applicable modes with an example and recommendation, then ask. On resume, validate upstream approvals, artifact revisions, and file integrity before skipping completed work.
 
 ## Gate sequence
 
@@ -14,7 +14,7 @@ Accept a specification path, --describe to invoke /spec_writer, or --from <phase
 4. After Gate 3a, use `/rtl_generator` for a new implementation, or `/rtl_style_converter` for an explicitly supplied existing RTL source. The converter preserves module count, hierarchy, declarations, and behavior, reports suspected original bugs separately, and may leave incompatible style rules unmet. `/sva_generator` and `/tb_generator` use the approved verification contract and golden sources. Neither verification generator may read either RTL version for expected behavior, signals, hierarchy, or coverage intent.
 5. Stop at Gate 3b for user review of SVA properties. Gate 4 test-plan approval may be automatic in full autoflow only when the plan has no unresolved issue and contract-shell compilation passes.
 6. Integrate the generated or converted DUT through a contract-to-RTL adapter. Treat interface mismatches as failures. `/verification` runs simulation and mutation checks; optional `/code_coverage` shows measured baseline and asks for an explicit target. Stop at Gate 5 for user sign-off. A style-conversion report is not Gate 5 evidence.
-7. After Gate 5, /spec_pdf_generator builds final documentation.
+7. After Gate 5, `/spec_pdf_generator` always creates the editable `docs/specification.md` in Markdown with TeX math and relative figure links, then exports DOCX and/or PDF only as selected. PDF uses Pandoc with Typst by default.
 
 ## Execution discipline
 

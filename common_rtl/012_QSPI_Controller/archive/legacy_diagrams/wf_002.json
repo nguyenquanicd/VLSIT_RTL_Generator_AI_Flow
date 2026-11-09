@@ -1,0 +1,59 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_qspi",
+      "wave": "p......."
+    },
+    {
+      "name": "i_axi_reg_awvalid",
+      "wave": "01......"
+    },
+    {
+      "name": "o_axi_reg_awready",
+      "wave": "01......"
+    },
+    {
+      "name": "i_axi_reg_awaddr",
+      "wave": "x=......",
+      "data": [
+        "CTRL"
+      ]
+    },
+    {
+      "name": "i_axi_reg_wvalid",
+      "wave": "0...1..."
+    },
+    {
+      "name": "o_axi_reg_wready",
+      "wave": "0...1..."
+    },
+    {
+      "name": "i_axi_reg_wdata",
+      "wave": "x...=...",
+      "data": [
+        "START"
+      ]
+    },
+    {
+      "name": "o_axi_reg_bvalid",
+      "wave": "0.....1."
+    },
+    {
+      "name": "i_axi_reg_bready",
+      "wave": "0.....1."
+    },
+    {
+      "name": "o_axi_reg_bresp",
+      "wave": "x.....=.",
+      "data": [
+        "OKAY"
+      ]
+    }
+  ],
+  "head": {
+    "text": "AXI register write with channel skew"
+  },
+  "foot": {
+    "text": "AW is accepted before the independent W channel."
+  }
+}

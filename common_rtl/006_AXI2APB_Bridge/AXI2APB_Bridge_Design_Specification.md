@@ -70,6 +70,16 @@ Convert transactions from one AXI4 Manager into ordered APB4 transfers through o
 | FEAT-004 | AXI ID echo | Required | CFG-BASE | REQ-IF-005 |
 | FEAT-005 | Protection/error mapping | Required | CFG-BASE | REQ-ERR-002 |
 
+### 1.4 Real-world applications of the features
+
+| Feature ID | Real-world application (named system, example product) | What the application needs from the feature | Typical values | Consequence if missing or wrong | Requirements | Source |
+|---|---|---|---|---|---|---|
+| FEAT-001 | Bridge from the AXI4 system interconnect to a bank of APB4 peripherals (UART, SPI, I2C, timers, GPIO) of a microcontroller | AXI reads and writes reach the simple APB register bus of the slow peripherals | 1 AXI transfer becomes 1 APB transfer of 2 to 3 cycles at 100 MHz | The peripherals cannot be reached from the AXI masters | REQ-FUNC-001 | User confirmed 2026-11-02 (ASM-012) |
+| FEAT-002 | A DMA that fills the transmit FIFO of a UART with a FIXED burst, and a CPU that loads a block of registers with an INCR burst | FIXED, INCR and WRAP bursts become the right series of APB transfers with the right addresses | Bursts of 1 to 16 beats of 32 bits | A FIXED burst written to consecutive addresses overwrites other registers | REQ-IF-002 | User confirmed 2026-11-02 (ASM-012) |
+| FEAT-003 | Byte writes to 8-bit registers of an I2C or UART peripheral | The byte strobes decide which bytes of a 32-bit word are written | 32-bit data, 4 strobe bits | A byte write clears the other three bytes | REQ-IF-004 | User confirmed 2026-11-02 (ASM-012) |
+| FEAT-004 | Several AXI masters (CPU, DMA, debugger) that share the peripheral bank | The ID of each request is returned with its response so every master gets its own answer | ID width 4 to 8 bits | A response reaches the wrong master | REQ-IF-005 | User confirmed 2026-11-02 (ASM-012) |
+| FEAT-005 | Secure and non-secure access to a key register in a security block | AXI protection bits become APB PPROT bits, and an APB error becomes an AXI error | PROT 3 bits, 1 error response per failed transfer | A non-secure master reads a secure register, or a failed write is reported as good | REQ-ERR-002 | User confirmed 2026-11-02 (ASM-012) |
+
 ## 2. Normative references and precedence
 
 ### 2.1 Normative references
@@ -420,7 +430,7 @@ VLSIT RTL Design Rules v2 is mandatory. Use one synthesizable module per .sv fil
 
 | Item | Value / source |
 |---|---|
-| Top / source file list | `m_axi2apb_bridge`; one matching source file per module listed in 14.2 |
+| Top / source file list | `m_axi2apb_bridge`; active rule-compliant source set is `rtl_v2/filelist.f`, with one matching source file per module listed in 14.2. The earlier `rtl/filelist.f` is a retained baseline and fails R-036 in four FSM processes. |
 | Frontend version and options | Tool-independent IEEE 1800-2017 synthesizable subset; apply VLSIT RTL Design Rules v2; select exact frontend/options during SoC integration |
 | Parameters/configuration | CFG-BASE; PARA_AXI_ID_W=4 |
 | Libraries/corners | No target Liberty/DB/LEF is present under `common_rtl`; no shared RTL cell wrapper is needed for this single-clock bridge; select the physical library/corner in SoC PPA |
@@ -593,6 +603,7 @@ No exceptions are approved. A later exception requires exact endpoints, mode, ra
 | ASM-009 | TBD | Tool versions/options for lint/synthesis/STA/CDC. | Reproducibility criteria open. | Project flow owner. |
 | ASM-010 | Resolved | User approved all 14 planned waveforms on 2026-10-25; SVG and WaveJSON sources are present under `figures/`. | Waveform plan and sources are linked in Section 10.3. | Complete. |
 | ASM-011 | Resolved | Drive RDATA as zero when RRESP=SLVERR. | Read data is invalid on error; this deterministic value does not change the error contract. | User confirmed on 2026-10-25. |
+| ASM-012 | Assumption | The real-world applications of section 1.4 are proposed by the author from the common industrial use of this kind of block and confirmed by the user | Section 1.4 only; no requirement depends on them | Confirmed by the user, 2026-11-02 |
 
 ## 21. Glossary
 

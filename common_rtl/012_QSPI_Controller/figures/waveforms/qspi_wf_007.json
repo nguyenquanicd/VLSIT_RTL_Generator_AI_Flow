@@ -1,0 +1,37 @@
+{
+  "signal": [
+    {
+      "name": "i_spi_sclk",
+      "wave": "p..........."
+    },
+    {
+      "name": "i_spi_cs_n",
+      "wave": "111000000111"
+    },
+    {
+      "name": "i_spi_io_i0",
+      "wave": "x1101001010x"
+    },
+    {
+      "name": "o_spi_io_oe0",
+      "wave": "000000011100"
+    },
+    {
+      "name": "o_target_rx_data",
+      "wave": "xxxxxxxxx=..",
+      "data": [
+        "0xA5"
+      ]
+    },
+    {
+      "name": "o_target_rx_valid",
+      "wave": "000000000100"
+    }
+  ],
+  "head": {
+    "text": "Standard SPI target receives an external-controller frame"
+  },
+  "foot": {
+    "text": "External SCLK is the timing source. Target CDC and response-latency details remain pending DEC-004."
+  }
+}

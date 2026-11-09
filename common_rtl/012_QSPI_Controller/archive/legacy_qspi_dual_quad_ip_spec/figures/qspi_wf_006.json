@@ -1,0 +1,52 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_apb",
+      "wave": "p........."
+    },
+    [
+      "Control/status",
+      {
+        "name": "o_qspi_busy",
+        "wave": "0111110000"
+      },
+      {
+        "name": "o_role_active",
+        "wave": "x=....=...",
+        "data": [
+          "CTRL",
+          "CTRL"
+        ]
+      },
+      {
+        "name": "i_role_cfg_write",
+        "wave": "0001000000"
+      },
+      {
+        "name": "o_role_cfg_applied",
+        "wave": "0000001000"
+      },
+      {
+        "name": "o_qspi_error",
+        "wave": "0000000000"
+      }
+    ],
+    [
+      "Pins",
+      {
+        "name": "o_spi_cs_n",
+        "wave": "1000000111"
+      },
+      {
+        "name": "o_spi_io_oe0",
+        "wave": "0111110000"
+      }
+    ]
+  ],
+  "head": {
+    "text": "Role configuration request while a transfer is active"
+  },
+  "foot": {
+    "text": "Active role is unchanged during busy. Whether the CSR write stalls, errors, or is ignored is open in DEC-003."
+  }
+}

@@ -4,7 +4,7 @@
     "Function": "Used to check the configuration after generation",
     "Author": "Trthinh (Ethan)",
     "Generator": "PC",
-    "Generator version": "2.1",
+    "Generator version": "2.4",
     "Page": "VLSI Technology",
     "Table - Configuration": [
     {
@@ -12,13 +12,17 @@
         "Address Width": "16",
         "Data Width": "32",
         "Protocol": "APB",
-        "Asynchornous": "1"
+        "Asynchronous": "1"
     }
     ],
     "Table - Register Definition": [
         {
         "Register Name": "hr_ctrl",
-        "Offset": "0x0",
+        "Offset": "0x0000",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00000010",
         "Descriprtion": "HyperRAM controller control register. Enables the controller and selects write response, arbitration and request merging.",
         "Bits": [
@@ -138,7 +142,11 @@ Limits: none."
         },
         {
         "Register Name": "hr_sts",
-        "Offset": "0x4",
+        "Offset": "0x0004",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00000000",
         "Descriprtion": "HyperRAM controller status register. Shows the live state of the start-up, the AXI traffic and the device command port.",
         "Bits": [
@@ -330,7 +338,11 @@ Limits: none."
         },
         {
         "Register Name": "hr_cap",
-        "Offset": "0x8",
+        "Offset": "0x0008",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00000004",
         "Descriprtion": "HyperRAM controller capability register. Reports the elaboration parameters of this build.",
         "Bits": [
@@ -413,7 +425,11 @@ Limits: none."
         },
         {
         "Register Name": "hr_size",
-        "Offset": "0xC",
+        "Offset": "0x000c",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x02000000",
         "Descriprtion": "HyperRAM aperture size register. Reports the byte capacity of one chip select.",
         "Bits": [
@@ -437,7 +453,11 @@ Limits: not larger than the device capacity."
         },
         {
         "Register Name": "hr_clk",
-        "Offset": "0x10",
+        "Offset": "0x0010",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00000002",
         "Descriprtion": "HyperBus clock register. Sets the clock divider, the clock type and the clock phase of the memory interface.",
         "Bits": [
@@ -504,7 +524,11 @@ Limits: odd values, 0x00 and 0x01 are illegal (cfg_valid = 0); the CK frequency 
         },
         {
         "Register Name": "hr_cmd",
-        "Offset": "0x14",
+        "Offset": "0x0014",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00000000",
         "Descriprtion": "Device register command register. Starts a read or a write of one register of the HyperRAM device.",
         "Bits": [
@@ -571,7 +595,11 @@ Limits: a command before hr_sts.init_done = 1 is rejected and sets hr_cmd_rdata.
         },
         {
         "Register Name": "hr_cmd_addr",
-        "Offset": "0x18",
+        "Offset": "0x0018",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00000000",
         "Descriprtion": "Device register address register. Holds the address of the device register for a command.",
         "Bits": [
@@ -595,7 +623,11 @@ Limits: use only addresses that the device defines."
         },
         {
         "Register Name": "hr_cmd_wdata",
-        "Offset": "0x1C",
+        "Offset": "0x001c",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00000000",
         "Descriprtion": "Device register write data register. Holds the data of a device register write command.",
         "Bits": [
@@ -627,7 +659,11 @@ Limits: write reserved device fields with their default value; writing CR0[7:4] 
         },
         {
         "Register Name": "hr_cmd_rdata",
-        "Offset": "0x20",
+        "Offset": "0x0020",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00000000",
         "Descriprtion": "Device register read data register. Returns the data of a device register read command and its completion flags.",
         "Bits": [
@@ -693,7 +729,11 @@ Limits: none."
         },
         {
         "Register Name": "hr_irq_raw",
-        "Offset": "0x24",
+        "Offset": "0x0024",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00000000",
         "Descriprtion": "Raw interrupt status register. Holds the sticky event flags of the controller before masking.",
         "Bits": [
@@ -862,7 +902,11 @@ Limits: none."
         },
         {
         "Register Name": "hr_irq_en",
-        "Offset": "0x28",
+        "Offset": "0x0028",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00000000",
         "Descriprtion": "Interrupt enable register. Selects which raw interrupt events drive the interrupt output.",
         "Bits": [
@@ -1031,7 +1075,11 @@ Limits: none."
         },
         {
         "Register Name": "hr_irq_sts",
-        "Offset": "0x2C",
+        "Offset": "0x002c",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00000000",
         "Descriprtion": "Masked interrupt status register. Shows which raw interrupt events are raised and enabled.",
         "Bits": [
@@ -1200,7 +1248,11 @@ Limits: none."
         },
         {
         "Register Name": "hr_irq_inj",
-        "Offset": "0x30",
+        "Offset": "0x0030",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00000000",
         "Descriprtion": "Interrupt injection register. Lets software raise raw interrupt events for test.",
         "Bits": [
@@ -1369,7 +1421,11 @@ Limits: none."
         },
         {
         "Register Name": "hr_err_cnt",
-        "Offset": "0x34",
+        "Offset": "0x0034",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00000000",
         "Descriprtion": "AXI error counter register. Counts the AXI requests answered with an error.",
         "Bits": [
@@ -1409,7 +1465,11 @@ Limits: saturating, no clear by software."
         },
         {
         "Register Name": "hr_err_ra",
-        "Offset": "0x38",
+        "Offset": "0x0038",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00000000",
         "Descriprtion": "Last read error address register. Holds the address of the last rejected AXI read.",
         "Bits": [
@@ -1433,7 +1493,11 @@ Limits: none."
         },
         {
         "Register Name": "hr_err_ri",
-        "Offset": "0x3C",
+        "Offset": "0x003c",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00000000",
         "Descriprtion": "Last read error info register. Holds the ID, the response and the valid flag of the last rejected AXI read.",
         "Bits": [
@@ -1507,7 +1571,11 @@ Limits: none."
         },
         {
         "Register Name": "hr_err_wa",
-        "Offset": "0x40",
+        "Offset": "0x0040",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00000000",
         "Descriprtion": "Last write error address register. Holds the address of the last rejected AXI write.",
         "Bits": [
@@ -1531,7 +1599,11 @@ Limits: none."
         },
         {
         "Register Name": "hr_err_wi",
-        "Offset": "0x44",
+        "Offset": "0x0044",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00000000",
         "Descriprtion": "Last write error info register. Holds the ID, the response and the valid flag of the last rejected AXI write.",
         "Bits": [
@@ -1605,7 +1677,11 @@ Limits: none."
         },
         {
         "Register Name": "hr_tmo_log",
-        "Offset": "0x48",
+        "Offset": "0x0048",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00000000",
         "Descriprtion": "Timeout log register. Holds what the controller was doing and waiting for when the last device timeout happened.",
         "Bits": [
@@ -1732,7 +1808,11 @@ Limits: none."
         },
         {
         "Register Name": "hr_tmo_addr",
-        "Offset": "0x4C",
+        "Offset": "0x004c",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00000000",
         "Descriprtion": "Timeout address register. Holds the address of the transaction that timed out.",
         "Bits": [
@@ -1756,7 +1836,11 @@ Limits: none."
         },
         {
         "Register Name": "hr_d0_cfg",
-        "Offset": "0x100",
+        "Offset": "0x0100",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x0001C4E0",
         "Descriprtion": "Chip select 0 device configuration register. Holds the latency and mode values written to the device.",
         "Bits": [
@@ -1883,7 +1967,11 @@ Read-as-zero and write-ignored."
         },
         {
         "Register Name": "hr_d0_trst",
-        "Offset": "0x104",
+        "Offset": "0x0104",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00500050",
         "Descriprtion": "Chip select 0 RESET# timing register. Sets the RESET# low time and the wait after RESET# is released.",
         "Bits": [
@@ -1925,7 +2013,11 @@ Limits: 0x0 is illegal; rescale it when hr_clk.ck_div changes."
         },
         {
         "Register Name": "hr_d0_trph",
-        "Offset": "0x108",
+        "Offset": "0x0108",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x000000A0",
         "Descriprtion": "Chip select 0 RESET# low to CS# low register. Sets the wait from the start of RESET# to the first access.",
         "Bits": [
@@ -1958,7 +2050,11 @@ Limits: 0x0 is illegal; rescale it when hr_clk.ck_div changes."
         },
         {
         "Register Name": "hr_d0_tvcs",
-        "Offset": "0x10C",
+        "Offset": "0x010c",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00009C40",
         "Descriprtion": "Chip select 0 power-up time register. Sets the wait before the first access after power-up.",
         "Bits": [
@@ -1991,8 +2087,12 @@ Limits: 0x0 is illegal; at a low CK frequency the maximum covers a shorter time,
         },
         {
         "Register Name": "hr_d0_tmin",
-        "Offset": "0x110",
-        "Reset Value": "0x00020702",
+        "Offset": "0x0110",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
+        "Reset Value": "0x00010702",
         "Descriprtion": "Chip select 0 minimum wait register. Sets the minimum CS# high time, read-write recovery and CS# setup.",
         "Bits": [
             {
@@ -2007,7 +2107,7 @@ Read-as-zero and write-ignored."
                 "Bit Name": "t_css",
                 "Bit Type": "rw",
                 "Bit Field": "[23:16]",
-                "Reset Value": "0x2",
+                "Reset Value": "0x1",
                 "Description": "CS# setup time. Number of CK periods between CS# going low and the first CK edge (device tCSS).
 
 Usage: program it while hr_ctrl.en = 0; the target devices need 3 to 4 ns.
@@ -2058,7 +2158,11 @@ Limits: 0x0 is illegal."
         },
         {
         "Register Name": "hr_d0_tcsm",
-        "Offset": "0x114",
+        "Offset": "0x0114",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x000000A0",
         "Descriprtion": "Chip select 0 CS# low limit register. Sets the longest time CS# may stay low.",
         "Bits": [
@@ -2091,7 +2195,11 @@ Limits: 0x0000 and values above 0x0320 are illegal; the device limit must not be
         },
         {
         "Register Name": "hr_d0_rcap",
-        "Offset": "0x118",
+        "Offset": "0x0118",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00000000",
         "Descriprtion": "Chip select 0 read capture register. Sets the delay-line tap used to capture read data.",
         "Bits": [
@@ -2123,7 +2231,11 @@ Limits: the useful range depends on the delay line and on hr_clk.ck_div."
         },
         {
         "Register Name": "hr_d0_id",
-        "Offset": "0x11C",
+        "Offset": "0x011c",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00000000",
         "Descriprtion": "Chip select 0 device ID check register. Holds the expected device ID and enables the check.",
         "Bits": [
@@ -2173,7 +2285,11 @@ Limits: none."
         },
         {
         "Register Name": "hr_d0_tmo",
-        "Offset": "0x120",
+        "Offset": "0x0120",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00000200",
         "Descriprtion": "Chip select 0 timeout register. Sets the longest time the controller waits for the device in one step.",
         "Bits": [
@@ -2207,7 +2323,11 @@ Limits: values 1 to 15 are illegal (cfg_valid = 0); rescale it when hr_clk.ck_di
         },
         {
         "Register Name": "hr_d0_idr",
-        "Offset": "0x124",
+        "Offset": "0x0124",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00000000",
         "Descriprtion": "Chip select 0 device ID0 register. Holds the ID0 value that the controller read from the device at start-up.",
         "Bits": [
@@ -2239,7 +2359,11 @@ Limits: 0x0000 before the start-up read."
         },
         {
         "Register Name": "hr_d1_cfg",
-        "Offset": "0x200",
+        "Offset": "0x0200",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x0001C4E0",
         "Descriprtion": "Chip select 1 device configuration register. Holds the latency and mode values written to the device.",
         "Bits": [
@@ -2366,7 +2490,11 @@ Read-as-zero and write-ignored."
         },
         {
         "Register Name": "hr_d1_trst",
-        "Offset": "0x204",
+        "Offset": "0x0204",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00500050",
         "Descriprtion": "Chip select 1 RESET# timing register. Sets the RESET# low time and the wait after RESET# is released.",
         "Bits": [
@@ -2408,7 +2536,11 @@ Limits: 0x0 is illegal; rescale it when hr_clk.ck_div changes."
         },
         {
         "Register Name": "hr_d1_trph",
-        "Offset": "0x208",
+        "Offset": "0x0208",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x000000A0",
         "Descriprtion": "Chip select 1 RESET# low to CS# low register. Sets the wait from the start of RESET# to the first access.",
         "Bits": [
@@ -2441,7 +2573,11 @@ Limits: 0x0 is illegal; rescale it when hr_clk.ck_div changes."
         },
         {
         "Register Name": "hr_d1_tvcs",
-        "Offset": "0x20C",
+        "Offset": "0x020c",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00009C40",
         "Descriprtion": "Chip select 1 power-up time register. Sets the wait before the first access after power-up.",
         "Bits": [
@@ -2474,8 +2610,12 @@ Limits: 0x0 is illegal; at a low CK frequency the maximum covers a shorter time,
         },
         {
         "Register Name": "hr_d1_tmin",
-        "Offset": "0x210",
-        "Reset Value": "0x00020702",
+        "Offset": "0x0210",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
+        "Reset Value": "0x00010702",
         "Descriprtion": "Chip select 1 minimum wait register. Sets the minimum CS# high time, read-write recovery and CS# setup.",
         "Bits": [
             {
@@ -2490,7 +2630,7 @@ Read-as-zero and write-ignored."
                 "Bit Name": "t_css",
                 "Bit Type": "rw",
                 "Bit Field": "[23:16]",
-                "Reset Value": "0x2",
+                "Reset Value": "0x1",
                 "Description": "CS# setup time. Number of CK periods between CS# going low and the first CK edge (device tCSS).
 
 Usage: program it while hr_ctrl.en = 0; the target devices need 3 to 4 ns.
@@ -2541,7 +2681,11 @@ Limits: 0x0 is illegal."
         },
         {
         "Register Name": "hr_d1_tcsm",
-        "Offset": "0x214",
+        "Offset": "0x0214",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x000000A0",
         "Descriprtion": "Chip select 1 CS# low limit register. Sets the longest time CS# may stay low.",
         "Bits": [
@@ -2574,7 +2718,11 @@ Limits: 0x0000 and values above 0x0320 are illegal; the device limit must not be
         },
         {
         "Register Name": "hr_d1_rcap",
-        "Offset": "0x218",
+        "Offset": "0x0218",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00000000",
         "Descriprtion": "Chip select 1 read capture register. Sets the delay-line tap used to capture read data.",
         "Bits": [
@@ -2606,7 +2754,11 @@ Limits: the useful range depends on the delay line and on hr_clk.ck_div."
         },
         {
         "Register Name": "hr_d1_id",
-        "Offset": "0x21C",
+        "Offset": "0x021c",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00000000",
         "Descriprtion": "Chip select 1 device ID check register. Holds the expected device ID and enables the check.",
         "Bits": [
@@ -2656,7 +2808,11 @@ Limits: none."
         },
         {
         "Register Name": "hr_d1_tmo",
-        "Offset": "0x220",
+        "Offset": "0x0220",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00000200",
         "Descriprtion": "Chip select 1 timeout register. Sets the longest time the controller waits for the device in one step.",
         "Bits": [
@@ -2690,7 +2846,11 @@ Limits: values 1 to 15 are illegal (cfg_valid = 0); rescale it when hr_clk.ck_di
         },
         {
         "Register Name": "hr_d1_idr",
-        "Offset": "0x224",
+        "Offset": "0x0224",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
         "Reset Value": "0x00000000",
         "Descriprtion": "Chip select 1 device ID0 register. Holds the ID0 value that the controller read from the device at start-up.",
         "Bits": [

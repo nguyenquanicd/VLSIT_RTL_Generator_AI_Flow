@@ -1,0 +1,75 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_apb",
+      "wave": "p..........."
+    },
+    [
+      "Firmware/APB",
+      {
+        "name": "i_apb_psel",
+        "wave": "011100000000"
+      },
+      {
+        "name": "i_apb_penable",
+        "wave": "001100000000"
+      },
+      {
+        "name": "o_apb_pready",
+        "wave": "000100000000"
+      },
+      {
+        "name": "i_indirect_opcode",
+        "wave": "xx=.........",
+        "data": [
+          "ENTER_QPI"
+        ]
+      },
+      {
+        "name": "o_qspi_busy",
+        "wave": "000111110000"
+      }
+    ],
+    [
+      "Flash",
+      {
+        "name": "o_spi_cs_n",
+        "wave": "111000001111"
+      },
+      {
+        "name": "o_spi_sclk",
+        "wave": "000101010000"
+      },
+      {
+        "name": "o_flash_state",
+        "wave": "xxxx=..=....",
+        "data": [
+          "SPI",
+          "QPI"
+        ]
+      },
+      {
+        "name": "o_spi_io_oe",
+        "wave": "xxxx=...=...",
+        "data": [
+          "0001",
+          "1111"
+        ]
+      },
+      {
+        "name": "o_flash_phase",
+        "wave": "xxxx=...=...",
+        "data": [
+          "1-1-1 CMD",
+          "4-4-4 CMD/ADDR/DATA"
+        ]
+      }
+    ]
+  ],
+  "head": {
+    "text": "Firmware enters QPI through indirect command then selects 4-4-4"
+  },
+  "foot": {
+    "text": "ENTER_QPI opcode and flash-state transition are device-specific. The controller mode register does not change flash state."
+  }
+}

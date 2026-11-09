@@ -1,0 +1,61 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_apb",
+      "wave": "p..........."
+    },
+    [
+      "APB command/status",
+      {
+        "name": "i_apb_psel",
+        "wave": "011100000000"
+      },
+      {
+        "name": "i_apb_penable",
+        "wave": "001100000000"
+      },
+      {
+        "name": "o_apb_pready",
+        "wave": "000100000000"
+      },
+      {
+        "name": "o_qspi_busy",
+        "wave": "000111111100"
+      },
+      {
+        "name": "o_qspi_done",
+        "wave": "000000000010"
+      },
+      {
+        "name": "o_qspi_error",
+        "wave": "000000000000"
+      }
+    ],
+    [
+      "Flash",
+      {
+        "name": "o_spi_cs_n",
+        "wave": "111001001001"
+      },
+      {
+        "name": "o_spi_sclk",
+        "wave": "000101010101"
+      },
+      {
+        "name": "o_flash_phase",
+        "wave": "xxxx=..=..=.",
+        "data": [
+          "ERASE_CMD",
+          "STATUS_POLL",
+          "WIP=0"
+        ]
+      }
+    ]
+  ],
+  "head": {
+    "text": "Indirect erase and flash busy completion"
+  },
+  "foot": {
+    "text": "WIP polling/readback and timeout policy are device-profile decisions; completion is shown only after busy clears."
+  }
+}

@@ -4,18 +4,20 @@ Do not edit these files by hand (rule R-039). Change the workbook and run `vlsit
 
 | Item | Value |
 |---|---|
-| Generator | C:\HQuan\102_MyGithub\VLSIT_RTL_Generator_AI_Model\APB-CSR-Generator\CSR_Generation.py |
-| Generator commit | bf6f2d8 |
+| Generator | C:\Users\PC\AppData\Local\Temp\gen_clean\CSR_Generation.py |
+| Generator commit | unknown (not a git folder) |
 | Workbook | C:\HQuan\102_MyGithub\VLSIT_RTL_Generator_AI_Model\common_rtl\009_HyperRAM_Controller\HyperRAM_Controller_CSR_Specification.xlsx |
-| Workbook SHA-256 | f3c38a45675b24fcd9f183ad8c40a18aa078fc31084d4612ed1e94277e0fea8d |
+| Workbook SHA-256 | 6e63459394f2938f3759801cb361d6895aeae72697dc1cdcdaa1e8172284f770 |
 | Sheet | ASYNC_CSR |
 | Module | m_vlsit_csr_regfile |
-| Asynchronous | 1 (i_bus_clk and i_reg_clk) |
+| Synchronizer module | m_vlsit_csr_sync (the generator calls it m_csr_sync; renamed for the m_vlsit_ prefix) |
+| Generator version | 2.4 |
+| PARA_ASYNCHRONOUS default | 1 (register clock i_clk_reg) |
 | Registers | 40 |
-| Generated | 2026-10-31T20:11:36 |
+| Generated | 2026-11-04T21:53:11 |
 | Ports | 167 (checked against the workbook) |
 
 | File | SHA-256 |
 |---|---|
-| m_vlsit_csr_regfile.sv | ed3166231dc20234b02ec7d412e96abdb99338da9da45870ab5302e1cccf9533 |
-| m_csr_sync.sv | 98e2a0c5863b9282d1849ffa86c92b43cdfd89d626ba30261bf224879fb02315 |
+| m_vlsit_csr_regfile.sv | e7c4cda414d5090e796f0acfbacd1cb73b32f83b48ffd2a605c6032738142f18 |
+| m_vlsit_csr_sync.sv | a7e5841ec18d802014de6c2c7102b51c449531442bb970518ef0bb9e6bb32a47 |

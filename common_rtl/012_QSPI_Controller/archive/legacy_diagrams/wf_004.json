@@ -1,0 +1,55 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_qspi",
+      "wave": "p......."
+    },
+    {
+      "name": "i_axi_reg_arvalid",
+      "wave": "01......"
+    },
+    {
+      "name": "o_axi_reg_arready",
+      "wave": "01......"
+    },
+    {
+      "name": "i_axi_reg_araddr",
+      "wave": "x=......",
+      "data": [
+        "VERSION"
+      ]
+    },
+    {
+      "name": "o_axi_reg_rvalid",
+      "wave": "0.1....."
+    },
+    {
+      "name": "o_axi_reg_rdata",
+      "wave": "x.=.....",
+      "data": [
+        "0x00010000"
+      ]
+    },
+    {
+      "name": "o_axi_reg_rresp",
+      "wave": "x.=.....",
+      "data": [
+        "OKAY"
+      ]
+    },
+    {
+      "name": "o_axi_reg_rlast",
+      "wave": "0.1....."
+    },
+    {
+      "name": "i_axi_reg_rready",
+      "wave": "0.1....."
+    }
+  ],
+  "head": {
+    "text": "Mapped AXI register read"
+  },
+  "foot": {
+    "text": "Single-beat read returns one OKAY response."
+  }
+}

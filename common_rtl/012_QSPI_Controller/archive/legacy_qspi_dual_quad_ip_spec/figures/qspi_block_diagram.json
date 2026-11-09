@@ -1,0 +1,561 @@
+{
+ "page_name": "QSPI_BLOCK_DIAGRAM",
+ "out_name": "qspi_block_diagram.drawio",
+ "table_suffix": "",
+ "layout": {
+  "gap_h": 140,
+  "gap_v": 120,
+  "margin": 60,
+  "block_h": 80
+ },
+ "top": {
+  "frame_label": [
+   "QSPI Controller/Target",
+   "(m_qspi)"
+  ],
+  "block_label": [
+   "QSPI Controller/Target",
+   "(m_qspi)"
+  ],
+  "block_row": [
+   "QSPI Controller/Target (m_qspi)",
+   "APB4 CSR/FIFO, AXI4 XIP, shared serial engine and pad control",
+   "Sections 5 and 14.2"
+  ]
+ },
+ "frame_row": [
+  "QSPI Controller/Target (m_qspi) frame",
+  "Four asynchronous clock domains; one shared serial datapath",
+  "Sections 5, 6 and 7"
+ ],
+ "frame_interfaces": [
+  "APB",
+  "AXI",
+  "SPIN",
+  "SPOT",
+  "APCLK",
+  "AXCLK",
+  "SECLK",
+  "TSCLK",
+  "RST",
+  "o_irq"
+ ],
+ "blocks": [
+  {
+   "key": "U_APB_DECODE",
+   "label": [
+    "u_apb_decode",
+    "(m_qspi_apb_decode)"
+   ],
+   "width": 240,
+   "row": 0,
+   "col": 0,
+   "row_name": "u_apb_decode (m_qspi_apb_decode)",
+   "function": "APB address decode, response mux and custom TX/RX FIFO data-window access",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "U_CSR",
+   "label": [
+    "u_csr",
+    "(m_vlsit_csr_qspi)"
+   ],
+   "width": 220,
+   "row": 1,
+   "col": 0,
+   "row_name": "u_csr (m_vlsit_csr_qspi)",
+   "function": "Generated control/status CSR register set",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "U_AXI_XIP",
+   "label": [
+    "u_axi_xip",
+    "(m_qspi_axi_xip)"
+   ],
+   "width": 200,
+   "row": 0,
+   "col": 2,
+   "row_name": "u_axi_xip (m_qspi_axi_xip)",
+   "function": "AXI4 XIP subordinate, burst tracking and read-response assembly",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "U_INDIRECT",
+   "label": [
+    "u_indirect",
+    "(m_qspi_indirect)"
+   ],
+   "width": 220,
+   "row": 1,
+   "col": 1,
+   "row_name": "u_indirect (m_qspi_indirect)",
+   "function": "APB-configured flash read/program/erase sequencer",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "U_ARBITER",
+   "label": [
+    "u_arbiter",
+    "(m_qspi_arbiter)"
+   ],
+   "width": 200,
+   "row": 1,
+   "col": 3,
+   "row_name": "u_arbiter (m_qspi_arbiter)",
+   "function": "Serial-engine request arbitration and ownership",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "U_SERIAL_ENGINE",
+   "label": [
+    "u_serial_engine",
+    "(m_qspi_serial_engine)"
+   ],
+   "width": 260,
+   "row": 2,
+   "col": 2,
+   "row_name": "u_serial_engine (m_qspi_serial_engine)",
+   "function": "Shared controller/target shift datapath and phase control",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "U_CLK_MUX",
+   "label": [
+    "u_clk_mux",
+    "(m_qspi_clk_mux)"
+   ],
+   "width": 200,
+   "row": 2,
+   "col": 3,
+   "row_name": "u_clk_mux (m_qspi_clk_mux)",
+   "function": "Glitch-free selection between controller clock and external target SCLK",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "U_PIN_MUX",
+   "label": [
+    "u_pin_mux",
+    "(m_qspi_pin_mux)"
+   ],
+   "width": 200,
+   "row": 3,
+   "col": 2,
+   "row_name": "u_pin_mux (m_qspi_pin_mux)",
+   "function": "Role/phase-controlled SCLK, CS and IO lane direction",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "U_TX_FIFO",
+   "label": [
+    "u_tx_fifo",
+    "(m_qspi_tx_fifo)"
+   ],
+   "width": 200,
+   "row": 2,
+   "col": 0,
+   "row_name": "u_tx_fifo (m_qspi_tx_fifo)",
+   "function": "Buffer APB program data for serial transmission",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "U_RX_FIFO",
+   "label": [
+    "u_rx_fifo",
+    "(m_qspi_rx_fifo)"
+   ],
+   "width": 200,
+   "row": 2,
+   "col": 1,
+   "row_name": "u_rx_fifo (m_qspi_rx_fifo)",
+   "function": "Buffer serial receive data for APB software reads",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "U_CDC",
+   "label": [
+    "u_cdc",
+    "(m_qspi_cdc)"
+   ],
+   "width": 160,
+   "row": 1,
+   "col": 2,
+   "row_name": "u_cdc (m_qspi_cdc)",
+   "function": "Request/response and status crossings between APB, AXI, serial and target domains",
+   "source": "Section 14.2"
+  },
+  {
+   "key": "U_RESET_SYNC",
+   "label": [
+    "u_reset_sync",
+    "(m_qspi_reset_sync)"
+   ],
+   "width": 240,
+   "row": 0,
+   "col": 3,
+   "row_name": "u_reset_sync (m_qspi_reset_sync)",
+   "function": "Reset-release synchronization for each receiving clock domain",
+   "source": "Section 14.2"
+  }
+ ],
+ "connectors": [
+  {
+   "id": "APBC",
+   "src": "U_APB_DECODE",
+   "src_side": "B",
+   "dst": "U_CSR",
+   "dst_side": "T"
+  },
+  {
+   "id": "APBF",
+   "src": "U_APB_DECODE",
+   "src_side": "R",
+   "dst": "U_TX_FIFO",
+   "dst_side": "R"
+  },
+  {
+   "id": "APBR",
+   "src": "U_APB_DECODE",
+   "src_side": "R",
+   "dst": "U_RX_FIFO",
+   "dst_side": "L"
+  },
+  {
+   "id": "CFG",
+   "src": "U_CSR",
+   "src_side": "R",
+   "dst": "U_INDIRECT",
+   "dst_side": "L"
+  },
+  {
+   "id": "XIPQ",
+   "src": "U_AXI_XIP",
+   "src_side": "B",
+   "dst": "U_CDC",
+   "dst_side": "T"
+  },
+  {
+   "id": "INDQ",
+   "src": "U_INDIRECT",
+   "src_side": "R",
+   "dst": "U_CDC",
+   "dst_side": "L"
+  },
+  {
+   "id": "ARBR",
+   "src": "U_CDC",
+   "src_side": "R",
+   "dst": "U_ARBITER",
+   "dst_side": "L"
+  },
+  {
+   "id": "GRNT",
+   "src": "U_ARBITER",
+   "src_side": "R",
+   "dst": "U_SERIAL_ENGINE",
+   "dst_side": "R"
+  },
+  {
+   "id": "TX",
+   "src": "U_TX_FIFO",
+   "src_side": "R",
+   "dst": "U_SERIAL_ENGINE",
+   "dst_side": "L"
+  },
+  {
+   "id": "RX",
+   "src": "U_SERIAL_ENGINE",
+   "src_side": "L",
+   "dst": "U_RX_FIFO",
+   "dst_side": "R"
+  },
+  {
+   "id": "CLKS",
+   "src": "U_CLK_MUX",
+   "src_side": "L",
+   "dst": "U_SERIAL_ENGINE",
+   "dst_side": "R"
+  },
+  {
+   "id": "PINS",
+   "src": "U_SERIAL_ENGINE",
+   "src_side": "B",
+   "dst": "U_PIN_MUX",
+   "dst_side": "T"
+  },
+  {
+   "id": "IRQEV",
+   "src": "U_CDC",
+   "src_side": "L",
+   "dst": "U_CSR",
+   "dst_side": "R"
+  }
+ ],
+ "externals": [
+  {
+   "id": "APB",
+   "block": "U_APB_DECODE",
+   "side": "L",
+   "dir": "in",
+   "pos": 0,
+   "text": [
+    "APB4"
+   ]
+  },
+  {
+   "id": "AXI",
+   "block": "U_AXI_XIP",
+   "side": "T",
+   "dir": "in",
+   "pos": 1,
+   "text": [
+    "AXI"
+   ]
+  },
+  {
+   "id": "SPIN",
+   "block": "U_PIN_MUX",
+   "side": "R",
+   "dir": "in",
+   "pos": 0,
+   "text": [
+    "SPI inputs"
+   ]
+  },
+  {
+   "id": "SPOT",
+   "block": "U_PIN_MUX",
+   "side": "R",
+   "dir": "out",
+   "pos": 1,
+   "text": [
+    "SPI outputs"
+   ]
+  },
+  {
+   "id": "APCLK",
+   "block": "U_APB_DECODE",
+   "side": "T",
+   "dir": "in",
+   "pos": 0,
+   "text": [
+    "i_clk_apb"
+   ]
+  },
+  {
+   "id": "AXCLK",
+   "block": "U_AXI_XIP",
+   "side": "T",
+   "dir": "in",
+   "pos": 0,
+   "text": [
+    "i_clk_axi"
+   ]
+  },
+  {
+   "id": "SECLK",
+   "block": "U_CLK_MUX",
+   "side": "R",
+   "dir": "in",
+   "pos": 0,
+   "text": [
+    "i_clk_serial"
+   ]
+  },
+  {
+   "id": "TSCLK",
+   "block": "U_CLK_MUX",
+   "side": "R",
+   "dir": "in",
+   "pos": 1,
+   "text": [
+    "i_spi_sclk_tgt"
+   ]
+  },
+  {
+   "id": "RST",
+   "block": "U_RESET_SYNC",
+   "side": "R",
+   "dir": "in",
+   "pos": 1,
+   "text": [
+    "RST"
+   ]
+  },
+  {
+   "id": "o_irq",
+   "block": "U_CSR",
+   "side": "L",
+   "dir": "out",
+   "pos": 1,
+   "text": [
+    "o_irq"
+   ]
+  }
+ ],
+ "nets": [],
+ "interfaces": [
+  {
+   "id": "APB",
+   "name": "APB4 software interface",
+   "category": "APB4",
+   "active": "external -> m_qspi",
+   "signals": "external -> m_qspi: i_apb_psel, i_apb_penable, i_apb_paddr, i_apb_pwrite, i_apb_pwdata, i_apb_pstrb, i_apb_pprot; m_qspi -> external: o_apb_pready, o_apb_prdata, o_apb_pslverr"
+  },
+  {
+   "id": "AXI",
+   "name": "AXI4 XIP subordinate interface",
+   "category": "AXI4",
+   "active": "external -> m_qspi for requests; m_qspi -> external for responses",
+   "signals": "AW: i_axi_awaddr, i_axi_awid, i_axi_awlen, i_axi_awsize, i_axi_awburst, i_axi_awlock, i_axi_awcache, i_axi_awprot, i_axi_awqos, i_axi_awregion, i_axi_awvalid, o_axi_awready; W: i_axi_wdata, i_axi_wstrb, i_axi_wlast, i_axi_wvalid, o_axi_wready; B: o_axi_bid, o_axi_bresp, o_axi_bvalid, i_axi_bready; AR: i_axi_araddr, i_axi_arid, i_axi_arlen, i_axi_arsize, i_axi_arburst, i_axi_arlock, i_axi_arcache, i_axi_arprot, i_axi_arqos, i_axi_arregion, i_axi_arvalid, o_axi_arready; R: o_axi_rid, o_axi_rdata, o_axi_rresp, o_axi_rlast, o_axi_rvalid, i_axi_rready"
+  },
+  {
+   "id": "SPIN",
+   "name": "Serial data and target framing inputs",
+   "category": "SPI",
+   "active": "external -> m_qspi",
+   "signals": "external -> m_qspi: i_spi_cs_n_tgt, i_spi_io_i"
+  },
+  {
+   "id": "SPOT",
+   "name": "Serial controller outputs",
+   "category": "SPI",
+   "active": "m_qspi -> external",
+   "signals": "m_qspi -> external: o_spi_sclk_ctrl, o_spi_cs_n_ctrl, o_spi_io_o, o_spi_io_oe"
+  },
+  {
+   "id": "APCLK",
+   "name": "APB clock",
+   "category": "clock",
+   "active": "SoC -> APB domain",
+   "signals": "i_clk_apb"
+  },
+  {
+   "id": "AXCLK",
+   "name": "AXI clock",
+   "category": "clock",
+   "active": "SoC -> AXI domain",
+   "signals": "i_clk_axi"
+  },
+  {
+   "id": "SECLK",
+   "name": "Serial engine reference clock",
+   "category": "clock",
+   "active": "SoC -> serial engine clock mux",
+   "signals": "i_clk_serial"
+  },
+  {
+   "id": "TSCLK",
+   "name": "Target-mode external serial clock",
+   "category": "clock",
+   "active": "external controller -> target engine",
+   "signals": "i_spi_sclk_tgt"
+  },
+  {
+   "id": "RST",
+   "name": "Asynchronous reset inputs",
+   "category": "reset",
+   "active": "SoC -> reset synchronizers",
+   "signals": "i_rst_n_apb, i_rst_n_axi, i_rst_n_serial"
+  },
+  {
+   "id": "o_irq",
+   "name": "Combined QSPI interrupt output",
+   "category": "interrupt",
+   "active": "m_qspi -> SoC",
+   "signals": "o_irq"
+  },
+  {
+   "id": "APBC",
+   "name": "APB CSR transaction bundle",
+   "category": "APB4",
+   "active": "APB decoder -> CSR bank",
+   "signals": "APB decoder -> CSR bank: w_csr_psel, w_csr_penable, w_csr_paddr, w_csr_pwrite, w_csr_pwdata, w_csr_pstrb, w_csr_pprot, w_csr_pready, w_csr_prdata, w_csr_pslverr"
+  },
+  {
+   "id": "APBF",
+   "name": "APB transmit FIFO push control",
+   "category": "stream",
+   "active": "APB decoder -> TX FIFO",
+   "signals": "w_tx_fifo_push, w_tx_fifo_data, w_tx_fifo_strb, w_tx_fifo_full"
+  },
+  {
+   "id": "APBR",
+   "name": "APB receive FIFO pop and data",
+   "category": "stream",
+   "active": "APB decoder -> RX FIFO for pop; RX FIFO -> APB decoder for data",
+   "signals": "w_rx_fifo_pop, w_rx_fifo_data, w_rx_fifo_empty"
+  },
+  {
+   "id": "CFG",
+   "name": "CSR control/configuration bundle",
+   "category": "control",
+   "active": "CSR bank -> indirect controller",
+   "signals": "CSR bank -> control: w_ctrl_cfg, w_xip_cfg, w_indirect_cfg; control -> CSR bank: w_status, w_irq_pending"
+  },
+  {
+   "id": "XIPQ",
+   "name": "XIP CDC request/response bundle",
+   "category": "CDC",
+   "active": "AXI XIP adapter -> CDC/arbiter",
+   "signals": "w_xip_req_valid, w_xip_req_addr, w_xip_req_id, w_xip_req_len, w_xip_req_ready, w_xip_rsp_valid, w_xip_rsp_ready, w_xip_rsp_data, w_xip_rsp_id, w_xip_rsp_last, w_xip_rsp_resp"
+  },
+  {
+   "id": "INDQ",
+   "name": "Indirect-operation request/response bundle",
+   "category": "control",
+   "active": "Indirect controller -> CDC/arbiter",
+   "signals": "w_ind_req_valid, w_ind_req_cmd, w_ind_req_addr, w_ind_req_len, w_ind_req_ready, w_ind_rsp_valid, w_ind_rsp_done, w_ind_rsp_error"
+  },
+  {
+   "id": "ARBR",
+   "name": "Controller request arbitration bundle",
+   "category": "control",
+   "active": "CDC/request queue -> arbiter",
+   "signals": "w_ctrl_req_valid, w_ctrl_req_owner, w_ctrl_req_ready"
+  },
+  {
+   "id": "GRNT",
+   "name": "Serial engine grant/control bundle",
+   "category": "control",
+   "active": "arbiter -> serial engine",
+   "signals": "w_eng_start, w_eng_owner, w_eng_mode, w_eng_busy, w_eng_done, w_eng_error"
+  },
+  {
+   "id": "TX",
+   "name": "Transmit FIFO stream",
+   "category": "stream",
+   "active": "TX FIFO -> serial engine",
+   "signals": "w_tx_data, w_tx_valid, w_tx_ready"
+  },
+  {
+   "id": "RX",
+   "name": "Receive FIFO stream",
+   "category": "stream",
+   "active": "serial engine -> RX FIFO",
+   "signals": "w_rx_data, w_rx_valid, w_rx_ready"
+  },
+  {
+   "id": "CLKS",
+   "name": "Selected engine clock",
+   "category": "clock",
+   "active": "clock mux -> serial engine",
+   "signals": "w_clk_engine"
+  },
+  {
+   "id": "PINS",
+   "name": "Serial engine-to-pad-mux signals",
+   "category": "SPI",
+   "active": "serial engine -> pin mux for control/data drive; pin mux -> engine for sampled data",
+   "signals": "w_sclk_ctrl, w_spi_cs_n_ctrl, w_spi_io_i, w_spi_io_o, w_spi_io_oe"
+  },
+  {
+   "id": "IRQEV",
+   "name": "Synchronized interrupt events",
+   "category": "interrupt",
+   "active": "CDC -> CSR bank",
+   "signals": "w_irq_done, w_irq_tx_err, w_irq_rx_err, w_irq_flash_err"
+  }
+ ],
+ "legend_note": "AXI XIP and serial engine use separate clocks. One serial datapath selects i_clk_serial for controller mode or i_spi_sclk_tgt for target mode only while idle."
+}

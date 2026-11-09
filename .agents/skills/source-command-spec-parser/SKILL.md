@@ -7,6 +7,10 @@ description: "Extract traceable requirement IDs and resolve ambiguity in a hardw
 
 Use this skill when the user requests this phase of the repository's hardware RTL flow. Read .claude/commands/spec_parser.md and follow its English procedure. That command is the detailed workflow source for both Codex and Claude.
 
+For repository-flow specifications created or revised by `/spec_writer` or `/autoflow`, use the canonical `spec/VLSIT_<DESIGN_FUNCTION>_HDS.md` path. Keep the source specification path unchanged while extracting requirements.
+
+Preserve TeX formulas in Markdown exactly when they express numeric or timing behavior. Cite the formula's section/equation location and do not infer a numeric value from unspecified operands.
+
 ## Execution rules
 
 - Inspect the current specification, approvals, configuration, and artifacts before acting. Read other phase skills only when this phase requires them.

@@ -1,0 +1,169 @@
+{
+  "title": "QSPI Standard SPI target sample/shift clock architecture",
+  "blocks": [
+    {
+      "id": "apb_reset",
+      "label": "APB reset synchronizer\n(target reset release)",
+      "col": 0,
+      "row": 0,
+      "kind": "clock"
+    },
+    {
+      "id": "ext_sclk",
+      "label": "External target SCLK\ni_clk_spi_tgt",
+      "col": 0,
+      "row": 2,
+      "kind": "io"
+    },
+    {
+      "id": "phase_select",
+      "label": "Sample/shift phase and frame-config selectors\nCPHA, bit order, word length held during CS",
+      "col": 1,
+      "row": 2
+    },
+    {
+      "id": "rx_engine",
+      "label": "RX sample engine\ni_clk_tgt_sample",
+      "col": 2,
+      "row": 1
+    },
+    {
+      "id": "tx_engine",
+      "label": "TX shift engine\ni_clk_tgt_shift",
+      "col": 2,
+      "row": 3
+    },
+    {
+      "id": "rx_fifo",
+      "label": "Target RX AFIFO\nwrite on sample edge",
+      "col": 3,
+      "row": 1,
+      "kind": "memory"
+    },
+    {
+      "id": "tx_fifo",
+      "label": "Target TX AFIFO\nread on shift edge",
+      "col": 3,
+      "row": 3,
+      "kind": "memory"
+    },
+    {
+      "id": "tx_head",
+      "label": "APB TX head\nfirst MISO word + request token",
+      "col": 1,
+      "row": 4,
+      "kind": "memory"
+    },
+    {
+      "id": "pad_io",
+      "label": "Shared serial pads\nIO0/IO1, CS, SCLK",
+      "col": 4,
+      "row": 2,
+      "kind": "io"
+    }
+  ],
+  "groups": [
+    {
+      "label": "External target timing",
+      "blocks": [
+        "ext_sclk",
+        "phase_select",
+        "rx_engine",
+        "tx_engine"
+      ]
+    },
+    {
+      "label": "APB interface and reset",
+      "blocks": [
+        "apb_reset",
+        "tx_head"
+      ]
+    }
+  ],
+  "links": [
+    {
+      "from": "ext_sclk",
+      "to": "phase_select",
+      "label": "SCLK / inverted SCLK",
+      "style": "clock",
+      "dir": "fwd"
+    },
+    {
+      "from": "phase_select",
+      "to": "rx_engine",
+      "label": "sample phase",
+      "style": "clock",
+      "dir": "fwd"
+    },
+    {
+      "from": "phase_select",
+      "to": "tx_engine",
+      "label": "opposite shift phase",
+      "style": "clock",
+      "dir": "fwd"
+    },
+    {
+      "from": "rx_engine",
+      "to": "rx_fifo",
+      "label": "complete RX word / write",
+      "style": "data",
+      "dir": "fwd"
+    },
+    {
+      "from": "tx_fifo",
+      "to": "tx_engine",
+      "label": "prefetched TX words",
+      "style": "data",
+      "dir": "fwd"
+    },
+    {
+      "from": "tx_head",
+      "to": "tx_engine",
+      "label": "first word before SCLK",
+      "style": "data",
+      "dir": "fwd"
+    },
+    {
+      "from": "rx_engine",
+      "to": "tx_head",
+      "label": "one token ack after full word sampled",
+      "style": "ctrl",
+      "dir": "fwd"
+    },
+    {
+      "from": "apb_reset",
+      "to": "phase_select",
+      "label": "reset release",
+      "style": "ctrl",
+      "dir": "fwd"
+    },
+    {
+      "from": "apb_reset",
+      "to": "rx_engine",
+      "label": "shared target reset",
+      "style": "ctrl",
+      "dir": "fwd"
+    },
+    {
+      "from": "apb_reset",
+      "to": "tx_engine",
+      "label": "shared target reset",
+      "style": "ctrl",
+      "dir": "fwd"
+    },
+    {
+      "from": "tx_engine",
+      "to": "pad_io",
+      "label": "MISO / output enable",
+      "style": "data",
+      "dir": "fwd"
+    },
+    {
+      "from": "pad_io",
+      "to": "rx_engine",
+      "label": "MOSI sample",
+      "style": "data",
+      "dir": "fwd"
+    }
+  ]
+}

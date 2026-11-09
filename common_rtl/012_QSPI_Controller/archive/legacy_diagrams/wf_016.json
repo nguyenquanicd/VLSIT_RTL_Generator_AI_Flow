@@ -1,0 +1,45 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_qspi",
+      "wave": "p......."
+    },
+    {
+      "name": "i_axi_xip_arvalid",
+      "wave": "01......"
+    },
+    {
+      "name": "o_qspi_cs_n",
+      "wave": "10.....1"
+    },
+    {
+      "name": "o_qspi_sclk",
+      "wave": "0.1010100"
+    },
+    {
+      "name": "i_qspi_dq_i",
+      "wave": "x1111111"
+    },
+    {
+      "name": "o_axi_xip_rvalid",
+      "wave": "0.....1."
+    },
+    {
+      "name": "o_axi_xip_rdata",
+      "wave": "x.....=.",
+      "data": [
+        "0xFFFFFFFF"
+      ]
+    },
+    {
+      "name": "reg_timeout",
+      "wave": "0......."
+    }
+  ],
+  "head": {
+    "text": "No flash response timeout"
+  },
+  "foot": {
+    "text": "DQ held high still clocks data; no ready/ack or timeout exists."
+  }
+}

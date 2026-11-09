@@ -1,0 +1,34 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_qspi",
+      "wave": "p......."
+    },
+    {
+      "name": "i_rst_n_qspi",
+      "wave": "111..111"
+    },
+    {
+      "name": "o_qspi_cs_n",
+      "wave": "10..1111"
+    },
+    {
+      "name": "o_qspi_sclk",
+      "wave": "0.101000"
+    },
+    {
+      "name": "reg_engine_busy",
+      "wave": "01..0000"
+    },
+    {
+      "name": "o_irq_qspi",
+      "wave": "0......."
+    }
+  ],
+  "head": {
+    "text": "Reset aborts active transfer"
+  },
+  "foot": {
+    "text": "Reset clears engine state and returns CS inactive."
+  }
+}

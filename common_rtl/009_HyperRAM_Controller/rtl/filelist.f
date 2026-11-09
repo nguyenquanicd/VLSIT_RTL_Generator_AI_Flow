@@ -26,7 +26,7 @@ m_vlsit_apb4_if.sv
 ../../003_AsyncAXI4Bridge/rtl/axi4_base/m_vlsit_async_axi4_bridge.sv
 m_vlsit_axi4_cdc.sv
 m_vlsit_axi4_frontend.sv
-csr/m_csr_sync.sv
+csr/m_vlsit_csr_sync.sv
 csr/m_vlsit_csr_regfile.sv
 m_vlsit_hyperbus_ctrl.sv
 m_vlsit_cap_ring.sv

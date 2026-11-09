@@ -1,0 +1,30 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_qspi",
+      "wave": "p......."
+    },
+    {
+      "name": "o_qspi_tx_valid",
+      "wave": "01.0...."
+    },
+    {
+      "name": "i_qspi_tx_ready",
+      "wave": "0.10...."
+    },
+    {
+      "name": "reg_engine_error",
+      "wave": "0...1..."
+    },
+    {
+      "name": "reg_irq_err",
+      "wave": "0....1.."
+    }
+  ],
+  "head": {
+    "text": "TX FIFO underflow"
+  },
+  "foot": {
+    "text": "Engine errors and stops when it requests a byte with TX_VALID low."
+  }
+}

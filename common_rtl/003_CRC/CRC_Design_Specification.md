@@ -73,6 +73,16 @@ This IP provides CRC generation and CRC checking over streamed frames. The gener
 | FEAT-004 | Generic CRC configuration | Required | Parameters define width, polynomial and other selected CRC options; no named profile is implied | REQ-FUNC-002 |
 | FEAT-005 | Equivalent result across methods | Required | Same legal frame and CRC parameters | REQ-FUNC-001 |
 
+### 1.4 Real-world applications of the features
+
+| Feature ID | Real-world application (named system, example product) | What the application needs from the feature | Typical values | Consequence if missing or wrong | Requirements | Source |
+|---|---|---|---|---|---|---|
+| FEAT-001 | Frame check sequence generation of a 10 Gb/s Ethernet MAC on a 64-bit datapath | The CRC-32 of the frame is computed at line rate and appended to the frame | Polynomial 0x04C11DB7, 64 bits per cycle at 156.25 MHz | A wrong FCS makes the receiver drop every frame | REQ-FUNC-001 | User confirmed 2026-11-02 (ASM-010) |
+| FEAT-002 | Integrity check of the firmware image read by a boot ROM, or of a Modbus RTU frame | The received CRC is compared with the computed one and a good or bad result is given | CRC-32 over 1 MB at boot, CRC-16 over frames of 4 to 256 bytes | A corrupted image is executed or a corrupted frame is accepted | REQ-FUNC-003 | User confirmed 2026-11-02 (ASM-010) |
+| FEAT-003 | A small bit-serial CRC for a low-speed I2C/SMBus link, and a parallel CRC for a 10 Gb/s link, from the same source | The method is chosen at elaboration to fit the area and the speed of each product | 5 methods, 1 bit per cycle to 64 bits per cycle | One method for all products is too big for the small ones or too slow for the fast ones | REQ-PARAM-001 | User confirmed 2026-11-02 (ASM-010) |
+| FEAT-004 | Standards with different polynomials: USB CRC-5 and CRC-16, CAN CRC-15, SD card CRC-7, Bluetooth CRC-24 | The width, polynomial, initial value and reflection are parameters, not fixed | Width 5 to 32 bits, any polynomial | Each standard needs a new design | REQ-FUNC-002 | User confirmed 2026-11-02 (ASM-010) |
+| FEAT-005 | Hardware and firmware that must agree, and the move from a small method to a fast one without changing the result | All methods give the same CRC for the same frame and parameters | 5 methods, equal result for frames of 1 to 1500 bytes | Software tables and hardware disagree and good frames are rejected | REQ-FUNC-001 | User confirmed 2026-11-02 (ASM-010) |
+
 ## 2. Normative references and precedence
 
 ### 2.1 Normative references
@@ -565,6 +575,7 @@ The following scope is product-specific. No cryptographic or certified functiona
 | ASM-007 | User decision | Generator and checker use separate streams and independent state; one channel's backpressure shall not stall the other | Requires two instances of the selected datapath; increases area versus a shared stream | Confirmed by user, 2026-10-27 |
 | ASM-008 | User decision | `PARA_CRC_POLY` shall be nonzero and odd: the active field has bit 0 set | Rejects invalid polynomial values during elaboration; width-8 example `8'h07` valid, `8'h06` invalid | Confirmed by user, 2026-10-27 |
 | ASM-009 | User decision | Use the approved minimum set of WF-001 through WF-010 listed in Section 10.3 | Ten waveforms cover both operations, all five methods, reset, result backpressure, match/mismatch and independent progress | Confirmed by user, 2026-10-27 |
+| ASM-010 | Assumption | The real-world applications of section 1.4 are proposed by the author from the common industrial use of this kind of block and confirmed by the user | Section 1.4 only; no requirement depends on them | Confirmed by the user, 2026-11-02 |
 | DEP-001 | Dependency | SoC clock, reset, timing constraints, lint frontend and target library/corner | Required for system timing/physical closure; not defined by this IP | SoC integration responsibility |
 
 ## 21. Glossary

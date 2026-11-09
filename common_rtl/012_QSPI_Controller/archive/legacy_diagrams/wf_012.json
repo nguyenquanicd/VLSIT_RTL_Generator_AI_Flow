@@ -1,0 +1,38 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_qspi",
+      "wave": "p......."
+    },
+    {
+      "name": "o_axi_xip_rvalid",
+      "wave": "0.111..."
+    },
+    {
+      "name": "i_axi_xip_rready",
+      "wave": "0...1..."
+    },
+    {
+      "name": "o_axi_xip_rdata",
+      "wave": "x.=.=x..",
+      "data": [
+        "WORD0",
+        "WORD0"
+      ]
+    },
+    {
+      "name": "o_axi_xip_rlast",
+      "wave": "0.1.0..."
+    },
+    {
+      "name": "reg_qspi_rx_ready",
+      "wave": "0.0001.."
+    }
+  ],
+  "head": {
+    "text": "XIP R-channel backpressure"
+  },
+  "foot": {
+    "text": "RDATA and RLAST remain stable while RREADY is low."
+  }
+}

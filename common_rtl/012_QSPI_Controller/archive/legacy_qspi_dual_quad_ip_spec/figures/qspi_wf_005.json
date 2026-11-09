@@ -1,0 +1,34 @@
+{
+  "signal": [
+    {
+      "name": "o_spi_sclk",
+      "wave": "010101010101010100"
+    },
+    {
+      "name": "o_spi_cs_n",
+      "wave": "011111111111111110"
+    },
+    {
+      "name": "o_spi_io_o0",
+      "wave": "x1101001011010100x"
+    },
+    {
+      "name": "i_spi_io_i0",
+      "wave": "x0011010100101010x"
+    },
+    {
+      "name": "o_spi_io_oe0",
+      "wave": "011111111111111110"
+    },
+    {
+      "name": "o_qspi_done",
+      "wave": "000000000000000010"
+    }
+  ],
+  "head": {
+    "text": "Standard SPI controller, CPOL=0 / CPHA=0, 8-bit word"
+  },
+  "foot": {
+    "text": "Illustrative 0xA5 MSB-first transfer. CPHA=0 samples MOSI/MISO on rising SCLK edges; TX shifts on falling edges."
+  }
+}

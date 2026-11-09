@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="510" height="238" viewBox="0 0 510 238" font-family="Helvetica,Arial,sans-serif">
+<rect width="100%" height="100%" fill="#fff"/>
+<text x="12" y="20" font-size="14" font-weight="bold">Interrupt event overlaps W1C</text>
+<line x1="162" y1="30" x2="162" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="204" y1="30" x2="204" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="246" y1="30" x2="246" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="288" y1="30" x2="288" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="330" y1="30" x2="330" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="372" y1="30" x2="372" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="414" y1="30" x2="414" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="456" y1="30" x2="456" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="498" y1="30" x2="498" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<text x="154" y="49" font-size="12" text-anchor="end">i_clk_qspi</text>
+<polyline points="162.0,51.0 162.0,33.0 183.0,33.0 183.0,51.0 204.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="204.0,51.0 204.0,33.0 225.0,33.0 225.0,51.0 246.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="246.0,51.0 246.0,33.0 267.0,33.0 267.0,51.0 288.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="288.0,51.0 288.0,33.0 309.0,33.0 309.0,51.0 330.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="330.0,51.0 330.0,33.0 351.0,33.0 351.0,51.0 372.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="372.0,51.0 372.0,33.0 393.0,33.0 393.0,51.0 414.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,51.0 414.0,33.0 435.0,33.0 435.0,51.0 456.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="456.0,51.0 456.0,33.0 477.0,33.0 477.0,51.0 498.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="79" font-size="12" text-anchor="end">reg_done_event</text>
+<polyline points="162.0,81.0 204.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="204.0,81.0 246.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="246.0,81.0 288.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="288.0,81.0 288.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="288.0,63.0 330.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="330.0,63.0 372.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="372.0,63.0 414.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,63.0 456.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="456.0,63.0 498.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="109" font-size="12" text-anchor="end">i_axi_reg_wvalid</text>
+<polyline points="162.0,111.0 204.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="204.0,111.0 246.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="246.0,111.0 288.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="288.0,111.0 288.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="288.0,93.0 330.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="330.0,93.0 372.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="372.0,93.0 414.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,93.0 456.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="456.0,93.0 498.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="139" font-size="12" text-anchor="end">i_irq_w1c_done</text>
+<polyline points="162.0,141.0 204.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="204.0,141.0 246.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="246.0,141.0 288.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="288.0,141.0 288.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="288.0,123.0 330.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="330.0,123.0 372.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="372.0,123.0 414.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,123.0 456.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="456.0,123.0 498.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="169" font-size="12" text-anchor="end">reg_irq_done</text>
+<polyline points="162.0,171.0 204.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="204.0,171.0 246.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="246.0,171.0 288.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="288.0,171.0 330.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="330.0,171.0 372.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="372.0,171.0 414.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,171.0 456.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="456.0,171.0 498.0,171.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="199" font-size="12" text-anchor="end">o_irq_qspi</text>
+<polyline points="162.0,201.0 204.0,201.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="204.0,201.0 246.0,201.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="246.0,201.0 288.0,201.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="288.0,201.0 330.0,201.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="330.0,201.0 372.0,201.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="372.0,201.0 414.0,201.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,201.0 456.0,201.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="456.0,201.0 498.0,201.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="12" y="230" font-size="11" fill="#444">Source assignment ordering may clear the event in the same cycle.</text>
+</svg>

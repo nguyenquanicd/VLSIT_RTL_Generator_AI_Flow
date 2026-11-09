@@ -1,0 +1,79 @@
+{
+ "signal": [
+  {
+   "name": "i_clk_core",
+   "wave": "p..........."
+  },
+  [
+   "command",
+   {
+    "name": "o_sha_len_tail",
+    "wave": "=...........",
+    "data": [
+     "5"
+    ]
+   },
+   {
+    "name": "o_sha_cmd_final",
+    "wave": "01.0........"
+   },
+   {
+    "name": "i_hw_we_sha_cmd_final",
+    "wave": "0.10........"
+   }
+  ],
+  [
+   "sequencer and core",
+   {
+    "name": "r_ctx_state",
+    "wave": "=..=.....=..",
+    "data": [
+     "ABSORBING",
+     "FINALIZING",
+     "DIGEST_READY"
+    ]
+   },
+   {
+    "name": "w_pad_last",
+    "wave": "0.10........"
+   },
+   {
+    "name": "w_core_busy",
+    "wave": "0..1.....0.."
+   }
+  ],
+  [
+   "result",
+   {
+    "name": "i_hw_we_sha_irq_raw_cdone",
+    "wave": "0........10."
+   },
+   {
+    "name": "o_sha_irq_raw_cdone",
+    "wave": "0.........1."
+   },
+   {
+    "name": "i_sha_sts_ready",
+    "wave": "0.........1."
+   },
+   {
+    "name": "i_sha_lvl_outlvl",
+    "wave": "=.........=.",
+    "data": [
+     "0",
+     "4"
+    ]
+   },
+   {
+    "name": "o_irq",
+    "wave": "0.........1."
+   }
+  ]
+ ],
+ "head": {
+  "text": "WF-004: Final command, padding and digest ready of a short SHA-256 message"
+ },
+ "foot": {
+  "text": "Cycles 4 to 8 stand for the 66 cycles of one SHA-256 block at UNR 1 (not to scale)"
+ }
+}

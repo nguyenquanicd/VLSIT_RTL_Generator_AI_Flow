@@ -1,0 +1,52 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_qspi",
+      "wave": "p......."
+    },
+    {
+      "name": "i_axi_reg_awvalid",
+      "wave": "01......"
+    },
+    {
+      "name": "i_axi_reg_awready",
+      "wave": "01......"
+    },
+    {
+      "name": "i_axi_reg_awlen",
+      "wave": "x=......",
+      "data": [
+        "2"
+      ]
+    },
+    {
+      "name": "i_axi_reg_wvalid",
+      "wave": "0.111..."
+    },
+    {
+      "name": "o_axi_reg_wready",
+      "wave": "0.111..."
+    },
+    {
+      "name": "i_axi_reg_wlast",
+      "wave": "0...1..."
+    },
+    {
+      "name": "o_axi_reg_bvalid",
+      "wave": "0.....1."
+    },
+    {
+      "name": "o_axi_reg_bresp",
+      "wave": "x.....=.",
+      "data": [
+        "SLVERR"
+      ]
+    }
+  ],
+  "head": {
+    "text": "Unsupported AXI register write"
+  },
+  "foot": {
+    "text": "Write burst is drained, then SLVERR is returned."
+  }
+}

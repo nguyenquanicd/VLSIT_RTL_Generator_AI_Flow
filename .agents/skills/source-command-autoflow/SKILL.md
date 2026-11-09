@@ -7,6 +7,8 @@ description: "Run the gated specification-driven RTL and independent verificatio
 
 Use this skill when the user requests this phase of the repository's hardware RTL flow. Read .claude/commands/autoflow.md and follow its English procedure. That command is the detailed workflow source for both Codex and Claude.
 
+Every HDS created or revised by this flow must use the basename `VLSIT_<DESIGN_FUNCTION>_HDS.md` under the design's `spec/` directory. Normalize the function name to uppercase and replace spaces or hyphens with underscores; pass this canonical path through all phases and resume commands.
+
 ## Execution rules
 
 - Inspect the current specification, approvals, configuration, and artifacts before acting. Read other phase skills only when this phase requires them.

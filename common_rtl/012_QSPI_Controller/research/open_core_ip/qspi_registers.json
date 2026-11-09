@@ -1,0 +1,392 @@
+{
+  "module": "m_vlsit_csr_qspi",
+  "prefix": "qspi",
+  "async": 0,
+  "registers": [
+    {
+      "name": "qspi_ctrl",
+      "offset": "0x0",
+      "description": "QSPI control register. Starts a manual flash transaction and selects its operation.",
+      "fields": [
+        {
+          "name": "go",
+          "bits": "[0]",
+          "type": "rwi",
+          "reset": "0x0",
+          "description": "Manual operation launch request. A rising write requests the shared serial engine to start the configured transaction.\n\nUsage: Software sets this bit after programming the command and data parameters; hardware clears it when the launch pulse is accepted.\n\nValues:\n0x0 No manual launch request;\n0x1 Request one manual operation.\n\nUnit: none.\n\nLimits: A request while the engine is busy is not queued."
+        },
+        {
+          "name": "op_sel",
+          "bits": "[2:1]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Operation selector. Chooses the manual read, page-program or erase operation sent to the serial engine.\n\nUsage: Software programs this field before asserting go.\n\nValues:\n0x0 Read operation;\n0x1 Program operation;\n0x2 Erase operation;\n0x3 Reserved encoding.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "spare_lo",
+          "bits": "[7:3]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Unused control storage. Writes are retained and returned by reads but do not control the engine.\n\nUsage: Software should write zero; the serial engine ignores this field.\n\nValues:\n0x0 Recommended value;\n0x1 to 0x1F Stored but ignored.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "fifo_clr",
+          "bits": "[8]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "FIFO clear level. When high, it continuously clears both transmit and receive FIFOs.\n\nUsage: Software writes one to clear the FIFOs and writes zero afterward to release them.\n\nValues:\n0x0 FIFOs are not cleared by this control;\n0x1 Hold both FIFOs in clear.\n\nUnit: none.\n\nLimits: This bit is level-sensitive and does not self-clear."
+        },
+        {
+          "name": "spare_hi",
+          "bits": "[31:9]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Unused control storage. Writes are retained and returned by reads but do not control the engine.\n\nUsage: Software should write zero; the serial engine ignores this field.\n\nValues:\n0x0 Recommended value;\n0x1 to 0x7FFFFF Stored but ignored.\n\nUnit: none.\n\nLimits: none."
+        }
+      ]
+    },
+    {
+      "name": "qspi_sts",
+      "offset": "0x4",
+      "description": "QSPI live status register. Reports busy, completion, error, FIFO and XIP activity.",
+      "fields": [
+        {
+          "name": "busy",
+          "bits": "[0]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": "Engine busy indication. It reflects whether the serial command engine is processing a transaction.\n\nUsage: Software polls this bit before starting a manual command or changing active configuration.\n\nValues:\n0x0 Engine is idle;\n0x1 Engine is processing a transaction.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "done",
+          "bits": "[1]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": "Completion indication. It reflects the sticky done event stored in the interrupt status register.\n\nUsage: Software reads this bit to observe completion and clears the cause through the interrupt status register.\n\nValues:\n0x0 No completion event is recorded;\n0x1 Completion event is recorded.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "err",
+          "bits": "[2]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": "Live error indication. It reflects the serial engine error input, not the sticky interrupt error cause.\n\nUsage: Software may sample this bit during error handling and should also read the interrupt status register.\n\nValues:\n0x0 No current engine error indication;\n0x1 Engine error input is asserted.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "tx_empty",
+          "bits": "[3]",
+          "type": "ro",
+          "reset": "0x1",
+          "description": "Transmit FIFO empty indication. It is high when no byte is available for the serial engine to consume.\n\nUsage: Software checks this bit when loading transmit data and before starting a program operation.\n\nValues:\n0x0 At least one transmit byte is available;\n0x1 Transmit FIFO contains no byte.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "rx_valid",
+          "bits": "[4]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": "Receive data available indication. It is high when the receive FIFO contains a byte for software.\n\nUsage: Software checks this bit before reading RXDATA; a valid RXDATA read pops one byte.\n\nValues:\n0x0 No receive byte is available;\n0x1 At least one receive byte is available.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "xip_active",
+          "bits": "[5]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": "Execute-in-place activity indication. It reflects an active memory-mapped flash read transaction.\n\nUsage: Software uses this bit to avoid starting a manual command while XIP owns the shared engine.\n\nValues:\n0x0 No XIP transaction is active;\n0x1 An XIP transaction is active.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "reserved",
+          "bits": "[31:6]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "qspi_clkdiv",
+      "offset": "0x8",
+      "description": "QSPI clock divider register. Stores the divider value used to derive serial clock timing.",
+      "fields": [
+        {
+          "name": "div_val",
+          "bits": "[31:0]",
+          "type": "rw",
+          "reset": "0x00000003",
+          "description": "Serial clock divider value. The low sixteen bits feed the engine and determine the SCLK toggle interval.\n\nUsage: Software selects a divider compatible with the controller clock and flash timing.\n\nValues:\n0x0 Fastest divider setting;\n0x1 to 0xFFFF Increasing values reduce SCLK frequency.\n\nUnit: controller clock cycles.\n\nLimits: Only bits 15 through 0 affect the engine; maximum SCLK is TBD by flash and implementation timing."
+        }
+      ]
+    },
+    {
+      "name": "qspi_mode",
+      "offset": "0xc",
+      "description": "QSPI lane mode register. Selects single, dual or quad serial data lanes.",
+      "fields": [
+        {
+          "name": "lane_mode",
+          "bits": "[31:0]",
+          "type": "rw",
+          "reset": "0x00000000",
+          "description": "Serial lane mode value. The low two bits select standard SPI, dual-lane or quad-lane data phases.\n\nUsage: Software configures lane mode before a manual transfer; XIP mode selection is derived from this field.\n\nValues:\n0x0 Standard SPI, one lane;\n0x1 Dual SPI, two lanes;\n0x2 Quad SPI, four lanes;\n0x3 Reserved encoding.\n\nUnit: none.\n\nLimits: Only bits 1 through 0 affect lane selection; other bits are stored but ignored."
+        }
+      ]
+    },
+    {
+      "name": "qspi_cmd",
+      "offset": "0x10",
+      "description": "QSPI command register. Holds the eight-bit opcode transmitted for a manual command.",
+      "fields": [
+        {
+          "name": "opcode",
+          "bits": "[31:0]",
+          "type": "rw",
+          "reset": "0x0000000B",
+          "description": "Flash command opcode. The low byte is shifted to the flash at the start of a manual transfer.\n\nUsage: Software writes an opcode supported by the attached flash before asserting go.\n\nValues:\n0x0 to 0xFF Opcode byte value.\n\nUnit: none.\n\nLimits: Only bits 7 through 0 reach the engine; command framing is fixed by RTL."
+        }
+      ]
+    },
+    {
+      "name": "qspi_flash_addr",
+      "offset": "0x14",
+      "description": "QSPI flash address register. Supplies the manual transaction address.",
+      "fields": [
+        {
+          "name": "addr_val",
+          "bits": "[31:0]",
+          "type": "rw",
+          "reset": "0x00000000",
+          "description": "Flash byte address for a manual operation. The engine shifts three address bytes in most-significant-byte first order.\n\nUsage: Software programs the address before starting a read, program or erase command.\n\nValues:\n0x0 to 0xFFFFFF Address range representable by three emitted bytes;\n0x1000000 to 0xFFFFFFFF Stored but upper address bits are not emitted.\n\nUnit: bytes.\n\nLimits: The implemented serial address phase is 24 bits."
+        }
+      ]
+    },
+    {
+      "name": "qspi_len",
+      "offset": "0x18",
+      "description": "QSPI length register. Stores the requested manual transaction data length.",
+      "fields": [
+        {
+          "name": "len_val",
+          "bits": "[31:0]",
+          "type": "rw",
+          "reset": "0x00000000",
+          "description": "Manual data length value. The low sixteen bits are passed to the engine as its byte-count value.\n\nUsage: Software sets a length appropriate to the selected operation before starting it.\n\nValues:\n0x0 to 0xFFFF Byte count supplied to the engine.\n\nUnit: bytes.\n\nLimits: Only bits 15 through 0 affect the engine."
+        }
+      ]
+    },
+    {
+      "name": "qspi_dummy",
+      "offset": "0x1c",
+      "description": "QSPI dummy-cycle register. Stores dummy cycles inserted in read phases.",
+      "fields": [
+        {
+          "name": "dummy_val",
+          "bits": "[31:0]",
+          "type": "rw",
+          "reset": "0x00000008",
+          "description": "Dummy-cycle count inserted between address or mode phases and received data.\n\nUsage: Software programs the value required by the target flash command profile.\n\nValues:\n0x0 to 0xFF Dummy-cycle count.\n\nUnit: SCLK cycles.\n\nLimits: Only bits 7 through 0 affect the engine; target-flash dependent."
+        }
+      ]
+    },
+    {
+      "name": "qspi_txdata",
+      "offset": "0x20",
+      "description": "QSPI transmit data register. Writing the low byte pushes one byte into the transmit FIFO.",
+      "fields": [
+        {
+          "name": "tx_byte",
+          "bits": "[7:0]",
+          "type": "rw",
+          "reset": "0x00",
+          "description": "Transmit FIFO input byte. A valid write using byte lane zero pushes this byte into the FIFO.\n\nUsage: Software fills the FIFO before a program operation and refills it while the engine consumes data.\n\nValues:\n0x0 to 0xFF Byte pushed to the transmit FIFO.\n\nUnit: bytes.\n\nLimits: The source has no readable TXDATA register; rw is an inventory approximation because the generator has no write-only type."
+        },
+        {
+          "name": "reserved",
+          "bits": "[31:8]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "qspi_rxdata",
+      "offset": "0x24",
+      "description": "QSPI receive data register. Reading the low byte pops one received byte when available.",
+      "fields": [
+        {
+          "name": "rx_byte",
+          "bits": "[7:0]",
+          "type": "ro",
+          "reset": "0x00",
+          "description": "Receive FIFO output byte. A valid read returns the oldest received byte and removes it from the FIFO.\n\nUsage: Software checks rx_valid before reading this register to consume data.\n\nValues:\n0x0 to 0xFF Received byte value.\n\nUnit: bytes.\n\nLimits: An empty-FIFO read returns zero and does not pop; data is valid only when rx_valid is high."
+        },
+        {
+          "name": "reserved",
+          "bits": "[31:8]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "qspi_irq_en",
+      "offset": "0x28",
+      "description": "QSPI interrupt enable register. Masks completion and error causes onto the IRQ output.",
+      "fields": [
+        {
+          "name": "done_en",
+          "bits": "[0]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Completion interrupt mask. Enables the done sticky cause to contribute to the external IRQ output.\n\nUsage: Software sets this bit after configuring the handler and clears it to mask completion interrupts.\n\nValues:\n0x0 Completion interrupt masked;\n0x1 Completion interrupt enabled.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "err_en",
+          "bits": "[1]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Error interrupt mask. Enables the error sticky cause to contribute to the external IRQ output.\n\nUsage: Software sets this bit after configuring the handler and clears it to mask error interrupts.\n\nValues:\n0x0 Error interrupt masked;\n0x1 Error interrupt enabled.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "spare",
+          "bits": "[31:2]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Unused interrupt-mask storage. Writes are retained but no event source is connected to these bits.\n\nUsage: Software should write zero; only the two defined mask bits affect IRQ.\n\nValues:\n0x0 Recommended value;\n0x1 to 0x3FFFFFFF Stored but ignored.\n\nUnit: none.\n\nLimits: No interrupt source is associated with these bits."
+        }
+      ]
+    },
+    {
+      "name": "qspi_irq_sts",
+      "offset": "0x2c",
+      "description": "QSPI interrupt status register. Contains sticky completion and error event causes cleared by writing one.",
+      "fields": [
+        {
+          "name": "done",
+          "bits": "[0]",
+          "type": "w1c",
+          "reset": "0x0",
+          "description": "Completion event latch. Hardware sets this bit when the shared serial engine reports transaction completion.\n\nUsage: Software reads the cause and writes one to clear it after servicing completion.\n\nValues:\n0x0 No completion event is pending;\n0x1 Completion event is pending.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "err",
+          "bits": "[1]",
+          "type": "w1c",
+          "reset": "0x0",
+          "description": "Error event latch. Hardware sets this bit for an engine error or either FIFO full condition.\n\nUsage: Software reads the cause and writes one to clear it after servicing the error condition.\n\nValues:\n0x0 No error event is pending;\n0x1 Error event is pending.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "reserved",
+          "bits": "[31:2]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "qspi_version",
+      "offset": "0x30",
+      "description": "QSPI version register. Returns a constant implementation revision identifier.",
+      "fields": [
+        {
+          "name": "version",
+          "bits": "[31:0]",
+          "type": "ro",
+          "reset": "0x00010000",
+          "description": "Implementation version value. Reads return the compile-time version constant and writes are not accepted.\n\nUsage: Software may read this field during bring-up to identify the register-map implementation.\n\nValues:\n0x00010000 Version constant reported by this source revision.\n\nUnit: none.\n\nLimits: none."
+        }
+      ]
+    },
+    {
+      "name": "qspi_xip_ctrl",
+      "offset": "0x34",
+      "description": "QSPI XIP control register. Enables the read-only memory-mapped flash window.",
+      "fields": [
+        {
+          "name": "en",
+          "bits": "[0]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "XIP window enable. When set, address hits on the configured window can request flash reads.\n\nUsage: Software configures base, mask and command before setting this bit.\n\nValues:\n0x0 XIP window disabled;\n0x1 XIP window enabled.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "spare",
+          "bits": "[31:1]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Unused XIP control storage. Writes are retained but do not affect XIP operation.\n\nUsage: Software should write zero; the XIP interface uses only bit zero.\n\nValues:\n0x0 Recommended value;\n0x1 to 0x7FFFFFFF Stored but ignored.\n\nUnit: none.\n\nLimits: Only bit zero controls XIP."
+        }
+      ]
+    },
+    {
+      "name": "qspi_xip_base",
+      "offset": "0x38",
+      "description": "QSPI XIP base register. Stores the base address used for XIP window matching.",
+      "fields": [
+        {
+          "name": "base_addr",
+          "bits": "[31:0]",
+          "type": "rw",
+          "reset": "0x00000000",
+          "description": "Host address base used by masked XIP matching and subtraction to generate the flash offset.\n\nUsage: Software aligns this value with the selected XIP window and mask.\n\nValues:\n0x0 to 0xFFFFFFFF Host address base value.\n\nUnit: bytes.\n\nLimits: Base alignment and legal mask patterns are not validated."
+        }
+      ]
+    },
+    {
+      "name": "qspi_xip_mask",
+      "offset": "0x3c",
+      "description": "QSPI XIP mask register. Selects host address bits that participate in window matching.",
+      "fields": [
+        {
+          "name": "addr_mask",
+          "bits": "[31:0]",
+          "type": "rw",
+          "reset": "0xFF000000",
+          "description": "Address comparison mask used to decide whether a host read falls inside the XIP window.\n\nUsage: Software programs a contiguous window mask consistent with the base address.\n\nValues:\n0x0 to 0xFFFFFFFF Address decode mask value.\n\nUnit: address bits.\n\nLimits: Mask contiguity and base alignment are not checked."
+        }
+      ]
+    },
+    {
+      "name": "qspi_xip_cmd",
+      "offset": "0x40",
+      "description": "QSPI XIP command register. Holds the opcode used for memory-mapped flash reads.",
+      "fields": [
+        {
+          "name": "opcode",
+          "bits": "[31:0]",
+          "type": "rw",
+          "reset": "0x0000000B",
+          "description": "XIP read opcode. The low byte is sent as the command phase for an accepted memory-mapped read.\n\nUsage: Software selects an opcode compatible with the selected flash and lane mode.\n\nValues:\n0x0 to 0xFF Opcode byte value.\n\nUnit: none.\n\nLimits: Only bits 7 through 0 reach the engine."
+        }
+      ]
+    },
+    {
+      "name": "qspi_xip_mode",
+      "offset": "0x44",
+      "description": "QSPI XIP mode register. Controls optional mode-byte transmission for continuous-read profiles.",
+      "fields": [
+        {
+          "name": "mode_byte",
+          "bits": "[7:0]",
+          "type": "rw",
+          "reset": "0x000000A0",
+          "description": "Mode byte transmitted after the address phase when mode-byte enable is set.\n\nUsage: Software configures this field for the selected flash command profile.\n\nValues:\n0x0 to 0xFF Mode-byte value.\n\nUnit: none.\n\nLimits: The byte is emitted only when bit eight is set."
+        },
+        {
+          "name": "mode_en",
+          "bits": "[8]",
+          "type": "rw",
+          "reset": "0x1",
+          "description": "Mode-byte phase enable. Selects whether XIP includes the configured mode byte after the address phase.\n\nUsage: Software enables this only when the chosen flash command requires a mode byte.\n\nValues:\n0x0 Do not transmit a mode byte;\n0x1 Transmit the configured mode byte.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "spare",
+          "bits": "[31:9]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Unused XIP mode storage. Writes are retained but bits above the mode enable do not affect the engine.\n\nUsage: Software should write zero to this field.\n\nValues:\n0x0 Recommended value;\n0x1 to 0x7FFFFF Stored but ignored.\n\nUnit: none.\n\nLimits: No operation is assigned to these bits."
+        }
+      ]
+    }
+  ]
+}

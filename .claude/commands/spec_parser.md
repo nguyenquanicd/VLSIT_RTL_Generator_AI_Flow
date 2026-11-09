@@ -4,16 +4,17 @@ Convert an approved hardware specification into traceable, atomic requirements. 
 
 ## Inputs
 
-Use the supplied specification path. Otherwise identify a likely specification file by name and content; ask for a path if none is identifiable. Check that it describes an IP interface, parameters, behavior, or timing. If suitability is uncertain, explain the evidence and ask whether to continue.
+Use the supplied specification path. In this repository flow, an HDS created or revised by `/spec_writer` or `/autoflow` uses `spec/VLSIT_<DESIGN_FUNCTION>_HDS.md` (uppercase function name; spaces and hyphens become underscores). Otherwise identify a likely specification file by name and content; ask for a path if none is identifiable. Check that it describes an IP interface, parameters, behavior, or timing. If suitability is uncertain, explain the evidence and ask whether to continue.
 
 ## Requirement extraction
 
 1. Read every section. Assign unique, zero-padded REQ-IDs starting with REQ-001. Classify functional, interface, timing, and constraint requirements. Mark optional behavior explicitly.
 2. Split behaviors that can fail independently or require separate checks. Do not create requirements for rationale, out-of-scope statements, or illustrative waveforms.
 3. Preserve exact source references, protocol standard revisions and clauses, legal parameter values, observable effects, timing, and error cases. Record RTL module and parameter mappings separately from verification intent.
-4. Score ambiguity from 0 to 1. Scores above 0.3 require user review. After three unsuccessful clarification attempts, mark needs_human_decision=true and ambiguity_score=0.35; block Gate 1 until the user resolves, retains, or removes the requirement.
-5. Provide an sva_hint such as property, static, or cover where the source supports it. Do not infer an assertion from implementation details.
-6. Show the requirement table, ambiguity analysis, proposed splits/merges, and mappings. Use .agents/skills/decision_prompt_standard.md for decisions and approval.
+4. If the Markdown HDS contains TeX equations, preserve the formula in its original TeX form in any extracted requirement and cite its section/equation location. Do not calculate a numeric requirement from a formula unless all operands, units, and applicability conditions are specified.
+5. Score ambiguity from 0 to 1. Scores above 0.3 require user review. After three unsuccessful clarification attempts, mark needs_human_decision=true and ambiguity_score=0.35; block Gate 1 until the user resolves, retains, or removes the requirement.
+6. Provide an sva_hint such as property, static, or cover where the source supports it. Do not infer an assertion from implementation details.
+7. Show the requirement table, ambiguity analysis, proposed splits/merges, and mappings. Use .agents/skills/decision_prompt_standard.md for decisions and approval.
 
 ## Output and gate
 

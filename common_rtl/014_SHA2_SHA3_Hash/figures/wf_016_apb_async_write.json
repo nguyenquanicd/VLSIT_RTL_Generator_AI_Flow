@@ -1,0 +1,54 @@
+{
+ "signal": [
+  [
+   "clocks",
+   {
+    "name": "i_clk_apb",
+    "wave": "1.0.1.0.1.0.1.0."
+   },
+   {
+    "name": "i_clk_core",
+    "wave": "p..............."
+   }
+  ],
+  [
+   "APB4",
+   {
+    "name": "i_apb_psel",
+    "wave": "0...1........0.."
+   },
+   {
+    "name": "i_apb_penable",
+    "wave": "0.......1....0.."
+   },
+   {
+    "name": "i_apb_pwdata",
+    "wave": "x...=........x..",
+    "data": [
+     "W"
+    ]
+   },
+   {
+    "name": "o_apb_pready",
+    "wave": "0..........1.0.."
+   }
+  ],
+  [
+   "core domain",
+   {
+    "name": "w_core_req_sync",
+    "wave": "0.......10......"
+   },
+   {
+    "name": "o_sha_ctrl_en",
+    "wave": "0........1......"
+   }
+  ]
+ ],
+ "head": {
+  "text": "WF-016: APB write with asynchronous clocks (ratio 1:4): PREADY waits for the core domain"
+ },
+ "foot": {
+  "text": "i_clk_apb is drawn with a period of 4 cells and i_clk_core with 1 cell"
+ }
+}

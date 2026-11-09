@@ -1,0 +1,42 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_axi",
+      "wave": "p........."
+    },
+    {
+      "name": "i_rst_n_axi",
+      "wave": "1111001111"
+    },
+    {
+      "name": "o_axi_rvalid",
+      "wave": "0001000000"
+    },
+    {
+      "name": "o_axi_bvalid",
+      "wave": "0000000000"
+    },
+    {
+      "name": "o_qspi_busy",
+      "wave": "0111000000"
+    },
+    {
+      "name": "o_spi_cs_n",
+      "wave": "1000111111"
+    },
+    {
+      "name": "o_spi_io_oe",
+      "wave": "0111000000"
+    },
+    {
+      "name": "o_spi_sclk",
+      "wave": "0101010000"
+    }
+  ],
+  "head": {
+    "text": "Reset during an active transfer drives serial pins inactive"
+  },
+  "foot": {
+    "text": "In-flight AXI/APB recovery is TBD in DEC-004; AXI VALID outputs remain low while reset is asserted."
+  }
+}

@@ -17,6 +17,8 @@ csr_spec: "VLSIT_CSR_Specification_Template.xlsx"
 > Replace every angle-bracket placeholder. Mark inapplicable sections **N/A** with a reason. Do not silently omit a required decision. Use **TBD** only with its technical impact and the decision needed recorded in [Assumptions, dependencies, and decisions](#20-assumptions-dependencies-and-decisions).
 >
 > Requirement terms: **shall** = mandatory and testable; **should** = recommended; **may** = optional. Give every mandatory requirement a stable REQ-<AREA>-<NNN> identifier and a verification method.
+>
+> Source format: Keep this file as Markdown. Use `$...$` for inline TeX math and `$$...$$` for display equations on separate lines. Link figures with relative paths. Generate DOCX/PDF as derived exports from the approved Markdown; do not maintain them as separate sources.
 
 ## Document map
 
@@ -308,7 +310,7 @@ Workbook requirements:
 - Each register-map sheet contains `Table - Configuration` and `Table - Register Definition`.
 - `Table - Configuration` sets `Module Name`, `Protocol` (APB), `Data Width` (32), `Address Width` (16), `Write Strobe` (4), and `Asynchronous` (0 or 1). The protocol, widths, and strobe are fixed by the CSR template.
 - `Table - Register Definition` uses the columns REGISTER, OFFSET, BIT NAME, FIELD WIDTH, BIT TYPE, RESET VALUE, and DESCRIPTION. A register row (name, offset, reset value) is followed by one row per field (bit name, bit range such as `[31]` or `[28:27]`, bit type, reset value, description).
-- BIT TYPE is one of `rw`, `ro`, `rwi`, or `w1c`, as defined on the `Register_Description` sheet. Reserved bits use the bit name `reserved`.
+- BIT TYPE is one of `rw`, `ro`, `rwi`, `w1c`, `w0c`, `w2c`, or `r2c`, as defined on the `Register_Description` sheet. Reserved bits use the bit name `reserved`.
 - Every software-visible register and field shall be declared in the workbook. The CSR RTL is generated from the workbook and shall comply with REF-003.
 - Names and descriptions follow the register conventions of the specification skill: every register is `<prefix>_<function>` with fewer than 30 characters and every field name has at most 20 characters; the register description is one line `Full name. Main meaning.`; the field description gives the explanation, `Usage:`, a `Values:` block of hexadecimal value lines, `Unit:` and `Limits:` with a blank line between the parts; a reserved field has a fixed description; the enable, injection and status interrupt registers carry the same fields as the raw interrupt register.
 - The register RTL is built by APB-CSR-Generator from the workbook, never written by hand. Register and field names are lower-case identifiers, because they become port names (`o_<reg>_<field>`, `i_<reg>_<field>`, `i_hw_wdata_<reg>_<field>`, `i_hw_we_<reg>_<field>`); the fields of a register cover bits 31..0 once, and a field named `reserved` is type `ro`.
@@ -330,7 +332,7 @@ A signal from a clock domain other than the register clock is synchronized by th
 
 ### 11.4 APB access behavior of the CSR
 
-State the behavior that the generated module gives (APB-CSR-Generator, version 1.2), or the decision that changes it (section 20).
+State the behavior that the generated module gives (APB-CSR-Generator, version 2.4), or the decision that changes it (section 20).
 
 | Case | Behavior |
 |---|---|

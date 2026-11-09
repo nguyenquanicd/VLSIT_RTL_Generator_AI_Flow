@@ -1,0 +1,42 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_qspi",
+      "wave": "p......."
+    },
+    {
+      "name": "i_axi_xip_arvalid",
+      "wave": "01..01.."
+    },
+    {
+      "name": "o_axi_xip_arready",
+      "wave": "01..01.."
+    },
+    {
+      "name": "o_qspi_cs_n",
+      "wave": "10.10..1"
+    },
+    {
+      "name": "o_qspi_sclk",
+      "wave": "0.1010100"
+    },
+    {
+      "name": "o_axi_xip_rvalid",
+      "wave": "0..10..1"
+    },
+    {
+      "name": "o_axi_xip_rlast",
+      "wave": "0..10..1"
+    },
+    {
+      "name": "i_axi_xip_rready",
+      "wave": "0..10..1"
+    }
+  ],
+  "head": {
+    "text": "XIP burst and next request"
+  },
+  "foot": {
+    "text": "Second request begins after prior RLAST is accepted."
+  }
+}

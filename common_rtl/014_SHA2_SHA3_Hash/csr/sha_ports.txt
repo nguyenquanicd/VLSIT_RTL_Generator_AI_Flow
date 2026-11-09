@@ -1,0 +1,139 @@
+Module m_vlsit_csr_sha (asynchronous); register clock i_clk_reg
+
+| Port | Direction | Width | Meaning | Clock domain of the signal |
+|---|---|---:|---|---|
+| i_clk_apb | input | 1 | APB clock | i_clk_apb |
+| i_rst_n_apb | input | 1 | APB reset, active low | i_clk_apb |
+| i_clk_reg | input | 1 | Register clock (tie to i_clk_apb when PARA_ASYNCHRONOUS = 0) | i_clk_reg |
+| i_rst_n_reg | input | 1 | Register reset, active low (tie to i_rst_n_apb when PARA_ASYNCHRONOUS = 0) | i_clk_reg |
+| i_apb_paddr | input | 16 | APB address | i_clk_apb |
+| i_apb_pwdata | input | 32 | APB write data | i_clk_apb |
+| i_apb_pwrite | input | 1 | APB write | i_clk_apb |
+| i_apb_penable | input | 1 | APB enable | i_clk_apb |
+| i_apb_psel | input | 1 | APB select | i_clk_apb |
+| i_apb_pstrb | input | 4 | APB byte strobes | i_clk_apb |
+| i_apb_pprot | input | 3 | APB protection (bit 1 used) | i_clk_apb |
+| i_protect_en | input | 1 | 1 = non-secure access gets PSLVERR | i_clk_apb |
+| i_slverr_en | input | 1 | 1 = PSLVERR checks on | i_clk_apb |
+| o_apb_pready | output | 1 | APB ready | i_clk_apb |
+| o_apb_pslverr | output | 1 | APB error | i_clk_apb |
+| o_apb_prdata | output | 32 | APB read data | i_clk_apb |
+| i_sha_cap0_alg | input | 12 | sha_cap0.alg (status in) | i_clk_reg |
+| i_sha_cap0_ctxn | input | 5 | sha_cap0.ctxn (status in) | i_clk_reg |
+| i_sha_cap0_axiw | input | 2 | sha_cap0.axiw (status in) | i_clk_reg |
+| i_sha_cap0_rev | input | 4 | sha_cap0.rev (status in) | i_clk_reg |
+| i_sha_cap1_s256unr | input | 7 | sha_cap1.s256unr (status in) | i_clk_reg |
+| i_sha_cap1_s512unr | input | 7 | sha_cap1.s512unr (status in) | i_clk_reg |
+| i_sha_cap1_kecunr | input | 5 | sha_cap1.kecunr (status in) | i_clk_reg |
+| i_sha_cap1_fdup | input | 1 | sha_cap1.fdup (status in) | i_clk_reg |
+| i_sha_cap1_fpar | input | 1 | sha_cap1.fpar (status in) | i_clk_reg |
+| i_sha_cap1_fredo | input | 1 | sha_cap1.fredo (status in) | i_clk_reg |
+| i_sha_cap1_mask | input | 1 | sha_cap1.mask (status in) | i_clk_reg |
+| i_sha_cap1_zero | input | 1 | sha_cap1.zero (status in) | i_clk_reg |
+| i_sha_cap1_dma | input | 1 | sha_cap1.dma (status in) | i_clk_reg |
+| i_sha_cap1_sdsrc | input | 1 | sha_cap1.sdsrc (status in) | i_clk_reg |
+| o_sha_ctrl_en | output | 1 | sha_ctrl.en (control out) | i_clk_reg |
+| o_sha_ctrl_algo | output | 4 | sha_ctrl.algo (control out) | i_clk_reg |
+| o_sha_ctrl_ctxsel | output | 5 | sha_ctrl.ctxsel (control out) | i_clk_reg |
+| o_sha_ctrl_mask | output | 1 | sha_ctrl.mask (control out) | i_clk_reg |
+| o_sha_ctrl_dmaen | output | 1 | sha_ctrl.dmaen (control out) | i_clk_reg |
+| o_sha_cmd_init | output | 1 | sha_cmd.init (control out, hardware load) | i_clk_reg |
+| i_hw_wdata_sha_cmd_init | input | 1 | sha_cmd.init (hardware value) | i_clk_reg |
+| i_hw_we_sha_cmd_init | input | 1 | sha_cmd.init (hardware load enable) | i_clk_reg |
+| o_sha_cmd_final | output | 1 | sha_cmd.final (control out, hardware load) | i_clk_reg |
+| i_hw_wdata_sha_cmd_final | input | 1 | sha_cmd.final (hardware value) | i_clk_reg |
+| i_hw_we_sha_cmd_final | input | 1 | sha_cmd.final (hardware load enable) | i_clk_reg |
+| o_sha_cmd_abort | output | 1 | sha_cmd.abort (control out, hardware load) | i_clk_reg |
+| i_hw_wdata_sha_cmd_abort | input | 1 | sha_cmd.abort (hardware value) | i_clk_reg |
+| i_hw_we_sha_cmd_abort | input | 1 | sha_cmd.abort (hardware load enable) | i_clk_reg |
+| o_sha_cmd_srst | output | 1 | sha_cmd.srst (control out, hardware load) | i_clk_reg |
+| i_hw_wdata_sha_cmd_srst | input | 1 | sha_cmd.srst (hardware value) | i_clk_reg |
+| i_hw_we_sha_cmd_srst | input | 1 | sha_cmd.srst (hardware load enable) | i_clk_reg |
+| o_sha_cmd_clear | output | 1 | sha_cmd.clear (control out, hardware load) | i_clk_reg |
+| i_hw_wdata_sha_cmd_clear | input | 1 | sha_cmd.clear (hardware value) | i_clk_reg |
+| i_hw_we_sha_cmd_clear | input | 1 | sha_cmd.clear (hardware load enable) | i_clk_reg |
+| o_sha_cmd_seed | output | 1 | sha_cmd.seed (control out, hardware load) | i_clk_reg |
+| i_hw_wdata_sha_cmd_seed | input | 1 | sha_cmd.seed (hardware value) | i_clk_reg |
+| i_hw_we_sha_cmd_seed | input | 1 | sha_cmd.seed (hardware load enable) | i_clk_reg |
+| o_sha_len_tail | output | 8 | sha_len.tail (control out) | i_clk_reg |
+| o_sha_dmac_burst | output | 9 | sha_dmac.burst (control out) | i_clk_reg |
+| o_sha_dmac_tmo | output | 16 | sha_dmac.tmo (control out) | i_clk_reg |
+| o_sha_sec_zero | output | 1 | sha_sec.zero (control out) | i_clk_reg |
+| o_sha_sec_fault | output | 1 | sha_sec.fault (control out) | i_clk_reg |
+| o_sha_sec_fdup | output | 1 | sha_sec.fdup (control out) | i_clk_reg |
+| o_sha_sec_fpar | output | 1 | sha_sec.fpar (control out) | i_clk_reg |
+| o_sha_sec_fredo | output | 1 | sha_sec.fredo (control out) | i_clk_reg |
+| o_sha_sec_resp | output | 4 | sha_sec.resp (control out) | i_clk_reg |
+| o_sha_seed_wd | output | 32 | sha_seed.wd (write-only control out (reads return 0), hardware clear input; packed array [PARA_SHA_SEED_COUNT-1:0] (default 8, max 16)) | i_clk_reg |
+| i_hw_clr_sha_seed_wd | input | 1 | sha_seed.wd (synchronous hardware clear (overrides a software write); packed array [PARA_SHA_SEED_COUNT-1:0] (default 8, max 16)) | i_clk_reg |
+| i_sha_sts_busy | input | 1 | sha_sts.busy (status in) | i_clk_reg |
+| i_sha_sts_idle | input | 1 | sha_sts.idle (status in) | i_clk_reg |
+| i_sha_sts_ready | input | 1 | sha_sts.ready (status in) | i_clk_reg |
+| i_sha_sts_locked | input | 1 | sha_sts.locked (status in) | i_clk_reg |
+| i_sha_sts_dmaact | input | 1 | sha_sts.dmaact (status in) | i_clk_reg |
+| i_sha_sts_seeded | input | 1 | sha_sts.seeded (status in) | i_clk_reg |
+| i_sha_sts_cstate | input | 4 | sha_sts.cstate (status in) | i_clk_reg |
+| i_sha_lvl_inlvl | input | 16 | sha_lvl.inlvl (status in) | i_clk_reg |
+| i_sha_lvl_outlvl | input | 16 | sha_lvl.outlvl (status in) | i_clk_reg |
+| i_sha_blk_cnt | input | 32 | sha_blk.cnt (status in) | i_clk_reg |
+| i_sha_byte_cnt | input | 32 | sha_byte.cnt (status in) | i_clk_reg |
+| i_sha_dvld_words | input | 9 | sha_dvld.words (status in) | i_clk_reg |
+| i_sha_err_ctx | input | 5 | sha_err.ctx (status in) | i_clk_reg |
+| i_sha_err_kind | input | 4 | sha_err.kind (status in) | i_clk_reg |
+| i_sha_err_ovf | input | 8 | sha_err.ovf (status in) | i_clk_reg |
+| i_sha_err_udf | input | 8 | sha_err.udf (status in) | i_clk_reg |
+| i_sha_erra_addr | input | 32 | sha_erra.addr (status in) | i_clk_reg |
+| o_sha_irq_raw_cdone | output | 16 | sha_irq_raw.cdone (status/event, hardware load) | i_clk_reg |
+| i_hw_wdata_sha_irq_raw_cdone | input | 16 | sha_irq_raw.cdone (hardware value) | i_clk_reg |
+| i_hw_we_sha_irq_raw_cdone | input | 1 | sha_irq_raw.cdone (hardware load enable) | i_clk_reg |
+| o_sha_irq_raw_ovf | output | 1 | sha_irq_raw.ovf (status/event, hardware load) | i_clk_reg |
+| i_hw_wdata_sha_irq_raw_ovf | input | 1 | sha_irq_raw.ovf (hardware value) | i_clk_reg |
+| i_hw_we_sha_irq_raw_ovf | input | 1 | sha_irq_raw.ovf (hardware load enable) | i_clk_reg |
+| o_sha_irq_raw_udf | output | 1 | sha_irq_raw.udf (status/event, hardware load) | i_clk_reg |
+| i_hw_wdata_sha_irq_raw_udf | input | 1 | sha_irq_raw.udf (hardware value) | i_clk_reg |
+| i_hw_we_sha_irq_raw_udf | input | 1 | sha_irq_raw.udf (hardware load enable) | i_clk_reg |
+| o_sha_irq_raw_axi | output | 1 | sha_irq_raw.axi (status/event, hardware load) | i_clk_reg |
+| i_hw_wdata_sha_irq_raw_axi | input | 1 | sha_irq_raw.axi (hardware value) | i_clk_reg |
+| i_hw_we_sha_irq_raw_axi | input | 1 | sha_irq_raw.axi (hardware load enable) | i_clk_reg |
+| o_sha_irq_raw_cfg | output | 1 | sha_irq_raw.cfg (status/event, hardware load) | i_clk_reg |
+| i_hw_wdata_sha_irq_raw_cfg | input | 1 | sha_irq_raw.cfg (hardware value) | i_clk_reg |
+| i_hw_we_sha_irq_raw_cfg | input | 1 | sha_irq_raw.cfg (hardware load enable) | i_clk_reg |
+| o_sha_irq_raw_flt | output | 1 | sha_irq_raw.flt (status/event, hardware load) | i_clk_reg |
+| i_hw_wdata_sha_irq_raw_flt | input | 1 | sha_irq_raw.flt (hardware value) | i_clk_reg |
+| i_hw_we_sha_irq_raw_flt | input | 1 | sha_irq_raw.flt (hardware load enable) | i_clk_reg |
+| o_sha_irq_raw_ent | output | 1 | sha_irq_raw.ent (status/event, hardware load) | i_clk_reg |
+| i_hw_wdata_sha_irq_raw_ent | input | 1 | sha_irq_raw.ent (hardware value) | i_clk_reg |
+| i_hw_we_sha_irq_raw_ent | input | 1 | sha_irq_raw.ent (hardware load enable) | i_clk_reg |
+| o_sha_irq_raw_tmo | output | 1 | sha_irq_raw.tmo (status/event, hardware load) | i_clk_reg |
+| i_hw_wdata_sha_irq_raw_tmo | input | 1 | sha_irq_raw.tmo (hardware value) | i_clk_reg |
+| i_hw_we_sha_irq_raw_tmo | input | 1 | sha_irq_raw.tmo (hardware load enable) | i_clk_reg |
+| o_sha_irq_raw_len | output | 1 | sha_irq_raw.len (status/event, hardware load) | i_clk_reg |
+| i_hw_wdata_sha_irq_raw_len | input | 1 | sha_irq_raw.len (hardware value) | i_clk_reg |
+| i_hw_we_sha_irq_raw_len | input | 1 | sha_irq_raw.len (hardware load enable) | i_clk_reg |
+| o_sha_irq_en_cdone | output | 16 | sha_irq_en.cdone (control out) | i_clk_reg |
+| o_sha_irq_en_ovf | output | 1 | sha_irq_en.ovf (control out) | i_clk_reg |
+| o_sha_irq_en_udf | output | 1 | sha_irq_en.udf (control out) | i_clk_reg |
+| o_sha_irq_en_axi | output | 1 | sha_irq_en.axi (control out) | i_clk_reg |
+| o_sha_irq_en_cfg | output | 1 | sha_irq_en.cfg (control out) | i_clk_reg |
+| o_sha_irq_en_flt | output | 1 | sha_irq_en.flt (control out) | i_clk_reg |
+| o_sha_irq_en_ent | output | 1 | sha_irq_en.ent (control out) | i_clk_reg |
+| o_sha_irq_en_tmo | output | 1 | sha_irq_en.tmo (control out) | i_clk_reg |
+| o_sha_irq_en_len | output | 1 | sha_irq_en.len (control out) | i_clk_reg |
+| o_sha_irq_inj_cdone | output | 16 | sha_irq_inj.cdone (control out) | i_clk_reg |
+| o_sha_irq_inj_ovf | output | 1 | sha_irq_inj.ovf (control out) | i_clk_reg |
+| o_sha_irq_inj_udf | output | 1 | sha_irq_inj.udf (control out) | i_clk_reg |
+| o_sha_irq_inj_axi | output | 1 | sha_irq_inj.axi (control out) | i_clk_reg |
+| o_sha_irq_inj_cfg | output | 1 | sha_irq_inj.cfg (control out) | i_clk_reg |
+| o_sha_irq_inj_flt | output | 1 | sha_irq_inj.flt (control out) | i_clk_reg |
+| o_sha_irq_inj_ent | output | 1 | sha_irq_inj.ent (control out) | i_clk_reg |
+| o_sha_irq_inj_tmo | output | 1 | sha_irq_inj.tmo (control out) | i_clk_reg |
+| o_sha_irq_inj_len | output | 1 | sha_irq_inj.len (control out) | i_clk_reg |
+| i_sha_irq_sts_cdone | input | 16 | sha_irq_sts.cdone (status in) | i_clk_reg |
+| i_sha_irq_sts_ovf | input | 1 | sha_irq_sts.ovf (status in) | i_clk_reg |
+| i_sha_irq_sts_udf | input | 1 | sha_irq_sts.udf (status in) | i_clk_reg |
+| i_sha_irq_sts_axi | input | 1 | sha_irq_sts.axi (status in) | i_clk_reg |
+| i_sha_irq_sts_cfg | input | 1 | sha_irq_sts.cfg (status in) | i_clk_reg |
+| i_sha_irq_sts_flt | input | 1 | sha_irq_sts.flt (status in) | i_clk_reg |
+| i_sha_irq_sts_ent | input | 1 | sha_irq_sts.ent (status in) | i_clk_reg |
+| i_sha_irq_sts_tmo | input | 1 | sha_irq_sts.tmo (status in) | i_clk_reg |
+| i_sha_irq_sts_len | input | 1 | sha_irq_sts.len (status in) | i_clk_reg |

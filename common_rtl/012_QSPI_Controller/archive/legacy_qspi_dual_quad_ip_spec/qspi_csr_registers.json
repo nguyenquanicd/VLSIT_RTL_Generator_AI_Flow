@@ -1,0 +1,546 @@
+{
+  "module": "m_vlsit_csr_qspi",
+  "prefix": "qspi",
+  "async": 0,
+  "registers": [
+    {
+      "name": "qspi_ctrl",
+      "offset": "0x0000",
+      "description": "QSPI control register. Enables the serial engine and selects role, clock mode, bit order and phase format.",
+      "fields": [
+        {
+          "name": "en",
+          "bits": "[0]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "QSPI enable. Allows the shared serial engine to accept a controller or target operation. A value of zero keeps the engine disabled and serial outputs inactive.\n\nUsage: Set after role and transfer configuration are programmed; clear only after the engine is idle.\n\nValues:\n0x0 disabled (reset value);\n0x1 enabled.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "role",
+          "bits": "[1]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "QSPI role. Selects controller or Standard SPI target operation for the shared engine. Dual-SPI, Quad-SPI and QPI formats are controller-only.\n\nUsage: Change only while the engine is idle.\n\nValues:\n0x0 controller (reset value);\n0x1 Standard SPI target.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "cpol",
+          "bits": "[2]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Clock polarity. Selects the idle level of SCLK in Standard SPI modes. Used with cpha to select Standard SPI mode 0 through mode 3.\n\nUsage: Program while idle before starting a transfer.\n\nValues:\n0x0 SCLK idle low;\n0x1 SCLK idle high.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "cpha",
+          "bits": "[3]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Clock phase. Selects the sampling edge relative to the configured SCLK polarity. Used with cpol to select Standard SPI mode 0 through mode 3.\n\nUsage: Program while idle before starting a transfer.\n\nValues:\n0x0 sample on the leading edge;\n0x1 sample on the trailing edge.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "lsb_first",
+          "bits": "[4]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Bit order. Selects whether the serial engine transfers the most or least significant bit first. Applies to Standard SPI words; multi-lane ordering follows the selected flash profile.\n\nUsage: Program before starting a Standard SPI transfer.\n\nValues:\n0x0 MSB first (reset value);\n0x1 LSB first.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "format",
+          "bits": "[7:5]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Lane format. Selects the command/address/data lane pattern for controller transactions. The role field must select controller for Dual, Quad or QPI formats.\n\nUsage: Program while idle before a controller transaction.\n\nValues:\n0x0 1-1-1;\n0x1 1-1-2;\n0x2 1-2-2;\n0x3 1-1-4;\n0x4 1-4-4;\n0x5 4-4-4;\n0x6 to 0x7 reserved.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "reserved",
+          "bits": "[31:8]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "qspi_clkdiv",
+      "offset": "0x0004",
+      "description": "QSPI clock divider register. Controls controller SCLK frequency from the selected reference clock.",
+      "fields": [
+        {
+          "name": "divisor",
+          "bits": "[15:0]",
+          "type": "rw",
+          "reset": "0xFFFF",
+          "description": "SCLK divisor. Sets the controller clock period as two reference-clock periods times divisor plus one. Program for the selected flash speed before enabling XIP or a controller transfer.\n\nUsage: A larger value produces a lower SCLK frequency.\n\nValues:\n0x0 to 0xFFFF valid divisor encodings;\n0xFFFF slowest setting (reset value).\n\nUnit: reference-clock cycles.\n\nLimits: SCLK = f_ref / (2 x (divisor + 1)); maximum rate still requires a selected clock and flash profile.."
+        },
+        {
+          "name": "reserved",
+          "bits": "[31:16]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "qspi_frame",
+      "offset": "0x0008",
+      "description": "QSPI frame register. Selects the Standard SPI word length.",
+      "fields": [
+        {
+          "name": "word_len_m1",
+          "bits": "[5:0]",
+          "type": "rw",
+          "reset": "0x7",
+          "description": "Word length minus one. Encodes a Standard SPI transfer word from 4 through 32 bits. Write N minus one to request an N-bit word.\n\nUsage: Program while idle before starting a transfer.\n\nValues:\n0x3 to 0x1F encode 4 to 32 bits;\n0x7 encodes 8 bits (reset value);\n0x0 to 0x2 reserved.\n\nUnit: bits.\n\nLimits: Valid encoded values are 3 through 31 inclusive.."
+        },
+        {
+          "name": "reserved",
+          "bits": "[31:6]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "qspi_xip_cfg",
+      "offset": "0x000C",
+      "description": "QSPI XIP configuration register. Selects a flash read opcode and its command framing for memory-mapped reads.",
+      "fields": [
+        {
+          "name": "en",
+          "bits": "[0]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "XIP enable. Allows AXI4 reads to be translated into flash read transactions. Enable only after firmware configures and verifies the attached NOR flash profile.\n\nUsage: Clear before changing the read profile or entering target role.\n\nValues:\n0x0 XIP disabled (reset value);\n0x1 XIP enabled.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "opcode",
+          "bits": "[15:8]",
+          "type": "rw",
+          "reset": "0x03",
+          "description": "Read opcode. Selects the flash-specific instruction byte for XIP reads. Firmware programs the opcode required by the identified NOR device.\n\nUsage: Set before enabling XIP.\n\nValues:\n0x00 to 0xFF flash-defined instruction values;\n0x03 is a conservative single-lane read example (reset value).\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "addr_bytes",
+          "bits": "[17:16]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Address byte count. Selects three-byte or four-byte flash addressing for XIP requests. Firmware selects this based on the flash capacity and address-mode configuration.\n\nUsage: Set before enabling XIP.\n\nValues:\n0x0 three address bytes (reset value);\n0x1 four address bytes;\n0x2 to 0x3 reserved.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "format",
+          "bits": "[20:18]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "XIP lane format. Selects the configured command/address/data lane pattern used for reads. Must match the currently configured flash state; firmware enters or exits QPI separately through indirect commands.\n\nUsage: Set before enabling XIP.\n\nValues:\n0x0 1-1-1;\n0x1 1-1-2;\n0x2 1-2-2;\n0x3 1-1-4;\n0x4 1-4-4;\n0x5 4-4-4;\n0x6 to 0x7 reserved.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "dummy_cyc",
+          "bits": "[28:21]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Dummy-cycle count. Selects idle serial clock cycles between the address/mode phase and returned flash data. Firmware programs the number required by the selected NOR read opcode and clock rate.\n\nUsage: Set before enabling XIP.\n\nValues:\n0x0 to 0xFF dummy cycles.\n\nUnit: SCLK cycles.\n\nLimits: Exact interpretation for dual/quad data rates depends on the selected flash profile.."
+        },
+        {
+          "name": "reserved",
+          "bits": "[31:29]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": ""
+        },
+        {
+          "name": "reserved",
+          "bits": "[7:1]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "qspi_xip_mode",
+      "offset": "0x0010",
+      "description": "QSPI XIP mode register. Supplies optional mode bits that some NOR read commands require.",
+      "fields": [
+        {
+          "name": "mode_value",
+          "bits": "[7:0]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Mode-bit value. Supplies up to eight optional mode bits after the flash address phase. Use with mode_count for a flash command whose datasheet defines mode bits.\n\nUsage: Set before enabling XIP.\n\nValues:\n0x00 to 0xFF; reset value is zero.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "mode_count",
+          "bits": "[12:8]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Mode-bit count. Selects how many low-order mode_value bits are transmitted. Zero disables the mode-bit phase; nonzero values are sent most-significant selected bit first.\n\nUsage: Set before enabling XIP.\n\nValues:\n0x0 no mode bits;\n0x1 to 0x8 transmit one to eight bits;\n0x9 to 0x1F reserved.\n\nUnit: bits.\n\nLimits: Count shall not exceed eight.."
+        },
+        {
+          "name": "reserved",
+          "bits": "[31:13]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "qspi_cmd",
+      "offset": "0x0014",
+      "description": "QSPI indirect command register. Programs an arbitrary flash command and starts an indirect transaction.",
+      "fields": [
+        {
+          "name": "opcode",
+          "bits": "[7:0]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Indirect opcode. Selects the flash instruction used by the software-started operation. Supports device-specific read, program, erase, status and QPI entry/exit instructions.\n\nUsage: Program before setting start.\n\nValues:\n0x00 to 0xFF flash-defined instruction values.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "format",
+          "bits": "[10:8]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Indirect lane format. Selects one of the supported command/address/data lane patterns. Use for standard, dual, quad and QPI indirect transactions in controller role.\n\nUsage: Program before setting start.\n\nValues:\n0x0 1-1-1;\n0x1 1-1-2;\n0x2 1-2-2;\n0x3 1-1-4;\n0x4 1-4-4;\n0x5 4-4-4;\n0x6 to 0x7 reserved.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "addr_bytes",
+          "bits": "[12:11]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Indirect address byte count. Selects no address, three-byte address or four-byte address. Use the encoding required by the chosen flash instruction.\n\nUsage: Program before setting start.\n\nValues:\n0x0 no address;\n0x1 three address bytes;\n0x2 four address bytes;\n0x3 reserved.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "dummy_cyc",
+          "bits": "[20:13]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Indirect dummy-cycle count. Selects idle serial clock cycles before receiving read data. Applies only when the selected command has an input data phase.\n\nUsage: Program before setting start.\n\nValues:\n0x0 to 0xFF SCLK cycles.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "rd",
+          "bits": "[21]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Data direction. Selects whether the indirect operation receives or transmits data after the command/address phases. Read data is written to the RX FIFO; transmit data is consumed from the TX FIFO.\n\nUsage: Program before setting start.\n\nValues:\n0x0 transmit data (reset value);\n0x1 receive data.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "start",
+          "bits": "[31]",
+          "type": "rwi",
+          "reset": "0x0",
+          "description": "Start request. Starts the programmed indirect transaction and is cleared by hardware when accepted. All command, address, length and FIFO data must be ready before software sets this bit.\n\nUsage: Write one only while idle; hardware clears it when the request is accepted.\n\nValues:\n0x0 no request (reset value);\n0x1 request operation.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "reserved",
+          "bits": "[30:22]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "qspi_addr",
+      "offset": "0x0018",
+      "description": "QSPI indirect address register. Holds the flash address for the next indirect operation.",
+      "fields": [
+        {
+          "name": "addr",
+          "bits": "[31:0]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Flash address. Selects the byte address used by an indirect command with an address phase. Only the low-order bytes selected by addr_bytes are transmitted.\n\nUsage: Program before setting qspi_cmd.start.\n\nValues:\n0x00000000 to 0xFFFFFFFF flash byte address.\n\nUnit: bytes.\n\nLimits: Address range beyond the selected device capacity is invalid.."
+        }
+      ]
+    },
+    {
+      "name": "qspi_len",
+      "offset": "0x001C",
+      "description": "QSPI indirect length register. Selects the number of bytes transferred in the data phase.",
+      "fields": [
+        {
+          "name": "byte_count",
+          "bits": "[15:0]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Byte count. Sets the number of payload bytes in an indirect data phase. Program TX FIFO before a transmit operation; drain RX FIFO after a receive operation.\n\nUsage: Set before qspi_cmd.start.\n\nValues:\n0x0000 no payload;\n0x0001 to 0xFFFF payload bytes.\n\nUnit: bytes.\n\nLimits: Maximum supported count and command-specific constraints depend on FIFO/arbitration design.."
+        },
+        {
+          "name": "reserved",
+          "bits": "[31:16]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "qspi_sts",
+      "offset": "0x0020",
+      "description": "QSPI status register. Reports the current engine and FIFO state to software.",
+      "fields": [
+        {
+          "name": "busy",
+          "bits": "[0]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": "Engine busy. Indicates that the shared serial engine is executing an operation. Software waits for zero before changing role or transfer configuration.\n\nUsage: Asserted during an active serial transaction.\n\nValues:\n0x0 idle;\n0x1 busy.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "tx_full",
+          "bits": "[1]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": "Transmit FIFO full. Indicates that no additional TX data word can be accepted. Software uses this status before writing the TX FIFO data window.\n\nUsage: Reflects the live FIFO full condition.\n\nValues:\n0x0 not full;\n0x1 full.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "tx_empty",
+          "bits": "[2]",
+          "type": "ro",
+          "reset": "0x1",
+          "description": "Transmit FIFO empty. Indicates that no queued TX data word is available. Software uses this status to refill or verify the transmit FIFO.\n\nUsage: Reflects the live FIFO empty condition.\n\nValues:\n0x0 has data;\n0x1 empty (reset value).\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "rx_full",
+          "bits": "[3]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": "Receive FIFO full. Indicates that no additional RX data word can be stored. Software drains the RX FIFO to avoid receive overflow.\n\nUsage: Reflects the live FIFO full condition.\n\nValues:\n0x0 not full;\n0x1 full.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "rx_empty",
+          "bits": "[4]",
+          "type": "ro",
+          "reset": "0x1",
+          "description": "Receive FIFO empty. Indicates that no received data word is available. Software reads the RX FIFO only when data is available.\n\nUsage: Reflects the live FIFO empty condition.\n\nValues:\n0x0 has data;\n0x1 empty (reset value).\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "err_code",
+          "bits": "[7:5]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": "Error code. Reports the last selected command-engine or FIFO error class. Software reads the code with qspi_irq_raw and command status.\n\nUsage: Reset or a new operation clears the code according to the resolved error policy.\n\nValues:\n0x0 no error;\n0x1 command/profile error;\n0x2 TX FIFO error;\n0x3 RX FIFO error;\n0x4 flash error;\n0x5 to 0x7 reserved.\n\nUnit: none.\n\nLimits: none."
+        },
+        {
+          "name": "reserved",
+          "bits": "[31:8]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "qspi_irq_raw",
+      "offset": "0x0024",
+      "description": "QSPI raw interrupt register. Contains sticky hardware event flags.",
+      "fields": [
+        {
+          "name": "done",
+          "bits": "[0]",
+          "type": "w1c",
+          "reset": "0x0",
+          "description": "Command completion event. Indicates that the latest indirect serial operation has finished and software may inspect its result.\n\nUsage: Hardware sets this sticky event flag; software clears it by writing one to this bit.\n\nValues:\n0x0 event not pending;\n0x1 event pending.\n\nUnit: none.\n\nLimits: event meaning is as defined by the IP specification."
+        },
+        {
+          "name": "tx_err",
+          "bits": "[1]",
+          "type": "w1c",
+          "reset": "0x0",
+          "description": "Transmit FIFO error event. Indicates that the serial engine requested transmit data when the FIFO policy reported it unavailable.\n\nUsage: Hardware sets this sticky event flag; software clears it by writing one to this bit.\n\nValues:\n0x0 event not pending;\n0x1 event pending.\n\nUnit: none.\n\nLimits: event meaning is as defined by the IP specification."
+        },
+        {
+          "name": "rx_err",
+          "bits": "[2]",
+          "type": "w1c",
+          "reset": "0x0",
+          "description": "Receive FIFO error event. Indicates that received serial data could not be stored or the RX FIFO data access was invalid.\n\nUsage: Hardware sets this sticky event flag; software clears it by writing one to this bit.\n\nValues:\n0x0 event not pending;\n0x1 event pending.\n\nUnit: none.\n\nLimits: event meaning is as defined by the IP specification."
+        },
+        {
+          "name": "fl_err",
+          "bits": "[3]",
+          "type": "w1c",
+          "reset": "0x0",
+          "description": "Indirect command/configuration error event. Indicates the IP detected an invalid command configuration or unsupported phase profile; it does not indicate external flash busy, program/erase failure, or vendor-specific status.\n\nUsage: Hardware sets this sticky event flag; software clears it by writing one to this bit.\n\nValues:\n0x0 event not pending;\n0x1 event pending.\n\nUnit: none.\n\nLimits: event meaning is as defined by the IP specification."
+        },
+        {
+          "name": "reserved",
+          "bits": "[31:4]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "qspi_irq_en",
+      "offset": "0x0028",
+      "description": "QSPI interrupt enable register. Enables selected raw events for the external interrupt output.",
+      "fields": [
+        {
+          "name": "done",
+          "bits": "[0]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Command completion event. Indicates that the latest indirect serial operation has finished and software may inspect its result.\n\nUsage: Set one to allow this pending event to contribute to the level-sensitive QSPI interrupt output.\n\nValues:\n0x0 event masked (reset value);\n0x1 event enabled.\n\nUnit: none.\n\nLimits: event meaning is as defined by the IP specification."
+        },
+        {
+          "name": "tx_err",
+          "bits": "[1]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Transmit FIFO error event. Indicates that the serial engine requested transmit data when the FIFO policy reported it unavailable.\n\nUsage: Set one to allow this pending event to contribute to the level-sensitive QSPI interrupt output.\n\nValues:\n0x0 event masked (reset value);\n0x1 event enabled.\n\nUnit: none.\n\nLimits: event meaning is as defined by the IP specification."
+        },
+        {
+          "name": "rx_err",
+          "bits": "[2]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Receive FIFO error event. Indicates that received serial data could not be stored or the RX FIFO data access was invalid.\n\nUsage: Set one to allow this pending event to contribute to the level-sensitive QSPI interrupt output.\n\nValues:\n0x0 event masked (reset value);\n0x1 event enabled.\n\nUnit: none.\n\nLimits: event meaning is as defined by the IP specification."
+        },
+        {
+          "name": "fl_err",
+          "bits": "[3]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Indirect command/configuration error event. Indicates the IP detected an invalid command configuration or unsupported phase profile; it does not indicate external flash busy, program/erase failure, or vendor-specific status.\n\nUsage: Set one to allow this pending event to contribute to the level-sensitive QSPI interrupt output.\n\nValues:\n0x0 event masked (reset value);\n0x1 event enabled.\n\nUnit: none.\n\nLimits: event meaning is as defined by the IP specification."
+        },
+        {
+          "name": "reserved",
+          "bits": "[31:4]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "qspi_irq_inj",
+      "offset": "0x002C",
+      "description": "QSPI interrupt injection register. Injects rising-edge test events into the raw event state.",
+      "fields": [
+        {
+          "name": "done",
+          "bits": "[0]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Command completion event. Indicates that the latest indirect serial operation has finished and software may inspect its result.\n\nUsage: Software writes zero and then one to inject a rising-edge test event into the corresponding raw event bit.\n\nValues:\n0x0 no injection (reset value);\n0x1 rising-edge injection request.\n\nUnit: none.\n\nLimits: event meaning is as defined by the IP specification."
+        },
+        {
+          "name": "tx_err",
+          "bits": "[1]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Transmit FIFO error event. Indicates that the serial engine requested transmit data when the FIFO policy reported it unavailable.\n\nUsage: Software writes zero and then one to inject a rising-edge test event into the corresponding raw event bit.\n\nValues:\n0x0 no injection (reset value);\n0x1 rising-edge injection request.\n\nUnit: none.\n\nLimits: event meaning is as defined by the IP specification."
+        },
+        {
+          "name": "rx_err",
+          "bits": "[2]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Receive FIFO error event. Indicates that received serial data could not be stored or the RX FIFO data access was invalid.\n\nUsage: Software writes zero and then one to inject a rising-edge test event into the corresponding raw event bit.\n\nValues:\n0x0 no injection (reset value);\n0x1 rising-edge injection request.\n\nUnit: none.\n\nLimits: event meaning is as defined by the IP specification."
+        },
+        {
+          "name": "fl_err",
+          "bits": "[3]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Indirect command/configuration error event. Indicates the IP detected an invalid command configuration or unsupported phase profile; it does not indicate external flash busy, program/erase failure, or vendor-specific status.\n\nUsage: Software writes zero and then one to inject a rising-edge test event into the corresponding raw event bit.\n\nValues:\n0x0 no injection (reset value);\n0x1 rising-edge injection request.\n\nUnit: none.\n\nLimits: event meaning is as defined by the IP specification."
+        },
+        {
+          "name": "reserved",
+          "bits": "[31:4]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "qspi_irq_sts",
+      "offset": "0x0030",
+      "description": "QSPI interrupt status register. Reports enabled pending interrupt events.",
+      "fields": [
+        {
+          "name": "done",
+          "bits": "[0]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": "Command completion event. Indicates that the latest indirect serial operation has finished and software may inspect its result.\n\nUsage: Read this bit to see whether the matching event is pending and enabled at the QSPI interrupt output.\n\nValues:\n0x0 no enabled pending event;\n0x1 enabled event pending.\n\nUnit: none.\n\nLimits: event meaning is as defined by the IP specification."
+        },
+        {
+          "name": "tx_err",
+          "bits": "[1]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": "Transmit FIFO error event. Indicates that the serial engine requested transmit data when the FIFO policy reported it unavailable.\n\nUsage: Read this bit to see whether the matching event is pending and enabled at the QSPI interrupt output.\n\nValues:\n0x0 no enabled pending event;\n0x1 enabled event pending.\n\nUnit: none.\n\nLimits: event meaning is as defined by the IP specification."
+        },
+        {
+          "name": "rx_err",
+          "bits": "[2]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": "Receive FIFO error event. Indicates that received serial data could not be stored or the RX FIFO data access was invalid.\n\nUsage: Read this bit to see whether the matching event is pending and enabled at the QSPI interrupt output.\n\nValues:\n0x0 no enabled pending event;\n0x1 enabled event pending.\n\nUnit: none.\n\nLimits: event meaning is as defined by the IP specification."
+        },
+        {
+          "name": "fl_err",
+          "bits": "[3]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": "Indirect command/configuration error event. Indicates the IP detected an invalid command configuration or unsupported phase profile; it does not indicate external flash busy, program/erase failure, or vendor-specific status.\n\nUsage: Read this bit to see whether the matching event is pending and enabled at the QSPI interrupt output.\n\nValues:\n0x0 no enabled pending event;\n0x1 enabled event pending.\n\nUnit: none.\n\nLimits: event meaning is as defined by the IP specification."
+        },
+        {
+          "name": "reserved",
+          "bits": "[31:4]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "qspi_cs_cfg",
+      "offset": "0x0034",
+      "description": "QSPI chip-select configuration register. Selects a controller flash chip and its inactive timing.",
+      "fields": [
+        {
+          "name": "cs_sel",
+          "bits": "[3:0]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Controller chip-select index. Selects one of the parameterized controller CS outputs.\n\nUsage: Program while idle; the value must be less than PARA_NUM_CS.\n\nValues:\n0x0 to 0xF controller chip-select index.\n\nUnit: index.\n\nLimits: Legal index range depends on PARA_NUM_CS."
+        },
+        {
+          "name": "cs_setup",
+          "bits": "[11:4]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Chip-select setup delay. Sets reference-clock cycles from CS assertion to the first SCLK edge.\n\nUsage: Program for the selected flash timing before a controller operation.\n\nValues:\n0x0 to 0xFF delay cycles.\n\nUnit: reference-clock cycles.\n\nLimits: Timing requirements depend on the selected flash datasheet."
+        },
+        {
+          "name": "cs_hold",
+          "bits": "[19:12]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Chip-select hold delay. Sets reference-clock cycles from the final SCLK edge to CS deassertion.\n\nUsage: Program for the selected flash timing before a controller operation.\n\nValues:\n0x0 to 0xFF delay cycles.\n\nUnit: reference-clock cycles.\n\nLimits: Timing requirements depend on the selected flash datasheet."
+        },
+        {
+          "name": "cs_high",
+          "bits": "[27:20]",
+          "type": "rw",
+          "reset": "0x0",
+          "description": "Chip-select inactive delay. Sets the minimum reference-clock cycles between controller transactions.\n\nUsage: Program for the selected flash timing before a controller operation.\n\nValues:\n0x0 to 0xFF delay cycles.\n\nUnit: reference-clock cycles.\n\nLimits: Timing requirements depend on the selected flash datasheet."
+        },
+        {
+          "name": "reserved",
+          "bits": "[31:28]",
+          "type": "ro",
+          "reset": "0x0",
+          "description": ""
+        }
+      ]
+    }
+  ]
+}

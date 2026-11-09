@@ -1,0 +1,75 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_axi",
+      "wave": "p........."
+    },
+    [
+      "AXI4 read",
+      {
+        "name": "i_axi_arvalid",
+        "wave": "0110000000"
+      },
+      {
+        "name": "o_axi_arready",
+        "wave": "0010000000"
+      },
+      {
+        "name": "i_axi_araddr",
+        "wave": "xx=.......",
+        "data": [
+          "A0"
+        ]
+      },
+      {
+        "name": "o_axi_rvalid",
+        "wave": "0001110000"
+      },
+      {
+        "name": "i_axi_rready",
+        "wave": "0001010000"
+      },
+      {
+        "name": "o_axi_rdata",
+        "wave": "xxx=.=....",
+        "data": [
+          "D0",
+          "D1"
+        ]
+      },
+      {
+        "name": "o_axi_rresp",
+        "wave": "xxx=.=....",
+        "data": [
+          "OKAY",
+          "OKAY"
+        ]
+      },
+      {
+        "name": "o_axi_rlast",
+        "wave": "0000010000"
+      }
+    ],
+    [
+      "Flash side",
+      {
+        "name": "o_spi_cs_n",
+        "wave": "1110001111"
+      },
+      {
+        "name": "o_qspi_busy",
+        "wave": "0011110000"
+      },
+      {
+        "name": "o_spi_sclk",
+        "wave": "0001010100"
+      }
+    ]
+  ],
+  "head": {
+    "text": "AXI4 XIP read with R-channel backpressure"
+  },
+  "foot": {
+    "text": "Illustrative transaction. RVALID and RDATA hold stable across a cycle where RREADY=0; serial timing is not to scale."
+  }
+}

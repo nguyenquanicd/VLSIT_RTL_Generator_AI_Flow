@@ -86,6 +86,18 @@ The IP converts Full AHB5 Subordinate transfers to AXI4 Manager transactions in 
 | FEAT-007 | AHB HWSTRB to AXI WSTRB | Required | The single top module | REQ-IF-001, REQ-FUNC-006 |
 | FEAT-008 | Parity, exclusive and CSR functions | Not included | Disabled in this revision | DEC-PAR-001, DEC-EXCL-001, DEC-CSR-001 |
 
+### 1.4 Real-world applications of the features
+
+| Feature ID | Real-world application (named system, example product) | What the application needs from the feature | Typical values | Consequence if missing or wrong | Requirements | Source |
+|---|---|---|---|---|---|---|
+| FEAT-001 | Cortex-M7 or Cortex-M33 AHB5 system bus connected to the AXI4 interconnect of a larger SoC | AHB5 reads, writes and bursts become the matching AXI4 transactions with the same data and the same attributes | AHB 32 or 64 bits, 1 to 16 beats, 200 to 400 MHz | A converted transfer that differs from the AHB access corrupts memory or a register | REQ-FUNC-001..006 | User confirmed 2026-11-02 (ASM-APP-001) |
+| FEAT-002 | Processor subsystem and interconnect on one clock domain after the clock tree | One clock and one reset make the bridge small and without a synchronizer | 1 clock, 1 reset, no CDC | A two-clock bridge costs area and latency for nothing | REQ-CLK-001, REQ-RESET-001 | User confirmed 2026-11-02 (ASM-APP-001) |
+| FEAT-003 | Reading a peripheral register that has a side effect, such as a UART receive data register that is cleared by the read | A read starts only when the AHB master really needs it, so a speculative read does not clear the data | 1 AXI read per AHB read, no read ahead | A speculative read removes a received character before the software reads it | REQ-FUNC-003, REQ-PERF-002 | User confirmed 2026-11-02 (ASM-APP-001) |
+| FEAT-004 | Copying a frame buffer from the CPU to the DDR memory (bufferable write-back memory) | Several AHB writes become one AXI burst, so the memory sees longer bursts | Up to 16 beats in one burst, DDR efficiency about 4 times that of single writes | Many short writes keep the DDR busy and the copy is slow | REQ-FUNC-005/008/009, REQ-PERF-001 | User confirmed 2026-11-02 (ASM-APP-001) |
+| FEAT-006 | An interconnect that orders responses by ID and allows several outstanding transfers | Rotating IDs let different transfers be in flight while the order of each ID is kept | ID count 1 to 8, default 1 | A single ID forces all transfers in order and loses throughput | REQ-PARAM-001 | User confirmed 2026-11-02 (ASM-APP-001) |
+| FEAT-007 | Byte and half-word stores of a CPU to a structure in DDR memory | The AHB byte strobes become the AXI write strobes so the bytes that are not written keep their value | HWSTRB 4 or 8 bits, 1 to 8 bytes enabled | A byte store overwrites its neighbours | REQ-IF-001, REQ-FUNC-006 | User confirmed 2026-11-02 (ASM-APP-001) |
+| FEAT-008 | Parity for ASIL-D automotive buses, exclusive access for semaphores and a control register block, not provided in this revision | These functions are left out so that the bridge stays small; a product that needs them has to add them | 0 (disabled in this revision) | A product that needs parity or exclusive access cannot use this revision unchanged | DEC-PAR-001, DEC-EXCL-001, DEC-CSR-001 | User confirmed 2026-11-02 (ASM-APP-001) |
+
 ## 2. Normative references and precedence
 
 ### 2.1 Normative references
@@ -614,6 +626,7 @@ No product-behavior choice remains open. The clock frequency is intentionally TB
 | ASM-ERR-001 | Unsupported size, misaligned address and reserved transfer encodings return AHB ERROR without AXI issue. | Illegal AHB inputs have deterministic containment; legal protocol traffic is unaffected. |
 | ASM-INT-001 | No interrupt/event output is needed because all defined errors are synchronous AHB responses. | No out-of-band error notification; AXI responses that never arrive leave AHB pending. |
 | ASM-DFT-001 | SoC scan insertion and FIFO memory test are external integration responsibilities. | DFT sign-off requires the SoC flow and macro wrapper. |
+| ASM-APP-001 | Assumption | The real-world applications of section 1.4 are proposed by the author from the common industrial use of this kind of block and confirmed by the user | Section 1.4 only; no requirement depends on them | Confirmed by the user, 2026-11-02 |
 
 ### 20.3 Decisions
 

@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="552" height="238" viewBox="0 0 552 238" font-family="Helvetica,Arial,sans-serif">
+<rect width="100%" height="100%" fill="#fff"/>
+<text x="12" y="20" font-size="14" font-weight="bold">Manual SPI read phase</text>
+<line x1="162" y1="30" x2="162" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="204" y1="30" x2="204" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="246" y1="30" x2="246" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="288" y1="30" x2="288" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="330" y1="30" x2="330" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="372" y1="30" x2="372" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="414" y1="30" x2="414" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="456" y1="30" x2="456" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="498" y1="30" x2="498" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="540" y1="30" x2="540" y2="210" stroke="#ccc" stroke-dasharray="2,3"/>
+<text x="154" y="49" font-size="12" text-anchor="end">i_clk_qspi</text>
+<polyline points="162.0,51.0 162.0,33.0 183.0,33.0 183.0,51.0 204.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="204.0,51.0 204.0,33.0 225.0,33.0 225.0,51.0 246.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="246.0,51.0 246.0,33.0 267.0,33.0 267.0,51.0 288.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="288.0,51.0 288.0,33.0 309.0,33.0 309.0,51.0 330.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="330.0,51.0 330.0,33.0 351.0,33.0 351.0,51.0 372.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="372.0,51.0 372.0,33.0 393.0,33.0 393.0,51.0 414.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,51.0 414.0,33.0 435.0,33.0 435.0,51.0 456.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="456.0,51.0 456.0,33.0 477.0,33.0 477.0,51.0 498.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="79" font-size="12" text-anchor="end">o_qspi_cs_n</text>
+<polyline points="162.0,63.0 204.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="204.0,63.0 204.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="204.0,81.0 246.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="246.0,81.0 288.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="288.0,81.0 330.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="330.0,81.0 372.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="372.0,81.0 414.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,81.0 456.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="456.0,81.0 456.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="456.0,63.0 498.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="109" font-size="12" text-anchor="end">o_qspi_sclk</text>
+<polyline points="162.0,111.0 204.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="204.0,111.0 246.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="246.0,111.0 246.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="246.0,93.0 288.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="288.0,93.0 288.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="288.0,111.0 330.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="330.0,111.0 330.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="330.0,93.0 372.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="372.0,93.0 372.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="372.0,111.0 414.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,111.0 414.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,93.0 456.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="456.0,93.0 456.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="456.0,111.0 498.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="498.0,111.0 540.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="139" font-size="12" text-anchor="end">o_qspi_dq_oe</text>
+<polyline points="162.0,141.0 204.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="204.0,141.0 246.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="246.0,141.0 246.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="246.0,123.0 288.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="288.0,123.0 330.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="330.0,123.0 372.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="372.0,123.0 414.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="414.0,123.0 456.0,123.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="456.0,123.0 456.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="456.0,141.0 498.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="498.0,141.0 540.0,141.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="169" font-size="12" text-anchor="end">o_qspi_dq_o</text>
+<rect x="162.0" y="153.0" width="42.0" height="18.0" fill="#ddd" stroke="#000"/>
+<polygon points="208.0,153.0 284.0,153.0 288.0,162.0 284.0,171.0 208.0,171.0 204.0,162.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="246.0" y="166.0" text-anchor="middle" font-size="11">CMD</text>
+<polygon points="292.0,153.0 368.0,153.0 372.0,162.0 368.0,171.0 292.0,171.0 288.0,162.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="330.0" y="166.0" text-anchor="middle" font-size="11">A23:16</text>
+<polygon points="376.0,153.0 410.0,153.0 414.0,162.0 410.0,171.0 376.0,171.0 372.0,162.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="393.0" y="166.0" text-anchor="middle" font-size="11">A15:8</text>
+<rect x="414.0" y="153.0" width="42.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="456.0" y="153.0" width="42.0" height="18.0" fill="#ddd" stroke="none"/>
+<text x="154" y="199" font-size="12" text-anchor="end">i_qspi_dq_i</text>
+<rect x="162.0" y="183.0" width="42.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="204.0" y="183.0" width="42.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="246.0" y="183.0" width="42.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="288.0" y="183.0" width="42.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="330.0" y="183.0" width="42.0" height="18.0" fill="#ddd" stroke="none"/>
+<polygon points="376.0,183.0 494.0,183.0 498.0,192.0 494.0,201.0 376.0,201.0 372.0,192.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="435.0" y="196.0" text-anchor="middle" font-size="11">RX0</text>
+<text x="12" y="230" font-size="11" fill="#444">Illustrative single-lane command and data framing; cycles not to scale.</text>
+</svg>

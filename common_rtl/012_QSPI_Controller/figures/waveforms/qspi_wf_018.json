@@ -1,0 +1,56 @@
+{
+  "head": {
+    "text": "SPI target mode 1: split sample and shift edges; final RX bit is committed without a ninth edge",
+    "tick": 0
+  },
+  "signal": [
+    {
+      "name": "i_spi_cs_tgt_n",
+      "wave": "10...............1"
+    },
+    {
+      "name": "i_clk_spi_tgt",
+      "wave": "010101010101010100"
+    },
+    {
+      "name": "i_clk_tgt_shift",
+      "wave": "010101010101010100"
+    },
+    {
+      "name": "i_clk_tgt_sample",
+      "wave": "101010101010101011"
+    },
+    {
+      "name": "i_spi_io_i[0]",
+      "wave": "x=.=.=.=.=.=.=.=.=x",
+      "data": [
+        "b7",
+        "b6",
+        "b5",
+        "b4",
+        "b3",
+        "b2",
+        "b1",
+        "b0"
+      ]
+    },
+    {
+      "name": "o_spi_io_o[1] (MISO)",
+      "wave": "x=...............x",
+      "data": [
+        "first bit valid before first SCLK edge"
+      ]
+    },
+    {
+      "name": "o_rx_push",
+      "wave": "0...............10"
+    }
+  ],
+  "foot": {
+    "text": "Mode 1: shift on SCLK rising edges and sample on falling edges. The eighth falling edge writes the completed RX word; CS may rise immediately afterward.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 2
+  }
+}

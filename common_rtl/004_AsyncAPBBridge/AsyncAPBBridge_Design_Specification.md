@@ -92,6 +92,19 @@ The handshake is selectable: a **two-phase (toggle)** handshake or a **four-phas
 | FEAT-007 | APB5 user signals | Optional | `PARA_APBCDC_APB5` = 1 and a width above 0 | REQ-APB5-002 |
 | FEAT-008 | Executable SDC with the crossing constraints | Required | Always delivered | REQ-TIM-001 to REQ-TIM-003 |
 
+### 1.4 Real-world applications of the features
+
+| Feature ID | Real-world application (named system, example product) | What the application needs from the feature | Typical values | Consequence if missing or wrong | Requirements | Source |
+|---|---|---|---|---|---|---|
+| FEAT-001 | Low-speed peripheral subsystem (UART, GPIO, I2C at 50 MHz) on its own clock, controlled by a 400 MHz CPU of a microcontroller | One APB transfer crosses between two unrelated clocks and returns data or an error | CPU clock 400 MHz, peripheral clock 50 MHz, one transfer in about 10 cycles of the slower clock | A transfer lost at the crossing hangs the CPU or writes a wrong register | REQ-FUNC-001 to REQ-FUNC-009 | User confirmed 2026-11-02 (ASM-006) |
+| FEAT-002 | A peripheral that waits for a flash write, or an access to a block that is powered down | PREADY wait states and PSLVERR of the slave side reach the CPU unchanged | Wait states 0 to 255 cycles, one error flag per transfer | The CPU reads old data or never learns that the access failed | REQ-FUNC-005, REQ-FUNC-006 | User confirmed 2026-11-02 (ASM-006) |
+| FEAT-003 | Fast peripherals where the access time of the register bus matters, such as a timer read in an interrupt | A two-phase (toggle) handshake needs one round trip per transfer | Latency of about 2 round trips of the slower clock | Slower register access slows the interrupt handler | REQ-HS-001, REQ-PERF-001 | User confirmed 2026-11-02 (ASM-006) |
+| FEAT-004 | Safety-related controller where a simple return-to-zero handshake is easier to analyze and constrain | A four-phase handshake returns both signals to idle after each transfer, so the state is easy to check | About 4 crossings per transfer, one clock ratio up to 100:1 | A handshake in an unknown state after a reset cannot be shown safe | REQ-HS-001, REQ-HS-004, REQ-PERF-002 | User confirmed 2026-11-02 (ASM-006) |
+| FEAT-005 | Crossing from a 1 GHz CPU to a 100 MHz peripheral bus with a required MTBF above 100 years | The number of synchronizer flops matches the frequency of the receiving clock | 2 to 4 flops, receiving clock 50 MHz to 1 GHz | A failure of the synchronizer is a rare random bus error | REQ-CLK-003 | User confirmed 2026-11-02 (ASM-006) |
+| FEAT-006 | A sensor hub in a power-gated domain that must be woken before a register access (APB5 PWAKEUP) | The wake-up request crosses the clock boundary so the domain can start its clock before PSEL is served | Wake-up time 1 to 10 us, one PWAKEUP per access | The access arrives at a domain with no clock and hangs | REQ-APB5-001 | User confirmed 2026-11-02 (ASM-006) |
+| FEAT-007 | Secure microcontroller where each APB access carries a parity or a secure/non-secure tag (PAUSER, PWUSER, PRUSER, PBUSER) | The user signals cross with their transfer | User width 0 to 16 bits per signal | A tag arrives with the wrong transfer and a non-secure master gets a secure register | REQ-APB5-002 | User confirmed 2026-11-02 (ASM-006) |
+| FEAT-008 | Timing closure of the crossing with Synopsys PrimeTime or Cadence Genus | Executable constraints give the handshake paths a maximum delay and exclude the false paths | 1 SDC file, delay limits of 1 to 2 clock periods of the faster clock | The tool reports false violations or misses a real path and the sign-off is wrong | REQ-TIM-001 to REQ-TIM-003 | User confirmed 2026-11-02 (ASM-006) |
+
 ## 2. Normative references and precedence
 
 ### 2.1 Normative references
@@ -841,6 +854,7 @@ This subsection answers the question of the designer of 2026-10-25 and corrects 
 | ASM-003 | Assumption | The completer eventually answers every transfer | REQ-FUNC-005, ERR-002 | Open; system watchdog if needed |
 | ASM-004 | Assumption | The two clocks may have any ratio; the post-CTS latency difference of each crossing is below the guard band of one destination period | REQ-TIM-003 | Open; post-CTS check |
 | ASM-005 | Assumption | `PWAKEUP` is used by a clock controller that also keeps `i_clk_slv` running while a request is in flight; the bridge cannot detect a request on a stopped clock | OI-002 | Open |
+| ASM-006 | Assumption | The real-world applications of section 1.4 are proposed by the author from the common industrial use of this kind of block and confirmed by the user | Section 1.4 only; no requirement depends on them | Confirmed by the user, 2026-11-02 |
 | DEC-001 | Decision | The naming rule is the default of the skill `vlsit-rtl-generator` (VLSIT_RTL_Design_Rule.md v2, section 2); clock domain suffixes `mst` and `slv` (PRT-02) | Every name | Confirmed by the designer, 2026-10-25 (answer 1A) |
 | DEC-002 | Decision | Architecture: handshake request/acknowledge with bundled data held stable, not an asynchronous FIFO | Sections 5 and 7 | Confirmed by the designer, 2026-10-25 (answer 3A) |
 | DEC-003 | Decision | One parameter selects APB4 or APB5; APB5 adds `PWAKEUP` and the user signals with configurable widths; no parity check signals | Sections 6 and 8 | Confirmed by the designer, 2026-10-25 (answer 4A) |

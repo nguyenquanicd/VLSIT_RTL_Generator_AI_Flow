@@ -1,0 +1,34 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_qspi",
+      "wave": "p......."
+    },
+    {
+      "name": "reg_done_event",
+      "wave": "0..1...."
+    },
+    {
+      "name": "i_axi_reg_wvalid",
+      "wave": "0..1...."
+    },
+    {
+      "name": "i_irq_w1c_done",
+      "wave": "0..1...."
+    },
+    {
+      "name": "reg_irq_done",
+      "wave": "0......."
+    },
+    {
+      "name": "o_irq_qspi",
+      "wave": "0......."
+    }
+  ],
+  "head": {
+    "text": "Interrupt event overlaps W1C"
+  },
+  "foot": {
+    "text": "Source assignment ordering may clear the event in the same cycle."
+  }
+}

@@ -1,0 +1,85 @@
+{
+ "signal": [
+  {
+   "name": "i_clk_core",
+   "wave": "p..........."
+  },
+  [
+   "AXI4 read address",
+   {
+    "name": "i_axi_arvalid",
+    "wave": "01.0........"
+   },
+   {
+    "name": "o_axi_arready",
+    "wave": "0.10........"
+   },
+   {
+    "name": "i_axi_araddr",
+    "wave": "x=.x........",
+    "data": [
+     "C1 DIG"
+    ]
+   },
+   {
+    "name": "i_axi_arlen",
+    "wave": "x=.x........",
+    "data": [
+     "3"
+    ]
+   }
+  ],
+  [
+   "AXI4 read data",
+   {
+    "name": "o_axi_rvalid",
+    "wave": "0...1...0..."
+   },
+   {
+    "name": "i_axi_rready",
+    "wave": "1..........."
+   },
+   {
+    "name": "o_axi_rdata",
+    "wave": "x...====x...",
+    "data": [
+     "D0",
+     "D1",
+     "D2",
+     "D3"
+    ]
+   },
+   {
+    "name": "o_axi_rlast",
+    "wave": "0...0..10..."
+   },
+   {
+    "name": "o_axi_rresp",
+    "wave": "x...=...x...",
+    "data": [
+     "OKAY"
+    ]
+   }
+  ],
+  [
+   "FIFO",
+   {
+    "name": "i_sha_lvl_outlvl",
+    "wave": "=....====...",
+    "data": [
+     "4",
+     "3",
+     "2",
+     "1",
+     "0"
+    ]
+   }
+  ]
+ ],
+ "head": {
+  "text": "WF-005: Read burst of the 4-word digest from the digest window of context 1"
+ },
+ "foot": {
+  "text": "The read data are the 4 digest words in standard byte order; the output FIFO level falls with each ..."
+ }
+}

@@ -1,0 +1,1305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mxfile host="app.diagrams.net" agent="VLSIT frame diagram generator" version="24.7.17" compressed="false">
+  <diagram id="QSPI_BLOCK_DIAGRAM" name="QSPI_BLOCK_DIAGRAM">
+    <mxGraphModel dx="1200" dy="800" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2300" pageHeight="3914" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="i1__2" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;strokeWidth=2;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="32" vlsit_library_cell="2" vlsit_library_instance="i1">
+          <mxGeometry x="520" y="380" width="1500" height="860" as="geometry" />
+        </mxCell>
+        <mxCell id="i10__2" value="u_tx_fifo&lt;br&gt;(m_qspi_tx_fifo)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;strokeWidth=2;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="32" vlsit_library_cell="2" vlsit_library_instance="i10">
+          <mxGeometry x="600" y="900" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="i11__2" value="u_rx_fifo&lt;br&gt;(m_qspi_rx_fifo)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;strokeWidth=2;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="32" vlsit_library_cell="2" vlsit_library_instance="i11">
+          <mxGeometry x="970" y="900" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="i12__2" value="u_cdc&lt;br&gt;(m_qspi_cdc)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;strokeWidth=2;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="32" vlsit_library_cell="2" vlsit_library_instance="i12">
+          <mxGeometry x="1370" y="700" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="i13__2" value="u_reset_sync&lt;br&gt;(m_qspi_reset_sync)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;strokeWidth=2;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="32" vlsit_library_cell="2" vlsit_library_instance="i13">
+          <mxGeometry x="1720" y="500" width="240" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="i2__2" value="u_apb_decode&lt;br&gt;(m_qspi_apb_decode)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;strokeWidth=2;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="32" vlsit_library_cell="2" vlsit_library_instance="i2">
+          <mxGeometry x="580" y="500" width="240" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="i3__2" value="u_csr&lt;br&gt;(m_vlsit_csr_qspi)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;strokeWidth=2;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="32" vlsit_library_cell="2" vlsit_library_instance="i3">
+          <mxGeometry x="590" y="700" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="i4__2" value="u_axi_xip&lt;br&gt;(m_qspi_axi_xip)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;strokeWidth=2;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="32" vlsit_library_cell="2" vlsit_library_instance="i4">
+          <mxGeometry x="1350" y="500" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="i5__2" value="u_indirect&lt;br&gt;(m_qspi_indirect)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;strokeWidth=2;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="32" vlsit_library_cell="2" vlsit_library_instance="i5">
+          <mxGeometry x="960" y="700" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="i6__2" value="u_arbiter&lt;br&gt;(m_qspi_arbiter)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;strokeWidth=2;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="32" vlsit_library_cell="2" vlsit_library_instance="i6">
+          <mxGeometry x="1740" y="700" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="i7__2" value="u_serial_engine&lt;br&gt;(m_qspi_serial_engine)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;strokeWidth=2;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="32" vlsit_library_cell="2" vlsit_library_instance="i7">
+          <mxGeometry x="1320" y="900" width="260" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="i8__2" value="u_clk_mux&lt;br&gt;(m_qspi_clk_mux)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;strokeWidth=2;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="32" vlsit_library_cell="2" vlsit_library_instance="i8">
+          <mxGeometry x="1740" y="900" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="i9__2" value="u_pin_mux&lt;br&gt;(m_qspi_pin_mux)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;strokeWidth=2;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;align=center;verticalAlign=middle;spacing=4;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="32" vlsit_library_cell="2" vlsit_library_instance="i9">
+          <mxGeometry x="1350" y="1100" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="i14__2" value="APB4" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i14">
+          <mxGeometry x="410" y="525" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i16__2" value="i_clk_apb" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i16">
+          <mxGeometry x="645" y="300" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i18__2" value="i_clk_axi" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i18">
+          <mxGeometry x="1290" y="315" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i20__2" value="AXI" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i20">
+          <mxGeometry x="1510" y="315" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i22__2" value="i_clk_serial" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i22">
+          <mxGeometry x="2040" y="880" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i24__2" value="i_spi_sclk_tgt" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i24">
+          <mxGeometry x="2040" y="970" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i26__2" value="o_irq" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i26">
+          <mxGeometry x="400" y="725" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i28__2" value="SPI inputs" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i28">
+          <mxGeometry x="2040" y="1080" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i30__2" value="SPI outputs" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i30">
+          <mxGeometry x="2040" y="1170" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i32__2" value="RST" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i32">
+          <mxGeometry x="2070" y="525" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i34__2" value="QSPI Controller/Target&lt;br&gt;(m_qspi)" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i34">
+          <mxGeometry x="1762" y="400" width="240" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="i48__2" value="APBC" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i48">
+          <mxGeometry x="708" y="590" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i49__2" value="APBF" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i49">
+          <mxGeometry x="848" y="510" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i50__2" value="APBR" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i50">
+          <mxGeometry x="920" y="844" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i51__2" value="CFG" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i51">
+          <mxGeometry x="870" y="684" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i52__2" value="XIPQ" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i52">
+          <mxGeometry x="1458" y="590" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i53__2" value="INDQ" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i53">
+          <mxGeometry x="1190" y="684" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i54__2" value="ARBR" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i54">
+          <mxGeometry x="1540" y="704" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i55__2" value="GRNT" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i55">
+          <mxGeometry x="1570" y="804" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i56__2" value="TX" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i56">
+          <mxGeometry x="930" y="1006" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i57__2" value="RX" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i57">
+          <mxGeometry x="1170" y="926" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i58__2" value="CLKS" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i58">
+          <mxGeometry x="1590" y="966" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i59__2" value="PINS" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i59">
+          <mxGeometry x="1458" y="990" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i60__2" value="IRQEV" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i60">
+          <mxGeometry x="860" y="764" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="i63__2" value="&lt;b&gt;Legend&lt;/b&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i63">
+          <mxGeometry x="100" y="3514" width="200" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="i65__2" value="Interface connector (one per signal group; arrow = active to passive)" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i65">
+          <mxGeometry x="280" y="3552" width="820" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="i66__2" value="AXI XIP and serial engine use separate clocks. One serial datapath selects i_clk_serial for controller mode or i_spi_sclk_tgt for target mode only while idle." style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontSize=18;fontColor=#000000;spacing=2;" vertex="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="0" vlsit_library_cell="2" vlsit_library_instance="i66">
+          <mxGeometry x="100" y="3599" width="1500" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="i61__t" value="Block Functions &amp; Interfaces" style="shape=table;startSize=40;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;html=1;fillColor=none;strokeColor=#000000;strokeWidth=2;fontSize=18;fontColor=#000000;" vertex="1" parent="1" vlsit_native_table="1">
+          <mxGeometry x="100" y="1570" width="2400" height="588" as="geometry" />
+        </mxCell>
+        <mxCell id="i61__r0" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__t" vlsit_native_table="1">
+          <mxGeometry y="40" width="2400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="i61__r0__c0" value="Block" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontStyle=1;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r0" vlsit_native_table="1">
+          <mxGeometry x="0" width="330" height="36" as="geometry">
+            <mxRectangle width="330" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r0__c1" value="Function" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontStyle=1;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r0" vlsit_native_table="1">
+          <mxGeometry x="330" width="1480" height="36" as="geometry">
+            <mxRectangle width="1480" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r0__c2" value="Source" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontStyle=1;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r0" vlsit_native_table="1">
+          <mxGeometry x="1810" width="230" height="36" as="geometry">
+            <mxRectangle width="230" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r0__c3" value="Interfaces (mnemonics)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontStyle=1;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r0" vlsit_native_table="1">
+          <mxGeometry x="2040" width="360" height="36" as="geometry">
+            <mxRectangle width="360" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r1" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__t" vlsit_native_table="1">
+          <mxGeometry y="76" width="2400" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="i61__r1__c0" value="QSPI Controller/Target (m_qspi) frame" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r1" vlsit_native_table="1">
+          <mxGeometry x="0" width="330" height="58" as="geometry">
+            <mxRectangle width="330" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r1__c1" value="Four asynchronous clock domains; one shared serial datapath" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r1" vlsit_native_table="1">
+          <mxGeometry x="330" width="1480" height="58" as="geometry">
+            <mxRectangle width="1480" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r1__c2" value="Sections 5, 6 and 7" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r1" vlsit_native_table="1">
+          <mxGeometry x="1810" width="230" height="58" as="geometry">
+            <mxRectangle width="230" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r1__c3" value="APB, AXI, SPIN, SPOT, APCLK, AXCLK, SECLK, TSCLK, RST, o_irq" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r1" vlsit_native_table="1">
+          <mxGeometry x="2040" width="360" height="58" as="geometry">
+            <mxRectangle width="360" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r2" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__t" vlsit_native_table="1">
+          <mxGeometry y="134" width="2400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="i61__r2__c0" value="u_apb_decode (m_qspi_apb_decode)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r2" vlsit_native_table="1">
+          <mxGeometry x="0" width="330" height="36" as="geometry">
+            <mxRectangle width="330" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r2__c1" value="APB address decode, response mux and custom TX/RX FIFO data-window access" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r2" vlsit_native_table="1">
+          <mxGeometry x="330" width="1480" height="36" as="geometry">
+            <mxRectangle width="1480" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r2__c2" value="Section 14.2" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r2" vlsit_native_table="1">
+          <mxGeometry x="1810" width="230" height="36" as="geometry">
+            <mxRectangle width="230" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r2__c3" value="APBC, APBF, APBR, APB, APCLK" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r2" vlsit_native_table="1">
+          <mxGeometry x="2040" width="360" height="36" as="geometry">
+            <mxRectangle width="360" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r3" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__t" vlsit_native_table="1">
+          <mxGeometry y="170" width="2400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="i61__r3__c0" value="u_csr (m_vlsit_csr_qspi)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r3" vlsit_native_table="1">
+          <mxGeometry x="0" width="330" height="36" as="geometry">
+            <mxRectangle width="330" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r3__c1" value="Generated control/status CSR register set" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r3" vlsit_native_table="1">
+          <mxGeometry x="330" width="1480" height="36" as="geometry">
+            <mxRectangle width="1480" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r3__c2" value="Section 14.2" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r3" vlsit_native_table="1">
+          <mxGeometry x="1810" width="230" height="36" as="geometry">
+            <mxRectangle width="230" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r3__c3" value="APBC, CFG, IRQEV, o_irq" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r3" vlsit_native_table="1">
+          <mxGeometry x="2040" width="360" height="36" as="geometry">
+            <mxRectangle width="360" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r4" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__t" vlsit_native_table="1">
+          <mxGeometry y="206" width="2400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="i61__r4__c0" value="u_axi_xip (m_qspi_axi_xip)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r4" vlsit_native_table="1">
+          <mxGeometry x="0" width="330" height="36" as="geometry">
+            <mxRectangle width="330" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r4__c1" value="AXI4 XIP subordinate, burst tracking and read-response assembly" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r4" vlsit_native_table="1">
+          <mxGeometry x="330" width="1480" height="36" as="geometry">
+            <mxRectangle width="1480" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r4__c2" value="Section 14.2" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r4" vlsit_native_table="1">
+          <mxGeometry x="1810" width="230" height="36" as="geometry">
+            <mxRectangle width="230" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r4__c3" value="XIPQ, AXI, AXCLK" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r4" vlsit_native_table="1">
+          <mxGeometry x="2040" width="360" height="36" as="geometry">
+            <mxRectangle width="360" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r5" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__t" vlsit_native_table="1">
+          <mxGeometry y="242" width="2400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="i61__r5__c0" value="u_indirect (m_qspi_indirect)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r5" vlsit_native_table="1">
+          <mxGeometry x="0" width="330" height="36" as="geometry">
+            <mxRectangle width="330" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r5__c1" value="APB-configured flash read/program/erase sequencer" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r5" vlsit_native_table="1">
+          <mxGeometry x="330" width="1480" height="36" as="geometry">
+            <mxRectangle width="1480" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r5__c2" value="Section 14.2" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r5" vlsit_native_table="1">
+          <mxGeometry x="1810" width="230" height="36" as="geometry">
+            <mxRectangle width="230" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r5__c3" value="CFG, INDQ" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r5" vlsit_native_table="1">
+          <mxGeometry x="2040" width="360" height="36" as="geometry">
+            <mxRectangle width="360" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r6" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__t" vlsit_native_table="1">
+          <mxGeometry y="278" width="2400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="i61__r6__c0" value="u_arbiter (m_qspi_arbiter)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r6" vlsit_native_table="1">
+          <mxGeometry x="0" width="330" height="36" as="geometry">
+            <mxRectangle width="330" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r6__c1" value="Serial-engine request arbitration and ownership" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r6" vlsit_native_table="1">
+          <mxGeometry x="330" width="1480" height="36" as="geometry">
+            <mxRectangle width="1480" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r6__c2" value="Section 14.2" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r6" vlsit_native_table="1">
+          <mxGeometry x="1810" width="230" height="36" as="geometry">
+            <mxRectangle width="230" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r6__c3" value="ARBR, GRNT" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r6" vlsit_native_table="1">
+          <mxGeometry x="2040" width="360" height="36" as="geometry">
+            <mxRectangle width="360" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r7" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__t" vlsit_native_table="1">
+          <mxGeometry y="314" width="2400" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="i61__r7__c0" value="u_serial_engine (m_qspi_serial_engine)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r7" vlsit_native_table="1">
+          <mxGeometry x="0" width="330" height="58" as="geometry">
+            <mxRectangle width="330" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r7__c1" value="Shared controller/target shift datapath and phase control" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r7" vlsit_native_table="1">
+          <mxGeometry x="330" width="1480" height="58" as="geometry">
+            <mxRectangle width="1480" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r7__c2" value="Section 14.2" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r7" vlsit_native_table="1">
+          <mxGeometry x="1810" width="230" height="58" as="geometry">
+            <mxRectangle width="230" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r7__c3" value="GRNT, TX, RX, CLKS, PINS" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r7" vlsit_native_table="1">
+          <mxGeometry x="2040" width="360" height="58" as="geometry">
+            <mxRectangle width="360" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r8" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__t" vlsit_native_table="1">
+          <mxGeometry y="372" width="2400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="i61__r8__c0" value="u_clk_mux (m_qspi_clk_mux)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r8" vlsit_native_table="1">
+          <mxGeometry x="0" width="330" height="36" as="geometry">
+            <mxRectangle width="330" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r8__c1" value="Glitch-free selection between controller clock and external target SCLK" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r8" vlsit_native_table="1">
+          <mxGeometry x="330" width="1480" height="36" as="geometry">
+            <mxRectangle width="1480" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r8__c2" value="Section 14.2" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r8" vlsit_native_table="1">
+          <mxGeometry x="1810" width="230" height="36" as="geometry">
+            <mxRectangle width="230" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r8__c3" value="CLKS, SECLK, TSCLK" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r8" vlsit_native_table="1">
+          <mxGeometry x="2040" width="360" height="36" as="geometry">
+            <mxRectangle width="360" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r9" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__t" vlsit_native_table="1">
+          <mxGeometry y="408" width="2400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="i61__r9__c0" value="u_pin_mux (m_qspi_pin_mux)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r9" vlsit_native_table="1">
+          <mxGeometry x="0" width="330" height="36" as="geometry">
+            <mxRectangle width="330" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r9__c1" value="Role/phase-controlled SCLK, CS and IO lane direction" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r9" vlsit_native_table="1">
+          <mxGeometry x="330" width="1480" height="36" as="geometry">
+            <mxRectangle width="1480" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r9__c2" value="Section 14.2" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r9" vlsit_native_table="1">
+          <mxGeometry x="1810" width="230" height="36" as="geometry">
+            <mxRectangle width="230" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r9__c3" value="PINS, SPIN, SPOT" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r9" vlsit_native_table="1">
+          <mxGeometry x="2040" width="360" height="36" as="geometry">
+            <mxRectangle width="360" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r10" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__t" vlsit_native_table="1">
+          <mxGeometry y="444" width="2400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="i61__r10__c0" value="u_tx_fifo (m_qspi_tx_fifo)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r10" vlsit_native_table="1">
+          <mxGeometry x="0" width="330" height="36" as="geometry">
+            <mxRectangle width="330" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r10__c1" value="Buffer APB program data for serial transmission" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r10" vlsit_native_table="1">
+          <mxGeometry x="330" width="1480" height="36" as="geometry">
+            <mxRectangle width="1480" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r10__c2" value="Section 14.2" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r10" vlsit_native_table="1">
+          <mxGeometry x="1810" width="230" height="36" as="geometry">
+            <mxRectangle width="230" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r10__c3" value="APBF, TX" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r10" vlsit_native_table="1">
+          <mxGeometry x="2040" width="360" height="36" as="geometry">
+            <mxRectangle width="360" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r11" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__t" vlsit_native_table="1">
+          <mxGeometry y="480" width="2400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="i61__r11__c0" value="u_rx_fifo (m_qspi_rx_fifo)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r11" vlsit_native_table="1">
+          <mxGeometry x="0" width="330" height="36" as="geometry">
+            <mxRectangle width="330" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r11__c1" value="Buffer serial receive data for APB software reads" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r11" vlsit_native_table="1">
+          <mxGeometry x="330" width="1480" height="36" as="geometry">
+            <mxRectangle width="1480" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r11__c2" value="Section 14.2" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r11" vlsit_native_table="1">
+          <mxGeometry x="1810" width="230" height="36" as="geometry">
+            <mxRectangle width="230" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r11__c3" value="APBR, RX" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r11" vlsit_native_table="1">
+          <mxGeometry x="2040" width="360" height="36" as="geometry">
+            <mxRectangle width="360" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r12" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__t" vlsit_native_table="1">
+          <mxGeometry y="516" width="2400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="i61__r12__c0" value="u_cdc (m_qspi_cdc)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r12" vlsit_native_table="1">
+          <mxGeometry x="0" width="330" height="36" as="geometry">
+            <mxRectangle width="330" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r12__c1" value="Request/response and status crossings between APB, AXI, serial and target domains" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r12" vlsit_native_table="1">
+          <mxGeometry x="330" width="1480" height="36" as="geometry">
+            <mxRectangle width="1480" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r12__c2" value="Section 14.2" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r12" vlsit_native_table="1">
+          <mxGeometry x="1810" width="230" height="36" as="geometry">
+            <mxRectangle width="230" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r12__c3" value="XIPQ, INDQ, ARBR, IRQEV" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r12" vlsit_native_table="1">
+          <mxGeometry x="2040" width="360" height="36" as="geometry">
+            <mxRectangle width="360" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r13" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__t" vlsit_native_table="1">
+          <mxGeometry y="552" width="2400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="i61__r13__c0" value="u_reset_sync (m_qspi_reset_sync)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r13" vlsit_native_table="1">
+          <mxGeometry x="0" width="330" height="36" as="geometry">
+            <mxRectangle width="330" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r13__c1" value="Reset-release synchronization for each receiving clock domain" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r13" vlsit_native_table="1">
+          <mxGeometry x="330" width="1480" height="36" as="geometry">
+            <mxRectangle width="1480" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r13__c2" value="Section 14.2" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r13" vlsit_native_table="1">
+          <mxGeometry x="1810" width="230" height="36" as="geometry">
+            <mxRectangle width="230" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i61__r13__c3" value="RST" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i61__r13" vlsit_native_table="1">
+          <mxGeometry x="2040" width="360" height="36" as="geometry">
+            <mxRectangle width="360" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__t" value="Interface Table" style="shape=table;startSize=40;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;html=1;fillColor=none;strokeColor=#000000;strokeWidth=2;fontSize=18;fontColor=#000000;" vertex="1" parent="1" vlsit_native_table="1">
+          <mxGeometry x="100" y="2198" width="2400" height="1256" as="geometry" />
+        </mxCell>
+        <mxCell id="i62__r0" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__t" vlsit_native_table="1">
+          <mxGeometry y="40" width="2400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="i62__r0__c0" value="ID" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontStyle=1;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r0" vlsit_native_table="1">
+          <mxGeometry x="0" width="90" height="36" as="geometry">
+            <mxRectangle width="90" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r0__c1" value="Interface" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontStyle=1;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r0" vlsit_native_table="1">
+          <mxGeometry x="90" width="300" height="36" as="geometry">
+            <mxRectangle width="300" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r0__c2" value="Category" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontStyle=1;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r0" vlsit_native_table="1">
+          <mxGeometry x="390" width="110" height="36" as="geometry">
+            <mxRectangle width="110" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r0__c3" value="Active side -&gt; passive side" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontStyle=1;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r0" vlsit_native_table="1">
+          <mxGeometry x="500" width="470" height="36" as="geometry">
+            <mxRectangle width="470" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r0__c4" value="Key signals" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontStyle=1;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r0" vlsit_native_table="1">
+          <mxGeometry x="970" width="1430" height="36" as="geometry">
+            <mxRectangle width="1430" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r1" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__t" vlsit_native_table="1">
+          <mxGeometry y="76" width="2400" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="i62__r1__c0" value="APB" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r1" vlsit_native_table="1">
+          <mxGeometry x="0" width="90" height="58" as="geometry">
+            <mxRectangle width="90" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r1__c1" value="APB4 software interface" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r1" vlsit_native_table="1">
+          <mxGeometry x="90" width="300" height="58" as="geometry">
+            <mxRectangle width="300" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r1__c2" value="APB4" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r1" vlsit_native_table="1">
+          <mxGeometry x="390" width="110" height="58" as="geometry">
+            <mxRectangle width="110" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r1__c3" value="external -&gt; m_qspi" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r1" vlsit_native_table="1">
+          <mxGeometry x="500" width="470" height="58" as="geometry">
+            <mxRectangle width="470" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r1__c4" value="external -&gt; m_qspi: i_apb_psel, i_apb_penable, i_apb_paddr, i_apb_pwrite, i_apb_pwdata, i_apb_pstrb, i_apb_pprot; m_qspi -&gt; external: o_apb_pready, o_apb_prdata, o_apb_pslverr" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r1" vlsit_native_table="1">
+          <mxGeometry x="970" width="1430" height="58" as="geometry">
+            <mxRectangle width="1430" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r2" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__t" vlsit_native_table="1">
+          <mxGeometry y="134" width="2400" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="i62__r2__c0" value="APBC" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r2" vlsit_native_table="1">
+          <mxGeometry x="0" width="90" height="58" as="geometry">
+            <mxRectangle width="90" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r2__c1" value="APB CSR transaction bundle" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r2" vlsit_native_table="1">
+          <mxGeometry x="90" width="300" height="58" as="geometry">
+            <mxRectangle width="300" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r2__c2" value="APB4" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r2" vlsit_native_table="1">
+          <mxGeometry x="390" width="110" height="58" as="geometry">
+            <mxRectangle width="110" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r2__c3" value="APB decoder -&gt; CSR bank" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r2" vlsit_native_table="1">
+          <mxGeometry x="500" width="470" height="58" as="geometry">
+            <mxRectangle width="470" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r2__c4" value="APB decoder -&gt; CSR bank: w_csr_psel, w_csr_penable, w_csr_paddr, w_csr_pwrite, w_csr_pwdata, w_csr_pstrb, w_csr_pprot, w_csr_pready, w_csr_prdata, w_csr_pslverr" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r2" vlsit_native_table="1">
+          <mxGeometry x="970" width="1430" height="58" as="geometry">
+            <mxRectangle width="1430" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r3" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__t" vlsit_native_table="1">
+          <mxGeometry y="192" width="2400" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="i62__r3__c0" value="APBF" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r3" vlsit_native_table="1">
+          <mxGeometry x="0" width="90" height="58" as="geometry">
+            <mxRectangle width="90" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r3__c1" value="APB transmit FIFO push control" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r3" vlsit_native_table="1">
+          <mxGeometry x="90" width="300" height="58" as="geometry">
+            <mxRectangle width="300" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r3__c2" value="stream" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r3" vlsit_native_table="1">
+          <mxGeometry x="390" width="110" height="58" as="geometry">
+            <mxRectangle width="110" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r3__c3" value="APB decoder -&gt; TX FIFO" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r3" vlsit_native_table="1">
+          <mxGeometry x="500" width="470" height="58" as="geometry">
+            <mxRectangle width="470" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r3__c4" value="w_tx_fifo_push, w_tx_fifo_data, w_tx_fifo_strb, w_tx_fifo_full" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r3" vlsit_native_table="1">
+          <mxGeometry x="970" width="1430" height="58" as="geometry">
+            <mxRectangle width="1430" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r4" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__t" vlsit_native_table="1">
+          <mxGeometry y="250" width="2400" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="i62__r4__c0" value="APBR" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r4" vlsit_native_table="1">
+          <mxGeometry x="0" width="90" height="58" as="geometry">
+            <mxRectangle width="90" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r4__c1" value="APB receive FIFO pop and data" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r4" vlsit_native_table="1">
+          <mxGeometry x="90" width="300" height="58" as="geometry">
+            <mxRectangle width="300" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r4__c2" value="stream" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r4" vlsit_native_table="1">
+          <mxGeometry x="390" width="110" height="58" as="geometry">
+            <mxRectangle width="110" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r4__c3" value="APB decoder -&gt; RX FIFO for pop; RX FIFO -&gt; APB decoder for data" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r4" vlsit_native_table="1">
+          <mxGeometry x="500" width="470" height="58" as="geometry">
+            <mxRectangle width="470" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r4__c4" value="w_rx_fifo_pop, w_rx_fifo_data, w_rx_fifo_empty" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r4" vlsit_native_table="1">
+          <mxGeometry x="970" width="1430" height="58" as="geometry">
+            <mxRectangle width="1430" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r5" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__t" vlsit_native_table="1">
+          <mxGeometry y="308" width="2400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="i62__r5__c0" value="APCLK" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r5" vlsit_native_table="1">
+          <mxGeometry x="0" width="90" height="36" as="geometry">
+            <mxRectangle width="90" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r5__c1" value="APB clock" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r5" vlsit_native_table="1">
+          <mxGeometry x="90" width="300" height="36" as="geometry">
+            <mxRectangle width="300" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r5__c2" value="clock" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r5" vlsit_native_table="1">
+          <mxGeometry x="390" width="110" height="36" as="geometry">
+            <mxRectangle width="110" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r5__c3" value="SoC -&gt; APB domain" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r5" vlsit_native_table="1">
+          <mxGeometry x="500" width="470" height="36" as="geometry">
+            <mxRectangle width="470" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r5__c4" value="i_clk_apb" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r5" vlsit_native_table="1">
+          <mxGeometry x="970" width="1430" height="36" as="geometry">
+            <mxRectangle width="1430" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r6" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__t" vlsit_native_table="1">
+          <mxGeometry y="344" width="2400" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="i62__r6__c0" value="ARBR" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r6" vlsit_native_table="1">
+          <mxGeometry x="0" width="90" height="58" as="geometry">
+            <mxRectangle width="90" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r6__c1" value="Controller request arbitration bundle" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r6" vlsit_native_table="1">
+          <mxGeometry x="90" width="300" height="58" as="geometry">
+            <mxRectangle width="300" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r6__c2" value="control" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r6" vlsit_native_table="1">
+          <mxGeometry x="390" width="110" height="58" as="geometry">
+            <mxRectangle width="110" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r6__c3" value="CDC/request queue -&gt; arbiter" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r6" vlsit_native_table="1">
+          <mxGeometry x="500" width="470" height="58" as="geometry">
+            <mxRectangle width="470" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r6__c4" value="w_ctrl_req_valid, w_ctrl_req_owner, w_ctrl_req_ready" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r6" vlsit_native_table="1">
+          <mxGeometry x="970" width="1430" height="58" as="geometry">
+            <mxRectangle width="1430" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r7" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__t" vlsit_native_table="1">
+          <mxGeometry y="402" width="2400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="i62__r7__c0" value="AXCLK" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r7" vlsit_native_table="1">
+          <mxGeometry x="0" width="90" height="36" as="geometry">
+            <mxRectangle width="90" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r7__c1" value="AXI clock" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r7" vlsit_native_table="1">
+          <mxGeometry x="90" width="300" height="36" as="geometry">
+            <mxRectangle width="300" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r7__c2" value="clock" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r7" vlsit_native_table="1">
+          <mxGeometry x="390" width="110" height="36" as="geometry">
+            <mxRectangle width="110" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r7__c3" value="SoC -&gt; AXI domain" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r7" vlsit_native_table="1">
+          <mxGeometry x="500" width="470" height="36" as="geometry">
+            <mxRectangle width="470" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r7__c4" value="i_clk_axi" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r7" vlsit_native_table="1">
+          <mxGeometry x="970" width="1430" height="36" as="geometry">
+            <mxRectangle width="1430" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r8" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__t" vlsit_native_table="1">
+          <mxGeometry y="438" width="2400" height="102" as="geometry" />
+        </mxCell>
+        <mxCell id="i62__r8__c0" value="AXI" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r8" vlsit_native_table="1">
+          <mxGeometry x="0" width="90" height="102" as="geometry">
+            <mxRectangle width="90" height="102" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r8__c1" value="AXI4 XIP subordinate interface" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r8" vlsit_native_table="1">
+          <mxGeometry x="90" width="300" height="102" as="geometry">
+            <mxRectangle width="300" height="102" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r8__c2" value="AXI4" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r8" vlsit_native_table="1">
+          <mxGeometry x="390" width="110" height="102" as="geometry">
+            <mxRectangle width="110" height="102" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r8__c3" value="external -&gt; m_qspi for requests; m_qspi -&gt; external for responses" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r8" vlsit_native_table="1">
+          <mxGeometry x="500" width="470" height="102" as="geometry">
+            <mxRectangle width="470" height="102" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r8__c4" value="AW: i_axi_awaddr, i_axi_awid, i_axi_awlen, i_axi_awsize, i_axi_awburst, i_axi_awlock, i_axi_awcache, i_axi_awprot, i_axi_awqos, i_axi_awregion, i_axi_awvalid, o_axi_awready; W: i_axi_wdata, i_axi_wstrb, i_axi_wlast, i_axi_wvalid, o_axi_wready; B: o_axi_bid, o_axi_bresp, o_axi_bvalid, i_axi_bready; AR: i_axi_araddr, i_axi_arid, i_axi_arlen, i_axi_arsize, i_axi_arburst, i_axi_arlock, i_axi_arcache, i_axi_arprot, i_axi_arqos, i_axi_arregion, i_axi_arvalid, o_axi_arready; R: o_axi_rid, o_axi_rdata, o_axi_rresp, o_axi_rlast, o_axi_rvalid, i_axi_rready" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r8" vlsit_native_table="1">
+          <mxGeometry x="970" width="1430" height="102" as="geometry">
+            <mxRectangle width="1430" height="102" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r9" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__t" vlsit_native_table="1">
+          <mxGeometry y="540" width="2400" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="i62__r9__c0" value="CFG" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r9" vlsit_native_table="1">
+          <mxGeometry x="0" width="90" height="58" as="geometry">
+            <mxRectangle width="90" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r9__c1" value="CSR control/configuration bundle" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r9" vlsit_native_table="1">
+          <mxGeometry x="90" width="300" height="58" as="geometry">
+            <mxRectangle width="300" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r9__c2" value="control" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r9" vlsit_native_table="1">
+          <mxGeometry x="390" width="110" height="58" as="geometry">
+            <mxRectangle width="110" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r9__c3" value="CSR bank -&gt; indirect controller" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r9" vlsit_native_table="1">
+          <mxGeometry x="500" width="470" height="58" as="geometry">
+            <mxRectangle width="470" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r9__c4" value="CSR bank -&gt; control: w_ctrl_cfg, w_xip_cfg, w_indirect_cfg; control -&gt; CSR bank: w_status, w_irq_pending" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r9" vlsit_native_table="1">
+          <mxGeometry x="970" width="1430" height="58" as="geometry">
+            <mxRectangle width="1430" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r10" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__t" vlsit_native_table="1">
+          <mxGeometry y="598" width="2400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="i62__r10__c0" value="CLKS" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r10" vlsit_native_table="1">
+          <mxGeometry x="0" width="90" height="36" as="geometry">
+            <mxRectangle width="90" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r10__c1" value="Selected engine clock" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r10" vlsit_native_table="1">
+          <mxGeometry x="90" width="300" height="36" as="geometry">
+            <mxRectangle width="300" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r10__c2" value="clock" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r10" vlsit_native_table="1">
+          <mxGeometry x="390" width="110" height="36" as="geometry">
+            <mxRectangle width="110" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r10__c3" value="clock mux -&gt; serial engine" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r10" vlsit_native_table="1">
+          <mxGeometry x="500" width="470" height="36" as="geometry">
+            <mxRectangle width="470" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r10__c4" value="w_clk_engine" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r10" vlsit_native_table="1">
+          <mxGeometry x="970" width="1430" height="36" as="geometry">
+            <mxRectangle width="1430" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r11" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__t" vlsit_native_table="1">
+          <mxGeometry y="634" width="2400" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="i62__r11__c0" value="GRNT" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r11" vlsit_native_table="1">
+          <mxGeometry x="0" width="90" height="58" as="geometry">
+            <mxRectangle width="90" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r11__c1" value="Serial engine grant/control bundle" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r11" vlsit_native_table="1">
+          <mxGeometry x="90" width="300" height="58" as="geometry">
+            <mxRectangle width="300" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r11__c2" value="control" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r11" vlsit_native_table="1">
+          <mxGeometry x="390" width="110" height="58" as="geometry">
+            <mxRectangle width="110" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r11__c3" value="arbiter -&gt; serial engine" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r11" vlsit_native_table="1">
+          <mxGeometry x="500" width="470" height="58" as="geometry">
+            <mxRectangle width="470" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r11__c4" value="w_eng_start, w_eng_owner, w_eng_mode, w_eng_busy, w_eng_done, w_eng_error" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r11" vlsit_native_table="1">
+          <mxGeometry x="970" width="1430" height="58" as="geometry">
+            <mxRectangle width="1430" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r12" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__t" vlsit_native_table="1">
+          <mxGeometry y="692" width="2400" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="i62__r12__c0" value="INDQ" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r12" vlsit_native_table="1">
+          <mxGeometry x="0" width="90" height="58" as="geometry">
+            <mxRectangle width="90" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r12__c1" value="Indirect-operation request/response bundle" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r12" vlsit_native_table="1">
+          <mxGeometry x="90" width="300" height="58" as="geometry">
+            <mxRectangle width="300" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r12__c2" value="control" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r12" vlsit_native_table="1">
+          <mxGeometry x="390" width="110" height="58" as="geometry">
+            <mxRectangle width="110" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r12__c3" value="Indirect controller -&gt; CDC/arbiter" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r12" vlsit_native_table="1">
+          <mxGeometry x="500" width="470" height="58" as="geometry">
+            <mxRectangle width="470" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r12__c4" value="w_ind_req_valid, w_ind_req_cmd, w_ind_req_addr, w_ind_req_len, w_ind_req_ready, w_ind_rsp_valid, w_ind_rsp_done, w_ind_rsp_error" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r12" vlsit_native_table="1">
+          <mxGeometry x="970" width="1430" height="58" as="geometry">
+            <mxRectangle width="1430" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r13" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__t" vlsit_native_table="1">
+          <mxGeometry y="750" width="2400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="i62__r13__c0" value="IRQEV" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r13" vlsit_native_table="1">
+          <mxGeometry x="0" width="90" height="36" as="geometry">
+            <mxRectangle width="90" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r13__c1" value="Synchronized interrupt events" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r13" vlsit_native_table="1">
+          <mxGeometry x="90" width="300" height="36" as="geometry">
+            <mxRectangle width="300" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r13__c2" value="interrupt" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r13" vlsit_native_table="1">
+          <mxGeometry x="390" width="110" height="36" as="geometry">
+            <mxRectangle width="110" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r13__c3" value="CDC -&gt; CSR bank" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r13" vlsit_native_table="1">
+          <mxGeometry x="500" width="470" height="36" as="geometry">
+            <mxRectangle width="470" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r13__c4" value="w_irq_done, w_irq_tx_err, w_irq_rx_err, w_irq_flash_err" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r13" vlsit_native_table="1">
+          <mxGeometry x="970" width="1430" height="36" as="geometry">
+            <mxRectangle width="1430" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r14" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__t" vlsit_native_table="1">
+          <mxGeometry y="786" width="2400" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="i62__r14__c0" value="PINS" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r14" vlsit_native_table="1">
+          <mxGeometry x="0" width="90" height="58" as="geometry">
+            <mxRectangle width="90" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r14__c1" value="Serial engine-to-pad-mux signals" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r14" vlsit_native_table="1">
+          <mxGeometry x="90" width="300" height="58" as="geometry">
+            <mxRectangle width="300" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r14__c2" value="SPI" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r14" vlsit_native_table="1">
+          <mxGeometry x="390" width="110" height="58" as="geometry">
+            <mxRectangle width="110" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r14__c3" value="serial engine -&gt; pin mux for control/data drive; pin mux -&gt; engine for sampled data" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r14" vlsit_native_table="1">
+          <mxGeometry x="500" width="470" height="58" as="geometry">
+            <mxRectangle width="470" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r14__c4" value="w_sclk_ctrl, w_spi_cs_n_ctrl, w_spi_io_i, w_spi_io_o, w_spi_io_oe" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r14" vlsit_native_table="1">
+          <mxGeometry x="970" width="1430" height="58" as="geometry">
+            <mxRectangle width="1430" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r15" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__t" vlsit_native_table="1">
+          <mxGeometry y="844" width="2400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="i62__r15__c0" value="RST" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r15" vlsit_native_table="1">
+          <mxGeometry x="0" width="90" height="36" as="geometry">
+            <mxRectangle width="90" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r15__c1" value="Asynchronous reset inputs" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r15" vlsit_native_table="1">
+          <mxGeometry x="90" width="300" height="36" as="geometry">
+            <mxRectangle width="300" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r15__c2" value="reset" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r15" vlsit_native_table="1">
+          <mxGeometry x="390" width="110" height="36" as="geometry">
+            <mxRectangle width="110" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r15__c3" value="SoC -&gt; reset synchronizers" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r15" vlsit_native_table="1">
+          <mxGeometry x="500" width="470" height="36" as="geometry">
+            <mxRectangle width="470" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r15__c4" value="i_rst_n_apb, i_rst_n_axi, i_rst_n_serial" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r15" vlsit_native_table="1">
+          <mxGeometry x="970" width="1430" height="36" as="geometry">
+            <mxRectangle width="1430" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r16" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__t" vlsit_native_table="1">
+          <mxGeometry y="880" width="2400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="i62__r16__c0" value="RX" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r16" vlsit_native_table="1">
+          <mxGeometry x="0" width="90" height="36" as="geometry">
+            <mxRectangle width="90" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r16__c1" value="Receive FIFO stream" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r16" vlsit_native_table="1">
+          <mxGeometry x="90" width="300" height="36" as="geometry">
+            <mxRectangle width="300" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r16__c2" value="stream" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r16" vlsit_native_table="1">
+          <mxGeometry x="390" width="110" height="36" as="geometry">
+            <mxRectangle width="110" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r16__c3" value="serial engine -&gt; RX FIFO" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r16" vlsit_native_table="1">
+          <mxGeometry x="500" width="470" height="36" as="geometry">
+            <mxRectangle width="470" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r16__c4" value="w_rx_data, w_rx_valid, w_rx_ready" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r16" vlsit_native_table="1">
+          <mxGeometry x="970" width="1430" height="36" as="geometry">
+            <mxRectangle width="1430" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r17" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__t" vlsit_native_table="1">
+          <mxGeometry y="916" width="2400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="i62__r17__c0" value="SECLK" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r17" vlsit_native_table="1">
+          <mxGeometry x="0" width="90" height="36" as="geometry">
+            <mxRectangle width="90" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r17__c1" value="Serial engine reference clock" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r17" vlsit_native_table="1">
+          <mxGeometry x="90" width="300" height="36" as="geometry">
+            <mxRectangle width="300" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r17__c2" value="clock" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r17" vlsit_native_table="1">
+          <mxGeometry x="390" width="110" height="36" as="geometry">
+            <mxRectangle width="110" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r17__c3" value="SoC -&gt; serial engine clock mux" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r17" vlsit_native_table="1">
+          <mxGeometry x="500" width="470" height="36" as="geometry">
+            <mxRectangle width="470" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r17__c4" value="i_clk_serial" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r17" vlsit_native_table="1">
+          <mxGeometry x="970" width="1430" height="36" as="geometry">
+            <mxRectangle width="1430" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r18" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__t" vlsit_native_table="1">
+          <mxGeometry y="952" width="2400" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="i62__r18__c0" value="SPIN" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r18" vlsit_native_table="1">
+          <mxGeometry x="0" width="90" height="58" as="geometry">
+            <mxRectangle width="90" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r18__c1" value="Serial data and target framing inputs" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r18" vlsit_native_table="1">
+          <mxGeometry x="90" width="300" height="58" as="geometry">
+            <mxRectangle width="300" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r18__c2" value="SPI" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r18" vlsit_native_table="1">
+          <mxGeometry x="390" width="110" height="58" as="geometry">
+            <mxRectangle width="110" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r18__c3" value="external -&gt; m_qspi" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r18" vlsit_native_table="1">
+          <mxGeometry x="500" width="470" height="58" as="geometry">
+            <mxRectangle width="470" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r18__c4" value="external -&gt; m_qspi: i_spi_cs_n_tgt, i_spi_io_i" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r18" vlsit_native_table="1">
+          <mxGeometry x="970" width="1430" height="58" as="geometry">
+            <mxRectangle width="1430" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r19" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__t" vlsit_native_table="1">
+          <mxGeometry y="1010" width="2400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="i62__r19__c0" value="SPOT" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r19" vlsit_native_table="1">
+          <mxGeometry x="0" width="90" height="36" as="geometry">
+            <mxRectangle width="90" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r19__c1" value="Serial controller outputs" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r19" vlsit_native_table="1">
+          <mxGeometry x="90" width="300" height="36" as="geometry">
+            <mxRectangle width="300" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r19__c2" value="SPI" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r19" vlsit_native_table="1">
+          <mxGeometry x="390" width="110" height="36" as="geometry">
+            <mxRectangle width="110" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r19__c3" value="m_qspi -&gt; external" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r19" vlsit_native_table="1">
+          <mxGeometry x="500" width="470" height="36" as="geometry">
+            <mxRectangle width="470" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r19__c4" value="m_qspi -&gt; external: o_spi_sclk_ctrl, o_spi_cs_n_ctrl, o_spi_io_o, o_spi_io_oe" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r19" vlsit_native_table="1">
+          <mxGeometry x="970" width="1430" height="36" as="geometry">
+            <mxRectangle width="1430" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r20" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__t" vlsit_native_table="1">
+          <mxGeometry y="1046" width="2400" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="i62__r20__c0" value="TSCLK" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r20" vlsit_native_table="1">
+          <mxGeometry x="0" width="90" height="58" as="geometry">
+            <mxRectangle width="90" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r20__c1" value="Target-mode external serial clock" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r20" vlsit_native_table="1">
+          <mxGeometry x="90" width="300" height="58" as="geometry">
+            <mxRectangle width="300" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r20__c2" value="clock" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r20" vlsit_native_table="1">
+          <mxGeometry x="390" width="110" height="58" as="geometry">
+            <mxRectangle width="110" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r20__c3" value="external controller -&gt; target engine" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r20" vlsit_native_table="1">
+          <mxGeometry x="500" width="470" height="58" as="geometry">
+            <mxRectangle width="470" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r20__c4" value="i_spi_sclk_tgt" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r20" vlsit_native_table="1">
+          <mxGeometry x="970" width="1430" height="58" as="geometry">
+            <mxRectangle width="1430" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r21" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__t" vlsit_native_table="1">
+          <mxGeometry y="1104" width="2400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="i62__r21__c0" value="TX" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r21" vlsit_native_table="1">
+          <mxGeometry x="0" width="90" height="36" as="geometry">
+            <mxRectangle width="90" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r21__c1" value="Transmit FIFO stream" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r21" vlsit_native_table="1">
+          <mxGeometry x="90" width="300" height="36" as="geometry">
+            <mxRectangle width="300" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r21__c2" value="stream" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r21" vlsit_native_table="1">
+          <mxGeometry x="390" width="110" height="36" as="geometry">
+            <mxRectangle width="110" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r21__c3" value="TX FIFO -&gt; serial engine" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r21" vlsit_native_table="1">
+          <mxGeometry x="500" width="470" height="36" as="geometry">
+            <mxRectangle width="470" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r21__c4" value="w_tx_data, w_tx_valid, w_tx_ready" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r21" vlsit_native_table="1">
+          <mxGeometry x="970" width="1430" height="36" as="geometry">
+            <mxRectangle width="1430" height="36" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r22" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__t" vlsit_native_table="1">
+          <mxGeometry y="1140" width="2400" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="i62__r22__c0" value="XIPQ" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r22" vlsit_native_table="1">
+          <mxGeometry x="0" width="90" height="58" as="geometry">
+            <mxRectangle width="90" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r22__c1" value="XIP CDC request/response bundle" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r22" vlsit_native_table="1">
+          <mxGeometry x="90" width="300" height="58" as="geometry">
+            <mxRectangle width="300" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r22__c2" value="CDC" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r22" vlsit_native_table="1">
+          <mxGeometry x="390" width="110" height="58" as="geometry">
+            <mxRectangle width="110" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r22__c3" value="AXI XIP adapter -&gt; CDC/arbiter" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r22" vlsit_native_table="1">
+          <mxGeometry x="500" width="470" height="58" as="geometry">
+            <mxRectangle width="470" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r22__c4" value="w_xip_req_valid, w_xip_req_addr, w_xip_req_id, w_xip_req_len, w_xip_req_ready, w_xip_rsp_valid, w_xip_rsp_ready, w_xip_rsp_data, w_xip_rsp_id, w_xip_rsp_last, w_xip_rsp_resp" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r22" vlsit_native_table="1">
+          <mxGeometry x="970" width="1430" height="58" as="geometry">
+            <mxRectangle width="1430" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r23" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;strokeColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__t" vlsit_native_table="1">
+          <mxGeometry y="1198" width="2400" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="i62__r23__c0" value="o_irq" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r23" vlsit_native_table="1">
+          <mxGeometry x="0" width="90" height="58" as="geometry">
+            <mxRectangle width="90" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r23__c1" value="Combined QSPI interrupt output" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r23" vlsit_native_table="1">
+          <mxGeometry x="90" width="300" height="58" as="geometry">
+            <mxRectangle width="300" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r23__c2" value="interrupt" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r23" vlsit_native_table="1">
+          <mxGeometry x="390" width="110" height="58" as="geometry">
+            <mxRectangle width="110" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r23__c3" value="m_qspi -&gt; SoC" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r23" vlsit_native_table="1">
+          <mxGeometry x="500" width="470" height="58" as="geometry">
+            <mxRectangle width="470" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i62__r23__c4" value="o_irq" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;strokeColor=#000000;strokeWidth=1;overflow=hidden;pointerEvents=1;align=left;verticalAlign=middle;spacing=4;fontSize=18;fontColor=#000000;" vertex="1" parent="i62__r23" vlsit_native_table="1">
+          <mxGeometry x="970" width="1430" height="58" as="geometry">
+            <mxRectangle width="1430" height="58" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i15__2" value="" style="endArrow=block;html=1;rounded=0;fontSize=18;strokeWidth=2;endFill=1;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;jumpStyle=arc;jumpSize=12;exitX=1.0000;exitY=0.5000;exitPerimeter=0;entryX=0.0000;entryY=0.5000;entryPerimeter=0;" edge="1" parent="1" source="i14__2" target="i2__2" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="1" vlsit_library_cell="2" vlsit_library_instance="i15">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="470" y="540" as="sourcePoint" />
+            <mxPoint x="580" y="540" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i17__2" value="" style="endArrow=block;html=1;rounded=0;fontSize=18;strokeWidth=2;endFill=1;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;jumpStyle=arc;jumpSize=12;exitX=0.5000;exitY=1.0000;exitPerimeter=0;entryX=0.5000;entryY=0.0000;entryPerimeter=0;" edge="1" parent="1" source="i16__2" target="i2__2" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="1" vlsit_library_cell="2" vlsit_library_instance="i17">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="700" y="330" as="sourcePoint" />
+            <mxPoint x="700" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i19__2" value="" style="endArrow=block;html=1;rounded=0;fontSize=18;strokeWidth=2;endFill=1;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;jumpStyle=arc;jumpSize=12;entryX=0.3000;entryY=0.0000;entryPerimeter=0;" edge="1" parent="1" target="i4__2" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="1" vlsit_library_cell="2" vlsit_library_instance="i19">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1410" y="330" as="sourcePoint" />
+            <mxPoint x="1410" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i21__2" value="" style="endArrow=block;html=1;rounded=0;fontSize=18;strokeWidth=2;endFill=1;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;jumpStyle=arc;jumpSize=12;entryX=0.7500;entryY=0.0000;entryPerimeter=0;" edge="1" parent="1" target="i4__2" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="1" vlsit_library_cell="2" vlsit_library_instance="i21">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1500" y="330" as="sourcePoint" />
+            <mxPoint x="1500" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i23__2" value="" style="endArrow=block;html=1;rounded=0;fontSize=18;strokeWidth=2;endFill=1;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;jumpStyle=arc;jumpSize=12;entryX=1.0000;entryY=0.2500;entryPerimeter=0;" edge="1" parent="1" target="i8__2" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="1" vlsit_library_cell="2" vlsit_library_instance="i23">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2070" y="920" as="sourcePoint" />
+            <mxPoint x="1940" y="920" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i25__2" value="" style="endArrow=block;html=1;rounded=0;fontSize=18;strokeWidth=2;endFill=1;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;jumpStyle=arc;jumpSize=12;entryX=1.0000;entryY=0.7500;entryPerimeter=0;" edge="1" parent="1" target="i8__2" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="1" vlsit_library_cell="2" vlsit_library_instance="i25">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2070" y="960" as="sourcePoint" />
+            <mxPoint x="1940" y="960" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i27__2" value="" style="endArrow=block;html=1;rounded=0;fontSize=18;strokeWidth=2;endFill=1;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;jumpStyle=arc;jumpSize=12;exitX=0.0000;exitY=0.5000;exitPerimeter=0;entryX=1.0000;entryY=0.5000;entryPerimeter=0;" edge="1" parent="1" source="i3__2" target="i26__2" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="1" vlsit_library_cell="2" vlsit_library_instance="i27">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="590" y="740" as="sourcePoint" />
+            <mxPoint x="470" y="740" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i29__2" value="" style="endArrow=block;html=1;rounded=0;fontSize=18;strokeWidth=2;endFill=1;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;jumpStyle=arc;jumpSize=12;entryX=1.0000;entryY=0.2500;entryPerimeter=0;" edge="1" parent="1" target="i9__2" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="1" vlsit_library_cell="2" vlsit_library_instance="i29">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2070" y="1120" as="sourcePoint" />
+            <mxPoint x="1550" y="1120" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i31__2" value="" style="endArrow=block;html=1;rounded=0;fontSize=18;strokeWidth=2;endFill=1;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;jumpStyle=arc;jumpSize=12;exitX=1.0000;exitY=0.7500;exitPerimeter=0;" edge="1" parent="1" source="i9__2" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="1" vlsit_library_cell="2" vlsit_library_instance="i31">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1550" y="1160" as="sourcePoint" />
+            <mxPoint x="2070" y="1160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i33__2" value="" style="endArrow=block;html=1;rounded=0;fontSize=18;strokeWidth=2;endFill=1;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;jumpStyle=arc;jumpSize=12;exitX=0.0000;exitY=0.5000;exitPerimeter=0;entryX=1.0000;entryY=0.5000;entryPerimeter=0;" edge="1" parent="1" source="i32__2" target="i13__2" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="1" vlsit_library_cell="2" vlsit_library_instance="i33">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2070" y="540" as="sourcePoint" />
+            <mxPoint x="1960" y="540" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i35__2" value="" style="endArrow=block;html=1;rounded=0;fontSize=18;strokeWidth=2;endFill=1;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;jumpStyle=arc;jumpSize=12;exitX=0.5000;exitY=1.0000;exitPerimeter=0;entryX=0.5000;entryY=0.0000;entryPerimeter=0;" edge="1" parent="1" source="i2__2" target="i3__2" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="1" vlsit_library_cell="2" vlsit_library_instance="i35">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="700" y="580" as="sourcePoint" />
+            <mxPoint x="700" y="700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i36__2" value="" style="endArrow=block;html=1;rounded=0;fontSize=18;strokeWidth=2;endFill=1;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;jumpStyle=arc;jumpSize=12;exitX=1.0000;exitY=0.2500;exitPerimeter=0;entryX=0.0000;entryY=0.2500;entryPerimeter=0;" edge="1" parent="1" source="i3__2" target="i5__2" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="1" vlsit_library_cell="2" vlsit_library_instance="i36">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="810" y="720" as="sourcePoint" />
+            <mxPoint x="960" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i37__2" value="" style="endArrow=block;html=1;rounded=0;fontSize=18;strokeWidth=2;endFill=1;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;jumpStyle=arc;jumpSize=12;exitX=0.5000;exitY=1.0000;exitPerimeter=0;entryX=0.5000;entryY=0.0000;entryPerimeter=0;" edge="1" parent="1" source="i4__2" target="i12__2" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="1" vlsit_library_cell="2" vlsit_library_instance="i37">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1450" y="580" as="sourcePoint" />
+            <mxPoint x="1450" y="700" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i38__2" value="" style="endArrow=block;html=1;rounded=0;fontSize=18;strokeWidth=2;endFill=1;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;jumpStyle=arc;jumpSize=12;exitX=1.0000;exitY=0.2500;exitPerimeter=0;entryX=0.0000;entryY=0.2500;entryPerimeter=0;" edge="1" parent="1" source="i5__2" target="i12__2" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="1" vlsit_library_cell="2" vlsit_library_instance="i38">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1180" y="720" as="sourcePoint" />
+            <mxPoint x="1370" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i39__2" value="" style="endArrow=block;html=1;rounded=0;fontSize=18;strokeWidth=2;endFill=1;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;jumpStyle=arc;jumpSize=12;exitX=1.0000;exitY=0.5000;exitPerimeter=0;entryX=0.0000;entryY=0.5000;entryPerimeter=0;" edge="1" parent="1" source="i12__2" target="i6__2" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="1" vlsit_library_cell="2" vlsit_library_instance="i39">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1530" y="740" as="sourcePoint" />
+            <mxPoint x="1740" y="740" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i40__2" value="" style="endArrow=block;html=1;rounded=0;fontSize=18;strokeWidth=2;endFill=1;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;jumpStyle=arc;jumpSize=12;exitX=1.0000;exitY=0.7500;exitPerimeter=0;entryX=0.0000;entryY=0.7500;entryPerimeter=0;" edge="1" parent="1" source="i10__2" target="i7__2" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="1" vlsit_library_cell="2" vlsit_library_instance="i40">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="960" as="sourcePoint" />
+            <mxPoint x="1320" y="960" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="950" y="960" />
+              <mxPoint x="950" y="1000" />
+              <mxPoint x="1300" y="1000" />
+              <mxPoint x="1300" y="960" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i41__2" value="" style="endArrow=block;html=1;rounded=0;fontSize=18;strokeWidth=2;endFill=1;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;jumpStyle=arc;jumpSize=12;exitX=0.0000;exitY=0.2500;exitPerimeter=0;entryX=1.0000;entryY=0.2500;entryPerimeter=0;" edge="1" parent="1" source="i7__2" target="i11__2" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="1" vlsit_library_cell="2" vlsit_library_instance="i41">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1320" y="920" as="sourcePoint" />
+            <mxPoint x="1170" y="920" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i42__2" value="" style="endArrow=block;html=1;rounded=0;fontSize=18;strokeWidth=2;endFill=1;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;jumpStyle=arc;jumpSize=12;exitX=0.0000;exitY=0.7500;exitPerimeter=0;entryX=1.0000;entryY=0.7500;entryPerimeter=0;" edge="1" parent="1" source="i8__2" target="i7__2" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="1" vlsit_library_cell="2" vlsit_library_instance="i42">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1740" y="960" as="sourcePoint" />
+            <mxPoint x="1580" y="960" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i43__2" value="" style="endArrow=block;html=1;rounded=0;fontSize=18;strokeWidth=2;endFill=1;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;jumpStyle=arc;jumpSize=12;exitX=0.5000;exitY=1.0000;exitPerimeter=0;entryX=0.5000;entryY=0.0000;entryPerimeter=0;" edge="1" parent="1" source="i7__2" target="i9__2" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="1" vlsit_library_cell="2" vlsit_library_instance="i43">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1450" y="980" as="sourcePoint" />
+            <mxPoint x="1450" y="1100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i44__2" value="" style="endArrow=block;html=1;rounded=0;fontSize=18;strokeWidth=2;endFill=1;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;jumpStyle=arc;jumpSize=12;exitX=0.0000;exitY=0.7500;exitPerimeter=0;entryX=1.0000;entryY=0.7500;entryPerimeter=0;" edge="1" parent="1" source="i12__2" target="i3__2" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="1" vlsit_library_cell="2" vlsit_library_instance="i44">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1370" y="760" as="sourcePoint" />
+            <mxPoint x="810" y="760" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1200" y="760" />
+              <mxPoint x="1200" y="800" />
+              <mxPoint x="830" y="800" />
+              <mxPoint x="830" y="760" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i45__2" value="" style="endArrow=block;html=1;rounded=0;fontSize=18;strokeWidth=2;endFill=1;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;jumpStyle=arc;jumpSize=12;exitX=1.0000;exitY=0.2500;exitPerimeter=0;entryX=1.0000;entryY=0.2500;entryPerimeter=0;" edge="1" parent="1" source="i2__2" target="i10__2" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="1" vlsit_library_cell="2" vlsit_library_instance="i45">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="820" y="520" as="sourcePoint" />
+            <mxPoint x="800" y="920" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="840" y="520" />
+              <mxPoint x="840" y="920" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i46__2" value="" style="endArrow=block;html=1;rounded=0;fontSize=18;strokeWidth=2;endFill=1;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;jumpStyle=arc;jumpSize=12;exitX=1.0000;exitY=0.7500;exitPerimeter=0;entryX=0.0000;entryY=0.5000;entryPerimeter=0;" edge="1" parent="1" source="i2__2" target="i11__2" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="1" vlsit_library_cell="2" vlsit_library_instance="i46">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="820" y="560" as="sourcePoint" />
+            <mxPoint x="970" y="940" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1330" y="560" />
+              <mxPoint x="1330" y="680" />
+              <mxPoint x="1960" y="680" />
+              <mxPoint x="1960" y="880" />
+              <mxPoint x="950" y="880" />
+              <mxPoint x="950" y="940" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i47__2" value="" style="endArrow=block;html=1;rounded=0;fontSize=18;strokeWidth=2;endFill=1;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;jumpStyle=arc;jumpSize=12;exitX=1.0000;exitY=0.5000;exitPerimeter=0;entryX=1.0000;entryY=0.2500;entryPerimeter=0;" edge="1" parent="1" source="i6__2" target="i7__2" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="1" vlsit_library_cell="2" vlsit_library_instance="i47">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1940" y="740" as="sourcePoint" />
+            <mxPoint x="1580" y="920" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2000" y="740" />
+              <mxPoint x="2000" y="840" />
+              <mxPoint x="1600" y="840" />
+              <mxPoint x="1600" y="920" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i64__2" value="" style="endArrow=block;html=1;rounded=0;fontSize=18;strokeWidth=2;endFill=1;fontColor=#000000;strokeColor=#000000;fillColor=#FFFFFF;jumpStyle=arc;jumpSize=12;" edge="1" parent="1" vlsit_library_sha256="D1631ACF98A920526B235E8970FEDDC9305EA2F0D6A35C6529CD220D62AFABB6" vlsit_library_entry="1" vlsit_library_cell="2" vlsit_library_instance="i64">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100" y="3569" as="sourcePoint" />
+            <mxPoint x="260" y="3569" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

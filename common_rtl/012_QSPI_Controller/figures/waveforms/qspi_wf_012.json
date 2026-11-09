@@ -1,0 +1,67 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_axi",
+      "wave": "p........."
+    },
+    [
+      "AXI4 write",
+      {
+        "name": "i_axi_awvalid",
+        "wave": "0100000000"
+      },
+      {
+        "name": "o_axi_awready",
+        "wave": "0100000000"
+      },
+      {
+        "name": "i_axi_wvalid",
+        "wave": "0010000000"
+      },
+      {
+        "name": "o_axi_wready",
+        "wave": "0010000000"
+      },
+      {
+        "name": "i_axi_wlast",
+        "wave": "0010000000"
+      },
+      {
+        "name": "o_axi_bvalid",
+        "wave": "0001000000"
+      },
+      {
+        "name": "i_axi_bready",
+        "wave": "0000100000"
+      },
+      {
+        "name": "o_axi_bresp",
+        "wave": "xxx=......",
+        "data": [
+          "SLVERR"
+        ]
+      }
+    ],
+    [
+      "Flash side",
+      {
+        "name": "o_spi_cs_n",
+        "wave": "1111111111"
+      },
+      {
+        "name": "o_spi_sclk",
+        "wave": "0000000000"
+      },
+      {
+        "name": "o_flash_program_cmd",
+        "wave": "0000000000"
+      }
+    ]
+  ],
+  "head": {
+    "text": "AXI4 write to read-only XIP completes with SLVERR"
+  },
+  "foot": {
+    "text": "User-confirmed: write completes with BRESP=SLVERR and no flash-side write command."
+  }
+}

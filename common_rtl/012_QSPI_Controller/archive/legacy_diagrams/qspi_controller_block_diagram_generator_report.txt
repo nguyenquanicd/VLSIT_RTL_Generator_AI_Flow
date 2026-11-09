@@ -1,0 +1,1 @@
+SCORE gapH=120 gapV=120 seed=0 failed=0 unplaced=0 issues=0 bend_gt5=0 bend5=0 bends=2 cross_total=1 cross_max_per_connector=1 frame=1420x510

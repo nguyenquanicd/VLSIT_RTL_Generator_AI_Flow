@@ -91,6 +91,20 @@ The bridge **forwards** the information: it does not check, interpret, reorder o
 | FEAT-008 | Synchronizer cell option | Required | `PARA_AXI_CELL_TYPE` 1 to 4 | REQ-PARAM-003, REQ-PERF-002 |
 | FEAT-009 | Library SRAM branch of the FIFO storage | Optional | `PARA_AXI_MEM_USE_MACRO` = 1 | REQ-RTL-003 |
 
+### 1.4 Real-world applications of the features
+
+| Feature ID | Real-world application (named system, example product) | What the application needs from the feature | Typical values | Consequence if missing or wrong | Requirements | Source |
+|---|---|---|---|---|---|---|
+| FEAT-001 | Connection of the 1 GHz CPU cluster fabric to the 200 MHz DDR controller or peripheral fabric of a mobile SoC | All five AXI channels cross the clock boundary with their handshake and ordering unchanged | AW, W, B, AR, R each with its own FIFO; one burst of 16 beats of 128 bits crosses without loss | A lost or reordered beat corrupts memory with no error signal | REQ-FUNC-001 to REQ-FUNC-006 | User confirmed 2026-11-02 (ASM-004) |
+| FEAT-002 | Subsystems with their own PLL, for example a GPU at 800 MHz and a memory fabric at 600 MHz | The bridge must work for any frequency ratio and phase, without assuming a relation between the clocks | Ratio from 1:8 to 8:1, no fixed phase | A bridge that needs related clocks fails when the PLL setting changes | REQ-CLK-001, REQ-CLK-002 | User confirmed 2026-11-02 (ASM-004) |
+| FEAT-003 | A server SoC with 48-bit addresses and 128-bit data, and a microcontroller with 32-bit addresses and 32-bit data | The same bridge adapts to the widths of the bus | Address 32 to 64 bits, data 32 to 512 bits, ID 1 to 16 bits | A fixed width needs a new design for each product | REQ-PARAM-001, REQ-IF-001 | User confirmed 2026-11-02 (ASM-004) |
+| FEAT-004 | Hiding the DDR latency in a display or camera subsystem | A deeper R and W FIFO keeps the bus busy while the other clock is slow, a shallow AW FIFO saves area | R FIFO 16 beats for a 64-byte burst, AW FIFO 2 entries | The bus idles and the throughput falls, or the area is wasted | REQ-PARAM-002, REQ-PERF-001 | User confirmed 2026-11-02 (ASM-004) |
+| FEAT-005 | Carrying a security tag or a parity bit with each transaction, for example a secure or non-secure master attribute | A user field travels with the channel and arrives with the same beat | User width 0 to 32 bits per channel | The tag is separated from its data and a transaction is checked with the wrong tag | REQ-FUNC-007 | User confirmed 2026-11-02 (ASM-004) |
+| FEAT-006 | Legacy IP such as an older L2 cache controller or a DMA that speaks AXI3 | The bridge accepts the 4-bit burst length, the 2-bit lock and the write ID of AXI3 | Burst length up to 16, lock 2 bits, WID 4 bits | An AXI3 master cannot be connected without a second converter | REQ-FUNC-008, REQ-FUNC-009 | User confirmed 2026-11-02 (ASM-004) |
+| FEAT-007 | Memory controller that gives priority to the real-time traffic of a display controller | The QoS and REGION values cross the bridge unchanged so the arbiter can use them | QOS 4 bits (16 levels), REGION 4 bits | The display traffic loses its priority and the screen flickers when the memory is busy | REQ-FUNC-010 | User confirmed 2026-11-02 (ASM-004) |
+| FEAT-008 | A bridge at 1 GHz that needs a failure rate of the synchronizer below one per 100 years | More synchronizer flops raise the MTBF at the price of latency | Cell option 1 to 4, latency plus 1 to 3 cycles of the receiving clock | A synchronizer that is too short fails in the field, one that is too long adds latency without need | REQ-PARAM-003, REQ-PERF-002 | User confirmed 2026-11-02 (ASM-004) |
+| FEAT-009 | Deep R and B response FIFOs of 512 entries in a large SoC | An SRAM macro is smaller than flip-flops for a deep FIFO | 512 x 160 bit, about 80 kbit per channel | The area of the bridge becomes larger than the logic around it | REQ-RTL-003 | User confirmed 2026-11-02 (ASM-004) |
+
 ## 2. Normative references and precedence
 
 ### 2.1 Normative references
@@ -865,6 +879,7 @@ Do not use a whole-domain `set_false_path` or an unqualified `set_clock_groups -
 | ASM-001 | Assumption | The two hardware resets are asserted together and released synchronously to their own clocks, outside the IP | Section 7.3 | Open; integration check |
 | ASM-002 | Assumption | The external manager and subordinate follow the AXI protocol; the bridge does not check it | Section 6.3, DEC-019 | Open; integration check |
 | ASM-003 | Assumption | The software reset of `001_AsyncGrayFIFO` is not used; `i_rst_n_sw` is tied to 1 | REQ-RTL-002 | Recorded as the answer of the designer to question 7 ("software reset is not used"); DEC-009 |
+| ASM-004 | Assumption | The real-world applications of section 1.4 are proposed by the author from the common industrial use of this kind of block and confirmed by the user | Section 1.4 only; no requirement depends on them | Confirmed by the user, 2026-11-02 |
 | DEC-001 | Decision | The naming rule is the default of the skill `vlsit-rtl-generator` (VLSIT_RTL_Design_Rule.md v2, sections 2 and 9) | Every name | Confirmed by the designer, 2026-10-25 (answer 1A) |
 | DEC-002 | Decision | The IP is an asynchronous AXI bridge with the same protocol on both sides, five channels, one asynchronous FIFO per channel | Section 5 | Confirmed by the designer, 2026-10-25 (answer 3A) |
 | DEC-003 | Decision | The two clocks are unrelated: any frequency and ratio | Section 7 | Confirmed by the designer, 2026-10-25 (answer 3A, note on clocks) |

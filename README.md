@@ -76,7 +76,7 @@ flowchart TD
     G4 --> V
     V --> CC["code_coverage: measured baseline + optional target closure"]
     CC --> G5{"Gate 5: Verification review<br/>Review verification"}
-    G5 --> D["spec_pdf_generator: Markdown + PDF"]
+    G5 --> D["spec_pdf_generator: Markdown + optional DOCX/PDF"]
 ~~~
 
 ### Architecture layers | Các lớp kiến trúc
@@ -131,7 +131,7 @@ VLSIT_RTL_Generator_AI_Model/
 | /tb_generator | Builds saved tests and a plan from the contract without reading RTL. | Tạo testcase đã lưu và test plan từ contract, không đọc RTL. |
 | /verification | Integrates the DUT, runs simulation and mutation checks, and records baseline coverage when supported. | Tích hợp DUT, chạy simulation và mutation, ghi baseline coverage khi công cụ hỗ trợ. |
 | /code_coverage | Shows measured baseline before an optional target; adds saved tests for reachable specification-based gaps. | Hiển thị baseline đã đo trước khi chọn ngưỡng tùy chọn; thêm testcase đã lưu cho gap có thể cover theo specification. |
-| /spec_pdf_generator | Builds specification documentation from design artifacts. | Tạo tài liệu đặc tả từ artifact thiết kế. |
+| /spec_pdf_generator | Builds the final Markdown specification and optionally exports DOCX/PDF with Pandoc. | Tạo đặc tả Markdown cuối và tùy chọn xuất DOCX/PDF bằng Pandoc. |
 
 **EN:** config_ui is an interactive command, not a separate GUI application. The testbench flow uses plain SystemVerilog, not UVM.
 
@@ -215,9 +215,9 @@ REQ-ID → Specification/standard clause → Reviewed oracle/SVA/TC → DUT exec
 
 **VI:** Skill `vlsit-asic-ip-microspec` (specification, waveform) và `vlsit-rtl-generator` (RTL theo file rule này, kiểm rule, lint, testbench tùy chọn) của repository đi kèm `VLSIT_CODEX_CLAUDE_SKILLS` đã được dùng cho nhiều thiết kế trong `common_rtl`. Với testbench, skill sinh RTL yêu cầu assertion cho giao thức, lưu waveform mô phỏng cạnh waveform trong specification và, với crossing giữa các miền clock, chạy cả nhánh `VLSIT_SYNTHESIS` lẫn nhánh có mô hình metastability.
 
-**EN:** The register blocks (APB slave with control and status registers) are never written by hand: the git submodule `APB-CSR-Generator` (`https://github.com/nguyenquanicd/APB-CSR-Generator`, script `CSR_Generation.py`) builds them from the CSR workbook `spec_template/VLSIT_CSR_Specification_Template.xlsx`. The skill `vlsit-asic-ip-microspec` plans the registers for it and `vlsit-rtl-generator` runs it (`vlsit_csr_generate.py`, rules R-039 to R-042). Clone with `git clone --recurse-submodules`, or run `git submodule update --init` after a clone.
+**EN:** The register blocks (APB slave with control and status registers) are never written by hand: the git submodule `APB-CSR-Generator` (`https://github.com/nguyenquanicd/APB-CSR-Generator`, script `CSR_Generation.py`, embedded version 2.7: field types `rw`, `ro`, `rwi`, `w1c`, `w0c`, `w2c`, `r2c`, `wo`, repeated registers, one module for both clock architectures; `wo` stores software writes, exposes the value to hardware, reads as zero, and has an active-high hardware-clear input that synchronously clears storage with priority over software writes; its complete documentation is `APB-CSR-Generator/spec/CSR_Generator_Specification.md`) builds them from the CSR workbook `spec_template/VLSIT_CSR_Specification_Template.xlsx`. The skill `vlsit-asic-ip-microspec` plans the registers for it and `vlsit-rtl-generator` runs it (`vlsit_csr_generate.py`, rules R-039 to R-042). Clone with `git clone --recurse-submodules`, or run `git submodule update --init` after a clone.
 
-**VI:** Khối thanh ghi (APB slave có thanh ghi điều khiển và trạng thái) không viết tay: submodule `APB-CSR-Generator` (`https://github.com/nguyenquanicd/APB-CSR-Generator`, script `CSR_Generation.py`) sinh chúng từ workbook CSR `spec_template/VLSIT_CSR_Specification_Template.xlsx`. Skill `vlsit-asic-ip-microspec` lập kế hoạch thanh ghi cho generator và `vlsit-rtl-generator` chạy nó (`vlsit_csr_generate.py`, rule R-039 đến R-042). Clone bằng `git clone --recurse-submodules`, hoặc chạy `git submodule update --init` sau khi clone.
+**VI:** Khối thanh ghi (APB slave có thanh ghi điều khiển và trạng thái) không viết tay: submodule `APB-CSR-Generator` (`https://github.com/nguyenquanicd/APB-CSR-Generator`, script `CSR_Generation.py`, phiên bản nhúng 2.7: các kiểu field `rw`, `ro`, `rwi`, `w1c`, `w0c`, `w2c`, `r2c`, `wo`, thanh ghi lặp, một module cho cả hai kiến trúc clock; `wo` lưu dữ liệu software ghi, đưa giá trị ra hardware, đọc về 0 và có input hardware-clear active-high đồng bộ để xóa storage với ưu tiên cao hơn software write; tài liệu đầy đủ là `APB-CSR-Generator/spec/CSR_Generator_Specification.md`) sinh chúng từ workbook CSR `spec_template/VLSIT_CSR_Specification_Template.xlsx`. Skill `vlsit-asic-ip-microspec` lập kế hoạch thanh ghi cho generator và `vlsit-rtl-generator` chạy nó (`vlsit_csr_generate.py`, rule R-039 đến R-042). Clone bằng `git clone --recurse-submodules`, hoặc chạy `git submodule update --init` sau khi clone.
 
 ## Tools and environment | Công cụ và môi trường
 
@@ -233,7 +233,8 @@ REQ-ID → Specification/standard clause → Reviewed oracle/SVA/TC → DUT exec
 | Yosys; slang plugin when required by the SystemVerilog frontend | Synthesis and support for mutation workflow. | Synthesis và hỗ trợ mutation workflow. |
 | Technology Liberty libraries, if mapped synthesis is requested | Provide cells and corners for the selected technology; GF180MCU is an example. | Cung cấp cell và corner cho công nghệ được chọn; GF180MCU là ví dụ. |
 | Simulator with required SystemVerilog/SVA support | Compile and run the selected DUT tests and assertions; available features depend on the installed tool. | Compile và chạy testcase cùng assertion đã chọn; tính năng phụ thuộc công cụ được cài. |
-| PDF converter, if PDF output is requested | Produces the optional PDF; Markdown remains available without it. | Tạo PDF tùy chọn; Markdown vẫn có khi thiếu công cụ chuyển đổi. |
+| Pandoc | Converts the final Markdown+TeX specification to DOCX and provides PDF export. | Chuyển đặc tả Markdown+TeX cuối sang DOCX và hỗ trợ xuất PDF. |
+| Typst or another Pandoc PDF engine | Required only when PDF output is selected; Typst is the default engine. | Chỉ cần khi chọn PDF; Typst là engine mặc định. |
 
 **EN:** Artifacts record Verilator 5.041, Yosys 0.58/0.58+35, VCS, and Icarus 13.0. These are observed environment versions, not a tested compatibility matrix. sourceme.sh also loads a toolchain and lists tools from OSS CAD Suite; adapt it for the target IP. SymbiYosys or cocotb in the setup does not mean the repository contains a complete formal or cocotb flow.
 
@@ -264,8 +265,8 @@ source sourceme.sh
 
 1. **EN:** Work on a separate branch or copy to preserve reference snapshots.  
    **VI:** Làm việc trên branch hoặc bản sao riêng để giữ nguyên snapshot tham khảo.
-2. **EN:** Put the design specification at spec/<ip_name>_spec.md. Define interfaces, parameters, reset, functionality, timing, and error behavior.  
-   **VI:** Đặt đặc tả tại spec/<ip_name>_spec.md. Mô tả interface, parameter, reset, chức năng, timing và error behavior.
+2. **EN:** Put the design specification at `spec/VLSIT_<DESIGN_FUNCTION>_HDS.md`. Use an uppercase design-function name and replace spaces or hyphens with underscores (for example, `spec/VLSIT_FIFO_HDS.md`). Define interfaces, parameters, reset, functionality, timing, and error behavior.
+   **VI:** Đặt đặc tả tại `spec/VLSIT_<DESIGN_FUNCTION>_HDS.md`. Tên chức năng viết hoa; thay khoảng trắng hoặc dấu gạch nối bằng dấu gạch dưới (ví dụ `spec/VLSIT_FIFO_HDS.md`). Mô tả interface, parameter, reset, chức năng, timing và error behavior.
 3. **EN:** Provide IP-specific mappings, constraints, module hierarchy, and protocol-standard revisions in the specification and phase inputs. If the reusable command or schema itself needs maintenance, use the Claude `rtl-flow-maintainer` skill.<br>
    **VI:** Cung cấp mapping, constraint, hierarchy module và phiên bản chuẩn giao thức của IP trong đặc tả và input của từng phase. Nếu cần bảo trì command hoặc schema dùng chung, dùng skill Claude `rtl-flow-maintainer`.
 4. **EN:** Shared JSON Schemas are in `.claude/skills/rtl-flow-maintainer/schemas/`. Design-run outputs remain in the design's own `schemas/` directory.<br>
@@ -282,7 +283,7 @@ source sourceme.sh
 **VI:** Mở Claude Code tại project root và nhập slash command trong hội thoại, không nhập trong terminal shell.
 
 ~~~text
-/autoflow spec/<ip_name>_spec.md
+/autoflow spec/VLSIT_<DESIGN_FUNCTION>_HDS.md
 ~~~
 
 **EN:** To draft a specification from an initial description:
@@ -298,7 +299,7 @@ source sourceme.sh
 **VI:** Hoặc chạy từng phase để review chi tiết:
 
 ~~~text
-/spec_parser spec/<ip_name>_spec.md
+/spec_parser spec/VLSIT_<DESIGN_FUNCTION>_HDS.md
 /config_ui
 /verification_contract
 /rtl_generator
@@ -309,13 +310,19 @@ source sourceme.sh
 /spec_pdf_generator
 ~~~
 
-**EN:** For existing RTL, replace `/rtl_generator` in that sequence with `/rtl_style_converter <source-rtl-directory>` and provide the top and a separate output directory. To use full autoflow with existing RTL, enter `/autoflow spec/<ip_name>_spec.md --rtl-source <source-rtl-directory>`. The converter can also run alone without a specification. Run one command at a time and satisfy its gate before the next dependent phase. The verification branch remains independent of RTL until DUT integration. `/code_coverage` is optional after baseline simulation and before Gate 5; return to `/verification` to complete Gate 5 when running it separately. See the [step-by-step guide](guideline.md) for inputs and outputs.
+**EN:** For existing RTL, replace `/rtl_generator` in that sequence with `/rtl_style_converter <source-rtl-directory>` and provide the top and a separate output directory. To use full autoflow with existing RTL, enter `/autoflow spec/VLSIT_<DESIGN_FUNCTION>_HDS.md --rtl-source <source-rtl-directory>`. The converter can also run alone without a specification. Run one command at a time and satisfy its gate before the next dependent phase. The verification branch remains independent of RTL until DUT integration. `/code_coverage` is optional after baseline simulation and before Gate 5; return to `/verification` to complete Gate 5 when running it separately. See the [step-by-step guide](guideline.md) for inputs and outputs.
 
-**VI:** Với RTL có sẵn, thay `/rtl_generator` trong thứ tự trên bằng `/rtl_style_converter <source-rtl-directory>` và cung cấp top cùng thư mục output riêng. Để dùng toàn flow với RTL có sẵn, nhập `/autoflow spec/<ip_name>_spec.md --rtl-source <source-rtl-directory>`. Bộ chuyển style cũng có thể chạy độc lập, không cần đặc tả. Chạy từng command và hoàn thành gate trước phase phụ thuộc. Nhánh verification vẫn độc lập với RTL đến khi tích hợp DUT. `/code_coverage` là tùy chọn sau baseline simulation và trước Gate 5; quay lại `/verification` để hoàn thành Gate 5 nếu chạy coverage riêng. Xem [hướng dẫn từng bước](guideline.md) về input và output.
+**VI:** Với RTL có sẵn, thay `/rtl_generator` trong thứ tự trên bằng `/rtl_style_converter <source-rtl-directory>` và cung cấp top cùng thư mục output riêng. Để dùng toàn flow với RTL có sẵn, nhập `/autoflow spec/VLSIT_<DESIGN_FUNCTION>_HDS.md --rtl-source <source-rtl-directory>`. Bộ chuyển style cũng có thể chạy độc lập, không cần đặc tả. Chạy từng command và hoàn thành gate trước phase phụ thuộc. Nhánh verification vẫn độc lập với RTL đến khi tích hợp DUT. `/code_coverage` là tùy chọn sau baseline simulation và trước Gate 5; quay lại `/verification` để hoàn thành Gate 5 nếu chạy coverage riêng. Xem [hướng dẫn từng bước](guideline.md) về input và output.
 
 **EN:** Review requirements before Gate 1, the verification contract before Gate 3a, property meaning/vacuity before Gate 3b, the test plan before Gate 4, and execution logs/gaps before Gate 5. Generation commands may create or update files in the working project.
 
 **VI:** Review requirement trước Gate 1, verification contract trước Gate 3a, ý nghĩa/vacuity của property trước Gate 3b, test plan trước Gate 4, và log thực thi/gap trước Gate 5. Lệnh generation có thể tạo hoặc cập nhật file trong project làm việc.
+
+### Final specification source and exports | Nguồn đặc tả cuối và file xuất
+
+**EN:** `docs/specification.md` is the editable source of the final document. Use `$...$` for inline TeX math, `$$...$$` for display equations, and relative Markdown links for figures. After Gate 5, `/spec_pdf_generator` always creates Markdown and asks which additional formats are needed when not already specified. DOCX uses Pandoc; PDF uses Pandoc with Typst by default. Pandoc and a PDF engine are required only for their selected exports. Existing output files are not replaced unless the user authorizes `--force`.
+
+**VI:** `docs/specification.md` là nguồn có thể chỉnh sửa của tài liệu cuối. Dùng `$...$` cho công thức TeX trong dòng, `$$...$$` cho công thức riêng dòng và link Markdown tương đối cho hình. Sau Gate 5, `/spec_pdf_generator` luôn tạo Markdown và hỏi định dạng bổ sung nếu user chưa chỉ định. DOCX dùng Pandoc; PDF dùng Pandoc với Typst mặc định. Chỉ cần cài Pandoc và PDF engine nếu chọn xuất định dạng tương ứng. File có sẵn không bị ghi đè nếu user chưa cho phép dùng `--force`.
 
 ### 4. Run in Codex CLI | Chạy trong Codex CLI
 
@@ -325,7 +332,7 @@ source sourceme.sh
 
 ~~~text
 $source-command-autoflow
-Use spec/<ip_name>_spec.md
+Use spec/VLSIT_<DESIGN_FUNCTION>_HDS.md
 ~~~
 
 **EN:** Call an individual phase with its mapped skill. References such as /autoflow or /phase_name inside a skill refer to the source Claude prompt; they are not terminal commands.
@@ -335,9 +342,9 @@ Use spec/<ip_name>_spec.md
 ### 5. Resume an interrupted flow | Tiếp tục flow bị gián đoạn
 
 ~~~text
-/autoflow spec/<ip_name>_spec.md --from phase3b
-/autoflow spec/<ip_name>_spec.md --from phase5
-/autoflow spec/<ip_name>_spec.md --from phase6
+/autoflow spec/VLSIT_<DESIGN_FUNCTION>_HDS.md --from phase3b
+/autoflow spec/VLSIT_<DESIGN_FUNCTION>_HDS.md --from phase5
+/autoflow spec/VLSIT_<DESIGN_FUNCTION>_HDS.md --from phase6
 ~~~
 
 **EN:** Resume uses saved artifacts. Before continuing, confirm that the specification, configuration, RTL, and reports use the same baseline. Editing an input artifact can invalidate downstream results.
@@ -356,8 +363,8 @@ Use spec/<ip_name>_spec.md
   **VI:** Số lượng pass, property hay gate đã duyệt không chứng minh bao phủ đủ requirement. Một số test case chỉ cung cấp thông tin hoặc kiểm tra cấu hình mặc định.
 - **Physical implementation — EN:** Synthesis and cell mapping do not establish timing closure. The repository has no complete STA, place-and-route, CDC/RDC, or sign-off flow.  
   **VI:** Synthesis và cell mapping không xác nhận timing closure. Repository chưa có flow STA, place-and-route, CDC/RDC hoặc sign-off hoàn chỉnh.
-- **Documentation — EN:** PDFs summarize artifacts; resolve conflicts by checking source files and logs. The Matplotlib PDF script has layout limits, including clipping long table cells.  
-  **VI:** PDF tổng hợp artifact; khi có mâu thuẫn, đối chiếu source và log. Script PDF dùng Matplotlib có giới hạn trình bày, gồm khả năng cắt nội dung cell bảng dài.
+- **Documentation — EN:** DOCX and PDF files are derived exports; resolve conflicts by checking `docs/specification.md` and cited artifacts. Rendering depends on Pandoc and, for PDF, the selected engine.  
+  **VI:** DOCX và PDF là file xuất dẫn xuất; khi có mâu thuẫn, đối chiếu `docs/specification.md` và artifact được trích dẫn. Kết quả render phụ thuộc Pandoc và engine được chọn cho PDF.
 
 ## Further reading | Đọc thêm
 

@@ -1,0 +1,79 @@
+{
+  "head": {
+    "text": "Misaligned XIP read returns SLVERR without a flash command",
+    "tick": 0
+  },
+  "signal": [
+    {
+      "name": "i_clk_axi",
+      "wave": "p......."
+    },
+    {},
+    [
+      "AXI read address",
+      {
+        "name": "i_axi_arvalid",
+        "wave": "01......"
+      },
+      {
+        "name": "o_axi_arready",
+        "wave": "01......"
+      },
+      {
+        "name": "i_axi_araddr",
+        "wave": "x=......",
+        "data": [
+          "0x6000_0101"
+        ]
+      },
+      {
+        "name": "i_axi_arsize",
+        "wave": "x=......",
+        "data": [
+          "1 (2 bytes)"
+        ]
+      },
+      {
+        "name": "i_axi_arlen",
+        "wave": "x=......",
+        "data": [
+          "0"
+        ]
+      }
+    ],
+    {},
+    [
+      "Response / serial side",
+      {
+        "name": "o_axi_rvalid",
+        "wave": "0...1..."
+      },
+      {
+        "name": "o_axi_rresp",
+        "wave": "x...=...",
+        "data": [
+          "SLVERR"
+        ]
+      },
+      {
+        "name": "o_axi_rlast",
+        "wave": "0...1..."
+      },
+      {
+        "name": "o_xip_req_valid",
+        "wave": "0......."
+      },
+      {
+        "name": "o_spi_cs_n_ctrl",
+        "wave": "1......."
+      }
+    ]
+  ],
+  "foot": {
+    "text": "0x6000_0101 is not 2-byte aligned; reject the beat and issue no serial command.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 2
+  }
+}

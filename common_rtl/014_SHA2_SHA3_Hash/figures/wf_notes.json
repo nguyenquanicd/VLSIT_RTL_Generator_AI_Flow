@@ -1,0 +1,97 @@
+{
+ "WF-001": {
+  "file": "wf_001_axi_write_burst",
+  "head": "Write burst of 4 words to the message window of context 1 (64-bit bus)",
+  "note": "Cycle 2: AW handshake. Cycles 3 to 6: four W beats, wstrb all ones, wlast on the fourth. Level counts the words in the input FIFO of context 1."
+ },
+ "WF-002": {
+  "file": "wf_002_axi_write_error",
+  "head": "Write burst with a partial write strobe is rejected with SLVERR",
+  "note": "Beat 2 has wstrb 0F: both beats are accepted and dropped, bresp is SLVERR, error kind 4 is recorded and the AXI error event is raised."
+ },
+ "WF-003": {
+  "file": "wf_003_fifo_full_backpressure",
+  "head": "Input FIFO full: o_axi_wready low until the sequencer pops a word",
+  "note": "Example FIFO of 3 words. The FIFO is full in cycles 5 to 7 so wready is low and W3 is held; the pop in cycle 7 frees a place and W3 is accepted in cycle 8. No word is dropped."
+ },
+ "WF-004": {
+  "file": "wf_004_final_digest_ready",
+  "head": "Final command, padding and digest ready of a short SHA-256 message",
+  "note": "Cycles 4 to 8 stand for the 66 cycles of one SHA-256 block at UNR 1 (not to scale). The short message fits in one padded block."
+ },
+ "WF-005": {
+  "file": "wf_005_digest_read_burst",
+  "head": "Read burst of the 4-word digest from the digest window of context 1",
+  "note": "The read data are the 4 digest words in standard byte order; the output FIFO level falls with each beat and the context becomes FREE after the last word."
+ },
+ "WF-006": {
+  "file": "wf_006_read_empty_underflow",
+  "head": "Read of an empty digest window returns zero and raises the underflow event",
+  "note": "The read completes with OKAY and data 0; error kind 2 is recorded and software learns of it from the underflow event."
+ },
+ "WF-007": {
+  "file": "wf_007_apb_init_and_nonsecure",
+  "head": "APB write of the init command, then a non-secure write rejected with PSLVERR",
+  "note": "First write (PPROT[1] = 0): accepted, o_sha_cmd_init is raised and cleared by hardware. Second write (PPROT[1] = 1) with i_protect_en and i_slverr_en = 1: PSLVERR, no change. Delays follow the clock ratio (11.4)."
+ },
+ "WF-008": {
+  "file": "wf_008_two_contexts_interleaved",
+  "head": "Two contexts interleaved on one core: state read and written around each block",
+  "note": "The core runs a block of context 0, then of context 1, then of context 0 again. The context memory is read before and written after each block. ctxsel changes while the core is busy without disturbing it."
+ },
+ "WF-009": {
+  "file": "wf_009_shake_squeeze",
+  "head": "SHAKE128 output of more than one block: the next block is squeezed when the FIFO has room",
+  "note": "Example numbers: FIFO of 32 words, a block of 21 words. Reads (each pulse stands for a burst of 5 words, not to scale) lower the level; at level 11 the next squeeze starts and the level returns to 32."
+ },
+ "WF-010": {
+  "file": "wf_010_dma_input_handshake",
+  "head": "External DMA input channel: 4-phase request and acknowledge, then the burst is written",
+  "note": "req rises, ack rises, req falls, ack falls. The DMA controller then writes the burst of sha_dmac.burst words to the message window as ordinary AXI4 writes."
+ },
+ "WF-011": {
+  "file": "wf_011_dma_output_timeout",
+  "head": "External DMA output channel: timeout pads a short digest burst with zeros",
+  "note": "The digest has 3 words, the burst is 4. The timer reaches sha_dmac.tmo = 3, the request is raised, the 4th word is zero padding and sha_dvld.words reports 3."
+ },
+ "WF-012": {
+  "file": "wf_012_fault_response",
+  "head": "Duplicate-core mismatch: gate, lock and alarm responses",
+  "note": "A fault makes core A differ from its duplicate B. The mismatch is registered in cycle 3; the responses (gate, lock, alarm) are active in cycle 4 and the lock stays until the soft reset command."
+ },
+ "WF-013": {
+  "file": "wf_013_entropy_request",
+  "head": "Masked core takes seed words from the entropy port",
+  "note": "o_ent_req is held until i_ent_valid; words 3 to 8 are not shown. After the eighth word the PRNG is seeded and the status bit is set."
+ },
+ "WF-014": {
+  "file": "wf_014_abort_zero_reset",
+  "head": "Abort of a context with clearing, then the soft reset command",
+  "note": "Abort: the context returns to FREE, its FIFO is emptied and, with sha_sec.zero = 1, the core registers are zeroed within 3 cycles. The soft reset command then clears all contexts."
+ },
+ "WF-015": {
+  "file": "wf_015_reset_release",
+  "head": "Reset assertion and synchronized release in the core and APB domains",
+  "note": "Assertion is asynchronous and immediate; release is synchronized to the clock of the domain. During reset the outputs are 0."
+ },
+ "WF-016": {
+  "file": "wf_016_apb_async_write",
+  "head": "APB write with asynchronous clocks (ratio 1:4): PREADY waits for the core domain",
+  "note": "i_clk_apb is drawn with a period of 4 cells and i_clk_core with 1 cell. The request crosses to the core domain, the register changes there and PREADY returns after the response crosses back; software waits for PREADY."
+ },
+ "WF-017": {
+  "file": "wf_017_final_with_busy_core",
+  "head": "Final command while the core is busy and the input FIFO still holds words",
+  "note": "The command is accepted in cycle 2 and the context becomes FINALIZING at once; the remaining 24 words wait until the core is free in cycle 8, then the padded block starts."
+ },
+ "WF-018": {
+  "file": "wf_018_two_block_padding",
+  "head": "Message whose last block leaves no room for the length: two final blocks",
+  "note": "sha_len.tail leaves 60 bytes of 64 used. The first final block holds the data and the 0x80 byte; the second holds zeros and the 64-bit length (REQ-FUNC-004)."
+ },
+ "WF-019": {
+  "file": "wf_019_ctxsel_while_busy",
+  "head": "Changing the selected context while the core is busy",
+  "note": "Software selects context 1 in cycle 4; the status and level registers then show context 1 (one cycle later) while the core goes on with the block of context 0."
+ }
+}

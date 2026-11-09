@@ -1,0 +1,62 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_axi",
+      "wave": "p......."
+    },
+    [
+      "AXI4 read",
+      {
+        "name": "i_axi_arvalid",
+        "wave": "01000000"
+      },
+      {
+        "name": "o_axi_arready",
+        "wave": "01000000"
+      },
+      {
+        "name": "i_axi_araddr",
+        "wave": "x=......",
+        "data": [
+          "OUTSIDE"
+        ]
+      },
+      {
+        "name": "o_axi_rvalid",
+        "wave": "00010000"
+      },
+      {
+        "name": "i_axi_rready",
+        "wave": "00001000"
+      },
+      {
+        "name": "o_axi_rresp",
+        "wave": "xxx=....",
+        "data": [
+          "TBD"
+        ]
+      },
+      {
+        "name": "o_axi_rlast",
+        "wave": "00010000"
+      }
+    ],
+    [
+      "Flash side",
+      {
+        "name": "o_spi_cs_n",
+        "wave": "11111111"
+      },
+      {
+        "name": "o_spi_sclk",
+        "wave": "00000000"
+      }
+    ]
+  ],
+  "head": {
+    "text": "AXI4 XIP read rejected by the selected profile"
+  },
+  "foot": {
+    "text": "Error code and unsupported-access acceptance policy remain TBD in DEC-002; no serial flash command is issued."
+  }
+}

@@ -7,6 +7,10 @@ description: "Draft a reviewable hardware IP specification from the user's desig
 
 Use this skill when the user requests this phase of the repository's hardware RTL flow. Read .claude/commands/spec_writer.md and follow its English procedure. That command is the detailed workflow source for both Codex and Claude.
 
+Every HDS created or revised by this flow must use the basename `VLSIT_<DESIGN_FUNCTION>_HDS.md` under the design's `spec/` directory. Normalize the function name to uppercase and replace spaces or hyphens with underscores.
+
+The HDS is Markdown with TeX math (`$...$` inline, `$$...$$` display) and relative figure links under `spec/figures/`. Keep the Markdown as the editable source; DOCX/PDF exports are generated from approved final documentation in Phase 6.
+
 ## Execution rules
 
 - Inspect the current specification, approvals, configuration, and artifacts before acting. Read other phase skills only when this phase requires them.

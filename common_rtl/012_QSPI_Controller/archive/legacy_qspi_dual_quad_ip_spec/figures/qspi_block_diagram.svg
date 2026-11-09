@@ -1,0 +1,495 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2460" height="3449" viewBox="70 270 2460 3449" font-family="Arial, Helvetica, sans-serif" font-size="18">
+<rect x="70" y="270" width="2460" height="3449" fill="#FFFFFF"/>
+<rect x="520" y="380" width="1500" height="860" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<rect x="600" y="900" width="200" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="700" y="936" text-anchor="middle">u_tx_fifo</text>
+<text x="700" y="958" text-anchor="middle">(m_qspi_tx_fifo)</text>
+<rect x="970" y="900" width="200" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1070" y="936" text-anchor="middle">u_rx_fifo</text>
+<text x="1070" y="958" text-anchor="middle">(m_qspi_rx_fifo)</text>
+<rect x="1370" y="700" width="160" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1450" y="736" text-anchor="middle">u_cdc</text>
+<text x="1450" y="758" text-anchor="middle">(m_qspi_cdc)</text>
+<rect x="1720" y="500" width="240" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1840" y="536" text-anchor="middle">u_reset_sync</text>
+<text x="1840" y="558" text-anchor="middle">(m_qspi_reset_sync)</text>
+<rect x="580" y="500" width="240" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="700" y="536" text-anchor="middle">u_apb_decode</text>
+<text x="700" y="558" text-anchor="middle">(m_qspi_apb_decode)</text>
+<rect x="590" y="700" width="220" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="700" y="736" text-anchor="middle">u_csr</text>
+<text x="700" y="758" text-anchor="middle">(m_vlsit_csr_qspi)</text>
+<rect x="1350" y="500" width="200" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1450" y="536" text-anchor="middle">u_axi_xip</text>
+<text x="1450" y="558" text-anchor="middle">(m_qspi_axi_xip)</text>
+<rect x="960" y="700" width="220" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1070" y="736" text-anchor="middle">u_indirect</text>
+<text x="1070" y="758" text-anchor="middle">(m_qspi_indirect)</text>
+<rect x="1740" y="700" width="200" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1840" y="736" text-anchor="middle">u_arbiter</text>
+<text x="1840" y="758" text-anchor="middle">(m_qspi_arbiter)</text>
+<rect x="1320" y="900" width="260" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1450" y="936" text-anchor="middle">u_serial_engine</text>
+<text x="1450" y="958" text-anchor="middle">(m_qspi_serial_engine)</text>
+<rect x="1740" y="900" width="200" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1840" y="936" text-anchor="middle">u_clk_mux</text>
+<text x="1840" y="958" text-anchor="middle">(m_qspi_clk_mux)</text>
+<rect x="1350" y="1100" width="200" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1450" y="1136" text-anchor="middle">u_pin_mux</text>
+<text x="1450" y="1158" text-anchor="middle">(m_qspi_pin_mux)</text>
+<text x="440" y="547" text-anchor="middle">APB4</text>
+<text x="700" y="322" text-anchor="middle">i_clk_apb</text>
+<text x="1345" y="337" text-anchor="middle">i_clk_axi</text>
+<text x="1535" y="337" text-anchor="middle">AXI</text>
+<text x="2110" y="902" text-anchor="middle">i_clk_serial</text>
+<text x="2120" y="992" text-anchor="middle">i_spi_sclk_tgt</text>
+<text x="435" y="747" text-anchor="middle">o_irq</text>
+<text x="2100" y="1102" text-anchor="middle">SPI inputs</text>
+<text x="2105" y="1192" text-anchor="middle">SPI outputs</text>
+<text x="2095" y="547" text-anchor="middle">RST</text>
+<text x="1998" y="421" text-anchor="end">QSPI Controller/Target</text>
+<text x="1998" y="443" text-anchor="end">(m_qspi)</text>
+<text x="738" y="612" text-anchor="middle">APBC</text>
+<text x="878" y="532" text-anchor="middle">APBF</text>
+<text x="950" y="866" text-anchor="middle">APBR</text>
+<text x="895" y="706" text-anchor="middle">CFG</text>
+<text x="1488" y="612" text-anchor="middle">XIPQ</text>
+<text x="1220" y="706" text-anchor="middle">INDQ</text>
+<text x="1570" y="726" text-anchor="middle">ARBR</text>
+<text x="1600" y="826" text-anchor="middle">GRNT</text>
+<text x="950" y="1028" text-anchor="middle">TX</text>
+<text x="1190" y="948" text-anchor="middle">RX</text>
+<text x="1620" y="988" text-anchor="middle">CLKS</text>
+<text x="1488" y="1012" text-anchor="middle">PINS</text>
+<text x="895" y="786" text-anchor="middle">IRQEV</text>
+<text x="104" y="3535" text-anchor="start" font-weight="bold">Legend</text>
+<text x="284" y="3576" text-anchor="start">Interface connector (one per signal group; arrow = active to passive)</text>
+<text x="104" y="3651" text-anchor="start">AXI XIP and serial engine use separate clocks. One serial datapath selects i_clk_serial for controller mode or i_spi_sclk_tgt for target mode only while idle.</text>
+<rect x="100" y="1570" width="2400" height="588" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1300" y="1597" text-anchor="middle" font-weight="bold">Block Functions &amp; Interfaces</text>
+<rect x="100" y="1610" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1635" text-anchor="start" font-weight="bold">Block</text>
+<rect x="430" y="1610" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1635" text-anchor="start" font-weight="bold">Function</text>
+<rect x="1910" y="1610" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1635" text-anchor="start" font-weight="bold">Source</text>
+<rect x="2140" y="1610" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1635" text-anchor="start" font-weight="bold">Interfaces (mnemonics)</text>
+<rect x="100" y="1646" width="330" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1671" text-anchor="start">QSPI Controller/Target (m_qspi)</text>
+<text x="104" y="1693" text-anchor="start">frame</text>
+<rect x="430" y="1646" width="1480" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1682" text-anchor="start">Four asynchronous clock domains; one shared serial datapath</text>
+<rect x="1910" y="1646" width="230" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1682" text-anchor="start">Sections 5, 6 and 7</text>
+<rect x="2140" y="1646" width="360" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1671" text-anchor="start">APB, AXI, SPIN, SPOT, APCLK, AXCLK,</text>
+<text x="2144" y="1693" text-anchor="start">SECLK, TSCLK, RST, o_irq</text>
+<rect x="100" y="1704" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1729" text-anchor="start">u_apb_decode (m_qspi_apb_decode)</text>
+<rect x="430" y="1704" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1729" text-anchor="start">APB address decode, response mux and custom TX/RX FIFO data-window access</text>
+<rect x="1910" y="1704" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1729" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1704" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1729" text-anchor="start">APBC, APBF, APBR, APB, APCLK</text>
+<rect x="100" y="1740" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1765" text-anchor="start">u_csr (m_vlsit_csr_qspi)</text>
+<rect x="430" y="1740" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1765" text-anchor="start">Generated control/status CSR register set</text>
+<rect x="1910" y="1740" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1765" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1740" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1765" text-anchor="start">APBC, CFG, IRQEV, o_irq</text>
+<rect x="100" y="1776" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1801" text-anchor="start">u_axi_xip (m_qspi_axi_xip)</text>
+<rect x="430" y="1776" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1801" text-anchor="start">AXI4 XIP subordinate, burst tracking and read-response assembly</text>
+<rect x="1910" y="1776" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1801" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1776" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1801" text-anchor="start">XIPQ, AXI, AXCLK</text>
+<rect x="100" y="1812" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1837" text-anchor="start">u_indirect (m_qspi_indirect)</text>
+<rect x="430" y="1812" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1837" text-anchor="start">APB-configured flash read/program/erase sequencer</text>
+<rect x="1910" y="1812" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1837" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1812" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1837" text-anchor="start">CFG, INDQ</text>
+<rect x="100" y="1848" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1873" text-anchor="start">u_arbiter (m_qspi_arbiter)</text>
+<rect x="430" y="1848" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1873" text-anchor="start">Serial-engine request arbitration and ownership</text>
+<rect x="1910" y="1848" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1873" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1848" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1873" text-anchor="start">ARBR, GRNT</text>
+<rect x="100" y="1884" width="330" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1909" text-anchor="start">u_serial_engine</text>
+<text x="104" y="1931" text-anchor="start">(m_qspi_serial_engine)</text>
+<rect x="430" y="1884" width="1480" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1920" text-anchor="start">Shared controller/target shift datapath and phase control</text>
+<rect x="1910" y="1884" width="230" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1920" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1884" width="360" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1920" text-anchor="start">GRNT, TX, RX, CLKS, PINS</text>
+<rect x="100" y="1942" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1967" text-anchor="start">u_clk_mux (m_qspi_clk_mux)</text>
+<rect x="430" y="1942" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1967" text-anchor="start">Glitch-free selection between controller clock and external target SCLK</text>
+<rect x="1910" y="1942" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1967" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1942" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1967" text-anchor="start">CLKS, SECLK, TSCLK</text>
+<rect x="100" y="1978" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2003" text-anchor="start">u_pin_mux (m_qspi_pin_mux)</text>
+<rect x="430" y="1978" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="2003" text-anchor="start">Role/phase-controlled SCLK, CS and IO lane direction</text>
+<rect x="1910" y="1978" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="2003" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1978" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="2003" text-anchor="start">PINS, SPIN, SPOT</text>
+<rect x="100" y="2014" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2039" text-anchor="start">u_tx_fifo (m_qspi_tx_fifo)</text>
+<rect x="430" y="2014" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="2039" text-anchor="start">Buffer APB program data for serial transmission</text>
+<rect x="1910" y="2014" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="2039" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="2014" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="2039" text-anchor="start">APBF, TX</text>
+<rect x="100" y="2050" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2075" text-anchor="start">u_rx_fifo (m_qspi_rx_fifo)</text>
+<rect x="430" y="2050" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="2075" text-anchor="start">Buffer serial receive data for APB software reads</text>
+<rect x="1910" y="2050" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="2075" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="2050" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="2075" text-anchor="start">APBR, RX</text>
+<rect x="100" y="2086" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2111" text-anchor="start">u_cdc (m_qspi_cdc)</text>
+<rect x="430" y="2086" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="2111" text-anchor="start">Request/response and status crossings between APB, AXI, serial and target domains</text>
+<rect x="1910" y="2086" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="2111" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="2086" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="2111" text-anchor="start">XIPQ, INDQ, ARBR, IRQEV</text>
+<rect x="100" y="2122" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2147" text-anchor="start">u_reset_sync (m_qspi_reset_sync)</text>
+<rect x="430" y="2122" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="2147" text-anchor="start">Reset-release synchronization for each receiving clock domain</text>
+<rect x="1910" y="2122" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="2147" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="2122" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="2147" text-anchor="start">RST</text>
+<rect x="100" y="2198" width="2400" height="1256" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1300" y="2225" text-anchor="middle" font-weight="bold">Interface Table</text>
+<rect x="100" y="2238" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2263" text-anchor="start" font-weight="bold">ID</text>
+<rect x="190" y="2238" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2263" text-anchor="start" font-weight="bold">Interface</text>
+<rect x="490" y="2238" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2263" text-anchor="start" font-weight="bold">Category</text>
+<rect x="600" y="2238" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2263" text-anchor="start" font-weight="bold">Active side -&gt; passive side</text>
+<rect x="1070" y="2238" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2263" text-anchor="start" font-weight="bold">Key signals</text>
+<rect x="100" y="2274" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2310" text-anchor="start">APB</text>
+<rect x="190" y="2274" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2310" text-anchor="start">APB4 software interface</text>
+<rect x="490" y="2274" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2310" text-anchor="start">APB4</text>
+<rect x="600" y="2274" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2310" text-anchor="start">external -&gt; m_qspi</text>
+<rect x="1070" y="2274" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2299" text-anchor="start">external -&gt; m_qspi: i_apb_psel, i_apb_penable, i_apb_paddr, i_apb_pwrite, i_apb_pwdata, i_apb_pstrb, i_apb_pprot; m_qspi -&gt; external:</text>
+<text x="1074" y="2321" text-anchor="start">o_apb_pready, o_apb_prdata, o_apb_pslverr</text>
+<rect x="100" y="2332" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2368" text-anchor="start">APBC</text>
+<rect x="190" y="2332" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2368" text-anchor="start">APB CSR transaction bundle</text>
+<rect x="490" y="2332" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2368" text-anchor="start">APB4</text>
+<rect x="600" y="2332" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2368" text-anchor="start">APB decoder -&gt; CSR bank</text>
+<rect x="1070" y="2332" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2357" text-anchor="start">APB decoder -&gt; CSR bank: w_csr_psel, w_csr_penable, w_csr_paddr, w_csr_pwrite, w_csr_pwdata, w_csr_pstrb, w_csr_pprot, w_csr_pready,</text>
+<text x="1074" y="2379" text-anchor="start">w_csr_prdata, w_csr_pslverr</text>
+<rect x="100" y="2390" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2426" text-anchor="start">APBF</text>
+<rect x="190" y="2390" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2415" text-anchor="start">APB transmit FIFO push</text>
+<text x="194" y="2437" text-anchor="start">control</text>
+<rect x="490" y="2390" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2426" text-anchor="start">stream</text>
+<rect x="600" y="2390" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2426" text-anchor="start">APB decoder -&gt; TX FIFO</text>
+<rect x="1070" y="2390" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2426" text-anchor="start">w_tx_fifo_push, w_tx_fifo_data, w_tx_fifo_strb, w_tx_fifo_full</text>
+<rect x="100" y="2448" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2484" text-anchor="start">APBR</text>
+<rect x="190" y="2448" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2484" text-anchor="start">APB receive FIFO pop and data</text>
+<rect x="490" y="2448" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2484" text-anchor="start">stream</text>
+<rect x="600" y="2448" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2473" text-anchor="start">APB decoder -&gt; RX FIFO for pop; RX FIFO -&gt; APB</text>
+<text x="604" y="2495" text-anchor="start">decoder for data</text>
+<rect x="1070" y="2448" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2484" text-anchor="start">w_rx_fifo_pop, w_rx_fifo_data, w_rx_fifo_empty</text>
+<rect x="100" y="2506" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2531" text-anchor="start">APCLK</text>
+<rect x="190" y="2506" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2531" text-anchor="start">APB clock</text>
+<rect x="490" y="2506" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2531" text-anchor="start">clock</text>
+<rect x="600" y="2506" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2531" text-anchor="start">SoC -&gt; APB domain</text>
+<rect x="1070" y="2506" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2531" text-anchor="start">i_clk_apb</text>
+<rect x="100" y="2542" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2578" text-anchor="start">ARBR</text>
+<rect x="190" y="2542" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2567" text-anchor="start">Controller request</text>
+<text x="194" y="2589" text-anchor="start">arbitration bundle</text>
+<rect x="490" y="2542" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2578" text-anchor="start">control</text>
+<rect x="600" y="2542" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2578" text-anchor="start">CDC/request queue -&gt; arbiter</text>
+<rect x="1070" y="2542" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2578" text-anchor="start">w_ctrl_req_valid, w_ctrl_req_owner, w_ctrl_req_ready</text>
+<rect x="100" y="2600" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2625" text-anchor="start">AXCLK</text>
+<rect x="190" y="2600" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2625" text-anchor="start">AXI clock</text>
+<rect x="490" y="2600" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2625" text-anchor="start">clock</text>
+<rect x="600" y="2600" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2625" text-anchor="start">SoC -&gt; AXI domain</text>
+<rect x="1070" y="2600" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2625" text-anchor="start">i_clk_axi</text>
+<rect x="100" y="2636" width="90" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2694" text-anchor="start">AXI</text>
+<rect x="190" y="2636" width="300" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2683" text-anchor="start">AXI4 XIP subordinate</text>
+<text x="194" y="2705" text-anchor="start">interface</text>
+<rect x="490" y="2636" width="110" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2694" text-anchor="start">AXI4</text>
+<rect x="600" y="2636" width="470" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2683" text-anchor="start">external -&gt; m_qspi for requests; m_qspi -&gt;</text>
+<text x="604" y="2705" text-anchor="start">external for responses</text>
+<rect x="1070" y="2636" width="1430" height="102" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2661" text-anchor="start">AW: i_axi_awaddr, i_axi_awid, i_axi_awlen, i_axi_awsize, i_axi_awburst, i_axi_awlock, i_axi_awcache, i_axi_awprot, i_axi_awqos,</text>
+<text x="1074" y="2683" text-anchor="start">i_axi_awregion, i_axi_awvalid, o_axi_awready; W: i_axi_wdata, i_axi_wstrb, i_axi_wlast, i_axi_wvalid, o_axi_wready; B: o_axi_bid, o_axi_bresp,</text>
+<text x="1074" y="2705" text-anchor="start">o_axi_bvalid, i_axi_bready; AR: i_axi_araddr, i_axi_arid, i_axi_arlen, i_axi_arsize, i_axi_arburst, i_axi_arlock, i_axi_arcache, i_axi_arprot,</text>
+<text x="1074" y="2727" text-anchor="start">i_axi_arqos, i_axi_arregion, i_axi_arvalid, o_axi_arready; R: o_axi_rid, o_axi_rdata, o_axi_rresp, o_axi_rlast, o_axi_rvalid, i_axi_rready</text>
+<rect x="100" y="2738" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2774" text-anchor="start">CFG</text>
+<rect x="190" y="2738" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2763" text-anchor="start">CSR control/configuration</text>
+<text x="194" y="2785" text-anchor="start">bundle</text>
+<rect x="490" y="2738" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2774" text-anchor="start">control</text>
+<rect x="600" y="2738" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2774" text-anchor="start">CSR bank -&gt; indirect controller</text>
+<rect x="1070" y="2738" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2774" text-anchor="start">CSR bank -&gt; control: w_ctrl_cfg, w_xip_cfg, w_indirect_cfg; control -&gt; CSR bank: w_status, w_irq_pending</text>
+<rect x="100" y="2796" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2821" text-anchor="start">CLKS</text>
+<rect x="190" y="2796" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2821" text-anchor="start">Selected engine clock</text>
+<rect x="490" y="2796" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2821" text-anchor="start">clock</text>
+<rect x="600" y="2796" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2821" text-anchor="start">clock mux -&gt; serial engine</text>
+<rect x="1070" y="2796" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2821" text-anchor="start">w_clk_engine</text>
+<rect x="100" y="2832" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2868" text-anchor="start">GRNT</text>
+<rect x="190" y="2832" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2857" text-anchor="start">Serial engine grant/control</text>
+<text x="194" y="2879" text-anchor="start">bundle</text>
+<rect x="490" y="2832" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2868" text-anchor="start">control</text>
+<rect x="600" y="2832" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2868" text-anchor="start">arbiter -&gt; serial engine</text>
+<rect x="1070" y="2832" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2868" text-anchor="start">w_eng_start, w_eng_owner, w_eng_mode, w_eng_busy, w_eng_done, w_eng_error</text>
+<rect x="100" y="2890" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2926" text-anchor="start">INDQ</text>
+<rect x="190" y="2890" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2915" text-anchor="start">Indirect-operation</text>
+<text x="194" y="2937" text-anchor="start">request/response bundle</text>
+<rect x="490" y="2890" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2926" text-anchor="start">control</text>
+<rect x="600" y="2890" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2926" text-anchor="start">Indirect controller -&gt; CDC/arbiter</text>
+<rect x="1070" y="2890" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2926" text-anchor="start">w_ind_req_valid, w_ind_req_cmd, w_ind_req_addr, w_ind_req_len, w_ind_req_ready, w_ind_rsp_valid, w_ind_rsp_done, w_ind_rsp_error</text>
+<rect x="100" y="2948" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2973" text-anchor="start">IRQEV</text>
+<rect x="190" y="2948" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2973" text-anchor="start">Synchronized interrupt events</text>
+<rect x="490" y="2948" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2973" text-anchor="start">interrupt</text>
+<rect x="600" y="2948" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2973" text-anchor="start">CDC -&gt; CSR bank</text>
+<rect x="1070" y="2948" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2973" text-anchor="start">w_irq_done, w_irq_tx_err, w_irq_rx_err, w_irq_flash_err</text>
+<rect x="100" y="2984" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="3020" text-anchor="start">PINS</text>
+<rect x="190" y="2984" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="3009" text-anchor="start">Serial engine-to-pad-mux</text>
+<text x="194" y="3031" text-anchor="start">signals</text>
+<rect x="490" y="2984" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="3020" text-anchor="start">SPI</text>
+<rect x="600" y="2984" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="3009" text-anchor="start">serial engine -&gt; pin mux for control/data</text>
+<text x="604" y="3031" text-anchor="start">drive; pin mux -&gt; engine for sampled data</text>
+<rect x="1070" y="2984" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="3020" text-anchor="start">w_sclk_ctrl, w_spi_cs_n_ctrl, w_spi_io_i, w_spi_io_o, w_spi_io_oe</text>
+<rect x="100" y="3042" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="3067" text-anchor="start">RST</text>
+<rect x="190" y="3042" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="3067" text-anchor="start">Asynchronous reset inputs</text>
+<rect x="490" y="3042" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="3067" text-anchor="start">reset</text>
+<rect x="600" y="3042" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="3067" text-anchor="start">SoC -&gt; reset synchronizers</text>
+<rect x="1070" y="3042" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="3067" text-anchor="start">i_rst_n_apb, i_rst_n_axi, i_rst_n_serial</text>
+<rect x="100" y="3078" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="3103" text-anchor="start">RX</text>
+<rect x="190" y="3078" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="3103" text-anchor="start">Receive FIFO stream</text>
+<rect x="490" y="3078" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="3103" text-anchor="start">stream</text>
+<rect x="600" y="3078" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="3103" text-anchor="start">serial engine -&gt; RX FIFO</text>
+<rect x="1070" y="3078" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="3103" text-anchor="start">w_rx_data, w_rx_valid, w_rx_ready</text>
+<rect x="100" y="3114" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="3139" text-anchor="start">SECLK</text>
+<rect x="190" y="3114" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="3139" text-anchor="start">Serial engine reference clock</text>
+<rect x="490" y="3114" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="3139" text-anchor="start">clock</text>
+<rect x="600" y="3114" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="3139" text-anchor="start">SoC -&gt; serial engine clock mux</text>
+<rect x="1070" y="3114" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="3139" text-anchor="start">i_clk_serial</text>
+<rect x="100" y="3150" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="3186" text-anchor="start">SPIN</text>
+<rect x="190" y="3150" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="3175" text-anchor="start">Serial data and target</text>
+<text x="194" y="3197" text-anchor="start">framing inputs</text>
+<rect x="490" y="3150" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="3186" text-anchor="start">SPI</text>
+<rect x="600" y="3150" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="3186" text-anchor="start">external -&gt; m_qspi</text>
+<rect x="1070" y="3150" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="3186" text-anchor="start">external -&gt; m_qspi: i_spi_cs_n_tgt, i_spi_io_i</text>
+<rect x="100" y="3208" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="3233" text-anchor="start">SPOT</text>
+<rect x="190" y="3208" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="3233" text-anchor="start">Serial controller outputs</text>
+<rect x="490" y="3208" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="3233" text-anchor="start">SPI</text>
+<rect x="600" y="3208" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="3233" text-anchor="start">m_qspi -&gt; external</text>
+<rect x="1070" y="3208" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="3233" text-anchor="start">m_qspi -&gt; external: o_spi_sclk_ctrl, o_spi_cs_n_ctrl, o_spi_io_o, o_spi_io_oe</text>
+<rect x="100" y="3244" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="3280" text-anchor="start">TSCLK</text>
+<rect x="190" y="3244" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="3269" text-anchor="start">Target-mode external serial</text>
+<text x="194" y="3291" text-anchor="start">clock</text>
+<rect x="490" y="3244" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="3280" text-anchor="start">clock</text>
+<rect x="600" y="3244" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="3280" text-anchor="start">external controller -&gt; target engine</text>
+<rect x="1070" y="3244" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="3280" text-anchor="start">i_spi_sclk_tgt</text>
+<rect x="100" y="3302" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="3327" text-anchor="start">TX</text>
+<rect x="190" y="3302" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="3327" text-anchor="start">Transmit FIFO stream</text>
+<rect x="490" y="3302" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="3327" text-anchor="start">stream</text>
+<rect x="600" y="3302" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="3327" text-anchor="start">TX FIFO -&gt; serial engine</text>
+<rect x="1070" y="3302" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="3327" text-anchor="start">w_tx_data, w_tx_valid, w_tx_ready</text>
+<rect x="100" y="3338" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="3374" text-anchor="start">XIPQ</text>
+<rect x="190" y="3338" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="3363" text-anchor="start">XIP CDC request/response</text>
+<text x="194" y="3385" text-anchor="start">bundle</text>
+<rect x="490" y="3338" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="3374" text-anchor="start">CDC</text>
+<rect x="600" y="3338" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="3374" text-anchor="start">AXI XIP adapter -&gt; CDC/arbiter</text>
+<rect x="1070" y="3338" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="3363" text-anchor="start">w_xip_req_valid, w_xip_req_addr, w_xip_req_id, w_xip_req_len, w_xip_req_ready, w_xip_rsp_valid, w_xip_rsp_ready, w_xip_rsp_data, w_xip_rsp_id,</text>
+<text x="1074" y="3385" text-anchor="start">w_xip_rsp_last, w_xip_rsp_resp</text>
+<rect x="100" y="3396" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="3432" text-anchor="start">o_irq</text>
+<rect x="190" y="3396" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="3421" text-anchor="start">Combined QSPI interrupt</text>
+<text x="194" y="3443" text-anchor="start">output</text>
+<rect x="490" y="3396" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="3432" text-anchor="start">interrupt</text>
+<rect x="600" y="3396" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="3432" text-anchor="start">m_qspi -&gt; SoC</text>
+<rect x="1070" y="3396" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="3432" text-anchor="start">o_irq</text>
+<path d="M 470 540 L 580 540" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="580,540 568,546 568,534" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 700 330 L 700 500" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="700,500 694,488 706,488" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1410 330 L 1410 500" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1410,500 1404,488 1416,488" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1500 330 L 1500 500" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1500,500 1494,488 1506,488" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 2070 920 L 1940 920" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1940,920 1952,914 1952,926" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 2070 960 L 1940 960" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1940,960 1952,954 1952,966" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 590 740 L 470 740" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="470,740 482,734 482,746" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 2070 1120 L 1550 1120" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1550,1120 1562,1114 1562,1126" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1550 1160 L 2070 1160" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="2070,1160 2058,1166 2058,1154" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 2070 540 L 1960 540" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1960,540 1972,534 1972,546" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 700 580 L 700 700" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="700,700 694,688 706,688" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 810 720 L 960 720" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="960,720 948,726 948,714" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1450 580 L 1450 700" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1450,700 1444,688 1456,688" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1180 720 L 1370 720" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1370,720 1358,726 1358,714" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1530 740 L 1740 740" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1740,740 1728,746 1728,734" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 800 960 L 950 960 L 950 1000 L 1300 1000 L 1300 960 L 1320 960" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1320,960 1308,966 1308,954" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1320 920 L 1170 920" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1170,920 1182,914 1182,926" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1740 960 L 1580 960" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1580,960 1592,954 1592,966" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1450 980 L 1450 1100" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1450,1100 1444,1088 1456,1088" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1370 760 L 1200 760 L 1200 800 L 830 800 L 830 760 L 810 760" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="810,760 822,754 822,766" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 820 520 L 840 520 L 840 714 A 6 6 0 0 0 840 726 L 840 794 A 6 6 0 0 0 840 806 L 840 920 L 800 920" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="800,920 812,914 812,926" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 820 560 L 834 560 A 6 6 0 0 1 846 560 L 1330 560 L 1330 680 L 1444 680 A 6 6 0 0 1 1456 680 L 1960 680 L 1960 880 L 950 880 L 950 940 L 970 940" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="970,940 958,946 958,934" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1940 740 L 1954 740 A 6 6 0 0 1 1966 740 L 2000 740 L 2000 840 L 1966 840 A 6 6 0 0 0 1954 840 L 1600 840 L 1600 874 A 6 6 0 0 0 1600 886 L 1600 920 L 1580 920" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1580,920 1592,914 1592,926" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 100 3569 L 260 3569" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="260,3569 248,3575 248,3563" fill="#000000" stroke="#000000" stroke-width="1"/>
+</svg>

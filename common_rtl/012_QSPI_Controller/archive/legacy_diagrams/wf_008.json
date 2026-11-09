@@ -1,0 +1,44 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_qspi",
+      "wave": "p......."
+    },
+    {
+      "name": "o_qspi_cs_n",
+      "wave": "10.....1"
+    },
+    {
+      "name": "o_qspi_sclk",
+      "wave": "0.1010100"
+    },
+    {
+      "name": "o_qspi_dq_oe",
+      "wave": "0.1111100"
+    },
+    {
+      "name": "o_qspi_dq_o",
+      "wave": "x=.=.=x.",
+      "data": [
+        "CMD",
+        "ADDR",
+        "DQ3:0",
+        "DQ3:0",
+        "DQ3:0"
+      ]
+    },
+    {
+      "name": "i_qspi_dq_i",
+      "wave": "x....=..",
+      "data": [
+        "RX3:0"
+      ]
+    }
+  ],
+  "head": {
+    "text": "Manual Quad SPI phase"
+  },
+  "foot": {
+    "text": "Illustrative four-lane data phase; flash profile is TBD."
+  }
+}

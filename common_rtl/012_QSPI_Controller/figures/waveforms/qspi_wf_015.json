@@ -1,0 +1,112 @@
+{
+  "head": {
+    "text": "Configuration snapshot; busy start is rejected",
+    "tick": 0
+  },
+  "signal": [
+    {
+      "name": "i_clk_apb",
+      "wave": "p............."
+    },
+    {
+      "name": "i_clk_serial",
+      "wave": "p............."
+    },
+    {},
+    [
+      "APB writes",
+      {
+        "name": "i_apb_psel",
+        "wave": "0110.110.110.."
+      },
+      {
+        "name": "i_apb_penable",
+        "wave": "0010.010.010.."
+      },
+      {
+        "name": "i_apb_paddr",
+        "wave": "x=..=..=.....",
+        "data": [
+          "qspi_cmd.start",
+          "qspi_ctrl",
+          "qspi_cmd.start"
+        ]
+      },
+      {
+        "name": "i_apb_pwdata",
+        "wave": "x=..=..=.....",
+        "data": [
+          "1",
+          "mode3 / len16",
+          "1"
+        ]
+      }
+    ],
+    {},
+    [
+      "Active operation",
+      {
+        "name": "o_qspi_cmd_start",
+        "wave": "01..0........."
+      },
+      {
+        "name": "w_cfg_shadow",
+        "wave": "x=..=.........",
+        "data": [
+          "mode0 / len8",
+          "mode3 / len16"
+        ]
+      },
+      {
+        "name": "w_cfg_active",
+        "wave": "x=........=...",
+        "data": [
+          "mode0 / len8",
+          "mode3 / len16"
+        ]
+      },
+      {
+        "name": "w_busy",
+        "wave": "0.1........0.."
+      },
+      {
+        "name": "o_spi_cs_n_ctrl",
+        "wave": "1..0......1..."
+      },
+      {
+        "name": "o_spi_sclk_ctrl",
+        "wave": "0..p.....0...."
+      }
+    ],
+    {},
+    [
+      "Busy start rejection",
+      {
+        "name": "w_cmd_start_rejected",
+        "wave": "0........1.0.."
+      },
+      {
+        "name": "i_hw_we_qspi_cmd_start",
+        "wave": "0........1.0.."
+      },
+      {
+        "name": "i_hw_wdata_qspi_cmd_start",
+        "wave": "x........=....",
+        "data": [
+          "0"
+        ]
+      },
+      {
+        "name": "o_qspi_irq_raw_fl_err",
+        "wave": "0.........1..."
+      }
+    ]
+  ],
+  "foot": {
+    "text": "A busy start is cleared; active settings stay latched until the next command.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 2
+  }
+}

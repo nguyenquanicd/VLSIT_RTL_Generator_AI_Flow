@@ -101,9 +101,9 @@ flowchart TD
     G5 -->|"yes\n0 TC FAIL"| A8
     G5 -->|"no / TC FAIL"| STOP5(["Stop\nfix failing TCs"])
 
-    A8["Skill 8 · spec_pdf_generator\nPhase 6\n─────────────────\nConsolidate outputs\nRender PDF"] --> DONE
+    A8["Skill 8 · spec_pdf_generator\nPhase 6\n─────────────────\nMarkdown+TeX source\nOptional DOCX/PDF exports"] --> DONE
 
-    DONE(["🏁 FLOW COMPLETE\nRTL · SVA · TB · PDF · Sign-off"])
+    DONE(["🏁 FLOW COMPLETE\nRTL · SVA · TB · Markdown/DOCX/PDF · Sign-off"])
 
     %% invisible fork/join nodes
     style FORK fill:none,stroke:none,width:0px,height:0px

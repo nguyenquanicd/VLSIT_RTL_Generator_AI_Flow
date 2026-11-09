@@ -76,6 +76,17 @@ The design goals are low latency and clean timing: the TL-UL request is launched
 | FEAT-005 | TL-UL response checking and error mapping | Required | Always present | REQ-ERR-003 to REQ-ERR-005 |
 | FEAT-006 | Back-to-back APB transfers with PSEL held high | Required | Always present | REQ-FUNC-008, REQ-PERF-004 |
 
+### 1.4 Real-world applications of the features
+
+| Feature ID | Real-world application (named system, example product) | What the application needs from the feature | Typical values | Consequence if missing or wrong | Requirements | Source |
+|---|---|---|---|---|---|---|
+| FEAT-001 | A legacy APB master such as a DMA or a debug module that writes registers of TL-UL peripherals (UART, GPIO, timer) of an OpenTitan-style SoC | A full 32-bit APB write becomes one TL-UL PutFullData request | 32-bit write, 1 request per write | A configuration write is lost and the peripheral stays in the reset mode | REQ-FUNC-002 | User confirmed 2026-11-02 (ASM-006) |
+| FEAT-002 | Polling of a TL-UL status register by the same APB master | An APB read becomes a TL-UL Get and the data returns on PRDATA | 32-bit read, latency below 8 cycles | The master reads a stale status and times the next step wrongly | REQ-FUNC-003 | User confirmed 2026-11-02 (ASM-006) |
+| FEAT-003 | A register initialization sequence of 200 writes at start-up | The TL-UL request leaves from flip-flops in the cycle after the APB setup, so the access takes fewer cycles | 2 cycles per APB transfer instead of 3 | The start-up takes 50 percent longer | REQ-FUNC-001, REQ-PERF-001 | User confirmed 2026-11-02 (ASM-006) |
+| FEAT-004 | A secure element where a partial write to a register must be refused and not half executed | A write with a partial strobe or a misaligned address is answered with an error without a TL-UL request | Strobe other than 4'b1111 or address bits [1:0] not 0 give PSLVERR | A partial write changes bytes the software did not intend to change | REQ-ERR-001, REQ-ERR-002 | User confirmed 2026-11-02 (ASM-006) |
+| FEAT-005 | A fault-tolerant controller that has to see an error answer of a peripheral | The TL-UL response is checked and an error is mapped to PSLVERR | 1 PSLVERR per error response, 1 check per response | A failed access is reported to the software as good | REQ-ERR-003 to REQ-ERR-005 | User confirmed 2026-11-02 (ASM-006) |
+| FEAT-006 | A DMA that writes a long list of registers, one transfer after another with PSEL held | Transfers follow each other without an idle cycle | 1 transfer every 2 cycles at best, 0 idle cycles between transfers | The throughput is 33 percent lower than the bus allows | REQ-FUNC-008, REQ-PERF-004 | User confirmed 2026-11-02 (ASM-006) |
+
 ## 2. Normative references and precedence
 
 ### 2.1 Normative references
@@ -694,6 +705,7 @@ The SDC delivered with the IP is the executable form of the tables below. The So
 | ASM-003 | Assumption | Data width 32 bits (DW = 32, DBW = 4, SZW = 2) and the OpenTitan default of 8-bit source ID | Section 6.2 | Announced to the designer, not contested |
 | ASM-004 | Assumption | The module is named `m_apb_tlul_bridge`; TL-UL ports use the tag `tlul` | Section 6.2 | Announced to the designer, not contested |
 | ASM-005 | Assumption | A width parameter PARA_A_USER_W is needed to declare o_tlul_a_user; it was not in the parameter list the designer approved (answer 4A). The parameter PARA_A_USER was removed on 2026-10-18 and o_tlul_a_user is driven to '0 | One extra parameter, no behavior | Confirmed by the designer, 2026-10-18; default width 1 (lowest) because the bits carry a fixed value |
+| ASM-006 | Assumption | The real-world applications of section 1.4 are proposed by the author from the common industrial use of this kind of block and confirmed by the user | Section 1.4 only; no requirement depends on them | Confirmed by the user, 2026-11-02 |
 | DEC-001 | Decision | Only full-strobe writes (PSTRB = 4'b1111) and word-aligned addresses are accepted; every other write PSTRB (including 4'b0000) and every misaligned address returns PSLVERR with no TL-UL request | Partial writes are not available through this bridge. TL-UL PutPartialData is never issued | Confirmed by the designer, 2026-10-18 |
 | DEC-002 | Decision | Single outstanding request; early launch: the request is captured at the Setup edge so that channel A is valid in the first Access cycle | 3 Access cycles with a prompt device; a_valid comes from a flop | Confirmed by the designer, 2026-10-18 |
 | DEC-003 | Decision | No timeout and no drain mechanism; the SoC watchdog handles a device that never answers | The APB Requester waits indefinitely (ERR-006) | Confirmed by the designer, 2026-10-18 |

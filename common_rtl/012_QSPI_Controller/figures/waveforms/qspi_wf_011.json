@@ -1,0 +1,54 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_apb",
+      "wave": "p..........."
+    },
+    {
+      "name": "i_apb_psel",
+      "wave": "011100111000"
+    },
+    {
+      "name": "i_apb_penable",
+      "wave": "001100011000"
+    },
+    {
+      "name": "i_apb_pwrite",
+      "wave": "011100011000"
+    },
+    {
+      "name": "i_apb_paddr",
+      "wave": "xx=....=....",
+      "data": [
+        "CSR",
+        "TX_FIFO"
+      ]
+    },
+    {
+      "name": "o_apb_pready",
+      "wave": "000100001000"
+    },
+    {
+      "name": "o_apb_pslverr",
+      "wave": "000000001000"
+    },
+    {
+      "name": "o_tx_fifo_full",
+      "wave": "000000110000"
+    },
+    {
+      "name": "o_rx_fifo_empty",
+      "wave": "000000000000"
+    },
+    {
+      "name": "o_qspi_error",
+      "wave": "000000010000"
+    }
+  ],
+  "head": {
+    "text": "APB CSR success and FIFO full/empty error cases"
+  },
+  "foot": {
+    "text": "FIFO full/empty PSLVERR behavior is proposed but not final; confirm the exact response in DEC-010."
+  }
+}

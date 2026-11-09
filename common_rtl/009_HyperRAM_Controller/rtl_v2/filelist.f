@@ -1,0 +1,40 @@
+// filelist.f - RTL files in compile order (leaf modules first, top last).
+// Top module: m_vlsit_hyperram_controller
+// Paths are relative to the folder of this file; run tools from that folder.
+m_vlsit_apb4_if.sv
+../../000_Common/rtl_cells/VLSIT_CELL_SRAM_1W1R.sv
+../../000_Common/rtl_lib/m_vlsit_afifo_ram_macro.sv
+../../001_AsyncGrayFIFO/rtl/m_vlsit_afifo_mem.sv
+../../000_Common/rtl_cells/VLSIT_CELL_SYNC_2FF_RN.sv
+../../000_Common/rtl_cells/VLSIT_CELL_SYNC_2FF_SN.sv
+../../000_Common/rtl_cells/VLSIT_CELL_SYNC_3FF_RN.sv
+../../000_Common/rtl_cells/VLSIT_CELL_SYNC_3FF_SN.sv
+../../000_Common/rtl_cells/VLSIT_CELL_SYNC_4FF_RN.sv
+../../000_Common/rtl_cells/VLSIT_CELL_SYNC_4FF_SN.sv
+../../000_Common/rtl_cells/VLSIT_CELL_SYNC_DFF_RN.sv
+../../000_Common/rtl_cells/VLSIT_CELL_SYNC_DFF_SN.sv
+../../000_Common/rtl_lib/m_vlsit_afifo_cell_sync.sv
+../../001_AsyncGrayFIFO/rtl/m_vlsit_afifo_sync.sv
+../../001_AsyncGrayFIFO/rtl/m_vlsit_afifo_rd.sv
+../../001_AsyncGrayFIFO/rtl/m_vlsit_afifo_wr.sv
+../../001_AsyncGrayFIFO/rtl/m_vlsit_afifo_top.sv
+../../003_AsyncAXI4Bridge/rtl/axi4_base/m_vlsit_axi_async_ar.sv
+../../003_AsyncAXI4Bridge/rtl/axi4_base/m_vlsit_axi_async_aw.sv
+../../003_AsyncAXI4Bridge/rtl/axi4_base/m_vlsit_axi_async_b.sv
+../../003_AsyncAXI4Bridge/rtl/axi4_base/m_vlsit_axi_async_r.sv
+../../003_AsyncAXI4Bridge/rtl/axi4_base/m_vlsit_axi_async_w.sv
+../../003_AsyncAXI4Bridge/rtl/axi4_base/m_vlsit_async_axi4_bridge.sv
+m_vlsit_axi4_cdc.sv
+m_vlsit_axi4_frontend.sv
+csr/m_vlsit_csr_sync.sv
+csr/m_vlsit_csr_regfile.sv
+m_vlsit_hyperbus_ctrl.sv
+m_vlsit_cap_ring.sv
+../../000_Common/rtl_cells/VLSIT_CELL_CKINV.sv
+../../000_Common/rtl_lib/m_vlsit_clk_inv.sv
+m_vlsit_hyperbus_phy.sv
+m_vlsit_hyperram_irq.sv
+../../000_Common/rtl_cells/VLSIT_CELL_TIEH.sv
+../../000_Common/rtl_cells/VLSIT_CELL_TIEL.sv
+../../000_Common/rtl_lib/m_vlsit_tie.sv
+m_vlsit_hyperram_controller.sv

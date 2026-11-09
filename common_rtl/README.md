@@ -15,18 +15,21 @@ This directory contains reusable ASIC RTL blocks, example cell models, and desig
 | [`003_CRC`](003_CRC/rtl/filelist.f) | Five independent CRC implementations with different data rates, latency, and feature sets. See the comparison below. |
 | [`004_AsyncAPBBridge`](004_AsyncAPBBridge/AsyncAPBBridge_Design_Specification.md) | Asynchronous APB bridge (two-phase or four-phase handshake, APB4/APB5): specification, RTL, constraints, verification and waveforms. |
 | [`005_AHB2AXI_Bridge`](005_AHB2AXI_Bridge/README.md) | AHB-to-AXI bridge: specification, protocol references, RTL and verification. |
-| [`006_AXI2APB_Bridge`](006_AXI2APB_Bridge/README.md) | AXI4 Subordinate to APB4 Manager bridge specification and synthesizable RTL. |
+| [`006_AXI2APB_Bridge`](006_AXI2APB_Bridge/README.md) | AXI4 Subordinate to APB4 Manager bridge; `rtl_v2/` is the rule-compliant source set. The earlier `rtl/` baseline is retained for comparison. |
 | [`007_AXI2TLUL_Bridge`](007_AXI2TLUL_Bridge/AXI2TLUL_Bridge_Design_Specification.md) | AXI4-to-TL-UL bridge: specification, reference-IP research, RTL, lint, constraints and verification. |
-| [`009_HyperRAM_Controller`](009_HyperRAM_Controller/README.md) | AXI4 subordinate HyperRAM controller: specification and research in progress, no RTL yet. |
 | [`008_APB2TLUL_Bridge`](008_APB2TLUL_Bridge/README.md) | APB4 Completer to TL-UL Manager bridge specification, synthesizable RTL, and self-checking verification. |
+| [`009_HyperRAM_Controller`](009_HyperRAM_Controller/README.md) | AXI4 subordinate HyperRAM controller: specification, CSR workbook, and controller RTL. Refreshed CSR output using generator v3.3 is in `rtl_v2/`; `rtl/` retains the v2.4 baseline. |
+| [`010_AXI4_Upsizer`](010_AXI4_Upsizer/README.md) | AXI4/AXI3 data-width upsizer: design specification, RTL profiles, constraints, waveforms, and verification. |
+| [`011_Timer`](011_Timer/README.md) | Configurable Timer with capture, compare, PWM, one-pulse, APB and DMA request/ack functions. The refreshed `rtl_v2/` uses generator v3.3 and passes the rule checker; `rtl/` retains the earlier baseline. |
+| [`012_QSPI_Controller`](012_QSPI_Controller/README.md) | SPI controller/target and controller-only Dual/Quad/QPI IP: VLSIT HDS, CSR workbook, generated RTL in `rtl_v2/`, diagrams, 18 waveforms, lint and research collateral. |
 
 The block diagram in section 5.2 of each specification is a draw.io diagram (`figures/*.drawio`, VLSIT symbol library) with an SVG rendering, made by `vlsit_spec_diagram.py` of the skill `vlsit-asic-ip-microspec` from the JSON diagram spec beside it.
 
-`rtl/filelist.f` in each design folder is the source list for that design. The CRC modules are alternatives: select the required CRC module as the elaboration top. FIFO filelists also depend on the shared wrappers and cell models noted in their filelist comments.
+Use the filelist documented by each design README; versioned designs may provide more than one source set. The CRC modules are alternatives: select the required CRC module as the elaboration top. FIFO filelists also depend on the shared wrappers and cell models noted in their filelist comments.
 
 ### Status by folder
 
-This table lists what each folder contains as found on 2026-10-27 by listing the folders; it is not a result of re-running any lint, simulation or synthesis. Read the specification (section 20) and the folder README for the verification results and open items.
+This table summarizes current collateral. HyperRAM, Timer and QSPI `rtl_v2/` rule/lint results were rerun on 2026-11-05; other entries remain status notes rather than rerun results. No synthesis was run. Read each specification (section 20) and folder README for verification results and open items.
 
 | Design | Specification and RTL | Lint and constraints | Verification |
 |---|---|---|---|
@@ -37,10 +40,13 @@ This table lists what each folder contains as found on 2026-10-27 by listing the
 | `003_CRC` | specification, five RTL modules | - | `tests/`, `sanity/` |
 | `004_AsyncAPBBridge` | specification, RTL, waveforms | `lint/`; `constraints/` (SDC) | `verification/`, `sanity/` |
 | `005_AHB2AXI_Bridge` | specification, RTL | - | `verification/` |
-| `006_AXI2APB_Bridge` | specification, RTL (`rtl`, `rtl_v2`) | - | no verification folder |
+| `006_AXI2APB_Bridge` | specification; active RTL `rtl_v2/` passes the VLSIT rule checker; legacy `rtl/` has four R-036 findings | - | no verification folder |
 | `007_AXI2TLUL_Bridge` | specification, RTL | `lint/`; `sdc/` | `verification/` |
 | `008_APB2TLUL_Bridge` | specification, RTL | - | `verification/`, `sanity/` |
-| `009_HyperRAM_Controller` | specification and research only | - | none (no RTL) |
+| `009_HyperRAM_Controller` | refreshed controller/CSR set `rtl_v2/` uses generator v3.3; retained `rtl/` CSR is v2.4 | `rtl_v2/`: rule check 0 errors/31 warnings; lint 0 errors/61 warnings | existing smoke test covers `rtl/`; `rtl_v2/` smoke not rerun |
+| `010_AXI4_Upsizer` | specification, AXI4/AXI3 RTL profiles, waveforms | `lint/` | `verification/` |
+| `011_Timer` | refreshed `rtl_v2/` (12 files) uses generator v3.3; retained `rtl/` had 12 rule errors | `rtl_v2/`: rule check 0 errors/149 warnings; lint 0 errors/43 warnings | directed DMA test exists; full Timer simulation was not rerun for the refresh |
+| `012_QSPI_Controller` | VLSIT HDS, CSR workbook, refreshed `rtl_v2/` CSR output using generator v3.3, diagrams, 18 waveforms, research and archive | `rtl_v2/`: rule check 0 errors/20 warnings; lint 0 errors/51 warnings | simulation not run; see the folder README and generation report |
 
 ### Shared RTL and example cells
 
@@ -104,18 +110,21 @@ Thư mục này chứa các khối RTL ASIC dùng chung, mô hình cell ví dụ
 | [`003_CRC`](003_CRC/rtl/filelist.f) | Năm cách hiện thực CRC độc lập, khác nhau về tốc độ xử lý dữ liệu, latency và tính năng. Xem bảng so sánh bên dưới. |
 | [`004_AsyncAPBBridge`](004_AsyncAPBBridge/AsyncAPBBridge_Design_Specification.md) | Bridge APB bất đồng bộ (handshake hai pha hoặc bốn pha, APB4/APB5): đặc tả, RTL, constraint, verification và waveform. |
 | [`005_AHB2AXI_Bridge`](005_AHB2AXI_Bridge/README.md) | Bridge AHB sang AXI: đặc tả, tài liệu chuẩn giao thức, RTL và verification. |
-| [`006_AXI2APB_Bridge`](006_AXI2APB_Bridge/README.md) | Đặc tả và RTL tổng hợp được cho bridge AXI4 Subordinate sang APB4 Manager. |
+| [`006_AXI2APB_Bridge`](006_AXI2APB_Bridge/README.md) | Bridge AXI4 Subordinate sang APB4 Manager; `rtl_v2/` là bộ RTL theo rule, `rtl/` cũ được giữ để đối chiếu. |
 | [`007_AXI2TLUL_Bridge`](007_AXI2TLUL_Bridge/AXI2TLUL_Bridge_Design_Specification.md) | Bridge AXI4 sang TL-UL: đặc tả, nghiên cứu IP tham khảo, RTL, lint, constraint và verification. |
-| [`009_HyperRAM_Controller`](009_HyperRAM_Controller/README.md) | Bộ điều khiển HyperRAM với AXI4 subordinate: đang viết đặc tả và nghiên cứu, chưa có RTL. |
 | [`008_APB2TLUL_Bridge`](008_APB2TLUL_Bridge/README.md) | Đặc tả, RTL tổng hợp được và verification tự kiểm cho bridge APB4 Completer sang TL-UL Manager. |
+| [`009_HyperRAM_Controller`](009_HyperRAM_Controller/README.md) | Bộ điều khiển HyperRAM AXI4 subordinate: đặc tả, workbook CSR và RTL controller. CSR tái sinh bằng generator v3.3 nằm trong `rtl_v2/`; `rtl/` giữ bản nền v2.4. |
+| [`010_AXI4_Upsizer`](010_AXI4_Upsizer/README.md) | Bộ tăng độ rộng dữ liệu AXI4/AXI3: đặc tả thiết kế, các profile RTL, constraint, waveform và verification. |
+| [`011_Timer`](011_Timer/README.md) | Timer hỗ trợ capture, compare, PWM, one-pulse, APB và DMA req/ack. Bộ `rtl_v2/` tái sinh bằng generator v3.3 đã đạt rule check; `rtl/` giữ bản nền trước đó. |
+| [`012_QSPI_Controller`](012_QSPI_Controller/README.md) | IP SPI controller/target và Dual/Quad/QPI chỉ ở controller: HDS VLSIT, workbook CSR, RTL CSR trong `rtl_v2/` dùng generator v3.3, sơ đồ, 18 waveform, lint và tài liệu nghiên cứu. |
 
 Sơ đồ khối ở mục 5.2 của mỗi đặc tả là sơ đồ draw.io (`figures/*.drawio`, thư viện symbol VLSIT) kèm bản SVG, do `vlsit_spec_diagram.py` của skill `vlsit-asic-ip-microspec` tạo từ file JSON mô tả sơ đồ nằm cạnh.
 
-`rtl/filelist.f` trong mỗi thư mục thiết kế là danh sách source của thiết kế đó. Các module CRC là phương án thay thế nhau: chọn module CRC cần dùng làm top khi elaborate. Filelist FIFO cũng cần các wrapper và cell model dùng chung được nêu trong comment của filelist.
+Dùng filelist được ghi trong README của từng thiết kế; thiết kế có version có thể có nhiều bộ source. Các module CRC là phương án thay thế nhau: chọn module CRC cần dùng làm top khi elaborate. Filelist FIFO cũng cần các wrapper và cell model dùng chung được nêu trong comment của filelist.
 
 ### Trạng thái theo thư mục
 
-Bảng này ghi nội dung mỗi thư mục tại ngày 2026-10-27, lấy bằng cách liệt kê thư mục; không phải kết quả chạy lại lint, mô phỏng hay tổng hợp. Xem mục 20 của đặc tả và README của thư mục để biết kết quả verification và các điểm còn mở.
+Bảng này tóm tắt tài liệu hiện có. Rule check và lint của `rtl_v2/` trong HyperRAM, Timer và QSPI được chạy lại ngày 2026-11-05; các mục khác là trạng thái đã ghi nhận, không phải kết quả chạy lại. Chưa chạy synthesis. Xem mục 20 của đặc tả và README từng thư mục để biết các điểm còn mở.
 
 | Thiết kế | Đặc tả và RTL | Lint và constraint | Verification |
 |---|---|---|---|
@@ -126,10 +135,13 @@ Bảng này ghi nội dung mỗi thư mục tại ngày 2026-10-27, lấy bằng
 | `003_CRC` | đặc tả, năm module RTL | - | `tests/`, `sanity/` |
 | `004_AsyncAPBBridge` | đặc tả, RTL, waveform | `lint/`; `constraints/` (SDC) | `verification/`, `sanity/` |
 | `005_AHB2AXI_Bridge` | đặc tả, RTL | - | `verification/` |
-| `006_AXI2APB_Bridge` | đặc tả, RTL (`rtl`, `rtl_v2`) | - | không có thư mục verification |
+| `006_AXI2APB_Bridge` | đặc tả; RTL đang dùng `rtl_v2/` PASS rule checker; `rtl/` cũ có 4 lỗi R-036 | - | không có thư mục verification |
 | `007_AXI2TLUL_Bridge` | đặc tả, RTL | `lint/`; `sdc/` | `verification/` |
 | `008_APB2TLUL_Bridge` | đặc tả, RTL | - | `verification/`, `sanity/` |
-| `009_HyperRAM_Controller` | chỉ có đặc tả và nghiên cứu | - | không có (chưa có RTL) |
+| `009_HyperRAM_Controller` | `rtl_v2/` đã tái sinh CSR bằng generator v3.3; `rtl/` giữ CSR v2.4 | `rtl_v2/`: rule check 0 lỗi/31 cảnh báo; lint 0 lỗi/61 cảnh báo | smoke test cũ chạy trên `rtl/`; chưa chạy lại trên `rtl_v2/` |
+| `010_AXI4_Upsizer` | đặc tả, các profile RTL AXI4/AXI3, waveform | `lint/` | `verification/` |
+| `011_Timer` | bộ `rtl_v2/` gồm 12 file, CSR dùng generator v3.3; `rtl/` cũ có 12 lỗi rule | `rtl_v2/`: rule check 0 lỗi/149 cảnh báo; lint 0 lỗi/43 cảnh báo | có test DMA; chưa chạy mô phỏng chức năng toàn Timer cho lần refresh này |
+| `012_QSPI_Controller` | HDS VLSIT, workbook CSR, CSR `rtl_v2/` dùng generator v3.3, sơ đồ, 18 waveform, nghiên cứu và lưu trữ bản cũ | `rtl_v2/`: rule check 0 lỗi/20 cảnh báo; lint 0 lỗi/51 cảnh báo | chưa chạy simulation; xem README và báo cáo triển khai |
 
 ### RTL dùng chung và mô hình cell
 

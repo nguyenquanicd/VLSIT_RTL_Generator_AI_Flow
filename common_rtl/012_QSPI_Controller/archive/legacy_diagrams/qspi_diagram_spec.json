@@ -1,0 +1,225 @@
+{
+  "page_name": "BLOCK_DIAGRAM",
+  "out_name": "qspi_controller_block_diagram.drawio",
+  "table_suffix": "",
+  "layout": {
+    "gap_h": 120,
+    "gap_v": 120,
+    "margin": 200,
+    "block_h": 56
+  },
+  "top": {
+    "frame_label": [
+      "AXI QSPI",
+      "(m_axi_qspi_controller)"
+    ],
+    "block_label": [
+      "AXI QSPI",
+      "(m_axi_qspi_controller)"
+    ],
+    "block_row": [
+      "m_axi_qspi_controller",
+      "Integrates register and XIP interfaces with the shared serial engine.",
+      "Section 14.2"
+    ]
+  },
+  "frame_row": [
+    "m_axi_qspi_controller frame",
+    "Source-derived QSPI master and read-only XIP target.",
+    "Section 14.2"
+  ],
+  "frame_interfaces": [
+    "REG",
+    "XIP",
+    "QSPI",
+    "IRQ",
+    "CLK",
+    "CFG",
+    "MRQ"
+  ],
+  "blocks": [
+    {
+      "key": "reg",
+      "label": [
+        "Register IF",
+        "(m_axi_qspi_reg_if)"
+      ],
+      "width": 260,
+      "row": 0,
+      "col": 0,
+      "row_name": "u_reg_if (m_axi_qspi_reg_if)",
+      "function": "Decodes software registers, stores control/interrupt state and contains TX/RX byte queues.",
+      "source": "Section 14.2"
+    },
+    {
+      "key": "eng",
+      "label": [
+        "QSPI Engine",
+        "(m_axi_qspi_engine)"
+      ],
+      "width": 260,
+      "row": 0,
+      "col": 1,
+      "row_name": "u_engine (m_axi_qspi_engine)",
+      "function": "Sequences command/address/data phases and drives serial clock, chip select and data lanes.",
+      "source": "Section 14.2"
+    },
+    {
+      "key": "mem",
+      "label": [
+        "XIP IF",
+        "(m_axi_qspi_mem_if)"
+      ],
+      "width": 260,
+      "row": 0,
+      "col": 2,
+      "row_name": "u_mem_if (m_axi_qspi_mem_if)",
+      "function": "Matches host reads to the flash window and packs serial bytes into AXI read beats.",
+      "source": "Section 14.2"
+    }
+  ],
+  "connectors": [
+    {
+      "id": "CFG",
+      "src": "reg",
+      "src_side": "R",
+      "dst": "eng",
+      "dst_side": "L"
+    },
+    {
+      "id": "MRQ",
+      "src": "mem",
+      "src_side": "L",
+      "dst": "eng",
+      "dst_side": "R"
+    }
+  ],
+  "externals": [
+    {
+      "id": "REG",
+      "block": "reg",
+      "side": "L",
+      "dir": "in",
+      "pos": 0,
+      "text": [
+        "REG",
+        "AXI register bus"
+      ]
+    },
+    {
+      "id": "IRQ",
+      "block": "reg",
+      "side": "T",
+      "dir": "out",
+      "pos": 0,
+      "text": [
+        "IRQ",
+        "o_irq_qspi"
+      ]
+    },
+    {
+      "id": "CLK",
+      "block": "reg",
+      "side": "T",
+      "dir": "in",
+      "pos": 0,
+      "text": [
+        "CLK",
+        "i_clk_qspi, i_rst_n_qspi"
+      ]
+    },
+    {
+      "id": "QSPI",
+      "block": "eng",
+      "side": "B",
+      "dir": "out",
+      "pos": 0,
+      "text": [
+        "QSPI",
+        "SCLK, CS, DQ[3:0]"
+      ]
+    },
+    {
+      "id": "XIP",
+      "block": "mem",
+      "side": "R",
+      "dir": "in",
+      "pos": 0,
+      "text": [
+        "XIP",
+        "AXI read host"
+      ]
+    }
+  ],
+  "nets": [
+    {
+      "entry": "CLK",
+      "sinks": [
+        {
+          "id": "CK1",
+          "block": "eng",
+          "side": "T",
+          "pos": 0
+        },
+        {
+          "id": "CK2",
+          "block": "mem",
+          "side": "T",
+          "pos": 0
+        }
+      ]
+    }
+  ],
+  "interfaces": [
+    {
+      "id": "REG",
+      "name": "AXI register access",
+      "category": "AXI",
+      "active": "Host -> register interface",
+      "signals": "AW/W/AR requests and B/R responses; 32-bit single-beat profile."
+    },
+    {
+      "id": "XIP",
+      "name": "AXI XIP access",
+      "category": "AXI",
+      "active": "Host -> memory interface",
+      "signals": "AR request and R response; read-only path."
+    },
+    {
+      "id": "QSPI",
+      "name": "Serial flash pins",
+      "category": "QSPI",
+      "active": "Controller -> flash",
+      "signals": "SCLK, active-low CS, four DQ output and input lanes."
+    },
+    {
+      "id": "IRQ",
+      "name": "Completion/error interrupt",
+      "category": "IRQ",
+      "active": "Controller -> SoC",
+      "signals": "One active-high level from masked sticky causes."
+    },
+    {
+      "id": "CLK",
+      "name": "Clock and reset",
+      "category": "custom",
+      "active": "SoC -> all blocks",
+      "signals": "One clock domain and active-low reset."
+    },
+    {
+      "id": "CFG",
+      "name": "Register control and status",
+      "category": "custom",
+      "active": "Register interface <-> engine",
+      "signals": "Configuration/start flow to engine; busy/done/error status back."
+    },
+    {
+      "id": "MRQ",
+      "name": "XIP request and receive flow",
+      "category": "custom",
+      "active": "Memory interface <-> engine",
+      "signals": "XIP command/offset request to engine; serial receive bytes and completion back."
+    }
+  ],
+  "legend_note": "The register-interface block contains TX/RX FIFO instances in the source. Internal arrows show main request direction; CFG and MRQ interfaces also return status/data."
+}

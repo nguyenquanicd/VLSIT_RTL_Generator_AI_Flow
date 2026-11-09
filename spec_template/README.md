@@ -4,9 +4,22 @@
 
 **EN:** This folder contains an ASIC design specification template, a CSR workbook, and RTL rules. Copy the templates per IP and fill in its requirements and configuration.
 
+## Specification filename
+
+**VI:** Khi tạo hoặc sửa design HDS trong flow này, lưu file theo dạng `VLSIT_<DESIGN_FUNCTION>_HDS.md`. Viết tên chức năng in hoa và thay khoảng trắng hoặc dấu gạch nối bằng dấu gạch dưới, ví dụ `VLSIT_TIMER_HDS.md`.
+
+**EN:** When creating or revising a design HDS in this flow, name the file `VLSIT_<DESIGN_FUNCTION>_HDS.md`. Use an uppercase function name and replace spaces or hyphens with underscores; for example, `VLSIT_TIMER_HDS.md`.
+
+## Source format and exports
+
+**VI:** Đặc tả dùng Markdown làm nguồn chỉnh sửa. Viết công thức TeX trong dòng bằng `$...$`, công thức riêng dòng bằng `$$...$$`, và giữ đường dẫn hình tương đối. Pandoc có thể xuất DOCX; để xuất PDF, cài thêm Typst hoặc PDF engine khác được Pandoc hỗ trợ.
+
+**EN:** The specification uses Markdown as its editable source. Write inline TeX math as `$...$`, display equations as `$$...$$`, and keep figure links relative. Pandoc exports DOCX; PDF export also requires Typst or another supported Pandoc PDF engine.
+
 ## Files
 
 - VLSIT_ASIC_IP_Design_Specification_Template.md — cấu trúc đặc tả IP / IP specification structure.
+- VLSIT_Commercial_HDS_Section_Guide.md — hướng dẫn song ngữ về các mục HDS cho IP thương mại / bilingual section guide for commercial IP HDS.
 - VLSIT_CSR_Specification_Template.xlsx — register map và field definitions / bản đồ thanh ghi và định nghĩa field.
 - VLSIT_RTL_Design_Rule.md — coding rules cho RTL ASIC / ASIC RTL coding rules.
 - VLSIT_Verification_Rule.md — rule cho testbench, assertion giao thức và phân tích FAIL (không đổi flow) / rules for testbenches, protocol assertions and failure analysis (no flow change).

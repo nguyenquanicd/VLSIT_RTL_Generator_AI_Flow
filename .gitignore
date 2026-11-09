@@ -72,3 +72,6 @@ ucli.key
 
 # Vendor simulation models (protected, not for redistribution)
 /common_rtl/009_HyperRAM_Controller/reference/vendor_models/
+
+# Local-only IP folder (not versioned)
+/common_rtl/013_MKV_Block_Cipher/

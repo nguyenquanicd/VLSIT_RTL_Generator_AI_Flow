@@ -1,0 +1,37 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_qspi",
+      "wave": "p......."
+    },
+    {
+      "name": "i_axi_reg_wvalid",
+      "wave": "01......"
+    },
+    {
+      "name": "reg_tx_full",
+      "wave": "0.1....."
+    },
+    {
+      "name": "o_axi_reg_bvalid",
+      "wave": "0.1....."
+    },
+    {
+      "name": "o_axi_reg_bresp",
+      "wave": "x.=.....",
+      "data": [
+        "OKAY"
+      ]
+    },
+    {
+      "name": "reg_irq_err",
+      "wave": "0...1..."
+    }
+  ],
+  "head": {
+    "text": "TX FIFO full"
+  },
+  "foot": {
+    "text": "Accepted register write can be dropped while generic error becomes sticky."
+  }
+}

@@ -1,0 +1,1969 @@
+    {
+    "Project": "VLSIT Common RTL library",
+    "Module": "JSON debug file",
+    "Function": "Used to check the configuration after generation",
+    "Author": "Nguyen Quan and Claude Sonnet 5.5 (user)",
+    "Generator": "PC",
+    "Generator version": "3.5",
+    "Page": "VLSI Technology",
+    "Table - Configuration": [
+    {
+        "Module Name": "m_vlsit_csr_sha",
+        "Address Width": "16",
+        "Data Width": "32",
+        "Protocol": "APB4",
+        "Asynchronous": "1",
+        "Strobe Mode": "HONOR",
+        "AXI Outstanding Mode": "SINGLE",
+        "AXI Read Depth": "2",
+        "AXI Write Depth": "2",
+        "AHB Endian": "LITTLE",
+        "Register Event Sideband": "0"
+    }
+    ],
+    "Table - Register Definition": [
+        {
+        "Register Name": "sha_cap0",
+        "Offset": "0x0000",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
+        "Reset Value": "0x11010002",
+        "Descriprtion": "Capability register 0. Reports the algorithms, contexts and bus width built into this instance.",
+        "Bits": [
+            {
+                "Bit Name": "rev",
+                "Bit Type": "ro",
+                "Bit Field": "[31:28]",
+                "Reset Value": "0x1",
+                "Description": "Register map revision. Version number of this register description.
+
+Usage: Read by software to select the driver for this register layout.
+
+Values:
+0x1 first revision (reset value).
+
+Unit: none
+
+Limits: Incremented by each incompatible change of the map."
+            },
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[27:26]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "axiw",
+                "Bit Type": "ro",
+                "Bit Field": "[25:24]",
+                "Reset Value": "0x1",
+                "Description": "AXI data width code. Width of the AXI4 data bus of the message and digest windows, set by the elaboration parameter.
+
+Usage: Read by software to find how many bytes one window beat carries.
+
+Values:
+0x0 32 bits;
+0x1 64 bits (reset value);
+0x2 128 bits.
+
+Unit: code
+
+Limits: Constant after elaboration."
+            },
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[23:21]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "ctxn",
+                "Bit Type": "ro",
+                "Bit Field": "[20:16]",
+                "Reset Value": "0x01",
+                "Description": "Number of contexts. Number of independent messages that the IP keeps in progress at the same time, set by the elaboration parameter.
+
+Usage: Read by software to know how many interleaved messages it may start and the legal range of the context select field.
+
+Values:
+0x01 to 0x10 context count (reset value 0x01).
+
+Unit: contexts
+
+Limits: Constant after elaboration; legal values 1 to 16."
+            },
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[15:12]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "alg",
+                "Bit Type": "ro",
+                "Bit Field": "[11:0]",
+                "Reset Value": "0x002",
+                "Description": "Built algorithm map. One bit for each hash algorithm; the bit is 1 when that algorithm exists in the hardware.
+
+Usage: Read by software before it writes the algorithm field of the control register; a code whose bit is 0 sets the configuration error event.
+
+Values:
+0x002 only SHA-256 built (reset value);
+0x001 to 0xFFF bit mask: bit 0 SHA-224, 1 SHA-256, 2 SHA-384, 3 SHA-512, 4 SHA-512/224, 5 SHA-512/256, 6 SHA3-224, 7 SHA3-256, 8 SHA3-384, 9 SHA3-512, 10 SHAKE128, 11 SHAKE256.
+
+Unit: mask
+
+Limits: Constant after elaboration; at least one bit is 1."
+            }
+          ]
+        },
+        {
+        "Register Name": "sha_cap1",
+        "Offset": "0x0004",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
+        "Reset Value": "0x10000001",
+        "Descriprtion": "Capability register 1. Reports the round unrolling and the optional security and DMA features of this instance.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "sdsrc",
+                "Bit Type": "ro",
+                "Bit Field": "[30]",
+                "Reset Value": "0x0",
+                "Description": "Mask seed source. Selects where the random generator of the masked Keccak core gets its seed: the entropy input port or the seed registers.
+
+Usage: Read by software to know whether it has to write the seed registers and give the seed command.
+
+Values:
+0x0 entropy input port (reset value);
+0x1 seed registers written by software.
+
+Unit: none
+
+Limits: Meaningful only when masked Keccak is built."
+            },
+            {
+                "Bit Name": "dma",
+                "Bit Type": "ro",
+                "Bit Field": "[29]",
+                "Reset Value": "0x0",
+                "Description": "External DMA handshake built in. Indicates that the request and acknowledge ports of an external DMA controller are active.
+
+Usage: Read by software before it sets the DMA enable field of the control register.
+
+Values:
+0x0 not built (reset value);
+0x1 built.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "zero",
+                "Bit Type": "ro",
+                "Bit Field": "[28]",
+                "Reset Value": "0x1",
+                "Description": "State clearing built in. Indicates that the context memory, the FIFOs and the core registers can be cleared.
+
+Usage: Read by software before it relies on the clear command or on the automatic clearing.
+
+Values:
+0x0 not built;
+0x1 built (reset value).
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "mask",
+                "Bit Type": "ro",
+                "Bit Field": "[27]",
+                "Reset Value": "0x0",
+                "Description": "Masked Keccak built in. Indicates that the Keccak core runs on two shares with random masking of the first order.
+
+Usage: Read by software before it sets the mask enable field of the control register.
+
+Values:
+0x0 not built (reset value);
+0x1 built.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "fredo",
+                "Bit Type": "ro",
+                "Bit Field": "[26]",
+                "Reset Value": "0x0",
+                "Description": "Recompute detection built in. Indicates that every block can be computed twice and the results compared.
+
+Usage: Read by software before it sets the recompute detection field of the security register.
+
+Values:
+0x0 not built (reset value);
+0x1 built.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "fpar",
+                "Bit Type": "ro",
+                "Bit Field": "[25]",
+                "Reset Value": "0x0",
+                "Description": "Parity detection built in. Indicates that parity bits protect the state registers and the context memory.
+
+Usage: Read by software before it sets the parity detection field of the security register.
+
+Values:
+0x0 not built (reset value);
+0x1 built.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "fdup",
+                "Bit Type": "ro",
+                "Bit Field": "[24]",
+                "Reset Value": "0x0",
+                "Description": "Duplicate-core detection built in. Indicates that a second copy of each core runs in parallel and its results are compared.
+
+Usage: Read by software before it sets the duplicate detection field of the security register.
+
+Values:
+0x0 not built (reset value);
+0x1 built.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[23:21]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "kecunr",
+                "Bit Type": "ro",
+                "Bit Field": "[20:16]",
+                "Reset Value": "0x00",
+                "Description": "Keccak core unrolling. Number of Keccak-f[1600] rounds that the hardware computes in one clock cycle.
+
+Usage: Read by software to compute the time per block: 24 divided by this value, times the pipeline factor, plus 2 cycles.
+
+Values:
+0x00 core not built (reset value);
+0x01 to 0x18 rounds per cycle.
+
+Unit: rounds
+
+Limits: A divisor of 24."
+            },
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[15]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "s512unr",
+                "Bit Type": "ro",
+                "Bit Field": "[14:8]",
+                "Reset Value": "0x00",
+                "Description": "SHA-512 core unrolling. Number of SHA-384, SHA-512 and SHA-512/t rounds that the hardware computes in one clock cycle.
+
+Usage: Read by software to compute the time per block: 80 divided by this value, times the pipeline factor, plus 2 cycles.
+
+Values:
+0x00 core not built (reset value);
+0x01 to 0x50 rounds per cycle.
+
+Unit: rounds
+
+Limits: A divisor of 80."
+            },
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[7]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "s256unr",
+                "Bit Type": "ro",
+                "Bit Field": "[6:0]",
+                "Reset Value": "0x01",
+                "Description": "SHA-256 core unrolling. Number of SHA-256 and SHA-224 rounds that the hardware computes in one clock cycle.
+
+Usage: Read by software to compute the time per block: 64 divided by this value, times the pipeline factor, plus 2 cycles.
+
+Values:
+0x01 to 0x40 rounds per cycle (reset value 0x01).
+
+Unit: rounds
+
+Limits: A divisor of 64; zero when no SHA-224 or SHA-256 is built."
+            }
+          ]
+        },
+        {
+        "Register Name": "sha_ctrl",
+        "Offset": "0x0008",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
+        "Reset Value": "0x00000100",
+        "Descriprtion": "Control register. Enables the IP and selects the algorithm and the context for the next commands.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:26]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "dmaen",
+                "Bit Type": "rw",
+                "Bit Field": "[25]",
+                "Reset Value": "0x0",
+                "Description": "External DMA enable. Lets the IP raise the request signals of the external DMA handshake for the input and output windows.
+
+Usage: Program it when a DMA controller moves the message and the digest; clear it when software writes the windows.
+
+Values:
+0x0 handshake off (reset value);
+0x1 handshake on.
+
+Unit: none
+
+Limits: Ignored when the capability register reports no DMA handshake."
+            },
+            {
+                "Bit Name": "mask",
+                "Bit Type": "rw",
+                "Bit Field": "[24]",
+                "Reset Value": "0x0",
+                "Description": "Mask enable. Runs the Keccak algorithms on two shares with random masking when the masked Keccak core is built.
+
+Usage: Program it while no SHA-3 or SHAKE message is in progress; it applies to the messages started afterwards.
+
+Values:
+0x0 unmasked Keccak (reset value);
+0x1 masked Keccak.
+
+Unit: none
+
+Limits: Ignored when the capability register reports no masked Keccak."
+            },
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[23:21]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "ctxsel",
+                "Bit Type": "rw",
+                "Bit Field": "[20:16]",
+                "Reset Value": "0x00",
+                "Description": "Context select. Selects the context that the commands, the length register and the status, level and counter registers refer to.
+
+Usage: Program it before every command that concerns one context; it does not change the window address, which carries the context number.
+
+Values:
+0x00 to 0x0F context number (reset value 0x00).
+
+Unit: none
+
+Limits: Must be below the context count of the capability register; a larger value sets the configuration error event."
+            },
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[15:12]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "algo",
+                "Bit Type": "rw",
+                "Bit Field": "[11:8]",
+                "Reset Value": "0x1",
+                "Description": "Algorithm select. Chooses the hash algorithm that the init command loads into the selected context.
+
+Usage: Program it before the init command; changing it later does not change a message in progress.
+
+Values:
+0x0 SHA-224;
+0x1 SHA-256 (reset value);
+0x2 SHA-384;
+0x3 SHA-512;
+0x4 SHA-512/224;
+0x5 SHA-512/256;
+0x8 SHA3-224;
+0x9 SHA3-256;
+0xA SHA3-384;
+0xB SHA3-512;
+0xC SHAKE128;
+0xD SHAKE256.
+
+Unit: code
+
+Limits: The other codes are reserved. A code whose bit is 0 in the capability register is rejected with the configuration error event."
+            },
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[7:1]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "en",
+                "Bit Type": "rw",
+                "Bit Field": "[0]",
+                "Reset Value": "0x0",
+                "Description": "IP enable. Enables the datapath; when 0 the sequencer starts no new block and the windows still accept data.
+
+Usage: Program it after the algorithm is chosen; clearing it while a block runs lets that block finish and holds the next ones.
+
+Values:
+0x0 disabled (reset value);
+0x1 enabled.
+
+Unit: none
+
+Limits: none"
+            }
+          ]
+        },
+        {
+        "Register Name": "sha_cmd",
+        "Offset": "0x000c",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Command register. Holds the one-shot commands of the IP.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:6]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "seed",
+                "Bit Type": "rwi",
+                "Bit Field": "[5]",
+                "Reset Value": "0x0",
+                "Description": "Seed command. Loads the random generator of the masked Keccak core from the seed words that software wrote.
+
+Usage: Software writes 1 to start the action; hardware clears the bit when the action has been accepted or completed. Do not write the register again while a bit is set.
+
+Values:
+0x0 no action (reset value);
+0x1 start the action.
+
+Unit: none
+
+Limits: Accepted only when the seed source of the capability register is the seed registers."
+            },
+            {
+                "Bit Name": "clear",
+                "Bit Type": "rwi",
+                "Bit Field": "[4]",
+                "Reset Value": "0x0",
+                "Description": "Clear command. Writes zero into the context memory, the FIFOs and the core registers of the selected context without changing the algorithm field.
+
+Usage: Software writes 1 to start the action; hardware clears the bit when the action has been accepted or completed. Do not write the register again while a bit is set.
+
+Values:
+0x0 no action (reset value);
+0x1 start the action.
+
+Unit: none
+
+Limits: Ignored when the capability register reports no state clearing."
+            },
+            {
+                "Bit Name": "srst",
+                "Bit Type": "rwi",
+                "Bit Field": "[3]",
+                "Reset Value": "0x0",
+                "Description": "Soft reset command. Clears all contexts, FIFOs, cores and the error record and keeps the control, security and DMA registers.
+
+Usage: Software writes 1 to start the action; hardware clears the bit when the action has been accepted or completed. Do not write the register again while a bit is set.
+
+Values:
+0x0 no action (reset value);
+0x1 start the action.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "abort",
+                "Bit Type": "rwi",
+                "Bit Field": "[2]",
+                "Reset Value": "0x0",
+                "Description": "Abort command. Drops the message of the selected context, clears its FIFOs and state and returns it to the free state.
+
+Usage: Software writes 1 to start the action; hardware clears the bit when the action has been accepted or completed. Do not write the register again while a bit is set.
+
+Values:
+0x0 no action (reset value);
+0x1 start the action.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "final",
+                "Bit Type": "rwi",
+                "Bit Field": "[1]",
+                "Reset Value": "0x0",
+                "Description": "Final command. Tells the IP that the last word of the message has been written; it adds the padding and finishes the message of the selected context.
+
+Usage: Software writes 1 to start the action; hardware clears the bit when the action has been accepted or completed. Do not write the register again while a bit is set.
+
+Values:
+0x0 no action (reset value);
+0x1 start the action.
+
+Unit: none
+
+Limits: Write the length register first; rejected with the configuration error event when the context is not in the absorbing state."
+            },
+            {
+                "Bit Name": "init",
+                "Bit Type": "rwi",
+                "Bit Field": "[0]",
+                "Reset Value": "0x0",
+                "Description": "Initialization command. Starts a new message in the selected context: loads the initial hash value or clears the Keccak state, and clears the length counter and the FIFOs of that context.
+
+Usage: Software writes 1 to start the action; hardware clears the bit when the action has been accepted or completed. Do not write the register again while a bit is set.
+
+Values:
+0x0 no action (reset value);
+0x1 start the action.
+
+Unit: none
+
+Limits: Rejected with the configuration error event when the algorithm is not built or the context is busy."
+            }
+          ]
+        },
+        {
+        "Register Name": "sha_len",
+        "Offset": "0x0010",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Length register. Gives the number of valid bytes of the last word of the message in the selected context.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:8]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "tail",
+                "Bit Type": "rw",
+                "Bit Field": "[7:0]",
+                "Reset Value": "0x00",
+                "Description": "Valid bytes of the last word. Number of bytes of the last word written to the input window that belong to the message; the other bytes are ignored.
+
+Usage: Write it before the final command; software always writes full words, so the last word carries the message bytes in its low lanes.
+
+Values:
+0x00 all bytes of the last word are valid (reset value);
+0x01 to 0x7F valid bytes, below the bytes of one word.
+
+Unit: bytes
+
+Limits: Must be below the bytes of one AXI word; a larger value sets the configuration error event."
+            }
+          ]
+        },
+        {
+        "Register Name": "sha_dmac",
+        "Offset": "0x0014",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
+        "Reset Value": "0x00000010",
+        "Descriprtion": "DMA control register. Holds the burst size and the burst timeout of the external DMA handshake.",
+        "Bits": [
+            {
+                "Bit Name": "tmo",
+                "Bit Type": "rw",
+                "Bit Field": "[31:16]",
+                "Reset Value": "0x0",
+                "Description": "Burst timeout. Number of clock cycles without new digest words after which a short output burst is padded with zeros and requested.
+
+Usage: Program it when the digest is shorter than one burst; the number of valid words is reported in the valid words register.
+
+Values:
+0x0000 timeout disabled (reset value);
+0x0001 to 0xFFFF timeout in clock cycles.
+
+Unit: clock cycles
+
+Limits: none"
+            },
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[15:9]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "burst",
+                "Bit Type": "rw",
+                "Bit Field": "[8:0]",
+                "Reset Value": "0x10",
+                "Description": "Burst size. Number of AXI words in one burst of the external DMA handshake; a request is raised when the input FIFO can take or the output FIFO can give this many words.
+
+Usage: Program it while no message runs to match the burst length configured in the DMA controller.
+
+Values:
+0x001 to 0x100 words per burst (reset value 0x010).
+
+Unit: AXI words
+
+Limits: Zero and values above 0x100 are illegal; the request is then not raised and the configuration error event is set."
+            }
+          ]
+        },
+        {
+        "Register Name": "sha_sec",
+        "Offset": "0x0018",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
+        "Reset Value": "0x00030001",
+        "Descriprtion": "Security register. Enables state clearing, the fault detection mechanisms and the responses to a detected fault.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:20]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "resp",
+                "Bit Type": "rw",
+                "Bit Field": "[19:16]",
+                "Reset Value": "0x3",
+                "Description": "Fault response select. Bit 0 gates the digest and output words until soft reset; bit 1 locks the IP until soft reset; bit 2 clears all context state; bit 3 raises the alarm output.
+
+Usage: Program it while no message runs; the fault event and interrupt are always raised.
+
+Values:
+0x0 to 0xF mask of the active responses (reset value 0x3).
+
+Unit: mask
+
+Limits: Bit 3 has an effect only when the alarm output is built."
+            },
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[15:11]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "fredo",
+                "Bit Type": "rw",
+                "Bit Field": "[10]",
+                "Reset Value": "0x0",
+                "Description": "Recompute detection select. Computes every block twice and compares the two results; the throughput halves.
+
+Usage: Set it only when the capability register reports recompute detection as built.
+
+Values:
+0x0 not selected (reset value);
+0x1 selected.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "fpar",
+                "Bit Type": "rw",
+                "Bit Field": "[9]",
+                "Reset Value": "0x0",
+                "Description": "Parity detection select. Checks the parity bits of the core state registers and the context memory.
+
+Usage: Set it only when the capability register reports parity detection as built.
+
+Values:
+0x0 not selected (reset value);
+0x1 selected.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "fdup",
+                "Bit Type": "rw",
+                "Bit Field": "[8]",
+                "Reset Value": "0x0",
+                "Description": "Duplicate-core detection select. Compares the output of each core with the output of its duplicate.
+
+Usage: Set it only when the capability register reports duplicate detection as built.
+
+Values:
+0x0 not selected (reset value);
+0x1 selected.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[7:5]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "fault",
+                "Bit Type": "rw",
+                "Bit Field": "[4]",
+                "Reset Value": "0x0",
+                "Description": "Fault detection enable. Turns on the detection mechanisms selected by the duplicate, parity and recompute fields.
+
+Usage: Set it while no message runs, after choosing the mechanisms.
+
+Values:
+0x0 off (reset value);
+0x1 on.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[3:1]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "zero",
+                "Bit Type": "rw",
+                "Bit Field": "[0]",
+                "Reset Value": "0x1",
+                "Description": "Automatic clearing enable. Clears the state of a context after its digest has been read or the message has been aborted, and holds the core registers at zero while idle.
+
+Usage: Enable it to limit the retention of message-dependent data in idle registers. It is not a side-channel countermeasure.
+
+Values:
+0x0 off;
+0x1 on (reset value).
+
+Unit: none
+
+Limits: Ignored when state clearing is not built."
+            }
+          ]
+        },
+        {
+        "Register Name": "sha_seed",
+        "Offset": "0x0020",
+        "Repeat Mode": "PARAMETERIZED",
+        "Count or Default": "8",
+        "Offset Stride": "4",
+        "Maximum Count": "16",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Seed register. Write-only words of the seed of the random generator of the masked Keccak core.",
+        "Bits": [
+            {
+                "Bit Name": "wd",
+                "Bit Type": "wo",
+                "Bit Field": "[31:0]",
+                "Reset Value": "0x0",
+                "Description": "Seed word. One 32-bit word of the seed; reads return zero and the hardware clears the word after the seed command has copied it.
+
+Usage: Write the eight words before the seed command; used only when the seed source of the capability register is the seed registers.
+
+Values:
+0x00000000 to 0xFFFFFFFF seed word (reset value 0x00000000).
+
+Unit: none
+
+Limits: Eight words are used."
+            }
+          ]
+        },
+        {
+        "Register Name": "sha_sts",
+        "Offset": "0x0060",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
+        "Reset Value": "0x00000002",
+        "Descriprtion": "Status register. Reports the state of the IP and of the selected context.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:12]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "cstate",
+                "Bit Type": "ro",
+                "Bit Field": "[11:8]",
+                "Reset Value": "0x0",
+                "Description": "Context state. State of the selected context.
+
+Usage: Read it after an error to see where the message stopped.
+
+Values:
+0x0 free (reset value);
+0x1 absorbing message words;
+0x2 padding and last blocks;
+0x3 digest ready;
+0x4 squeezing output (SHAKE);
+0xF locked by a fault.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[7:6]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "seeded",
+                "Bit Type": "ro",
+                "Bit Field": "[5]",
+                "Reset Value": "0x0",
+                "Description": "Random generator seeded. The random generator of the masked Keccak core has a valid seed.
+
+Usage: Wait for 1 before the first masked SHA-3 or SHAKE message.
+
+Values:
+0x0 not seeded (reset value);
+0x1 seeded.
+
+Unit: none
+
+Limits: Meaningful only when masked Keccak is built."
+            },
+            {
+                "Bit Name": "dmaact",
+                "Bit Type": "ro",
+                "Bit Field": "[4]",
+                "Reset Value": "0x0",
+                "Description": "DMA active. The external DMA handshake has a request raised or an acknowledge pending.
+
+Usage: Read for diagnosis.
+
+Values:
+0x0 no DMA activity (reset value);
+0x1 DMA activity.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "locked",
+                "Bit Type": "ro",
+                "Bit Field": "[3]",
+                "Reset Value": "0x0",
+                "Description": "IP locked. A fault response locked the IP until the soft reset command.
+
+Usage: Give the soft reset command to clear it.
+
+Values:
+0x0 not locked (reset value);
+0x1 locked.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "ready",
+                "Bit Type": "ro",
+                "Bit Field": "[2]",
+                "Reset Value": "0x0",
+                "Description": "Digest ready. The digest of the selected context has been computed and its first words are in the output FIFO.
+
+Usage: Poll it after the final command, or use the done event.
+
+Values:
+0x0 not ready (reset value);
+0x1 ready.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "idle",
+                "Bit Type": "ro",
+                "Bit Field": "[1]",
+                "Reset Value": "0x1",
+                "Description": "IP idle. No block is in a core and no word waits in an input FIFO.
+
+Usage: Use it as the condition for changing the security and the control registers.
+
+Values:
+0x0 not idle;
+0x1 idle (reset value).
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "busy",
+                "Bit Type": "ro",
+                "Bit Field": "[0]",
+                "Reset Value": "0x0",
+                "Description": "IP busy. A block is being computed or a message waits for the core.
+
+Usage: Poll it to know when the IP is idle before the soft reset command.
+
+Values:
+0x0 idle (reset value);
+0x1 busy.
+
+Unit: none
+
+Limits: none"
+            }
+          ]
+        },
+        {
+        "Register Name": "sha_lvl",
+        "Offset": "0x0064",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "FIFO level register. Reports the fill level of the FIFOs of the selected context.",
+        "Bits": [
+            {
+                "Bit Name": "outlvl",
+                "Bit Type": "ro",
+                "Bit Field": "[31:16]",
+                "Reset Value": "0x0000",
+                "Description": "Output FIFO level. Number of AXI words in the output FIFO of the selected context.
+
+Usage: Read before reading the window to avoid reading zeros.
+
+Values:
+0x0000 to 0xFFFF words in the FIFO (reset value 0x0000).
+
+Unit: AXI words
+
+Limits: Bounded by the output FIFO depth parameter."
+            },
+            {
+                "Bit Name": "inlvl",
+                "Bit Type": "ro",
+                "Bit Field": "[15:0]",
+                "Reset Value": "0x0000",
+                "Description": "Input FIFO level. Number of AXI words in the input FIFO of the selected context.
+
+Usage: Read before writing words into the window to avoid dropped words.
+
+Values:
+0x0000 to 0xFFFF words in the FIFO (reset value 0x0000).
+
+Unit: AXI words
+
+Limits: Bounded by the input FIFO depth parameter."
+            }
+          ]
+        },
+        {
+        "Register Name": "sha_blk",
+        "Offset": "0x0068",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Block counter register. Counts the blocks that the cores have processed for the selected context.",
+        "Bits": [
+            {
+                "Bit Name": "cnt",
+                "Bit Type": "ro",
+                "Bit Field": "[31:0]",
+                "Reset Value": "0x0",
+                "Description": "Processed blocks. Number of compression or permutation blocks computed for the message in the selected context since its init command.
+
+Usage: Read after an error or an abort to find where the message stopped.
+
+Values:
+0x00000000 to 0xFFFFFFFF block count (reset value 0x00000000).
+
+Unit: blocks
+
+Limits: Cleared by the init, abort and soft reset commands; wraps at the maximum value."
+            }
+          ]
+        },
+        {
+        "Register Name": "sha_byte",
+        "Offset": "0x006c",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Byte counter register. Counts the message bytes absorbed for the selected context.",
+        "Bits": [
+            {
+                "Bit Name": "cnt",
+                "Bit Type": "ro",
+                "Bit Field": "[31:0]",
+                "Reset Value": "0x0",
+                "Description": "Absorbed bytes. Low 32 bits of the number of message bytes written for the message in the selected context since its init command.
+
+Usage: Read to check the length of a stream against the expected length before the final command.
+
+Values:
+0x00000000 to 0xFFFFFFFF byte count (reset value 0x00000000).
+
+Unit: bytes
+
+Limits: Cleared by the init, abort and soft reset commands; wraps at the maximum value."
+            }
+          ]
+        },
+        {
+        "Register Name": "sha_dvld",
+        "Offset": "0x0070",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Valid words register. Reports the valid words of the last padded external DMA output burst.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:9]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "words",
+                "Bit Type": "ro",
+                "Bit Field": "[8:0]",
+                "Reset Value": "0x000",
+                "Description": "Valid words of the last burst. Number of real digest or output words in the last output burst that was padded with zeros after a timeout.
+
+Usage: Read it after the DMA timeout event to discard the padding words.
+
+Values:
+0x000 to 0x100 valid words (reset value 0x000).
+
+Unit: AXI words
+
+Limits: Zero means that no burst was padded."
+            }
+          ]
+        },
+        {
+        "Register Name": "sha_err",
+        "Offset": "0x0074",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Error information register. Records the latest window error of the IP.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:28]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "udf",
+                "Bit Type": "ro",
+                "Bit Field": "[27:20]",
+                "Reset Value": "0x00",
+                "Description": "Underflow count. Number of reads of an empty window since the last soft reset; saturates at 255.
+
+Usage: Read to judge how many zero words software received.
+
+Values:
+0x00 to 0xFF empty reads (reset value 0x00).
+
+Unit: events
+
+Limits: Saturating."
+            },
+            {
+                "Bit Name": "ovf",
+                "Bit Type": "ro",
+                "Bit Field": "[19:12]",
+                "Reset Value": "0x00",
+                "Description": "Overflow count. Number of dropped writes since the last soft reset; saturates at 255.
+
+Usage: Read to judge how much data was lost.
+
+Values:
+0x00 to 0xFF dropped writes (reset value 0x00).
+
+Unit: events
+
+Limits: Saturating."
+            },
+            {
+                "Bit Name": "kind",
+                "Bit Type": "ro",
+                "Bit Field": "[11:8]",
+                "Reset Value": "0x0",
+                "Description": "Error kind. Kind of the latest window error.
+
+Usage: Read after an overflow, underflow, AXI or length event.
+
+Values:
+0x0 no error (reset value);
+0x1 write to a full input window dropped;
+0x2 read of an empty output window returned zero;
+0x3 access to the wrong window direction;
+0x4 unsupported AXI transaction rejected with SLVERR;
+0x5 message length limit exceeded.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[7:5]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "ctx",
+                "Bit Type": "ro",
+                "Bit Field": "[4:0]",
+                "Reset Value": "0x00",
+                "Description": "Error context. Context number of the latest window error.
+
+Usage: Read after an overflow or underflow event.
+
+Values:
+0x00 to 0x0F context number (reset value 0x00).
+
+Unit: none
+
+Limits: none"
+            }
+          ]
+        },
+        {
+        "Register Name": "sha_erra",
+        "Offset": "0x0078",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Error address register. Records the low 32 bits of the AXI address of the latest window error.",
+        "Bits": [
+            {
+                "Bit Name": "addr",
+                "Bit Type": "ro",
+                "Bit Field": "[31:0]",
+                "Reset Value": "0x0",
+                "Description": "Error address. Low 32 bits of the AXI address that caused the latest window error.
+
+Usage: Read together with the error information register.
+
+Values:
+0x00000000 to 0xFFFFFFFF AXI address (reset value 0x00000000).
+
+Unit: bytes
+
+Limits: none"
+            }
+          ]
+        },
+        {
+        "Register Name": "sha_irq_raw",
+        "Offset": "0x00c0",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Raw interrupt register. Holds the sticky events of the IP.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:24]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "len",
+                "Bit Type": "w1c",
+                "Bit Field": "[23]",
+                "Reset Value": "0x0",
+                "Description": "Length limit event. A message exceeded the maximum length of 2 to the power 61 minus 1 bytes.
+
+Usage: Hardware sets the bit when the event happens; software writes 1 to clear it. A hardware set in the same cycle as a clear wins.
+
+Values:
+0x0 no event (reset value);
+0x1 event pending.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "tmo",
+                "Bit Type": "w1c",
+                "Bit Field": "[22]",
+                "Reset Value": "0x0",
+                "Description": "DMA timeout event. The burst timer expired and a short output burst was padded with zeros.
+
+Usage: Hardware sets the bit when the event happens; software writes 1 to clear it. A hardware set in the same cycle as a clear wins.
+
+Values:
+0x0 no event (reset value);
+0x1 event pending.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "ent",
+                "Bit Type": "w1c",
+                "Bit Field": "[21]",
+                "Reset Value": "0x0",
+                "Description": "Entropy starved event. The masked Keccak core needed random bits and the random generator had no valid seed or entropy.
+
+Usage: Hardware sets the bit when the event happens; software writes 1 to clear it. A hardware set in the same cycle as a clear wins.
+
+Values:
+0x0 no event (reset value);
+0x1 event pending.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "flt",
+                "Bit Type": "w1c",
+                "Bit Field": "[20]",
+                "Reset Value": "0x0",
+                "Description": "Fault detected event. A fault detection mechanism found a mismatch and the responses of the security register were applied.
+
+Usage: Hardware sets the bit when the event happens; software writes 1 to clear it. A hardware set in the same cycle as a clear wins.
+
+Values:
+0x0 no event (reset value);
+0x1 event pending.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "cfg",
+                "Bit Type": "w1c",
+                "Bit Field": "[19]",
+                "Reset Value": "0x0",
+                "Description": "Configuration error event. A command or a register value was rejected: algorithm not built, context busy or out of range, or an illegal length or burst.
+
+Usage: Hardware sets the bit when the event happens; software writes 1 to clear it. A hardware set in the same cycle as a clear wins.
+
+Values:
+0x0 no event (reset value);
+0x1 event pending.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "axi",
+                "Bit Type": "w1c",
+                "Bit Field": "[18]",
+                "Reset Value": "0x0",
+                "Description": "AXI error event. The AXI4 subordinate rejected an unsupported transaction with SLVERR.
+
+Usage: Hardware sets the bit when the event happens; software writes 1 to clear it. A hardware set in the same cycle as a clear wins.
+
+Values:
+0x0 no event (reset value);
+0x1 event pending.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "udf",
+                "Bit Type": "w1c",
+                "Bit Field": "[17]",
+                "Reset Value": "0x0",
+                "Description": "FIFO underflow event. A read of an empty output FIFO window returned zero.
+
+Usage: Hardware sets the bit when the event happens; software writes 1 to clear it. A hardware set in the same cycle as a clear wins.
+
+Values:
+0x0 no event (reset value);
+0x1 event pending.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "ovf",
+                "Bit Type": "w1c",
+                "Bit Field": "[16]",
+                "Reset Value": "0x0",
+                "Description": "FIFO overflow event. A write to a full input FIFO window was dropped.
+
+Usage: Hardware sets the bit when the event happens; software writes 1 to clear it. A hardware set in the same cycle as a clear wins.
+
+Values:
+0x0 no event (reset value);
+0x1 event pending.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "cdone",
+                "Bit Type": "w1c",
+                "Bit Field": "[15:0]",
+                "Reset Value": "0x0",
+                "Description": "Context done event. The message of the context whose bit number is set has finished: its digest is ready, or for a SHAKE message its first output block is ready.
+
+Usage: Hardware sets the bit when the event happens; software writes 1 to clear it. A hardware set in the same cycle as a clear wins.
+
+Values:
+0x0000 no event (reset value);
+0x0001 to 0xFFFF bit mask of the contexts that finished.
+
+Unit: none
+
+Limits: Bits above the context count are always 0."
+            }
+          ]
+        },
+        {
+        "Register Name": "sha_irq_en",
+        "Offset": "0x00c4",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Interrupt enable register. Enables each event to raise the interrupt outputs.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:24]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "len",
+                "Bit Type": "rw",
+                "Bit Field": "[23]",
+                "Reset Value": "0x0",
+                "Description": "Length limit enable. Lets the length limit event raise the interrupt output.
+
+Usage: Set it after the event handler is ready; the raw event is recorded whatever its value.
+
+Values:
+0x0 event masked (reset value);
+0x1 event enabled.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "tmo",
+                "Bit Type": "rw",
+                "Bit Field": "[22]",
+                "Reset Value": "0x0",
+                "Description": "DMA timeout enable. Lets the DMA timeout event raise the interrupt output.
+
+Usage: Set it after the event handler is ready; the raw event is recorded whatever its value.
+
+Values:
+0x0 event masked (reset value);
+0x1 event enabled.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "ent",
+                "Bit Type": "rw",
+                "Bit Field": "[21]",
+                "Reset Value": "0x0",
+                "Description": "Entropy starved enable. Lets the entropy starved event raise the interrupt output.
+
+Usage: Set it after the event handler is ready; the raw event is recorded whatever its value.
+
+Values:
+0x0 event masked (reset value);
+0x1 event enabled.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "flt",
+                "Bit Type": "rw",
+                "Bit Field": "[20]",
+                "Reset Value": "0x0",
+                "Description": "Fault detected enable. Lets the fault detected event raise the interrupt output.
+
+Usage: Set it after the event handler is ready; the raw event is recorded whatever its value.
+
+Values:
+0x0 event masked (reset value);
+0x1 event enabled.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "cfg",
+                "Bit Type": "rw",
+                "Bit Field": "[19]",
+                "Reset Value": "0x0",
+                "Description": "Configuration error enable. Lets the configuration error event raise the interrupt output.
+
+Usage: Set it after the event handler is ready; the raw event is recorded whatever its value.
+
+Values:
+0x0 event masked (reset value);
+0x1 event enabled.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "axi",
+                "Bit Type": "rw",
+                "Bit Field": "[18]",
+                "Reset Value": "0x0",
+                "Description": "AXI error enable. Lets the AXI error event raise the interrupt output.
+
+Usage: Set it after the event handler is ready; the raw event is recorded whatever its value.
+
+Values:
+0x0 event masked (reset value);
+0x1 event enabled.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "udf",
+                "Bit Type": "rw",
+                "Bit Field": "[17]",
+                "Reset Value": "0x0",
+                "Description": "FIFO underflow enable. Lets the FIFO underflow event raise the interrupt output.
+
+Usage: Set it after the event handler is ready; the raw event is recorded whatever its value.
+
+Values:
+0x0 event masked (reset value);
+0x1 event enabled.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "ovf",
+                "Bit Type": "rw",
+                "Bit Field": "[16]",
+                "Reset Value": "0x0",
+                "Description": "FIFO overflow enable. Lets the FIFO overflow event raise the interrupt output.
+
+Usage: Set it after the event handler is ready; the raw event is recorded whatever its value.
+
+Values:
+0x0 event masked (reset value);
+0x1 event enabled.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "cdone",
+                "Bit Type": "rw",
+                "Bit Field": "[15:0]",
+                "Reset Value": "0x0",
+                "Description": "Context done enable. Lets the context done event raise the interrupt output.
+
+Usage: Set it after the event handler is ready; the raw event is recorded whatever its value.
+
+Values:
+0x0000 all masked (reset value);
+0x0001 to 0xFFFF bit mask of the contexts whose done event is enabled.
+
+Unit: none
+
+Limits: Bits above the context count are always 0."
+            }
+          ]
+        },
+        {
+        "Register Name": "sha_irq_inj",
+        "Offset": "0x00c8",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Interrupt injection register. Injects events for software tests.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:24]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "len",
+                "Bit Type": "rw",
+                "Bit Field": "[23]",
+                "Reset Value": "0x0",
+                "Description": "Length limit injection. A rising edge of this bit sets the raw length limit event once.
+
+Usage: Write 1 then write 0 before the next injection; used to test the handler.
+
+Values:
+0x0 no injection (reset value);
+0x1 inject the event.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "tmo",
+                "Bit Type": "rw",
+                "Bit Field": "[22]",
+                "Reset Value": "0x0",
+                "Description": "DMA timeout injection. A rising edge of this bit sets the raw DMA timeout event once.
+
+Usage: Write 1 then write 0 before the next injection; used to test the handler.
+
+Values:
+0x0 no injection (reset value);
+0x1 inject the event.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "ent",
+                "Bit Type": "rw",
+                "Bit Field": "[21]",
+                "Reset Value": "0x0",
+                "Description": "Entropy starved injection. A rising edge of this bit sets the raw entropy starved event once.
+
+Usage: Write 1 then write 0 before the next injection; used to test the handler.
+
+Values:
+0x0 no injection (reset value);
+0x1 inject the event.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "flt",
+                "Bit Type": "rw",
+                "Bit Field": "[20]",
+                "Reset Value": "0x0",
+                "Description": "Fault detected injection. A rising edge of this bit sets the raw fault detected event once.
+
+Usage: Write 1 then write 0 before the next injection; used to test the handler.
+
+Values:
+0x0 no injection (reset value);
+0x1 inject the event.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "cfg",
+                "Bit Type": "rw",
+                "Bit Field": "[19]",
+                "Reset Value": "0x0",
+                "Description": "Configuration error injection. A rising edge of this bit sets the raw configuration error event once.
+
+Usage: Write 1 then write 0 before the next injection; used to test the handler.
+
+Values:
+0x0 no injection (reset value);
+0x1 inject the event.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "axi",
+                "Bit Type": "rw",
+                "Bit Field": "[18]",
+                "Reset Value": "0x0",
+                "Description": "AXI error injection. A rising edge of this bit sets the raw AXI error event once.
+
+Usage: Write 1 then write 0 before the next injection; used to test the handler.
+
+Values:
+0x0 no injection (reset value);
+0x1 inject the event.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "udf",
+                "Bit Type": "rw",
+                "Bit Field": "[17]",
+                "Reset Value": "0x0",
+                "Description": "FIFO underflow injection. A rising edge of this bit sets the raw FIFO underflow event once.
+
+Usage: Write 1 then write 0 before the next injection; used to test the handler.
+
+Values:
+0x0 no injection (reset value);
+0x1 inject the event.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "ovf",
+                "Bit Type": "rw",
+                "Bit Field": "[16]",
+                "Reset Value": "0x0",
+                "Description": "FIFO overflow injection. A rising edge of this bit sets the raw FIFO overflow event once.
+
+Usage: Write 1 then write 0 before the next injection; used to test the handler.
+
+Values:
+0x0 no injection (reset value);
+0x1 inject the event.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "cdone",
+                "Bit Type": "rw",
+                "Bit Field": "[15:0]",
+                "Reset Value": "0x0",
+                "Description": "Context done injection. A rising edge of this bit sets the raw context done event once.
+
+Usage: Write 1 then write 0 before the next injection; used to test the handler.
+
+Values:
+0x0000 no injection (reset value);
+0x0001 to 0xFFFF bit mask of the contexts to inject.
+
+Unit: none
+
+Limits: Bits above the context count are always 0."
+            }
+          ]
+        },
+        {
+        "Register Name": "sha_irq_sts",
+        "Offset": "0x00cc",
+        "Repeat Mode": "NONE",
+        "Count or Default": "1",
+        "Offset Stride": "4",
+        "Maximum Count": "1",
+        "Reset Value": "0x00000000",
+        "Descriprtion": "Masked interrupt status register. Shows the enabled events that are pending.",
+        "Bits": [
+            {
+                "Bit Name": "reserved",
+                "Bit Type": "ro",
+                "Bit Field": "[31:24]",
+                "Reset Value": "0x0",
+                "Description": "This field is unused.
+Read-as-zero and write-ignored."
+            },
+            {
+                "Bit Name": "len",
+                "Bit Type": "ro",
+                "Bit Field": "[23]",
+                "Reset Value": "0x0",
+                "Description": "Length limit status. The length limit event is pending and enabled.
+
+Usage: Read it in the interrupt handler to find the cause; it is the raw event AND the enable.
+
+Values:
+0x0 not pending (reset value);
+0x1 pending.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "tmo",
+                "Bit Type": "ro",
+                "Bit Field": "[22]",
+                "Reset Value": "0x0",
+                "Description": "DMA timeout status. The DMA timeout event is pending and enabled.
+
+Usage: Read it in the interrupt handler to find the cause; it is the raw event AND the enable.
+
+Values:
+0x0 not pending (reset value);
+0x1 pending.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "ent",
+                "Bit Type": "ro",
+                "Bit Field": "[21]",
+                "Reset Value": "0x0",
+                "Description": "Entropy starved status. The entropy starved event is pending and enabled.
+
+Usage: Read it in the interrupt handler to find the cause; it is the raw event AND the enable.
+
+Values:
+0x0 not pending (reset value);
+0x1 pending.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "flt",
+                "Bit Type": "ro",
+                "Bit Field": "[20]",
+                "Reset Value": "0x0",
+                "Description": "Fault detected status. The fault detected event is pending and enabled.
+
+Usage: Read it in the interrupt handler to find the cause; it is the raw event AND the enable.
+
+Values:
+0x0 not pending (reset value);
+0x1 pending.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "cfg",
+                "Bit Type": "ro",
+                "Bit Field": "[19]",
+                "Reset Value": "0x0",
+                "Description": "Configuration error status. The configuration error event is pending and enabled.
+
+Usage: Read it in the interrupt handler to find the cause; it is the raw event AND the enable.
+
+Values:
+0x0 not pending (reset value);
+0x1 pending.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "axi",
+                "Bit Type": "ro",
+                "Bit Field": "[18]",
+                "Reset Value": "0x0",
+                "Description": "AXI error status. The AXI error event is pending and enabled.
+
+Usage: Read it in the interrupt handler to find the cause; it is the raw event AND the enable.
+
+Values:
+0x0 not pending (reset value);
+0x1 pending.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "udf",
+                "Bit Type": "ro",
+                "Bit Field": "[17]",
+                "Reset Value": "0x0",
+                "Description": "FIFO underflow status. The FIFO underflow event is pending and enabled.
+
+Usage: Read it in the interrupt handler to find the cause; it is the raw event AND the enable.
+
+Values:
+0x0 not pending (reset value);
+0x1 pending.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "ovf",
+                "Bit Type": "ro",
+                "Bit Field": "[16]",
+                "Reset Value": "0x0",
+                "Description": "FIFO overflow status. The FIFO overflow event is pending and enabled.
+
+Usage: Read it in the interrupt handler to find the cause; it is the raw event AND the enable.
+
+Values:
+0x0 not pending (reset value);
+0x1 pending.
+
+Unit: none
+
+Limits: none"
+            },
+            {
+                "Bit Name": "cdone",
+                "Bit Type": "ro",
+                "Bit Field": "[15:0]",
+                "Reset Value": "0x0",
+                "Description": "Context done status. The context done event is pending and enabled.
+
+Usage: Read it in the interrupt handler to find the cause; it is the raw event AND the enable.
+
+Values:
+0x0000 none pending (reset value);
+0x0001 to 0xFFFF bit mask of the contexts pending.
+
+Unit: none
+
+Limits: Bits above the context count are always 0."
+            }
+          ]
+        }
+    ]
+}

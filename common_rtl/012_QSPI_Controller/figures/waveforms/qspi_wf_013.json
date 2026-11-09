@@ -1,0 +1,59 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_axi",
+      "wave": "p..........."
+    },
+    {
+      "name": "i_clk_apb",
+      "wave": "p..........."
+    },
+    [
+      "Requests",
+      {
+        "name": "i_axi_arvalid",
+        "wave": "001000000000"
+      },
+      {
+        "name": "o_axi_arready",
+        "wave": "001000000000"
+      },
+      {
+        "name": "i_apb_cmd_start",
+        "wave": "000100000000"
+      },
+      {
+        "name": "o_apb_cmd_ready",
+        "wave": "000000000000"
+      }
+    ],
+    [
+      "Shared serial engine",
+      {
+        "name": "o_qspi_busy",
+        "wave": "000111111000"
+      },
+      {
+        "name": "o_serial_owner",
+        "wave": "xxxx=.......",
+        "data": [
+          "POLICY_TBD"
+        ]
+      },
+      {
+        "name": "o_spi_cs_n",
+        "wave": "111000000111"
+      },
+      {
+        "name": "o_engine_overlap",
+        "wave": "000100000000"
+      }
+    ]
+  ],
+  "head": {
+    "text": "Concurrent AXI XIP and APB indirect requests"
+  },
+  "foot": {
+    "text": "Shows collision and one-engine ownership only. Priority, request acceptance and preemption are TBD in DEC-002."
+  }
+}

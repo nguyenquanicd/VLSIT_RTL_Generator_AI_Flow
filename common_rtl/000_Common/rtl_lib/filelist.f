@@ -6,3 +6,4 @@ m_vlsit_sfifo_ram_macro.sv
 m_vlsit_rst_sync.sv
 m_vlsit_tie.sv
 m_vlsit_clk_inv.sv
+m_vlsit_event_sync.sv

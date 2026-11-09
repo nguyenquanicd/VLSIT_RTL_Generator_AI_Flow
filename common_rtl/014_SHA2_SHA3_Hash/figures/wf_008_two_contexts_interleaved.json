@@ -1,0 +1,52 @@
+{
+ "signal": [
+  {
+   "name": "i_clk_core",
+   "wave": "p............."
+  },
+  [
+   "core",
+   {
+    "name": "w_core_start",
+    "wave": "01...1...1...."
+   },
+   {
+    "name": "w_core_ctx",
+    "wave": "x=...=...=...x",
+    "data": [
+     "0",
+     "1",
+     "0"
+    ]
+   }
+  ],
+  [
+   "context memory",
+   {
+    "name": "w_ctxmem_rd",
+    "wave": "10..10..10...."
+   },
+   {
+    "name": "w_ctxmem_wr",
+    "wave": "0....10..10..1"
+   }
+  ],
+  [
+   "software",
+   {
+    "name": "o_sha_ctrl_ctxsel",
+    "wave": "=.....=.......",
+    "data": [
+     "0",
+     "1"
+    ]
+   }
+  ]
+ ],
+ "head": {
+  "text": "WF-008: Two contexts interleaved on one core: state read and written around each block"
+ },
+ "foot": {
+  "text": "The core runs a block of context 0, then of context 1, then of context 0 again"
+ }
+}

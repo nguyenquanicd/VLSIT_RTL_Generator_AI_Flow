@@ -1,6 +1,6 @@
 ---
 name: source-command-spec-pdf-generator
-description: "Create final Markdown and optional PDF documentation from approved design and verification artifacts."
+description: "Create final Markdown documentation and optional DOCX/PDF exports from approved design and verification artifacts."
 ---
 
 # source-command-spec-pdf-generator
@@ -14,6 +14,7 @@ Use this skill when the user requests this phase of the repository's hardware RT
 - Follow .agents/skills/decision_prompt_standard.md for every user choice or gate review. Explain terms, supported options, effects, a concrete example, and a reasoned recommendation. Do not repeat a decision already supplied.
 - Preserve the command's gate requirements. Only full autoflow may auto-approve Gate 2 and Gate 4 under its stated conditions. Report tool checks as passed only after running them and inspecting logs; otherwise state failed, unavailable, or not run.
 - Treat the approved specification and exact applicable protocol-standard revisions as golden sources. Verification intent, tests, assertions, and expected results must be independent of generated RTL.
+- Keep `docs/specification.md` as the editable final document. Use `scripts/md_to_docx.py` for DOCX and `scripts/md_to_pdf.py` for PDF; PDF requires Pandoc plus an installed engine, with Typst as the default. Ask for output format only when the user has not selected one.
 - For synthesizable RTL, use the approved configuration's explicit rule source. If none is supplied, use spec_template/VLSIT_RTL_Design_Rule.md. Do not apply design RTL rules to SVA or testbench code.
 - Adapt historical RV32IM and Linux/Bash examples to the requested IP and available environment.
 

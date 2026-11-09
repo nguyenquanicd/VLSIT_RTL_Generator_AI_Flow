@@ -215,13 +215,13 @@
         <mxCell id="VJQLGWmGsdWpBeKaFA09-68" edge="1" parent="1" source="VJQLGWmGsdWpBeKaFA09-69" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=18;strokeWidth=2;endArrow=block;endFill=1;" target="VJQLGWmGsdWpBeKaFA09-71">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="VJQLGWmGsdWpBeKaFA09-69" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=18;strokeWidth=2;" value="SKILL 7: Create specification.pdf" vertex="1">
+        <mxCell id="VJQLGWmGsdWpBeKaFA09-69" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=18;strokeWidth=2;" value="SKILL 7: Create specification.md; optional DOCX/PDF" vertex="1">
           <mxGeometry height="60" width="200" x="2053" y="311" as="geometry" />
         </mxCell>
         <mxCell id="VJQLGWmGsdWpBeKaFA09-70" edge="1" parent="1" source="VJQLGWmGsdWpBeKaFA09-71" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=18;strokeWidth=2;endArrow=block;endFill=1;" target="VJQLGWmGsdWpBeKaFA09-67">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="VJQLGWmGsdWpBeKaFA09-71" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;strokeWidth=2;" value="Generate PDF file" vertex="1">
+        <mxCell id="VJQLGWmGsdWpBeKaFA09-71" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;strokeWidth=2;" value="Export DOCX/PDF if selected" vertex="1">
           <mxGeometry height="60" width="200" x="2053" y="431" as="geometry" />
         </mxCell>
         <mxCell id="VJQLGWmGsdWpBeKaFA09-72" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=18;strokeWidth=2;" value="SKILL TITLE" vertex="1">

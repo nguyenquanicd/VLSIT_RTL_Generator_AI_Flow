@@ -1,0 +1,58 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_qspi",
+      "wave": "p......."
+    },
+    {
+      "name": "i_axi_xip_arvalid",
+      "wave": "01..01.."
+    },
+    {
+      "name": "i_axi_xip_araddr",
+      "wave": "x=..=...",
+      "data": [
+        "MISS",
+        "HIT"
+      ]
+    },
+    {
+      "name": "reg_window_hit",
+      "wave": "0.0.1..."
+    },
+    {
+      "name": "i_axi_xip_arsize",
+      "wave": "x=..=...",
+      "data": [
+        "word",
+        "byte"
+      ]
+    },
+    {
+      "name": "i_axi_xip_arburst",
+      "wave": "x=..=...",
+      "data": [
+        "INCR",
+        "FIXED"
+      ]
+    },
+    {
+      "name": "o_axi_xip_rvalid",
+      "wave": "0.1..1.."
+    },
+    {
+      "name": "o_axi_xip_rresp",
+      "wave": "x.=..=..",
+      "data": [
+        "DECERR",
+        "OKAY"
+      ]
+    }
+  ],
+  "head": {
+    "text": "XIP miss and unsupported profile"
+  },
+  "foot": {
+    "text": "Miss returns DECERR; hit path does not qualify ARSIZE/ARBURST."
+  }
+}

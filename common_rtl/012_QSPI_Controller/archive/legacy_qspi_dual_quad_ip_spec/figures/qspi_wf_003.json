@@ -1,0 +1,83 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_apb",
+      "wave": "p........."
+    },
+    [
+      "APB TX FIFO",
+      {
+        "name": "i_apb_psel",
+        "wave": "0111000000"
+      },
+      {
+        "name": "i_apb_penable",
+        "wave": "0011000000"
+      },
+      {
+        "name": "i_apb_pwrite",
+        "wave": "0111000000"
+      },
+      {
+        "name": "i_apb_paddr",
+        "wave": "xx=.......",
+        "data": [
+          "TX_FIFO"
+        ]
+      },
+      {
+        "name": "o_apb_pready",
+        "wave": "0001000000"
+      },
+      {
+        "name": "o_apb_pslverr",
+        "wave": "0000000000"
+      },
+      {
+        "name": "i_apb_pwdata",
+        "wave": "xx=.......",
+        "data": [
+          "DATA0"
+        ]
+      },
+      {
+        "name": "o_tx_fifo_push",
+        "wave": "0001000000"
+      }
+    ],
+    [
+      "Serial program",
+      {
+        "name": "o_qspi_busy",
+        "wave": "0000111110"
+      },
+      {
+        "name": "o_spi_cs_n",
+        "wave": "1110000001"
+      },
+      {
+        "name": "o_spi_sclk",
+        "wave": "0001010100"
+      },
+      {
+        "name": "o_flash_phase",
+        "wave": "xxxx=.=.=.",
+        "data": [
+          "CMD",
+          "ADDR",
+          "DATA"
+        ]
+      },
+      {
+        "name": "o_qspi_done",
+        "wave": "0000000001"
+      }
+    ]
+  ],
+  "head": {
+    "text": "Indirect flash program using APB and TX FIFO"
+  },
+  "foot": {
+    "text": "APB FIFO push behavior and flash-specific opcodes are pending DEC-002/010; serial phase timing is illustrative."
+  }
+}

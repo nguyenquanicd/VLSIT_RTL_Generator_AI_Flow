@@ -1,0 +1,58 @@
+{
+ "signal": [
+  {
+   "name": "i_clk_core",
+   "wave": "p..........."
+  },
+  [
+   "AXI4 write data",
+   {
+    "name": "i_axi_wvalid",
+    "wave": "0.1.....0..."
+   },
+   {
+    "name": "o_axi_wready",
+    "wave": "1....0..10.."
+   },
+   {
+    "name": "i_axi_wdata",
+    "wave": "x.====...x..",
+    "data": [
+     "W0",
+     "W1",
+     "W2",
+     "W3"
+    ]
+   }
+  ],
+  [
+   "FIFO of the context",
+   {
+    "name": "w_in_full",
+    "wave": "0....1..01.."
+   },
+   {
+    "name": "r_in_pop",
+    "wave": "0......10..."
+   },
+   {
+    "name": "i_sha_lvl_inlvl",
+    "wave": "=..===..==..",
+    "data": [
+     "0",
+     "1",
+     "2",
+     "3",
+     "2",
+     "3"
+    ]
+   }
+  ]
+ ],
+ "head": {
+  "text": "WF-003: Input FIFO full: o_axi_wready low until the sequencer pops a word"
+ },
+ "foot": {
+  "text": "Example FIFO of 3 words"
+ }
+}

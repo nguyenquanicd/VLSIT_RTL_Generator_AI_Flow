@@ -1,0 +1,44 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_qspi",
+      "wave": "p......."
+    },
+    {
+      "name": "o_qspi_cs_n",
+      "wave": "10.....1"
+    },
+    {
+      "name": "o_qspi_sclk",
+      "wave": "0.1010100"
+    },
+    {
+      "name": "o_qspi_dq_oe",
+      "wave": "0.1111100"
+    },
+    {
+      "name": "o_qspi_dq_o",
+      "wave": "x=.=.=x.",
+      "data": [
+        "CMD",
+        "A23:16",
+        "A15:8",
+        "A7:0",
+        "TX0"
+      ]
+    },
+    {
+      "name": "i_qspi_dq_i",
+      "wave": "x....=..",
+      "data": [
+        "RX0"
+      ]
+    }
+  ],
+  "head": {
+    "text": "Manual SPI read phase"
+  },
+  "foot": {
+    "text": "Illustrative single-lane command and data framing; cycles not to scale."
+  }
+}

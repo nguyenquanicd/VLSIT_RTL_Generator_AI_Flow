@@ -1,0 +1,55 @@
+{
+  "signal": [
+    {
+      "name": "i_clk_qspi",
+      "wave": "p......."
+    },
+    {
+      "name": "i_axi_reg_arvalid",
+      "wave": "01......"
+    },
+    {
+      "name": "o_axi_reg_arready",
+      "wave": "01......"
+    },
+    {
+      "name": "i_axi_reg_arsize",
+      "wave": "x=......",
+      "data": [
+        "byte"
+      ]
+    },
+    {
+      "name": "o_axi_reg_rvalid",
+      "wave": "0.1....."
+    },
+    {
+      "name": "o_axi_reg_rdata",
+      "wave": "x.=.....",
+      "data": [
+        "0"
+      ]
+    },
+    {
+      "name": "o_axi_reg_rresp",
+      "wave": "x.=.....",
+      "data": [
+        "SLVERR"
+      ]
+    },
+    {
+      "name": "o_axi_reg_rlast",
+      "wave": "0.1....."
+    },
+    {
+      "name": "i_axi_reg_rready",
+      "wave": "0.1....."
+    }
+  ],
+  "head": {
+    "text": "Unsupported AXI register read"
+  },
+  "foot": {
+    "text": "Unsupported size returns zero data and SLVERR."
+  }
+}

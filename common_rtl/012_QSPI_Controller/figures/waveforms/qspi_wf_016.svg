@@ -1,0 +1,187 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1398" height="508" viewBox="0 0 1398 508" font-family="Helvetica,Arial,sans-serif">
+<rect width="100%" height="100%" fill="#fff"/>
+<text x="12" y="20" font-size="14" font-weight="bold">Target RX FIFO full: drop newest word and keep sampling</text>
+<line x1="162" y1="30" x2="162" y2="480" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="234" y1="30" x2="234" y2="480" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="306" y1="30" x2="306" y2="480" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="378" y1="30" x2="378" y2="480" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="450" y1="30" x2="450" y2="480" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="522" y1="30" x2="522" y2="480" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="594" y1="30" x2="594" y2="480" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="666" y1="30" x2="666" y2="480" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="738" y1="30" x2="738" y2="480" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="810" y1="30" x2="810" y2="480" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="882" y1="30" x2="882" y2="480" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="954" y1="30" x2="954" y2="480" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="1026" y1="30" x2="1026" y2="480" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="1098" y1="30" x2="1098" y2="480" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="1170" y1="30" x2="1170" y2="480" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="1242" y1="30" x2="1242" y2="480" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="1314" y1="30" x2="1314" y2="480" stroke="#ccc" stroke-dasharray="2,3"/>
+<line x1="1386" y1="30" x2="1386" y2="480" stroke="#ccc" stroke-dasharray="2,3"/>
+<text x="154" y="49" font-size="12" text-anchor="end">i_spi_sclk_tgt</text>
+<polyline points="162.0,51.0 162.0,33.0 198.0,33.0 198.0,51.0 234.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,51.0 234.0,33.0 270.0,33.0 270.0,51.0 306.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,51.0 306.0,33.0 342.0,33.0 342.0,51.0 378.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,51.0 378.0,33.0 414.0,33.0 414.0,51.0 450.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="450.0,51.0 450.0,33.0 486.0,33.0 486.0,51.0 522.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="522.0,51.0 522.0,33.0 558.0,33.0 558.0,51.0 594.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="594.0,51.0 594.0,33.0 630.0,33.0 630.0,51.0 666.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="666.0,51.0 666.0,33.0 702.0,33.0 702.0,51.0 738.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="738.0,51.0 738.0,33.0 774.0,33.0 774.0,51.0 810.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="810.0,51.0 810.0,33.0 846.0,33.0 846.0,51.0 882.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="882.0,51.0 882.0,33.0 918.0,33.0 918.0,51.0 954.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="954.0,51.0 954.0,33.0 990.0,33.0 990.0,51.0 1026.0,51.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="79" font-size="12" text-anchor="end">i_spi_cs_n_tgt</text>
+<polyline points="162.0,63.0 234.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,63.0 234.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,81.0 306.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,81.0 378.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,81.0 450.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="450.0,81.0 522.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="522.0,81.0 594.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="594.0,81.0 666.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="666.0,81.0 738.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="738.0,81.0 810.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="810.0,81.0 882.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="882.0,81.0 954.0,81.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="954.0,81.0 954.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="954.0,63.0 1026.0,63.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="109" font-size="12" text-anchor="end">w_target_active</text>
+<polyline points="162.0,111.0 234.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,111.0 234.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,93.0 306.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,93.0 378.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,93.0 450.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="450.0,93.0 522.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="522.0,93.0 594.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="594.0,93.0 666.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="666.0,93.0 738.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="738.0,93.0 810.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="810.0,93.0 882.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="882.0,93.0 954.0,93.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="954.0,93.0 954.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="954.0,111.0 1026.0,111.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="12" y="169" font-size="12" font-weight="bold" fill="#225">Received 8-bit word, MSB first</text>
+<text x="154" y="199" font-size="12" text-anchor="end">i_spi_io_i[0]</text>
+<rect x="162.0" y="183.0" width="72.0" height="18.0" fill="#ddd" stroke="#000"/>
+<polygon points="238.0,183.0 374.0,183.0 378.0,192.0 374.0,201.0 238.0,201.0 234.0,192.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="306.0" y="196.0" text-anchor="middle" font-size="11">1</text>
+<polygon points="382.0,183.0 518.0,183.0 522.0,192.0 518.0,201.0 382.0,201.0 378.0,192.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="450.0" y="196.0" text-anchor="middle" font-size="11">0</text>
+<polygon points="526.0,183.0 662.0,183.0 666.0,192.0 662.0,201.0 526.0,201.0 522.0,192.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="594.0" y="196.0" text-anchor="middle" font-size="11">1</text>
+<polygon points="670.0,183.0 806.0,183.0 810.0,192.0 806.0,201.0 670.0,201.0 666.0,192.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="738.0" y="196.0" text-anchor="middle" font-size="11">0</text>
+<polygon points="814.0,183.0 950.0,183.0 954.0,192.0 950.0,201.0 814.0,201.0 810.0,192.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="882.0" y="196.0" text-anchor="middle" font-size="11">0</text>
+<polygon points="958.0,183.0 1094.0,183.0 1098.0,192.0 1094.0,201.0 958.0,201.0 954.0,192.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="1026.0" y="196.0" text-anchor="middle" font-size="11">1</text>
+<polygon points="1102.0,183.0 1238.0,183.0 1242.0,192.0 1238.0,201.0 1102.0,201.0 1098.0,192.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="1170.0" y="196.0" text-anchor="middle" font-size="11">0</text>
+<polygon points="1246.0,183.0 1382.0,183.0 1386.0,192.0 1382.0,201.0 1246.0,201.0 1242.0,192.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="1314.0" y="196.0" text-anchor="middle" font-size="11">1</text>
+<text x="12" y="259" font-size="12" font-weight="bold" fill="#225">RX FIFO / status</text>
+<text x="154" y="289" font-size="12" text-anchor="end">w_rx_fifo_full</text>
+<polyline points="162.0,291.0 234.0,291.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,291.0 234.0,273.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,273.0 306.0,273.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,273.0 378.0,273.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,273.0 450.0,273.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="450.0,273.0 522.0,273.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="522.0,273.0 594.0,273.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="594.0,273.0 666.0,273.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="666.0,273.0 738.0,273.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="738.0,273.0 810.0,273.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="810.0,273.0 882.0,273.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="882.0,273.0 954.0,273.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="954.0,273.0 1026.0,273.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="1026.0,273.0 1098.0,273.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="319" font-size="12" text-anchor="end">w_rx_word_done</text>
+<polyline points="162.0,321.0 234.0,321.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,321.0 306.0,321.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,321.0 378.0,321.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,321.0 450.0,321.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="450.0,321.0 522.0,321.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="522.0,321.0 594.0,321.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="594.0,321.0 666.0,321.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="666.0,321.0 738.0,321.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="738.0,321.0 810.0,321.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="810.0,321.0 810.0,303.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="810.0,303.0 882.0,303.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="882.0,303.0 954.0,303.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="954.0,303.0 1026.0,303.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="1026.0,303.0 1098.0,303.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="349" font-size="12" text-anchor="end">w_rx_fifo_wr_en</text>
+<polyline points="162.0,351.0 234.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,351.0 306.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,351.0 378.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,351.0 450.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="450.0,351.0 522.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="522.0,351.0 594.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="594.0,351.0 666.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="666.0,351.0 738.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="738.0,351.0 810.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="810.0,351.0 882.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="882.0,351.0 954.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="954.0,351.0 1026.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="1026.0,351.0 1098.0,351.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="379" font-size="12" text-anchor="end">w_rx_drop_word</text>
+<polyline points="162.0,381.0 234.0,381.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,381.0 306.0,381.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,381.0 378.0,381.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,381.0 450.0,381.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="450.0,381.0 522.0,381.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="522.0,381.0 594.0,381.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="594.0,381.0 666.0,381.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="666.0,381.0 738.0,381.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="738.0,381.0 810.0,381.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="810.0,381.0 810.0,363.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="810.0,363.0 882.0,363.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="882.0,363.0 954.0,363.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="954.0,363.0 1026.0,363.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="1026.0,363.0 1098.0,363.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="409" font-size="12" text-anchor="end">i_hw_we_qspi_irq_raw_rx_err</text>
+<polyline points="162.0,411.0 234.0,411.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,411.0 306.0,411.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,411.0 378.0,411.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,411.0 450.0,411.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="450.0,411.0 522.0,411.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="522.0,411.0 594.0,411.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="594.0,411.0 666.0,411.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="666.0,411.0 738.0,411.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="738.0,411.0 810.0,411.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="810.0,411.0 810.0,393.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="810.0,393.0 882.0,393.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="882.0,393.0 954.0,393.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="954.0,393.0 1026.0,393.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="1026.0,393.0 1098.0,393.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="154" y="439" font-size="12" text-anchor="end">i_hw_wdata_qspi_irq_raw_rx_err</text>
+<rect x="162.0" y="423.0" width="72.0" height="18.0" fill="#ddd" stroke="#000"/>
+<rect x="234.0" y="423.0" width="72.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="306.0" y="423.0" width="72.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="378.0" y="423.0" width="72.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="450.0" y="423.0" width="72.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="522.0" y="423.0" width="72.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="594.0" y="423.0" width="72.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="666.0" y="423.0" width="72.0" height="18.0" fill="#ddd" stroke="none"/>
+<rect x="738.0" y="423.0" width="72.0" height="18.0" fill="#ddd" stroke="none"/>
+<polygon points="814.0,423.0 1166.0,423.0 1170.0,432.0 1166.0,441.0 814.0,441.0 810.0,432.0" fill="#ffffff" stroke="#000" stroke-width="1.2"/>
+<text x="990.0" y="436.0" text-anchor="middle" font-size="11">1</text>
+<text x="154" y="469" font-size="12" text-anchor="end">o_qspi_irq_raw_rx_err</text>
+<polyline points="162.0,471.0 234.0,471.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="234.0,471.0 306.0,471.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="306.0,471.0 378.0,471.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="378.0,471.0 450.0,471.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="450.0,471.0 522.0,471.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="522.0,471.0 594.0,471.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="594.0,471.0 666.0,471.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="666.0,471.0 738.0,471.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="738.0,471.0 810.0,471.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="810.0,471.0 882.0,471.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="882.0,471.0 882.0,453.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="882.0,453.0 954.0,453.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="954.0,453.0 1026.0,453.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<polyline points="1026.0,453.0 1098.0,453.0" stroke="#000" stroke-width="1.4" fill="none"/>
+<text x="12" y="500" font-size="11" fill="#444">Example T1: FIFO is full for the 0xA5 word; the word is discarded and the active frame continues to CS deassertion.</text>
+</svg>

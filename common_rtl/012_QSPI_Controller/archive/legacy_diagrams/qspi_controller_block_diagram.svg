@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2460" height="1798" viewBox="70 155 2460 1798" font-family="Arial, Helvetica, sans-serif" font-size="18">
+<rect x="70" y="155" width="2460" height="1798" fill="#FFFFFF"/>
+<rect x="370" y="260" width="1420" height="510" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<rect x="570" y="512" width="260" height="56" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="700" y="536" text-anchor="middle">Register IF</text>
+<text x="700" y="558" text-anchor="middle">(m_axi_qspi_reg_if)</text>
+<rect x="950" y="512" width="260" height="56" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1080" y="536" text-anchor="middle">QSPI Engine</text>
+<text x="1080" y="558" text-anchor="middle">(m_axi_qspi_engine)</text>
+<rect x="1330" y="512" width="260" height="56" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1460" y="536" text-anchor="middle">XIP IF</text>
+<text x="1460" y="558" text-anchor="middle">(m_axi_qspi_mem_if)</text>
+<text x="520" y="206" text-anchor="middle">CLK</text>
+<text x="520" y="228" text-anchor="middle">i_clk_qspi, i_rst_n_qspi</text>
+<text x="820" y="206" text-anchor="middle">IRQ</text>
+<text x="820" y="228" text-anchor="middle">o_irq_qspi</text>
+<text x="1768" y="301" text-anchor="end">AXI QSPI</text>
+<text x="1768" y="323" text-anchor="end">(m_axi_qspi_controller)</text>
+<text x="855" y="526" text-anchor="middle">CFG</text>
+<text x="1235" y="526" text-anchor="middle">MRQ</text>
+<text x="104" y="1769" text-anchor="start" font-weight="bold">Legend</text>
+<text x="284" y="1810" text-anchor="start">Interface connector (one per signal group; arrow = active to passive)</text>
+<text x="104" y="1885" text-anchor="start">The register-interface block contains TX/RX FIFO instances in the source. Internal arrows show main request direction; CFG and MRQ interfaces also return status/data.</text>
+<text x="1080" y="841" text-anchor="middle">QSPI</text>
+<text x="1080" y="863" text-anchor="middle">SCLK, CS, DQ[3:0]</text>
+<text x="1915" y="536" text-anchor="middle">XIP</text>
+<text x="1915" y="558" text-anchor="middle">AXI read host</text>
+<text x="230" y="536" text-anchor="middle">REG</text>
+<text x="230" y="558" text-anchor="middle">AXI register bus</text>
+<rect x="100" y="1100" width="2400" height="220" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1300" y="1127" text-anchor="middle" font-weight="bold">Block Functions &amp; Interfaces</text>
+<rect x="100" y="1140" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1165" text-anchor="start" font-weight="bold">Block</text>
+<rect x="430" y="1140" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1165" text-anchor="start" font-weight="bold">Function</text>
+<rect x="1910" y="1140" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1165" text-anchor="start" font-weight="bold">Source</text>
+<rect x="2140" y="1140" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1165" text-anchor="start" font-weight="bold">Interfaces (mnemonics)</text>
+<rect x="100" y="1176" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1201" text-anchor="start">m_axi_qspi_controller frame</text>
+<rect x="430" y="1176" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1201" text-anchor="start">Source-derived QSPI master and read-only XIP target.</text>
+<rect x="1910" y="1176" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1201" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1176" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1201" text-anchor="start">REG, XIP, QSPI, IRQ, CLK, CFG, MRQ</text>
+<rect x="100" y="1212" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1237" text-anchor="start">u_reg_if (m_axi_qspi_reg_if)</text>
+<rect x="430" y="1212" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1237" text-anchor="start">Decodes software registers, stores control/interrupt state and contains TX/RX byte queues.</text>
+<rect x="1910" y="1212" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1237" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1212" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1237" text-anchor="start">CFG, REG, IRQ, CLK</text>
+<rect x="100" y="1248" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1273" text-anchor="start">u_engine (m_axi_qspi_engine)</text>
+<rect x="430" y="1248" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1273" text-anchor="start">Sequences command/address/data phases and drives serial clock, chip select and data lanes.</text>
+<rect x="1910" y="1248" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1273" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1248" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1273" text-anchor="start">CFG, MRQ, QSPI, CLK</text>
+<rect x="100" y="1284" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1309" text-anchor="start">u_mem_if (m_axi_qspi_mem_if)</text>
+<rect x="430" y="1284" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1309" text-anchor="start">Matches host reads to the flash window and packs serial bytes into AXI read beats.</text>
+<rect x="1910" y="1284" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1309" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1284" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1309" text-anchor="start">MRQ, XIP, CLK</text>
+<rect x="100" y="1360" width="2400" height="328" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1300" y="1387" text-anchor="middle" font-weight="bold">Interface Table</text>
+<rect x="100" y="1400" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1425" text-anchor="start" font-weight="bold">ID</text>
+<rect x="190" y="1400" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1425" text-anchor="start" font-weight="bold">Interface</text>
+<rect x="490" y="1400" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1425" text-anchor="start" font-weight="bold">Category</text>
+<rect x="600" y="1400" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1425" text-anchor="start" font-weight="bold">Active side -&gt; passive side</text>
+<rect x="1070" y="1400" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1425" text-anchor="start" font-weight="bold">Key signals</text>
+<rect x="100" y="1436" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1461" text-anchor="start">CFG</text>
+<rect x="190" y="1436" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1461" text-anchor="start">Register control and status</text>
+<rect x="490" y="1436" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1461" text-anchor="start">custom</text>
+<rect x="600" y="1436" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1461" text-anchor="start">Register interface  engine</text>
+<rect x="1070" y="1436" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1461" text-anchor="start">Configuration/start flow to engine; busy/done/error status back.</text>
+<rect x="100" y="1472" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1497" text-anchor="start">CLK</text>
+<rect x="190" y="1472" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1497" text-anchor="start">Clock and reset</text>
+<rect x="490" y="1472" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1497" text-anchor="start">custom</text>
+<rect x="600" y="1472" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1497" text-anchor="start">SoC -&gt; all blocks</text>
+<rect x="1070" y="1472" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1497" text-anchor="start">One clock domain and active-low reset.</text>
+<rect x="100" y="1508" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1533" text-anchor="start">IRQ</text>
+<rect x="190" y="1508" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1533" text-anchor="start">Completion/error interrupt</text>
+<rect x="490" y="1508" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1533" text-anchor="start">IRQ</text>
+<rect x="600" y="1508" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1533" text-anchor="start">Controller -&gt; SoC</text>
+<rect x="1070" y="1508" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1533" text-anchor="start">One active-high level from masked sticky causes.</text>
+<rect x="100" y="1544" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1569" text-anchor="start">MRQ</text>
+<rect x="190" y="1544" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1569" text-anchor="start">XIP request and receive flow</text>
+<rect x="490" y="1544" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1569" text-anchor="start">custom</text>
+<rect x="600" y="1544" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1569" text-anchor="start">Memory interface  engine</text>
+<rect x="1070" y="1544" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1569" text-anchor="start">XIP command/offset request to engine; serial receive bytes and completion back.</text>
+<rect x="100" y="1580" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1605" text-anchor="start">QSPI</text>
+<rect x="190" y="1580" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1605" text-anchor="start">Serial flash pins</text>
+<rect x="490" y="1580" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1605" text-anchor="start">QSPI</text>
+<rect x="600" y="1580" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1605" text-anchor="start">Controller -&gt; flash</text>
+<rect x="1070" y="1580" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1605" text-anchor="start">SCLK, active-low CS, four DQ output and input lanes.</text>
+<rect x="100" y="1616" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1641" text-anchor="start">REG</text>
+<rect x="190" y="1616" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1641" text-anchor="start">AXI register access</text>
+<rect x="490" y="1616" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1641" text-anchor="start">AXI</text>
+<rect x="600" y="1616" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1641" text-anchor="start">Host -&gt; register interface</text>
+<rect x="1070" y="1616" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1641" text-anchor="start">AW/W/AR requests and B/R responses; 32-bit single-beat profile.</text>
+<rect x="100" y="1652" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1677" text-anchor="start">XIP</text>
+<rect x="190" y="1652" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="1677" text-anchor="start">AXI XIP access</text>
+<rect x="490" y="1652" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="1677" text-anchor="start">AXI</text>
+<rect x="600" y="1652" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="1677" text-anchor="start">Host -&gt; memory interface</text>
+<rect x="1070" y="1652" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="1677" text-anchor="start">AR request and R response; read-only path.</text>
+<path d="M 1080 568 L 1080 820" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1080,820 1074,808 1086,808" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1840 540 L 1590 540" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1590,540 1602,534 1602,546" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 320 540 L 570 540" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="570,540 558,546 558,534" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 660 210 L 660 512" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="660,512 654,500 666,500" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 750 512 L 750 210" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="750,210 756,222 744,222" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 660 272 L 744 272 A 6 6 0 0 1 756 272 L 1080 272 L 1080 512" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1080,512 1074,500 1086,500" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 660 272 L 744 272 A 6 6 0 0 1 756 272 L 1460 272 L 1460 512" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1460,512 1454,500 1466,500" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 830 540 L 950 540" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="950,540 938,546 938,534" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1330 540 L 1210 540" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1210,540 1222,534 1222,546" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 100 1803 L 260 1803" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="260,1803 248,1809 248,1797" fill="#000000" stroke="#000000" stroke-width="1"/>
+</svg>

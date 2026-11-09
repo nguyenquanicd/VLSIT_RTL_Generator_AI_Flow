@@ -6,23 +6,23 @@
 
 ## 0. Prepare the specification | Chuẩn bị đặc tả
 
-**EN:** Create `spec/<ip_name>_spec.md` with ports, parameters, clock/reset, observable behavior, timing, error handling, and exact protocol-standard revision when applicable. You may start from [the IP template](spec_template/VLSIT_ASIC_IP_Design_Specification_Template.md). If you only have a description, use `/spec_writer` or `/autoflow --describe`, then review the draft before parsing. With the skill `vlsit-asic-ip-microspec` (companion repository `VLSIT_CODEX_CLAUDE_SKILLS`) the draft is a 22-section specification with numbered requirements, a draw.io block diagram (VLSIT library, SVG in section 5.2) and confirmed waveforms.
+**EN:** Create `spec/VLSIT_<DESIGN_FUNCTION>_HDS.md` with ports, parameters, clock/reset, observable behavior, timing, error handling, and exact protocol-standard revision when applicable. Write the design-function name in uppercase and replace spaces or hyphens with underscores; for example, use `spec/VLSIT_FIFO_HDS.md`. You may start from [the IP template](spec_template/VLSIT_ASIC_IP_Design_Specification_Template.md). If you only have a description, use `/spec_writer` or `/autoflow --describe`, then review the draft before parsing. With the skill `vlsit-asic-ip-microspec` (companion repository `VLSIT_CODEX_CLAUDE_SKILLS`) the draft is a 22-section specification with numbered requirements, a draw.io block diagram (VLSIT library, SVG in section 5.2) and confirmed waveforms.
 
-**VI:** Tạo `spec/<ip_name>_spec.md` với port, parameter, clock/reset, hành vi quan sát được, timing, xử lý lỗi và phiên bản chuẩn giao thức khi áp dụng. Có thể bắt đầu từ [mẫu IP](spec_template/VLSIT_ASIC_IP_Design_Specification_Template.md). Nếu mới có mô tả, dùng `/spec_writer` hoặc `/autoflow --describe`, rồi review bản nháp trước khi parse. Với skill `vlsit-asic-ip-microspec` (repository đi kèm `VLSIT_CODEX_CLAUDE_SKILLS`), bản nháp là đặc tả 22 mục có requirement đánh số, sơ đồ khối draw.io (thư viện VLSIT, SVG ở mục 5.2) và waveform đã xác nhận.
+**VI:** Tạo `spec/VLSIT_<DESIGN_FUNCTION>_HDS.md` với port, parameter, clock/reset, hành vi quan sát được, timing, xử lý lỗi và phiên bản chuẩn giao thức khi áp dụng. Tên chức năng viết hoa; thay khoảng trắng hoặc dấu gạch nối bằng dấu gạch dưới, ví dụ `spec/VLSIT_FIFO_HDS.md`. Có thể bắt đầu từ [mẫu IP](spec_template/VLSIT_ASIC_IP_Design_Specification_Template.md). Nếu mới có mô tả, dùng `/spec_writer` hoặc `/autoflow --describe`, rồi review bản nháp trước khi parse. Với skill `vlsit-asic-ip-microspec` (repository đi kèm `VLSIT_CODEX_CLAUDE_SKILLS`), bản nháp là đặc tả 22 mục có requirement đánh số, sơ đồ khối draw.io (thư viện VLSIT, SVG ở mục 5.2) và waveform đã xác nhận.
 
-**Example / Ví dụ:** For an 8-bit, 16-entry FIFO, create `spec/fifo_spec.md` and specify reset polarity, ready/valid behavior, full/empty handling, and cycle timing. This file is an example path; it is not included in the repository. / Với FIFO rộng 8 bit, sâu 16 phần tử, tạo `spec/fifo_spec.md` và nêu rõ cực tính reset, ready/valid, full/empty và timing theo chu kỳ. File này chỉ là ví dụ, không có sẵn trong repository.
+**Example / Ví dụ:** For an 8-bit, 16-entry FIFO, create `spec/VLSIT_FIFO_HDS.md` and specify reset polarity, ready/valid behavior, full/empty handling, and cycle timing. This file is an example path; it is not included in the repository. / Với FIFO rộng 8 bit, sâu 16 phần tử, tạo `spec/VLSIT_FIFO_HDS.md` và nêu rõ cực tính reset, ready/valid, full/empty và timing theo chu kỳ. File này chỉ là ví dụ, không có sẵn trong repository.
 
 ## 1. Choose automatic or manual execution | Chọn chạy tự động hoặc từng bước
 
-**EN:** For the full flow, enter `/autoflow spec/fifo_spec.md` in Claude Code. In Codex CLI, invoke `$source-command-autoflow` and provide the same path. To run one phase at a time, follow Steps 2–10 below. The [README](README.md) maps each Claude command to its Codex skill.
+**EN:** For the full flow, enter `/autoflow spec/VLSIT_FIFO_HDS.md` in Claude Code. In Codex CLI, invoke `$source-command-autoflow` and provide the same path. To run one phase at a time, follow Steps 2–10 below. The [README](README.md) maps each Claude command to its Codex skill.
 
-**VI:** Để chạy toàn flow, nhập `/autoflow spec/fifo_spec.md` trong Claude Code. Trong Codex CLI, gọi `$source-command-autoflow` và cung cấp cùng đường dẫn. Để chạy từng phase, theo Bước 2–10 dưới đây. [README](README.md) ánh xạ command Claude với skill Codex.
+**VI:** Để chạy toàn flow, nhập `/autoflow spec/VLSIT_FIFO_HDS.md` trong Claude Code. Trong Codex CLI, gọi `$source-command-autoflow` và cung cấp cùng đường dẫn. Để chạy từng phase, theo Bước 2–10 dưới đây. [README](README.md) ánh xạ command Claude với skill Codex.
 
 ## 2. Parse requirements — Gate 1 | Parse yêu cầu — Gate 1
 
-**EN:** Run `/spec_parser spec/fifo_spec.md`. Review REQ-IDs, source clauses, ambiguity, and parameter/module mappings. Approve Gate 1 only after unresolved behavior is settled. Output: `schemas/structured_spec.json`.
+**EN:** Run `/spec_parser spec/VLSIT_FIFO_HDS.md`. Review REQ-IDs, source clauses, ambiguity, and parameter/module mappings. Approve Gate 1 only after unresolved behavior is settled. Output: `schemas/structured_spec.json`.
 
-**VI:** Chạy `/spec_parser spec/fifo_spec.md`. Review REQ-ID, nguồn yêu cầu, điểm mơ hồ và mapping parameter/module. Chỉ duyệt Gate 1 khi hành vi chưa rõ đã được giải quyết. Output: `schemas/structured_spec.json`.
+**VI:** Chạy `/spec_parser spec/VLSIT_FIFO_HDS.md`. Review REQ-ID, nguồn yêu cầu, điểm mơ hồ và mapping parameter/module. Chỉ duyệt Gate 1 khi hành vi chưa rõ đã được giải quyết. Output: `schemas/structured_spec.json`.
 
 ## 3. Set configuration — Gate 2 | Chốt cấu hình — Gate 2
 
@@ -54,9 +54,9 @@
 
 **VI:** Chạy `/tb_generator`. Review test plan và REQ-ID chưa được cover. Test lấy từ contract và golden sources đã duyệt, không lấy từ RTL. Kiểm tra file trong `src/tb/tests/` và `schemas/selected_testplan.json`. Shell compile diễn ra trước Gate 4; chạy riêng cần bạn duyệt, còn autoflow có thể tự duyệt plan đầy đủ và không lỗi.
 
-**EN:** The steps above follow `/autoflow`. For an existing RTL design, use `/autoflow spec/fifo_spec.md --rtl-source <source-rtl-directory>` with a matching independently approved specification. A standalone style conversion needs no specification or gate; further lint, synthesis, equivalence, or verification checks can be requested separately. In a manual full-flow run, Step 5 may start after Gate 2; Steps 6–7 require Gate 3a. The two branches stay independent until DUT integration.
+**EN:** The steps above follow `/autoflow`. For an existing RTL design, use `/autoflow spec/VLSIT_FIFO_HDS.md --rtl-source <source-rtl-directory>` with a matching independently approved specification. A standalone style conversion needs no specification or gate; further lint, synthesis, equivalence, or verification checks can be requested separately. In a manual full-flow run, Step 5 may start after Gate 2; Steps 6–7 require Gate 3a. The two branches stay independent until DUT integration.
 
-**VI:** Thứ tự trên theo `/autoflow`. Với RTL có sẵn, dùng `/autoflow spec/fifo_spec.md --rtl-source <source-rtl-directory>` cùng đặc tả tương ứng đã duyệt độc lập. Chuyển style riêng không cần đặc tả hay gate; có thể yêu cầu thêm lint, synthesis, equivalence hoặc verification ở bước khác. Khi chạy toàn flow từng phase, Bước 5 có thể bắt đầu sau Gate 2; Bước 6–7 cần Gate 3a. Hai nhánh độc lập đến khi tích hợp DUT.
+**VI:** Thứ tự trên theo `/autoflow`. Với RTL có sẵn, dùng `/autoflow spec/VLSIT_FIFO_HDS.md --rtl-source <source-rtl-directory>` cùng đặc tả tương ứng đã duyệt độc lập. Chuyển style riêng không cần đặc tả hay gate; có thể yêu cầu thêm lint, synthesis, equivalence hoặc verification ở bước khác. Khi chạy toàn flow từng phase, Bước 5 có thể bắt đầu sau Gate 2; Bước 6–7 cần Gate 3a. Hai nhánh độc lập đến khi tích hợp DUT.
 
 ## 8. Integrate and verify | Tích hợp và kiểm chứng
 
@@ -72,12 +72,12 @@
 
 ## 10. Produce documentation | Tạo tài liệu
 
-**EN:** After Gate 5 approval, run `/spec_pdf_generator`. Inspect `docs/specification.md`; `docs/specification.pdf` is created only when a PDF converter is available. Missing evidence must be marked TBD or N/A, never pass.
+**EN:** After Gate 5 approval, run `/spec_pdf_generator`. `docs/specification.md` is always the editable source. Write inline TeX as `$...$`, display equations as `$$...$$`, and link figures with relative Markdown paths. Choose Markdown only, Markdown+DOCX, Markdown+PDF, or all three when the format is not already specified. DOCX uses Pandoc; PDF uses Pandoc with Typst by default. For example, `python scripts/md_to_docx_pdf.py docs/specification.md --format all` creates both exports. Missing evidence must be marked TBD or N/A, never pass.
 
-**VI:** Sau khi duyệt Gate 5, chạy `/spec_pdf_generator`. Kiểm tra `docs/specification.md`; chỉ tạo `docs/specification.pdf` khi có công cụ chuyển đổi. Bằng chứng thiếu phải ghi TBD hoặc N/A, không được ghi pass.
+**VI:** Sau khi duyệt Gate 5, chạy `/spec_pdf_generator`. `docs/specification.md` luôn là nguồn có thể chỉnh sửa. Viết TeX trong dòng bằng `$...$`, công thức riêng dòng bằng `$$...$$` và dùng link Markdown tương đối cho hình. Nếu chưa nêu định dạng, chọn Markdown, Markdown+DOCX, Markdown+PDF hoặc cả ba. DOCX dùng Pandoc; PDF dùng Pandoc với Typst mặc định. Ví dụ, `python scripts/md_to_docx_pdf.py docs/specification.md --format all` tạo cả hai file xuất. Bằng chứng thiếu phải ghi TBD hoặc N/A, không được ghi pass.
 
 ## Reproduce or resume | Chạy lại hoặc tiếp tục
 
-**EN:** The agent creates or extends one design-root `Makefile` for lint, synthesis, compilation, tests, regression, mutation, and coverage. Use `make help` to list targets and `make -n <target>` to inspect the actual commands. Tools and PDK paths in `sourceme.sh` must be adapted to the Linux EDA host; do not run this Bash script in PowerShell. To resume, for example, enter `/autoflow spec/fifo_spec.md --from phase5`; the agent must validate saved approvals and revisions first.
+**EN:** The agent creates or extends one design-root `Makefile` for lint, synthesis, compilation, tests, regression, mutation, and coverage. Use `make help` to list targets and `make -n <target>` to inspect the actual commands. Tools and PDK paths in `sourceme.sh` must be adapted to the Linux EDA host; do not run this Bash script in PowerShell. To resume, for example, enter `/autoflow spec/VLSIT_FIFO_HDS.md --from phase5`; the agent must validate saved approvals and revisions first.
 
-**VI:** Agent tạo hoặc mở rộng một `Makefile` tại root thiết kế cho lint, synthesis, compile, testcase, regression, mutation và coverage. Dùng `make help` xem target và `make -n <target>` xem lệnh thực tế. Cần điều chỉnh đường dẫn tool/PDK trong `sourceme.sh` cho máy EDA Linux; không chạy script Bash này trong PowerShell. Ví dụ tiếp tục: `/autoflow spec/fifo_spec.md --from phase5`; agent phải kiểm tra approval và revision đã lưu trước.
+**VI:** Agent tạo hoặc mở rộng một `Makefile` tại root thiết kế cho lint, synthesis, compile, testcase, regression, mutation và coverage. Dùng `make help` xem target và `make -n <target>` xem lệnh thực tế. Cần điều chỉnh đường dẫn tool/PDK trong `sourceme.sh` cho máy EDA Linux; không chạy script Bash này trong PowerShell. Ví dụ tiếp tục: `/autoflow spec/VLSIT_FIFO_HDS.md --from phase5`; agent phải kiểm tra approval và revision đã lưu trước.

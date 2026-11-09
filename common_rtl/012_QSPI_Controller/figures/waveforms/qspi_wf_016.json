@@ -1,0 +1,80 @@
+{
+  "head": {
+    "text": "Target RX FIFO full: drop newest word and keep sampling",
+    "tick": 0
+  },
+  "signal": [
+    {
+      "name": "i_spi_sclk_tgt",
+      "wave": "p..........."
+    },
+    {
+      "name": "i_spi_cs_n_tgt",
+      "wave": "10.........1"
+    },
+    {
+      "name": "w_target_active",
+      "wave": "01.........0"
+    },
+    {},
+    [
+      "Received 8-bit word, MSB first",
+      {
+        "name": "i_spi_io_i[0]",
+        "wave": "x=.=.=.=.=.=.=.=.",
+        "data": [
+          "1",
+          "0",
+          "1",
+          "0",
+          "0",
+          "1",
+          "0",
+          "1"
+        ]
+      }
+    ],
+    {},
+    [
+      "RX FIFO / status",
+      {
+        "name": "w_rx_fifo_full",
+        "wave": "01..........."
+      },
+      {
+        "name": "w_rx_word_done",
+        "wave": "0........1..."
+      },
+      {
+        "name": "w_rx_fifo_wr_en",
+        "wave": "0........0..."
+      },
+      {
+        "name": "w_rx_drop_word",
+        "wave": "0........1..."
+      },
+      {
+        "name": "i_hw_we_qspi_irq_raw_rx_err",
+        "wave": "0........1..."
+      },
+      {
+        "name": "i_hw_wdata_qspi_irq_raw_rx_err",
+        "wave": "x........=....",
+        "data": [
+          "1"
+        ]
+      },
+      {
+        "name": "o_qspi_irq_raw_rx_err",
+        "wave": "0.........1.."
+      }
+    ]
+  ],
+  "foot": {
+    "text": "Example T1: FIFO is full for the 0xA5 word; the word is discarded and the active frame continues to CS deassertion.",
+    "tock": 0
+  },
+  "config": {
+    "hscale": 2
+  }
+}

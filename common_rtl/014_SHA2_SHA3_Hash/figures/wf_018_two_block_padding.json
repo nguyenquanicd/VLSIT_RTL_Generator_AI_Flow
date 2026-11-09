@@ -1,0 +1,63 @@
+{
+ "signal": [
+  {
+   "name": "i_clk_core",
+   "wave": "p............."
+  },
+  [
+   "input",
+   {
+    "name": "o_sha_len_tail",
+    "wave": "=.............",
+    "data": [
+     "60"
+    ]
+   }
+  ],
+  [
+   "sequencer",
+   {
+    "name": "r_ctx_state",
+    "wave": "=.=.........=.",
+    "data": [
+     "ABSORBING",
+     "FINALIZING",
+     "DIGEST_READY"
+    ]
+   },
+   {
+    "name": "w_blk_kind",
+    "wave": "x.=....=......",
+    "data": [
+     "LAST+80",
+     "LENGTH"
+    ]
+   },
+   {
+    "name": "w_core_start",
+    "wave": "0.10...10....."
+   },
+   {
+    "name": "w_core_busy",
+    "wave": "0..1...01...0."
+   }
+  ],
+  [
+   "result",
+   {
+    "name": "i_hw_we_sha_irq_raw_cdone",
+    "wave": "0...........10"
+   },
+   {
+    "name": "o_sha_irq_raw_cdone",
+    "wave": "0............1"
+   }
+  ]
+ ],
+ "head": {
+  "text": "WF-018: Message whose last block leaves no room for the length: two final blocks"
+ },
+ "foot": {
+  "text": "sha_len.tail leaves 60 bytes of 64 used"
+ }
+}

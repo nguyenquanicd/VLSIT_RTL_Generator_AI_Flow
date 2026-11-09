@@ -1,0 +1,412 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2460" height="3223" viewBox="70 280 2460 3223" font-family="Arial, Helvetica, sans-serif" font-size="18">
+<rect x="70" y="280" width="2460" height="3223" fill="#FFFFFF"/>
+<rect x="520" y="410" width="1120" height="800" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<rect x="1350" y="960" width="240" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1470" y="986" text-anchor="middle">u_fault</text>
+<text x="1470" y="1008" text-anchor="middle">(m_vlsit_sha_fault)</text>
+<rect x="1340" y="660" width="260" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1470" y="686" text-anchor="middle">u_core256</text>
+<text x="1470" y="708" text-anchor="middle">(m_vlsit_sha_core256)</text>
+<rect x="1340" y="810" width="260" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1470" y="836" text-anchor="middle">u_core512</text>
+<text x="1470" y="858" text-anchor="middle">(m_vlsit_sha_core512)</text>
+<rect x="960" y="960" width="260" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1090" y="986" text-anchor="middle">u_keccak</text>
+<text x="1090" y="1008" text-anchor="middle">(m_vlsit_sha_keccak)</text>
+<rect x="940" y="1110" width="300" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1090" y="1136" text-anchor="middle">u_keccak_dom</text>
+<text x="1090" y="1158" text-anchor="middle">(m_vlsit_sha_keccak_dom)</text>
+<rect x="1350" y="1110" width="240" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1470" y="1136" text-anchor="middle">u_prng</text>
+<text x="1470" y="1158" text-anchor="middle">(m_vlsit_sha_prng)</text>
+<rect x="570" y="510" width="260" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="700" y="536" text-anchor="middle">u_axi</text>
+<text x="700" y="558" text-anchor="middle">(m_vlsit_sha_axi_sub)</text>
+<rect x="590" y="810" width="220" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="700" y="836" text-anchor="middle">u_csr</text>
+<text x="700" y="858" text-anchor="middle">(m_vlsit_csr_sha)</text>
+<rect x="590" y="960" width="220" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="700" y="986" text-anchor="middle">u_dma</text>
+<text x="700" y="1008" text-anchor="middle">(m_vlsit_sha_dma)</text>
+<rect x="590" y="1110" width="220" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="700" y="1136" text-anchor="middle">u_irq</text>
+<text x="700" y="1158" text-anchor="middle">(m_vlsit_sha_irq)</text>
+<rect x="960" y="510" width="260" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1090" y="536" text-anchor="middle">u_in_fifo</text>
+<text x="1090" y="558" text-anchor="middle">(m_vlsit_sha_in_fifo)</text>
+<rect x="980" y="660" width="220" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1090" y="686" text-anchor="middle">u_seq</text>
+<text x="1090" y="708" text-anchor="middle">(m_vlsit_sha_seq)</text>
+<rect x="960" y="810" width="260" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1090" y="836" text-anchor="middle">u_ctxmem</text>
+<text x="1090" y="858" text-anchor="middle">(m_vlsit_sha_ctxmem)</text>
+<rect x="560" y="660" width="280" height="60" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="700" y="686" text-anchor="middle">u_out_fifo</text>
+<text x="700" y="708" text-anchor="middle">(m_vlsit_sha_out_fifo)</text>
+<text x="420" y="536" text-anchor="middle">AXIS</text>
+<text x="420" y="558" text-anchor="middle">AXI4 sub</text>
+<text x="700" y="331" text-anchor="middle">CRCLK</text>
+<text x="700" y="353" text-anchor="middle">Clock, reset</text>
+<text x="420" y="836" text-anchor="middle">APB</text>
+<text x="420" y="858" text-anchor="middle">APB4 cmp</text>
+<text x="395" y="986" text-anchor="middle">DMAH</text>
+<text x="395" y="1008" text-anchor="middle">DMA handshake</text>
+<text x="380" y="1136" text-anchor="middle">IRQO</text>
+<text x="380" y="1158" text-anchor="middle">Interrupt, alarm</text>
+<text x="1735" y="1136" text-anchor="middle">ENT</text>
+<text x="1735" y="1158" text-anchor="middle">Entropy</text>
+<text x="1618" y="451" text-anchor="end">TOP</text>
+<text x="1618" y="473" text-anchor="end">(m_vlsit_sha_top)</text>
+<text x="855" y="526" text-anchor="middle">WRD</text>
+<text x="733" y="602" text-anchor="middle">DIG</text>
+<text x="1123" y="602" text-anchor="middle">BLK</text>
+<text x="865" y="676" text-anchor="middle">DGS</text>
+<text x="1123" y="752" text-anchor="middle">CTX</text>
+<text x="1240" y="676" text-anchor="middle">S256</text>
+<text x="1128" y="1052" text-anchor="middle">SDOM</text>
+<text x="1265" y="1126" text-anchor="middle">RND</text>
+<text x="104" y="3319" text-anchor="start" font-weight="bold">Legend</text>
+<text x="284" y="3360" text-anchor="start">Interface connector (one per signal group; arrow = active to passive)</text>
+<text x="104" y="3435" text-anchor="start">The frame is the top module; blocks are its instances. Optional blocks exist only when their parameter selects them. Clocks and resets reach every block; bus links to the SHA-512 and Keccak cores are in section 5.1.</text>
+<rect x="100" y="1540" width="2400" height="770" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1300" y="1567" text-anchor="middle" font-weight="bold">Block Functions &amp; Interfaces</text>
+<rect x="100" y="1580" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1605" text-anchor="start" font-weight="bold">Block</text>
+<rect x="430" y="1580" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1605" text-anchor="start" font-weight="bold">Function</text>
+<rect x="1910" y="1580" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1605" text-anchor="start" font-weight="bold">Source</text>
+<rect x="2140" y="1580" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1605" text-anchor="start" font-weight="bold">Interfaces (mnemonics)</text>
+<rect x="100" y="1616" width="330" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1652" text-anchor="start">TOP (m_vlsit_sha_top) frame</text>
+<rect x="430" y="1616" width="1480" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1641" text-anchor="start">Structural top of the SHA2 and SHA3 hash IP. It instantiates the blocks below and holds no logic of its own. The AXI4 and register interfaces are</text>
+<text x="434" y="1663" text-anchor="start">on the left, the entropy input on the right.</text>
+<rect x="1910" y="1616" width="230" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1652" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1616" width="360" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1652" text-anchor="start">AXIS, APB, DMAH, IRQO, ENT, CRCLK</text>
+<rect x="100" y="1674" width="330" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1710" text-anchor="start">u_axi (m_vlsit_sha_axi_sub)</text>
+<rect x="430" y="1674" width="1480" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1699" text-anchor="start">AXI4 subordinate. It decodes the context window address, checks burst type, size and strobes, pushes message words, pops digest words and reports</text>
+<text x="434" y="1721" text-anchor="start">window errors.</text>
+<rect x="1910" y="1674" width="230" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1710" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1674" width="360" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1710" text-anchor="start">WRD, DIG, AXIS, CRCLK</text>
+<rect x="100" y="1732" width="330" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1768" text-anchor="start">u_csr (m_vlsit_csr_sha)</text>
+<rect x="430" y="1732" width="1480" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1757" text-anchor="start">Generated APB register block. It holds the control, command, security, status and interrupt registers and crosses between the APB clock and the</text>
+<text x="434" y="1779" text-anchor="start">core clock.</text>
+<rect x="1910" y="1732" width="230" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1768" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1732" width="360" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1768" text-anchor="start">APB</text>
+<rect x="100" y="1790" width="330" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1826" text-anchor="start">u_dma (m_vlsit_sha_dma)</text>
+<rect x="430" y="1790" width="1480" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1815" text-anchor="start">External DMA handshake. It raises the input and output requests with the four-phase protocol, counts the burst size and pads a short output burst</text>
+<text x="434" y="1837" text-anchor="start">after a timeout.</text>
+<rect x="1910" y="1790" width="230" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1826" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1790" width="360" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1826" text-anchor="start">DMAH</text>
+<rect x="100" y="1848" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1873" text-anchor="start">u_irq (m_vlsit_sha_irq)</text>
+<rect x="430" y="1848" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1873" text-anchor="start">Event capture. It collects the error, done and fault events and drives the interrupt and the alarm outputs.</text>
+<rect x="1910" y="1848" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1873" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1848" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1873" text-anchor="start">IRQO</text>
+<rect x="100" y="1884" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1909" text-anchor="start">u_in_fifo (m_vlsit_sha_in_fifo)</text>
+<rect x="430" y="1884" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1909" text-anchor="start">Input FIFOs, one per context. They hold the message words until a block is complete and give backpressure to the AXI4 write channel when full.</text>
+<rect x="1910" y="1884" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1909" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1884" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1909" text-anchor="start">WRD, BLK, CRCLK</text>
+<rect x="100" y="1920" width="330" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="1956" text-anchor="start">u_seq (m_vlsit_sha_seq)</text>
+<rect x="430" y="1920" width="1480" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="1945" text-anchor="start">Context sequencer. It owns the state machine of every context, assembles blocks, adds the padding, picks the next ready context by round robin and</text>
+<text x="434" y="1967" text-anchor="start">counts blocks and bytes.</text>
+<rect x="1910" y="1920" width="230" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="1956" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1920" width="360" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="1956" text-anchor="start">BLK, DGS, CTX, S256</text>
+<rect x="100" y="1978" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2003" text-anchor="start">u_ctxmem (m_vlsit_sha_ctxmem)</text>
+<rect x="430" y="1978" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="2003" text-anchor="start">Context memory. It stores the hash state of every context that is not in a core, in flip-flops or in an SRAM macro.</text>
+<rect x="1910" y="1978" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="2003" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="1978" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="2003" text-anchor="start">CTX</text>
+<rect x="100" y="2014" width="330" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2039" text-anchor="start">u_out_fifo</text>
+<text x="104" y="2061" text-anchor="start">(m_vlsit_sha_out_fifo)</text>
+<rect x="430" y="2014" width="1480" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="2050" text-anchor="start">Output FIFOs, one per context. They hold the digest words, or the squeezed words of SHAKE, until the AXI4 read channel or the DMA takes them.</text>
+<rect x="1910" y="2014" width="230" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="2050" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="2014" width="360" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="2050" text-anchor="start">DIG, DGS</text>
+<rect x="100" y="2072" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2097" text-anchor="start">u_fault (m_vlsit_sha_fault)</text>
+<rect x="430" y="2072" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="2097" text-anchor="start">Fault detection. It compares duplicate cores, checks parity and compares recomputed blocks, then applies the selected responses.</text>
+<rect x="1910" y="2072" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="2097" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="2072" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<rect x="100" y="2108" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2133" text-anchor="start">u_core256 (m_vlsit_sha_core256)</text>
+<rect x="430" y="2108" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="2133" text-anchor="start">SHA-224 and SHA-256 compression core with a selectable number of rounds per cycle.</text>
+<rect x="1910" y="2108" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="2133" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="2108" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="2133" text-anchor="start">S256</text>
+<rect x="100" y="2144" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2169" text-anchor="start">u_core512 (m_vlsit_sha_core512)</text>
+<rect x="430" y="2144" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="2169" text-anchor="start">SHA-384, SHA-512 and SHA-512/t compression core with a selectable number of rounds per cycle.</text>
+<rect x="1910" y="2144" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="2169" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="2144" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<rect x="100" y="2180" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2205" text-anchor="start">u_keccak (m_vlsit_sha_keccak)</text>
+<rect x="430" y="2180" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="2205" text-anchor="start">Keccak permutation core for SHA-3 and SHAKE with a selectable number of rounds per cycle.</text>
+<rect x="1910" y="2180" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="2205" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="2180" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="2205" text-anchor="start">SDOM</text>
+<rect x="100" y="2216" width="330" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2241" text-anchor="start">u_keccak_dom</text>
+<text x="104" y="2263" text-anchor="start">(m_vlsit_sha_keccak_dom)</text>
+<rect x="430" y="2216" width="1480" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="2252" text-anchor="start">Masked Keccak permutation core. It keeps the state as two shares and uses fresh random bits for each non-linear step.</text>
+<rect x="1910" y="2216" width="230" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="2252" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="2216" width="360" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="2252" text-anchor="start">SDOM, RND</text>
+<rect x="100" y="2274" width="330" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2299" text-anchor="start">u_prng (m_vlsit_sha_prng)</text>
+<rect x="430" y="2274" width="1480" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="434" y="2299" text-anchor="start">Random generator of the masked core, seeded from the entropy input or from the seed words of the register block.</text>
+<rect x="1910" y="2274" width="230" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1914" y="2299" text-anchor="start">Section 14.2</text>
+<rect x="2140" y="2274" width="360" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="2144" y="2299" text-anchor="start">RND, ENT</text>
+<rect x="100" y="2350" width="2400" height="888" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="1300" y="2377" text-anchor="middle" font-weight="bold">Interface Table</text>
+<rect x="100" y="2390" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2415" text-anchor="start" font-weight="bold">ID</text>
+<rect x="190" y="2390" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2415" text-anchor="start" font-weight="bold">Interface</text>
+<rect x="490" y="2390" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2415" text-anchor="start" font-weight="bold">Category</text>
+<rect x="600" y="2390" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2415" text-anchor="start" font-weight="bold">Active side -&gt; passive side</text>
+<rect x="1070" y="2390" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2415" text-anchor="start" font-weight="bold">Key signals</text>
+<rect x="100" y="2426" width="90" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2473" text-anchor="start">APB</text>
+<rect x="190" y="2426" width="300" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2462" text-anchor="start">APB4 completer interface</text>
+<text x="194" y="2484" text-anchor="start">(CLK-APB)</text>
+<rect x="490" y="2426" width="110" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2451" text-anchor="start">standard</text>
+<text x="494" y="2473" text-anchor="start">protocol</text>
+<text x="494" y="2495" text-anchor="start">(APB4)</text>
+<rect x="600" y="2426" width="470" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2473" text-anchor="start">external manager -&gt; IP</text>
+<rect x="1070" y="2426" width="1430" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2462" text-anchor="start">external manager -&gt; IP: i_apb_psel, i_apb_penable, i_apb_pwrite, i_apb_paddr, i_apb_pwdata, i_apb_pstrb, i_apb_pprot, i_protect_en,</text>
+<text x="1074" y="2484" text-anchor="start">i_slverr_en; IP -&gt; external manager: o_apb_pready, o_apb_pslverr, o_apb_prdata</text>
+<rect x="100" y="2506" width="90" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2553" text-anchor="start">AXIS</text>
+<rect x="190" y="2506" width="300" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2542" text-anchor="start">AXI4 subordinate interface</text>
+<text x="194" y="2564" text-anchor="start">(CLK-CORE)</text>
+<rect x="490" y="2506" width="110" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2531" text-anchor="start">standard</text>
+<text x="494" y="2553" text-anchor="start">protocol</text>
+<text x="494" y="2575" text-anchor="start">(AXI4)</text>
+<rect x="600" y="2506" width="470" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2553" text-anchor="start">external manager -&gt; IP</text>
+<rect x="1070" y="2506" width="1430" height="80" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2520" text-anchor="start">external manager -&gt; IP: i_axi_awvalid, i_axi_awid, i_axi_awaddr, i_axi_awlen, i_axi_awsize, i_axi_awburst, i_axi_wvalid, i_axi_wdata,</text>
+<text x="1074" y="2542" text-anchor="start">i_axi_wstrb, i_axi_wlast, i_axi_bready, i_axi_arvalid, i_axi_arid, i_axi_araddr, i_axi_arlen, i_axi_arsize, i_axi_arburst, i_axi_rready; IP -&gt;</text>
+<text x="1074" y="2564" text-anchor="start">external manager: o_axi_awready, o_axi_wready, o_axi_bvalid, o_axi_bid, o_axi_bresp, o_axi_arready, o_axi_rvalid, o_axi_rid, o_axi_rdata,</text>
+<text x="1074" y="2586" text-anchor="start">o_axi_rresp, o_axi_rlast</text>
+<rect x="100" y="2586" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2622" text-anchor="start">BLK</text>
+<rect x="190" y="2586" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2611" text-anchor="start">Message words to the</text>
+<text x="194" y="2633" text-anchor="start">sequencer</text>
+<rect x="490" y="2586" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2622" text-anchor="start">custom</text>
+<rect x="600" y="2586" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2622" text-anchor="start">u_in_fifo -&gt; u_seq</text>
+<rect x="1070" y="2586" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2622" text-anchor="start">u_in_fifo -&gt; u_seq: w_in_rdata, w_in_level; u_seq -&gt; u_in_fifo: w_in_pop</text>
+<rect x="100" y="2644" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2680" text-anchor="start">CRCLK</text>
+<rect x="190" y="2644" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2680" text-anchor="start">Clocks and resets</text>
+<rect x="490" y="2644" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2669" text-anchor="start">clock and</text>
+<text x="494" y="2691" text-anchor="start">reset</text>
+<rect x="600" y="2644" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2680" text-anchor="start">SoC -&gt; IP</text>
+<rect x="1070" y="2644" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2680" text-anchor="start">SoC -&gt; IP: i_clk_core, i_rst_n_core, i_clk_apb, i_rst_n_apb</text>
+<rect x="100" y="2702" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2727" text-anchor="start">CTX</text>
+<rect x="190" y="2702" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2727" text-anchor="start">Context state read and write</text>
+<rect x="490" y="2702" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2727" text-anchor="start">custom</text>
+<rect x="600" y="2702" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2727" text-anchor="start">u_seq  u_ctxmem</text>
+<rect x="1070" y="2702" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2727" text-anchor="start">u_seq -&gt; u_ctxmem: w_ctx_wr, w_ctx_wstate, w_ctx_rd; u_ctxmem -&gt; u_seq: w_ctx_rstate</text>
+<rect x="100" y="2738" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2774" text-anchor="start">DGS</text>
+<rect x="190" y="2738" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2763" text-anchor="start">Digest words from the</text>
+<text x="194" y="2785" text-anchor="start">sequencer</text>
+<rect x="490" y="2738" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2774" text-anchor="start">custom</text>
+<rect x="600" y="2738" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2774" text-anchor="start">u_seq -&gt; u_out_fifo</text>
+<rect x="1070" y="2738" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2774" text-anchor="start">u_seq -&gt; u_out_fifo: w_out_push, w_out_wdata; u_out_fifo -&gt; u_seq: w_out_full</text>
+<rect x="100" y="2796" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2832" text-anchor="start">DIG</text>
+<rect x="190" y="2796" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2821" text-anchor="start">Digest words to the AXI4 read</text>
+<text x="194" y="2843" text-anchor="start">channel</text>
+<rect x="490" y="2796" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2832" text-anchor="start">custom</text>
+<rect x="600" y="2796" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2832" text-anchor="start">u_out_fifo -&gt; u_axi</text>
+<rect x="1070" y="2796" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2832" text-anchor="start">u_out_fifo -&gt; u_axi: w_out_rdata, w_out_empty; u_axi -&gt; u_out_fifo: w_out_pop</text>
+<rect x="100" y="2854" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2890" text-anchor="start">DMAH</text>
+<rect x="190" y="2854" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2879" text-anchor="start">External DMA handshake</text>
+<text x="194" y="2901" text-anchor="start">(CLK-CORE)</text>
+<rect x="490" y="2854" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2879" text-anchor="start">custom</text>
+<text x="494" y="2901" text-anchor="start">handshake</text>
+<rect x="600" y="2854" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2890" text-anchor="start">IP  DMA controller</text>
+<rect x="1070" y="2854" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2890" text-anchor="start">IP -&gt; DMA controller: o_dma_in_req, o_dma_out_req; DMA controller -&gt; IP: i_dma_in_ack, i_dma_out_ack</text>
+<rect x="100" y="2912" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="2948" text-anchor="start">ENT</text>
+<rect x="190" y="2912" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2948" text-anchor="start">Entropy input (CLK-CORE)</text>
+<rect x="490" y="2912" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2937" text-anchor="start">custom</text>
+<text x="494" y="2959" text-anchor="start">handshake</text>
+<rect x="600" y="2912" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="2948" text-anchor="start">external source  IP</text>
+<rect x="1070" y="2912" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="2948" text-anchor="start">external source -&gt; IP: i_ent_valid, i_ent_data; IP -&gt; external source: o_ent_req</text>
+<rect x="100" y="2970" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="3006" text-anchor="start">IRQO</text>
+<rect x="190" y="2970" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="2995" text-anchor="start">Interrupt and alarm outputs</text>
+<text x="194" y="3017" text-anchor="start">(CLK-CORE)</text>
+<rect x="490" y="2970" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="2995" text-anchor="start">level</text>
+<text x="494" y="3017" text-anchor="start">outputs</text>
+<rect x="600" y="2970" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="3006" text-anchor="start">IP -&gt; SoC</text>
+<rect x="1070" y="2970" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="3006" text-anchor="start">IP -&gt; SoC: o_irq, o_alarm</text>
+<rect x="100" y="3028" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="3064" text-anchor="start">RND</text>
+<rect x="190" y="3028" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="3053" text-anchor="start">Random bits to the masked</text>
+<text x="194" y="3075" text-anchor="start">core</text>
+<rect x="490" y="3028" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="3064" text-anchor="start">custom</text>
+<rect x="600" y="3028" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="3064" text-anchor="start">u_prng -&gt; u_keccak_dom</text>
+<rect x="1070" y="3028" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="3064" text-anchor="start">u_prng -&gt; u_keccak_dom: w_rnd_bits, w_rnd_valid</text>
+<rect x="100" y="3086" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="3122" text-anchor="start">S256</text>
+<rect x="190" y="3086" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="3111" text-anchor="start">Block and state to the</text>
+<text x="194" y="3133" text-anchor="start">SHA-256 core</text>
+<rect x="490" y="3086" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="3122" text-anchor="start">custom</text>
+<rect x="600" y="3086" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="3122" text-anchor="start">u_seq  u_core256</text>
+<rect x="1070" y="3086" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="3122" text-anchor="start">u_seq -&gt; u_core256: w_c256_start, w_c256_block, w_c256_state; u_core256 -&gt; u_seq: w_c256_done, w_c256_result</text>
+<rect x="100" y="3144" width="90" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="3169" text-anchor="start">SDOM</text>
+<rect x="190" y="3144" width="300" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="3169" text-anchor="start">Select of the masked core</text>
+<rect x="490" y="3144" width="110" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="3169" text-anchor="start">custom</text>
+<rect x="600" y="3144" width="470" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="3169" text-anchor="start">u_keccak -&gt; u_keccak_dom</text>
+<rect x="1070" y="3144" width="1430" height="36" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="3169" text-anchor="start">u_keccak -&gt; u_keccak_dom: w_dom_select</text>
+<rect x="100" y="3180" width="90" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="104" y="3216" text-anchor="start">WRD</text>
+<rect x="190" y="3180" width="300" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="194" y="3205" text-anchor="start">Message words from the AXI4</text>
+<text x="194" y="3227" text-anchor="start">write channel</text>
+<rect x="490" y="3180" width="110" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="494" y="3216" text-anchor="start">custom</text>
+<rect x="600" y="3180" width="470" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="604" y="3216" text-anchor="start">u_axi -&gt; u_in_fifo</text>
+<rect x="1070" y="3180" width="1430" height="58" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
+<text x="1074" y="3216" text-anchor="start">u_axi -&gt; u_in_fifo: w_in_push, w_in_wdata; u_in_fifo -&gt; u_axi: w_in_full</text>
+<path d="M 470 540 L 570 540" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="570,540 558,546 558,534" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 700 360 L 700 510" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="700,510 694,498 706,498" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 470 840 L 590 840" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="590,840 578,846 578,834" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 470 990 L 590 990" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="590,990 578,996 578,984" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 590 1140 L 470 1140" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="470,1140 482,1134 482,1146" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1690 1140 L 1590 1140" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1590,1140 1602,1134 1602,1146" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 700 422 L 1090 422 L 1090 510" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1090,510 1084,498 1096,498" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 830 540 L 960 540" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="960,540 948,546 948,534" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 700 660 L 700 570" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="700,570 706,582 694,582" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1090 570 L 1090 660" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1090,660 1084,648 1096,648" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 980 690 L 840 690" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="840,690 852,684 852,696" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1090 720 L 1090 810" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1090,810 1084,798 1096,798" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1200 690 L 1340 690" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1340,690 1328,696 1328,684" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1090 1020 L 1090 1110" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1090,1110 1084,1098 1096,1098" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 1350 1140 L 1240 1140" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="1240,1140 1252,1134 1252,1146" fill="#000000" stroke="#000000" stroke-width="1"/>
+<path d="M 100 3353 L 260 3353" fill="none" stroke="#000000" stroke-width="2.0"/>
+<polygon points="260,3353 248,3359 248,3347" fill="#000000" stroke="#000000" stroke-width="1"/>
+</svg>
