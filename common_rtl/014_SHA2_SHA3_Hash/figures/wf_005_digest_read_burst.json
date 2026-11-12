@@ -8,23 +8,25 @@
    "AXI4 read address",
    {
     "name": "i_axi_arvalid",
-    "wave": "01.0........"
+    "wave": "010........."
    },
    {
     "name": "o_axi_arready",
-    "wave": "0.10........"
+    "wave": "1.0...1....."
    },
    {
     "name": "i_axi_araddr",
-    "wave": "x=.x........",
+    "wave": "==..........",
     "data": [
-     "C1 DIG"
+     "0",
+     "1800"
     ]
    },
    {
     "name": "i_axi_arlen",
-    "wave": "x=.x........",
+    "wave": "==..........",
     "data": [
+     "0",
      "3"
     ]
    }
@@ -33,7 +35,7 @@
    "AXI4 read data",
    {
     "name": "o_axi_rvalid",
-    "wave": "0...1...0..."
+    "wave": "0.1...0....."
    },
    {
     "name": "i_axi_rready",
@@ -41,23 +43,25 @@
    },
    {
     "name": "o_axi_rdata",
-    "wave": "x...====x...",
+    "wave": "=.=====.....",
     "data": [
-     "D0",
-     "D1",
-     "D2",
-     "D3"
+     "0",
+     "eacf018fbf1678ba",
+     "2322ae5dde404141",
+     "9c7a1796a36103b0",
+     "ad1500f261ff10b4",
+     "0"
     ]
    },
    {
     "name": "o_axi_rlast",
-    "wave": "0...0..10..."
+    "wave": "1.0..1......"
    },
    {
     "name": "o_axi_rresp",
-    "wave": "x...=...x...",
+    "wave": "=...........",
     "data": [
-     "OKAY"
+     "0"
     ]
    }
   ],
@@ -65,7 +69,7 @@
    "FIFO",
    {
     "name": "i_sha_lvl_outlvl",
-    "wave": "=....====...",
+    "wave": "=..====.....",
     "data": [
      "4",
      "3",
@@ -77,9 +81,6 @@
   ]
  ],
  "head": {
-  "text": "WF-005: Read burst of the 4-word digest from the digest window of context 1"
- },
- "foot": {
-  "text": "The read data are the 4 digest words in standard byte order; the output FIFO level falls with each ..."
+  "text": "WF-005: simulation of the RTL (verification/waveforms_sim)"
  }
 }

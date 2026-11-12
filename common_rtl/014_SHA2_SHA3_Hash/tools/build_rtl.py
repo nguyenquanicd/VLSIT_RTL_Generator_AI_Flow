@@ -18,12 +18,29 @@ def case_fn(name, comment, width, vals, idx_w, per_line=1):
     return chr(10).join(lines)
 
 
+def iv_fn():
+    def pack(ws, w):
+        return sum(x << (w * i) for i, x in enumerate(ws))
+    vals = {0: pack(C.H224, 32), 1: pack(C.H256, 32), 2: pack(C.H384, 64), 3: pack(C.H512, 64),
+            4: pack(C.H512_224, 64), 5: pack(C.H512_256, 64)}
+    lines = ['  // Initial hash value of each algorithm (FIPS 180-4 section 5.3). State word i is in bits',
+             '  // [32 i +: 32] for SHA-224 and SHA-256 and [64 i +: 64] for the others; SHA-3 starts at zero.',
+             '  function automatic logic [1599:0] f_iv(input logic [3:0] i_alg);',
+             '    case (i_alg)']
+    for k, v in vals.items():
+        lines.append("      4'd%d: f_iv = 1600'h%x;" % (k, v))
+    lines.append("      default: f_iv = '0;")
+    lines += ['    endcase', '  endfunction']
+    return chr(10).join(lines)
+
+
 rot_tab = [C.ROT[(i % 5, i // 5)] for i in range(25)]
 fills = {
     '@@FK256@@': case_fn('f_k', 'Round constants K0 to K63 of FIPS 180-4 section 4.2.2.', 32, C.K256, 6),
     '@@FK512@@': case_fn('f_k', 'Round constants K0 to K79 of FIPS 180-4 section 4.2.3.', 64, C.K512, 7),
     '@@FRC@@': case_fn('f_rc', 'Round constants RC[0] to RC[23] of FIPS 202 section 3.2.5.', 64, C.RC, 5),
     '@@FROT@@': case_fn('f_rot', 'Rotation offsets of FIPS 202 section 3.2.2 for lane x + 5 y.', 6, rot_tab, 5),
+    '@@FIV@@': iv_fn(),
     '@@IV256@@': C.table(C.H256, 32, 4),
     '@@IV224@@': C.table(C.H224, 32, 4),
     '@@IV512@@': C.table(C.H512, 64, 2),
@@ -31,9 +48,11 @@ fills = {
     '@@IV512224@@': C.table(C.H512_224, 64, 2),
     '@@IV512256@@': C.table(C.H512_256, 64, 2),
 }
+fills['@@KFUNCS@@'] = open(os.path.join(HERE, 'kfuncs.txt')).read().replace('@@FRC@@', fills['@@FRC@@']).replace('@@FROT@@', fills['@@FROT@@'])
 tpl = os.path.join(HERE, 'tpl')
 for name in sorted(os.listdir(tpl)):
     text = open(os.path.join(tpl, name), encoding='utf-8').read()
+    text = text.replace('@@KFUNCS@@', fills['@@KFUNCS@@'])
     for k, v in fills.items():
         text = text.replace(k, v)
     assert '@@' not in text, name

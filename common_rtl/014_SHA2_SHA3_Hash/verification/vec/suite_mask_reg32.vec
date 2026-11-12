@@ -1,0 +1,3 @@
+include mask_reg_dw32.vec
+include mask_err_dw32.vec
+end

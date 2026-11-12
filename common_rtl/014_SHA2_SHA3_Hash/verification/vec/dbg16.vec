@@ -1,0 +1,17 @@
+cov 0 zero
+apbw 008 00000001
+apbw 00c 1
+poll 060 f00 100 2000
+apbw 008 00000001
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 200000
+tag H_sha224_len0
+waitlvl 4 400000
+axir 0 4
+expect 28 4 c92b3a2a8c024ad1 c4348228bb026147 2aa68e821fb0a215 000000002fe4b3c5
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 20000
+cov 0 one
+end

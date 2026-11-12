@@ -1,0 +1,201 @@
+static 0 1
+tag ERR-001_write_to_free_context
+apbw 008 00000101
+win 0
+axiw 0 1 a5a5a5a5a5a5a5a5
+expb 2
+chka 074 ffffffff 00001100
+chka 0c0 00010000 00010000
+apbw 00c 8
+wait 30
+tag ERR-001_record_cleared_by_soft_reset
+chka 074 ffffffff 00000000
+tag DEC-029_raw_event_stays_after_soft_reset
+chka 0c0 00010000 00010000
+apbw 0c0 ffffffff
+tag ERR-002_read_empty_output
+apbw 008 00010101
+rwin 1
+rclr
+axir 1 1
+expr 0
+expz 1
+chka 074 ffffffff 00100201
+chka 0c0 00020000 00020000
+apbw 0c0 ffffffff
+tag ERR-002_w1c_clears_raw
+chka 0c0 ffffffff 00000000
+apbw 00c 8
+wait 30
+tag ERR-003_write_digest_window
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+win 1
+axiw 0 1 a5a5a5a5a5a5a5a5
+win 0
+expb 2
+chka 074 ffffffff 00000300
+chka 078 ffffffff 00000800
+chka 0c0 00040000 00040000
+apbw 0c0 ffffffff
+tag ERR-003_read_message_window
+rwin 0
+rclr
+axir 0 1
+rwin 1
+expr 2
+expz 1
+chka 074 00000f00 00000300
+chka 0c0 00040000 00040000
+apbw 0c0 ffffffff
+apbw 00c 8
+wait 30
+tag ERR-003_unsupported_write_kinds
+tag ERR-003_write_wrap_burst
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+burst 2
+axiw 0 2 0000000000000001 0000000000000002
+burst 1
+expb 2
+chka 074 00000f00 00000400
+chka 078 ffffffff 00000000
+chka 0c0 00040000 00040000
+tag ERR-003_no_word_pushed_wrap_burst
+chka 064 0000ffff 00000000
+apbw 0c0 ffffffff
+apbw 00c 8
+wait 30
+tag ERR-003_write_narrow_size
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+wsize 2
+axiw 0 2 0000000000000001 0000000000000002
+wsize -1
+expb 2
+chka 074 00000f00 00000400
+chka 078 ffffffff 00000000
+chka 0c0 00040000 00040000
+tag ERR-003_no_word_pushed_narrow_size
+chka 064 0000ffff 00000000
+apbw 0c0 ffffffff
+apbw 00c 8
+wait 30
+tag ERR-003_write_partial_wstrb
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+strb fe
+axiw 0 2 0000000000000001 0000000000000002
+strb ff
+expb 2
+chka 074 00000f00 00000400
+chka 078 ffffffff 00000000
+chka 0c0 00040000 00040000
+tag ERR-003_no_word_pushed_partial_wstrb
+chka 064 0000ffff 00000000
+apbw 0c0 ffffffff
+apbw 00c 8
+wait 30
+tag ERR-003_context_out_of_range
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 4 1 0000000000000003
+expb 2
+chka 0c0 00040000 00040000
+chka 064 0000ffff 00000000
+apbw 0c0 ffffffff
+apbw 00c 8
+wait 30
+tag ERR-003_unsupported_read_kinds
+cov 1 other
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 1 0000000000636261
+apbw 008 00000101
+apbw 010 3
+apbw 00c 2
+poll 060 4 4 200000
+tag ERR-003_prepare_digest
+waitlvl 4 400000
+axir 0 4
+expect 32 4 eacf018fbf1678ba 2322ae5dde404141 9c7a1796a36103b0 ad1500f261ff10b4
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 20000
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 1 0000000000636261
+apbw 010 3
+apbw 00c 2
+poll 060 4 4 20000
+rwin 1
+rburst 2
+rclr
+axir 0 1
+rburst 1
+expr 2
+expz 1
+tag ERR-003_read_wrap_kind4
+chka 074 00000f00 00000400
+rsize 1
+rclr
+axir 0 1
+rsize -1
+expr 2
+expz 1
+chka 0c0 00040000 00040000
+apbw 0c0 ffffffff
+tag ERR-003_rejected_read_pops_nothing
+chka 064 ffff0000 00040000
+apbw 00c 4
+apbw 00c 8
+wait 30
+tag ERR-004_init_algorithm_not_built
+apbw 008 00000601
+apbw 00c 1
+wait 20
+chka 0c0 00080000 00080000
+chka 060 00000f00 00000000
+apbw 0c0 ffffffff
+tag ERR-004_init_busy_context
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+apbw 00c 1
+wait 20
+chka 0c0 00080000 00080000
+chka 060 00000f00 00000100
+apbw 0c0 ffffffff
+tag ERR-004_final_while_free
+apbw 008 00010101
+apbw 00c 2
+wait 20
+chka 0c0 00080000 00080000
+chka 060 00000f00 00000000
+apbw 0c0 ffffffff
+tag ERR-004_context_select_out_of_range
+apbw 008 00040101
+apbw 00c 1
+wait 20
+chka 0c0 00080000 00080000
+apbw 0c0 ffffffff
+tag ERR-004_tail_too_large
+apbw 008 00000101
+apbw 010 9
+apbw 00c 2
+wait 30
+chka 0c0 00080000 00080000
+chka 060 00000f00 00000100
+apbw 0c0 ffffffff
+apbw 010 0
+apbw 00c 4
+apbw 00c 8
+wait 30
+end

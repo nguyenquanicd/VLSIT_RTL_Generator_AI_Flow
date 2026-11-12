@@ -1,0 +1,208 @@
+tag IRQ_reset_state
+chkirq 0
+chkalarm 0
+tag IRQ_inject_without_enable
+apbw 0c8 00010000
+chka 0c0 00010000 00010000
+chka 0cc ffffffff 00000000
+chkirq 0
+tag IRQ_enable_sets_o_irq
+apbw 0c4 00010000
+chka 0cc ffffffff 00010000
+chkirq 1
+tag IRQ_clear_with_injection_held
+apbw 0c0 ffffffff
+chka 0c0 ffffffff 00000000
+chkirq 0
+apbw 0c8 0
+apbw 0c8 00010000
+chka 0c0 00010000 00010000
+chkirq 1
+apbw 0c8 0
+apbw 0c0 ffffffff
+apbw 0c4 0
+tag IRQ_inject_udf
+apbw 0c4 00020000
+apbw 0c8 00020000
+chkirq 1
+chka 0c0 00020000 00020000
+apbw 0c8 0
+apbw 0c0 ffffffff
+chkirq 0
+tag IRQ_inject_axi
+apbw 0c4 00040000
+apbw 0c8 00040000
+chkirq 1
+chka 0c0 00040000 00040000
+apbw 0c8 0
+apbw 0c0 ffffffff
+chkirq 0
+tag IRQ_inject_cfg
+apbw 0c4 00080000
+apbw 0c8 00080000
+chkirq 1
+chka 0c0 00080000 00080000
+apbw 0c8 0
+apbw 0c0 ffffffff
+chkirq 0
+tag IRQ_inject_flt
+apbw 0c4 00100000
+apbw 0c8 00100000
+chkirq 1
+chka 0c0 00100000 00100000
+apbw 0c8 0
+apbw 0c0 ffffffff
+chkirq 0
+tag IRQ_inject_ent
+apbw 0c4 00200000
+apbw 0c8 00200000
+chkirq 1
+chka 0c0 00200000 00200000
+apbw 0c8 0
+apbw 0c0 ffffffff
+chkirq 0
+tag IRQ_inject_tmo
+apbw 0c4 00400000
+apbw 0c8 00400000
+chkirq 1
+chka 0c0 00400000 00400000
+apbw 0c8 0
+apbw 0c0 ffffffff
+chkirq 0
+tag IRQ_inject_len
+apbw 0c4 00800000
+apbw 0c8 00800000
+chkirq 1
+chka 0c0 00800000 00800000
+apbw 0c8 0
+apbw 0c0 ffffffff
+chkirq 0
+tag IRQ_enable_mask_only_enabled_bits
+apbw 0c4 00020000
+apbw 0c8 00040000
+chkirq 0
+chka 0c0 00040000 00040000
+apbw 0c4 00060000
+chkirq 1
+apbw 0c8 0
+apbw 0c0 ffffffff
+apbw 0c4 0
+tag IRQ_cdone_each_context_by_injection
+apbw 0c4 00000001
+apbw 0c8 00000001
+chka 0c0 0000ffff 00000001
+chkirq 1
+apbw 0c8 0
+apbw 0c0 ffffffff
+apbw 0c4 00000002
+apbw 0c8 00000002
+chka 0c0 0000ffff 00000002
+chkirq 1
+apbw 0c8 0
+apbw 0c0 ffffffff
+apbw 0c4 00000004
+apbw 0c8 00000004
+chka 0c0 0000ffff 00000004
+chkirq 1
+apbw 0c8 0
+apbw 0c0 ffffffff
+apbw 0c4 00000008
+apbw 0c8 00000008
+chka 0c0 0000ffff 00000008
+chkirq 1
+apbw 0c8 0
+apbw 0c0 ffffffff
+apbw 0c4 0
+tag IRQ_cdone_real_event_ctx0
+apbw 0c4 00000001
+cov 1 other
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 10 f2bd4279 84f00621 f3f06277 4d764dcb 512007c7 890f9a15 cadac6f2 31bb44e3 6ffd4512 d79adf84
+apbw 008 00000101
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 200000
+tag IRQ_real_cdone_hash_ctx0
+waitlvl 8 400000
+axir 0 8
+expect 32 8 bfca0de0 56225899 3cdc28ab f4489b60 18f32ab3 53418091 6f3e3d3c 4b054856
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 20000
+chka 0c0 0000ffff 00000001
+chkirq 1
+apbw 0c0 ffffffff
+chkirq 0
+apbw 0c4 0
+tag IRQ_cdone_real_event_ctx1
+apbw 0c4 00000002
+cov 1 other
+apbw 008 00010101
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 1 10 76d0b3c5 538f0eac 886c35a7 f6203f91 22b02df7 960a4dd2 163cd4da 8ea9c117 039e1278 65103727
+apbw 008 00010101
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 200000
+tag IRQ_real_cdone_hash_ctx1
+waitlvl 8 400000
+axir 1 8
+expect 32 8 09fb1310 850f6540 6544c342 c1afdab2 cdc3dacc bebed6ac b8f525ce d8f10c38
+apbw 008 00010001
+apbw 00c 4
+poll 060 3 2 20000
+chka 0c0 0000ffff 00000002
+chkirq 1
+apbw 0c0 ffffffff
+chkirq 0
+apbw 0c4 0
+tag IRQ_cdone_real_event_ctx2
+apbw 0c4 00000004
+cov 1 other
+apbw 008 00020101
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 2 10 4f8695d0 b8a0ad15 ebc0c146 dc8a34c5 84df9a79 d405ad9b 44c00aa1 b4eeaa1e 0bfa8eb4 80bd0a1f
+apbw 008 00020101
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 200000
+tag IRQ_real_cdone_hash_ctx2
+waitlvl 8 400000
+axir 2 8
+expect 32 8 ee463f8a 95a52f55 4584fddb 27531ce5 752d07f1 c2051300 a512bbe7 131bec13
+apbw 008 00020001
+apbw 00c 4
+poll 060 3 2 20000
+chka 0c0 0000ffff 00000004
+chkirq 1
+apbw 0c0 ffffffff
+chkirq 0
+apbw 0c4 0
+tag IRQ_cdone_real_event_ctx3
+apbw 0c4 00000008
+cov 1 other
+apbw 008 00030101
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 3 10 5aa398e9 bda05eba 35c19987 719e430d 5fa77a89 a43431de 56e072aa e66fac28 113d738a 8e5da161
+apbw 008 00030101
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 200000
+tag IRQ_real_cdone_hash_ctx3
+waitlvl 8 400000
+axir 3 8
+expect 32 8 bbc793a2 6fe3f903 44a42518 79986175 f7826742 eb200472 91b59bf7 0d455398
+apbw 008 00030001
+apbw 00c 4
+poll 060 3 2 20000
+chka 0c0 0000ffff 00000008
+chkirq 1
+apbw 0c0 ffffffff
+chkirq 0
+apbw 0c4 0
+end

@@ -1,0 +1,12 @@
+static 1 1
+wait 6
+apbw 00c 1
+wait 4
+pprot 2
+apbwerr 00c 1 1
+pprot 0
+wait 4
+static 0 1
+apbw 00c 4
+wait 10
+end

@@ -1,0 +1,892 @@
+tag F_baseline_no_fault
+apbw 018 00030211
+cov 1 other
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 16 f3953a627b65a681 6158fe0e8f014a79 f0852c3ca4a95dc6 27e0662924627368 3628ec302ca86c33 707ece1cb33ee38b fd1a1106c446cef1 f11cfa833cddb714 d4b4f8082f984b30 2d7a040d4af61f00 857a4534f3c73aee 77190c4c54522c6b 97d4f13489fad5c2 1224f90960e8938d d92a68372e044809 63cdfaeb91c43754
+axiw 0 16 8f63a1a52c9180db 289ec182cdc9f4bc 1d6c19b8464a348c c01eaf528a413d0b e61802e8b828992c 103802dc27cffd4c 232c5982851340c0 a6a568f65b24c617 cd64c5dff86175f0 b461dbada99d6c31 874ab05073b5826d 22f5307afc9a95e4 d8ddd6970458948e 56c3faf2b6e134cc e0919c0c85dbc6c5 3888bfa9c6270ae2
+axiw 0 6 185449e43f4ab6b3 5846832fb6af96fc 6676dd33f20cdaa8 1d0f2e0bd936f712 b96327cf8eeff9b7 000000005b541076
+apbw 008 00000101
+apbw 010 4
+apbw 00c 2
+poll 060 4 4 200000
+tag F_baseline_sha256
+waitlvl 4 400000
+axir 0 4
+expect 32 4 00514dfb0dba3b05 15982012dad577d4 c9b5165e0db2059c d4f7bcb181aa518c
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 20000
+cov 3 other
+apbw 008 00000301
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 16 bb602c1a9bb38e6d d2c4e5f53a7df5e6 9177fe3e56bd31ec 0f75a1bbf4a886a0 da692ed80c7f0d16 aa3b78a99c7ef974 5f4dd1f7cc5cfefa 82fbbb085719120f 4512ef31d88f2eef 3a978953355decbc 72e28994510783bc 105ff70358ae81d3 9e3f42ca6cc5df0f c98b7eee6f9ead36 d79d460e3b0d4135 2cfd4d7a428ce638
+axiw 0 16 660ccbc2ccdd73ac 4e3038dac969136b 202246e79a544eb7 764a97c989d40024 b882ced0e9d108e8 959a311d9e763d14 0e26a2dc6fdee130 8e9c0e9894a2db91 af3ef3fe09672bb7 067052799ec11fc5 2a9bbfcedc11f8c8 c87f0492c3750a15 dfd8d70bcdafebbd 6796f22f371b0461 42aa5bef708baead c2d844d6511fb4bd
+axiw 0 6 556c45d832145fce 7863b2084f3ecd42 38f1fbf1fa1a0ac7 321e088cf4519f13 04c32f9cba3df458 0000000038234674
+apbw 008 00000301
+apbw 010 4
+apbw 00c 2
+poll 060 4 4 200000
+tag F_baseline_sha512
+waitlvl 8 400000
+axir 0 8
+expect 64 8 ab49c472fbffc485 9c95bd3f2d00c6ff 59249e955c66cbba 848ebad41efcf037 19a5b2e588cf58ce 42e765de12e1eb6d 555921d2f6dcf461 8706c5798525adc2
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 20000
+cov 9 other
+apbw 008 00000901
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 16 a2fed780833ab4f5 9916493ae1e83b9e e72ed2eda30d0336 1137a2dde1987b79 50296dff445e574d 12d91b98a75965b2 bf1176345bbcbcc4 161ca4be25a862df 52f91b15b55a1700 8322fa86355799c3 f76932c2ee134cf5 44b98fa9f158ec20 9dc0df5ae1fccce0 f859e68e76a5f240 db7e77cb93310ba2 aa09415b0753f42c
+axiw 0 16 4bba54a9c6d9ef75 95f306ac02cde6e7 661c22dafe78b784 18497913db326ad4 04d528d52852e98f 48c5b5a63eb28d5d d68624fbdf0ba6a4 077834a63690972a ebe596d9fb1f6a3f 499373ace89031c6 b33ad94b443e7290 2ba0974cd072ffca 67e95e161c990eaa a394002d52264578 327d5e0d7384addc 7b59097f5672a5cc
+axiw 0 6 b68062cb51811c42 04e197302495ed3a 16d0da8ecebf6385 39100fee0cfa040e 560ff46a5017f145 0000000084669a1e
+apbw 008 00000901
+apbw 010 4
+apbw 00c 2
+poll 060 4 4 200000
+tag F_baseline_sha3_256
+waitlvl 4 400000
+axir 0 4
+expect 32 4 4176b06b67910690 6e351aeeab8595fa 9198fa9d6ebc6c75 1f78e8cb8ea0dc1e
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 20000
+cov 12 other
+apbw 008 00000c01
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 16 25492f3f10e0e8c0 0c6e2c0b4228acac 311abee28b87ee5c 908ace7922412a14 8e04ce80cdd1e8aa 2cba87dd652700e9 36e555d8a38da2be 81c801bddfe447b4 3d94051ec2cd1010 0159bf9087be8290 bdbd0d53b73f3d3d c4b79c433dcd4c81 b889214c003ff5a8 e4325673ed11968d 488a36a52ce8ea40 1cd6f69fbc050eff
+axiw 0 16 2357d36a448d9a4f a0375b6970d2735f 85d697a5ffaeaac3 9eb7107d67dfc48f a44943030750f285 cb5cf9360e688efc 7ae0006386c0d51f 5b802ba6d7762b50 c3c63d4a44c8d5b3 06a23726df8d28b7 58abcce572563b2f 94d7b6832d2a1717 9f50d95a87761aec 25bb74ce547e819a 48116766313d1ae5 4491a13729acb3ed
+axiw 0 6 605b108622d01f6e 9d57ee5386c697ec ca97aa96f74dbd3c a2a8385195be3dc6 a60a31833db2127f 00000000c7f83c1d
+apbw 008 00000c01
+apbw 010 4
+apbw 00c 2
+poll 060 4 4 200000
+tag F_baseline_shake_128
+waitlvl 4 400000
+axir 0 4
+expect 25 4 4a6f751abdebce1b 8eb9da2ab61daccb 5a1a3a0a210346ab 00000000000000ac
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 20000
+tag F_baseline_no_event
+chka 0c0 00100000 00000000
+tag F_baseline_not_locked
+chka 060 00000008 00000000
+chkalarm 0
+tag F_detection_disabled
+apbw 018 00030201
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+inj 0 10 5
+axiw 0 16 fb34e336ef3496fc 5334360893c83211 6732db50c6501259 370ea9526956d48b d997e24ab4af0ffb eb21556012601efd be191a9b9d386a99 24cef48adaf28502 c8b3861a2b48492c 78891a608b9a14f5 610bf1e5fa5a26d4 8ae0a5cd1470b411 759d50187cd97269 c2037bba6548846e 3f1e6bb617a933f0 fa4b8ae55151f279
+axiw 0 9 ca8f95b71d806491 950313546678b572 081685bde254b1f8 e58d7c62335c4228 f6edaddf9fb050fa f9d5cf0b673e479a ef8c977befbdca8b 6b4cd9f148fde5d5 a375a4124d71bcbe
+apbw 010 0
+apbw 00c 2
+wait 1500
+tag F_disabled_no_event
+chka 0c0 00100000 00000000
+tag F_disabled_context_ready
+chka 060 00000f00 00000300
+apbw 00c 4
+poll 060 3 2 20000
+tag F_par_sha256_core_resp3
+apbw 00c 00000008
+wait 20
+apbw 0c0 ffffffff
+apbw 018 00030211
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+inj 0 10 5
+axiw 0 16 6d13ccb28b690389 0e1cb9ea2f94442d 42ee1132e173f3c4 85d8e70b372d1ebd 7deaef8f02977ae4 83b9a9dabc8c68dd 1482afa93d153c92 42926ee1537869fd b9c4cbe946430b3d 78f430e72cd10157 83cd000dd62fdebd 909dd044d4d9dba5 36cdfb0b608dd8a4 89b06541638f97eb caac15f1a247fa32 3ac25eef3aa648c2
+axiw 0 9 90d064d9f7d281b6 e4dcc484887cf186 10eb0487dec1146e d861c34741ae9843 6857d4e10d5d0d99 3c89ac03de3716ce 0f3e5b1e51278663 4589557e50f20005 58a9bca0a41a7cf5
+apbw 010 0
+apbw 00c 2
+wait 3000
+chkinj_inc
+tag F_par_sha256_core_resp3_fault_event
+chka 0c0 00100000 00100000
+tag F_par_sha256_core_resp3_locked
+chka 060 00000008 00000008
+chkalarm 0
+tag F_par_sha256_core_resp3_lock_rejects
+apbw 00c 1
+wait 20
+chka 0c0 00080000 00080000
+win 0
+axiw 0 1 0000000000000007
+expb 2
+tag F_par_sha256_core_resp3_gate_rejects_digest_read
+rwin 1
+rclr
+axir 0 1
+expr 2
+expz 1
+apbw 00c 8
+wait 20
+tag F_par_sha256_core_resp3_unlocked_by_soft_reset
+chka 060 00000008 00000000
+chkalarm 0
+apbw 0c0 ffffffff
+rclr
+cov 1 other
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 16 6d13ccb28b690389 0e1cb9ea2f94442d 42ee1132e173f3c4 85d8e70b372d1ebd 7deaef8f02977ae4 83b9a9dabc8c68dd 1482afa93d153c92 42926ee1537869fd b9c4cbe946430b3d 78f430e72cd10157 83cd000dd62fdebd 909dd044d4d9dba5 36cdfb0b608dd8a4 89b06541638f97eb caac15f1a247fa32 3ac25eef3aa648c2
+axiw 0 9 90d064d9f7d281b6 e4dcc484887cf186 10eb0487dec1146e d861c34741ae9843 6857d4e10d5d0d99 3c89ac03de3716ce 0f3e5b1e51278663 4589557e50f20005 58a9bca0a41a7cf5
+apbw 008 00000101
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 200000
+tag F_par_sha256_core_resp3_digest_after_recovery
+waitlvl 4 400000
+axir 0 4
+expect 32 4 3fdc3161829e49e6 4f51bfc6bc7880cf fea4db612666f29c e7e5a9aa954bade9
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 20000
+tag F_par_sha256_core_resp3_no_false_fault_after_recovery
+chka 0c0 00100000 00000000
+tag F_par_sha256_core_resp0
+apbw 00c 00000008
+wait 20
+apbw 0c0 ffffffff
+apbw 018 00000211
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+inj 0 10 5
+axiw 0 16 14c8fd9ae7f92df1 c61194c8b4cb8b39 baaf4b4edffaaaa8 76dd85c115496f04 93f5bbca55122343 f0466c2d7c0a0f1b 21cf87b9193a52dd afc92c7ceb9f276d 505ab98a665ebf0e cb64fc48bebbddcf fa72632c0fc7254a afdb750a5a7d032d 1ab276a49a0e6138 f6b2a6cf58130e5d 5e0e34e9c314a6e1 9ef79a40f2106945
+axiw 0 9 9538274497309e2a a94ceee7892ed790 fb844c073a38a525 0661872ee9c3161c de5b2fe4593b89e0 0cba03af06031358 bbea8e02087878cc dfefc09d1eaac45f 5b402f354c9f24e1
+apbw 010 0
+apbw 00c 2
+wait 3000
+chkinj_inc
+tag F_par_sha256_core_resp0_fault_event
+chka 0c0 00100000 00100000
+tag F_par_sha256_core_resp0_locked
+chka 060 00000008 00000000
+chkalarm 0
+apbw 00c 8
+wait 20
+tag F_par_sha256_core_resp0_unlocked_by_soft_reset
+chka 060 00000008 00000000
+chkalarm 0
+apbw 0c0 ffffffff
+rclr
+cov 1 other
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 16 14c8fd9ae7f92df1 c61194c8b4cb8b39 baaf4b4edffaaaa8 76dd85c115496f04 93f5bbca55122343 f0466c2d7c0a0f1b 21cf87b9193a52dd afc92c7ceb9f276d 505ab98a665ebf0e cb64fc48bebbddcf fa72632c0fc7254a afdb750a5a7d032d 1ab276a49a0e6138 f6b2a6cf58130e5d 5e0e34e9c314a6e1 9ef79a40f2106945
+axiw 0 9 9538274497309e2a a94ceee7892ed790 fb844c073a38a525 0661872ee9c3161c de5b2fe4593b89e0 0cba03af06031358 bbea8e02087878cc dfefc09d1eaac45f 5b402f354c9f24e1
+apbw 008 00000101
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 200000
+tag F_par_sha256_core_resp0_digest_after_recovery
+waitlvl 4 400000
+axir 0 4
+expect 32 4 3f48ae4240262cd5 dc10f2a7bfb9d5e2 619b7503ba11ae3b 5cfc8b7bde9e1a8f
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 20000
+tag F_par_sha256_core_resp0_no_false_fault_after_recovery
+chka 0c0 00100000 00000000
+tag F_par_sha256_core_resp4
+apbw 00c 00000008
+wait 20
+apbw 0c0 ffffffff
+apbw 018 00040211
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+inj 0 10 5
+axiw 0 16 97d8bffba741cc7c 1f62275296728f11 e71ae5b589a4d926 03bc5a49c545894e 627145fb1100c445 68cc73e36504d6f8 c94a45d149f610fa efa3abbf7013ee1f 3d50bf4683f5689f 0a11f8dc13aad647 c12358e3359b922d 619dd0b7daa6d449 9c7c5230b7627773 6ca55b605e543846 acb0657d47736555 e94168ce9ecdbed7
+axiw 0 9 f05f7db0f17f28ee 41b75fae866ed534 ca23ed3c2a585252 ebad693639ee826f e77cfa356a6d3d97 aae5f0f86353a1d7 e5155e390e3e7b72 c834bb785ef7ce8a 8e155e98c032fd46
+apbw 010 0
+apbw 00c 2
+wait 3000
+chkinj_inc
+tag F_par_sha256_core_resp4_fault_event
+chka 0c0 00100000 00100000
+tag F_par_sha256_core_resp4_context_state_wiped
+chka 060 00000f00 00000000
+tag F_par_sha256_core_resp4_locked
+chka 060 00000008 00000000
+chkalarm 0
+apbw 00c 8
+wait 20
+tag F_par_sha256_core_resp4_unlocked_by_soft_reset
+chka 060 00000008 00000000
+chkalarm 0
+apbw 0c0 ffffffff
+rclr
+cov 1 other
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 16 97d8bffba741cc7c 1f62275296728f11 e71ae5b589a4d926 03bc5a49c545894e 627145fb1100c445 68cc73e36504d6f8 c94a45d149f610fa efa3abbf7013ee1f 3d50bf4683f5689f 0a11f8dc13aad647 c12358e3359b922d 619dd0b7daa6d449 9c7c5230b7627773 6ca55b605e543846 acb0657d47736555 e94168ce9ecdbed7
+axiw 0 9 f05f7db0f17f28ee 41b75fae866ed534 ca23ed3c2a585252 ebad693639ee826f e77cfa356a6d3d97 aae5f0f86353a1d7 e5155e390e3e7b72 c834bb785ef7ce8a 8e155e98c032fd46
+apbw 008 00000101
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 200000
+tag F_par_sha256_core_resp4_digest_after_recovery
+waitlvl 4 400000
+axir 0 4
+expect 32 4 3357817d904794a4 bfe931ec6d7e2672 fe9fc51d0f0c0345 73797b4d5fa4902b
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 20000
+tag F_par_sha256_core_resp4_no_false_fault_after_recovery
+chka 0c0 00100000 00000000
+tag F_par_sha256_core_resp8
+apbw 00c 00000008
+wait 20
+apbw 0c0 ffffffff
+apbw 018 00080211
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+inj 0 10 5
+axiw 0 16 efdc5ce0432fe984 88536cd2f446bf5d fe83858ddfcfa584 50ef85ef474bba11 99a6a19ca54d5643 b51f9c3b19008fde f5f408f6ca5e4b41 26d6ca086b9b35a2 c4ff78559f590ea2 9371f0955d96c4f2 f4e1e43960fb1acb c9ca17f77cc0c1fb af01afb0f3192af6 c73a0553709f45da 9d089b257b6742fc 3879ea15baac81d4
+axiw 0 9 677fea1fce81a299 0debcd7b37395cd4 4c17d4b4b0b5f18e 1476f0cb8f31fadb dacca51a5a3011e8 6b8af4b78dae40ae 89e84921e4567f05 2a1084aafac55abe 01d2296be94f9b0c
+apbw 010 0
+apbw 00c 2
+wait 3000
+chkinj_inc
+tag F_par_sha256_core_resp8_fault_event
+chka 0c0 00100000 00100000
+tag F_par_sha256_core_resp8_locked
+chka 060 00000008 00000000
+chkalarm 1
+apbw 00c 8
+wait 20
+tag F_par_sha256_core_resp8_unlocked_by_soft_reset
+chka 060 00000008 00000000
+chkalarm 0
+apbw 0c0 ffffffff
+rclr
+cov 1 other
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 16 efdc5ce0432fe984 88536cd2f446bf5d fe83858ddfcfa584 50ef85ef474bba11 99a6a19ca54d5643 b51f9c3b19008fde f5f408f6ca5e4b41 26d6ca086b9b35a2 c4ff78559f590ea2 9371f0955d96c4f2 f4e1e43960fb1acb c9ca17f77cc0c1fb af01afb0f3192af6 c73a0553709f45da 9d089b257b6742fc 3879ea15baac81d4
+axiw 0 9 677fea1fce81a299 0debcd7b37395cd4 4c17d4b4b0b5f18e 1476f0cb8f31fadb dacca51a5a3011e8 6b8af4b78dae40ae 89e84921e4567f05 2a1084aafac55abe 01d2296be94f9b0c
+apbw 008 00000101
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 200000
+tag F_par_sha256_core_resp8_digest_after_recovery
+waitlvl 4 400000
+axir 0 4
+expect 32 4 62abd11c643b4fb8 e542267fec72cc46 c81e0de768d6fdd7 477f89befcd382c9
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 20000
+tag F_par_sha256_core_resp8_no_false_fault_after_recovery
+chka 0c0 00100000 00000000
+tag F_par_sha256_core_resp15
+apbw 00c 00000008
+wait 20
+apbw 0c0 ffffffff
+apbw 018 000f0211
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+inj 0 10 5
+axiw 0 16 be163008a6c65189 237525dc0e39dc5d 54b59b91920a9d7d 9ff215adfe73fd2b 9debd3dfabd78333 58614736caf286ed 8d75bac8b72ad056 b5ee1d4f7db48479 9aa94a10b0aebe6f 18526b78dbd75281 8b199c14e8dbba65 7e786353f09b2b7b 8959f4e1d4a7cdfc f72bdcae84d68ac2 27ec52f15024b5b8 7119e8581c47713d
+axiw 0 9 ccf70c5824119fdf 8edda0a452d6c8a3 e32ddfb04629a62b 62fd4c29bb980196 0f914d96da7bc881 ea5843c5d6d57610 06da686a176be0bc cb4b38cd7886a425 d79496a1b7152092
+apbw 010 0
+apbw 00c 2
+wait 3000
+chkinj_inc
+tag F_par_sha256_core_resp15_fault_event
+chka 0c0 00100000 00100000
+tag F_par_sha256_core_resp15_context_state_wiped
+chka 060 00000f00 00000000
+tag F_par_sha256_core_resp15_locked
+chka 060 00000008 00000008
+chkalarm 1
+tag F_par_sha256_core_resp15_lock_rejects
+apbw 00c 1
+wait 20
+chka 0c0 00080000 00080000
+win 0
+axiw 0 1 0000000000000007
+expb 2
+tag F_par_sha256_core_resp15_gate_rejects_digest_read
+rwin 1
+rclr
+axir 0 1
+expr 2
+expz 1
+apbw 00c 8
+wait 20
+tag F_par_sha256_core_resp15_unlocked_by_soft_reset
+chka 060 00000008 00000000
+chkalarm 0
+apbw 0c0 ffffffff
+rclr
+cov 1 other
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 16 be163008a6c65189 237525dc0e39dc5d 54b59b91920a9d7d 9ff215adfe73fd2b 9debd3dfabd78333 58614736caf286ed 8d75bac8b72ad056 b5ee1d4f7db48479 9aa94a10b0aebe6f 18526b78dbd75281 8b199c14e8dbba65 7e786353f09b2b7b 8959f4e1d4a7cdfc f72bdcae84d68ac2 27ec52f15024b5b8 7119e8581c47713d
+axiw 0 9 ccf70c5824119fdf 8edda0a452d6c8a3 e32ddfb04629a62b 62fd4c29bb980196 0f914d96da7bc881 ea5843c5d6d57610 06da686a176be0bc cb4b38cd7886a425 d79496a1b7152092
+apbw 008 00000101
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 200000
+tag F_par_sha256_core_resp15_digest_after_recovery
+waitlvl 4 400000
+axir 0 4
+expect 32 4 4707ca51efc644f7 45becc1c2d5e4adf 132c6e3d339ebcd7 26b8b0bc7892e3c3
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 20000
+tag F_par_sha256_core_resp15_no_false_fault_after_recovery
+chka 0c0 00100000 00000000
+tag F_par_sha256_window
+apbw 00c 00000008
+wait 20
+apbw 0c0 ffffffff
+apbw 018 00030211
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+inj 6 20 100
+axiw 0 16 ccdd54463e35f7fe 9b6d26afb7da6107 35baeab1f5c25e91 aed30f7300d490d5 0417f1657a2ad128 99038703af52a15f 8cf43b74811f1d09 249a0f7f8a981e2c 2b6d147e10ddd4b7 55c1acec3a6a5500 69dda64639a13dce fc819606446e9a1a f6fb1c48aa64963d f497fce089c5f0c4 7ca200cbbf4036f8 536089d1d51cd072
+axiw 0 9 1fc8a531ba653a9d 3952aa2905afae37 df612d5f296f1d6e 59990a3ca54a3771 7cf85dcf1fd66d1b 96ac50c15a0299eb 8866a198feffad2a d42371ea7b09b7b3 86e2376dc6eeb1a0
+apbw 010 0
+apbw 00c 2
+wait 3000
+chkinj_inc
+tag F_par_sha256_window_fault_event
+chka 0c0 00100000 00100000
+tag F_par_sha256_window_locked
+chka 060 00000008 00000008
+chkalarm 0
+tag F_par_sha256_window_lock_rejects
+apbw 00c 1
+wait 20
+chka 0c0 00080000 00080000
+win 0
+axiw 0 1 0000000000000007
+expb 2
+tag F_par_sha256_window_gate_rejects_digest_read
+rwin 1
+rclr
+axir 0 1
+expr 2
+expz 1
+apbw 00c 8
+wait 20
+tag F_par_sha256_window_unlocked_by_soft_reset
+chka 060 00000008 00000000
+chkalarm 0
+apbw 0c0 ffffffff
+rclr
+cov 1 other
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 16 ccdd54463e35f7fe 9b6d26afb7da6107 35baeab1f5c25e91 aed30f7300d490d5 0417f1657a2ad128 99038703af52a15f 8cf43b74811f1d09 249a0f7f8a981e2c 2b6d147e10ddd4b7 55c1acec3a6a5500 69dda64639a13dce fc819606446e9a1a f6fb1c48aa64963d f497fce089c5f0c4 7ca200cbbf4036f8 536089d1d51cd072
+axiw 0 9 1fc8a531ba653a9d 3952aa2905afae37 df612d5f296f1d6e 59990a3ca54a3771 7cf85dcf1fd66d1b 96ac50c15a0299eb 8866a198feffad2a d42371ea7b09b7b3 86e2376dc6eeb1a0
+apbw 008 00000101
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 200000
+tag F_par_sha256_window_digest_after_recovery
+waitlvl 4 400000
+axir 0 4
+expect 32 4 5c41740fd2e018b7 c928968b62716d57 2873b21d35e9e577 179f3b567576aa6e
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 20000
+tag F_par_sha256_window_no_false_fault_after_recovery
+chka 0c0 00100000 00000000
+tag F_par_sha512_core
+apbw 00c 00000008
+wait 20
+apbw 0c0 ffffffff
+apbw 018 00030211
+apbw 008 00000301
+apbw 00c 1
+poll 060 f00 100 2000
+inj 1 10 5
+axiw 0 16 c6d44f6401c77c1e 92fffba2df50f815 103f8349c40706b3 debbe085f9688d39 7857e5338b573cba bc668d3f2e7822da ebc7899a93e14c34 d66b55f9d189f80d 5e4088b7939b1a6b f947abfdac949ac1 51ad6a2477726986 ca160a64619f9157 d1f4521950d5b69f 69f13735776b2421 82ee2c23d887fbd9 a6010e39348da047
+axiw 0 16 fdca22b2f2672250 d1b46e7ab9b15449 87e305be044a75c4 2c8ffd7b6307c143 61c82515fed3b00b 94d25abccd777fbd 6f4877971551045a 7bd8f0e4ff0a216d 58ca8a237a33a128 385c84a5bb418d99 80b984d1d3bdbd1b 026f5cdc55147095 35019161a9afcf5c 8d47ee341cee2dc7 4c6937ff2ae3657e 46b33eb33fbde707
+axiw 0 6 633e98416ddfbb93 8464cbaeb167f96e f7634860f02677bf ca5eccf05e073869 e3ca4ad073a7a095 000000007ba10443
+apbw 010 4
+apbw 00c 2
+wait 3000
+chkinj_inc
+tag F_par_sha512_core_fault_event
+chka 0c0 00100000 00100000
+tag F_par_sha512_core_locked
+chka 060 00000008 00000008
+chkalarm 0
+tag F_par_sha512_core_lock_rejects
+apbw 00c 1
+wait 20
+chka 0c0 00080000 00080000
+win 0
+axiw 0 1 0000000000000007
+expb 2
+tag F_par_sha512_core_gate_rejects_digest_read
+rwin 1
+rclr
+axir 0 1
+expr 2
+expz 1
+apbw 00c 8
+wait 20
+tag F_par_sha512_core_unlocked_by_soft_reset
+chka 060 00000008 00000000
+chkalarm 0
+apbw 0c0 ffffffff
+rclr
+cov 3 other
+apbw 008 00000301
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 16 c6d44f6401c77c1e 92fffba2df50f815 103f8349c40706b3 debbe085f9688d39 7857e5338b573cba bc668d3f2e7822da ebc7899a93e14c34 d66b55f9d189f80d 5e4088b7939b1a6b f947abfdac949ac1 51ad6a2477726986 ca160a64619f9157 d1f4521950d5b69f 69f13735776b2421 82ee2c23d887fbd9 a6010e39348da047
+axiw 0 16 fdca22b2f2672250 d1b46e7ab9b15449 87e305be044a75c4 2c8ffd7b6307c143 61c82515fed3b00b 94d25abccd777fbd 6f4877971551045a 7bd8f0e4ff0a216d 58ca8a237a33a128 385c84a5bb418d99 80b984d1d3bdbd1b 026f5cdc55147095 35019161a9afcf5c 8d47ee341cee2dc7 4c6937ff2ae3657e 46b33eb33fbde707
+axiw 0 6 633e98416ddfbb93 8464cbaeb167f96e f7634860f02677bf ca5eccf05e073869 e3ca4ad073a7a095 000000007ba10443
+apbw 008 00000301
+apbw 010 4
+apbw 00c 2
+poll 060 4 4 200000
+tag F_par_sha512_core_digest_after_recovery
+waitlvl 8 400000
+axir 0 8
+expect 64 8 3f7812188e92e690 00e15d434c279216 392eeef5eaf47186 071218c34df34b87 be3e4e811d78bbee 91bbd3f51990604a 3b3bf64c6cb5f9c8 1f5fc369eed39154
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 20000
+tag F_par_sha512_core_no_false_fault_after_recovery
+chka 0c0 00100000 00000000
+tag F_par_sha512_window
+apbw 00c 00000008
+wait 20
+apbw 0c0 ffffffff
+apbw 018 00030211
+apbw 008 00000301
+apbw 00c 1
+poll 060 f00 100 2000
+inj 7 20 300
+axiw 0 16 85078dea6d23b1d4 0916008854b5872c becb9c3c8314762d 3324a33973ac04a2 f5470886c170c9b0 4d886c991e7270e5 c19b13cfd9ae58fb 0744ae472152a49b c532466f74db9114 b63b77f46efb72b1 f6463a5eee9b54e5 d538ec96d8f01354 d59ffe484a14e8a6 04b688354a0fe043 8dc9d637733da628 d20235b964e4b740
+axiw 0 16 fdc065e9d6ca42a4 2457e3ca011374cb 5edc0808efcef9ce ab0aeb3c383b0520 8ce8a3d685111257 f8696803a565d817 9bb77bcac7c70aa7 1101c0bdef8879d4 763ebb5558b4e552 89a5569bcb644962 2f5e534973f8013c a473f865cb45d66b b0c28197c23d8577 0d2b0f1c1f2da337 5a94c8a7434891e8 4213901c426f06c2
+axiw 0 6 8770c6886cdca17e 9c9e219b7ea42be7 878018086fdc954f c3236bac11a1d158 54cf2a588c361e8a 0000000077da0b64
+apbw 010 4
+apbw 00c 2
+wait 3000
+chkinj_inc
+tag F_par_sha512_window_fault_event
+chka 0c0 00100000 00100000
+tag F_par_sha512_window_locked
+chka 060 00000008 00000008
+chkalarm 0
+tag F_par_sha512_window_lock_rejects
+apbw 00c 1
+wait 20
+chka 0c0 00080000 00080000
+win 0
+axiw 0 1 0000000000000007
+expb 2
+tag F_par_sha512_window_gate_rejects_digest_read
+rwin 1
+rclr
+axir 0 1
+expr 2
+expz 1
+apbw 00c 8
+wait 20
+tag F_par_sha512_window_unlocked_by_soft_reset
+chka 060 00000008 00000000
+chkalarm 0
+apbw 0c0 ffffffff
+rclr
+cov 3 other
+apbw 008 00000301
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 16 85078dea6d23b1d4 0916008854b5872c becb9c3c8314762d 3324a33973ac04a2 f5470886c170c9b0 4d886c991e7270e5 c19b13cfd9ae58fb 0744ae472152a49b c532466f74db9114 b63b77f46efb72b1 f6463a5eee9b54e5 d538ec96d8f01354 d59ffe484a14e8a6 04b688354a0fe043 8dc9d637733da628 d20235b964e4b740
+axiw 0 16 fdc065e9d6ca42a4 2457e3ca011374cb 5edc0808efcef9ce ab0aeb3c383b0520 8ce8a3d685111257 f8696803a565d817 9bb77bcac7c70aa7 1101c0bdef8879d4 763ebb5558b4e552 89a5569bcb644962 2f5e534973f8013c a473f865cb45d66b b0c28197c23d8577 0d2b0f1c1f2da337 5a94c8a7434891e8 4213901c426f06c2
+axiw 0 6 8770c6886cdca17e 9c9e219b7ea42be7 878018086fdc954f c3236bac11a1d158 54cf2a588c361e8a 0000000077da0b64
+apbw 008 00000301
+apbw 010 4
+apbw 00c 2
+poll 060 4 4 200000
+tag F_par_sha512_window_digest_after_recovery
+waitlvl 8 400000
+axir 0 8
+expect 64 8 4348b281b62e46f3 c9f6715ce85a9b7e aea1068d6df3d89e 9a1d4b7ef17f1999 0ac2ecca75d2db2d 12a71cbf24052e52 23d64a35a1ee536f 3bbaff6130c45221
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 20000
+tag F_par_sha512_window_no_false_fault_after_recovery
+chka 0c0 00100000 00000000
+tag F_par_keccak_state
+apbw 00c 00000008
+wait 20
+apbw 0c0 ffffffff
+apbw 018 00030211
+apbw 008 00000901
+apbw 00c 1
+poll 060 f00 100 2000
+inj 2 4 700
+axiw 0 16 75daf3e104b704ba fd945f8946f3730c 6473e51ce70c7be8 1de261759f4f36d4 ef065d942a228593 1fffa46bc78fe07a 22a3e83a4cb26de9 3debf6b4d5e24ee7 e897794b4f61b4af ec9a304d6425b9f6 e04b345907a7914f 34bd499d6a0d7d44 fcb535b2a3d6b5d4 b2d8bf616300ab7b eca7e7cff7b5d0f2 6e3a4d139314a44a
+axiw 0 16 1929ee21af1a8a85 57b019d83c585f52 c6436bab6f5fa984 8e7095b4da90d16a 4ac999566271a77a 379941766b6f271f 710e00d5e492cb66 c816ebdfba24ed8b aab5f8ccf9c798c2 c0bb1543b45cc08c 14eccbf7942f5521 3524a99551956e45 77e3413466c28ff0 e69f08c9e977e3bd 8f25fe0aaa3bb0e9 630a7d5d5a90144c
+axiw 0 6 99290ec9b16ce009 58f19da67f83ce05 b18068e3599d2298 0e4d5b91dc48c08b 0168891fc52606e6 00000000e0c9017c
+apbw 010 4
+apbw 00c 2
+wait 3000
+chkinj_inc
+tag F_par_keccak_state_fault_event
+chka 0c0 00100000 00100000
+tag F_par_keccak_state_locked
+chka 060 00000008 00000008
+chkalarm 0
+tag F_par_keccak_state_lock_rejects
+apbw 00c 1
+wait 20
+chka 0c0 00080000 00080000
+win 0
+axiw 0 1 0000000000000007
+expb 2
+tag F_par_keccak_state_gate_rejects_digest_read
+rwin 1
+rclr
+axir 0 1
+expr 2
+expz 1
+apbw 00c 8
+wait 20
+tag F_par_keccak_state_unlocked_by_soft_reset
+chka 060 00000008 00000000
+chkalarm 0
+apbw 0c0 ffffffff
+rclr
+cov 9 other
+apbw 008 00000901
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 16 75daf3e104b704ba fd945f8946f3730c 6473e51ce70c7be8 1de261759f4f36d4 ef065d942a228593 1fffa46bc78fe07a 22a3e83a4cb26de9 3debf6b4d5e24ee7 e897794b4f61b4af ec9a304d6425b9f6 e04b345907a7914f 34bd499d6a0d7d44 fcb535b2a3d6b5d4 b2d8bf616300ab7b eca7e7cff7b5d0f2 6e3a4d139314a44a
+axiw 0 16 1929ee21af1a8a85 57b019d83c585f52 c6436bab6f5fa984 8e7095b4da90d16a 4ac999566271a77a 379941766b6f271f 710e00d5e492cb66 c816ebdfba24ed8b aab5f8ccf9c798c2 c0bb1543b45cc08c 14eccbf7942f5521 3524a99551956e45 77e3413466c28ff0 e69f08c9e977e3bd 8f25fe0aaa3bb0e9 630a7d5d5a90144c
+axiw 0 6 99290ec9b16ce009 58f19da67f83ce05 b18068e3599d2298 0e4d5b91dc48c08b 0168891fc52606e6 00000000e0c9017c
+apbw 008 00000901
+apbw 010 4
+apbw 00c 2
+poll 060 4 4 200000
+tag F_par_keccak_state_digest_after_recovery
+waitlvl 4 400000
+axir 0 4
+expect 32 4 b5ac58ef237d6744 159a5c89f2cc5dcf 6ff444f4b51418ec 1077df1c1fb07269
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 20000
+tag F_par_keccak_state_no_false_fault_after_recovery
+chka 0c0 00100000 00000000
+tag F_par_context_memory
+apbw 00c 00000008
+wait 20
+apbw 0c0 ffffffff
+apbw 018 00030211
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+inj 8 0 9
+axiw 0 16 535254b3ff8374b1 7bb48d1be5b94501 93d7b6c44b895780 181677fa2ad1533e b43c97d862344c6f 1977b700a6ccf09f 1344ae976f509f74 fc43e844a3f918d0 7baf8077c1f4ccc5 3970c3a5ac88db0a 7c45085b1758eb14 9002c58a71d044cd 286a454d39d44700 344d9d144442bbde 9ba4ea1750ee4b37 ea3849653a453a7f
+axiw 0 9 f1895a4d560a6ecf 4ec99ff551c87af4 1f426b82ce235792 0f2cb1e9e20b2bb2 c8c8b65ccf003a9c 2a2e1eb3499c935a 5f905fe547830ee6 d823ae7d063f53e7 0084d0653d135736
+apbw 010 0
+apbw 00c 2
+wait 3000
+chkinj_inc
+tag F_par_context_memory_fault_event
+chka 0c0 00100000 00100000
+tag F_par_context_memory_locked
+chka 060 00000008 00000008
+chkalarm 0
+tag F_par_context_memory_lock_rejects
+apbw 00c 1
+wait 20
+chka 0c0 00080000 00080000
+win 0
+axiw 0 1 0000000000000007
+expb 2
+tag F_par_context_memory_gate_rejects_digest_read
+rwin 1
+rclr
+axir 0 1
+expr 2
+expz 1
+apbw 00c 8
+wait 20
+tag F_par_context_memory_unlocked_by_soft_reset
+chka 060 00000008 00000000
+chkalarm 0
+apbw 0c0 ffffffff
+rclr
+cov 1 other
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 16 535254b3ff8374b1 7bb48d1be5b94501 93d7b6c44b895780 181677fa2ad1533e b43c97d862344c6f 1977b700a6ccf09f 1344ae976f509f74 fc43e844a3f918d0 7baf8077c1f4ccc5 3970c3a5ac88db0a 7c45085b1758eb14 9002c58a71d044cd 286a454d39d44700 344d9d144442bbde 9ba4ea1750ee4b37 ea3849653a453a7f
+axiw 0 9 f1895a4d560a6ecf 4ec99ff551c87af4 1f426b82ce235792 0f2cb1e9e20b2bb2 c8c8b65ccf003a9c 2a2e1eb3499c935a 5f905fe547830ee6 d823ae7d063f53e7 0084d0653d135736
+apbw 008 00000101
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 200000
+tag F_par_context_memory_digest_after_recovery
+waitlvl 4 400000
+axir 0 4
+expect 32 4 26114bd80e0839e3 d04e9731f18eac70 b8799886f40c9433 a4693022ce118507
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 20000
+tag F_par_context_memory_no_false_fault_after_recovery
+chka 0c0 00100000 00000000
+tag F_par_context_memory_keccak
+apbw 00c 00000008
+wait 20
+apbw 0c0 ffffffff
+apbw 018 00030211
+apbw 008 00000901
+apbw 00c 1
+poll 060 f00 100 2000
+inj 8 0 1500
+axiw 0 16 4e8aa6d27b59a85c 92bfcd7f753a196a 1c6ae38ff0256d2d f2b049356dd9f372 90d9f0116f21090d b75977d71fa80f0b 1df6f2660429c271 1fea97d5906e20b2 87dbfcc97389932e 6f33fc98cfa1d329 7abfbd9f45b13903 4cf3ea35fc41c707 4b90486fb327f43b 563d6cfe0ee84ba5 3628b0bdc45693a1 f26b00c549963548
+axiw 0 16 efb128092b27ee4f 9197a70fdb7b6626 6f6aff93cbc01b81 de9bd6e687c2ed32 3c99cd980e5e33d4 dd14e99be4c31337 1470d75c7b4b21b1 12a1cfa7141c8ff0 3edbb247561efd59 63f729b286e41cec 7f0242e841b990b7 b701f734e18096b3 3d875eeb6cc3a415 f399af36190a1a23 5e5652414740dbc9 8c262c75857789d8
+axiw 0 6 d1a49b006965fcbe e1583675e61499ab 394f6a6e45e5ef4e a62f71abbff49df3 c290468854cb2249 000000006bcc163a
+apbw 010 4
+apbw 00c 2
+wait 3000
+chkinj_inc
+tag F_par_context_memory_keccak_fault_event
+chka 0c0 00100000 00100000
+tag F_par_context_memory_keccak_locked
+chka 060 00000008 00000008
+chkalarm 0
+tag F_par_context_memory_keccak_lock_rejects
+apbw 00c 1
+wait 20
+chka 0c0 00080000 00080000
+win 0
+axiw 0 1 0000000000000007
+expb 2
+tag F_par_context_memory_keccak_gate_rejects_digest_read
+rwin 1
+rclr
+axir 0 1
+expr 2
+expz 1
+apbw 00c 8
+wait 20
+tag F_par_context_memory_keccak_unlocked_by_soft_reset
+chka 060 00000008 00000000
+chkalarm 0
+apbw 0c0 ffffffff
+rclr
+cov 9 other
+apbw 008 00000901
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 16 4e8aa6d27b59a85c 92bfcd7f753a196a 1c6ae38ff0256d2d f2b049356dd9f372 90d9f0116f21090d b75977d71fa80f0b 1df6f2660429c271 1fea97d5906e20b2 87dbfcc97389932e 6f33fc98cfa1d329 7abfbd9f45b13903 4cf3ea35fc41c707 4b90486fb327f43b 563d6cfe0ee84ba5 3628b0bdc45693a1 f26b00c549963548
+axiw 0 16 efb128092b27ee4f 9197a70fdb7b6626 6f6aff93cbc01b81 de9bd6e687c2ed32 3c99cd980e5e33d4 dd14e99be4c31337 1470d75c7b4b21b1 12a1cfa7141c8ff0 3edbb247561efd59 63f729b286e41cec 7f0242e841b990b7 b701f734e18096b3 3d875eeb6cc3a415 f399af36190a1a23 5e5652414740dbc9 8c262c75857789d8
+axiw 0 6 d1a49b006965fcbe e1583675e61499ab 394f6a6e45e5ef4e a62f71abbff49df3 c290468854cb2249 000000006bcc163a
+apbw 008 00000901
+apbw 010 4
+apbw 00c 2
+poll 060 4 4 200000
+tag F_par_context_memory_keccak_digest_after_recovery
+waitlvl 4 400000
+axir 0 4
+expect 32 4 76edff35a224a552 fc8ab787f029f0c9 19b3849d81f3a8f6 a852bcc080754975
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 20000
+tag F_par_context_memory_keccak_no_false_fault_after_recovery
+chka 0c0 00100000 00000000
+tag F_par_context_memory_digest_read
+apbw 00c 00000008
+wait 20
+apbw 0c0 ffffffff
+apbw 018 00030211
+apbw 008 00000b01
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 5 a192afb9dbbea31a 085cdb5103192f8e 12563920162fcc29 b313c1f6a96fd212 d75da4f32e062ca0
+apbw 010 0
+apbw 00c 2
+inj 8 38 7
+wait 3000
+chkinj_inc
+tag F_par_context_memory_digest_read_fault_event
+chka 0c0 00100000 00100000
+tag F_par_context_memory_digest_read_locked
+chka 060 00000008 00000008
+chkalarm 0
+tag F_par_context_memory_digest_read_lock_rejects
+apbw 00c 1
+wait 20
+chka 0c0 00080000 00080000
+win 0
+axiw 0 1 0000000000000007
+expb 2
+tag F_par_context_memory_digest_read_gate_rejects_digest_read
+rwin 1
+rclr
+axir 0 1
+expr 2
+expz 1
+apbw 00c 8
+wait 20
+tag F_par_context_memory_digest_read_unlocked_by_soft_reset
+chka 060 00000008 00000000
+chkalarm 0
+apbw 0c0 ffffffff
+rclr
+cov 11 other
+apbw 008 00000b01
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 5 a192afb9dbbea31a 085cdb5103192f8e 12563920162fcc29 b313c1f6a96fd212 d75da4f32e062ca0
+apbw 008 00000b01
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 200000
+tag F_par_context_memory_digest_read_digest_after_recovery
+waitlvl 8 400000
+axir 0 8
+expect 64 8 b54255d15ea62ff7 c6322db80c2acd16 376ac87441326ff1 e60dbe29ede48f3c 41041c5beecd0c51 93c60e0fa4150e99 b6f97ba3f39ea660 07bf49d1eaa9b3b9
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 20000
+tag F_par_context_memory_digest_read_no_false_fault_after_recovery
+chka 0c0 00100000 00000000
+tag F_par_input_fifo
+apbw 00c 00000008
+wait 20
+apbw 0c0 ffffffff
+apbw 018 00030211
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 5 ba37bcc17e49d9ae 2ea86fa069d82f2c f0e7006a8e806942 c0a0a64e5171c145 983b084282fd0e8d
+wait 10
+inj 9 0 2
+wait 10
+apbw 010 0
+apbw 00c 2
+wait 3000
+chkinj_inc
+tag F_par_input_fifo_fault_event
+chka 0c0 00100000 00100000
+tag F_par_input_fifo_locked
+chka 060 00000008 00000008
+chkalarm 0
+tag F_par_input_fifo_lock_rejects
+apbw 00c 1
+wait 20
+chka 0c0 00080000 00080000
+win 0
+axiw 0 1 0000000000000007
+expb 2
+tag F_par_input_fifo_gate_rejects_digest_read
+rwin 1
+rclr
+axir 0 1
+expr 2
+expz 1
+apbw 00c 8
+wait 20
+tag F_par_input_fifo_unlocked_by_soft_reset
+chka 060 00000008 00000000
+chkalarm 0
+apbw 0c0 ffffffff
+rclr
+cov 1 other
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 5 ba37bcc17e49d9ae 2ea86fa069d82f2c f0e7006a8e806942 c0a0a64e5171c145 983b084282fd0e8d
+apbw 008 00000101
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 200000
+tag F_par_input_fifo_digest_after_recovery
+waitlvl 4 400000
+axir 0 4
+expect 32 4 6eaeed93de57a6ae df03e963d3923879 519b26f54a5c9786 a557b4665ff07b22
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 20000
+tag F_par_input_fifo_no_false_fault_after_recovery
+chka 0c0 00100000 00000000
+tag F_par_output_fifo
+apbw 00c 00000008
+wait 20
+apbw 0c0 ffffffff
+apbw 018 00030211
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 5 622f087ffe293976 243555f466ca1a09 2cc5a49ee739837f 3e2d01bed3b32489 10e0725f66f1b195
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 20000
+wait 30
+inj 10 0 2
+wait 10
+rwin 1
+rclr
+axir 0 4
+wait 3000
+chkinj_inc
+tag F_par_output_fifo_fault_event
+chka 0c0 00100000 00100000
+tag F_par_output_fifo_locked
+chka 060 00000008 00000008
+chkalarm 0
+tag F_par_output_fifo_lock_rejects
+apbw 00c 1
+wait 20
+chka 0c0 00080000 00080000
+win 0
+axiw 0 1 0000000000000007
+expb 2
+apbw 00c 8
+wait 20
+tag F_par_output_fifo_unlocked_by_soft_reset
+chka 060 00000008 00000000
+chkalarm 0
+apbw 0c0 ffffffff
+rclr
+cov 1 other
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 5 622f087ffe293976 243555f466ca1a09 2cc5a49ee739837f 3e2d01bed3b32489 10e0725f66f1b195
+apbw 008 00000101
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 200000
+tag F_par_output_fifo_digest_after_recovery
+waitlvl 4 400000
+axir 0 4
+expect 32 4 0d58d3d78b124d7b aaee0bf083df5f0d 92751358f1304c92 d72c7ad4a13a25a6
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 20000
+tag F_par_output_fifo_no_false_fault_after_recovery
+chka 0c0 00100000 00000000
+end

@@ -1,0 +1,5 @@
+k = open('tpl/m_vlsit_sha_keccak.sv').read()
+a = k.index('@@FRC@@')
+b = k.index('  // Rounds of one clock cycle')
+open('kfuncs.txt', 'w').write(k[a:b])
+print(len(k[a:b]))

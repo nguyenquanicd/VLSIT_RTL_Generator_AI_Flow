@@ -1,0 +1,39 @@
+rstb 6
+static 0 1
+tag M_not_seeded_after_reset
+chka 060 00000020 00000000
+apbw 008 01000901
+apbw 008 01000901
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 7 6b73616d 6d206465 61737365 62206567 726f6665 65732065 00006465
+apbw 010 2
+apbw 00c 2
+wait 300
+tag M_ERR006_ent_event
+chka 0c0 00200000 00200000
+tag M_ERR006_no_digest_yet
+chka 060 00000004 00000000
+apbw 0c0 00200000
+apbw 020 7687a66e
+apbw 024 9cfbac6e
+apbw 028 5f915ef0
+apbw 02c 4462ebfc
+apbw 030 237751aa
+apbw 034 2fa73207
+apbw 038 ddd6ff55
+apbw 03c ad38835e
+apbw 00c 20
+poll 060 20 20 2000
+poll 060 4 4 200000
+tag M_ERR006_digest_after_seed
+waitlvl 8 400000
+axir 0 8
+expect 32 8 d66f1a52 72983654 2763cbb7 728b46db a0b311d2 d950fe2d 067aea14 44854af0
+tag M_ERR006_no_new_ent_event
+chka 0c0 00200000 00000000
+apbw 00c 8
+wait 40
+tag M_srst_clears_seeded
+chka 060 00000020 00000000
+end

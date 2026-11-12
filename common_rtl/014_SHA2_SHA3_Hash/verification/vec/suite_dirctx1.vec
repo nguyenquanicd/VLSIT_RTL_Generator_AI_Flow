@@ -1,0 +1,11 @@
+include edge_all_dw64.vec
+include bp_on.vec
+include rand_all_dw64.vec
+include bp_off.vec
+include dir_apb_c1_dw64.vec
+include dir_err_c1_dw64.vec
+include dir_irq_c1_dw64.vec
+include dir_abort_c1_dw64.vec
+include dir_tail_dw64.vec
+include dir_bp_c1_dw64.vec
+end

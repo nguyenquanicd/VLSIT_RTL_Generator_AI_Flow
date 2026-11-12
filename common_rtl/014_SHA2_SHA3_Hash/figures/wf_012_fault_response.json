@@ -8,49 +8,70 @@
    "cores",
    {
     "name": "w_core_a_out",
-    "wave": "=.=.........",
+    "wave": "============",
     "data": [
-     "H",
-     "H'"
+     "a7ff9facd17b8977745a5ea6fbd5829a6a77e9e419bfba44c635082caf22f34",
+     "974ac05fbc41709b9b46e36aa2602abaa7cfd6ccd6a956f1c4ff7528225371e",
+     "38210a773e32df55f41d18b8931cc6d6364b97379d573c3fd382ff3ce6e35c20",
+     "7a8fd2c3789b89d7dd13dce3b4256da106383e07548a44293841243e4c2a0e9f",
+     "0",
+     "b7c19a323f07b356360ad118a21ca4fe4a9fea7478dde6e476cf5d0ad413ccce",
+     "7b64a6c4ba894237ec13bb0bf1df3521e1bee8acf7d6a1f7257194ec6e1b6eb4",
+     "f6e635a570922c2a3bd64b2eefe3b72160b7a3bfa678d9d9bf7936d23bbf7c6b",
+     "acef1f98c054bc4d39dacd2e9cbab6cf0f59dba140807bbf8d1d44898c741de2",
+     "fcb1afbbbe593e4de6b1ccdcbdc739e4a9617d870e248976ddd1e6004888efb8",
+     "fab631bb6b303dfb07be4ff139aaaac277058b3e5ed92aed99e6b7d6e2484483",
+     "a78d31698c3cc11083a1c0cfd1360685c7ba2cb51aedfcc333a60ca1aa8e4b57"
     ]
    },
    {
     "name": "w_core_b_out",
-    "wave": "=...........",
+    "wave": "============",
     "data": [
-     "H"
+     "594265170bb2145577a0f6148801fbf1701de3bd5a172cdb63e729b749f55fb0",
+     "480f07c3fc1f6733d1f911fe367b7bf3c2f82ea3e4ee6ea49b5327ce32e5a137",
+     "387c5aa15677831d8072920097452da14dcf706c1c5a6cbb84436955e5efeeba",
+     "92d4768b04f1031fe13c43ae09a5c79a853b6e83054aae42374db6d85a50296c",
+     "0",
+     "b7c19a323f07b356360ad118a21ca4fe4a9fea7478dde6e476cf5d0ad413ccce",
+     "7b64a6c4ba894237ec13bb0bf1df3521e1bee8acf7d6a1f7257194ec6e1b6eb4",
+     "f6e635a570922c2a3bd64b2eefe3b72160b7a3bfa678d9d9bf7936d23bbf7c6b",
+     "acef1f98c054bc4d39dacd2e9cbab6cf0f59dba140807bbf8d1d44898c741de2",
+     "fcb1afbbbe593e4de6b1ccdcbdc739e4a9617d870e248976ddd1e6004888efb8",
+     "fab631bb6b303dfb07be4ff139aaaac277058b3e5ed92aed99e6b7d6e2484483",
+     "a78d31698c3cc11083a1c0cfd1360685c7ba2cb51aedfcc333a60ca1aa8e4b57"
     ]
    },
    {
     "name": "w_mismatch",
-    "wave": "0.1........."
+    "wave": "0..10......."
    },
    {
     "name": "r_mismatch",
-    "wave": "0..1........"
+    "wave": "0...10......"
    }
   ],
   [
    "responses",
    {
     "name": "w_digest_gate",
-    "wave": "0...1......."
+    "wave": "0....1......"
    },
    {
     "name": "i_sha_sts_locked",
-    "wave": "0...1......."
+    "wave": "0....1......"
    },
    {
     "name": "i_sha_sts_cstate",
     "wave": "=...=.......",
     "data": [
-     "1",
-     "F"
+     "2",
+     "f"
     ]
    },
    {
     "name": "o_alarm",
-    "wave": "0...1......."
+    "wave": "0..........."
    },
    {
     "name": "i_hw_we_sha_irq_raw_flt",
@@ -58,14 +79,11 @@
    },
    {
     "name": "o_irq",
-    "wave": "0....1......"
+    "wave": "0..........."
    }
   ]
  ],
  "head": {
-  "text": "WF-012: Duplicate-core mismatch: gate, lock and alarm responses"
- },
- "foot": {
-  "text": "A fault makes core A differ from its duplicate B"
+  "text": "WF-012: simulation of the RTL (verification/waveforms_sim)"
  }
 }

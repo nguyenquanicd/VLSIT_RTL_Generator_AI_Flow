@@ -1,0 +1,7 @@
+include edge_all_dw64.vec
+include dir_apb_dw64.vec
+include dir_err_dw64.vec
+include dir_irq_dw64.vec
+include dir_abort_dw64.vec
+include dir_tail_dw64.vec
+end

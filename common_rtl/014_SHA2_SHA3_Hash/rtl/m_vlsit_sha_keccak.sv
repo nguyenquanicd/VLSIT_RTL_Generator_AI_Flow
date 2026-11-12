@@ -18,6 +18,10 @@ module m_vlsit_sha_keccak #(
   // Parameter values: 1, 2, 3, 4, 6, 8, 12 or 24; default is 1.
   // Parameter unit: count
   parameter logic [31:0] PARA_UNR = 1,
+  // Parameter Description: parity of the state registers (REQ-SEC-002, DEC-035).
+  // Parameter values: 0 or 1; default is 0.
+  // Parameter unit: flag
+  parameter logic [31:0] PARA_PAR = 0,
   localparam logic [31:0] LPARA_CYC_N = 24 / PARA_UNR,
   localparam logic [31:0] LPARA_CNT_W = $clog2(24 / PARA_UNR + 1)
 ) (
@@ -33,7 +37,8 @@ module m_vlsit_sha_keccak #(
   // Block and state
   input  wire  [1343:0] i_block,
   input  wire  [1599:0] i_state,
-  output logic [1599:0] o_result
+  output logic [1599:0] o_result,
+  output logic          o_par_err
 );
 
   // Internal signal declarations
@@ -211,5 +216,28 @@ module m_vlsit_sha_keccak #(
   // The result is the state register; the done flag is the registered end of the last round.
   assign o_result = reg_st;
   assign o_done   = reg_done;
+
+
+  // Parity of the state register (PARA_PAR = 1): one even-parity bit per 32 bits of reg_st,
+  // from the next value and checked while the core runs (DEC-035). Resetless like reg_st.
+  logic [49:0] reg_ps;
+
+  function automatic logic [49:0] f_pars(input logic [1599:0] i_d);
+    for (int idx = 0; idx < 50; idx++)
+      f_pars[idx] = ^i_d[32*idx +: 32];
+  endfunction
+
+  always_ff @(posedge i_clk_core) begin : p_ff_par
+    casez ({i_start, i_clr, reg_run})
+      3'b1??:  reg_ps <= f_pars(i_state ^ {256'b0, i_block});
+      3'b01?:  reg_ps <= '0;
+      3'b001:  reg_ps <= f_pars(w_st_nxt);
+      default: reg_ps <= reg_ps;
+    endcase
+  end
+
+  always_comb begin : p_com_par
+    o_par_err = (PARA_PAR != 32'd0) && reg_run && (f_pars(reg_st) != reg_ps);
+  end
 
 endmodule

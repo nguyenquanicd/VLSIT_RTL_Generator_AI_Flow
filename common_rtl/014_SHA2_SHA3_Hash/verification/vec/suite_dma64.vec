@@ -1,0 +1,10 @@
+include edge_all_dw64.vec
+include dir_apb_dw64.vec
+include dir_err_dw64.vec
+include dir_irq_dw64.vec
+include dir_abort_dw64.vec
+include bp_on.vec
+include dir_bp_dw64.vec
+include bp_off.vec
+include dir_dma_dw64.vec
+end

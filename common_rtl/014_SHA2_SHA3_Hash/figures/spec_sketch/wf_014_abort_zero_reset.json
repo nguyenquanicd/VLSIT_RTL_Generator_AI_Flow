@@ -1,0 +1,67 @@
+{
+ "signal": [
+  {
+   "name": "i_clk_core",
+   "wave": "p............."
+  },
+  [
+   "abort",
+   {
+    "name": "o_sha_cmd_abort",
+    "wave": "01.0.........."
+   },
+   {
+    "name": "i_hw_we_sha_cmd_abort",
+    "wave": "0.10.........."
+   },
+   {
+    "name": "r_ctx_state",
+    "wave": "=..=..........",
+    "data": [
+     "ABSORBING",
+     "FREE"
+    ]
+   },
+   {
+    "name": "i_sha_lvl_inlvl",
+    "wave": "=..=..........",
+    "data": [
+     "8",
+     "0"
+    ]
+   }
+  ],
+  [
+   "clearing",
+   {
+    "name": "w_zero_active",
+    "wave": "0..1..0......."
+   },
+   {
+    "name": "r_core_reg",
+    "wave": "=....=........",
+    "data": [
+     "H",
+     "0"
+    ]
+   }
+  ],
+  [
+   "soft reset",
+   {
+    "name": "o_sha_cmd_srst",
+    "wave": "0......1.0...."
+   },
+   {
+    "name": "i_hw_we_sha_cmd_srst",
+    "wave": "0.......10...."
+   }
+  ]
+ ],
+ "head": {
+  "text": "WF-014: Abort of a context with clearing, then the soft reset command"
+ },
+ "foot": {
+  "text": "Abort: the context returns to FREE, its FIFO is emptied and, with sha_sec.zero = 1, the core ..."
+ }
+}

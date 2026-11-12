@@ -1,0 +1,127 @@
+rstb 6
+static 0 1
+tag APB_CAP0_reset_value_11.1
+chka 000 ffffffff 1204007f
+tag APB_reset_ctrl
+chka 008 ffffffff 00000100
+tag APB_reset_len
+chka 010 ffffffff 00000000
+tag APB_reset_dmac
+chka 014 ffffffff 00000010
+tag APB_reset_sec
+chka 018 ffffffff 00030001
+tag APB_reset_sts_idle
+chka 060 00000fff 00000002
+tag APB_reset_lvl
+chka 064 ffffffff 00000000
+tag APB_reset_irq_raw
+chka 0c0 ffffffff 00000000
+tag APB_reset_irq_en
+chka 0c4 ffffffff 00000000
+tag APB_reset_err
+chka 074 ffffffff 00000000
+tag APB_rw_readback
+apbw 010 00000009
+chka 010 000000ff 00000009
+apbw 010 00000000
+tag APB_ro_write_ignored
+apbw 000 ffffffff
+chka 000 ffffffff 1204007f
+tag APB_wo_seed_read_zero
+apbr 020
+chkerr 0
+tag APB_unmapped_aligned
+apbwerr 040 deadbeef 0
+apbr 040
+chkerr 0
+chka 040 ffffffff 00000000
+apbr 07c
+chkerr 0
+apbr 3fc
+chkerr 0
+tag APB_unaligned_slverr
+apbwerr 009 00000001 1
+apbr 009
+chkerr 1
+apbr 00a
+chkerr 1
+apbr 00b
+chkerr 1
+tag APB_partial_strobe_slverr
+pstrbw 3
+apbwerr 010 0000005a 1
+chka 010 000000ff 00000000
+pstrbw 8
+apbwerr 010 0000005a 1
+pstrbw 0
+apbwerr 010 0000005a 1
+chka 010 000000ff 00000000
+pstrbw f
+tag APB_nonsecure_slverr
+static 1 1
+pprot 2
+apbwerr 010 00000004 1
+apbr 010
+chkerr 1
+apbr 000
+chkerr 1
+pprot 0
+apbr 010
+chkerr 0
+tag APB_nonsecure_write_blocked
+chka 010 000000ff 00000000
+pprot 1
+apbwerr 010 00000003 0
+chka 010 000000ff 00000003
+pprot 0
+apbw 010 0
+tag APB_slverr_disabled
+static 1 0
+pprot 2
+apbwerr 010 00000005 0
+pprot 0
+static 0 0
+pstrbw 3
+apbwerr 010 00000006 0
+pstrbw f
+apbwerr 009 00000001 0
+static 0 1
+apbw 010 0
+tag APB_read_all_registers
+apbr 000
+chkerr 0
+apbr 004
+chkerr 0
+apbr 008
+chkerr 0
+apbr 00c
+chkerr 0
+apbr 010
+chkerr 0
+apbr 014
+chkerr 0
+apbr 018
+chkerr 0
+apbr 060
+chkerr 0
+apbr 064
+chkerr 0
+apbr 068
+chkerr 0
+apbr 06c
+chkerr 0
+apbr 070
+chkerr 0
+apbr 074
+chkerr 0
+apbr 078
+chkerr 0
+apbr 0c0
+chkerr 0
+apbr 0c4
+chkerr 0
+apbr 0c8
+chkerr 0
+apbr 0cc
+chkerr 0
+end

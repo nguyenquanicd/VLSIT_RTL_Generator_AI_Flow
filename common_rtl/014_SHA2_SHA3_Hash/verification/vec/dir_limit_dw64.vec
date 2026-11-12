@@ -1,0 +1,165 @@
+rstb 6
+static 0 1
+tag LIMIT_sha256_below_limit_no_event
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+ctot 0 1fffffffffffffe0
+axiw 0 2 0000000000000100 0000000000000101
+wait 40
+tag LIMIT_sha256_two_words_below_no_event
+chka 0c0 00800000 00000000
+tag LIMIT_sha256_above_limit
+axiw 0 4 0000000000000200 0000000000000201 0000000000000202 0000000000000203
+wait 80
+tag LIMIT_sha256_event
+chka 0c0 00800000 00800000
+tag LIMIT_sha256_context_freed
+chka 060 00000f00 00000000
+tag LIMIT_sha256_no_digest_word
+chka 064 0000ffff 00000000
+apbw 0c0 ffffffff
+tag LIMIT_sha256_event_cleared
+chka 0c0 00800000 00000000
+cov 1 other
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 1 0000000000636261
+apbw 008 00000101
+apbw 010 3
+apbw 00c 2
+poll 060 4 4 200000
+tag LIMIT_sha256_digest_after_limit
+waitlvl 4 400000
+axir 0 4
+expect 32 4 eacf018fbf1678ba 2322ae5dde404141 9c7a1796a36103b0 ad1500f261ff10b4
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 20000
+apbw 00c 8
+wait 30
+rstb 6
+static 0 1
+tag LIMIT_sha512_below_limit_no_event
+apbw 008 00000301
+apbw 00c 1
+poll 060 f00 100 2000
+ctot 0 1fffffffffffffe0
+axiw 0 2 0000000000000100 0000000000000101
+wait 40
+tag LIMIT_sha512_two_words_below_no_event
+chka 0c0 00800000 00000000
+tag LIMIT_sha512_above_limit
+axiw 0 4 0000000000000200 0000000000000201 0000000000000202 0000000000000203
+wait 80
+tag LIMIT_sha512_event
+chka 0c0 00800000 00800000
+tag LIMIT_sha512_context_freed
+chka 060 00000f00 00000000
+tag LIMIT_sha512_no_digest_word
+chka 064 0000ffff 00000000
+apbw 0c0 ffffffff
+tag LIMIT_sha512_event_cleared
+chka 0c0 00800000 00000000
+cov 3 other
+apbw 008 00000301
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 1 0000000000636261
+apbw 008 00000301
+apbw 010 3
+apbw 00c 2
+poll 060 4 4 200000
+tag LIMIT_sha512_digest_after_limit
+waitlvl 8 400000
+axir 0 8
+expect 64 8 ba7a6193a135afdd 314120ae497341cc a27ea9894efae612 9ad3554be6ee9e0a a8c14f272a999221 bdebfea3233cba36 0ee83c6423444d45 9fa44ca54fc99a2a
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 20000
+apbw 00c 8
+wait 30
+rstb 6
+static 0 1
+tag LIMIT_sha3_256_below_limit_no_event
+apbw 008 00000901
+apbw 00c 1
+poll 060 f00 100 2000
+ctot 0 1fffffffffffffe0
+axiw 0 2 0000000000000100 0000000000000101
+wait 40
+tag LIMIT_sha3_256_two_words_below_no_event
+chka 0c0 00800000 00000000
+tag LIMIT_sha3_256_above_limit
+axiw 0 4 0000000000000200 0000000000000201 0000000000000202 0000000000000203
+wait 80
+tag LIMIT_sha3_256_event
+chka 0c0 00800000 00800000
+tag LIMIT_sha3_256_context_freed
+chka 060 00000f00 00000000
+tag LIMIT_sha3_256_no_digest_word
+chka 064 0000ffff 00000000
+apbw 0c0 ffffffff
+tag LIMIT_sha3_256_event_cleared
+chka 0c0 00800000 00000000
+cov 9 other
+apbw 008 00000901
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 1 0000000000636261
+apbw 008 00000901
+apbw 010 3
+apbw 00c 2
+poll 060 4 4 200000
+tag LIMIT_sha3_256_digest_after_limit
+waitlvl 4 400000
+axir 0 4
+expect 32 4 b225e24fa75d983a bd90d36b2d175c04 5b529d3e6e085f85 3215431145e2bf46
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 20000
+apbw 00c 8
+wait 30
+rstb 6
+static 0 1
+tag LIMIT_shake_128_below_limit_no_event
+apbw 008 00000c01
+apbw 00c 1
+poll 060 f00 100 2000
+ctot 0 1fffffffffffffe0
+axiw 0 2 0000000000000100 0000000000000101
+wait 40
+tag LIMIT_shake_128_two_words_below_no_event
+chka 0c0 00800000 00000000
+tag LIMIT_shake_128_above_limit
+axiw 0 4 0000000000000200 0000000000000201 0000000000000202 0000000000000203
+wait 80
+tag LIMIT_shake_128_event
+chka 0c0 00800000 00800000
+tag LIMIT_shake_128_context_freed
+chka 060 00000f00 00000000
+tag LIMIT_shake_128_no_digest_word
+chka 064 0000ffff 00000000
+apbw 0c0 ffffffff
+tag LIMIT_shake_128_event_cleared
+chka 0c0 00800000 00000000
+cov 12 other
+apbw 008 00000c01
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 1 0000000000636261
+apbw 008 00000c01
+apbw 010 3
+apbw 00c 2
+poll 060 4 4 200000
+tag LIMIT_shake_128_digest_after_limit
+waitlvl 3 400000
+axir 0 3
+expect 20 3 5cbf18d82d098158 a7cbfb93b7dda3f8 00000000c5d59740
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 20000
+apbw 00c 8
+wait 30
+end

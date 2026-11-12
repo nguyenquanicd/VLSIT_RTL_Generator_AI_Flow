@@ -1,0 +1,22 @@
+apbw 008 00000c01
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 1 0000000000636261
+apbw 010 3
+apbw 00c 2
+poll 060 4 4 20000
+waitlvl 21 4000
+rwin 1
+rclr
+axir 0 5
+wait 3
+axir 0 5
+wait 3
+axir 0 5
+wait 3
+axir 0 5
+wait 3
+wait 80
+apbw 00c 4
+wait 10
+end

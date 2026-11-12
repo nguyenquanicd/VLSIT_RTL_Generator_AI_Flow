@@ -29,6 +29,12 @@ module m_vlsit_sha_ctx_fifo #(
   // Parameter values: 32, 64 or 128; default is 64.
   // Parameter unit: bit
   parameter logic [31:0] PARA_FIFO_W = 64,
+  // Parameter Description: one parity bit per 32 bits of a word is stored with it (DEC-035).
+  // Parameter values: 0 or 1; default is 0.
+  // Parameter unit: flag
+  parameter logic [31:0] PARA_PAR = 0,
+  localparam logic [31:0] LPARA_NP = (PARA_PAR != 32'd0) ? (PARA_FIFO_W / 32) : 32'd0,
+  localparam logic [31:0] LPARA_MEM_W = PARA_FIFO_W + LPARA_NP,
   localparam logic [31:0] LPARA_CTX_W = (PARA_CTX_N > 1) ? $clog2(PARA_CTX_N) : 1,
   localparam logic [31:0] LPARA_LVL_W = $clog2(PARA_FIFO_DEPTH + 1)
 ) (
@@ -51,7 +57,10 @@ module m_vlsit_sha_ctx_fifo #(
   // Clear request of each context (one cycle) and level of the selected context
   input  wire  [PARA_CTX_N-1:0]  i_clr_ctx,
   input  wire  [LPARA_CTX_W-1:0] i_lvl_ctx,
-  output logic [15:0]            o_lvl
+  output logic [15:0]            o_lvl,
+
+  // Parity error of the word that is popped (one-cycle level)
+  output logic                   o_par_err
 );
 
   // Internal signal declarations
@@ -60,7 +69,9 @@ module m_vlsit_sha_ctx_fifo #(
   logic [PARA_CTX_N-1:0]  w_rst_n_sw;
   logic [PARA_CTX_N-1:0]  w_push_ok;
   logic [PARA_CTX_N-1:0]  w_pop_ok;
-  logic [PARA_FIFO_W-1:0] w_rd_data [0:PARA_CTX_N-1];
+  logic [LPARA_MEM_W-1:0] w_rd_data [0:PARA_CTX_N-1];
+  logic [LPARA_MEM_W-1:0] w_wr_word;
+  logic [LPARA_MEM_W-1:0] w_pop_word;
   logic [PARA_CTX_N-1:0][LPARA_LVL_W-1:0] reg_lvl;
   logic [PARA_CTX_N-1:0][LPARA_LVL_W-1:0] w_lvl_nxt;
 
@@ -78,12 +89,27 @@ module m_vlsit_sha_ctx_fifo #(
     w_rst_n_sw = ~i_clr_ctx;
   end
 
+  // Word written to the FIFOs: the data with its parity bits above them (one even-parity bit per
+  // 32-bit lane) when PARA_PAR is 1.
+  always_comb begin : p_com_wr
+    w_wr_word = LPARA_MEM_W'(i_push_data);
+    for (int idx = 0; idx < LPARA_NP; idx++)
+      w_wr_word[PARA_FIFO_W + idx] = ^i_push_data[32*idx +: 32];
+  end
+
   // Pop data: the word of the pop context; an address beyond the last context reads context 0.
+  // The parity of the word that is popped is checked.
   always_comb begin : p_com_pop
-    o_pop_data = w_rd_data[0];
+    w_pop_word = w_rd_data[0];
     for (int idx = 0; idx < PARA_CTX_N; idx++) begin
       if (i_pop_ctx == LPARA_CTX_W'(idx))
-        o_pop_data = w_rd_data[idx];
+        w_pop_word = w_rd_data[idx];
+    end
+    o_pop_data = w_pop_word[PARA_FIFO_W-1:0];
+    o_par_err  = 1'b0;
+    for (int idx = 0; idx < LPARA_NP; idx++) begin
+      if ((^w_pop_word[32*idx +: 32]) != w_pop_word[PARA_FIFO_W + idx])
+        o_par_err = |w_pop_ok;
     end
   end
 
@@ -118,14 +144,14 @@ module m_vlsit_sha_ctx_fifo #(
   for (genvar gen_idx = 0; gen_idx < PARA_CTX_N; gen_idx++) begin : gen_fifo
     m_vlsit_sfifo_top #(
       .PARA_SFIFO_DEPTH         (PARA_FIFO_DEPTH),
-      .PARA_SFIFO_DATA_W        (PARA_FIFO_W),
+      .PARA_SFIFO_DATA_W        (LPARA_MEM_W),
       .PARA_SFIFO_PTR_RETIME    (32'd0),
       .PARA_SFIFO_MEM_USE_MACRO (32'd0)
     ) u_fifo (
       .i_clk_wr      (i_clk_core),
       .i_rst_n_wr    (i_rst_n_core),
       .i_wr_en       (w_wr_en[gen_idx]),
-      .i_wr_data     (i_push_data),
+      .i_wr_data     (w_wr_word),
       .i_full_thr    ('0),
       .o_full        (o_full[gen_idx]),
       .o_full_thr    (),

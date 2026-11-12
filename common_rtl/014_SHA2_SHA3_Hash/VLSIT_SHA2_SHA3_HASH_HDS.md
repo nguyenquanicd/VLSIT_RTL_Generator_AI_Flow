@@ -193,7 +193,7 @@ The write path is: AXI4 subordinate window, per-context input FIFO, context sequ
 | `m_vlsit_sha_top` | Structural wrapper, instances, reset synchronizers | All ports | CLK-CORE, CLK-APB | None |
 | `m_vlsit_csr_sha` | Generated APB register block (REF-008) | APB, field ports | CLK-APB and CLK-CORE | CSR flip-flops |
 | `m_vlsit_sha_axi_sub` | AXI4 subordinate: decode the window, check burst and strobe, push words, pop digest words, report errors | AXI4, FIFO ports | CLK-CORE | Channel registers |
-| `m_vlsit_sha_in_fifo` | Per-context input FIFO of `PARA_IN_DEPTH` words (reuses 002_SyncFIFO) | Window words | CLK-CORE | FIFO memory |
+| `m_vlsit_sha_ctx_fifo` | One FIFO for each context, two instances: the input FIFO (message words) and the output FIFO (digest words); each FIFO is a library `m_vlsit_sfifo_top` | Push, pop, level, clear | CLK-CORE | FIFO memory of `PARA_IN_DEPTH` or `PARA_OUT_DEPTH` words per context |
 | `m_vlsit_sha_seq` | Context state machines, block assembly, padding, core scheduling, counters, error record | FIFOs, CSR commands, cores | CLK-CORE | Context table, byte and block counters |
 | `m_vlsit_sha_pad` | Final-block padding and length field of SHA-2 and Keccak | Message bytes, tail, total length | CLK-CORE | None (combinational) |
 | `m_vlsit_sha_core256` | SHA-224 / SHA-256 compression, `PARA_S256_UNR` rounds per cycle | Block, state in | CLK-CORE | Working variables, 64-word schedule |
@@ -202,10 +202,10 @@ The write path is: AXI4 subordinate window, per-context input FIFO, context sequ
 | `m_vlsit_sha_keccak_dom` | Masked Keccak-f[1600], 2 shares | Block, state shares, random bits | CLK-CORE | 2 x 1600-bit state |
 | `m_vlsit_sha_prng` | Random bit source for masking, seeded from the entropy port or the seed words | Seed, entropy | CLK-CORE | PRNG state |
 | `m_vlsit_sha_ctxmem` | State of the idle contexts, flip-flops or SRAM macro | Core state | CLK-CORE | `PARA_CTX_N` x state width |
-| `m_vlsit_sha_out_fifo` | Per-context output FIFO of `PARA_OUT_DEPTH` words | Digest words | CLK-CORE | FIFO memory |
 | `m_vlsit_sha_dma` | External DMA request and acknowledge handshake, burst timer | FIFO levels, `o_dma_*` | CLK-CORE | Handshake state, timer |
 | `m_vlsit_sha_fault` | Duplicate-core compare, parity check, recompute compare, responses | Core outputs | CLK-CORE | Fault flags |
 | `m_vlsit_sha_irq` | Event capture, `o_irq`, `o_alarm` | Events, CSR | CLK-CORE | None (registers are in the CSR) |
+| `m_vlsit_sha_sel` | Selected-context glue: level select, word events of the selected context, configuration event OR, entropy request low | Context select, events | CLK-CORE | None |
 | `m_vlsit_rst_sync` | Reset release synchronizer (library) | `i_rst_n_*` | Per domain | 2 flip-flops |
 
 ### 5.2 Block diagram
@@ -328,7 +328,7 @@ The ports of the register block `m_vlsit_csr_sha` (the field ports `o_sha_*`, `i
 | IDs and ordering | `bid` and `rid` return the ID of the burst; no reordering | None | Equal to the request | REQ-IF-001 |
 | Reset of in-flight bursts | The burst is abandoned; no response | N/A (clock, reset or static input has no idle value) | Registers return to reset values | REQ-RESET-001 |
 
-**External DMA handshake (IF-003).** Input channel: when `sha_ctrl.dmaen` = 1 and the context in use can take `sha_dmac.burst` words, `o_dma_in_req` rises and stays high until `i_dma_in_ack` rises; then `o_dma_in_req` falls, and the controller lowers `i_dma_in_ack`. The DMA controller then writes the burst to the message window as ordinary AXI4 writes. Output channel: the same with `o_dma_out_req` when the output FIFO holds `sha_dmac.burst` words or when the burst timer `sha_dmac.tmo` expires; a short burst is padded with zero words and `sha_dvld.words` gives the valid count.
+**External DMA handshake (IF-003).** Input channel: when `sha_ctrl.dmaen` = 1 and the context in use can take `sha_dmac.burst` words, `o_dma_in_req` rises and stays high until `i_dma_in_ack` rises; then `o_dma_in_req` falls, and the controller lowers `i_dma_in_ack`. The DMA controller then writes the burst to the message window as ordinary AXI4 writes. Output channel: the same with `o_dma_out_req` when the output FIFO holds `sha_dmac.burst` words or when the burst timer `sha_dmac.tmo` expires; a short burst is padded with zero words and `sha_dvld.words` gives the valid count. A request that is not yet acknowledged is withdrawn (`o_dma_*_req` falls without an acknowledge) when the context is aborted, finalized or soft-reset, or when its condition no longer holds; the DMA controller shall accept a request that disappears (DEC-031).
 
 **Entropy input (IF-004).** `o_ent_req` rises when the PRNG needs a 32-bit word and falls after `i_ent_valid` has been seen for one cycle with `i_ent_data`; the PRNG takes eight words.
 
@@ -377,9 +377,9 @@ The register clock port `i_clk_reg` of the generated block is connected to `i_cl
 |---|---|---|---|---|---|---|
 | RST-CORE | i_rst_n_core | Active-low | Async assertion / synchronized release | All logic of CLK-CORE: AXI4 interface, FIFOs, cores, sequencer, context memory control, CSR register side | Synchronous to i_clk_core through `m_vlsit_rst_sync` | All contexts free, FIFOs empty, registers at the workbook reset values |
 | RST-APB | i_rst_n_apb | Active-low | Async assertion / synchronized release | APB side of `m_vlsit_csr_sha` | Synchronous to i_clk_apb | APB idle |
-| RST-SOFT | `sha_cmd.srst` | Command, one operation | Synchronous | All contexts, FIFOs, cores, event flags, error record, lock; not the control, security and DMA registers | Ends when the command bit clears | Contexts free |
+| RST-SOFT | `sha_cmd.srst` | Command, one operation | Synchronous | All contexts, FIFOs, cores, internal flags, error record, lock; not the control, security and DMA registers and not the sticky raw interrupt bits | Ends when the command bit clears | Contexts free |
 
-During reset the AXI4 and APB outputs are 0, no request is raised and `o_irq` and `o_alarm` are 0. A reset applied while a burst is in progress abandons the burst without a response. The context memory and the FIFO memories are not reset (resetless storage): their words are never read before a write because the context state, the FIFO level and the digest-ready state are reset (validity guard). With `PARA_ZERO` = 1 the clearing of 5.3 step 6 additionally removes message-dependent data. No warm, partial or retention reset is supported.
+During reset the AXI4 `BVALID` and `RVALID`, the APB outputs, the DMA requests, `o_irq` and `o_alarm` are 0 (AXI4 IHI0022 A3.1.2 fixes only the valid signals; `o_axi_awready` and `o_axi_arready` are 1 in reset because the idle state is the reset state, DEC-028). A reset applied while a burst is in progress abandons the burst without a response. The context memory and the FIFO memories are not reset (resetless storage): their words are never read before a write because the context state, the FIFO level and the digest-ready state are reset (validity guard). With `PARA_ZERO` = 1 the clearing of 5.3 step 6 additionally removes message-dependent data after a digest read, an abort or a clear, but a reset does not clear the datapath registers of the cores (they are not reset flops): software that needs the core registers cleared after a reset in the middle of a block gives `sha_cmd.srst`, whose zeroing sweep clears them (DEC-030). No warm, partial or retention reset is supported.
 
 ### 7.4 Power intent (if applicable)
 
@@ -408,7 +408,7 @@ Parameters follow R-045 and the PAR-02 comment format of REF-003 in the RTL; thi
 | PARA_KEC_UNR | Keccak rounds per cycle | 1 | Divisors of 24: 1, 2, 3, 4, 6, 8, 12, 24 | Shall be 1 when `PARA_MASK` = 1 (ASM-009) | `sha_cap1.kecunr` |
 | PARA_S256_PIPE | Register stages in the SHA-256 round loop | 1 | 1 only in this revision (DEC-019); 2 to 4 reserved | Contexts hide the latency when `PARA_CTX_N` >= this value (13) | Cycles per block, maximum clock |
 | PARA_S512_PIPE | Register stages in the SHA-512 round loop | 1 | 1 only in this revision (DEC-019) | same | same |
-| PARA_KEC_PIPE | Register stages in the Keccak round loop | 1 | 1 only in this revision (DEC-019); 2 or more is needed by masking (stage 2) | Shall be at least 2 when `PARA_MASK` = 1 | same |
+| PARA_KEC_PIPE | Register stages in the Keccak round loop | 1 | 1 without masking, 2 with masking (DEC-019, DEC-036) | Shall be 2 when `PARA_MASK` = 1 and 1 when `PARA_MASK` = 0 | same |
 | PARA_CTX_N | Messages in progress | 1 | 1 to 16 | Context bits of the window address are [15:12] | `sha_cap0.ctxn`; size of FIFOs and context memory |
 | PARA_CTX_MEM | Context memory kind | 0 | 0 = flip-flops; 1 = SRAM macro, reserved and illegal in this revision (DEC-016) | The macro flow is not defined (TBD-006) | Area and read latency of a context swap |
 | PARA_AXI_DW | AXI data width | 64 | 32, 64, 128 | 128 only when every enabled block and rate is a multiple of 16 bytes: SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/t and SHA3-224, no SHAKE (DEC-019) | `sha_cap0.axiw`, port widths |
@@ -426,7 +426,7 @@ Parameters follow R-045 and the PAR-02 comment format of REF-003 in the RTL; thi
 | PARA_SEED_SRC | Seed source of the mask PRNG | 0 | 0 = entropy port, 1 = seed registers | Shall be 0 when `PARA_MASK` = 0 | `sha_cap1.sdsrc` |
 | PARA_ALARM | Drive the alarm output | 0 | 0, 1 | Needs at least one fault parameter | `o_alarm` |
 
-**Illegal combinations (REQ-PARAM-001).** All `PARA_EN_*` equal to 0; a `PARA_*_UNR` that does not divide the round count; a `PARA_*_PIPE` outside 1 to 4; `PARA_CTX_N` outside 1 to 16; `PARA_AXI_DW` not 32, 64 or 128; `PARA_AXI_AW` below 16; a FIFO depth that breaks its size rule; `PARA_MASK` = 1 with no Keccak algorithm, with `PARA_KEC_UNR` other than 1 or with `PARA_KEC_PIPE` below 2; `PARA_SEED_SRC` = 1 with `PARA_MASK` = 0; `PARA_ALARM` = 1 with no fault parameter; `PARA_CTX_MEM` = 1 (DEC-016); a `PARA_*_PIPE` other than 1 or `PARA_AXI_DW` = 128 with a block that is not a multiple of 16 bytes (DEC-019); and, until the second stage of the RTL is delivered, `PARA_MASK` = 1, `PARA_FAULT_DUP` = 1, `PARA_FAULT_PAR` = 1, `PARA_FAULT_REDO` = 1 and `PARA_SEED_SRC` = 1 (DEC-018). Each one stops elaboration with an error naming the cause (DEC-017): a `generate if` on the illegal condition instantiates a module whose name states it, `m_vlsit_sha_ERR_` followed by the cause, which does not exist, so elaboration fails with that name. **Example 1:** `PARA_CTX_N` = 17 makes elaboration stop with the unknown module `m_vlsit_sha_ERR_ctx_n_out_of_range`; `PARA_CTX_N` = 16 elaborates. **Example 2:** `PARA_CTX_MEM` = 1 stops with `m_vlsit_sha_ERR_ctx_mem_unsupported`.
+**Illegal combinations (REQ-PARAM-001).** All `PARA_EN_*` equal to 0; a `PARA_*_UNR` that does not divide the round count; `PARA_S256_PIPE` or `PARA_S512_PIPE` other than 1; `PARA_KEC_PIPE` other than 1 (other than 2 when `PARA_MASK` = 1, DEC-036); `PARA_CTX_N` outside 1 to 16; `PARA_AXI_DW` not 32, 64 or 128; `PARA_AXI_AW` below 16; a FIFO depth that breaks its size rule; `PARA_MASK` or `PARA_SEED_SRC` above 1; `PARA_MASK` = 1 with no Keccak algorithm or with `PARA_KEC_UNR` other than 1; `PARA_SEED_SRC` = 1 with `PARA_MASK` = 0; `PARA_ALARM` = 1 with no fault parameter; `PARA_CTX_MEM` = 1 (DEC-016); and `PARA_AXI_DW` = 128 with a block that is not a multiple of 16 bytes (DEC-019). Every other value is legal (DEC-018: both stages of the RTL are delivered). Each one stops elaboration with an error naming the cause (DEC-017): a `generate if` on the illegal condition instantiates a module whose name states it, `m_vlsit_sha_ERR_` followed by the cause, which does not exist, so elaboration fails with that name. **Example 1:** `PARA_CTX_N` = 17 makes elaboration stop with the unknown module `m_vlsit_sha_ERR_ctx_n_out_of_range`; `PARA_CTX_N` = 16 elaborates. **Example 2:** `PARA_CTX_MEM` = 1 stops with `m_vlsit_sha_ERR_ctx_mem_unsupported`.
 
 | Configuration | Parameter overrides | Features/interfaces | Expected hierarchy | Elaboration/lint/synthesis target |
 |---|---|---|---|---|
@@ -478,13 +478,15 @@ State of one context (read in `sha_sts.cstate` for the selected context).
 | OP-004 | Context DIGEST_READY; AXI4 read of the digest window | Pop digest words in order | `rdata` words; context FREE after the last word | 1 cycle per beat when the FIFO has data |
 | OP-005 | SHAKE context; reads continue | Squeeze: run Keccak-f again and refill the FIFO | More output words | One block time per rate bytes |
 | OP-006 | Any state | `sha_cmd.abort`: clear the context, FIFOs and state | Context FREE | 2 cycles |
-| OP-007 | Any state | `sha_cmd.srst`: clear all contexts, cores, flags, error record, lock | All FREE | 4 cycles |
+| OP-007 | Any state | `sha_cmd.srst`: clear all contexts, cores, internal flags, error record, lock (not the sticky raw interrupt bits) | All FREE | 4 cycles |
 | OP-008 | Any state | `sha_cmd.clear`: zero the state memory and FIFOs of the selected context, keep the algorithm field | Context FREE | 2 cycles plus memory size |
-| OP-009 | `PARA_MASK` = 1, `PARA_SEED_SRC` = 1; eight `sha_seed` words written | `sha_cmd.seed`: load the PRNG | `sha_sts.seeded` = 1 | 9 cycles |
+| OP-009 | `PARA_MASK` = 1, `PARA_SEED_SRC` = 1; eight `sha_seed` words written (or, with `PARA_SEED_SRC` = 0, eight words taken from the entropy port after every reset) | `sha_cmd.seed`: load the PRNG (with the entropy port the PRNG loads itself) | `sha_sts.seeded` = 1 | about 26 cycles after the last seed word is taken (measured at the entropy port, WF-013: one load cycle, 24 warm-up rounds, then the status bit; the seed command path loads the same way) |
 | OP-010 | `sha_ctrl.dmaen` = 1 | Request, acknowledge, burst moves words | Words in or out without the CPU | 4-phase handshake |
 | OP-011 | Fault enabled and mismatch | Apply `sha_sec.resp`: gate, lock, clear, alarm | `sha_irq_raw.flt`; `o_alarm` as selected | The response is active in the cycle after the mismatch is registered |
 
 ### 10.3 Cycle-level behavior
+
+**Status of the figures (2026-11-10).** The figures of WF-001 to WF-019 were replaced by the waveforms of the simulation of the RTL (`verification/waveforms_sim`, same stems; the sketches of the design intent are kept in `figures/spec_sketch/`). The cycle counts in the descriptions below are the intent of the specification phase and differ by 1 to 3 cycles from the figures (for example the AXI address ready is high in the first cycle, and the command bits reach the sequencer one cycle earlier or later); the protocol and requirement rules are checked by the assertions of the testbench (DEC-028). WF-012 (fault response, stage 2a) and WF-013 (entropy port, stage 2b) were simulated and replaced as well. `figures/gen_waveforms.py` makes the sketches and would overwrite the replaced figures; `verification/scripts/replace_figures.py` restores the simulated figures.
 
 **Waveform plan (rule R-024).** Proposed and confirmed by the user on 2026-11-09 (option C: the proposed list plus corner cases WF-017 to WF-019). The waveforms show design intent derived from sections 6.3 and 10.2; they are not simulation output. Each figure has its WaveJSON source beside it in the folder `figures`; notes follow the table.
 
@@ -557,7 +559,7 @@ Cycle table of one SHA-256 block with `PARA_S256_UNR` = 1 and `PARA_S256_PIPE` =
 | MEM-002 | Output FIFO (per context) | `PARA_OUT_DEPTH` x `PARA_AXI_DW` | 1 write, 1 read | 1 cycle | None | Not reset; level reset | Parity when `PARA_FAULT_PAR` | same |
 | MEM-003 | Context memory | `PARA_CTX_N` x 256, 512 or 1600 bits plus 80 bits of control (width of the largest core built; twice the Keccak part when `PARA_MASK`) | 1 read, 1 write | 1 cycle (flip-flops) or macro latency | None | Not reset; context state reset | Parity when `PARA_FAULT_PAR` | Flip-flops or SRAM macro by `PARA_CTX_MEM` |
 
-The context memory is read when a block starts and written when it ends; both ports are used by the sequencer only, so a collision is not possible. A context in the FREE state is never read. With `PARA_CTX_MEM` = 1 the macro, wrapper and memory-compiler flow are chosen by the integrator (TBD-006).
+The context memory is read when a block starts and written when it ends; both ports are used by the sequencer only, but the two can address the same context in one cycle (the block of a context ends in the cycle in which it is aborted or cleared); the zero write of port B then wins and the result of the block is not written (DEC-026). A context in the FREE state is never read. With `PARA_CTX_MEM` = 1 the macro, wrapper and memory-compiler flow are chosen by the integrator (TBD-006).
 
 ## 11. Register and programming model
 
@@ -754,10 +756,10 @@ Behavior of the generated module (APB-CSR-Generator 3.4, workbook with Asynchron
 
 | Error ID | Detection condition | Observable response/status | Interrupt | Clear/recovery | Reset behavior |
 |---|---|---|---|---|---|
-| ERR-001 | Write to a full or non-absorbing message window | Words dropped, `bresp` SLVERR; `sha_err.kind` = 1; `sha_err.ovf` counts | `sha_irq_raw.ovf` | Write 1 to the raw bit; abort the context if needed | Event and record cleared by reset and soft reset |
+| ERR-001 | Write to a full or non-absorbing message window | Words dropped, `bresp` SLVERR; `sha_err.kind` = 1; `sha_err.ovf` counts | `sha_irq_raw.ovf` | Write 1 to the raw bit; abort the context if needed | The error record is cleared by reset and soft reset; the raw event bit is a sticky software-visible record that only a hardware reset of the register side or a software write of 1 clears, the soft reset does not clear it (DEC-029) |
 | ERR-002 | Read of an empty output FIFO | `rdata` 0; `sha_err.kind` = 2; `sha_err.udf` counts | `sha_irq_raw.udf` | Write 1 | Cleared by reset |
 | ERR-003 | Wrong window direction, bad context number, WRAP burst, narrow size, partial `wstrb` | SLVERR; `sha_err.kind` = 3 or 4; `sha_erra.addr` gives the address | `sha_irq_raw.axi` | Write 1 | Cleared by reset |
-| ERR-004 | Command or value rejected: algorithm not built, context busy or out of range, `sha_len.tail` too large, `sha_dmac.burst` illegal, `final` while not absorbing, `seed` with entropy-port source | No state change | `sha_irq_raw.cfg` | Write 1 | Cleared by reset |
+| ERR-004 | Command or value rejected: algorithm not built, context busy or out of range, `sha_len.tail` too large, `sha_dmac.burst` illegal, `final` while not absorbing, `seed` with `PARA_MASK` = 0 or with the entropy-port source (DEC-025) | No state change | `sha_irq_raw.cfg` | Write 1 | Cleared by reset |
 | ERR-005 | Fault detection mismatch (duplicate, parity, recompute) | Responses of `sha_sec.resp`; `sha_sts.locked` when locked; context state 0xF | `sha_irq_raw.flt` | Soft reset command | Lock cleared by soft reset |
 | ERR-006 | Masked core needs random bits and the PRNG is not seeded or has no entropy | The core waits; no masked block runs | `sha_irq_raw.ent` | Seed or supply entropy; write 1 | Cleared by reset |
 | ERR-007 | DMA burst timer expired with a short digest | Burst padded with zeros; `sha_dvld.words` valid count | `sha_irq_raw.tmo` | Read `sha_dvld.words`; write 1 | Cleared by reset |
@@ -772,7 +774,7 @@ Time of one block of a core (DEC-006, to be confirmed by simulation, TBD-001), w
 
 $$ T_{blk} = \frac{R}{UNR} \cdot PIPE + 2 \text{ cycles (one context)} \qquad T_{blk} = \frac{R}{UNR} + 2 \text{ cycles (at least } PIPE \text{ contexts ready)} $$
 
-The throughput of a core is the block size divided by $T_{blk}$. At 500 MHz (sizing assumption ASM-003, PIPE = 1):
+The formulas above hold while the core is slower than the AXI4 window; when the core is faster, one word per cycle on the window sets the time, $T_{blk} = W_{blk} + 4$ cycles with $W_{blk}$ the words of one block (DEC-032). The throughput of a core is the block size divided by $T_{blk}$. At 500 MHz (sizing assumption ASM-003, PIPE = 1):
 
 | Case | Block bits | Cycles per block | Bits per cycle | Throughput at 500 MHz |
 |---|---:|---:|---:|---:|
@@ -782,11 +784,13 @@ The throughput of a core is the block size divided by $T_{blk}$. At 500 MHz (siz
 | SHA-512, UNR 1 | 1024 | 82 | 12.49 | 6.24 Gbit/s |
 | SHA-512, UNR 2 (CFG-BOOT) | 1024 | 42 | 24.38 | 12.2 Gbit/s |
 | SHA3-256, UNR 1 | 1088 | 26 | 41.85 | 20.9 Gbit/s |
-| SHA3-256, UNR 2 (CFG-STOR) | 1088 | 14 | 77.71 | 38.9 Gbit/s |
+| SHA3-256, UNR 2 (CFG-STOR), 64-bit window | 1088 | 21 | 51.81 | 25.9 Gbit/s |
 | SHA3-512, UNR 1 | 576 | 26 | 22.15 | 11.1 Gbit/s |
+| SHA3-512, UNR 2 | 576 | 14 | 41.14 | 20.6 Gbit/s |
+| SHA3-512, UNR 4, 64-bit window | 576 | 13 | 44.31 | 22.2 Gbit/s |
 | SHA3-256 masked, UNR 1, PIPE 2 | 1088 | 50 | 21.76 | 10.9 Gbit/s |
 
-Checks of the user's numbers: 4 MiB of SHA-256 is 65536 blocks plus one padding block, 65537 x 34 = 2,228,258 cycles = 4.46 ms at 500 MHz, below 5 ms (REQ-PERF-001, margin 11 %); with SHA-384, 32769 x 42 = 1,376,298 cycles = 2.75 ms. SHA-256 UNR 2 reaches 7.53 Gbit/s, which is below 8 Gbit/s, so the storage target needs UNR 4 (14.2 Gbit/s) or SHA3-256 (REQ-PERF-002). The AXI4 window at 64-bit and 500 MHz carries 32 Gbit/s, so the bus does not limit these cases. Selecting recompute detection halves the throughput; selecting duplicate or parity detection does not change the cycle count. These figures are estimates from the formula and the sizing clock; the hard requirements are the 5 ms and 8 Gbit/s limits at the frequency the integrator achieves (maximum frequency needed: 4 MiB in 5 ms with 65537 x 34 cycles requires at least 446 MHz).
+Checks of the user's numbers: 4 MiB of SHA-256 is 65536 blocks plus one padding block, 65537 x 34 = 2,228,258 cycles = 4.46 ms at 500 MHz, below 5 ms (REQ-PERF-001, margin 11 %); with SHA-384, 32769 x 42 = 1,376,298 cycles = 2.75 ms. SHA-256 UNR 2 reaches 7.53 Gbit/s, which is below 8 Gbit/s, so the storage target needs UNR 4 (14.2 Gbit/s) or SHA3-256 (REQ-PERF-002). The AXI4 window at 64-bit and 500 MHz carries 32 Gbit/s, one word per cycle: a SHA3-256 block is 17 words and a SHA3-512 block 9 words, so for a Keccak core faster than the bus the block time is the number of words plus 4 cycles (measured: 21 for SHA3-256 at UNR 2 and 4, 13 for SHA3-512 at UNR 4), and a Keccak unroll above 1 does not help SHA3-256 on a 64-bit window (DEC-032). All other rows of the table were measured and equal the formula. Selecting recompute detection halves the throughput (measured: exactly 2 x the cycles per block of the table); selecting duplicate or parity detection does not change the cycle count. These figures are estimates from the formula and the sizing clock; the hard requirements are the 5 ms and 8 Gbit/s limits at the frequency the integrator achieves (maximum frequency needed: 4 MiB in 5 ms with 65537 x 34 cycles requires at least 446 MHz).
 
 | Metric ID | Metric | Target / limit | Conditions | Measurement method | Hard / goal |
 |---|---|---|---|---|---|
@@ -795,7 +799,7 @@ Checks of the user's numbers: 4 MiB of SHA-256 is 65536 blocks plus one padding 
 | PPA-003 | Dynamic and leakage power | Not stated | Activity and corner not chosen | Tool power report | TBD-005 |
 | PERF-001 | 4 MiB SHA-256 or SHA-384 hash time | At most 5 ms | CFG-BOOT, 500 MHz sizing | Cycle count in simulation, analysis above | Hard (user) |
 | PERF-002 | Sustained throughput | At least 8 Gbit/s | CFG-STOR, one SHA-256 or SHA3-256 stream | Cycle count in simulation | Hard (user) |
-| PERF-003 | Cycles per block | Formula above, tolerance 2 cycles | Every configuration | Simulation | Hard |
+| PERF-003 | Cycles per block | max(R/UNR + 2, words per block + 4), tolerance 2 cycles | Every configuration | Simulation | Hard |
 
 Timing closure is not claimed from RTL synthesis alone; nothing was synthesized for this draft.
 
@@ -813,8 +817,7 @@ The VLSIT RTL Design Rules v2 (REF-003) is the mandatory RTL coding authority. T
 | `m_vlsit_sha_top` | Structural top: ports, reset synchronizers, instances | Integrator | CLK-CORE, CLK-APB | All ports of 6.2 |
 | `m_vlsit_csr_sha` | Generated register block | top / `u_csr` | CLK-APB, CLK-CORE | APB4, field ports |
 | `m_vlsit_sha_axi_sub` | AXI4 subordinate and window decode | top / `u_axi` | CLK-CORE | AXI4, FIFO push and pop |
-| `m_vlsit_sha_in_fifo` | Input FIFOs (one per context, generate loop) | top / `u_in_fifo` | CLK-CORE | Push, pop, level |
-| `m_vlsit_sha_out_fifo` | Output FIFOs | top / `u_out_fifo` | CLK-CORE | Push, pop, level |
+| `m_vlsit_sha_ctx_fifo` | Context FIFOs (generate loop of library FIFOs), instantiated twice | top / `u_in_fifo`, `u_out_fifo` | CLK-CORE | Push, pop, level, clear |
 | `m_vlsit_sha_seq` | Context state machines, block feed, counters, error record | top / `u_seq` | CLK-CORE | CSR fields, FIFOs, cores |
 | `m_vlsit_sha_pad` | Padding logic | seq / `u_pad` | CLK-CORE | Bytes in, padded block out |
 | `m_vlsit_sha_core256` | SHA-224/256 compression | top / `u_core256` (generate) | CLK-CORE | Block, state |
@@ -826,6 +829,8 @@ The VLSIT RTL Design Rules v2 (REF-003) is the mandatory RTL coding authority. T
 | `m_vlsit_sha_dma` | DMA handshake and burst timer | top / `u_dma` (generate) | CLK-CORE | Request, ack, levels |
 | `m_vlsit_sha_fault` | Fault detection and responses | top / `u_fault` (generate) | CLK-CORE | Core outputs, responses |
 | `m_vlsit_sha_irq` | Events and outputs | top / `u_irq` | CLK-CORE | Events, `o_irq`, `o_alarm` |
+| `m_vlsit_sha_outp` | Digest word pusher: reads the stored state and writes digest words to the output FIFO | top / `u_outp` | CLK-CORE | Context memory read port, FIFO push |
+| `m_vlsit_sha_sel` | Selected-context glue (HIE-02: keeps the top free of logic) | top / `u_sel` | CLK-CORE | Events, selects |
 | `m_vlsit_rst_sync` (library) | Reset release | top / `u_rst_core`, `u_rst_apb` | Per domain | Reset |
 
 Each context FIFO is an instance of `m_vlsit_sfifo_top` of `002_SyncFIFO` inside `m_vlsit_sha_in_fifo` and `m_vlsit_sha_out_fifo` (DEC-015); the synchronizers reuse the cells of `000_Common` (DEP-001, DEP-002). The top holds no functional logic; state is owned by `m_vlsit_sha_seq`, the cores, the context memory and the FIFOs.
@@ -858,11 +863,11 @@ Block-level simulation of the top with a testbench built from this specification
 | TEST-005 | REQ-FUNC-006 | 2 to 16 messages with random word order and random lengths | Each digest equals the single-message digest | Random | CFG-STOR, CFG-FULL |
 | TEST-006 | REQ-FUNC-007 | SHAKE128 and SHAKE256, read 1 to 1000 bytes | Output equals the model prefix | Directed and random | CFG-FULL |
 | TEST-007 | REQ-FUNC-008 | Abort and soft reset in each state | Context FREE, FIFOs empty | Directed | All |
-| TEST-008 | REQ-FUNC-009 | Shorten the limit in the test build and exceed it | Length-limit event, digest discarded | Directed | CFG-BASE |
+| TEST-008 | REQ-FUNC-009 | Preset the byte counter of a context two words below 2^61 (testbench `ctot`; the limit itself is not a parameter) and exceed it | Length-limit event, context freed, digest discarded, context usable again | Directed (`limit64`) | CFG-BASE |
 | TEST-009 | REQ-IF-001, REQ-IF-002 | Legal and illegal bursts, backpressure, IDs, 32/64/128-bit widths | At least 20 assertions on AXI4 hold and fire; SLVERR cases as 6.3 | Protocol checker | All widths |
 | TEST-010 | REQ-IF-003, REQ-REG-001 | Register access of every case of 11.4; generator test | PSLVERR cases as stated; ports equal the workbook | Protocol checker, generator test | All |
 | TEST-011 | REQ-IF-004 | 4-phase handshake, burst size, timeout | Handshake legal; short burst padded | Directed | CFG-BOOT, CFG-STOR |
-| TEST-012 | REQ-IF-005, REQ-SEC-003 | Entropy request and seeding | Request and valid per 6.3 | Directed | CFG-FULL |
+| TEST-012 | REQ-IF-005, REQ-SEC-003 | Entropy request and seeding: eight words from the port after reset and after a soft reset; seed words and `sha_cmd.seed`; `seed` rejected with the entropy port; a masked message before the seed raises `sha_irq_raw.ent` and ends correctly after the seed (ERR-006) | Request and valid per 6.3; `sha_sts.seeded` as in OP-009; digest equal to the reference | Directed (`mask_ent`, `mask_reg`, unit test of the PRNG against a Python model) | CFG-FULL |
 | TEST-013 | REQ-CLK-001 | APB and core clock ratios 1:1, 1:3, 7:2 | Registers correct; PREADY waits | Directed, CDC | CFG-FULL |
 | TEST-014 | REQ-RESET-001 | Reset in each domain, mid-burst reset, soft reset | Values as 7.3 | Directed | All |
 | TEST-015 | REQ-PARAM-001 | Each illegal combination of section 8 | Elaboration error naming the parameter | Elaboration | None built |
@@ -871,10 +876,11 @@ Block-level simulation of the top with a testbench built from this specification
 | TEST-018 | REQ-PERF-001, REQ-PERF-002, REQ-PERF-003 | Count cycles of 4 MiB SHA-256 and SHA-384 on CFG-BOOT and of a long SHA-256 and SHA3-256 stream on CFG-STOR | Cycles within the formula tolerance and under the limits at the stated clock | Simulation | CFG-BOOT, CFG-STOR |
 | TEST-019 | REQ-SEC-001 | Read the last digest word, then probe state, FIFOs and core registers | Zero within 3 cycles | Directed | CFG-BASE with `PARA_ZERO` |
 | TEST-020 | REQ-SEC-002 | Force a bit flip in a core, in the state and in a recompute | Fault event and each response of `sha_sec.resp` | Fault injection | CFG-STOR, CFG-FULL |
-| TEST-021 | REQ-SEC-003 | Compare shares; check the unmasked and masked digests are equal | Equal digest; no register holds the plain intermediate value | Directed, inspection | CFG-FULL |
+| TEST-021 | REQ-SEC-003 | Masked digests of every SHA-3 and SHAKE algorithm equal the reference for several seeds; share 1 is not zero during a masked block and is zero for an unmasked one; Welch t-test of the Hamming weight of each share in every cycle of a block, fixed message against random messages, with a control run without masking | Digest equal; |t| below 4.5 for both shares in all 48 cycles; the control run exceeds 4.5 (the test can see a leak) | Directed, statistical (`mask_reg`, `mask_stat`, `mask_statctl`, `scripts/mask_stat.py`), inspection | CFG-FULL |
 | TEST-022 | REQ-RTL-001 | `vlsit_rtl_check.py`, lint, `vlsit_csr_generate.py verify` | No error | Static | All |
-| TEST-023 | REQ-DFT-001 | Scan insertion trial and check for clock gates | No gating cell | Static | All |
-| TEST-024 | REQ-PD-001 | Load the SDC of section 17 | Constraints complete | Static | All |
+| TEST-023 | REQ-DFT-001 | Scan insertion trial and check for clock gates | No gating cell | Static (`verification/scripts/static_checks.py` checks the clock structure and the absence of gating cells; the scan insertion trial needs a DFT tool and is not done) | All |
+| TEST-024 | REQ-PD-001 | Load the SDC of section 17 | Constraints complete | Static (`static_checks.py` checks that every port and clock of the SDC exists in the top module and every clock port has a clock; the load into an STA tool is not done) | All |
+| TEST-025 | REQ-RESET-001 | Random power-up state instead of a four-state X check | Same output hash with zero and with random initial values (3 seeds); the control mutant differs | Directed (`verification/scripts/xcheck.py`) | CFG-FULL without masking |
 
 ### 15.3 Assertions and coverage
 
@@ -887,7 +893,7 @@ Block-level simulation of the top with a testbench built from this specification
 | SVA-005 / COV-005 | After the last digest word with zeroing, state and FIFOs are zero in 3 cycles | REQ-SEC-001 | Verification | Never violated |
 | COV-006 | Cross of algorithm x length class x context count x window width | REQ-FUNC-001 | Functional coverage | Every bin hit |
 
-X policy: no X on any output after reset; resetless memories are read only after a write (7.3), checked by a reset-X test. Line coverage target: a baseline is measured first and the target is asked of the designer (R-047).
+X policy: no X on any output after reset; resetless memories are read only after a write (7.3). The simulator of the testbench is two-state, so the check is the random power-up test TEST-025: zero and random initial register and memory values give identical outputs; X pessimism and optimism of a four-state simulator are not checked. Line coverage target: a baseline is measured first and the target is asked of the designer (R-047).
 
 ### 15.4 Formal, CDC, and RDC
 
@@ -1034,17 +1040,33 @@ Decisions DEC-001 to DEC-008, DEC-010 and DEC-013 were answered by the user on 2
 | DEC-015 | Decision | The input and output FIFOs of each context instantiate the library `m_vlsit_sfifo_top` (both clocks tied to `i_clk_core`), the reset release uses `m_vlsit_rst_sync` and the constants `i_protect_en` and `i_slverr_en` use `m_vlsit_tie` where they are not ports. Asked 2026-11-09, options: A reuse (chosen), B own FIFO. Reason: checked modules, uniform structure | 14.2; REQ-RTL-001 | Confirmed by the designer 2026-11-09 |
 | DEC-016 | Decision | `PARA_CTX_MEM` = 0 (flip-flops) only; 1 is an illegal combination until the macro flow is defined. Asked 2026-11-09, options: A flip-flop only (chosen), B library SRAM wrapper. Reason: no macro flow, no guess | 8, 10.5; TBD-006; REQ-PARAM-001, REQ-FUNC-006 | Confirmed by the designer 2026-11-09 |
 | DEC-017 | Decision | An illegal parameter combination stops elaboration by a `generate if` that instantiates a non-existent module `m_vlsit_sha_ERR_` followed by the cause. Asked 2026-11-09, options: A missing module (chosen), B `$fatal`. Reason: no simulation-only statement in design RTL | 8; TBD-007; REQ-PARAM-001 | Confirmed by the designer 2026-11-09 |
-| DEC-018 | Decision | The RTL is delivered in two stages. Stage 1: SHA-2, unmasked SHA-3 and SHAKE, windows, CSR, DMA, zeroing, interrupts. Stage 2: masking (DOM and PRNG) and fault detection. Until stage 2 the parameters `PARA_MASK`, `PARA_FAULT_DUP`, `PARA_FAULT_PAR`, `PARA_FAULT_REDO` and `PARA_SEED_SRC` equal to 1 are illegal. Asked 2026-11-09, options: A two stages (chosen), B all at once. Reason: each stage is checked before the next | 8, 14.2; REQ-SEC-002, REQ-SEC-003 | Confirmed by the designer 2026-11-09 |
+| DEC-018 | Decision | The RTL is delivered in two stages. Stage 1: SHA-2, unmasked SHA-3 and SHAKE, windows, CSR, DMA, zeroing, interrupts. Stage 2a (delivered 2026-11-10): fault detection (DEC-033 to DEC-035). Stage 2b (delivered 2026-11-10): masking (DOM and PRNG), entropy and seed (DEC-036, DEC-037). Every parameter value of section 8 is legal from stage 2b. Asked 2026-11-09, options: A two stages (chosen), B all at once. Reason: each stage is checked before the next | 8, 14.2; REQ-SEC-002, REQ-SEC-003 | Confirmed by the designer 2026-11-09 |
 | DEC-019 | Decision | Stage 1 structure chosen by the author: one block in flight; a prefetch slot assembles the next block during the run; `PARA_*_PIPE` = 1 only; `PARA_AXI_DW` = 128 only with block sizes that are multiples of 16 bytes (SHA-2 and SHA3-224); CFG-STOR and CFG-FULL use 64-bit AXI; input FIFO holds at least a block plus two words. Reason: no carry of partial words between blocks, and the 4 MiB in 5 ms target is met without latency hiding | 8, 10.4, 4; REQ-PERF-001, REQ-FUNC-006 | Author choice; confirm |
 | DEC-020 | Decision | A digest shorter than a whole number of words is zero-padded in its last word; SHAKE output is read in whole words (a rate is a whole number of words) | 9, 10.2; REQ-FUNC-007 | Author choice; confirm |
 | DEC-021 | Decision | Clearing of a FIFO resets its pointers only (the library FIFO does not overwrite its memory); the context state and core registers are overwritten with zero | 18; REQ-SEC-001 | Author choice; confirm |
 | DEC-022 | Decision | A read of an empty digest window while the DMA output channel is busy returns zero without an underflow event (padding of a short burst) | 6.3, 6.4; REQ-IF-004 | Author choice; confirm |
+| DEC-023 | Decision | One command is executed per cycle in the order soft reset, abort, clear, init, final, seed; a command that cannot be done is acknowledged (its bit clears) and raises the configuration event, a command not yet served stays pending | 11, 12; REQ-ERR-001 | Author choice; confirm |
+| DEC-024 | Decision | The last word of a message is held back from block assembly until the final command gives its valid bytes, so a full block needs one word more than its size in the input FIFO | 8, 10.4; REQ-FUNC-004 | Author choice; confirm |
+| DEC-025 | Decision | `sha_cmd.seed` loads the random bit source from the `sha_seed` words when `PARA_MASK` = 1 and `PARA_SEED_SRC` = 1; with `PARA_MASK` = 0 or the entropy port it is rejected with the configuration event (changed 2026-11-10 with stage 2b) | 11; REQ-IF-005 | Author choice; confirm |
+| DEC-026 | Decision | When a block of a context ends in the cycle in which the context is aborted or cleared with zeroing, the zero write wins and the block result is not written to the context memory. Found by the testbench (SVA-005): the first RTL let the result overwrite the zero | 5.3, 7.3; REQ-SEC-001 | Verification finding, fixed in the RTL; confirm |
+| DEC-027 | Decision | A rejected read (message window, WRAP, narrow size, context out of range) returns SLVERR with data 0 whether the output FIFO is empty or not. Found by the testbench (IP-AXI-09): the first RTL returned OKAY when the FIFO was empty | 6.3; REQ-IF-001 | Verification finding, fixed in the RTL; confirms the text of 6.3 |
+| DEC-028 | Decision | In reset only the valid, response, event and request outputs are 0; `o_axi_awready` and `o_axi_arready` are 1 (idle state), as AXI4 allows | 7.3; REQ-RESET-001 | Designer agreed 2026-11-10 (OPEN-01) |
+| DEC-029 | Decision | The soft reset clears the error record but not the sticky raw interrupt bits | 6.4, 12 | Designer agreed 2026-11-10 (OPEN-02) |
+| DEC-030 | Decision | A reset does not clear the datapath registers of the cores; software uses `sha_cmd.srst` (zeroing sweep) when it needs them cleared. Abort and clear zero the core and cancel the work of the context: the slot item, the front end and the running block (RTL changed 2026-11-10; the init of the context is possible in the next cycle) | 7.3; REQ-SEC-001 | Designer agreed 2026-11-10 (OPEN-03, 05, 06) |
+| DEC-031 | Decision | A DMA request that is not acknowledged may be withdrawn on abort, final or soft reset | 6.3 | Designer agreed 2026-11-10 (OPEN-07) |
+| DEC-032 | Decision | Cycles per block = max(R/UNR + 2, words per block + 4); the SHA3 rows of section 13 are the measured values | 13; REQ-PERF-003 | Designer agreed 2026-11-10 (OPEN-08) |
+| DEC-033 | Decision | Fault state: a block whose duplicate or recompute compare differs at its done cycle is not stored; its context goes to the state 0xF (the compare of the done cycle is combinational so that the result is never written); a parity error does not change the context state. The fault event is registered, the responses are active in the next cycle (OP-011) | 12, 5.3; REQ-SEC-002 | Designer agreed 2026-11-10 |
+| DEC-034 | Decision | Lock: window accesses get SLVERR (kind 4) and every command except `sha_cmd.srst` is rejected with the configuration event until the soft reset; gate: a read of the digest window gets SLVERR and data 0; lock and gate stay until `sha_cmd.srst`; the clear response (resp bit 2) frees all contexts and zeroes the memory like a soft reset but keeps the error record and the lock; the alarm output is a flag set by resp bit 3 and cleared by `sha_cmd.srst` | 6.3, 12, 18; REQ-SEC-002 | Designer agreed 2026-11-10 (questions of 2a) |
+| DEC-035 | Decision | Mechanisms: duplicate = a second instance of each built core with the same inputs, compared at done, enabled by `sha_sec.fdup`; parity = one even-parity bit per 32 bits of the core state registers, the context memory words (checked when a block starts) and the FIFO words (checked when a word is popped), enabled by `sha_sec.fpar`; recompute = every block runs twice in the same core and the second result is compared with the first, throughput halved (measured), enabled by `sha_sec.fredo`. Parity covers flip-flop upsets, not a glitch between registers (the other two do) | 8, 13, 18; REQ-SEC-002 | Designer agreed 2026-11-10 |
+| DEC-036 | Decision | Masked Keccak core: two shares, first-order domain-oriented masking (DOM-indep), two cycles per round. Phase 0 applies theta, rho and pi to each share and stores the cross products of chi (one fresh random bit per chi AND gate) in a register; phase 1 completes chi and adds the round constant to share 0. At the start of a block both shares are refreshed with the same random word R and the message block is added to share 0. A block takes 24 x 2 + 2 = 50 cycles. The context memory holds both shares (3200 bits), the digest is the xor of the two halves, the fault duplicate of the masked core receives the same random bits. With `sha_ctrl.mask` = 0 the random bits are 0, share 1 stays 0 and the same core computes the plain function (also 50 cycles). `PARA_KEC_UNR` = 1 and `PARA_KEC_PIPE` = 2 are required | 6.3, 8, 18; REQ-SEC-003 | Decided by user 2026-11-10 (architecture: two shares in the context memory, two cycles per round) |
+| DEC-037 | Decision | Random bit source (`m_vlsit_sha_prng`): a free-running Keccak-f[1600] round delivers 1600 bits per cycle. It is seeded with 256 bits (the state is the seed, a one in bit 256 and a one in bit 1599, then 24 warm-up rounds); the seed comes from the eight `sha_seed` words with `sha_cmd.seed` (`PARA_SEED_SRC` = 1) or from eight words taken from the entropy port after reset (`PARA_SEED_SRC` = 0, `o_ent_req` low in reset). The seed is taken once; there is no automatic reseed; the soft reset clears `sha_sts.seeded`. A masked block waits at the block start until the source is seeded and raises `sha_irq_raw.ent` (ERR-006). The random bits of the chi step are the refresh word moved by five lanes: the random bits of round 0 are the next state of the source, a public function of R, and at the same bit position its linear part cancelled the mask of share 0 (the Welch test of the first RTL showed |t| = 8.9 for share 0 after round 0; with the move 2.5; control without masking 75.6) | 6.3, 6.4, 18; REQ-SEC-003, ERR-006 | Seed policy and 256-bit seed by user 2026-11-10; the lane move is an author choice, confirm |
+| DEC-038 | Decision | The soft reset command zeroes the state memory with a sweep of one context per cycle, so context k is zero k + 3 cycles after the command; the 3-cycle rule of ASM-005 holds for abort, clear and the last digest read of one context. The parity of the context memory is also checked when the output unit reads a state word (`m_vlsit_sha_ctxmem`, port `i_rd1_chk`) | 7.3, 18; REQ-SEC-001, REQ-SEC-002 | Author choice from the measured behavior with 16 contexts; confirm |
 | DEC-014 | Decision | One interrupt output `o_irq` with the events of 6.4, external DMA handshake optional | 6.4 | Decided by user |
 | ASM-001 | Assumption | Target is an embedded security SoC | Section 1.2 | Confirm |
 | ASM-002 | Assumption | No technology and library chosen | Section 13, 17 | Open until the flow is chosen |
 | ASM-003 | Assumption | Core clock of 500 MHz is a sizing value, not a requirement | Section 13 | Confirm or give the target clock |
 | ASM-004 | Assumption | The named systems and example products of 1.4 are proposals | Section 1.4 | Confirm or replace |
-| ASM-005 | Assumption | State clearing completes within 3 clock cycles | REQ-SEC-001 | Confirm |
+| ASM-005 | Assumption | State clearing of one context completes within 3 clock cycles (the soft reset sweep: k + 3 cycles for context k, DEC-038) | REQ-SEC-001 | Confirm |
 | ASM-006 | Assumption | Security strengths of FIPS 202 are read from the PDF because the table was lost in conversion; the IP does not depend on them | REF-002 | Open |
 | ASM-007 | Assumption | Default naming rule A, the user named none | Section 2.2 | Confirm |
 | ASM-008 | Assumption | DMA acknowledge, entropy and AXI inputs are synchronous to `i_clk_core` | CDC-002 | Confirm |
@@ -1052,7 +1074,9 @@ Decisions DEC-001 to DEC-008, DEC-010 and DEC-013 were answered by the user on 2
 | ASM-010 | Assumption | Software serializes accesses to `sha_ctrl.ctxsel` | 11.1 | Confirm |
 | ASM-011 | Assumption | Interface budget planning value of 60 % of the period | 17.1.2 | Integrator replaces |
 | ASM-012 | Assumption | SHA-2 is not masked; the security statement of section 18 applies to SHA-3 and SHAKE only | Section 18 | Confirm |
-| TBD-001 | Open | The block-time formula and the throughput table are not yet checked by simulation | Section 13 | Check in simulation (TEST-018) |
+| ASM-013 | Assumption | The random bit source is a keyed permutation generator, not a certified deterministic random bit generator; the 256-bit seed shall come from a true random source of the system (DEP-004). The evidence for the masking is the Hamming-weight statistic of the RTL registers (TEST-021), not a measurement on silicon and not a proof for glitches or for the second order | Section 18 | Confirm |
+| ASM-014 | Assumption | A seed is used until the next soft reset; a long-running system that wants fresh random bits resets softly and seeds again | DEC-037 | Confirm |
+| TBD-001 | Partly closed | The block-time formula was measured on the stage 1 RTL in a scratch simulation (2026-11-09): 66, 34 and 18 cycles per SHA-256 block at unroll 1, 2 and 4, and 42 for SHA-512 at unroll 2; SHA3-256 at unroll 2 is limited by the bus (21 cycles per block at 64-bit with the scratch driver). The delivered regression (TEST-018) is still to be written | Section 13 | Confirm with TEST-018 |
 | TBD-002 | Closed | Waveform plan confirmed 2026-11-09 (option C, 19 waveforms); block diagram inserted | Sections 5.2, 10.3 | Resolved |
 | TBD-003 | Open | `PIPE` of each core is not readable in `sha_cap1`; software computes the block time without it | Section 13 | Decide whether to add a field |
 | TBD-004 | Open | The behavior of the generated register block was read from the generator specification, not simulated for this workbook, and the constraints of its crossing are not yet taken over | 11.4, 17.1.3 | Run the generator test at the RTL step |

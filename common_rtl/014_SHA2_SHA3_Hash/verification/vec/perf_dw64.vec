@@ -1,0 +1,129 @@
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+perf0
+stream 0 320 5
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 20000000
+perf1 PERF_sha256_40 41
+tag PERF_sha256_40
+waitlvl 4 400000
+axir 0 4
+expect 32 4 916c7ed0376b29f0 20af40af4b780063 3c49b3d2c9c2c826 9f607822fe0bcc4c
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 200000
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+perf0
+stream 0 960 6
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 20000000
+perf1 PERF_sha256_120 121
+tag PERF_sha256_120
+waitlvl 4 400000
+axir 0 4
+expect 32 4 0022e4a0f5294db6 c7de39f03a1784c2 e4e20e5a40469e44 702264d4aaa9f8de
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 200000
+apbw 008 00000301
+apbw 00c 1
+poll 060 f00 100 2000
+perf0
+stream 0 640 5
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 20000000
+perf1 PERF_sha512_40 41
+tag PERF_sha512_40
+waitlvl 8 400000
+axir 0 8
+expect 64 8 1c9e68e2a98cc2a4 8b93893b75d1e323 2a2da12bebb38f94 981aa6e0dce6f3eb 8226a50adfad04c4 fb8bd37f322803ce 3de6980cbc54453a a7d8d8af8215f613
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 200000
+apbw 008 00000301
+apbw 00c 1
+poll 060 f00 100 2000
+perf0
+stream 0 1920 6
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 20000000
+perf1 PERF_sha512_120 121
+tag PERF_sha512_120
+waitlvl 8 400000
+axir 0 8
+expect 64 8 af58a9f41fe26d9d 8c0d4ba99036a845 583a4236bb7a4761 587a60c92e737cae 214d8d67275b5cf8 9d17facdb58aa146 e40dd5a18662c0ad fde386c4acf0a7b1
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 200000
+apbw 008 00000901
+apbw 00c 1
+poll 060 f00 100 2000
+perf0
+stream 0 680 5
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 20000000
+perf1 PERF_sha3_256_40 41
+tag PERF_sha3_256_40
+waitlvl 4 400000
+axir 0 4
+expect 32 4 fa27a419681d48d1 d369a051957d394e b8e551f88c6fc8b4 29833c396664a18a
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 200000
+apbw 008 00000901
+apbw 00c 1
+poll 060 f00 100 2000
+perf0
+stream 0 2040 6
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 20000000
+perf1 PERF_sha3_256_120 121
+tag PERF_sha3_256_120
+waitlvl 4 400000
+axir 0 4
+expect 32 4 64c918f44db8da84 6879cd07c410c925 3f18304cf7b362bf 7a842ffaad54bf7e
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 200000
+apbw 008 00000b01
+apbw 00c 1
+poll 060 f00 100 2000
+perf0
+stream 0 360 5
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 20000000
+perf1 PERF_sha3_512_40 41
+tag PERF_sha3_512_40
+waitlvl 8 400000
+axir 0 8
+expect 64 8 b1b298e837588c8a d8fa712ec8f299c2 0103d78a4e37bfa3 bc245deaab41cb2d eb2c83ce8083a262 d1346b12207fff5b 084c858d313e4b26 2944acea63028933
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 200000
+apbw 008 00000b01
+apbw 00c 1
+poll 060 f00 100 2000
+perf0
+stream 0 1080 6
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 20000000
+perf1 PERF_sha3_512_120 121
+tag PERF_sha3_512_120
+waitlvl 8 400000
+axir 0 8
+expect 64 8 0825b812fddd919a 5349899b77703717 2d52aee7cb69e47a d3b5d41b1c77e49f 13e54df85cb40195 12a78ef8fec1870d 789279b4e960e010 22709b32b4b1f2fc
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 200000
+end

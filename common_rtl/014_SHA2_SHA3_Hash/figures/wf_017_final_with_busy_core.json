@@ -8,14 +8,14 @@
    "command",
    {
     "name": "o_sha_cmd_final",
-    "wave": "01.0........"
+    "wave": "010........."
    },
    {
     "name": "r_ctx_state",
-    "wave": "=..=........",
+    "wave": "=.=.........",
     "data": [
-     "ABSORBING",
-     "FINALIZING"
+     "1",
+     "2"
     ]
    }
   ],
@@ -23,33 +23,25 @@
    "core and FIFO",
    {
     "name": "w_core_busy",
-    "wave": "1.......0..."
+    "wave": "1..........."
    },
    {
     "name": "i_sha_lvl_inlvl",
-    "wave": "=.......=...",
+    "wave": "=...........",
     "data": [
-     "24",
-     "0"
+     "8"
     ]
-   },
-   {
-    "name": "w_pad_start",
-    "wave": "0.......10.."
    }
   ],
   [
    "result",
    {
     "name": "i_hw_we_sha_irq_raw_cdone",
-    "wave": "0..........1"
+    "wave": "0..........."
    }
   ]
  ],
  "head": {
-  "text": "WF-017: Final command while the core is busy and the input FIFO still holds words"
- },
- "foot": {
-  "text": "The command is accepted in cycle 2 and the context becomes FINALIZING at once; the remaining 24 words ..."
+  "text": "WF-017: simulation of the RTL (verification/waveforms_sim)"
  }
 }

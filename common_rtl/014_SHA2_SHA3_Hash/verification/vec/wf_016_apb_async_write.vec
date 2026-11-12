@@ -1,0 +1,5 @@
+wait 10
+apbw 008 00000101
+wait 12
+wait 10
+end

@@ -1,0 +1,55 @@
+{
+ "signal": [
+  {
+   "name": "i_clk_core",
+   "wave": "p..........."
+  },
+  [
+   "command",
+   {
+    "name": "o_sha_cmd_final",
+    "wave": "01.0........"
+   },
+   {
+    "name": "r_ctx_state",
+    "wave": "=..=........",
+    "data": [
+     "ABSORBING",
+     "FINALIZING"
+    ]
+   }
+  ],
+  [
+   "core and FIFO",
+   {
+    "name": "w_core_busy",
+    "wave": "1.......0..."
+   },
+   {
+    "name": "i_sha_lvl_inlvl",
+    "wave": "=.......=...",
+    "data": [
+     "24",
+     "0"
+    ]
+   },
+   {
+    "name": "w_pad_start",
+    "wave": "0.......10.."
+   }
+  ],
+  [
+   "result",
+   {
+    "name": "i_hw_we_sha_irq_raw_cdone",
+    "wave": "0..........1"
+   }
+  ]
+ ],
+ "head": {
+  "text": "WF-017: Final command while the core is busy and the input FIFO still holds words"
+ },
+ "foot": {
+  "text": "The command is accepted in cycle 2 and the context becomes FINALIZING at once; the remaining 24 words ..."
+ }
+}

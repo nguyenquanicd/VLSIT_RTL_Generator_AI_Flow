@@ -1,0 +1,40 @@
+{
+ "signal": [
+  {
+   "name": "i_clk_core",
+   "wave": "p............."
+  },
+  [
+   "entropy port",
+   {
+    "name": "o_ent_req",
+    "wave": "01..01...0...."
+   },
+   {
+    "name": "i_ent_valid",
+    "wave": "0..10...10...."
+   },
+   {
+    "name": "i_ent_data",
+    "wave": "x..=x...=x....",
+    "data": [
+     "E0",
+     "E1"
+    ]
+   }
+  ],
+  [
+   "status",
+   {
+    "name": "i_sha_sts_seeded",
+    "wave": "0............1"
+   }
+  ]
+ ],
+ "head": {
+  "text": "WF-013: Masked core takes seed words from the entropy port"
+ },
+ "foot": {
+  "text": "o_ent_req is held until i_ent_valid; words 3 to 8 are not shown"
+ }
+}

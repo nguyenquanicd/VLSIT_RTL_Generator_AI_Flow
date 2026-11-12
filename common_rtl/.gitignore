@@ -1,0 +1,74 @@
+# common_rtl — simulation output and tool artifacts are never versioned.
+#
+# Committed layout (everything else is generated and ignored):
+#   <ip>/rtl/                   RTL sources (*.sv, *.v, *.svh, *.vh) and filelists (*.f)
+#   <ip>/csr/                   CSR documents and register maps
+#   <ip>/spec_original/         the specification sources the RTL was generated from
+#   <ip>/verification/tb/       testbench sources (*.sv, *.v) and checkers
+#   <ip>/verification/vectors/  hand-written test vectors (*.vec, *.txt)
+#   <ip>/verification/*.py      cocotb / python testbench, *.mk Makefiles
+#
+# Everything produced by simulation, lint, synthesis, STA or the C++/Verilator
+# build is ignored below, including waveform dumps and generated headers.
+
+# --- whole-IP exclusions (deliberately not versioned) ----------------------
+/012_CAN_Controller/
+
+# --- simulation waveforms & sim data --------------------------------------
+*.vcd
+*.fst
+*.fsdb
+*.wlf
+*.vpd
+*.dat
+
+# --- logs & reports --------------------------------------------------------
+*.log
+*.rpt
+*.jou
+*.str
+
+# --- compiled simulation & coverage ---------------------------------------
+*.vvp
+*.exe
+*.ucdb
+*.vdb
+*.cm
+
+# --- Verilator / C++ build artifacts (all generated in this repo) ---------
+# NOTE: no hand-written C++ lives here; if a DPI-C model is added, scope these
+# to the build directories instead of a blanket rule.
+*.cpp
+*.h
+*.o
+*.a
+*.d
+*.gch
+*.pch
+*.rsp
+
+# --- synthesis / STA / implementation output -------------------------------
+*.sdf
+*.spef
+*.ddc
+*.svf
+*.dsn
+*.edif
+*.net
+
+# --- Python cache ----------------------------------------------------------
+__pycache__/
+*.pyc
+
+# --- tool working / output directories -------------------------------------
+build*/
+obj*/
+obj_dir/
+coverage*/
+logs*/
+waveforms_sim/
+mutation/
+sanity_v2/
+work/
+sim/
+tmp/

@@ -16,34 +16,39 @@
    "APB4 request",
    {
     "name": "i_apb_psel",
-    "wave": "01..0.1..0...."
+    "wave": "01..0....1.0.."
    },
    {
     "name": "i_apb_penable",
-    "wave": "0.1.0..1.0...."
+    "wave": "0.1.0.....10.."
    },
    {
     "name": "i_apb_pwrite",
-    "wave": "x1..x.1..x...."
+    "wave": "01..0....1.0.."
    },
    {
     "name": "i_apb_pprot",
-    "wave": "x0..x.1..x...."
+    "wave": "=.......=..=..",
+    "data": [
+     "0",
+     "2",
+     "0"
+    ]
    },
    {
     "name": "i_apb_paddr",
-    "wave": "x=..x.=..x....",
+    "wave": "==............",
     "data": [
-     "sha_cmd",
-     "sha_cmd"
+     "0",
+     "c"
     ]
    },
    {
     "name": "i_apb_pwdata",
-    "wave": "x=..x.=..x....",
+    "wave": "==............",
     "data": [
-     "init",
-     "init"
+     "0",
+     "1"
     ]
    }
   ],
@@ -51,25 +56,22 @@
    "APB4 response",
    {
     "name": "o_apb_pready",
-    "wave": "0..10...10...."
+    "wave": "0..10.....10.."
    },
    {
     "name": "o_apb_pslverr",
-    "wave": "0.......10...."
+    "wave": "0.........1..."
    }
   ],
   [
    "register",
    {
     "name": "o_sha_cmd_init",
-    "wave": "0...1..0......"
+    "wave": "0..10........."
    }
   ]
  ],
  "head": {
-  "text": "WF-007: APB write of the init command, then a non-secure write rejected with PSLVERR"
- },
- "foot": {
-  "text": "First write (PPROT[1] = 0): accepted, o_sha_cmd_init is raised and cleared by hardware"
+  "text": "WF-007: simulation of the RTL (verification/waveforms_sim)"
  }
 }

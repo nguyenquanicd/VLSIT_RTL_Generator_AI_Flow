@@ -1,0 +1,91 @@
+{
+ "signal": [
+  {
+   "name": "i_clk_core",
+   "wave": "p........."
+  },
+  [
+   "AXI4 read",
+   {
+    "name": "i_axi_arvalid",
+    "wave": "01.0......"
+   },
+   {
+    "name": "o_axi_arready",
+    "wave": "0.10......"
+   },
+   {
+    "name": "i_axi_araddr",
+    "wave": "x=.x......",
+    "data": [
+     "C2 DIG"
+    ]
+   },
+   {
+    "name": "i_axi_arlen",
+    "wave": "x=.x......",
+    "data": [
+     "0"
+    ]
+   },
+   {
+    "name": "o_axi_rvalid",
+    "wave": "0...10...."
+   },
+   {
+    "name": "i_axi_rready",
+    "wave": "1........."
+   },
+   {
+    "name": "o_axi_rdata",
+    "wave": "x...=x....",
+    "data": [
+     "0"
+    ]
+   },
+   {
+    "name": "o_axi_rlast",
+    "wave": "0...10...."
+   },
+   {
+    "name": "o_axi_rresp",
+    "wave": "x...=x....",
+    "data": [
+     "OKAY"
+    ]
+   }
+  ],
+  [
+   "error record",
+   {
+    "name": "i_sha_lvl_outlvl",
+    "wave": "=.........",
+    "data": [
+     "0"
+    ]
+   },
+   {
+    "name": "i_hw_we_sha_irq_raw_udf",
+    "wave": "0...10...."
+   },
+   {
+    "name": "i_sha_err_kind",
+    "wave": "=....=....",
+    "data": [
+     "0",
+     "2"
+    ]
+   },
+   {
+    "name": "o_irq",
+    "wave": "0....1...."
+   }
+  ]
+ ],
+ "head": {
+  "text": "WF-006: Read of an empty digest window returns zero and raises the underflow event"
+ },
+ "foot": {
+  "text": "The read completes with OKAY and data 0; error kind 2 is recorded and software learns of it from the ..."
+ }
+}

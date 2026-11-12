@@ -1,0 +1,48 @@
+{
+ "signal": [
+  {
+   "name": "i_clk_core",
+   "wave": "p..........."
+  },
+  {
+   "name": "i_clk_apb",
+   "wave": "p..........."
+  },
+  [
+   "core domain",
+   {
+    "name": "i_rst_n_core",
+    "wave": "1.0...1....."
+   },
+   {
+    "name": "w_rst_n_core_sync",
+    "wave": "1.0.....1..."
+   },
+   {
+    "name": "o_axi_awready",
+    "wave": "1.0......1.."
+   },
+   {
+    "name": "o_irq",
+    "wave": "1.0........."
+   }
+  ],
+  [
+   "APB domain",
+   {
+    "name": "i_rst_n_apb",
+    "wave": "1...0....1.."
+   },
+   {
+    "name": "w_rst_n_apb_sync",
+    "wave": "1...0......1"
+   }
+  ]
+ ],
+ "head": {
+  "text": "WF-015: Reset assertion and synchronized release in the core and APB domains"
+ },
+ "foot": {
+  "text": "Assertion is asynchronous and immediate; release is synchronized to the clock of the domain"
+ }
+}

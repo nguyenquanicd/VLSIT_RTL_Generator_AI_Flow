@@ -8,18 +8,19 @@
    "entropy port",
    {
     "name": "o_ent_req",
-    "wave": "01..01...0...."
+    "wave": "01....01....01"
    },
    {
     "name": "i_ent_valid",
-    "wave": "0..10...10...."
+    "wave": "0....10....10."
    },
    {
     "name": "i_ent_data",
-    "wave": "x..=x...=x....",
+    "wave": "=....=.....=..",
     "data": [
-     "E0",
-     "E1"
+     "0",
+     "5fa24450",
+     "24800459"
     ]
    }
   ],
@@ -27,14 +28,11 @@
    "status",
    {
     "name": "i_sha_sts_seeded",
-    "wave": "0............1"
+    "wave": "0............."
    }
   ]
  ],
  "head": {
-  "text": "WF-013: Masked core takes seed words from the entropy port"
- },
- "foot": {
-  "text": "o_ent_req is held until i_ent_valid; words 3 to 8 are not shown"
+  "text": "WF-013: simulation of the RTL (verification/waveforms_sim)"
  }
 }

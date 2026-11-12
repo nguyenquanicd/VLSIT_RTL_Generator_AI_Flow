@@ -1,0 +1,11 @@
+apbw 008 00010101
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 1 1 0000006564636261
+apbw 010 5
+wait 3
+apbw 00c 2
+poll 060 4 4 20000
+wait 6
+wait 10
+end

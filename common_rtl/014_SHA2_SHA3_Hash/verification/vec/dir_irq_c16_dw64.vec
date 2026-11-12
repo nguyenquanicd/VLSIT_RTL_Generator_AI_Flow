@@ -1,0 +1,280 @@
+tag IRQ_reset_state
+chkirq 0
+chkalarm 0
+tag IRQ_inject_without_enable
+apbw 0c8 00010000
+chka 0c0 00010000 00010000
+chka 0cc ffffffff 00000000
+chkirq 0
+tag IRQ_enable_sets_o_irq
+apbw 0c4 00010000
+chka 0cc ffffffff 00010000
+chkirq 1
+tag IRQ_clear_with_injection_held
+apbw 0c0 ffffffff
+chka 0c0 ffffffff 00000000
+chkirq 0
+apbw 0c8 0
+apbw 0c8 00010000
+chka 0c0 00010000 00010000
+chkirq 1
+apbw 0c8 0
+apbw 0c0 ffffffff
+apbw 0c4 0
+tag IRQ_inject_udf
+apbw 0c4 00020000
+apbw 0c8 00020000
+chkirq 1
+chka 0c0 00020000 00020000
+apbw 0c8 0
+apbw 0c0 ffffffff
+chkirq 0
+tag IRQ_inject_axi
+apbw 0c4 00040000
+apbw 0c8 00040000
+chkirq 1
+chka 0c0 00040000 00040000
+apbw 0c8 0
+apbw 0c0 ffffffff
+chkirq 0
+tag IRQ_inject_cfg
+apbw 0c4 00080000
+apbw 0c8 00080000
+chkirq 1
+chka 0c0 00080000 00080000
+apbw 0c8 0
+apbw 0c0 ffffffff
+chkirq 0
+tag IRQ_inject_flt
+apbw 0c4 00100000
+apbw 0c8 00100000
+chkirq 1
+chka 0c0 00100000 00100000
+apbw 0c8 0
+apbw 0c0 ffffffff
+chkirq 0
+tag IRQ_inject_ent
+apbw 0c4 00200000
+apbw 0c8 00200000
+chkirq 1
+chka 0c0 00200000 00200000
+apbw 0c8 0
+apbw 0c0 ffffffff
+chkirq 0
+tag IRQ_inject_tmo
+apbw 0c4 00400000
+apbw 0c8 00400000
+chkirq 1
+chka 0c0 00400000 00400000
+apbw 0c8 0
+apbw 0c0 ffffffff
+chkirq 0
+tag IRQ_inject_len
+apbw 0c4 00800000
+apbw 0c8 00800000
+chkirq 1
+chka 0c0 00800000 00800000
+apbw 0c8 0
+apbw 0c0 ffffffff
+chkirq 0
+tag IRQ_enable_mask_only_enabled_bits
+apbw 0c4 00020000
+apbw 0c8 00040000
+chkirq 0
+chka 0c0 00040000 00040000
+apbw 0c4 00060000
+chkirq 1
+apbw 0c8 0
+apbw 0c0 ffffffff
+apbw 0c4 0
+tag IRQ_cdone_each_context_by_injection
+apbw 0c4 00000001
+apbw 0c8 00000001
+chka 0c0 0000ffff 00000001
+chkirq 1
+apbw 0c8 0
+apbw 0c0 ffffffff
+apbw 0c4 00000002
+apbw 0c8 00000002
+chka 0c0 0000ffff 00000002
+chkirq 1
+apbw 0c8 0
+apbw 0c0 ffffffff
+apbw 0c4 00000004
+apbw 0c8 00000004
+chka 0c0 0000ffff 00000004
+chkirq 1
+apbw 0c8 0
+apbw 0c0 ffffffff
+apbw 0c4 00000008
+apbw 0c8 00000008
+chka 0c0 0000ffff 00000008
+chkirq 1
+apbw 0c8 0
+apbw 0c0 ffffffff
+apbw 0c4 00000010
+apbw 0c8 00000010
+chka 0c0 0000ffff 00000010
+chkirq 1
+apbw 0c8 0
+apbw 0c0 ffffffff
+apbw 0c4 00000020
+apbw 0c8 00000020
+chka 0c0 0000ffff 00000020
+chkirq 1
+apbw 0c8 0
+apbw 0c0 ffffffff
+apbw 0c4 00000040
+apbw 0c8 00000040
+chka 0c0 0000ffff 00000040
+chkirq 1
+apbw 0c8 0
+apbw 0c0 ffffffff
+apbw 0c4 00000080
+apbw 0c8 00000080
+chka 0c0 0000ffff 00000080
+chkirq 1
+apbw 0c8 0
+apbw 0c0 ffffffff
+apbw 0c4 00000100
+apbw 0c8 00000100
+chka 0c0 0000ffff 00000100
+chkirq 1
+apbw 0c8 0
+apbw 0c0 ffffffff
+apbw 0c4 00000200
+apbw 0c8 00000200
+chka 0c0 0000ffff 00000200
+chkirq 1
+apbw 0c8 0
+apbw 0c0 ffffffff
+apbw 0c4 00000400
+apbw 0c8 00000400
+chka 0c0 0000ffff 00000400
+chkirq 1
+apbw 0c8 0
+apbw 0c0 ffffffff
+apbw 0c4 00000800
+apbw 0c8 00000800
+chka 0c0 0000ffff 00000800
+chkirq 1
+apbw 0c8 0
+apbw 0c0 ffffffff
+apbw 0c4 00001000
+apbw 0c8 00001000
+chka 0c0 0000ffff 00001000
+chkirq 1
+apbw 0c8 0
+apbw 0c0 ffffffff
+apbw 0c4 00002000
+apbw 0c8 00002000
+chka 0c0 0000ffff 00002000
+chkirq 1
+apbw 0c8 0
+apbw 0c0 ffffffff
+apbw 0c4 00004000
+apbw 0c8 00004000
+chka 0c0 0000ffff 00004000
+chkirq 1
+apbw 0c8 0
+apbw 0c0 ffffffff
+apbw 0c4 00008000
+apbw 0c8 00008000
+chka 0c0 0000ffff 00008000
+chkirq 1
+apbw 0c8 0
+apbw 0c0 ffffffff
+apbw 0c4 0
+tag IRQ_cdone_real_event_ctx0
+apbw 0c4 00000001
+cov 1 other
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 0 5 84f00621f2bd4279 4d764dcbf3f06277 890f9a15512007c7 31bb44e3cadac6f2 d79adf846ffd4512
+apbw 008 00000101
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 200000
+tag IRQ_real_cdone_hash_ctx0
+waitlvl 4 400000
+axir 0 4
+expect 32 4 56225899bfca0de0 f4489b603cdc28ab 5341809118f32ab3 4b0548566f3e3d3c
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 20000
+chka 0c0 0000ffff 00000001
+chkirq 1
+apbw 0c0 ffffffff
+chkirq 0
+apbw 0c4 0
+tag IRQ_cdone_real_event_ctx1
+apbw 0c4 00000002
+cov 1 other
+apbw 008 00010101
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 1 5 538f0eac76d0b3c5 f6203f91886c35a7 960a4dd222b02df7 8ea9c117163cd4da 65103727039e1278
+apbw 008 00010101
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 200000
+tag IRQ_real_cdone_hash_ctx1
+waitlvl 4 400000
+axir 1 4
+expect 32 4 850f654009fb1310 c1afdab26544c342 bebed6accdc3dacc d8f10c38b8f525ce
+apbw 008 00010001
+apbw 00c 4
+poll 060 3 2 20000
+chka 0c0 0000ffff 00000002
+chkirq 1
+apbw 0c0 ffffffff
+chkirq 0
+apbw 0c4 0
+tag IRQ_cdone_real_event_ctx2
+apbw 0c4 00000004
+cov 1 other
+apbw 008 00020101
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 2 5 b8a0ad154f8695d0 dc8a34c5ebc0c146 d405ad9b84df9a79 b4eeaa1e44c00aa1 80bd0a1f0bfa8eb4
+apbw 008 00020101
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 200000
+tag IRQ_real_cdone_hash_ctx2
+waitlvl 4 400000
+axir 2 4
+expect 32 4 95a52f55ee463f8a 27531ce54584fddb c2051300752d07f1 131bec13a512bbe7
+apbw 008 00020001
+apbw 00c 4
+poll 060 3 2 20000
+chka 0c0 0000ffff 00000004
+chkirq 1
+apbw 0c0 ffffffff
+chkirq 0
+apbw 0c4 0
+tag IRQ_cdone_real_event_ctx3
+apbw 0c4 00000008
+cov 1 other
+apbw 008 00030101
+apbw 00c 1
+poll 060 f00 100 2000
+axiw 3 5 bda05eba5aa398e9 719e430d35c19987 a43431de5fa77a89 e66fac2856e072aa 8e5da161113d738a
+apbw 008 00030101
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 200000
+tag IRQ_real_cdone_hash_ctx3
+waitlvl 4 400000
+axir 3 4
+expect 32 4 6fe3f903bbc793a2 7998617544a42518 eb200472f7826742 0d45539891b59bf7
+apbw 008 00030001
+apbw 00c 4
+poll 060 3 2 20000
+chka 0c0 0000ffff 00000008
+chkirq 1
+apbw 0c0 ffffffff
+chkirq 0
+apbw 0c4 0
+end

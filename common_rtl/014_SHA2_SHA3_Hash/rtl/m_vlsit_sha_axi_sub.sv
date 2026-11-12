@@ -14,7 +14,7 @@
  *                empty digest FIFO, 3 wrong window direction, 4 unsupported burst, size, strobe or
  *                context). A read of an empty digest FIFO returns zero with the response OKAY
  *                (DEC-022: no event while the DMA output channel pads a burst).
- *                Decisions: DEC-003, DEC-012, DEC-022.
+ *                Decisions: DEC-003, DEC-012, DEC-022, DEC-027, DEC-034.
  */
 `timescale 1ns/1ps
 
@@ -105,6 +105,10 @@ module m_vlsit_sha_axi_sub #(
   input  wire                     i_pad_ok,
   output logic                    o_out_beat,
 
+  // Fault responses (DEC-034): lock rejects every window access, gate rejects digest reads
+  input  wire                     i_lock,
+  input  wire                     i_gate,
+
   // Events and error record
   input  wire                     i_srst,
   output logic                    o_ev_ovf,
@@ -179,15 +183,15 @@ module m_vlsit_sha_axi_sub #(
   always_comb begin : p_com_addr
     w_aw_hit    = i_axi_awvalid && o_axi_awready;
     w_ar_hit    = i_axi_arvalid && o_axi_arready;
-    w_aw_ctx_ok = (i_axi_awaddr[15:12] < PARA_CTX_N[3:0]);
-    w_ar_ctx_ok = (i_axi_araddr[15:12] < PARA_CTX_N[3:0]);
+    w_aw_ctx_ok = ({1'b0, i_axi_awaddr[15:12]} < PARA_CTX_N[4:0]);
+    w_ar_ctx_ok = ({1'b0, i_axi_araddr[15:12]} < PARA_CTX_N[4:0]);
     w_aw_kind   = 4'd0;
     w_ar_kind   = 4'd0;
-    if (!w_aw_ctx_ok || (i_axi_awburst == LPARA_BURST_WRAP[1:0]) || (i_axi_awsize != LPARA_SIZE[2:0]))
+    if (i_lock || !w_aw_ctx_ok || (i_axi_awburst == LPARA_BURST_WRAP[1:0]) || (i_axi_awsize != LPARA_SIZE[2:0]))
       w_aw_kind = LPARA_KIND_BAD[3:0];
     else if (i_axi_awaddr[11])
       w_aw_kind = LPARA_KIND_DIR[3:0];
-    if (!w_ar_ctx_ok || (i_axi_arburst == LPARA_BURST_WRAP[1:0]) || (i_axi_arsize != LPARA_SIZE[2:0]))
+    if (i_lock || i_gate || !w_ar_ctx_ok || (i_axi_arburst == LPARA_BURST_WRAP[1:0]) || (i_axi_arsize != LPARA_SIZE[2:0]))
       w_ar_kind = LPARA_KIND_BAD[3:0];
     else if (!i_axi_araddr[11])
       w_ar_kind = LPARA_KIND_DIR[3:0];
@@ -205,7 +209,6 @@ module m_vlsit_sha_axi_sub #(
       end
     end
     w_w_strb_ok = (i_axi_wstrb == {LPARA_STRB_W{1'b1}});
-    w_w_accept  = (reg_fsm_wr_current_state == ENUM_ST_DATA) && i_axi_wvalid && o_axi_wready;
     w_w_ev_kind = 4'd0;
     casez ({(reg_w_kind != 4'd0), !w_w_abs, !w_w_strb_ok})
       3'b1??:  w_w_ev_kind = reg_w_kind;
@@ -213,10 +216,12 @@ module m_vlsit_sha_axi_sub #(
       3'b001:  w_w_ev_kind = LPARA_KIND_BAD[3:0];
       default: w_w_ev_kind = 4'd0;
     endcase
+    o_axi_wready   = (reg_fsm_wr_current_state == ENUM_ST_DATA) && ((w_w_ev_kind != 4'd0) || !w_w_full);
+    w_w_accept     = (reg_fsm_wr_current_state == ENUM_ST_DATA) && i_axi_wvalid
+                  && ((w_w_ev_kind != 4'd0) || !w_w_full);
     o_in_push_en   = w_w_accept && (w_w_ev_kind == 4'd0);
     o_in_push_ctx  = reg_w_ctx;
     o_in_push_data = i_axi_wdata;
-    o_axi_wready   = (reg_fsm_wr_current_state == ENUM_ST_DATA) && ((w_w_ev_kind != 4'd0) || !w_w_full);
   end
 
   // Read beat decode: data of the digest FIFO when the burst is legal and the FIFO has a word;
@@ -234,9 +239,9 @@ module m_vlsit_sha_axi_sub #(
     o_axi_rlast   = (reg_r_cnt == 8'd0);
     o_axi_rdata   = '0;
     o_axi_rresp   = LPARA_RESP_OKAY[1:0];
-    case ({w_r_ok, w_r_empty})
+    casez ({w_r_ok, w_r_empty})
       2'b10:   o_axi_rdata = i_out_pop_data;
-      2'b00:   o_axi_rresp = LPARA_RESP_SLVERR[1:0];
+      2'b0?:   o_axi_rresp = LPARA_RESP_SLVERR[1:0];
       default: o_axi_rdata = '0;
     endcase
     o_out_pop_en  = w_r_beat && w_r_ok && !w_r_empty;

@@ -8,11 +8,11 @@
    "core",
    {
     "name": "w_core_busy",
-    "wave": "0.1.....0..."
+    "wave": "0.1........."
    },
    {
     "name": "w_core_ctx",
-    "wave": "x.=.....x...",
+    "wave": "=...........",
     "data": [
      "0"
     ]
@@ -22,34 +22,28 @@
    "software",
    {
     "name": "o_sha_ctrl_ctxsel",
-    "wave": "=...=.......",
+    "wave": "=...........",
     "data": [
-     "0",
      "1"
     ]
    },
    {
     "name": "i_sha_lvl_inlvl",
-    "wave": "=....=......",
+    "wave": "=...........",
     "data": [
-     "12",
-     "3"
+     "0"
     ]
    },
    {
     "name": "i_sha_sts_cstate",
-    "wave": "=....=......",
+    "wave": "=...........",
     "data": [
-     "1",
-     "0"
+     "1"
     ]
    }
   ]
  ],
  "head": {
-  "text": "WF-019: Changing the selected context while the core is busy"
- },
- "foot": {
-  "text": "Software selects context 1 in cycle 4; the status and level registers then show context 1 (one cycle ..."
+  "text": "WF-019: simulation of the RTL (verification/waveforms_sim)"
  }
 }

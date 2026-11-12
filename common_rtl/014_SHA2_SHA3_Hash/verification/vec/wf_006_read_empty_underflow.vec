@@ -1,0 +1,10 @@
+apbw 008 00020101
+wait 6
+rwin 1
+rclr
+axir 2 1
+wait 6
+apbw 0c4 00020000
+wait 4
+wait 10
+end

@@ -1,0 +1,4 @@
+include edge_all_dw64.vec
+include bp_on.vec
+include multi_c8_dw64.vec
+end

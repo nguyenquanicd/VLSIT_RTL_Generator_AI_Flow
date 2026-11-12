@@ -1,0 +1,11 @@
+dmaman 1
+tag OPEN-07_dma_request_withdrawn_by_abort
+apbw 014 00000008
+apbw 008 02000101
+apbw 00c 1
+poll 060 f00 100 2000
+wait 60
+chkreq 1 0
+apbw 00c 4
+wait 20
+end

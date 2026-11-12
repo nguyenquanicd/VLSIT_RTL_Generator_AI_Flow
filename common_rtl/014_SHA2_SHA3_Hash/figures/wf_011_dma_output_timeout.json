@@ -8,7 +8,7 @@
    "name": "o_sha_dmac_burst",
    "wave": "=.............",
    "data": [
-    "4"
+    "8"
    ]
   },
   {
@@ -21,16 +21,6 @@
   [
    "timer and event",
    {
-    "name": "r_tmo_cnt",
-    "wave": "====..........",
-    "data": [
-     "0",
-     "1",
-     "2",
-     "3"
-    ]
-   },
-   {
     "name": "i_hw_we_sha_irq_raw_tmo",
     "wave": "0...10........"
    },
@@ -39,7 +29,7 @@
     "wave": "=....=........",
     "data": [
      "0",
-     "3"
+     "4"
     ]
    }
   ],
@@ -47,35 +37,29 @@
    "handshake",
    {
     "name": "o_dma_out_req",
-    "wave": "0...1..0......"
+    "wave": "0....1....0..."
    },
    {
     "name": "i_dma_out_ack",
-    "wave": "0.....1..0...."
+    "wave": "0........1...0"
    }
   ],
   [
    "AXI4 read of the burst",
    {
     "name": "o_axi_rvalid",
-    "wave": "0.......1...0."
+    "wave": "0............."
    },
    {
     "name": "o_axi_rdata",
-    "wave": "x.......====x.",
+    "wave": "=.............",
     "data": [
-     "D0",
-     "D1",
-     "D2",
-     "PAD"
+     "eacf018fbf1678ba"
     ]
    }
   ]
  ],
  "head": {
-  "text": "WF-011: External DMA output channel: timeout pads a short digest burst with zeros"
- },
- "foot": {
-  "text": "The digest has 3 words, the burst is 4"
+  "text": "WF-011: simulation of the RTL (verification/waveforms_sim)"
  }
 }

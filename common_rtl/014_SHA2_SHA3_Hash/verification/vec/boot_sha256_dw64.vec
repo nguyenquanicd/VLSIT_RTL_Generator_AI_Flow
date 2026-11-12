@@ -1,0 +1,17 @@
+apbw 008 00000101
+apbw 00c 1
+poll 060 f00 100 2000
+perf0
+stream 0 524288 9
+apbw 010 0
+apbw 00c 2
+poll 060 4 4 20000000
+perf1 BOOT_sha256_4MiB 65537
+tag BOOT_sha256_4MiB
+waitlvl 4 400000
+axir 0 4
+expect 32 4 a4ca639b427bada0 11f004f1ccfa6a59 8159a9f294be0368 0085efe7e89205f2
+apbw 008 00000001
+apbw 00c 4
+poll 060 3 2 200000
+end

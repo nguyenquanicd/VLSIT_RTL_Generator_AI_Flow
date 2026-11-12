@@ -8,29 +8,30 @@
    "AXI4 read",
    {
     "name": "i_axi_arvalid",
-    "wave": "01.0......"
+    "wave": "010......."
    },
    {
     "name": "o_axi_arready",
-    "wave": "0.10......"
+    "wave": "1.01......"
    },
    {
     "name": "i_axi_araddr",
-    "wave": "x=.x......",
+    "wave": "==........",
     "data": [
-     "C2 DIG"
+     "0",
+     "2800"
     ]
    },
    {
     "name": "i_axi_arlen",
-    "wave": "x=.x......",
+    "wave": "=.........",
     "data": [
      "0"
     ]
    },
    {
     "name": "o_axi_rvalid",
-    "wave": "0...10...."
+    "wave": "0.10......"
    },
    {
     "name": "i_axi_rready",
@@ -38,20 +39,20 @@
    },
    {
     "name": "o_axi_rdata",
-    "wave": "x...=x....",
+    "wave": "=.........",
     "data": [
      "0"
     ]
    },
    {
     "name": "o_axi_rlast",
-    "wave": "0...10...."
+    "wave": "1........."
    },
    {
     "name": "o_axi_rresp",
-    "wave": "x...=x....",
+    "wave": "=.........",
     "data": [
-     "OKAY"
+     "0"
     ]
    }
   ],
@@ -66,11 +67,11 @@
    },
    {
     "name": "i_hw_we_sha_irq_raw_udf",
-    "wave": "0...10...."
+    "wave": "0.10......"
    },
    {
     "name": "i_sha_err_kind",
-    "wave": "=....=....",
+    "wave": "=..=......",
     "data": [
      "0",
      "2"
@@ -78,14 +79,11 @@
    },
    {
     "name": "o_irq",
-    "wave": "0....1...."
+    "wave": "0........."
    }
   ]
  ],
  "head": {
-  "text": "WF-006: Read of an empty digest window returns zero and raises the underflow event"
- },
- "foot": {
-  "text": "The read completes with OKAY and data 0; error kind 2 is recorded and software learns of it from the ..."
+  "text": "WF-006: simulation of the RTL (verification/waveforms_sim)"
  }
 }

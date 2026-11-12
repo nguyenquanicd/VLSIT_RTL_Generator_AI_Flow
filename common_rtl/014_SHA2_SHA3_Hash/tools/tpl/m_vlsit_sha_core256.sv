@@ -17,6 +17,10 @@ module m_vlsit_sha_core256 #(
   // Parameter values: 1, 2, 4, 8, 16, 32 or 64; default is 1.
   // Parameter unit: count
   parameter logic [31:0] PARA_UNR = 1,
+  // Parameter Description: parity of the state registers (REQ-SEC-002, DEC-035).
+  // Parameter values: 0 or 1; default is 0.
+  // Parameter unit: flag
+  parameter logic [31:0] PARA_PAR = 0,
   localparam logic [31:0] LPARA_CYC_N = 64 / PARA_UNR,
   localparam logic [31:0] LPARA_CNT_W = $clog2(64 / PARA_UNR + 1),
   localparam logic [31:0] LPARA_WIN_N = 16 + PARA_UNR
@@ -33,7 +37,8 @@ module m_vlsit_sha_core256 #(
   // Block and state
   input  wire  [511:0] i_block,
   input  wire  [255:0] i_state,
-  output logic [255:0] o_result
+  output logic [255:0] o_result,
+  output logic         o_par_err
 );
 
   // Internal signal declarations
@@ -197,5 +202,47 @@ module m_vlsit_sha_core256 #(
 
   // The done flag is the registered end of the last round.
   assign o_done = reg_done;
+
+
+  // Parity of the state registers (PARA_PAR = 1): one even-parity bit per 32 bits of reg_v, reg_w,
+  // generated from the next value and checked while the core runs. A flipped bit of a register
+  // gives a mismatch in the cycle in which it is read (REQ-SEC-002, DEC-035). The parity bits are
+  // resetless like the data registers.
+  logic [7:0]  reg_pv;
+  logic [15:0] reg_pw;
+
+  function automatic logic [7:0] f_parv(input logic [255:0] i_d);
+    for (int idx = 0; idx < 8; idx++)
+      f_parv[idx] = ^i_d[32*idx +: 32];
+  endfunction
+
+  function automatic logic [15:0] f_parw(input logic [511:0] i_d);
+    for (int idx = 0; idx < 16; idx++)
+      f_parw[idx] = ^i_d[32*idx +: 32];
+  endfunction
+
+  always_ff @(posedge i_clk_core) begin : p_ff_par
+    casez ({i_start, i_clr, reg_run})
+      3'b1??: begin
+        reg_pv <= f_parv(i_state);
+        reg_pw <= f_parw(i_block);
+      end
+      3'b01?: begin
+        reg_pv <= '0;
+        reg_pw <= '0;
+      end
+      3'b001: begin
+        reg_pv <= f_parv(w_v_nxt);
+        reg_pw <= f_parw(w_w_nxt);
+      end
+      default: begin
+        // Idle: the parity bits keep their values.
+      end
+    endcase
+  end
+
+  always_comb begin : p_com_par
+    o_par_err = (PARA_PAR != 32'd0) && reg_run && ((f_parv(reg_v) != reg_pv) || (f_parw(reg_w) != reg_pw));
+  end
 
 endmodule

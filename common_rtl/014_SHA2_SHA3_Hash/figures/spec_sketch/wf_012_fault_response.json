@@ -1,0 +1,71 @@
+{
+ "signal": [
+  {
+   "name": "i_clk_core",
+   "wave": "p..........."
+  },
+  [
+   "cores",
+   {
+    "name": "w_core_a_out",
+    "wave": "=.=.........",
+    "data": [
+     "H",
+     "H'"
+    ]
+   },
+   {
+    "name": "w_core_b_out",
+    "wave": "=...........",
+    "data": [
+     "H"
+    ]
+   },
+   {
+    "name": "w_mismatch",
+    "wave": "0.1........."
+   },
+   {
+    "name": "r_mismatch",
+    "wave": "0..1........"
+   }
+  ],
+  [
+   "responses",
+   {
+    "name": "w_digest_gate",
+    "wave": "0...1......."
+   },
+   {
+    "name": "i_sha_sts_locked",
+    "wave": "0...1......."
+   },
+   {
+    "name": "i_sha_sts_cstate",
+    "wave": "=...=.......",
+    "data": [
+     "1",
+     "F"
+    ]
+   },
+   {
+    "name": "o_alarm",
+    "wave": "0...1......."
+   },
+   {
+    "name": "i_hw_we_sha_irq_raw_flt",
+    "wave": "0...10......"
+   },
+   {
+    "name": "o_irq",
+    "wave": "0....1......"
+   }
+  ]
+ ],
+ "head": {
+  "text": "WF-012: Duplicate-core mismatch: gate, lock and alarm responses"
+ },
+ "foot": {
+  "text": "A fault makes core A differ from its duplicate B"
+ }
+}

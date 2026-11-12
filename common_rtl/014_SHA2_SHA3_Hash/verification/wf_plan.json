@@ -1,0 +1,248 @@
+{
+ "plan": {
+  "WF-001": {
+   "stem": "wf_001_axi_write_burst",
+   "cfg": "main",
+   "anchor": {
+    "sig": "i_axi_awvalid",
+    "edge": "rise",
+    "n": 1,
+    "slot": 1
+   },
+   "clock": "i_clk_core"
+  },
+  "WF-002": {
+   "stem": "wf_002_axi_write_error",
+   "cfg": "main",
+   "anchor": {
+    "sig": "i_axi_awvalid",
+    "edge": "rise",
+    "n": 1,
+    "slot": 1
+   },
+   "clock": "i_clk_core"
+  },
+  "WF-003": {
+   "stem": "wf_003_fifo_full_backpressure",
+   "cfg": "main",
+   "anchor": {
+    "sig": "o_axi_wready",
+    "edge": "fall",
+    "n": 1,
+    "slot": 5
+   },
+   "clock": "i_clk_core"
+  },
+  "WF-004": {
+   "stem": "wf_004_final_digest_ready",
+   "cfg": "main",
+   "anchor": {
+    "sig": "o_sha_cmd_final",
+    "edge": "rise",
+    "n": 1,
+    "slot": 1
+   },
+   "clock": "i_clk_core"
+  },
+  "WF-005": {
+   "stem": "wf_005_digest_read_burst",
+   "cfg": "main",
+   "anchor": {
+    "sig": "i_axi_arvalid",
+    "edge": "rise",
+    "n": 1,
+    "slot": 1
+   },
+   "clock": "i_clk_core"
+  },
+  "WF-006": {
+   "stem": "wf_006_read_empty_underflow",
+   "cfg": "main",
+   "anchor": {
+    "sig": "i_axi_arvalid",
+    "edge": "rise",
+    "n": 1,
+    "slot": 1
+   },
+   "clock": "i_clk_core"
+  },
+  "WF-007": {
+   "stem": "wf_007_apb_init_and_nonsecure",
+   "cfg": "main",
+   "anchor": {
+    "sig": "i_apb_psel",
+    "edge": "rise",
+    "n": 1,
+    "slot": 1
+   },
+   "clock": "i_clk_apb"
+  },
+  "WF-008": {
+   "stem": "wf_008_two_contexts_interleaved",
+   "cfg": "main",
+   "anchor": {
+    "sig": "w_core_start",
+    "edge": "rise",
+    "n": 1,
+    "slot": 1
+   },
+   "clock": "i_clk_core"
+  },
+  "WF-009": {
+   "stem": "wf_009_shake_squeeze",
+   "cfg": "main",
+   "anchor": {
+    "sig": "o_axi_rvalid",
+    "edge": "rise",
+    "n": 1,
+    "slot": 3
+   },
+   "clock": "i_clk_core"
+  },
+  "WF-010": {
+   "stem": "wf_010_dma_input_handshake",
+   "cfg": "dma",
+   "anchor": {
+    "sig": "o_dma_in_req",
+    "edge": "rise",
+    "n": 1,
+    "slot": 1
+   },
+   "clock": "i_clk_core"
+  },
+  "WF-011": {
+   "stem": "wf_011_dma_output_timeout",
+   "cfg": "dma",
+   "anchor": {
+    "sig": "i_hw_we_sha_irq_raw_tmo",
+    "edge": "rise",
+    "n": 1,
+    "slot": 4
+   },
+   "clock": "i_clk_core"
+  },
+  "WF-012": {
+   "stem": "wf_012_fault_response",
+   "cfg": "fault",
+   "anchor": {
+    "sig": "i_hw_we_sha_irq_raw_flt",
+    "edge": "rise",
+    "n": 1,
+    "slot": 4
+   },
+   "clock": "i_clk_core"
+  },
+  "WF-013": {
+   "stem": "wf_013_entropy_request",
+   "cfg": "maskent",
+   "anchor": {
+    "sig": "o_ent_req",
+    "edge": "rise",
+    "n": 1,
+    "slot": 1
+   },
+   "clock": "i_clk_core"
+  },
+  "WF-014": {
+   "stem": "wf_014_abort_zero_reset",
+   "cfg": "main",
+   "anchor": {
+    "sig": "o_sha_cmd_abort",
+    "edge": "rise",
+    "n": 1,
+    "slot": 1
+   },
+   "clock": "i_clk_core"
+  },
+  "WF-015": {
+   "stem": "wf_015_reset_release",
+   "cfg": "async",
+   "anchor": {
+    "sig": "i_rst_n_core",
+    "edge": "fall",
+    "n": 1,
+    "slot": 2
+   },
+   "clock": "i_clk_core"
+  },
+  "WF-016": {
+   "stem": "wf_016_apb_async_write",
+   "cfg": "async",
+   "anchor": {
+    "sig": "i_apb_psel",
+    "edge": "rise",
+    "n": 1,
+    "slot": 4
+   },
+   "clock": "i_clk_core"
+  },
+  "WF-017": {
+   "stem": "wf_017_final_with_busy_core",
+   "cfg": "main",
+   "anchor": {
+    "sig": "o_sha_cmd_final",
+    "edge": "rise",
+    "n": 1,
+    "slot": 1
+   },
+   "clock": "i_clk_core"
+  },
+  "WF-018": {
+   "stem": "wf_018_two_block_padding",
+   "cfg": "main",
+   "anchor": {
+    "sig": "w_core_start",
+    "edge": "rise",
+    "n": 1,
+    "slot": 2
+   },
+   "clock": "i_clk_core"
+  },
+  "WF-019": {
+   "stem": "wf_019_ctxsel_while_busy",
+   "cfg": "main",
+   "anchor": {
+    "sig": "w_core_busy",
+    "edge": "rise",
+    "n": 1,
+    "slot": 2
+   },
+   "clock": "i_clk_core"
+  }
+ },
+ "not_simulated": {},
+ "cfg": {
+  "main": {
+   "DW": 64,
+   "CTXN": 4,
+   "ALG": "12'hfff"
+  },
+  "dma": {
+   "DW": 64,
+   "CTXN": 4,
+   "ALG": "12'hfff",
+   "DMA": 1
+  },
+  "fault": {
+   "DW": 64,
+   "CTXN": 4,
+   "ALG": "12'hfff",
+   "FDUP": 1,
+   "ALARM": 1
+  },
+  "maskent": {
+   "DW": 64,
+   "CTXN": 2,
+   "ALG": "12'hfff",
+   "MASK": 1,
+   "SEEDSRC": 0
+  },
+  "async": {
+   "DW": 64,
+   "CTXN": 4,
+   "ALG": "12'hfff",
+   "ASYNC": 1,
+   "APBH": "20.0"
+  }
+ }
+}

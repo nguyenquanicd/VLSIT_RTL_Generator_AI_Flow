@@ -13,7 +13,7 @@
  *                context ends a block after rate / word bytes and asks the sequencer for the
  *                next permutation (the permutation event); the output stream stays continuous
  *                because every rate is a whole number of words (DEC-019).
- *                Decisions: DEC-019, DEC-020.
+ *                Decisions: DEC-019, DEC-020, DEC-036.
  */
 `timescale 1ns/1ps
 
@@ -75,6 +75,8 @@ module m_vlsit_sha_outp #(
   logic                       w_last_word;
   logic [PARA_CTX_N-1:0][7:0] w_off_nxt;
   logic [PARA_CTX_N-1:0]      w_fin_nxt;
+  logic [3199:0]              w_rd_ext;
+  logic [1599:0]              w_state_u;
 
   // Digest length of an algorithm in bytes; 0 means an open output (SHAKE).
   function automatic logic [31:0] f_dlen(input logic [3:0] i_alg);
@@ -133,6 +135,13 @@ module m_vlsit_sha_outp #(
 
   // Candidate selection: the first context from reg_ptr + 1 (round robin) that is pushable, has
   // not just finished a block and has room in its output FIFO.
+  // The state read from the context memory: with the masked core (width 3200) it holds two
+  // shares and the digest is their xor; a narrower state has no second share (zero extended).
+  always_comb begin : p_com_unmask
+    w_rd_ext  = 3200'(i_rd_data);
+    w_state_u = w_rd_ext[1599:0] ^ w_rd_ext[3199:1600];
+  end
+
   always_comb begin : p_com_sel
     w_el  = '0;
     w_hit = 1'b0;
@@ -161,7 +170,7 @@ module m_vlsit_sha_outp #(
     o_push_data = '0;
     for (int idx = 0; idx < LPARA_WB; idx++) begin
       if (w_is_shake || ((32'(w_off) * LPARA_WB + 32'(idx)) < w_dig_bytes))
-        o_push_data[8*idx +: 8] = f_dbyte(w_alg, 1600'(i_rd_data), 8'(32'(w_off) * LPARA_WB + 32'(idx)));
+        o_push_data[8*idx +: 8] = f_dbyte(w_alg, w_state_u, 8'(32'(w_off) * LPARA_WB + 32'(idx)));
     end
     o_push_en  = w_hit;
     o_push_ctx = w_sel;

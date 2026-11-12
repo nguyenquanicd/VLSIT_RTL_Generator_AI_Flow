@@ -1,0 +1,52 @@
+{
+ "signal": [
+  {
+   "name": "i_clk_core",
+   "wave": "p............."
+  },
+  [
+   "context",
+   {
+    "name": "r_ctx_state",
+    "wave": "=.=.=.........",
+    "data": [
+     "FINALIZING",
+     "DIGEST_READY",
+     "SQUEEZING"
+    ]
+   },
+   {
+    "name": "w_squeeze_start",
+    "wave": "0......10....."
+   },
+   {
+    "name": "w_keccak_busy",
+    "wave": "0......1...0.."
+   }
+  ],
+  [
+   "output",
+   {
+    "name": "o_axi_rvalid",
+    "wave": "0..1010......."
+   },
+   {
+    "name": "i_sha_lvl_outlvl",
+    "wave": "=.=.=.=.....=.",
+    "data": [
+     "0",
+     "21",
+     "16",
+     "11",
+     "32"
+    ]
+   }
+  ]
+ ],
+ "head": {
+  "text": "WF-009: SHAKE128 output of more than one block: the next block is squeezed when the FIFO has room"
+ },
+ "foot": {
+  "text": "Example numbers: FIFO of 32 words, a block of 21 words"
+ }
+}
